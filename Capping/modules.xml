@@ -13,7 +13,7 @@
 <Script file="Modules\TwinPeaks.lua"/>
 <Script file="Modules\WarsongGulch.lua"/>
 <Script file="Modules\Wintergrasp.lua"/>
-<!--@debug
+<!--@debug@
 <Include file="Options\locales.xml"/>
 <Script file="Options\Options.lua"/>
 @end-debug@-->
