@@ -14,8 +14,8 @@ BINDING_NAME_AngryAssign_SHOW_DISPLAY = "Show Display"
 BINDING_NAME_AngryAssign_HIDE_DISPLAY = "Hide Display"
 BINDING_NAME_AngryAssign_OUTPUT = "Output Assignment to Chat"
 
-local AngryAssign_Version = 'v1.14.2'
-local AngryAssign_Timestamp = '20201025015152'
+local AngryAssign_Version = 'v1.14.3'
+local AngryAssign_Timestamp = '20210514205301'
 
 local isClassic = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 
