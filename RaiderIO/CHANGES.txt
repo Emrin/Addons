@@ -1,10 +1,19 @@
-lightweight tag 8c128da24c2d9da8597af119e25ac4555feeaa88 v202105250600
+lightweight tag 3b000b2f3061dff0e0f32c7e4dedf83d239dadb1 v202105300600
 Author:	Jah Raphael <jahraphael@yahoo.com>
-Date:	Tue May 25 07:12:05 2021 +0000
+Date:	Sun May 30 07:13:23 2021 +0000
 
-commit 8c128da24c2d9da8597af119e25ac4555feeaa88
+commit 3b000b2f3061dff0e0f32c7e4dedf83d239dadb1
 Author: Jah Raphael <jahraphael@yahoo.com>
-Date:   Tue May 25 07:12:05 2021 +0000
+Date:   Sun May 30 07:13:23 2021 +0000
 
     [Raider.IO] Database Refresh
+
+commit fdbcf333eef696b613c4acec4b7c1ca371027136
+Author: François "Isak" W <wroblewski.francois@gmail.com>
+Date:   Sun May 30 00:01:28 2021 +0200
+
+    Fix lua error when mousing over "Pending Invites"
+    
+    When mousing over "Pending Invites" header in the community roster tab, the function exists but return null.
+    Thanks synroot for the report.
 
