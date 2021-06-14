@@ -91,6 +91,8 @@
 	
 	local tooltip_temp_table = {}
 
+	local OBJECT_TYPE_FRIENDLY_NPC 	=	0x00000A18
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --> exported functions
 
@@ -201,6 +203,20 @@
 							return false
 						end
 						return true
+					end
+				end
+				return false
+			end
+
+			function Details:IsFriendlyNpc()
+				local flag = self.flag_original
+				if (flag) then
+					if (bit.band(flag, 0x00000008) ~= 0) then
+						if (bit.band(flag, 0x00000010) ~= 0) then
+							if (bit.band(flag, 0x00000800) ~= 0) then
+								return true
+							end
+						end
 					end
 				end
 				return false
@@ -605,10 +621,10 @@
 									end
 								end
 							end
-						end                
-					end             
-				end        
-			end    
+						end            
+					end         
+				end    
+			end
 		end
 
 		table.sort (Targets, Details.Sort2)
@@ -966,7 +982,7 @@
 		end
 		
 		if (thisLine.hidden or thisLine.fading_in or thisLine.faded) then
-			gump:Fade (thisLine, "out")
+			Details.FadeHandler.Fader (thisLine, "out")
 		end
 		
 		if (instancia.row_info.texture_class_colors) then
@@ -1153,7 +1169,7 @@
 		thisLine.lineText4:SetTextColor (1, 1, 1, 1)		
 		
 		if (thisLine.hidden or thisLine.fading_in or thisLine.faded) then
-			gump:Fade (thisLine, "out")
+			Details.FadeHandler.Fader (thisLine, "out")
 		end
 
 		Details:SetBarColors (thisLine, instancia, _unpack (Details.class_colors [tabela [3]]))
@@ -1570,7 +1586,7 @@
 		thisLine:SetValue (100)
 		
 		if (thisLine.hidden or thisLine.fading_in or thisLine.faded) then
-			gump:Fade (thisLine, "out")
+			Details.FadeHandler.Fader (thisLine, "out")
 		end
 		
 		local _, _, icon = GetSpellInfo (self.damage_spellid)
@@ -2120,7 +2136,7 @@ function atributo_damage:RefreshWindow (instancia, tabela_do_combate, forcar, ex
 		if (forcar) then
 			if (instancia.modo == 2) then --> group
 				for i = 1, instancia.rows_fit_in_window  do
-					gump:Fade (instancia.barras [i], "in", 0.3)
+					Details.FadeHandler.Fader (instancia.barras [i], "in", Details.fade_speed)
 				end
 			end
 		end
@@ -2225,7 +2241,7 @@ function atributo_damage:RefreshWindow (instancia, tabela_do_combate, forcar, ex
 			row1.icone_classe:SetTexture (instancia.total_bar.icon)
 			row1.icone_classe:SetTexCoord (0.0625, 0.9375, 0.0625, 0.9375)
 			
-			gump:Fade (row1, "out")
+			Details.FadeHandler.Fader (row1, "out")
 			totalBarIsShown = true
 			
 			if (following and myPos and myPos > instancia.rows_fit_in_window and instancia.barraS[2] < myPos) then
@@ -2297,7 +2313,7 @@ function atributo_damage:RefreshWindow (instancia, tabela_do_combate, forcar, ex
 			row1.icone_classe:SetTexture (instancia.total_bar.icon)
 			row1.icone_classe:SetTexCoord (0.0625, 0.9375, 0.0625, 0.9375)
 			
-			gump:Fade (row1, "out")
+			Details.FadeHandler.Fader (row1, "out")
 			totalBarIsShown = true
 			
 			if (following and myPos and myPos > instancia.rows_fit_in_window and instancia.barraS[2] < myPos) then
@@ -2354,7 +2370,7 @@ function atributo_damage:RefreshWindow (instancia, tabela_do_combate, forcar, ex
 	if (forcar) then
 		if (instancia.modo == 2) then --> group
 			for i = whichRowLine, instancia.rows_fit_in_window  do
-				gump:Fade (instancia.barras [i], "in", 0.3)
+				Details.FadeHandler.Fader (instancia.barras [i], "in", Details.fade_speed)
 			end
 		end
 	end
@@ -2673,7 +2689,7 @@ end
 			thisLine:SetValue (100)
 			
 			if (thisLine.hidden or thisLine.fading_in or thisLine.faded) then
-				gump:Fade (thisLine, "out")
+				Details.FadeHandler.Fader (thisLine, "out")
 			end
 			
 			return self:RefreshBarra (thisLine, instance)
@@ -2691,7 +2707,7 @@ end
 				thisLine.animacao_ignorar = true
 			end
 			
-			gump:Fade (thisLine, "out")
+			Details.FadeHandler.Fader (thisLine, "out")
 
 			return self:RefreshBarra (thisLine, instance)
 		else
@@ -3049,7 +3065,7 @@ function atributo_damage:ToolTip_DamageDone (instancia, numero, barra, keydown)
 				Details:AddTooltipHeaderStatusbar (r, g, b, barAlha)
 			end
 			
-			local topAbility = ActorSkillsSortTable [1] and ActorSkillsSortTable [1][2] or 0
+			local topAbility = ActorSkillsSortTable [1] and ActorSkillsSortTable [1][2] or 0.0001
 			
 			if (#ActorSkillsSortTable > 0) then
 				for i = 1, _math_min (tooltip_max_abilities, #ActorSkillsSortTable) do
@@ -3071,10 +3087,15 @@ function atributo_damage:ToolTip_DamageDone (instancia, numero, barra, keydown)
 						end
 					end
 					
+					local percent = _cstr("%.1f", totalDamage/ActorDamage*100)
+					if (string.len(percent) < 4) then
+						percent = percent  .. "0"
+					end
+
 					if (instancia.sub_atributo == 1 or instancia.sub_atributo == 6) then
-						GameCooltip:AddLine (nome_magia, FormatTooltipNumber (_, totalDamage) .." (".._cstr("%.1f", totalDamage/ActorDamage*100).."%)")
+						GameCooltip:AddLine (nome_magia, FormatTooltipNumber (_, totalDamage) .."   ("..percent.."%)")
 					else
-						GameCooltip:AddLine (nome_magia, FormatTooltipNumber (_, _math_floor (totalDPS)) .." (".._cstr("%.1f", totalDamage/ActorDamage*100).."%)")
+						GameCooltip:AddLine (nome_magia, FormatTooltipNumber (_, _math_floor (totalDPS)) .."   ("..percent.."%)")
 					end
 					
 					GameCooltip:AddIcon (icone_magia, nil, nil, icon_size.W + 4, icon_size.H + 4, icon_border.L, icon_border.R, icon_border.T, icon_border.B)

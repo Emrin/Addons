@@ -1,10 +1,10 @@
 # Clique
 
-## [v3.0.2](https://github.com/jnwhiteh/Clique/tree/v3.0.2) (2021-05-30)
-[Full Changelog](https://github.com/jnwhiteh/Clique/compare/v3.0.1...v3.0.2) [Previous Releases](https://github.com/jnwhiteh/Clique/releases)
+## [v3.1.0](https://github.com/jnwhiteh/Clique/tree/v3.1.0) (2021-06-01)
+[Full Changelog](https://github.com/jnwhiteh/Clique/compare/v3.0.2...v3.1.0) [Previous Releases](https://github.com/jnwhiteh/Clique/releases)
 
-- Enable FocusFrame and FocusFrameToT for TBC Classic  
-- Fix an issue where max rank spells were being used incorrectly  
-    This only applies to the combination of the "stop casting" fix on  
-    TBC/Classic, but should resolve the issues folks have reported.  
-- Add simple readme  
+- Update TOC for Classic  
+- Merge pull request #2 from jnwhiteh/add-meta-support  
+    Add support for meta/command on Mac OS X  
+- Update localisation  
+- Add support for the Meta/Command key on Mac OS X  

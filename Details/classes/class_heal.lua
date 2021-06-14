@@ -117,6 +117,26 @@ function atributo_heal:NovaTabela (serial, nome, link)
 end
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--> npc healing taken
+
+--local npchealingtaken_tooltip_background = {value = 100, color = {0.1960, 0.1960, 0.1960, 0.9097}, texture = [[Interface\AddOns\Details\images\bar_background2]]}
+
+--tooltip function
+
+
+local function RefreshNpcHealingTakenBar(tabela, barra, instancia)
+	atributo_damage:UpdateNpcHealingTaken(tabela, tabela.minha_barra, barra.colocacao, instancia)
+end
+
+local on_switch_NHT_show = function(instance) --npc healing taken
+	instance:TrocaTabela(instance, true, 1, 8)
+	return true
+end
+
+--local NHT_search_code = [[]]
+
+
 function _detalhes.SortGroupHeal (container, keyName2)
 	keyName = keyName2
 	return _table_sort (container, _detalhes.SortKeyGroupHeal)
@@ -429,7 +449,7 @@ function atributo_heal:RefreshWindow (instancia, tabela_do_combate, forcar, expo
 			row1.icone_classe:SetTexture (instancia.total_bar.icon)
 			row1.icone_classe:SetTexCoord (0.0625, 0.9375, 0.0625, 0.9375)
 			
-			gump:Fade (row1, "out")
+			Details.FadeHandler.Fader (row1, "out")
 			
 			if (following and myPos and myPos > instancia.rows_fit_in_window and instancia.barraS[2] < myPos) then
 				for i = instancia.barraS[1], iter_last-1, 1 do --> vai atualizar s� o range que esta sendo mostrado
@@ -499,7 +519,7 @@ function atributo_heal:RefreshWindow (instancia, tabela_do_combate, forcar, expo
 			row1.icone_classe:SetTexture (instancia.total_bar.icon)
 			row1.icone_classe:SetTexCoord (0.0625, 0.9375, 0.0625, 0.9375)
 			
-			gump:Fade (row1, "out")
+			Details.FadeHandler.Fader (row1, "out")
 			
 			if (following and myPos and myPos > instancia.rows_fit_in_window and instancia.barraS[2] < myPos) then
 				conteudo[myPos]:RefreshLine (instancia, barras_container, whichRowLine, myPos, total, sub_atributo, forcar, keyName, combat_time, percentage_type, use_animations, bars_show_data, bars_brackets, bars_separator) 
@@ -559,7 +579,7 @@ function atributo_heal:RefreshWindow (instancia, tabela_do_combate, forcar, expo
 	if (forcar) then
 		if (instancia.modo == 2) then --> group
 			for i = whichRowLine, instancia.rows_fit_in_window  do
-				gump:Fade (instancia.barras [i], "in", 0.3)
+				Details.FadeHandler.Fader (instancia.barras [i], "in", Details.fade_speed)
 			end
 		end
 	end
@@ -860,7 +880,7 @@ function atributo_heal:RefreshBarra2 (thisLine, instancia, tabela_anterior, forc
 			thisLine:SetValue (100)
 			
 			if (thisLine.hidden or thisLine.fading_in or thisLine.faded) then
-				gump:Fade (thisLine, "out")
+				Details.FadeHandler.Fader (thisLine, "out")
 			end
 			
 			return self:RefreshBarra (thisLine, instancia)
@@ -878,7 +898,7 @@ function atributo_heal:RefreshBarra2 (thisLine, instancia, tabela_anterior, forc
 				thisLine.animacao_ignorar = true
 			end
 			
-			gump:Fade (thisLine, "out")
+			Details.FadeHandler.Fader (thisLine, "out")
 			
 			if (instancia.row_info.texture_class_colors) then
 				thisLine.textura:SetVertexColor (actor_class_color_r, actor_class_color_g, actor_class_color_b)

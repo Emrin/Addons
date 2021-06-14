@@ -1,10 +1,8 @@
-lightweight tag 87728d0e6881b454b7de1aaa99c097c62fab0ebf DetailsRetail.9.0.2.8203.144
-Author:	Tercio Jose <terciob19@hotmail.com>
-Date:	Fri Feb 5 14:21:23 2021 -0300
+Changes since tag DetailsRetail.9.0.5.8516.144
 
-commit 87728d0e6881b454b7de1aaa99c097c62fab0ebf
+commit bd1700b5f11ae1d117a0c4ccba9475f0d96f8961
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Fri Feb 5 14:21:23 2021 -0300
+Date:   Thu Jun 10 12:09:28 2021 -0300
 
-    Backend improvements
+    general fixes for game client versions
 
