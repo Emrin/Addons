@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(2443, "DBM-SanctumOfDomination", nil, 1193)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20210601031908")
+mod:SetRevision("20210614184808")
 mod:SetCreatureID(176523)
 mod:SetEncounterID(2430)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 6)
@@ -68,7 +68,6 @@ mod:AddInfoFrameOption(355786, true)
 mod:AddSetIconOption("SetIconOnChains", 355505, true, false, {1, 2, 3})
 mod:AddNamePlateOption("NPAuraOnFinalScream", 357735)
 
-mod.vb.phase = 1
 mod.vb.ChainsIcon = 1
 
 local debuffedPlayers = {}
@@ -128,7 +127,7 @@ do
 end
 
 function mod:OnCombatStart(delay)
-	self.vb.phase = 1
+	self:SetStage(1)
 	self.vb.ChainsIcon = 1
 	table.wipe(debuffedPlayers)
 	timerShadowsteelChainsCD:Start(8.7-delay)
@@ -276,7 +275,7 @@ function mod:SPELL_AURA_REMOVED(args)
 		end
 	elseif spellId == 355525 then--Forge Weapon ending, boss returning
 		timerForgeWeapon:Stop()
-		self.vb.phase = self.vb.phase + 1
+		self:SetStage(0)
 		if self.vb.phase == 2 then
 			timerShadowsteelChainsCD:Start(15.5)
 			timerCruciformAxeCD:Start(24)
