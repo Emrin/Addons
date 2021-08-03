@@ -19,14 +19,16 @@ local tostring = tostring
 local fmt = string.format
 local select = select
 local GetTime = GetTime
+local UnitExists = UnitExists
 local UnitHealth = UnitHealth
 local UnitIsDead = UnitIsDead
 local UnitIsGhost = UnitIsGhost
+local UnitIsFriend = UnitIsFriend
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
 local UnitIsFeignDeath = UnitIsFeignDeath
 local UnitHealthMax = UnitHealthMax
 local C_Timer_After = C_Timer.After
-local unit_is_valid = Grid2.unit_is_valid
+local unit_is_valid = Grid2.roster_guids
 
 -- Caches
 local heals_enabled = false
@@ -199,7 +201,7 @@ end
 local function HealthCurrent_GetPercentDFH(self, unit)
 	if UnitIsDeadOrGhost(unit) then return 1 end
 	local m = UnitHealthMax(unit)
-	return m == 0 and 0 or UnitHealth(unit) / m
+	return m == 0 and 1 or UnitHealth(unit) / m
 end
 
 if Grid2.isClassic then
@@ -253,11 +255,11 @@ HealthLow.OnDisable = Health_Disable
 HealthLow.GetColor  = Grid2.statusLibrary.GetColor
 
 function HealthLow:IsActive1(unit)
-	return HealthCurrent:GetPercent(unit) < self.dbx.threshold
+	return UnitExists(unit) and HealthCurrent:GetPercent(unit) < self.dbx.threshold
 end
 
 function HealthLow:IsActive2(unit)
-	return UnitHealth(unit) < self.dbx.threshold
+	return UnitExists(unit) and UnitHealth(unit) < self.dbx.threshold
 end
 
 function HealthLow:UpdateDB()
@@ -367,15 +369,23 @@ else
 		return fmt("%.1fk", (UnitHealth(unit) - UnitHealthMax(unit)  + heals_cache[unit]) / 1000)
 	end
 end
+function HealthDeficit:GetTextEnemy(unit) -- special case, we display health current percent for enemy units
+	if UnitIsFriend('player', unit) then
+		return self:GetTextFriend(unit)
+	else
+		local m = UnitHealthMax(unit)
+		return fmt( "%d%%", m == 0 and 0 or UnitHealth(unit) * 100 / m )
+	end
+end
 HealthDeficit.GetText = HealthDeficit.GetText1
 
 function HealthDeficit:GetPercent1(unit)
 	local m = UnitHealthMax(unit)
-	return m == 0 and 1 or ( m - UnitHealth(unit) ) / m
+	return m == 0 and 0 or ( m - UnitHealth(unit) ) / m
 end
 function HealthDeficit:GetPercent2(unit)
 	local m = UnitHealthMax(unit)
-	return m == 0 and 1 or max( ( m - UnitHealth(unit) - heals_cache[unit] ) / m, 0)
+	return m == 0 and 0 or max( ( m - UnitHealth(unit) - heals_cache[unit] ) / m, 0)
 end
 HealthDeficit.GetPercent = HealthDeficit.GetPercent1
 
@@ -390,6 +400,10 @@ function HealthDeficit:UpdateDB()
 	else
 		self.GetPercent = HealthDeficit.GetPercent1
 		self.GetText = self.dbx.displayRawNumbers and self.GetText2 or self.GetText1
+	end
+	if self.dbx.displayPercentEnemies then
+		self.GetTextFriend = self.GetText
+		self.GetText = self.GetTextEnemy
 	end
 end
 
@@ -461,16 +475,12 @@ end
 
 function Death:OnEnable()
 	self:RegisterEvent( "UNIT_HEALTH", DeathUpdateUnit )
-	self:RegisterEvent( "UNIT_MAXHEALTH", DeathUpdateUnit )
-	self:RegisterEvent( "UNIT_CONNECTION", DeathUpdateUnit )
 	self:RegisterMessage("Grid_UnitUpdated")
 	self:RegisterMessage("Grid_UnitLeft")
 end
 
 function Death:OnDisable()
 	self:UnregisterEvent( "UNIT_HEALTH" )
-	self:UnregisterEvent( "UNIT_MAXHEALTH" )
-	self:UnregisterEvent( "UNIT_CONNECTION" )
 	self:UnregisterMessage("Grid_UnitUpdated")
 	self:UnregisterMessage("Grid_UnitLeft")
 	wipe(dead_cache)
@@ -607,6 +617,29 @@ HealsUpdateEvent = function(unit)
 	end
 end
 
+local function ClearUnitHealCache(_, unit)
+	heals_cache[unit] = nil
+	myheals_cache[unit] = nil
+end
+
+local function RegisterHealEvents(bitmask)
+	if heals_required==0 then
+		RegisterEvent("UNIT_HEAL_PREDICTION", HealsUpdateEvent)
+		Grid2.RegisterMessage( Heals, "Grid_UnitLeft", ClearUnitHealCache )
+		Grid2.RegisterMessage( Heals, "Grid_UnitUpdated", ClearUnitHealCache )
+	end
+	heals_required = bit.bor(heals_required,bitmask) -- set specified bit
+end
+
+local function UnregisterHealEvents(bitmask)
+	heals_required = bit.band(heals_required,7-bitmask) -- clear specified bit
+	if heals_required==0 then
+		UnregisterEvent("UNIT_HEAL_PREDICTION")
+		Grid2.UnregisterMessage( Heals, "Grid_UnitLeft")
+		Grid2.UnregisterMessage( Heals, "Grid_UnitUpdated")
+	end
+end
+
 function Heals:UpdateDB()
 	local m = self.dbx.flags
 	heals_minimum = (m and m>1 and m ) or 1
@@ -625,27 +658,21 @@ end
 
 function Heals:OnEnable()
 	self:UpdateDB()
-	if heals_required==0 then
-		RegisterEvent("UNIT_HEAL_PREDICTION", HealsUpdateEvent)
-	end
+	RegisterHealEvents(1) -- set bit1
 	if self.dbx.includeHealAbsorbs and not Grid2.isClassic then
 		RegisterEvent("UNIT_HEAL_ABSORB_AMOUNT_CHANGED", HealsUpdateEvent)
 	end
 	if not self.dbx.includePlayerHeals and not Grid2.isClassic then -- in classic we do not need to substract player heals
-		myheal_required = bit.bor(myheal_required,1)
+		myheal_required = bit.bor(myheal_required,1) -- set bit1
 	end
-	heals_required = bit.bor(heals_required,1) -- set bit1
 	heals_enabled = true
 end
 
 function Heals:OnDisable()
+	UnregisterHealEvents(1)
 	wipe(heals_cache)
 	heals_enabled = false
-	heals_required = bit.band(heals_required,7-1) -- clear bit1
 	myheal_required = bit.band(myheal_required,2) -- clear bit1
-	if heals_required==0 then
-		UnregisterEvent("UNIT_HEAL_PREDICTION")
-	end
 	if self.dbx.includeHealAbsorbs and not Grid2.isClassic then
 		UnregisterEvent("UNIT_HEAL_ABSORB_AMOUNT_CHANGED")
 	end
@@ -696,16 +723,14 @@ end
 function OverHeals:OnEnable()
 	self:UpdateDB()
 	Health_Enable(self)
-	if heals_required==0 then RegisterEvent("UNIT_HEAL_PREDICTION", HealsUpdateEvent) end
-	heals_required = bit.bor(heals_required,4) -- set bit3
+	RegisterHealEvents(4) -- set bit3
 	overheals_enabled = true
 end
 
 function OverHeals:OnDisable()
 	Health_Disable(self)
 	overheals_enabled = false
-	heals_required = bit.band(heals_required,7-4) -- clear bit3
-	if heals_required==0 then UnregisterEvent("UNIT_HEAL_PREDICTION") end
+	UnregisterHealEvents(4) -- clear bit3
 end
 
 function OverHeals:IsActive(unit)
@@ -756,18 +781,16 @@ end
 
 function MyHeals:OnEnable()
 	self:UpdateDB()
-	if heals_required==0 then RegisterEvent("UNIT_HEAL_PREDICTION", HealsUpdateEvent) end
+	RegisterHealEvents(2) -- set bit2
 	myheal_required = bit.bor(myheal_required,2) -- set bit2
-	heals_required  = bit.bor(heals_required,2)   -- set bit2
 	myheals_enabled = true
 end
 
 function MyHeals:OnDisable()
+	UnregisterHealEvents(2) -- clear bit2
 	wipe(myheals_cache)
 	myheals_enabled = false
 	myheal_required = bit.band(myheal_required,1) -- clear bit2
-	heals_required = bit.band(heals_required,7-2) -- clear bit2
-	if heals_required==0 then UnregisterEvent("UNIT_HEAL_PREDICTION") end
 end
 
 function MyHeals:IsActive(unit)

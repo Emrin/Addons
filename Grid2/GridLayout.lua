@@ -19,7 +19,6 @@ local NUM_HEADERS = 0
 local FRAMES_TEMPLATE = "SecureUnitButtonTemplate"                        .. (BackdropTemplateMixin and ",BackdropTemplate" or "")
 local FRAMEC_TEMPLATE = "ClickCastUnitTemplate,SecureUnitButtonTemplate"  .. (BackdropTemplateMixin and ",BackdropTemplate" or "")
 local SECURE_INIT_TMP =  [[
-	RegisterUnitWatch(self)
 	self:SetAttribute("*type1", "target")
 	self:SetAttribute("*type2", "togglemenu")
 	self:SetAttribute("useparent-toggleForVehicle", true)
@@ -37,13 +36,13 @@ local SECURE_INIT = SECURE_INIT_TMP
 
 local GridLayoutHeaderClass = {
 	prototype = {},
-	new = function (self, type)
+	new = function (self, template)
 		NUM_HEADERS = NUM_HEADERS + 1
-		local frame = CreateFrame("Frame", "Grid2LayoutHeader"..NUM_HEADERS, Grid2Layout.frame, type=='pet' and "SecureGroupPetHeaderTemplate" or "SecureGroupHeaderTemplate" )
+		local frame = CreateFrame("Frame", "Grid2LayoutHeader"..NUM_HEADERS, Grid2Layout.frame, template )
 		for name, func in pairs(self.prototype) do
 			frame[name] = func
 		end
-		if ClickCastHeader then
+		if ClickCastHeader and not self.isInsecure then
 			frame:SetAttribute("template", FRAMEC_TEMPLATE)
 			SecureHandler_OnLoad(frame)
 			frame:SetFrameRef("clickcast_header", Clique.header)
@@ -55,7 +54,16 @@ local GridLayoutHeaderClass = {
 		frame:Reset()
 		frame:SetOrientation()
 		return frame
-	end
+	end,
+	template = function(self, layoutHeader, insecure)
+		if layoutHeader.type=='custom' then
+			return 'Grid2InsecureGroupCustomHeaderTemplate'
+		elseif insecure or layoutHeader.detachHeader or (layoutHeader.nameList and (layoutHeader.roleFilter or layoutHeader.groupFilter)) then
+			return layoutHeader.type=='pet' and 'Grid2InsecureGroupPetHeaderTemplate' or 'Grid2InsecureGroupHeaderTemplate'
+		else
+			return layoutHeader.type=='pet' and 'SecureGroupPetHeaderTemplate' or 'SecureGroupHeaderTemplate'
+		end
+	end,
 }
 
 local HeaderAttributes = {
@@ -63,17 +71,26 @@ local HeaderAttributes = {
 	"sortDir", "groupBy", "groupingOrder", "maxColumns", "unitsPerColumn",
 	"startingIndex", "columnSpacing", "columnAnchorPoint",
 	"useOwnerUnit", "filterOnPet", "unitsuffix", "sortMethod",
-	"toggleForVehicle", "showSolo", "showPlayer", "showParty", "showRaid"
+	"toggleForVehicle", "showSolo", "showPlayer", "showParty", "showRaid",
+	-- extra attributes used only by Grid2 Special Group Header
+	"hideEmptyUnits", "unitsFilter", "detachHeader", "frameSpacing", "testMode"
 }
 
 function GridLayoutHeaderClass.prototype:Reset()
-	self.tokenNames  = nil
-	self.tokenFilter = nil
+	-- Hide the header before initializing attributes to avoid a lot of unnecesary SecureGroupHeader_Update() calls
+	self:Hide()
+	-- SecureGroupFrames code does not correctly resets all the buttons, we need to do it manually because
+	-- Grid2Frame relies on :OnAttributeChanged() event to add/delete units in roster and unit_frames tables.
+	for _,uframe in ipairs(self) do
+		if uframe.unit==nil then break end
+		uframe:SetAttribute("unit", nil)
+	end
+	-- Initialize attributes
 	local defaults = Grid2Layout.customDefaults
 	for _, attr in ipairs(HeaderAttributes) do
 		self:SetAttribute(attr, defaults[attr] or nil  )
 	end
-	self:Hide()
+	self.dbx = nil
 end
 
 local anchorPoints = {
@@ -146,6 +163,7 @@ Grid2Layout.defaultDB = {
 		groupAnchor = "TOPLEFT",
 		PosX = 500,
 		PosY = -200,
+		Positions = {},
 		-- profile options shared by all themes, but stored on default/first theme
 		minimapIcon = { hide = false },
 	},
@@ -177,8 +195,8 @@ function Grid2Layout:OnModuleInitialize()
 	-- useful variables
 	self.dba = self.db
 	self.db = { global = self.dba.global, profile = self.dba.profile, shared = self.dba.profile }
-	self.groups = { player = {}, pet = {} }
-	self.indexes = { player = 0,  pet = 0  }
+	self.groups  = setmetatable( {}, { __index = function(t,k) t[k]= {}; return t[k]; end } )
+	self.indexes = setmetatable( {}, { __index = function(t,k) return 0;  end } )
 	self.groupsUsed = {}
 	-- create main frame
 	self.frame = CreateFrame("Frame", "Grid2LayoutFrame", UIParent)
@@ -188,7 +206,7 @@ function Grid2Layout:OnModuleInitialize()
 	self.frame:SetScript("OnHide", function () self:StopMoveFrame() end)
 	self.frame:SetScript("OnMouseDown", function (_, button) self:StartMoveFrame(button) end)
 	-- extra frame for background and border textures, to be able to resize in combat
-	self.frameBack = CreateFrame("Frame", "Grid2LayoutFrameBack", self.frame, BackdropTemplateMixin and "BackdropTemplate" or nil)
+	self.frame.frameBack = CreateFrame("Frame", "Grid2LayoutFrameBack", self.frame, BackdropTemplateMixin and "BackdropTemplate" or nil)
 	-- custom defaults
 	self.customDefaults = self.db.global.customDefaults
 	-- add custom layouts
@@ -203,7 +221,6 @@ function Grid2Layout:OnModuleEnable()
 	self:RegisterMessage("Grid_RosterUpdate")
 	self:RegisterMessage("Grid_GroupTypeChanged")
 	self:RegisterMessage("Grid_UpdateLayoutSize")
-	self:RegisterEvent("UI_SCALE_CHANGED")
 	if not Grid2.isClassic then
 		self:RegisterEvent("PET_BATTLE_OPENING_START", "PetBattleTransition")
 		self:RegisterEvent("PET_BATTLE_CLOSE", "PetBattleTransition")
@@ -236,11 +253,17 @@ function Grid2Layout:UpdateTheme()
 	self.db.profile = themes and themes[Grid2.currentTheme] or self.dba.profile
 	self.db.shared = self.dba.profile
 	self.frameWidth, self.frameHeight = nil, nil
+	self:UpgradeThemeDB()
 end
 
 function Grid2Layout:RefreshTheme()
 	self:UpdateFrame()
 	self:ReloadLayout(true)
+end
+
+function Grid2Layout:UpgradeThemeDB()
+	local p = self.db.profile
+	p.Positions = p.Positions or {}
 end
 
 --{{{ Event handlers
@@ -254,9 +277,7 @@ function Grid2Layout:Grid_GroupTypeChanged(_, groupType, instType, maxPlayers)
 end
 
 function Grid2Layout:Grid_RosterUpdate(_, unknowns)
-	if self.layoutHasFilter then
-		Grid2:RunThrottled(self, "ReloadFilter", .25)
-	elseif unknowns then
+	if unknowns and not self.db.global.useInsecureHeaders then
 		Grid2:RunThrottled(self, "FixRoster", .25)
 	end
 end
@@ -275,12 +296,6 @@ function Grid2Layout:UNIT_TARGETABLE_CHANGED(_,unit)
 			self:UpdateHeaders()
 		end
 	end
-end
-
--- Maintain Grid2 window on the same position if the screen scale is changed.
-function Grid2Layout:UI_SCALE_CHANGED()
-	self:RestorePosition()
-	self:Debug("UI Scale Change detected: main frame position restored:", GetCVar("uiScale") )
 end
 
 -- We delay UpdateSize() call to avoid calculating the wrong window size, because when "Grid_UpdateLayoutSize"
@@ -311,7 +326,7 @@ function Grid2Layout:UpdateMenu()
 end
 
 -- Workaround to a blizzard bug in SecureGroupHeaders.lua (see: https://www.wowace.com/projects/grid2/issues/628 )
--- In patch 8.1 SecureTemplates code do not display "unknown entities" because GetRaidRosterInfo() returns nil for these units:
+-- In patch 8.1 SecureTemplates code does not display "unknown entities" because GetRaidRosterInfo() returns nil for these units:
 -- If unknown entities are detected in roster, we update the headers every 1/4 seconds until all unknown entities are gone.
 function Grid2Layout:FixRoster()
 	if Grid2:RosterHasUnknowns() then
@@ -323,18 +338,27 @@ function Grid2Layout:FixRoster()
 end
 
 function Grid2Layout:StartMoveFrame(button)
-	if not self.db.profile.FrameLock and button == "LeftButton" then
+	if button == "LeftButton" and (self.testLayoutName or not self.db.profile.FrameLock)  then
 		self.frame:StartMoving()
 		self.frame.isMoving = true
+		self:StartHeaderTracking(self.frame)
 	end
 end
 
 function Grid2Layout:StopMoveFrame()
 	if self.frame.isMoving then
 		self.frame:StopMovingOrSizing()
-		self:SavePosition()
 		self.frame.isMoving = false
-		 if not InCombatLockdown() then	self:RestorePosition() end
+		self:SearchSnapToNearestHeader(self.frame, true)
+		self:SavePosition()
+		if not InCombatLockdown() then self:RestorePosition() end
+	end
+end
+
+function Grid2Layout:EnableMouse(enabled)
+	self.frame:EnableMouse(enabled)
+	for _, frame in self:IterateHeaders(true) do -- detached headers
+		frame:EnableMouse(enabled)
 	end
 end
 
@@ -346,7 +370,7 @@ function Grid2Layout:FrameLock(locked)
 	else
 		p.FrameLock = locked
 	end
-	self.frame:EnableMouse(not p.FrameLock)
+	self:EnableMouse(not p.FrameLock)
 end
 
 -- display: Never, Always, Grouped, Raid, false|nil = toggle Never/Always
@@ -354,6 +378,27 @@ function Grid2Layout:FrameVisibility(display)
 	local p = self.db.profile
 	p.FrameDisplay = display or (p.FrameDisplay=='Never' and 'Always' or 'Never')
 	self:UpdateVisibility()
+end
+
+-- reload text indicators db (because text indicators have a special testMode to display header index)
+function Grid2Layout:ReloadTextIndicatorsDB()
+	for _,indicator in Grid2:IterateIndicators('text') do
+		indicator:LoadDB()
+	end
+end
+
+-- enable layout test mode
+function Grid2Layout:SetTestMode(enabled, themeIndex, layoutName, maxPlayers)
+	if enabled then
+		Grid2.testThemeIndex, Grid2.testMaxPlayers, self.testLayoutName = themeIndex, maxPlayers, layoutName
+	else
+		Grid2.testThemeIndex, Grid2.testMaxPlayers, self.testLayoutName = nil, nil, nil
+	end
+	if not Grid2:ReloadTheme() then
+		self:ReloadTextIndicatorsDB()
+		self:ReloadLayout(true)
+	end
+	self:EnableMouse( enabled or not self.db.profile.FrameLock )
 end
 
 --{{{ ConfigMode support
@@ -373,10 +418,10 @@ function Grid2Layout:UpdateFrame()
 	f:SetClampedToScreen(p.clamp)
 	f:SetFrameStrata( p.FrameStrata or "MEDIUM")
 	f:SetFrameLevel(1)
-	f:EnableMouse(not p.FrameLock)
-	local f = self.frameBack
-	f:SetFrameStrata( p.FrameStrata or "MEDIUM")
-	f:SetFrameLevel(0)
+	local b = f.frameBack
+	b:SetFrameStrata( p.FrameStrata or "MEDIUM")
+	b:SetFrameLevel(0)
+	self:EnableMouse(not p.FrameLock)
 end
 
 function Grid2Layout:SetClamp()
@@ -384,8 +429,8 @@ function Grid2Layout:SetClamp()
 end
 
 function Grid2Layout:ResetHeaders()
-	self.layoutHasFilter = nil
-	self.layoutHasAuto   = nil
+	self.layoutHasAuto     = nil
+	self.layoutHasDetached = nil
 	for type, headers in pairs(self.groups) do
 		for i=self.indexes[type],1,-1 do
 			headers[i]:Reset()
@@ -407,19 +452,36 @@ function Grid2Layout:PlaceHeaders()
 	local yMult1     = self.relativePoints.yMult[anchor]
 	local xMult2 	 = vertical   and xMult1*padding or 0
 	local yMult2 	 = horizontal and yMult1*padding or 0
+	local xMult3     = xMult2 + (vertical   and xMult1*spacing*2 or 0)
+	local yMult3     = yMult2 + (horizontal and yMult1*spacing*2 or 0)
 	local prevFrame
-	for i, frame in ipairs(self.groupsUsed) do
+	self:RestorePosition()
+	for i, frame in self:IterateHeaders(false) do -- non detached headers
 		frame:SetOrientation(horizontal)
 		frame:ClearAllPoints()
 		frame:SetParent(self.frame)
-		if i == 1 then
-			frame:SetPoint(anchor, self.frame, anchor, spacing * xMult1, spacing * yMult1)
-		else
+		if prevFrame then
 			frame:SetPoint(anchor, prevFrame, relPoint, xMult2, yMult2 )
+		else
+			frame:SetPoint(anchor, self.frame, anchor, spacing * xMult1, spacing * yMult1)
 		end
 		frame:Show()
-		self:Debug("Placing group", groupNumber, frame:GetName(), anchor, prevFrame and prevFrame:GetName(), relPoint)
 		prevFrame = frame
+	end
+	for i, frame in self:IterateHeaders(true) do -- detached headers
+		frame:SetOrientation(horizontal)
+		frame:SetParent(self.frame)
+		if not self:RestoreHeaderPosition(frame) then
+			frame:ClearAllPoints()
+			frame:SetClampedToScreen(true)
+			frame:SetPoint(anchor, self.groupsUsed[i-1] or self.frame, relPoint, xMult3, yMult3)
+			frame:Show()
+			C_Timer.After(0, function()
+				self:SaveHeaderPosition(frame)
+				self:RestoreHeaderPosition(frame)
+				frame:SetClampedToScreen(false)
+			end)
+		end
 	end
 end
 
@@ -440,7 +502,7 @@ function Grid2Layout:ReloadLayout(force)
 	if not UnitExists('player') then self:Debug("ReloadLayout Ignored because player unit does not exist"); return end
 	local p = self.db.profile
 	local partyType, instType, maxPlayers = Grid2:GetGroupType()
-	local layoutName = p.layouts[maxPlayers] or p.layouts[partyType.."@"..instType] or p.layouts[partyType]
+	local layoutName = self.testLayoutName or p.layouts[maxPlayers] or p.layouts[partyType.."@"..instType] or p.layouts[partyType]
 	if layoutName ~= self.layoutName or (self.layoutHasAuto and maxPlayers ~= self.instMaxPlayers) or force or self.forceReload then
 		self.forceReload = force
 		if not Grid2:RunSecure(3, self, "ReloadLayout") then
@@ -460,47 +522,52 @@ function Grid2Layout:LoadLayout(layoutName)
 	if layout then
 		self:Debug("LoadLayout", layoutName)
 		self.layoutName = layoutName
-		self:RestorePosition()
 		self:ResetHeaders()
 		if layout[1] then
-			for _, layoutHeader in ipairs(layout) do
+			for index, layoutHeader in ipairs(layout) do
 				if layoutHeader=="auto" then
-					self:GenerateHeaders(layout.defaults)
+					self:GenerateHeaders(layout.defaults, index)
 				else
-					self:AddHeader(layoutHeader, layout.defaults)
+					self:AddHeader(layoutHeader, layout.defaults, index)
 				end
 			end
 		elseif not layout.empty then
-			self:GenerateHeaders(layout.defaults)
+			self:GenerateHeaders(layout.defaults, 1)
 		end
+		self:AddSpecialHeaders()
+		self.frame.headerKey = self.layoutHasDetached and layoutName or nil
 		self:PlaceHeaders()
 		self:UpdateDisplay()
 	end
 end
 
 --{{ Header management
-function Grid2Layout:AddHeader(layoutHeader, defaults)
-	local type    = layoutHeader.type or 'player'
-	local index   = self.indexes[type] + 1
-	local headers = self.groups[type]
-	local header  = headers[index]
+function Grid2Layout:AddHeader(layoutHeader, defaults, setupIndex)
+	local template = self.layoutHeaderClass:template(layoutHeader, self.db.global.useInsecureHeaders or self.testLayoutName)
+	local index    = self.indexes[template] + 1
+	local headers  = self.groups[template]
+	local header   = headers[index]
 	if not header then
-		header = self.layoutHeaderClass:new(type)
+		header = self.layoutHeaderClass:new(template)
 		headers[index] = header
 	end
-	self.indexes[type] = index
+	header.dbx = layoutHeader
+	self.indexes[template] = index
 	self.groupsUsed[#self.groupsUsed+1] = header
-	self.headerType = type
 	self:SetHeaderAttributes(header, defaults)
 	self:SetHeaderAttributes(header, layoutHeader)
-	self:FixHeaderAttributes(header)
+	self:FixHeaderAttributes(header, #self.groupsUsed)
+	self:SetupDetachedHeader(header, setupIndex)
 end
 
-function Grid2Layout:GenerateHeaders(defaults)
-	self.layoutHasAuto = not self.db.global.displayAllGroups or nil
-	local m = self.layoutHasAuto and self.instMaxGroups or 8
-	for i=1,m do
-		self:AddHeader(self.groupFilters[i], defaults)
+function Grid2Layout:GenerateHeaders(defaults, setupIndex)
+	local testPlayers = Grid2.testMaxPlayers
+	self.layoutHasAuto = not (testPlayers or self.db.global.displayAllGroups) or nil
+	local maxGroups = (testPlayers and math.ceil(testPlayers/5)) or (self.layoutHasAuto and self.instMaxGroups) or 8
+	local firstIndex = setupIndex==1 and 1
+	for i=1,maxGroups do
+		self:AddHeader(self.groupFilters[i], defaults, firstIndex or setupIndex*100+i)
+		firstIndex = nil
 	end
 end
 
@@ -514,9 +581,30 @@ function Grid2Layout:SetHeaderAttributes(header, layoutHeader)
 	end
 end
 
+-- Display special units
+do
+	local template = { type = 'custom', detachHeader = true }
+	local function AddHeader(self, key, units, setupIndex)
+		if self.db.profile[key] then
+			template.unitsFilter = units
+			self:AddHeader( template, nil, setupIndex)
+		end
+	end
+	function Grid2Layout:AddSpecialHeaders()
+		AddHeader( self, 'displayHeaderTarget', 'target', 10001 )
+		AddHeader( self, 'displayHeaderFocus',  'focus',  10002 )
+		AddHeader( self, 'displayHeaderBosses', 'boss1,boss2,boss3,boss4,boss5', 10003 )
+	end
+end
+
 -- Apply defaults and some special cases for each header and apply workarounds to some blizzard bugs
-function Grid2Layout:FixHeaderAttributes(header)
+function Grid2Layout:FixHeaderAttributes(header, index)
 	local p = self.db.profile
+	-- testMode (only works for insecure frames)
+	if self.testLayoutName then
+		header:SetAttribute("testMode", Grid2.testMaxPlayers)
+		header:SetAttribute("testIndex", index)
+	end
 	-- fix unitsPerColumn
 	local unitsPerColumn = header:GetAttribute("unitsPerColumn")
 	if not unitsPerColumn then
@@ -544,71 +632,14 @@ function Grid2Layout:FixHeaderAttributes(header)
 			header:SetAttribute("groupFilter", groupFilter)
 		end
 	end
-	-- manual nameList + group/role filter
-	local nameList   = header:GetAttribute("nameList")
-	local roleFilter = header:GetAttribute("roleFilter")
-	if nameList and (groupFilter or roleFilter) then
-		self.layoutHasFilter = true
-		if groupFilter then
-			header.tokenFilter = Grid2.FillTokenTable( header.tokenFilter, strsplit(",", groupFilter) )
-			header:SetAttribute("groupFilter", nil)
-		end
-		if roleFilter then
-			header.tokenFilter = Grid2.FillTokenTable( header.tokenFilter, strsplit(",", roleFilter) )
-			header:SetAttribute("roleFilter", nil)
-		end
-		header.tokenNames = Grid2.DoubleFillTable( {}, strsplit(",", nameList) )
-	end
 	-- workaround to blizzard pet bug
-	if header.headerType == 'pet' then -- force these so that the bug in SecureGroupPetHeader_Update doesn't trigger
+	if header.dbx.type == 'pet' then -- force these so that the bug in SecureGroupPetHeader_Update doesn't trigger
 		header:SetAttribute("filterOnPet", true)
 		header:SetAttribute("useOwnerUnit", false)
 		header:SetAttribute("unitsuffix", nil)
 	end
-	-- apply custom filter if necessary
-	self:LoadHeaderFilter(header)
 	-- workaround to blizzard bug
 	self:ForceFramesCreation(header)
-end
---}}
-
--- {{ Manual filter header by nameList + groupFilter/roleFilter because SecureGroupHeaders does not support this double filter
--- Warning this custom filter cannot be applied in combat, any refresh is delayed if the player is in combat.
-local nameListTable = {}
-function Grid2Layout:LoadHeaderFilter(header)
-	local nameList = header.tokenNames
-	if nameList then
-		wipe(nameListTable)
-		local filter  = header.tokenFilter
-		local strict  = header:GetAttribute("strictFiltering")
-		local _,count = Grid2:GetNonPetUnits()
-		for index=1,count do
-			local unit, name, class, group, role1, role2 = Grid2:GetRosterInfoByIndex(index)
-			if nameList[name] and (
-				(     strict  and  filter[group] and (filter[role1] or filter[role2]) ) or
-				( not strict  and (filter[group] or   filter[role1] or filter[role2]) )
-			) then
-				nameListTable[#nameListTable+1] = name
-			end
-		end
-		if header:GetAttribute("sortMethod")=="NAMELIST" then
-			table.sort(nameListTable, function(a,b) return nameList[a]<nameList[b] end)
-		end
-		local newList = table.concat( nameListTable, "," )
-		if newList ~= header:GetAttribute("nameList") then
-			header:SetAttribute( "nameList", newList )
-			return true
-		end
-	end
-end
-
-function Grid2Layout:ReloadFilter()
-	if not Grid2:RunSecure(4, self, "ReloadFilter") then
-		for _,header in ipairs(self.groupsUsed) do
-			self:LoadHeaderFilter(header)
-		end
-	end
-	return true
 end
 --}}
 
@@ -625,6 +656,7 @@ function Grid2Layout:ForceFramesCreation(header)
 		header:SetAttribute("startingIndex", 1-maxFrames )
 		header:SetAttribute("startingIndex", startingIndex)
 		header.FrameCount= maxFrames
+		header:Hide()
 	end
 end
 
@@ -653,18 +685,17 @@ function Grid2Layout:UpdateSize()
 	local p = self.db.profile
 	local mcol,mrow,curCol,maxRow,remSize = "GetWidth","GetHeight",0,0,0
 	if p.horizontal then mcol,mrow = mrow,mcol end
-	for _,g in ipairs(self.groupsUsed) do
+	for _,g in self:IterateHeaders(false) do
 		local row = g[mrow](g)
 		if maxRow<row then maxRow = row end
 		local col = g[mcol](g) + p.Padding
 		curCol = curCol + col
-		local child = g:GetAttribute("child1")
-		remSize = child and child:IsVisible() and 0 or remSize + col
+		remSize = (g.dbx.type=='custom' or (g[1] and g[1]:IsVisible())) and 0 or remSize + col
 	end
 	local col = math.max( curCol - remSize + p.Spacing*2 - p.Padding, 1 )
 	local row = math.max( maxRow + p.Spacing*2, 1 )
 	if p.horizontal then col,row = row,col end
-	self.frameBack:SetSize(col,row)
+	self.frame.frameBack:SetSize(col,row)
 	if not Grid2:RunSecure(6, self, "UpdateSize") then
 		self.frame:SetSize(col,row)
 	end
@@ -672,15 +703,23 @@ end
 
 function Grid2Layout:UpdateTextures()
 	local p = self.db.profile
-	Grid2:SetFrameBackdrop(	self.frameBack, Grid2:GetBackdropTable( Grid2:MediaFetch("border", p.BorderTexture), 16, Grid2:MediaFetch("background", p.BackgroundTexture), false, nil, 4  ) )
+	local backdrop = Grid2:GetBackdropTable( Grid2:MediaFetch("border", p.BorderTexture), 16, Grid2:MediaFetch("background", p.BackgroundTexture), false, nil, 4 )
+	Grid2:SetFrameBackdrop(	self.frame.frameBack, backdrop )
+	for _, frame in self:IterateHeaders(true) do
+		Grid2:SetFrameBackdrop( frame.frameBack, backdrop )
+	end
 end
 
 function Grid2Layout:UpdateColor()
 	local settings = self.db.profile
-	local frame    = self.frameBack
+	local frame    = self.frame.frameBack
 	frame:SetBackdropBorderColor(settings.BorderR, settings.BorderG, settings.BorderB, settings.BorderA)
 	frame:SetBackdropColor(settings.BackgroundR, settings.BackgroundG, settings.BackgroundB, settings.BackgroundA)
 	frame:SetShown( settings.BorderA~=0 or settings.BackgroundA~=0 )
+	for _, frame in self:IterateHeaders(true) do
+		frame.frameBack:SetBackdropBorderColor(settings.BorderR, settings.BorderG, settings.BorderB, settings.BorderA)
+		frame.frameBack:SetBackdropColor(settings.BackgroundR, settings.BackgroundG, settings.BackgroundB, settings.BackgroundA)
+	end
 end
 
 function Grid2Layout:UpdateVisibility()
@@ -696,10 +735,11 @@ end
 
 -- Grid2 uses UI Root coordinates to store the window position (always 768 pixels height) so these coordinates are
 -- independent of the UI Frame Scale Coordinates and monitor physical resolution (assuming the same aspect ratio).
-function Grid2Layout:SavePosition()
-	local f = self.frame
+function Grid2Layout:SavePosition(header)
+	local f = header or self.frame
 	if f:GetLeft() and f:GetWidth() then
-		local a = self.db.profile.anchor
+		local p = self.db.profile
+		local a = p.anchor
 		local s = f:GetEffectiveScale()
 		local t = UIParent:GetEffectiveScale()
 		local x = (a:find("LEFT")  and f:GetLeft()*s) or
@@ -708,39 +748,237 @@ function Grid2Layout:SavePosition()
 		local y = (a:find("BOTTOM") and f:GetBottom()*s) or
 				  (a:find("TOP")    and f:GetTop()*s-UIParent:GetHeight()*t) or
 				  (f:GetTop()-f:GetHeight()/2)*s-UIParent:GetHeight()/2*t
-		self.db.profile.PosX = x
-		self.db.profile.PosY = y
-		self:Debug("Saved Position", a, x, y)
+		if f.headerKey then
+			p.Positions[f.headerKey] = { a, x, y }
+		else
+			p.PosX, p.PosY = x, y
+		end
+		self:Debug("Saved Position", a, x, y, k)
 	end
 end
 
 -- Restores the Grid2 window position, the window is always placed in the same exact absolute screen position
 -- even if the WoW UI Scale or Grid2 window Scale was changed (assuming the screen aspect ratio has not changed).
 function Grid2Layout:RestorePosition()
-	local f = self.frame
-	local b = self.frameBack
 	local p = self.db.profile
+	-- foreground frame
+	local f = self.frame
 	f:SetScale(p.ScaleSize)
-	local s = f:GetEffectiveScale()
-	local x = p.PosX / s
-	local y = p.PosY / s
-	local a = p.anchor
+	local a, x, y = self:GetFramePosition(f)
 	f:ClearAllPoints()
 	f:SetPoint(a, x, y)
+	-- background frame
+	local b = f.frameBack
 	b:ClearAllPoints()
 	b:SetPoint(p.groupAnchor) -- Using groupAnchor instead of anchor, see ticket #442.
 	self:Debug("Restored Position", a, p.ScaleSize, x, y)
 end
 
 function Grid2Layout:ResetPosition()
-	local s = UIParent:GetEffectiveScale()
-	self.db.profile.PosX =   UIParent:GetWidth()  / 2 * s
-	self.db.profile.PosY = - UIParent:GetHeight() / 2 * s
-	self.db.profile.anchor = "TOPLEFT"
+	local p  = self.db.profile
+	local s  = UIParent:GetEffectiveScale()
+	p.PosX   =   UIParent:GetWidth()  / 2 * s
+	p.PosY   = - UIParent:GetHeight() / 2 * s
+	p.anchor = "TOPLEFT"
 	self:RestorePosition()
 	self:SavePosition()
+	if self.layoutHasDetached then
+		for _,header in self:IterateHeaders(true) do
+			p.Positions[header.headerKey] = nil
+		end
+		self:ReloadLayout(true)
+	end
 end
 
+--{{{ Detached headers management
+function Grid2Layout:SetupDetachedHeader(header, setupIndex)
+	local isDetached = setupIndex>1 and (self.db.global.detachHeaders or header:GetAttribute("detachHeader") or  (self.db.global.detachPetHeaders and header.dbx.type=='pet') ) or nil
+	if isDetached ~= header.isDetached then
+		local frameBack = header.frameBack
+		header.isDetached = isDetached
+		header:SetMovable(isDetached)
+		if isDetached then
+			frameBack = frameBack or CreateFrame("Frame", nil, header, BackdropTemplateMixin and "BackdropTemplate" or nil)
+			frameBack.header = header
+			frameBack:SetScript("OnMouseUp", self.StopMoveHeader )
+			frameBack:SetScript("OnHide", self.StopMoveHeader )
+			frameBack:SetScript("OnMouseDown", self.StartMoveHeader)
+			header:SetScript("OnSizeChanged", self.UpdateDetachedVisibility)
+			header.frameBack = frameBack
+		elseif frameBack then
+			frameBack:Hide()
+			frameBack:ClearAllPoints()
+			frameBack:SetScript("OnMouseUp",   nil)
+			frameBack:SetScript("OnHide",      nil)
+			frameBack:SetScript("OnMouseDown", nil)
+			header:SetScript("OnSizeChanged", nil)
+		end
+	end
+	if isDetached then
+		local frameBack, Spacing, button = header.frameBack, self.db.profile.Spacing, header[1]
+		frameBack:ClearAllPoints()
+		frameBack:SetPoint('TOPLEFT', header, 'TOPLEFT', -Spacing, Spacing )
+		frameBack:SetPoint('BOTTOMRIGHT', header, 'BOTTOMRIGHT', Spacing, -Spacing )
+		frameBack:SetShown( button and button:IsShown() )
+		header.headerKey = self.layoutName..setupIndex -- theme not needed in key because each theme stores a different Positions table.
+		self.layoutHasDetached = true
+	end
+end
+
+function Grid2Layout:SaveHeaderPosition(header)
+	self:SavePosition(header)
+end
+
+function Grid2Layout:RestoreHeaderPosition(header)
+	if InCombatLockdown() then return end
+	local p = self.db.profile
+	local pos = p.Positions[header.headerKey]
+	if pos then
+		local s = header:GetEffectiveScale()
+		local a, x, y = pos[1], pos[2]/s, pos[3]/s
+		header:ClearAllPoints()
+		header:SetPoint(a, UIParent, a, x, y)
+		header:Show()
+		self:Debug("Placing detached group", header.headerKey, a, x, y)
+		return true
+	end
+end
+
+function Grid2Layout:UpdateDetachedVisibility() -- self~=Grid2Layout
+	local button = self[1] -- self.header[1]
+	self.frameBack:SetShown( button and button:IsVisible() )
+end
+
+function Grid2Layout:GetFramePosition(f)
+	local p = self.db.profile
+	local s = f:GetEffectiveScale()
+	if f.headerKey then
+		local pos = p.Positions[f.headerKey]
+		if pos then	return pos[1], pos[2]/s, pos[3]/s end
+		p.Positions[f.headerKey] = { p.anchor, p.PosX, p.PosY }
+	end
+	return p.anchor, p.PosX/s, p.PosY/s
+end
+
+function Grid2Layout:SnapHeaderToPoint(a1, header1, a2, x2, y2, intersect)
+	local p  = self.db.profile
+	local mf = header1 == self.frame and 0 or 1
+	local xm = self.relativePoints.xMult[a1]
+	local ym = self.relativePoints.yMult[a1]
+	local x  = x2 + p.Spacing * xm * mf
+	local y  = y2 + p.Spacing * ym * mf
+	if intersect then -- intersect, substract border
+		local sp = p.Padding - p.Spacing*2
+		x = x + sp * xm * (not strfind(a1,'LEFT')~=not strfind(a2,'LEFT') and 1 or 0)
+		y = y + sp * ym * (not strfind(a1,'TOP') ~=not strfind(a2,'TOP')  and 1 or 0)
+	end
+	header1:ClearAllPoints()
+	header1:SetPoint(a1, UIParent, 'BOTTOMLEFT', x, y)
+end
+
+function Grid2Layout:SearchSnapToNearestHeader(header, adjust)
+	if IsShiftKeyDown() or not self.layoutHasDetached then return end
+	local frameBack = header.frameBack
+	local x1, x2, y1, y2, xx1, xx2, yy1, yy2, intersect = frameBack:GetLeft(), frameBack:GetRight(), frameBack:GetTop(), frameBack:GetBottom()
+	local function Check(a1,xxx1,yyy1,a2,xxx2,yyy2)
+		if a1~=a2 and (xxx2-xxx1)^2+(yyy2-yyy1)^2<512 then
+			intersect = not (x1>=xx2 or xx1>=x2 or y1<=yy2 or yy1<=y2)
+			if adjust then self:SnapHeaderToPoint(a1, header, a2, xxx2, yyy2, intersect) end
+			return true
+		end
+	end
+	local function CheckPoint(a, x, y)
+		return Check("TOPLEFT",x1,y1,a,x,y) or Check("TOPRIGHT",x2,y1,a,x,y) or Check("BOTTOMLEFT",x1,y2,a,x,y) or Check("BOTTOMRIGHT",x2,y2,a,x,y)
+	end
+	local function CheckFrame(frame, force)
+		if header~=frame and (frame.isDetached or force) then -- check only main frame and detached headers
+			local frameBack = frame.frameBack
+			xx1, xx2, yy1, yy2 = frameBack:GetLeft(), frameBack:GetRight(), frameBack:GetTop(), frameBack:GetBottom()
+			return (CheckPoint("TOPLEFT",xx1,yy1) or CheckPoint("TOPRIGHT",xx2,yy1) or CheckPoint("BOTTOMLEFT",xx1,yy2) or CheckPoint("BOTTOMRIGHT",xx2,yy2)) and frame
+		end
+	end
+	local result = CheckFrame(self.frame, true) -- check main frame (parent of all non-detached headers)
+	if not result then
+		for _,frame in ipairs(self.groupsUsed) do
+			result = CheckFrame(frame)
+			if result then break end
+		end
+	end
+	return result, intersect
+end
+
+function Grid2Layout:IterateHeaders(detached) -- true = detached headers; false|nil = non-detached headers
+	if detached and not self.layoutHasDetached then return Grid2.Dummy end
+	local i, t, d = 0, self.groupsUsed, detached or nil
+	return function()
+		repeat
+			i = i + 1; if i>#t then return end
+		until d == t[i].isDetached
+		return i, t[i]
+	end
+end
+
+-- Dragging management
+do
+	local LCG = LibStub("LibCustomGlow-1.0")
+	local colors = { [false] = {1,1,0,1}, [true] = {1,0,0,1} }
+	local trackedHeader, nearestHeader, nearestOverlap
+
+	local function HighlightHeader(header, enable, overlap)
+		if header then
+			header = header.isDetached and header.frameBack or header
+			if enable then
+				LCG.PixelGlow_Start( header, colors[overlap], 8, .2, nil, 1, 0,0, false, 'Grid2DragHighlight' )
+			else
+				LCG.PixelGlow_Stop( header, 'Grid2DragHighlight' )
+			end
+		end
+	end
+
+	local function TrackHeader()
+		local newHeader, newOverlap
+		if trackedHeader.isMoving and not IsShiftKeyDown() then
+			newHeader, newOverlap = Grid2Layout:SearchSnapToNearestHeader(trackedHeader)
+		end
+		if newHeader~=nearestHeader or newOverlap~=nearestOverlap then
+			HighlightHeader(nearestHeader, false )
+			HighlightHeader(newHeader,     newHeader~=nil, newOverlap )
+			HighlightHeader(trackedHeader, newHeader~=nil, newOverlap )
+			nearestHeader, nearestOverlap = newHeader, newOverlap
+		end
+		if trackedHeader.isMoving then
+			C_Timer.After( .2, TrackHeader )
+		end
+	end
+
+	function Grid2Layout:StartHeaderTracking(header)
+		if self.layoutHasDetached then
+			trackedHeader, nearestHeader = header, nil
+			TrackHeader()
+		end
+	end
+
+	function Grid2Layout:StartMoveHeader(button) -- called from frame event so: self == header.frameBack ~= Grid2Layout
+		if button == "LeftButton" and (Grid2Layout.testLayoutName or not Grid2Layout.db.profile.FrameLock)  then
+			self.header:StartMoving()
+			self.header.isMoving = true
+			Grid2Layout:StartHeaderTracking(self.header)
+		end
+	end
+
+	function Grid2Layout:StopMoveHeader() -- called from frame event so: self == header.frameBack ~= Grid2Layout
+		if self.header.isMoving then
+			self.header:StopMovingOrSizing()
+			self.header.isMoving = nil
+			Grid2Layout:SearchSnapToNearestHeader(self.header, true)
+			Grid2Layout:SaveHeaderPosition(self.header)
+			Grid2Layout:RestoreHeaderPosition(self.header)
+		end
+	end
+end
+--}}}
+
+--{{{ Layouts registration
 function Grid2Layout:AddLayout(layoutName, layout)
 	self.layoutSettings[layoutName] = layout
 end
@@ -769,7 +1007,7 @@ function Grid2Layout:AddCustomLayouts()
 	if self.customLayouts then
 		for n,l in pairs(self.customLayouts) do
 			for _,h in ipairs(l) do
-				h.type = strmatch(h.type or '', 'pet') -- conversion of old format
+				h.type = strmatch(h.type or '', 'pet') or h.type -- conversion from old format
 				if Grid2.isClassic and h.groupBy == 'ASSIGNEDROLE' then -- convert non existant roles in classic
 					h.groupBy, h.groupingOrder = 'ROLE', 'MAINTANK,MAINASSIST,NONE'
 				end
@@ -778,6 +1016,6 @@ function Grid2Layout:AddCustomLayouts()
 		end
 	end
 end
-
 --}}}
+
 _G.Grid2Layout = Grid2Layout

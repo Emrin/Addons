@@ -1,6 +1,6 @@
 ## Interface: 90001
 ## Author: Aelobin (The Maelstrom EU) & Lombra (Defias Brotherhood EU)
-## Version: 3.9.4
+## Version: 3.9.6
 ## SavedVariables: MogIt_ClothDB
 ## LoadOnDemand: 1
 ## RequiredDeps: MogIt

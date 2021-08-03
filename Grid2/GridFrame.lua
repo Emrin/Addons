@@ -17,16 +17,36 @@ local unit_of_frame = {}
 function Grid2:SetFrameUnit(frame, unit)
 	local prev_unit = unit_of_frame[frame]
 	if prev_unit then
-		frames_of_unit[prev_unit][frame] = nil
+		local frames = frames_of_unit[prev_unit]
+		frames[frame] = nil
+		if not next(frames) then
+			frames_of_unit[prev_unit] = nil
+			Grid2:RosterUnregisterUnit(prev_unit)
+		end
 	end
 	if unit then
-		frames_of_unit[unit][frame] = true
+		local frames = frames_of_unit[unit]
+		if not next(frames) then
+			Grid2:RosterRegisterUnit(unit)
+		end
+		frames[frame] = true
 	end
 	unit_of_frame[frame] = unit
 end
 
 function Grid2:GetUnitFrames(unit)
 	return frames_of_unit[unit]
+end
+
+function Grid2:UpdateFramesOfUnit(unit)
+	for frame in next, frames_of_unit[unit] do
+		local old, new = frame.unit, SecureButton_GetModifiedUnit(frame)
+		if old ~= new then
+			Grid2:SetFrameUnit(frame, new)
+			frame.unit = new
+		end
+		frame:UpdateIndicators()
+	end
 end
 --}}}
 
@@ -47,23 +67,24 @@ end
 
 function GridFrameEvents:OnAttributeChanged(name, value)
 	if name == "unit" then
+		local old_unit = self.unit
 		if value then
 			local unit = SecureButton_GetModifiedUnit(self)
-			if self.unit ~= unit then
-				Grid2Frame:Debug("updated", self:GetName(), name, value, unit)
+			if old_unit ~= unit then
+				Grid2Frame:Debug("updated", self:GetName(), name, value, unit, '<=', old_unit)
 				self.unit = unit
 				Grid2:SetFrameUnit(self, unit)
 				self:UpdateIndicators()
 			end
-		elseif self.unit then
-			Grid2Frame:Debug("removed", self:GetName(), name, self.unit)
+		elseif old_unit then
+			Grid2Frame:Debug("removed", self:GetName(), name, old_unit)
 			self.unit = nil
 			Grid2:SetFrameUnit(self, nil)
 		end
 	end
 end
 
--- Dispatch OnEnter,OnLeave events to other modules
+-- Dispatch OnEnter, OnLeave events to other modules
 local eventHooks = { OnEnter = {}, OnLeave = {} }
 
 function GridFrameEvents:OnEnter()
@@ -98,6 +119,11 @@ local function GridFrame_Init(frame, width, height)
 	frame.container = frame:CreateTexture()
 	frame:CreateIndicators()
 	frame:Layout()
+end
+
+function GridFramePrototype:OnUnitStateChanged()
+	Grid2:RosterRefreshUnit(self.unit)
+	self:UpdateIndicators() -- TODO maybe do not update if not visible and unit does not exist
 end
 
 function GridFramePrototype:Layout()
@@ -202,7 +228,6 @@ function Grid2Frame:OnModuleEnable()
 		self:RegisterEvent("UNIT_EXITED_VEHICLE")
 	end
 	self:RegisterEvent("PLAYER_ENTERING_WORLD", "UpdateFrameUnits")
-	self:RegisterMessage("Grid_UnitUpdate")
 	self:CreateIndicators()
 	self:RefreshIndicators()
 	self:LayoutFrames()
@@ -216,7 +241,6 @@ function Grid2Frame:OnModuleDisable()
 		self:UnregisterEvent("UNIT_EXITED_VEHICLE")
 	end
 	self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-	self:UnregisterMessage("Grid_UnitUpdate")
 end
 
 function Grid2Frame:OnModuleUpdate()
@@ -287,8 +311,8 @@ function Grid2Frame:LayoutFrames(notify)
 end
 
 function Grid2Frame:GetFrameSize()
-	local _, _, m = Grid2:GetGroupType()
 	local p = self.db.profile
+	local m = Grid2.testMaxPlayers or Grid2.instMaxPlayers
 	return p.frameWidths[m] or p.frameWidth, p.frameHeights[m] or p.frameHeight
 end
 
@@ -347,7 +371,7 @@ function Grid2Frame:UNIT_ENTERED_VEHICLE(_, unit)
 end
 
 function Grid2Frame:UNIT_EXITED_VEHICLE(_, unit)
-	local pet = Grid2:GetPetUnitByUnit(unit) or unit
+	local pet = Grid2:GetPetOfUnit(unit) or unit
 	for frame in next, Grid2:GetUnitFrames(pet) do
 		local old, new = frame.unit, SecureButton_GetModifiedUnit(frame)
 		if old ~= new then
@@ -355,17 +379,6 @@ function Grid2Frame:UNIT_EXITED_VEHICLE(_, unit)
 			frame.unit = new
 			frame:UpdateIndicators()
 		end
-	end
-end
-
-function Grid2Frame:Grid_UnitUpdate(_, unit)
-	for frame in next, Grid2:GetUnitFrames(unit) do
-		local old, new = frame.unit, SecureButton_GetModifiedUnit(frame)
-		if old ~= new then
-			Grid2:SetFrameUnit(frame, new)
-			frame.unit = new
-		end
-		frame:UpdateIndicators()
 	end
 end
 --}}}

@@ -8,7 +8,7 @@ local next = next
 local tinsert = table.insert
 local tremove = table.remove
 local tdelete = Grid2.TableRemoveByValue
-local isWoW90 = Grid2.isWoW90
+local BackdropTemplateMixin = BackdropTemplateMixin
 
 Grid2.indicators = {}
 Grid2.indicatorSorted = {}
@@ -33,7 +33,7 @@ end
 function indicator:CreateFrame(type, parent, template)
 	local f = parent[self.name]
 	if not (f and f:GetObjectType()==type and f.__template == template) then
-		f = CreateFrame(type, nil, parent, (isWoW90 or template~="BackdropTemplate") and template or nil)
+		f = CreateFrame(type, nil, parent, (BackdropTemplateMixin or template~="BackdropTemplate") and template or nil)
 		f.__template = template
 		parent[self.name] = f
 	end
@@ -50,20 +50,22 @@ function indicator:UpdateDB()
 end
 
 function indicator:RegisterStatus(status, priority)
-	if self.priorities[status] then return end
-	self.statuses[#self.statuses + 1] = status
-	self:SetStatusPriority(status, priority)
-	if not Grid2.suspendedIndicators[self.name] then
-		status:RegisterIndicator(self)
+	if not self.priorities[status] then
+		if not status.suspended then
+			self.statuses[#self.statuses + 1] = status
+			self.priorities[status] = priority
+			self:SortStatuses()
+		end
+		status:RegisterIndicator( self, priority, Grid2.suspendedIndicators[self.name] )
 	end
 end
 
-function indicator:UnregisterStatus(status)
+function indicator:UnregisterStatus(status, priority)
 	if not self.priorities[status] then return end
 	self.priorities[status] = nil
 	tremove(self.statuses, self:GetStatusIndex(status))
 	self:SortStatuses()
-	status:UnregisterIndicator(self)
+	status:UnregisterIndicator(self, priority)
 end
 
 function indicator:GetStatusIndex(status)
@@ -79,12 +81,15 @@ function indicator:SortStatuses()
 end
 
 function indicator:SetStatusPriority(status, priority)
-	self.priorities[status] = priority
-	self:SortStatuses()
+	if not status.suspended then
+		self.priorities[status] = priority
+		self:SortStatuses()
+	end
+	status.priorities[self] = priority
 end
 
 function indicator:GetStatusPriority(status)
-	return self.priorities[status]
+	return status.priorities[self]
 end
 
 function indicator:GetCurrentStatus(unit)

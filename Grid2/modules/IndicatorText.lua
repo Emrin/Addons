@@ -107,7 +107,7 @@ local UpdateDS = _UpdateDS
 local function Text_Create(self, parent)
 	local f = self:CreateFrame("Frame", parent)
 	f:SetAllPoints()
-	if not Grid2.isWoW90 then f:SetBackdrop(nil) end
+	if f.SetBackdrop then f:SetBackdrop(nil) end
 	local Text = f.Text or f:CreateFontString(nil, "OVERLAY")
 	Text:SetFontObject(GameFontHighlightSmall)
 	f.Text = Text
@@ -224,6 +224,20 @@ local function Text_OnUpdate(self, parent, unit, status)
 	end
 end
 
+local function Text_OnUpdateTest(self, parent, unit, status)
+	local Text = parent[self.name].Text
+	if status and status.name=='name' then
+		local header = parent:GetParent()
+		if header.headerType then
+			local str = string_cut(status:GetText(unit) or header.headerType, self.textlength)
+			Text:SetText( string.format("%s(%s)", str, header:GetAttribute('testIndex') or '') )
+			Text:Show()
+			return
+		end
+	end
+	Text:Hide()
+end
+
 local function Text_Disable(self, parent)
 	local f = parent[self.name]
 	f:Hide()
@@ -262,7 +276,9 @@ local function Text_LoadDB(self)
 		self.shadowAlpha = theme.shadowDisabled and 0 or 1
 		self.fontFlags   = theme.fontFlags
 	end
-	if dbx.duration or dbx.elapsed then
+	if Grid2.testThemeIndex then -- check layout test mode
+		self.OnUpdate = Text_OnUpdateTest
+	elseif dbx.duration or dbx.elapsed then
 		self.stack = dbx.stack
 		self.elapsed = dbx.elapsed
 		if dbx.stack then

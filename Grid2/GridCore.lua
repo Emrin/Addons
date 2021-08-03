@@ -7,25 +7,31 @@ local next = next
 local ipairs = ipairs
 local tostring = tostring
 local fmt = string.format
-local Dummy = function() end
-local GetSpecialization = GetSpecialization or Dummy
+local GetSpecialization = GetSpecialization or function() end
+local UnitGroupRolesAssigned = UnitGroupRolesAssigned or function() end
 
 -- Initialization
 Grid2 = LibStub("AceAddon-3.0"):NewAddon("Grid2", "AceEvent-3.0", "AceConsole-3.0")
 
-Grid2.versionstring = "Grid2 v"..GetAddOnMetadata("Grid2", "Version")
+-- build/version tracking
+local versionToc = GetAddOnMetadata("Grid2","Version")
+local versionCli = select(4,GetBuildInfo())
+Grid2.isClassic = versionCli<30000 -- vanilla or tbc
+Grid2.isVanilla = versionCli<20000
+Grid2.isTBC     = versionCli>=20000 and versionCli<30000
+Grid2.isWoW90   = versionCli>=90000
+Grid2.versionstring = "Grid2 v"..versionToc
 
-Grid2.isClassic = select(4,GetBuildInfo())<20000
-Grid2.isWoW90   = select(4,GetBuildInfo())>=90000
-
-Grid2.playerClass = select(2, UnitClass("player"))
-
-if not strfind(Grid2.versionstring,'project') and (GetAddOnMetadata("Grid2", "X-WoW-Project")=='classic') ~= Grid2.isClassic then
-	Grid2.wrongVersionMessage = string.format("Error, this version of Grid2 was packaged for World of Warcraft %s. Please install the %s version instead.",
-								 Grid2.isClassic and 'Retail' or 'Classic', Grid2.isClassic and 'Classic' or 'Retail')
-	C_Timer.After(3, function() Grid2:Print(Grid2.wrongVersionMessage) end)
+-- build error check
+local isRetailBuild = true
+--[===[@non-retail@
+isRetailBuild = false
+--@end-non-retail@]===]
+if isRetailBuild~=(WOW_PROJECT_ID==WOW_PROJECT_MAINLINE) and versionToc~='2.0.15' then
+	C_Timer.After(3, function() Grid2:Print(string.format("Error, this version of Grid2 was packaged for World of Warcraft %s. Please install the correct version !!!", isRetailBuild and 'Retail' or 'Classic')) end)
 end
 
+-- debug messages
 Grid2.debugFrame = Grid2DebugFrame or ChatFrame1
 function Grid2:Debug(s, ...)
 	if self.debugging then
@@ -37,7 +43,19 @@ function Grid2:Debug(s, ...)
 	end
 end
 
+-- group/instance data initialization
+Grid2.groupType      = "solo"
+Grid2.instType       = "other"
+Grid2.instMaxPlayers = 1
+
+-- player class cache
+Grid2.playerClass    = select(2, UnitClass("player"))
+
+-- plugins can add functions to this table to add extra lines to the minimap popup menu
 Grid2.tooltipFunc = {}
+
+-- type setup functions for non-unique objects: "buff" statuses / "icon" indicators / etc.
+Grid2.setupFunc = {}
 
 -- AceDB defaults
 Grid2.defaults = {
@@ -49,9 +67,6 @@ Grid2.defaults = {
 		themes = { names = {}, indicators = {}, enabled = {} },
 	}
 }
-
--- Type setup functions for non-unique objects: "buff" statuses / "icon" indicators / etc.
-Grid2.setupFunc = {}
 
 -- Module prototype
 local modulePrototype = {}
@@ -113,7 +128,7 @@ function Grid2:OnInitialize()
 
 	self.debugging = self.db.global.debug
 
-	self.classicDurations = self.isClassic and not self.db.global.disableDurations or nil
+	self.classicDurations = self.isVanilla and not self.db.global.disableDurations or nil
 
 	local media = LibStub("LibSharedMedia-3.0", true)
 	media:Register("statusbar", "Gradient", "Interface\\Addons\\Grid2\\media\\gradient32x32")
@@ -121,6 +136,7 @@ function Grid2:OnInitialize()
 	media:Register("statusbar", "Grid2 GlowH", "Interface\\Addons\\Grid2\\media\\glowh")
 	media:Register("statusbar", "Grid2 GlowV", "Interface\\Addons\\Grid2\\media\\glowv")
 	media:Register("border", "Grid2 Flat", "Interface\\Addons\\Grid2\\media\\white16x16")
+	media:Register("border", "Grid2 Pixel", "Interface\\Addons\\Grid2\\media\\border1px")
 	media:Register("background", "Blizzard Quest Title Highlight", "Interface\\QuestFrame\\UI-QuestTitleHighlight")
 	media:Register("background", "Blizzard ChatFrame Background", "Interface\\ChatFrame\\ChatFrameBackground")
 
@@ -131,7 +147,7 @@ end
 
 function Grid2:OnEnable()
 	self:RegisterEvent("PLAYER_ENTERING_WORLD")
-	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "GroupChanged")
+	self:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 	self:RegisterEvent("GROUP_ROSTER_UPDATE", "GroupChanged")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED")
 	self:RegisterEvent("UNIT_NAME_UPDATE")
@@ -141,12 +157,15 @@ function Grid2:OnEnable()
 	end
 	if not self.isClassic then
 		self:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+		self:RegisterEvent("PLAYER_ROLES_ASSIGNED")
 	end
 
 	self.db.RegisterCallback(self, "OnProfileShutdown", "ProfileShutdown")
     self.db.RegisterCallback(self, "OnProfileChanged", "ProfileChanged")
 	self.db.RegisterCallback(self, "OnProfileCopied", "ProfileChanged")
 	self.db.RegisterCallback(self, "OnProfileReset", "ProfileChanged")
+
+	self.playerClassSpec = self.playerClass .. (GetSpecialization() or 0)
 
 	self:LoadConfig()
 
@@ -191,11 +210,16 @@ end
 
 function Grid2:PLAYER_SPECIALIZATION_CHANGED(_,unit)
 	if unit=='player' then
+		self.playerClassSpec = self.playerClass .. (GetSpecialization() or 0)
 		if not Grid2:ReloadProfile() then
 			Grid2:ReloadTheme()
 			self:SendMessage("Grid_PlayerSpecChanged") -- Send message only if profile has not changed
 		end
 	end
+end
+
+function Grid2:PLAYER_ROLES_ASSIGNED()
+	self:ReloadTheme()
 end
 
 -- Themes
@@ -215,6 +239,7 @@ function Grid2:CheckTheme()
 	local enabled = themes.enabled
 	local theme   = enabled.default or 0
 	local spec    = GetSpecialization() or 0
+	local role    = UnitGroupRolesAssigned('player') or 0
 	local groupType, instType, maxPlayers = self:GetGroupType()
 	local kM   = tostring(maxPlayers)
 	local kC   = fmt("%s@0",     self.playerClass)
@@ -223,7 +248,7 @@ function Grid2:CheckTheme()
 	local kSGI = fmt("%s@%s@%s", kS, groupType, instType)
 	local kSG  = fmt("%s@%s",    kS, groupType)
 	local kGI  = fmt("%s@%s",    groupType, instType)
-	theme = enabled[kSM] or enabled[kSGI] or enabled[kSG] or enabled[kS] or enabled[kC] or enabled[kM] or enabled[kGI] or enabled[groupType] or theme
+	theme = self.testThemeIndex or enabled[kSM] or enabled[kSGI] or enabled[kSG] or enabled[kS] or enabled[kC] or enabled[kM] or enabled[kGI] or enabled[groupType] or enabled[role] or theme
 	theme = themes.names[theme] and theme or 0
 	return theme, themes.indicators[theme] or {}
 end
@@ -241,10 +266,11 @@ function Grid2:RefreshTheme()
 end
 
 function Grid2:ReloadTheme(force)
-	local theme = self:CheckTheme()
+	local theme, indicators = self:CheckTheme()
 	if theme ~= self.currentTheme or force then
 		if not self:RunSecure(2, self, "ReloadTheme") then
 			self.currentTheme = theme
+			self.suspendedIndicators = indicators
 			self:UpdateTheme()
 			self:RefreshTheme()
 			self:SendMessage("Grid_ThemeChanged", theme)

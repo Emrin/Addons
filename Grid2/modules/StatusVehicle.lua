@@ -5,6 +5,7 @@ local Vehicle = Grid2.statusPrototype:new("vehicle")
 local L = LibStub:GetLibrary("AceLocale-3.0"):GetLocale("Grid2")
 
 local Grid2 = Grid2
+local UnitName = UnitName
 local UnitHasVehicleUI = UnitHasVehicleUI
 
 function Vehicle:UpdateUnit(_, unit)
@@ -24,7 +25,7 @@ function Vehicle:OnDisable()
 end
 
 function Vehicle:IsActive(unit)
-	local owner = Grid2:GetOwnerUnitByUnit(unit)
+	local owner = Grid2:GetOwnerOfUnit(unit)
 	if owner and UnitHasVehicleUI(owner) then
 		return true
 	else
@@ -38,7 +39,7 @@ end
 
 local text = L["vehicle"]
 function Vehicle:GetText(unit)
-	local owner = Grid2:GetOwnerUnitByUnit(unit)
+	local owner = Grid2:GetOwnerOfUnit(unit)
 	if owner and UnitHasVehicleUI(owner) then
 		return UnitName(owner)
 	else

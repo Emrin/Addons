@@ -214,7 +214,6 @@ do
 		Misc         = { type = "header", order = 100, name = L["Misc"]        },
 		Auras	     = { type = "header", order = 150, name = L["Auras"]       },
 		DebuffFilter = { type = "header", order = 175, name = L["Filtered debuffs"] },
-		ClassFilter  = { type = "header", order = 200, name = L["Class Filter"] },
 		AurasExpanded= { type = "header", order = 300,  name = L["Display"] },
 	}
 	function Grid2Options:MakeHeaderOptions( options, key )
@@ -347,7 +346,7 @@ function Grid2Options:GetAvailableStatusValues(indicator, statusAvailable, statu
 	statusAvailable = statusAvailable or {}
 	wipe(statusAvailable)
 	for statusKey, status in Grid2:IterateStatuses() do
-		if self:IsCompatiblePair(indicator, status) and status.name~="test" and not status:IsSuspended() then
+		if self:IsCompatiblePair(indicator, status) and status.name~="test" then -- and not status.suspended then
 			statusAvailable[statusKey] = self.LocalizeStatus(status)
 		end
 	end

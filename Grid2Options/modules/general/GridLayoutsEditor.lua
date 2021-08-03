@@ -92,7 +92,7 @@ local function GetHeaderName(info)
 		if index then
 			local layout = editedLayout[index]
 			if layout then
-				return string.format( "%s(%d)", layout.type=='pet' and L['pets'] or L['players'], index )
+				return string.format( "%s(%d)", (layout.type=='pet' and L['pets']) or (layout.type=='custom' and L['custom']) or L['players'], index )
 			end
 		end
 	end
@@ -107,7 +107,7 @@ local function CreateHeader(info, index)
 		table.insert( editedLayout, index+1, Grid2.CopyTable(editedLayout[index]) )
 		index = index + 1
 	else
-		table.insert( editedLayout, { type = (index=="pet" and "pet" or nil), unitsPerColumn = 5, maxColumns = 1 } )
+		table.insert( editedLayout, { type = (index=="pet" and "pet") or (index=="custom" and "custom") or nil, unitsPerColumn = 5, maxColumns = 1 } )
 		index= #editedLayout
 	end
 	RefreshLayout()
@@ -174,6 +174,10 @@ local function FilterSet(info,value)
 	RefreshLayout()
 end
 
+local function IsOptionHidden()
+	return editedHeader.type=='custom'
+end
+
 -- Used by Profile Export/Import module
 function Grid2Options:AddNewCustomLayoutsOptions()
 	for name in pairs(Grid2Layout.customLayouts) do
@@ -183,6 +187,8 @@ function Grid2Options:AddNewCustomLayoutsOptions()
 	end
 end
 
+--=====================================================================================
+-- standard header player or pets
 --=====================================================================================
 
 headerOptions = {
@@ -235,7 +241,7 @@ headerOptions = {
 			RefreshLayout()
 		end,
 		values = function()	return editedHeader.nameList and SORTBYN_VALUES or SORTBY_VALUES end,
-		hidden = false,
+		hidden = IsOptionHidden,
 	},
 
 	groupby =  {
@@ -265,7 +271,7 @@ headerOptions = {
 		end,
 		values = GROUPBY_VALUES,
 		disabled = function() return editedHeader.nameList~=nil end,
-		hidden = false,
+		hidden = IsOptionHidden,
 	},
 
 	nameList = {
@@ -297,15 +303,42 @@ headerOptions = {
 			end
 			RefreshLayout()
 		end,
-		hidden = false,
+		hidden = IsOptionHidden,
+	},
+
+	unitsList = {
+		type = "input",
+		order = 50,
+		width = "full",
+		name = L["Units List"],
+		desc = L["Type a list of unit names, valid units:\ntarget, focus\nboss1, boss2, boss3, boss4, boss5\narena1, arena2, arena3, arena4, arena5\nplayer, party1, party2, party3, party4\nraid1, raid2, raid3, .. , raid40"],
+		multiline = 9,
+		get = function()
+			return editedHeader.unitsFilter or ''
+		end,
+		set = function(_, v)
+			local t = { strsplit("\n,;:|", v) }
+			for i=#t,1,-1 do
+				v = strlower( strtrim( t[i] ) )
+				v = strmatch(v,'^target$') or strmatch(v,'^focus$') or strmatch(v,'^player$') or strmatch(v,'^party%d+$') or strmatch(v,'^raid%d+$') or strmatch(v,'^boss%d+$') or strmatch(v,'^arena%d+$')
+				if v then
+					t[i] = v
+				else
+					table.remove(t,i)
+				end
+			end
+			editedHeader.unitsFilter = table.concat( t, "," )
+			RefreshLayout()
+		end,
+		hidden = function() return editedHeader.type~='custom' end,
 	},
 
 	vehicle = {
 		type = "toggle",
-		name = L["Toggle for vehicle"],
+		name = L["Toggle vehicle"],
 		desc = L["When the player is in a vehicle replace the player frame with the vehicle frame."],
 		order = 54,
-		width = 1.2,
+		width = .8,
 		tristate = true,
 		get = function()
 			return editedHeader.toggleForVehicle
@@ -322,7 +355,7 @@ headerOptions = {
 		name = L["Hide Player"],
 		desc = L["Do not display the player frame (only applied when in group)."],
 		order = 55,
-		width = "normal",
+		width = .8,
 		tristate = false,
 		get = function()
 			return editedHeader.showPlayer==false
@@ -335,6 +368,39 @@ headerOptions = {
 			end
 			RefreshLayout()
 		end,
+		hidden = IsOptionHidden,
+	},
+
+	hideEmptyButtons = {
+		type = "toggle",
+		name = L["Hide Empty"],
+		desc = L["Hide the frame if the unit does not exist."],
+		order = 55,
+		width = .8,
+		get = function()
+			return editedHeader.hideEmptyUnits
+		end,
+		set = function(info, value)
+			editedHeader.hideEmptyUnits = value or nil
+			RefreshLayout()
+		end,
+		hidden = function() return editedHeader.type~='custom' end,
+	},
+
+	detachHeader = {
+		type = "toggle",
+		name = L["Detach Header"],
+		desc = L["Allow to move this header independent of the other headers."],
+		order = 56,
+		width = .8,
+		get = function()
+			return editedHeader.detachHeader
+		end,
+		set = function(info, value)
+			editedHeader.detachHeader = value or nil
+			RefreshLayout(true)
+		end,
+		disabled = function() return editedHeaderIndex==1 end,
 		hidden = false,
 	},
 
@@ -411,7 +477,7 @@ if RETAIL then
 end
 
 do
-	headerOptions.groupheader = { type = "header", order = 30, name = L["Groups"], hidden = false }
+	headerOptions.groupheader = { type = "header", order = 30, name = L["Groups"], hidden = IsOptionHidden }
 	for i=1,8 do
 		headerOptions['group'..i] = {
 			type = "toggle",
@@ -422,7 +488,7 @@ do
 			get = FilterGet,
 			set = FilterSet,
 			disabled = function() return editedHeader.groupFilter=="auto" end,
-			hidden = false,
+			hidden = IsOptionHidden,
 			arg = {  tostring(i), "groupFilter", "1,2,3,4,5,6,7,8" },
 		}
 	end
@@ -438,7 +504,7 @@ do
 			editedHeader.strictFiltering = (editedHeader.roleFilter~=nil and editedHeader.groupFilter~=nil) or nil
 			RefreshLayout()
 		end,
-		hidden = false,
+		hidden = IsOptionHidden,
 	}
 end
 
@@ -455,7 +521,7 @@ do
 		descs  = names
 		widths = { .75, .75, .75 }
 	end
-	headerOptions.roleheader = { type = "header", order = 40, name = L["Roles"], hidden = false }
+	headerOptions.roleheader = { type = "header", order = 40, name = L["Roles"], hidden = IsOptionHidden }
 	for i,role in ipairs(roles) do
 		headerOptions['role'..i] = {
 			type = "toggle",
@@ -465,7 +531,7 @@ do
 			width = widths[i],
 			get = FilterGet,
 			set = FilterSet,
-			hidden = false,
+			hidden = IsOptionHidden,
 			arg = { role, "roleFilter", "DAMAGER,HEALER,MAINASSIST,MAINTANK,NONE,TANK" },
 		}
 	end
@@ -509,7 +575,7 @@ layoutOptions = {
 				desc   = L["Select what kind of units you want to display on the new header and click the create button."],
 				get    = function(info)	return layoutOptions.new.args.type.arg end,
 				set    = function(info,v) layoutOptions.new.args.type.arg = v end,
-				values = { player = L["players"], pet = L["pets"] },
+				values = { player = L["players"], pet = L["pets"], custom = L["custom"] },
 				arg    = "player",
 				hidden = false,
 			},
@@ -548,57 +614,6 @@ end
 --=====================================================================================
 
 generalOptions = {
-
-	desc = {
-		order = 0,
-		type = "description",
-		name = L["Default settings applied to all user defined layouts and some built-in layouts."] .. "\n"
-	},
-
-	allGroups = {
-		order = 1,
-		type = "toggle",
-		name = "|cffffd200".. L["Display all groups"] .."|r",
-		desc = L["Display all raid groups, if unchecked the groups will by filtered according to the instance size. Not all layouts will obey this setting."],
-		width = "full",
-		get = function(info)
-			return Grid2Layout.db.global.displayAllGroups
-		end,
-		set = function(info,v)
-			Grid2Layout.db.global.displayAllGroups= v or nil
-			RefreshLayout(true)
-		end,
-	},
-
-	sortMethod = {
-		order = 1,
-		type = "toggle",
-		name = "|cffffd200".. L["Sort units by name"] .."|r",
-		desc = L["Sort the units by player name, if unchecked the units will be displayed in raid order. Not all layouts will obey this setting."],
-		width = "full",
-		get = function()
-			return Grid2Layout.customDefaults.sortMethod=="NAME"
-		end,
-		set = function(info,v)
-			Grid2Layout.customDefaults.sortMethod = (v and "NAME") or nil
-			RefreshLayout(true)
-		end,
-	},
-
-	vehicle = {
-		order = 2,
-		type = "toggle",
-		name = "|cffffd200".. L["Toggle for vehicle"] .."|r",
-		desc = L["When the player is in a vehicle replace the player frame with the vehicle frame."],
-		width = "full",
-		get = function()
-			return Grid2Layout.customDefaults.toggleForVehicle
-		end,
-		set = function(info,v)
-			Grid2Layout.customDefaults.toggleForVehicle = v
-			RefreshLayout(true)
-		end,
-	},
 
 	createdesc = {
 		order = 10,
@@ -645,7 +660,6 @@ generalOptions = {
 
 }
 
-
 --=====================================================================================
 
 editorOptions = {}
@@ -667,17 +681,6 @@ editorOptions.__general = {
 
 --=====================================================================================
 
--- Editor is displayed in two different places, option when Themes are enabled: General -> LayoutEditor
-Grid2Options:AddGeneralOptions( "LayoutEditor", nil, {
-	type   = "group",
-	name   = L["Layouts"],
-	childGroups = "select",
-	args = editorOptions,
-	arg  = EDITOR_IDENTIFIER, -- To locate the editor options in SelectGroup()
-	hidden = function() return Grid2Frame.dba.profile.extraThemes == nil end,
-} )
-
--- Editor is displayed in two different places, option when Themes are disabled: General -> Layouts -> Editor
 local editorLayouts = {
 	order = 500,
 	type   = "group",
@@ -685,7 +688,6 @@ local editorLayouts = {
 	childGroups = "select",
 	args = editorOptions,
 	arg  = EDITOR_IDENTIFIER, -- To locate the editor options in SelectGroup()
-	hidden = function() return Grid2Frame.dba.profile.extraThemes ~= nil end,
 }
 function Grid2Options:GetLayoutsEditorOptions()
 	return editorLayouts

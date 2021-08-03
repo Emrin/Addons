@@ -1,6 +1,9 @@
 # Grid2
 
-## [1.1.21](https://github.com/michaelnpsp/Grid2/tree/1.1.21) (2021-03-10)
-[Full Changelog](https://github.com/michaelnpsp/Grid2/compare/1.1.20...1.1.21) 
+## [2.0.15](https://github.com/michaelnpsp/Grid2/tree/2.0.15) (2021-06-29)
+[Full Changelog](https://github.com/michaelnpsp/Grid2/compare/2.0.14...2.0.15) 
 
-- TOC Update  
+- Retail: Added "Tazavesh, the Veiled Market" dungeon raid debuffs.  
+- Retail: Now themes can be switched based on dungeon role (ticket #978).  
+- TOC Update for 9.1  
+    Added Shadowlands Sanctum of Domination raid debuffs.  

@@ -2,57 +2,282 @@
 
 local L = Grid2Options.L
 
--- Grid2Options:MakeStatusEnabledOptions()
+-- Grid2Options:MakeStatusLoadOptions(status, options, optionParams)
 do
-	local ClassesValues = { [''] = L["All Classes"] }
+	local UNIT_REACTIONS = {
+		friendly = L['Friendly'],
+		hostile  = L['Hostile'],
+	}
+
+	local GROUP_TYPES = {
+		solo  = L['Solo'],
+		party = L['Party'],
+		arena = L["Arena"],
+		raid  = L["Raid"],
+	}
+
+	local INSTANCE_TYPES = {
+		none   = L["None"],
+		normal = L["Normal Dungeon"],
+		heroic = L["Heroic Dungeon"],
+		mythic = L["Mythic Dungeon/Raid"],
+		flex   = L["Normal/Heroic Raid"],
+		lfr    = L["Looking for Raid"],
+		pvp    = L["PvP"],
+		other  = L["Other"],
+	}
+
+	local PLAYER_CLASSES = {}
 	for class, translation in pairs(LOCALIZED_CLASS_NAMES_MALE) do
-		ClassesValues[class] = translation
+		local coord = CLASS_ICON_TCOORDS[class]
+		PLAYER_CLASSES[class] =	string.format("|TInterface\\GLUES\\CHARACTERCREATE\\UI-CHARACTERCREATE-CLASSES:0:0:0:0:256:256:%f:%f:%f:%f:0|t%s",coord[1]*256,coord[2]*256,coord[3]*256,coord[4]*256,translation)
 	end
-	local function StatusSetPlayerClass(status, playerClass)
-		local suspended = status:IsSuspended()
-		status.dbx.playerClass = playerClass~='' and playerClass or nil
-		if suspended ~= status:IsSuspended() then
-			local name = status.name
-			for key, map in pairs(Grid2.db.profile.statusMap) do
-				local indicator = Grid2.indicators[key]
-				if indicator then
-					local priority = map[name]
-					if priority then
-						if suspended then
-							indicator:RegisterStatus(status, priority)
-						else
-							indicator:UnregisterStatus(status)
-						end
-						Grid2Frame:WithAllFrames(indicator, "Update")
-						Grid2Options:RefreshIndicatorOptions(indicator)
-					end
+
+	local CLASSES_SPECS = {}
+	if not Grid2.isClassic then
+		for classID = 1, 30 do
+		  local info = C_CreatureInfo.GetClassInfo(classID)
+		  if info then
+			local class = info.classFile
+			local coord = CLASS_ICON_TCOORDS[class]
+			for index=GetNumSpecializationsForClassID(classID), 1,-1 do
+				local _, specName, _, specIcon = GetSpecializationInfoForClassID(classID, index)
+				CLASSES_SPECS[class..index] = string.format("|TInterface\\GLUES\\CHARACTERCREATE\\UI-CHARACTERCREATE-CLASSES:0:0:0:0:256:256:%f:%f:%f:%f:0|t|T%s:0|t%s",coord[1]*256,coord[2]*256,coord[3]*256,coord[4]*256,specIcon,specName)
+			end
+		  end
+		end
+	end
+
+	local function RefreshStatusOptions(status)
+		local name = Grid2Options.LocalizeStatus(status, true)
+		local group = Grid2Options:GetStatusGroup(status)
+		if status.suspended then
+			group.order = group.order - 500
+			group.name  = string.format('|cFF808080%s|r',name)
+		else
+			group.order = group.order + 500
+			group.name  = name
+		end
+	end
+
+	local function RefreshStatus(status, isUnitFilter)
+		if isUnitFilter then
+			status:Refresh(true)
+		elseif status:RefreshLoad() then
+			RefreshStatusOptions(status)
+		end
+	end
+
+	local function SetFilterOptions( status, options, order, key, values, defValue, name, desc, isUnitFilter, isSingle )
+		local dbx    = status.dbx
+		local filter = dbx.load and dbx.load[key]
+		local multi  = filter and next(filter, next(filter))~=nil
+		options[key] = {
+			type = "toggle",
+			name = name,
+			desc = desc or name,
+			order = order,
+			get = function(info) return filter end,
+			set = function(info)
+				if multi or (isSingle and filter) then
+					multi, filter, dbx.load[key] = nil, nil, nil
+					if not next(dbx.load) then dbx.load = nil end
+				elseif filter and not isSingle then
+					multi = true
+				else
+					dbx.load = dbx.load or {}
+					filter = { [defValue] = true }
+					dbx.load[key] = filter
 				end
+				RefreshStatus(status, isUnitFilter)
+			end,
+			disabled = function() return dbx.load and dbx.load.disabled end,
+		}
+		options[key..'1'] = {
+			type = "select",
+			name = name,
+			desc = desc or name,
+			order = order+1,
+			get = function() return filter and next(filter) end,
+			set = function(_,v)
+				wipe(filter)[v] = true
+				RefreshStatus(status, isUnitFilter)
+			end,
+			disabled = function() return not filter or dbx.load.disabled end,
+			hidden   = function() return multi end,
+			values   = values,
+		}
+		options[key..'2'] = {
+			type = "multiselect",
+			order = order+2,
+			name = name,
+			get = function(info, value) return filter[value] end,
+			set = function(info, value)
+				filter[value] = (not filter[value]) or nil
+				RefreshStatus(status, isUnitFilter)
+			end,
+			hidden = function() return not multi end,
+			disabled = function() return dbx.load and dbx.load.disabled end,
+			values = values,
+		}
+		options[key.."3"] = {
+			type = "description",
+			name = "",
+			order = order+3,
+		}
+	end
+
+	local function GetFilterZoneText(filter)
+		if filter then
+			local lines = ""
+			for line in pairs(filter) do
+				lines = lines .. line .. "\n"
 			end
-			local group = Grid2Options:GetStatusGroup(status)
-			if suspended then
-				group.order = group.order - 500
-				group.name  = strsub(group.name,11,-3)
-			else
-				group.order = group.order + 500
-				group.name  = string.format('|cFF808080%s|r',group.name)
-			end
-			status:Refresh()
+			return lines
 		end
 	end
-	function Grid2Options:MakeStatusEnabledOptions(status, options, optionParams, headerKey)
-		options.playerClass = {
-			type    = "select",
-			width   = "full",
-			name    = L["Enabled for"],
-			desc    = L["Enable the status only if your toon belong to the specified class."],
-			order   = 1.5,
-			get     = function() return status.dbx.playerClass or '' end,
-			set     = function(_,v)	StatusSetPlayerClass(status, v) end,
-			values  = ClassesValues,
-		}
-		if headerKey~=false then
-			self:MakeHeaderOptions( options, headerKey or "General" )
+
+	local function SetFilterZoneText(status, filter, text)
+		wipe(filter)
+		local count = 0
+		for _,zone in pairs( { strsplit("\n,", strtrim(text)) } ) do
+			zone = strtrim(zone)
+			if #zone>0 then
+				filter[zone], count = zone, count + 1
+			end
 		end
+		if count==0 then
+			filter[zone] = GetInstanceInfo()
+		end
+		RefreshStatus(status)
+		return count>1
+	end
+
+	local function GetZoneDescription()
+		local name,_,_,_,_,_,_,id = GetInstanceInfo()
+		return string.format( L["Supports multiple names or IDs separated by commas or newlines.\n\nCurrent Instance:\n%s(%d)"], name, id )
+	end
+
+	local function SetFilterZoneOptions(status, options, order, key)
+		local dbx    = status.dbx
+		local filter = dbx.load and dbx.load[key]
+		local multi  = filter and next(filter, next(filter))~=nil
+		options[key] = {
+			type = "toggle",
+			name = L["Instance Name/ID"],
+			desc = GetZoneDescription,
+			order = order,
+			get = function(info) return filter end,
+			set = function(info)
+				if multi then
+					multi, filter, dbx.load[key] = nil, nil, nil
+					if not next(dbx.load) then dbx.load = nil end
+				elseif filter then
+					multi = true
+				else
+					dbx.load = dbx.load or {}
+					filter = { [ (GetInstanceInfo()) ] = true }
+					dbx.load[key] = filter
+				end
+				RefreshStatus(status)
+			end,
+		}
+		options[key..'1'] = {
+			type = "input",
+			name = L["Instance Name/ID"],
+			order = order+1,
+			get = function() return GetFilterZoneText(filter) end,
+			set = function(_,v) multi = SetFilterZoneText(status, filter,v) end,
+			disabled = function() return not filter or dbx.load.disabled end,
+			hidden   = function() return multi end,
+		}
+		options[key..'2'] = {
+			type = "input",
+			name = L["Instance Name/ID"],
+			order = order+1,
+			width = "full",
+			multiline = 3,
+			get = function() return GetFilterZoneText(filter) end,
+			set = function(_,v) multi = SetFilterZoneText(status,filter,v) end,
+			hidden = function() return not multi end,
+			disabled = function() return dbx.load and dbx.load.disabled end,
+		}
+		options[key.."3"] = {
+			type = "description",
+			name = "",
+			order = order+3,
+		}
+	end
+
+	function Grid2Options:MakeStatusLoadOptions(status, options, optionParams)
+		options.Never = {
+			type = "toggle",
+			width = "full",
+			name = L["Never"],
+			desc = L["Never load this status"],
+			order = 1,
+			get = function(info) return status.dbx.load and status.dbx.load.disabled end,
+			set = function(info, value)
+				if value then
+					if status.dbx.load==nil then status.dbx.load = {} end
+					status.dbx.load.disabled = true
+				else
+					status.dbx.load.disabled = nil
+					if not next(status.dbx.load) then status.dbx.load = nil end
+				end
+				RefreshStatus(status)
+			end,
+		}
+		SetFilterOptions( status, options, 10,
+			'playerClass',
+			PLAYER_CLASSES,
+			select(2,UnitClass('player')),
+			L["Player Class"],
+			L["Load the status only if your toon belong to the specified class."]
+		)
+		if not Grid2.isClassic then
+			SetFilterOptions( status, options, 20,
+				'playerClassSpec',
+				CLASSES_SPECS,
+				Grid2.playerClass..GetSpecialization(),
+				L["Player Class&Spec"],
+				L["Load the status only if your toon has the specified class and specialization."]
+			)
+		end
+		SetFilterOptions( status, options, 40,
+			'groupType',
+			GROUP_TYPES,
+			'solo',
+			L["Group Type"],
+			L["Load the status only if you are in the specified group type."]
+		)
+		SetFilterOptions( status, options, 50,
+			'instType',
+			INSTANCE_TYPES,
+			'none',
+			L["Instance Type"],
+			L["Load the status only if you are in the specified instance type."]
+		)
+		SetFilterZoneOptions(status, options, 55, 'instNameID')
+		if status.handlerType then -- hackish to detect buff/debuff type statuses
+			SetFilterOptions( status, options, 60,
+				'unitReaction',
+				UNIT_REACTIONS,
+				'friendly',
+				L["Unit Reaction"],
+				L["Load the status only if the unit has the specified reaction towards the player."],
+				true, true
+			)
+			SetFilterOptions( status, options, 70,
+				'unitClass',
+				PLAYER_CLASSES,
+				select(2,UnitClass('player')),
+				L["Unit Class"],
+				L["Load the status only if the unit belong to the specified class."],
+				true
+			)
+		end
+		return options
 	end
 end
 
@@ -155,40 +380,6 @@ function Grid2Options:MakeStatusThresholdOptions(status, options, optionParams, 
 		end,
 		set = function (_, v)
 			status.dbx.threshold = v
-			status:UpdateAllUnits()
-		end,
-	}
-end
-
--- Grid2Options:MakeStatusMissingOptions()
-function Grid2Options:MakeStatusMissingOptions(status, options, optionParams)
-	options.threshold = {
-		type = "toggle",
-		name = L["Show if missing"],
-		desc = L["Display status only if the buff is not active."],
-		order = 110,
-		tristate = false,
-		get = function ()return status.dbx.missing end,
-		set = function (_, v)
-			status.dbx.missing = v or nil
-			status:UpdateDB()
-			status:UpdateAllUnits()
-		end,
-	}
-end
-
--- Grid2Options:MakeStatusToggleOptions()
-function Grid2Options:MakeStatusToggleOptions(status, options, optionParams, toggleKey)
-	local name = optionParams and optionParams[toggleKey] or L[toggleKey] or toggleKey
-	options[toggleKey] = {
-		type = "toggle",
-		name = name,
-		tristate = false,
-		width = optionParams and optionParams.width or nil,
-		get = function () return status.dbx[toggleKey] end,
-		set = function (_, v)
-			status.dbx[toggleKey] = v or nil
-			status:UpdateDB()
 			status:UpdateAllUnits()
 		end,
 	}

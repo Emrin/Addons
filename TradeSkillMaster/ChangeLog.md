@@ -1,6 +1,6 @@
-## v4.10.43 Changes
+## v4.11.8 Changes
 
-* [BCC] Destroying will ignore items below required skill level
-* [BCC] Disenchanting material data fixes
+* [Retail] Fixes some crafting issues with some optional materials
+* Fixed errors related to scrolling tables
 
 [Known Issues](http://support.tradeskillmaster.com/display/KB/TSM4+Currently+Known+Issues)

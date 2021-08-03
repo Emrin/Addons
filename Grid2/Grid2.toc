@@ -1,20 +1,21 @@
-## Interface: 90005
-## X-WoW-Project: retail
+## Interface: 90100
 ## Title: Grid2
 ## Author: Pastamancer & Maia, Jerry, Toadkiller
-## Version: 1.1.21
+## Version: 2.0.15
 ## Notes: A modular, lightweight and screen-estate saving grid of party/raid unit frames
 ## Notes-esES: Marcos de unidades de raid compactos y ligeros.
 ## Notes-ruRU: Модульный, легкий, отображающий на экране область группы/рейда в виде сетки.
 ## Notes-zhCN: 小巧的轻量级模块化队伍框架
 ## Notes-zhTW: 精簡的團隊框架功能
 ## X-Curse-Project-ID: 15226
+## X-Wago-ID: vEGPyeN1
 ## DefaultState: enabled
 ## LoadOnDemand: 0
 ## SavedVariables: Grid2DB
 ## OptionalDeps: Ace3, Clique
 
 # Ace Libraries
+#@no-lib-strip@
 Libs\LibStub\LibStub.lua
 Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
 Libs\AceAddon-3.0\AceAddon-3.0.xml
@@ -24,13 +25,17 @@ Libs\AceConsole-3.0\AceConsole-3.0.xml
 Libs\AceLocale-3.0\AceLocale-3.0.xml
 Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua
 Libs\LibCustomGlow-1.0\LibCustomGlow-1.0.lua
+#@end-no-lib-strip@
 
 #Locales
 locales.xml
 
+GridGroupHeaders.xml
+
 # Grid2
 GridCore.lua
 GridUtils.lua
+GridUtilsCmd.lua
 GridRoster.lua
 GridFrame.lua
 GridLayout.lua
@@ -38,6 +43,7 @@ GridLayoutLayouts.lua
 GridIndicator.lua
 GridIndicatorEffects.lua
 GridStatus.lua
+GridStatusLoad.lua
 GridSetup.lua
 GridDefaults.lua
 GridDefaultsRetail.lua

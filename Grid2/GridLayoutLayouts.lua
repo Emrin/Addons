@@ -116,4 +116,3 @@ Grid2Layout:AddLayout("By Group & Role", {
 		sortMethod = "NAME",
 	},
 })
-

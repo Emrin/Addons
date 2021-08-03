@@ -24,9 +24,7 @@ local function UpdateUnit(_, unit)
 end
 
 local function UpdateUnits()
-	local units, count = Grid2:GetNonPetUnits()
-	for i=1,count do
-		local unit = units[i]
+	for unit in Grid2:IterateGroupedPlayers() do
 		local distance, valid = UnitDistanceSquared(unit)
 		local inrange = valid and distance<62500 -- UnitPhaseReason() only works if distance squared<250*250
 		if inrange~=range[unit] then
@@ -79,7 +77,7 @@ Phased.GetColor = Grid2.statusLibrary.GetColor
 Phased.GetPercent = Grid2.statusLibrary.GetPercent
 
 Grid2.setupFunc["phased"] = function(baseKey, dbx)
-	Grid2:RegisterStatus(Phased, {"icon", "color", "percent" }, baseKey, dbx)
+	Grid2:RegisterStatus(Phased, {"icon", "color", "percent"}, baseKey, dbx)
 	return Phased
 end
 

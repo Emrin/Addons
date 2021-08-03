@@ -1,11 +1,12 @@
 -- Auras management
 local Grid2 = Grid2
+local Grid2Frame = Grid2Frame
 local type = type
 local next = next
+local rawget = rawget
 local GetTime = GetTime
 local UnitAura = UnitAura
 local isClassic = Grid2.isClassic
-local Grid2Frame = Grid2Frame
 
 -- Local variables
 local Statuses = {}
@@ -22,13 +23,12 @@ local AuraFrame_OnEvent
 do
 	local indicators = {}
 	local val = {0, 0, 0}
+	local pTypes   = Grid2.debuffPlayerDispelTypes
 	local myUnits  = Grid2.roster_my_units
 	local myFrames = Grid2.frames_of_unit
+	local roUnits  = Grid2.roster_guids
 	AuraFrame_OnEvent = function(_, event, u)
-		-- Usually if no frames exists for the unit this function returns and do nothing (we ignore units not displayed by Grid2 like nameplates or units filtered by the active layout)
-		-- except if "event" is nil, in this case we are in a "Grid_UnitUpdated" event and the frames maybe were not created yet, so we need to save the auras states for future use.
-		local frames = myFrames[u]
-		if event and not next(frames) then return end
+		if not roUnits[u] then return end
 		-- Scan Debuffs, Debuff Types, Debuff Groups
 		local i = 1
 		while true do
@@ -58,7 +58,7 @@ do
 				end
 			end
 			for s in next, DebuffGroups do
-				if (not s.seen) and s:UpdateState(u, nam, dur, cas, bos, typ) then
+				if (not s.seen) and s:UpdateState(u, nam, dur, cas, bos, typ, pTypes) then
 					s.seen, s.idx[u], s.tex[u], s.cnt[u], s.dur[u], s.exp[u], s.typ[u], s.tkr[u] = 1, i, tex, cnt, dur, exp, typ, 1
 				end
 			end
@@ -97,7 +97,8 @@ do
 			s.seen = false
 		end
 		-- Update indicators that needs updating only once.
-		if frames then
+		if event then
+			local frames = myFrames[u]
 			for indicator in next, indicators do
 				for frame in next, frames do
 					indicator:Update(frame, u)
@@ -108,37 +109,59 @@ do
 	end
 end
 
--- Class filter, for classic only
-local MakeStatusFilter, ClearUnitFilters
-if isClassic then
-	local next = next
+-- unit class/reaction filters
+local MakeStatusFilter
+do
 	local UnitClass = UnitClass
-	local filter_mt = {	__index = function(t,u) local _,c = UnitClass(u); local r=t.source[c]; t[u]=r; return r; end }
-	MakeStatusFilter = function(status)
-		local source = status.dbx.classFilter
-		if source then
-			if status.filtered then
-				wipe(status.filtered); status.filtered.source = source
-			else
-				status.filtered = setmetatable({source = source}, filter_mt)
+	local UnitExists = UnitExists
+	local UnitIsFriend = UnitIsFriend
+	local filter_mt = {	__index = function(t,u)
+		if UnitExists(u) then
+			local load, r = t.source
+			if load.unitReaction then
+				r = not UnitIsFriend('player',u)
+				if load.unitReaction.hostile then r = not r end
 			end
-		elseif status.filtered then
-			status.filtered = nil
+			if not r and load.unitClass then
+				local _,class = UnitClass(u)
+				r = not load.unitClass[class]
+			end
+			t[u] = r
+			return r
 		end
-	end
-	ClearUnitFilters = function(unit)
-		for status in next, Statuses do
-			local filtered = status.filtered
-			if filtered then filtered[unit] = nil end
+		t[u] = true
+		return true
+	end }
+	MakeStatusFilter = function(status)
+		local load = status.dbx.load
+		if load and (load.unitReaction or load.unitClass) then
+			if status.filtered then
+				wipe(status.filtered).source = load
+			else
+				status.filtered = setmetatable({source = load}, filter_mt)
+			end
+		else
+			status.filtered = nil
 		end
 	end
 end
 
--- Passing Statuses instead of nil, because i dont know if nil is valid for RegisterMessage
-Grid2.RegisterMessage( Statuses, "Grid_UnitUpdated", function(_, u)
-	if isClassic then ClearUnitFilters(u) end
-	AuraFrame_OnEvent(nil,nil,u)
-end)
+-- Clear/update auras when unit changes or leaves the roster.
+do
+	local function ClearAurasOfUnit(_, unit)
+		for status in next, Statuses do
+			local filtered = status.filtered
+			if filtered then filtered[unit] = nil end
+			status.idx[unit], status.exp[unit], status.val[unit] = nil, nil, nil
+		end
+	end
+	local function UpdateAurasOfUnit(_, unit, joined)
+		ClearAurasOfUnit(nil, unit)
+		AuraFrame_OnEvent(nil, nil, unit)
+	end
+	Grid2.RegisterMessage( Statuses, "Grid_UnitLeft", ClearAurasOfUnit )
+	Grid2.RegisterMessage( Statuses, "Grid_UnitUpdated", UpdateAurasOfUnit )
+end
 
 -- EnableAuraEvents() DisableAuraEvents()
 local EnableAuraEvents, DisableAuraEvents
@@ -264,18 +287,25 @@ do
 	local UnitHealthMax = UnitHealthMax
 	local unit_is_pet   = Grid2.owner_of_unit
 	local function Refresh(self, full)
-		if full then self:UpdateDB() end
+		if full then
+			self:UpdateDB()
+		end
+		if self.filtered then
+			wipe(self.filtered).source = self.dbx.load
+		end
 		for unit in Grid2:IterateRosterUnits() do
 			AuraFrame_OnEvent(nil,nil,unit)
 		end
-		if full then self:UpdateAllUnits() end
+		if full then
+			self:UpdateAllUnits()
+		end
 	end
 	local function Reset(self, unit)
 		-- multibar indicator needs val[unit]=nil because due to a speed optimization it does not check if status is active before calling GetPercent()
 		self.idx[unit], self.exp[unit], self.val[unit] = nil, nil, nil
 		return true
 	end
-	-- with class filters, used in classic
+	-- with unit class/reaction filters
 	local function IsActiveFilter(self, unit)
 		return not self.filtered[unit] and self.idx[unit]~=nil
 	end
@@ -296,7 +326,7 @@ do
 	local function IsInactiveBlinkFilter(self, unit)
 		return not self.filtered[unit] and not self.idx[unit] and "blink"
 	end
-	-- no class filters
+	-- no unit class/reaction filters
 	local function IsActive(self, unit)
 		if self.idx[unit] then return true end
 	end
@@ -318,8 +348,8 @@ do
 		return not self.idx[unit] and "blink"
 	end
 	--
-	local function GetIcon(self, unit) return
-		self.tex[unit]
+	local function GetIcon(self, unit)
+		return self.tex[unit]
 	end
 	local function GetIconMissing(self)
 		return self.missingTexture
@@ -417,7 +447,7 @@ do
 		if self.enabled then self:OnDisable() end
 		local dbx = dbx or self.dbx
 		local blinkThreshold = Grid2Frame.db.shared.blinkType~="None" and dbx.blinkThreshold or nil
-		if isClassic then MakeStatusFilter(self) end
+		MakeStatusFilter(self)
 		self.vId = dbx.valueIndex or 0
 		self.valMax = dbx.valueMax
 		self.GetPercent = dbx.valueIndex and (dbx.valueMax and GetPercentMax or GetPercentHealth) or Grid2.statusLibrary.GetPercent

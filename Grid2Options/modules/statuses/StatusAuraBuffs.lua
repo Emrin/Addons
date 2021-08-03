@@ -32,7 +32,6 @@ function Grid2Options:MakeStatusBuffsListOptions(status, options, optionParams)
 end
 
 Grid2Options:RegisterStatusOptions("buffs", "buff", function(self, status, options, optionParams)
-	self:MakeStatusEnabledOptions(status, options, optionParams)
 	if status.dbx.subType == 'blizzard' then
 		self:MakeStatusColorOptions(status, options, optionParams)
 	else
@@ -43,7 +42,6 @@ Grid2Options:RegisterStatusOptions("buffs", "buff", function(self, status, optio
 		self:MakeStatusColorOptions(status, options, optionParams)
 		self:MakeStatusAuraColorThresholdOptions(status, options, optionParams)
 		self:MakeStatusBlinkThresholdOptions(status, options, optionParams)
-		self:MakeStatusClassFilterOptions(status, options, optionParams)
 	end
 end,{
 	groupOrder = 20, isDeletable = true,

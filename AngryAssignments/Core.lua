@@ -14,8 +14,8 @@ BINDING_NAME_AngryAssign_SHOW_DISPLAY = "Show Display"
 BINDING_NAME_AngryAssign_HIDE_DISPLAY = "Hide Display"
 BINDING_NAME_AngryAssign_OUTPUT = "Output Assignment to Chat"
 
-local AngryAssign_Version = 'v1.14.3'
-local AngryAssign_Timestamp = '20210514205301'
+local AngryAssign_Version = 'v1.14.4'
+local AngryAssign_Timestamp = '20210702012126'
 
 local isClassic = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 
@@ -266,11 +266,20 @@ function AngryAssign:ProcessMessage(sender, data)
 		
 		
 	elseif cmd == "VERSION" then
-		local localTimestamp, ver, timestamp
-		
-		if AngryAssign_Timestamp:sub(1,1) == "@" then localTimestamp = "dev" else localTimestamp = tonumber(AngryAssign_Timestamp) end
-		ver = data[VERSION_Version]
-		timestamp = data[VERSION_Timestamp]
+		local ver, timestamp
+		ver = tostring(data[VERSION_Version])
+		timestamp = tonumber(data[VERSION_Timestamp])
+
+		local localTimestamp, localIsClassic
+		if AngryAssign_Timestamp:sub(1,1) == "@" then
+			localTimestamp = "dev"
+			localIsClassic = isClassic
+		else
+			localTimestamp = tonumber(AngryAssign_Timestamp)
+			localIsClassic = AngryAssign_Version:sub(-1) == "c"
+		end
+
+		local remoteIsClassic = ver:sub(-1,1) == "c"
 
 		local localStr = tostring(localTimestamp)
 		local remoteStr = tostring(timestamp)
@@ -279,12 +288,12 @@ function AngryAssign:ProcessMessage(sender, data)
 			if localStr ~= "dev" then localTimestamp = tonumber(localStr:sub(1,8)) end
 			if remoteStr ~= "dev" then timestamp = tonumber(remoteStr:sub(1,8)) end
 		end
-			
-		if localTimestamp ~= "dev" and timestamp ~= "dev" and timestamp > localTimestamp and not warnedOOD then
+
+		if localTimestamp ~= "dev" and timestamp ~= "dev" and timestamp > localTimestamp and localIsClassic == remoteIsClassic and not warnedOOD then
 			self:Print("Your version of Angry Assignments is out of date! Download the latest version from curse.com.")
 			warnedOOD = true
 		end
-		
+
 		versionList[ sender ] = { valid = data[VERSION_ValidRaid], version = ver }
 	end
 end
@@ -780,7 +789,6 @@ function AngryAssign_PageMenu(pageId)
 	PagesDropDownList[2].arg1 = pageId
 	PagesDropDownList[2].disabled = not permission
 	PagesDropDownList[3].arg1 = pageId
-	PagesDropDownList[3].disabled = not permission
 
 	local categories = AngryAssign_CategoryMenuList(pageId)
 	if categories ~= nil then

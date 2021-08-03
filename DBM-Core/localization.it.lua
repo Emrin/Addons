@@ -186,7 +186,7 @@ L.RETAIL_ONLY					= "AVVISO: Questa versione di DBM è da utilizzare con l'ultim
 
 L.MOVABLE_BAR				= "Trascinami!"
 
-L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ti ha mandato un Timer DBM: '%2$s'\n|HDBM:cancella:%2$s:nil|h|cff3588ff[Cancella questo Timer]|r|h  |HDBM:ignora:%2$s:%1$s|h|cff3588ff[Ignora timer da %1$s]|r|h"
+L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ti ha mandato un Timer DBM: '%2$s'\n|Hgarrmission:DBM:cancella:%2$s:nil|h|cff3588ff[Cancella questo Timer]|r|h  |Hgarrmission:DBM:ignora:%2$s:%1$s|h|cff3588ff[Ignora timer da %1$s]|r|h"
 --L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ti ha inviato un temporizzatore DBM"
 L.PIZZA_CONFIRM_IGNORE			= "Sei sicuro di voler ignorare i Timer DMB da %s per questa sessione?"
 L.PIZZA_ERROR_USAGE				= "Uso: /dbm [broadcast] timer <time> <text>"
@@ -246,7 +246,6 @@ L.SLASHCMD_HELP2				= {
 	"/dbm break <min>: Avvia un temporizzatore per pause di <min> minuti all'incursione (richiede assist. alias: break).",
 	"/dbm version: Verifica la versione delle boss mod (alias: ver).",
 	"/dbm version2: Verifica la versione delle boss mod e invia un messaggio a quelli con versioni obsolete(alias: ver2).",
-	"/dbm lockout: Richiede ai membri dell'incursione lo stato delle istanze (aliases: lockouts, ids) (richiede assist).",
 	"/dbm lag: Esegue il controllo di latenza sull'incursione.",
 	"/dbm durability: Esegue il controllo stato equip sull'incursione."
 }
@@ -465,7 +464,7 @@ L.AUTO_TIMER_TEXTS.active		= "%s terminato" -- Buff/Debuff/Eventi su boss
 L.AUTO_TIMER_TEXTS.fades			= "%s svanito" -- Buff/Debuff su giocatori
 L.AUTO_TIMER_TEXTS.ai			= "%s IA"
 L.AUTO_TIMER_TEXTS.cd			= "%s CD"
-L.AUTO_TIMER_TEXTS.cdcount		= "%s CD (%%s)"
+L.AUTO_TIMER_TEXTS.cdcount		= "%s (%%s) CD"
 L.AUTO_TIMER_TEXTS.cdsource		= "%s CD: >%%s<"
 L.AUTO_TIMER_TEXTS.cdspecial		= "CD Speciale"
 L.AUTO_TIMER_TEXTS.next			= "Prossimo %s"
@@ -580,24 +579,6 @@ L.SPEED_KILL_TIMER_TEXT	= "Record Vittoria"
 L.SPEED_CLEAR_TIMER_TEXT	= "Migliore Clear"
 L.COMBAT_RES_TIMER_TEXT	= "Prossima Carica CR"
 L.TIMER_RESPAWN		= "Respawn %s"
-
-
-L.REQ_INSTANCE_ID_PERMISSION		= "%s ha richiesto di vedere l'ID e il progress della tua incursione.\nVuoi inviare questa informazione a %s? Potrà richiederti quest'informazione per tutta questa sessione (finche' non rilogghi)."
-L.ERROR_NO_RAID					= "Devi essere in un Incursione per usare questa funzione."
-L.INSTANCE_INFO_REQUESTED			= "Manda la richiesta di informazioni sul lock del gruppo di Incursione.\nVerrà chiesto a tutti il permesso di inviare questa informazione, quindi potrebbero passare alcuni secondi."
-L.INSTANCE_INFO_STATUS_UPDATE		= "Ricevute le risposte di %d giocatori of %d utenti DBM : %d Dati inviati, %d richieste negate. Attendo qualche secondo per le altre %d risposte..."
-L.INSTANCE_INFO_ALL_RESPONSES		= "Ricevute le risposte da tutti."
-L.INSTANCE_INFO_DETAIL_DEBUG		= "Mittente: %s Tipo di Risultato: %s Nome Incursione: %s ID: %s Difficulta': %d Dimensione: %d Progress: %s"
-L.INSTANCE_INFO_DETAIL_HEADER		= "%s, difficoltà %s:"
-L.INSTANCE_INFO_DETAIL_INSTANCE	= "    ID %s, progresso %d: %s"
-L.INSTANCE_INFO_DETAIL_INSTANCE2	= "    progresso %d: %s"
-L.INSTANCE_INFO_NOLOCKOUT			= "Non sono presenti informazioni sull'incursione nel tuo gruppo incursione."
-L.INSTANCE_INFO_STATS_DENIED		= "Hanno rifiutato la richiesta: %s"
-L.INSTANCE_INFO_STATS_AWAY		= "In pausa: %s"
-L.INSTANCE_INFO_STATS_NO_RESPONSE	= "Nessuna versione di DBM installata: %s"
-L.INSTANCE_INFO_RESULTS			= "Risultati della Scansione ID di Incursione. Guarda che le istanze potrebbero essere riportate piu' volte se ci sono dei client di gioco localizzati nella tua incursione."
-L.INSTANCE_INFO_SHOW_RESULTS		= "Players yet to respond: %s\n|HDBM:showRaidIdResults|h|cff3588ff[Show results now]|r|h"
---L.INSTANCE_INFO_SHOW_RESULTS		= "Giocatori in attesa di risposta: %s"
 
 L.LAG_CHECKING				= "Analisi Latenza incursione..."
 L.LAG_HEADER					= "Deadly Boss Mods - Risultati Latenza"

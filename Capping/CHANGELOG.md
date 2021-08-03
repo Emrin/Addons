@@ -1,8 +1,7 @@
 # Capping
 
-## [v9.0.16](https://github.com/BigWigsMods/Capping/tree/v9.0.16) (2021-04-26)
-[Full Changelog](https://github.com/BigWigsMods/Capping/compare/v9.0.15...v9.0.16) [Previous Releases](https://github.com/BigWigsMods/Capping/releases)
+## [v9.1.0](https://github.com/BigWigsMods/Capping/tree/v9.1.0) (2021-06-29)
+[Full Changelog](https://github.com/BigWigsMods/Capping/compare/v9.0.16...v9.1.0) [Previous Releases](https://github.com/BigWigsMods/Capping/releases)
 
-- Remove ptBR from locale print  
-- Update ptBR (#101)  
-- Update ptBR (#100)  
+- Bump toc  
+- Update workflow  
