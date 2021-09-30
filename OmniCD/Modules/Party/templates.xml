@@ -1,6 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
-	<Frame name="OmniCDTemplate" virtual="true" parent="UIParent" frameStrata="MEDIUM" movable="true" clampedToScreen="true" dontSavePosition="true" hidden="true">
+	<Frame name="OmniCDTemplate" virtual="true" parent="UIParent" frameStrata="MEDIUM" framelevel="8" movable="true" clampedToScreen="true" dontSavePosition="true" hidden="true">
 		<Size>
 			<AbsDimension x="1" y="1"/>
 		</Size>
@@ -175,7 +175,7 @@
 		<Scripts>
 			<OnEnter>
 				_G["AceConfigDialogTooltip-OmniCD"]:SetOwner(self, "ANCHOR_RIGHT");
-				_G["AceConfigDialogTooltip-OmniCD"]:SetSpellByID(self.spellID);
+				_G["AceConfigDialogTooltip-OmniCD"]:SetSpellByID(self.tooltipID or self.spellID);
 			</OnEnter>
 			<OnLeave>
 				_G["AceConfigDialogTooltip-OmniCD"]:Hide();

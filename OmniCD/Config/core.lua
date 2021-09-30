@@ -12,7 +12,7 @@ local function GetLocalization()
 	localization = localization:gsub("enUS", ENUS):gsub("deDE", DEDE)
 	localization = localization:gsub("esES", ESES):gsub("esMX", ESMX)
 	localization = localization:gsub("frFR", FRFR):gsub("koKR", KOKR)
-	localization = localization:gsub("ruRU", RURU):gsub("zhCN", "")--ZHCN)
+	localization = localization:gsub("ruRU", RURU):gsub("zhCN", ZHCN)
 	localization = localization:gsub("zhTW", ZHTW)
 	localization = localization:gsub("itIT", LFG_LIST_LANGUAGE_ITIT)
 	localization = localization:gsub("ptBR", LFG_LIST_LANGUAGE_PTBR)
@@ -62,12 +62,12 @@ local getField = function(info) local label = info[#info] return fields[label] o
 local COPY_URL =  L["Press Ctrl+C to copy URL"]
 
 local isFound
-local changelog = E.changelog:gsub("^[ \t\n]*", E.HEX_C[WOW_PROJECT_ID]):gsub("\n\nv([%d%.]+)",function(ver)
+local changelog = E.changelog:gsub("^[ \t\n]*", E.PROJECT_HEX_C[WOW_PROJECT_ID]):gsub("\n\nv([%d%.]+)",function(ver)
 	if not isFound and ver ~= E.Version then
 		isFound = true
 		return "|cff9d9d9d\n\nv"..ver
 	end
-end)
+end):gsub("\t", "        ")
 
 local function GetOptions()
 	if not E.options then
@@ -76,9 +76,11 @@ local function GetOptions()
 			type = "group",
 			args = {
 				Home = {
-					-- Use escape sequence in case we backdrop the image on tree group
-					--icon = "Interface\\AddOns\\OmniCD\\Media\\omnicd-logo64",
-					--iconCoords = {0, 1, 0, 1},
+					-- Use escape sequence if using backdrop on tree group images
+					--[[
+					icon = "Interface\\AddOns\\OmniCD\\Media\\omnicd-logo64",
+					iconCoords = {0, 1, 0, 1},
+					]]
 					name = format("|T%s:18|t %s", "Interface\\AddOns\\OmniCD\\Media\\omnicd-logo64", E.AddOn),
 					order = 0,
 					type = "group",
@@ -120,24 +122,26 @@ local function GetOptions()
 							type = "description",
 						},
 						notice1 = {
-							hidden = E.isBCC,
+							hidden = E.isPreBCC,
 							name = "|cffff2020 " .. L["|cffff2020Important!|r Covenant and Soulbind Conduit data can only be acquired from group members with OmniCD installed."],
 							order = 16,
 							type = "description",
 						},
+						--[[
 						notice2 = {
 							name = "|cffff2020 " .. L["Unit CD bars are limited to 5 man groups unless Blizzard Raid Frames are used."],
 							order = 17,
 							type = "description",
 						},
 						notice3 = {
-							hidden = E.isBCC,
+							hidden = E.isPreBCC,
 							name = "|cffff2020 " .. L["None of the CD counter skins support modrate. Timers will fluctuate erratically whenever CD recovery rate is modulated."],
 							order = 18,
 							type = "description",
 						},
+						]]
 						pd4 = {
-							name = "\n", order = 19, type = "description",
+							name = "\n\n\n", order = 19, type = "description",
 						},
 						changelog = {
 							name = L["Changelog"],
@@ -223,7 +227,7 @@ local function GetOptions()
 			E.options.args[k] = (type(v) == "function") and v() or v
 
 			E.options.args[k].args["title"] = {
-				name = k == "Party" and "|cffffd200" .. E.options.args[k].name or E.options.args[k].name,
+				name = "|cffffd200" .. E.options.args[k].name,
 				order = 0,
 				type = "description",
 				fontSize = "large",
@@ -259,8 +263,8 @@ local function GetOptions()
 end
 
 function E:SetupOptions()
-	self.Libs.ACR:RegisterOptionsTable(self.AddOn, GetOptions, true) -- [46]
-	--self.optionsFrames.OmniCD = self.Libs.ACD:AddToBlizOptions(self.AddOn) -- no longer adding to blizzard's option panel
+	self.Libs.ACR:RegisterOptionsTable(self.AddOn, GetOptions, true) -- pass option tbl as func arg to create on panel open for plugins, skip validation
+--  self.optionsFrames.OmniCD = self.Libs.ACD:AddToBlizOptions(self.AddOn) -- no longer adding to blizzard's option panel
 
 	self.optionsFrames.profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.DB)
 	self.optionsFrames.profiles.order = 1000
@@ -271,8 +275,7 @@ function E:SetupOptions()
 		fontSize = "large",
 	}
 
-	-- TODO: add support for profile sharing dual spec
-	if not self.isBCC then
+	if not self.isPreBCC then
 		local LDS = LibStub("LibDualSpec-1.0")
 		LDS:EnhanceDatabase(self.DB, "OmniCDDB")
 		LDS:EnhanceOptions(self.optionsFrames.profiles, self.DB)
@@ -307,7 +310,7 @@ interfaceOptionPanel:SetScript("OnShow", function(self)
 	open.tooltipText = ""
 	open:SetScript("OnClick", function()
 		InterfaceOptionsFrame:Hide();
-		--if not InCombatLockdown() then HideUIPanel(GameMenuFrame); end
+--      if not InCombatLockdown() then HideUIPanel(GameMenuFrame); end
 		E.OpenOptionPanel()
 	end)
 

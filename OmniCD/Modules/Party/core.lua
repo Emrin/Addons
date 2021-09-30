@@ -23,7 +23,7 @@ function P:Enable()
 
 	self.enabled = true
 
-	E.Comms:InspectPlayer() -- [58]
+	E.Comms:InspectPlayer()
 
 	self:SetHooks()
 	self:CreateExBars()
@@ -52,7 +52,7 @@ end
 
 function P:ResetModule(isModuleDisabled)
 	if not isModuleDisabled then
-		E.UnregisterEvents(self, self.zoneEvents.all)
+		E.UnregisterEvents(self)
 	end
 	E.Comms:Disable()
 	E.Cooldowns:Disable()
@@ -68,7 +68,7 @@ function P:Refresh(full)
 		return
 	end
 
-	local instanceType = self.zone or select(2, IsInInstance()) -- [59]
+	local instanceType = self.zone or select(2, IsInInstance()) -- nil on init /rl
 	local key = self.test and self.testZone or instanceType
 	key = key == "none" and E.profile.Party.noneZoneSetting or (key == "scenario" and E.profile.Party.scenarioZoneSetting) or key
 	E.db = E.profile.Party[key]
@@ -76,7 +76,6 @@ function P:Refresh(full)
 	P.db = E.db
 
 	if full then
-		--self:UpdateFonts() -- TODO: shared frames still needs to be updated on every call
 		self:UpdateTextures()
 		self:UpateTimerFormat()
 		self:PLAYER_ENTERING_WORLD(nil, nil, true)
@@ -148,7 +147,7 @@ function P:UpdatePositionValues()
 	local growUpward = db.growUpward
 	local growY = growUpward and 1 or -1
 	local px = E.PixelMult / E.db.icons.scale
-	if db.layout == "vertical" or  db.layout == "doubleColumn" or db.layout == "tripleColumn" then
+	if db.layout == "vertical" or db.layout == "doubleColumn" or db.layout == "tripleColumn" then
 		self.point2 = growUpward and "BOTTOMRIGHT" or "TOPRIGHT"
 		self.relativePoint2 = growUpward and "TOPRIGHT" or "BOTTOMRIGHT"
 		self.ofsX = growX * (E.BASE_ICON_SIZE + db.paddingX  * px)
@@ -220,7 +219,7 @@ function P:IsTalent(talentID, guid)
 		local spec = runeforge_specID[talentID]
 		return not spec and true or spec == self.groupInfo[guid].spec
 	else
-		return talent -- [60]
+		return talent -- rankValue for Conduits
 	end
 end
 
@@ -252,13 +251,12 @@ function P:IsDeBuffActive(unit, spellID)
 	end
 end
 
-function P:UI_SCALE_CHANGED() -- [61]
+function P:UI_SCALE_CHANGED()
 	E:SetPixelMult()
 	self:ConfigSize(nil, true)
 	for key in pairs(self.extraBars) do
 		self:ConfigExSize(key, true)
 	end
-	--E.UpdateBackdrops() -- TODO: doesn't fix ace
 end
 
 E["Party"] = P

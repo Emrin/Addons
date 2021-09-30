@@ -1,10 +1,10 @@
-tag 7c1c2fe40c9b1d59aec433b58b5dda46d0e86f31 v9.1.0.427
+tag 57f963befb525b121274c20f8ee93052a5a52434 v9.1.0.429
 Author:	Tercio Jose <terciob19@hotmail.com>
-Date:	Fri Jul 2 18:19:23 2021 -0300
+Date:	Sun Sep 5 14:54:49 2021 -0300
 
-commit 9518fadfdc862c57b9daaf257e9bca1a73bbafd8
+commit 2c380b8ca054be1dff6aea50d07bdd7772e748d9
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Fri Jul 2 18:19:02 2021 -0300
+Date:   Sun Sep 5 14:54:22 2021 -0300
 
-    Fixing anima amount on Spanish and Portugues languages
+    Framework updated and adding world quests on Maw into the world map
 
