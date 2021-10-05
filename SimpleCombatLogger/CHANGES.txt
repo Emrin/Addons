@@ -1,0 +1,24 @@
+lightweight tag 800a86620a32ed1019df3effbd4957bc916c75be 1.5
+Author:	Chris Sutcliff <chris@sutcliff.me>
+Date:	Mon Aug 9 17:51:01 2021 +0100
+
+commit 800a86620a32ed1019df3effbd4957bc916c75be
+Author: Chris Sutcliff <chris@sutcliff.me>
+Date:   Mon Aug 9 17:46:30 2021 +0100
+
+    Arena fix and delay disable option
+    
+    Other fixes: Remove locals to avoid issues. Hook IsLoggingCombat as secure function. Remove accidental global "db". Add extra debug info (toggled).
+
+commit c89b1cf774d7ccb10c17c4f0b822ed69c82a1dd9
+Author: Chris Sutcliff <chris@sutcliff.me>
+Date:   Sun Jul 25 20:47:55 2021 +0100
+
+    Add optional debug output, use a separate event for arena detection and hopefully detect skirmish vs rated arenas
+
+commit f6b03c307ae675059fbf458f4a4f92642225227a
+Author: Chris Sutcliff <chris@sutcliff.me>
+Date:   Fri Jul 23 16:02:49 2021 +0100
+
+    Update Ace3 dependency
+
