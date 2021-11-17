@@ -33,14 +33,10 @@ elseif locale == 'zhTW' then
 --[[ L["Show how much avoidable damage was taken."] = "Show how much avoidable damage was taken."--]] 
 
 elseif locale == 'deDE' then
---[[Translation missing --]]
---[[ L["Avoidable Abilities Taken"] = "Avoidable Abilities Taken"--]] 
---[[Translation missing --]]
---[[ L["Avoidable Damage Taken"] = "Avoidable Damage Taken"--]] 
---[[Translation missing --]]
---[[ L["Show how many avoidable abilities hit players."] = "Show how many avoidable abilities hit players."--]] 
---[[Translation missing --]]
---[[ L["Show how much avoidable damage was taken."] = "Show how much avoidable damage was taken."--]] 
+L["Avoidable Abilities Taken"] = "Vermeidbare Fähigkeiten"
+L["Avoidable Damage Taken"] = "Vermeidbarer Schaden"
+L["Show how many avoidable abilities hit players."] = "Zeigt wie viele vermeidbare Fähigkeiten die Spieler getroffen haben."
+L["Show how much avoidable damage was taken."] = "Zeigt wie viel vermeidbarer Schaden die Spieler getroffen hat."
 
 elseif locale == 'esES' then
 --[[Translation missing --]]
@@ -93,14 +89,10 @@ elseif locale == 'koKR' then
 --[[ L["Show how much avoidable damage was taken."] = "Show how much avoidable damage was taken."--]] 
 
 elseif locale == 'ptBR' then
---[[Translation missing --]]
---[[ L["Avoidable Abilities Taken"] = "Avoidable Abilities Taken"--]] 
---[[Translation missing --]]
---[[ L["Avoidable Damage Taken"] = "Avoidable Damage Taken"--]] 
---[[Translation missing --]]
---[[ L["Show how many avoidable abilities hit players."] = "Show how many avoidable abilities hit players."--]] 
---[[Translation missing --]]
---[[ L["Show how much avoidable damage was taken."] = "Show how much avoidable damage was taken."--]] 
+L["Avoidable Abilities Taken"] = "Habilidades Evitáveis Tomadas"
+L["Avoidable Damage Taken"] = "Dano Evitável Tomado"
+L["Show how many avoidable abilities hit players."] = "Mostra quantas habilidades evitáveis acertaram jogadores."
+L["Show how much avoidable damage was taken."] = "Mostra quanto dano evitável foi tomado."
 
 elseif locale == 'ruRU' then
 --[[Translation missing --]]

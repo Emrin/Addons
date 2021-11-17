@@ -1,6 +1,10 @@
 ## Revision History:
 
-#### v2.6.1 (July 04, 2020)
+#### v2.6.2 (November 03, 2021)
+-------------------------------
+* Bump .toc to 90105
+
+#### v2.6.1 (July 04, 2021)
 -------------------------------
 * Added the new "Portal" to Keeper's Respite (Korthia)
 

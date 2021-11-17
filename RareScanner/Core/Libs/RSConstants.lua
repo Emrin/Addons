@@ -25,7 +25,7 @@ RSConstants.LOOT_ITEM_ID = nil
 ---============================================================================
 
 RSConstants.CURRENT_DB_VERSION = 44
-RSConstants.CURRENT_LOOT_DB_VERSION = 58
+RSConstants.CURRENT_LOOT_DB_VERSION = 59
 
 ---============================================================================
 -- Special events
@@ -323,9 +323,10 @@ RSConstants.MOUNTS_WITHOUT_SOURCE = { 1314, 1411 }
 -- ItemIDs
 ---============================================================================
 
-RSConstants.ITEMS_REQUIRE_NECROLORD = { 181815, 182080 }
-RSConstants.ITEMS_REQUIRE_NIGHT_FAE = { 180730 }
-RSConstants.ITEMS_REQUIRE_VENTHYR = { 180581, 180461 }
+RSConstants.ITEMS_REQUIRE_NECROLORD = { 181815, 182080, 186489 }
+RSConstants.ITEMS_REQUIRE_NIGHT_FAE = { 180730, 186492 }
+RSConstants.ITEMS_REQUIRE_VENTHYR = { 180581, 180461, 186479 }
+RSConstants.ITEMS_REQUIRE_KYRIAN = { 186483 }
 
 ---============================================================================
 -- Garrison cache

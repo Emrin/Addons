@@ -1,42 +1,52 @@
-tag 7f880533a9b4ab5697743cc2076994988ac6ab8a DetailsRetail.9.1.0.8782.145
+tag df6ed509de7ca6192062d05e83ffd876a6ccd40c DetailsRetail.9.1.5.9108.145
 Author:	Tercio Jose <terciob19@hotmail.com>
-Date:	Wed Aug 11 19:55:11 2021 -0300
+Date:	Tue Nov 2 19:31:28 2021 -0300
 
-commit 70483cd1945ae726c1d1cc28e463d7e29bfcb7d0
+commit e701c95fdd01ea64de1d88edadbc0698d90d43c7
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Wed Aug 11 19:54:12 2021 -0300
+Date:   Tue Nov 2 19:30:06 2021 -0300
 
-    Tiny Threat (plugin): added options to Hide the Pull Bar and Use Focus Target.
+    ToC Updates; Change logs; Framework update
 
-commit b4b6b645049fda4aebe8ede76ced05995fb71b4d
+commit 1536e16274a12337ba7f15f0469fcaf29d1e6abd
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Tue Aug 3 10:44:42 2021 -0300
+Date:   Tue Oct 26 19:51:07 2021 -0300
 
-    Fixed lib Translit on healing done
+    Ignoring some npcs on plaguefall
 
-commit 4fe002cf18309212b1322b052f7d4618a5e6c8c6
+commit 54916604484d50fb9ab9b7bdeea48898b0b6dbb7
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Fri Jul 30 20:22:07 2021 -0300
+Date:   Sun Oct 24 14:32:42 2021 -0300
 
-    Added Transliterate to healing tooltips, fixed some close buttons with green boxes
+    Fix for an error on classic era SoM
 
-commit b32a48dc635c999e008aafc0be3503924fca48f8
+commit 1ac9492e90b96c9a2a8e7b85ad20768adce37ea1
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Fri Jul 30 17:56:11 2021 -0300
+Date:   Thu Oct 21 10:18:44 2021 -0300
 
-    Added Details.all_switch_config.font_size and Details.all_switch_config.scale
-    
-    These entries configure the panel shown when right click the title bar of the window.
+    Removed print debug
 
-commit e3c539dc30d29c4f00d7ac0e755f3c76186657ab
+commit d1c06a262cd77ac822a6952493d1a5d822e38662
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Fri Jul 30 13:06:41 2021 -0300
+Date:   Wed Oct 20 15:28:08 2021 -0300
 
-    Fixed Raid Check plugin position and shadow priest void eruption got merged with other spells of the same name
+    No more damage done for mobs that doesn't award points
 
-commit 9a69703ea7a7019d01dac3075d76ef291add3aa4
+commit d905a0d38f1dc6e2490476b9c2992a1017bb046a
 Author: Tercio Jose <terciob19@hotmail.com>
-Date:   Thu Jul 15 14:25:52 2021 -0300
+Date:   Sat Oct 16 17:59:41 2021 -0300
 
-    Clicking on the minimap while the options panel is open will close it
+    Fixed some bugs with the /details stats
+
+commit 791ce4df93ea605f01403ec7e9a8017b1548feca
+Author: Tercio Jose <terciob19@hotmail.com>
+Date:   Tue Oct 12 23:20:02 2021 -0300
+
+    weapon bar color
+
+commit d87611cfc50ea76de06cfd29c64e3bb966cedc02
+Author: Tercio Jose <terciob19@hotmail.com>
+Date:   Tue Oct 12 21:35:03 2021 -0300
+
+    Necrotic wake weapons
 
