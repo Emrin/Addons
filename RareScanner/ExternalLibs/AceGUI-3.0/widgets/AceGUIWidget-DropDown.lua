@@ -1,6 +1,9 @@
 --[[ $Id: AceGUIWidget-DropDown.lua 1239 2020-09-20 10:22:02Z nevcairiel $ ]]--
 local AceGUI = LibStub("AceGUI-3.0")
 
+-- Thirdparty
+local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+
 -- Lua APIs
 local min, max, floor = math.min, math.max, math.floor
 local select, pairs, ipairs, type, tostring = select, pairs, ipairs, type, tostring
@@ -650,8 +653,8 @@ do
 	local function Constructor()
 		local count = AceGUI:GetNextWidgetNum(widgetType)
 		local frame = CreateFrame("Frame", nil, UIParent)
-		local dropdown = CreateFrame("Frame", "AceGUI30DropDown"..count, frame, "UIDropDownMenuTemplate")
-
+		local dropdown = LibDD:Create_UIDropDownMenu("AceGUI30DropDown"..count, frame)
+		
 		local self = {}
 		self.type = widgetType
 		self.frame = frame

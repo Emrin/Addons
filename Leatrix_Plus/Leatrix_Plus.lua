@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 9.1.34 (18th December 2021)
+-- 	Leatrix Plus 9.1.37 (5th January 2022)
 ----------------------------------------------------------------------
 
 --	01:Functions	20:Live			50:RunOnce		70:Logout			
@@ -20,7 +20,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "9.1.34"
+	LeaPlusLC["AddonVer"] = "9.1.37"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -191,10 +191,10 @@
 	end
 
 	-- Show a footer
-	function LeaPlusLC:MakeFT(frame, text, left, width)
-		local footer = LeaPlusLC:MakeTx(frame, text, left, 96)
+	function LeaPlusLC:MakeFT(frame, text, left, width, bottom)
+		local footer = LeaPlusLC:MakeTx(frame, text, left, bottom)
 		footer:SetWidth(width); footer:SetJustifyH("LEFT"); footer:SetWordWrap(true); footer:ClearAllPoints()
-		footer:SetPoint("BOTTOMLEFT", left, 96)
+		footer:SetPoint("BOTTOMLEFT", left, bottom)
 	end
 
 	-- Capitalise first character in a string
@@ -473,7 +473,6 @@
 		or	(LeaPlusLC["MiniShowBugSack"]		~= LeaPlusDB["MiniShowBugSack"])		-- Exclude BugSack
 		or	(LeaPlusLC["NewCovenantButton"]		~= LeaPlusDB["NewCovenantButton"])		-- New covenant button
 		or	(LeaPlusLC["CombineAddonButtons"]	~= LeaPlusDB["CombineAddonButtons"])	-- Combine addon buttons
-		or	(LeaPlusLC["MiniCustomButtons"]		~= LeaPlusDB["MiniCustomButtons"])		-- Replace non-standard buttons
 		or	(LeaPlusLC["TipModEnable"]			~= LeaPlusDB["TipModEnable"])			-- Enhance tooltip
 		or	(LeaPlusLC["EnhanceDressup"]		~= LeaPlusDB["EnhanceDressup"])			-- Enhance dressup
 		or	(LeaPlusLC["ShowVolume"]			~= LeaPlusDB["ShowVolume"])				-- Show volume slider
@@ -748,29 +747,23 @@
 				-- Razorwings
 				["MuteRazorwings"] = {
 
-					-- sound/creature/mawexpansionflier/mon_mawexpansionflier_attackcritical_
-					"01_179060.ogg#4049860", "02_179060.ogg#4049862", "03_179060.ogg#4049864", 
+					-- sound/creature/mawexpansionfliermount/mawexpansionfliermount_cast_oneshot_
+					"4049924.ogg#4049924", "4049926.ogg#4049926", "4049928.ogg#4049928",
 
-					-- sound/creature/mawexpansionflier/mon_mawexpansionflier_attack_
-					"01_179061.ogg#4049866", "02_179061.ogg#4049868", "03_179061.ogg#4049870", "04_179061.ogg#4049872", "05_179061.ogg#4049874", "06_179061.ogg#4049876", "07_179061.ogg#4049878", 
+					-- sound/creature/mawexpansionfliermount/mawexpansionfliermount_mountspecial_
+					"4049920.ogg#4049920", "4049922.ogg#4049922",
+
+					-- sound/creature/mawexpansionfliermount/mawexpansionfliermount_moving_
+					"4049886.ogg#4049886", "4049888.ogg#4049888", "4049890.ogg#4049890", "4049892.ogg#4049892", "4049894.ogg#4049894", "4049896.ogg#4049896", "4049898.ogg#4049898",
+
+					-- sound/creature/mawexpansionfliermount/mawexpansionfliermount_stand_
+					"4049906.ogg#4049906", "4049908.ogg#4049908", "4049910.ogg#4049910", "4049912.ogg#4049912", "4049914.ogg#4049914", "4049916.ogg#4049916", "4049918.ogg#4049918",
 
 					-- sound/creature/mawexpansionflier/mon_mawexpansionflier_wound_
 					"01_179070.ogg#4049942", "02_179070.ogg#4049944", "03_179070.ogg#4049946", "04_179070.ogg#4049948", "05_179070.ogg#4049950", "06_179070.ogg#4049952", "07_179070.ogg#4049954", 
 
 					-- sound/creature/mawexpansionflier/mon_mawexpansionflier_woundcritical_
 					"01_179069.ogg#4049936", "02_179069.ogg#4049938", "03_179069.ogg#4049940", 
-
-					-- sound/creature/mawexpansionflier/mon_mawexpansionflier_death_
-					"01_179064.ogg#4049900", "02_179064.ogg#4049902", "03_179064.ogg#4049904", 
-
-					-- sound/creature/mawexpansionflier/mon_mawexpansionflier_aggro_
-					"01_179059.ogg#4049854", "02_179059.ogg#4049856", "03_179059.ogg#4049858", 
-
-					-- sound/creature/mawexpansionflier/mon_mawexpansionflier_alert_
-					"01_179068.ogg#4049930", "02_179068.ogg#4049932", "03_179068.ogg#4049934", 
-
-					-- sound/creature/mawexpansionflier/mon_mawexpansionflier_battleshout_
-					"01_179062.ogg#4049880", "02_179062.ogg#4049882", "03_179062.ogg#4049884", 
 
 				},
 
@@ -4390,9 +4383,9 @@
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniZoneText", "Hide the zone text bar", 16, -132, false, "If checked, the zone text bar will be hidden.  The tracking button tooltip will show zone information.")
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniAddonButtons", "Hide addon buttons", 16, -152, false, "If checked, addon buttons will be hidden while the pointer is not over the minimap.")
 			LeaPlusLC:MakeCB(SideMinimap, "CombineAddonButtons", "Combine addon buttons", 16, -172, true, "If checked, addon buttons will be combined into a single button frame which you can toggle by right-clicking the minimap.|n|nNote that enabling this option will lock out the 'Hide addon buttons' setting.")
-			LeaPlusLC:MakeCB(SideMinimap, "MiniCustomButtons", "Replace non-standard buttons", 16, -192, true, "If checked, non-standard minimap buttons will be replaced with standard LibDBIcon buttons.|n|nThis will fix the problems with non-standard buttons such as not hiding automatically, not following the minimap shape and not being placed in the button frame.|n|nNote that enabling or disabling non-standard buttons may require a UI reload to take effect.|n|nMost addons already use the standard LibDBIcon library and will not be affected by this setting but a few addons still use non-standard buttons.|n|nPlease ask addon authors to use the standard LibDBIcon library for their minimap buttons then this setting won't be necessary.")
-			LeaPlusLC:MakeCB(SideMinimap, "SquareMinimap", "Square minimap", 16, -212, true, "If checked, the minimap shape will be square.")
-			LeaPlusLC:MakeCB(SideMinimap, "NewCovenantButton", "Show new covenant button", 16, -232, true, "If checked, the new covenant button will be shown on the round minimap.|n|nThe square minimap will always show the new covenant button regardless of this setting.")
+			LeaPlusLC:MakeCB(SideMinimap, "SquareMinimap", "Square minimap", 16, -192, true, "If checked, the minimap shape will be square.")
+			LeaPlusLC:MakeCB(SideMinimap, "NewCovenantButton", "Show new covenant button", 16, -212, true, "If checked, the new covenant button will be shown on the round minimap.|n|nThe square minimap will always show the new covenant button regardless of this setting.")
+			LeaPlusLC:MakeCB(SideMinimap, "MiniShowBugSack", "Exclude BugSack", 16, -232, true, "If checked, the BugSack addon minimap button will always be visible if you have BugSack installed and the minimap button enabled.")
 
 			-- Add slider controls
 			LeaPlusLC:MakeTx(SideMinimap, "Scale", 356, -72)
@@ -4401,12 +4394,23 @@
 			LeaPlusLC:MakeTx(SideMinimap, "Square size", 356, -132)
 			LeaPlusLC:MakeSL(SideMinimap, "MinimapSize", "Drag to set the square minimap size.|n|nAdjusting this slider makes the minimap bigger but keeps the elements the same size.", 140, 560, 1, 356, -152, "%.0f")
 
-			-- Show additional checkbox control
-			LeaPlusLC:MakeCB(SideMinimap, "MiniShowBugSack", "Exclude BugSack", 356, -192, true, "If checked, the BugSack addon minimap button will always be visible if you have BugSack installed and the minimap button enabled.")
-			LeaPlusCB["MiniShowBugSack"].f:SetWidth(170)
+			LeaPlusLC:MakeTx(SideMinimap, "Cluster scale", 356, -192)
+			LeaPlusLC:MakeSL(SideMinimap, "MiniClusterScale", "Drag to set the cluster scale.|n|nNote: Adjusting the cluster scale affects the entire cluster including frames attached to it such as the buffs frame and objectives tracker.|n|nIt will also cause the default UI right-side action bars to scale when you login.  If you use the default UI right-side action bars, you may want to leave this at 100%.", 1, 2, 0.1, 356, -212, "%.2f")
 
-			-- Show footer
-			LeaPlusLC:MakeFT(SideMinimap, "To move the minimap, hold down the alt key and drag it.", 356, 180)
+			----------------------------------------------------------------------
+			-- Minimap scale
+			----------------------------------------------------------------------
+
+			-- Function to set the minimap cluster scale
+			local function SetClusterScale()
+				MinimapCluster:SetScale(LeaPlusLC["MiniClusterScale"])
+				-- Set slider formatted text
+				LeaPlusCB["MiniClusterScale"].f:SetFormattedText("%.0f%%", LeaPlusLC["MiniClusterScale"] * 100)
+			end
+
+			-- Set minimap scale when slider is changed and on startup
+			LeaPlusCB["MiniClusterScale"]:HookScript("OnValueChanged", SetClusterScale)
+			SetClusterScale()
 
 			----------------------------------------------------------------------
 			-- Minimap size
@@ -4507,8 +4511,8 @@
 				-- Lock out hide minimap buttons
 				LeaPlusLC:LockItem(LeaPlusCB["HideMiniAddonButtons"], true)
 
-				-- Create button frame
-				local bFrame = CreateFrame("FRAME", nil, UIParent, "BackdropTemplate")
+				-- Create button frame (parenting to cluster ensures bFrame scales correctly)
+				local bFrame = CreateFrame("FRAME", nil, MinimapCluster, "BackdropTemplate")
 				bFrame:ClearAllPoints()
 				bFrame:SetPoint("TOPLEFT", Minimap, "TOPRIGHT", 4, 4)
 				bFrame:Hide()
@@ -4557,15 +4561,23 @@
 					end
 				end)
 
-				-- Function to set button tooltip to below the map
-				local function SetButtonTooltip()
-					GameTooltip:ClearAllPoints()
+				-- Position LibDBIcon tooltips when shown
+				LibDBIconTooltip:HookScript("OnShow", function()
+					GameTooltip:Hide()
 					LibDBIconTooltip:ClearAllPoints()
 					if bFrame:GetPoint() == "BOTTOMLEFT" then
 						LibDBIconTooltip:SetPoint("TOPLEFT", Minimap, "BOTTOMLEFT", 0, -6)
-						GameTooltip:SetPoint("TOPLEFT", Minimap, "BOTTOMLEFT", 0, -6)
 					else
 						LibDBIconTooltip:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", 0, -6)
+					end
+				end)
+
+				-- Function to position GameTooltip below the minimap
+				local function SetButtonTooltip()
+					GameTooltip:ClearAllPoints()
+					if bFrame:GetPoint() == "BOTTOMLEFT" then
+						GameTooltip:SetPoint("TOPLEFT", Minimap, "BOTTOMLEFT", 0, -6)
+					else
 						GameTooltip:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", 0, -6)
 					end
 				end
@@ -4580,7 +4592,7 @@
 					elseif buttons[i] == "BugSack" and LeaPlusLC["MiniShowBugSack"] == "On" and LeaPlusLC["SquareMinimap"] == "On" then
 						button:SetScale(0.75)
 					end
-					-- Move button tooltip to below the minimap
+					-- Move GameTooltip to below the minimap in case the button uses it
 					button:HookScript("OnEnter", SetButtonTooltip)
 				end
 
@@ -4594,7 +4606,7 @@
 						elseif name == "BugSack" and LeaPlusLC["MiniShowBugSack"] == "On" and LeaPlusLC["SquareMinimap"] == "On" then
 							button:SetScale(0.75)
 						end
-						-- Move button tooltip to below the minimap
+						-- Move GameTooltip to below the minimap in case the button uses it
 						button:HookScript("OnEnter", SetButtonTooltip)
 					end)
 				end)
@@ -4801,7 +4813,7 @@
 			----------------------------------------------------------------------
 
 			-- Replace non-standard buttons for addons that don't use the standard LibDBIcon library
-			if LeaPlusLC["MiniCustomButtons"] == "On" then
+			do
 
 				-- Make LibDBIcon buttons for addons that don't use LibDBIcon
 				local CustomAddonTable = {}
@@ -4812,12 +4824,22 @@
 
 					-- Get non-standard button texture
 					local finalTex = "Interface\\HELPFRAME\\HelpIcon-KnowledgeBase"
-					for i = 1, select('#', _G[name]:GetRegions()) do
-						local region = select(i, _G[name]:GetRegions())
-						if region.GetTexture then
-							local x, y = region:GetSize()
-							if x and x < 30 then
-								finalTex = region:GetTexture()
+
+					if _G[name .. "Icon"] then
+						if _G[name .. "Icon"]:GetObjectType() == "Texture" then
+							local gTex = _G[name .. "Icon"]:GetTexture()
+							if gTex then
+								finalTex = gTex
+							end
+						end
+					else
+						for i = 1, select('#', _G[name]:GetRegions()) do
+							local region = select(i, _G[name]:GetRegions())
+							if region.GetTexture then
+								local x, y = region:GetSize()
+								if x and x < 30 then
+									finalTex = region:GetTexture()
+								end
 							end
 						end
 					end
@@ -4830,15 +4852,31 @@
 						icon = finalTex,
 						OnClick = function(self, btn)
 							if _G[name] then
-								_G[name]:Click(btn)
+								if string.find(name, "LibDBIcon") then
+									-- It's a fake LibDBIcon
+									local mouseUp = _G[name]:GetScript("OnMouseUp")
+									if mouseUp then
+										mouseUp(self, btn)
+									end
+								else
+									-- It's a genuine LibDBIcon
+									local clickUp = _G[name]:GetScript("OnClick")
+									if clickUp then
+										_G[name]:Click(btn)
+									end
+								end
 							end
 						end,
 						OnTooltipShow = function(tooltip)
 							if not tooltip or not tooltip.AddLine then return end
 							tooltip:AddLine(name)
+							tooltip:AddLine(L["This is a custom button."], 1, 1, 1)
+							tooltip:AddLine(L["Please ask the addon author to use LibDBIcon."], 1, 1, 1)
+							tooltip:AddLine(L["There is a helpful guide on leatrix.com."], 1, 1, 1)
 						end,
 					})
 					LeaPlusDB["CustomAddonButtons"][name] = LeaPlusDB["CustomAddonButtons"][name] or {}
+					LeaPlusDB["CustomAddonButtons"][name].hide = false
 					CustomAddonTable[name] = name
 					local icon = LibStub("LibDBIcon-1.0", true)
 					icon:Register("LeaPlusCustomIcon_" .. name, zeroButton, LeaPlusDB["CustomAddonButtons"][name])
@@ -4852,10 +4890,12 @@
 							local btn = temp[i]
 							local name = btn:GetName()
 							local btype = btn:GetObjectType()
-							if name and btype == "Button" and not CustomAddonTable[name] and btn:GetNumRegions() >= 3 and not string.find(name, "LibDBIcon") and not issecurevariable(name) and btn:IsShown() then
-								CreateBadButton(name)
-								btn:Hide()
-								btn:SetScript("OnShow", function() btn:Hide() end)
+							if name and btype == "Button" and not CustomAddonTable[name] and btn:GetNumRegions() >= 3 and not issecurevariable(name) and btn:IsShown() then
+								if not string.find(name, "LibDBIcon") or name == "LibDBIcon10_MethodRaidTools" then
+									CreateBadButton(name)
+									btn:Hide()
+									btn:SetScript("OnShow", function() btn:Hide() end)
+								end
 							end
 						end
 					end
@@ -4863,7 +4903,7 @@
 
 				-- Run the function a few times on startup
 				C_Timer.NewTicker(2, MakeButtons, 3)
-				MakeButtons()
+				C_Timer.After(0.1, MakeButtons)
 
 			end
 
@@ -5074,11 +5114,11 @@
 						local regions = {TimeManagerClockButton:GetRegions()}
 						regions[1]:Hide()
 						TimeManagerClockButton:ClearAllPoints()
-						TimeManagerClockButton:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -18, -8)
-						TimeManagerClockButton:SetHitRectInsets(18, 10, 5, 8)
+						TimeManagerClockButton:SetPoint("BOTTOMLEFT", Minimap, "BOTTOMLEFT", -15, -8)
+						TimeManagerClockButton:SetHitRectInsets(15, 10, 5, 8)
 						local timeBG = TimeManagerClockButton:CreateTexture(nil, "BACKGROUND")
 						timeBG:SetTexture("Interface\\ChatFrame\\ChatFrameBackground")
-						timeBG:SetPoint("TOPLEFT", 18, -5)
+						timeBG:SetPoint("TOPLEFT", 15, -5)
 						timeBG:SetPoint("BOTTOMRIGHT", -10, 8)
 						timeBG:SetVertexColor(0, 0, 0, 0.6)
 					end
@@ -5154,7 +5194,7 @@
 			----------------------------------------------------------------------
 
 			-- Help button tooltip
-			SideMinimap.h.tiptext = L["This panel will close automatically if you enter combat."]
+			SideMinimap.h.tiptext = L["To move the minimap, hold down the alt key and drag it.|n|nIf you toggle an addon minimap button, you may need to reload your UI for the change to take effect.  This only affects a few addons that use custom buttons.|n|nThis panel will close automatically if you enter combat."]
 
 			-- Back button handler
 			SideMinimap.b:SetScript("OnClick", function() 
@@ -5171,6 +5211,7 @@
 				LeaPlusLC["HideMiniAddonButtons"] = "On"; if LeaPlusLC.SetHideButtons then LeaPlusLC:SetHideButtons() end
 				LeaPlusLC["MinimapScale"] = 1
 				LeaPlusLC["MinimapSize"] = 140; if LeaPlusLC.SetMinimapSize then LeaPlusLC:SetMinimapSize() end
+				LeaPlusLC["MiniClusterScale"] = 1; SetClusterScale()
 				Minimap:SetScale(1)
 				SetMiniScale()
 				-- Reset map position
@@ -5194,6 +5235,7 @@
 						LeaPlusLC["HideMiniAddonButtons"] = "On"; if LeaPlusLC.SetHideButtons then LeaPlusLC:SetHideButtons() end
 						LeaPlusLC["MinimapScale"] = 1.40
 						LeaPlusLC["MinimapSize"] = 180; if LeaPlusLC.SetMinimapSize then LeaPlusLC:SetMinimapSize() end
+						LeaPlusLC["MiniClusterScale"] = 1; SetClusterScale()
 						Minimap:SetScale(1)
 						SetMiniScale()
 						-- Minimap scale
@@ -5612,11 +5654,13 @@
 				-- Resurrect if player is in a battleground
 				local InstStat, InstType = IsInInstance()
 				if InstStat and InstType == "pvp" then
-					-- Exclude specific maps
+					-- Exclude specific instanced maps
 					local mapID = C_Map.GetBestMapForUnit("player") or nil
 					if mapID then
 						if mapID == 91 and LeaPlusLC["AutoReleaseNoAlterac"] == "On" then return end -- Alterac Valley
 						if mapID == 1537 and LeaPlusLC["AutoReleaseNoAlterac"] == "On" then return end -- Alterac Valley
+						if mapID == 1334 and LeaPlusLC["AutoReleaseNoWintergsp"] == "On" then return end -- Wintergrasp (instanced)
+						if mapID == 1478 and LeaPlusLC["AutoReleaseNoAshran"] == "On" then return end -- Ashran (instanced)
 					end
 					-- Release automatically
 					local delay = LeaPlusLC["AutoReleaseDelay"] / 1000
@@ -10898,13 +10942,13 @@
 				LeaPlusLC:LoadVarChk("MiniShowBugSack", "Off")				-- Exclude BugSack
 				LeaPlusLC:LoadVarChk("NewCovenantButton", "Off")			-- New covenant button
 				LeaPlusLC:LoadVarChk("CombineAddonButtons", "Off")			-- Combine addon buttons
-				LeaPlusLC:LoadVarChk("MiniCustomButtons", "On")				-- Replace non-standard buttons
 				LeaPlusLC:LoadVarChk("HideMiniZoomBtns", "Off")				-- Hide zoom buttons
 				LeaPlusLC:LoadVarChk("HideMiniClock", "Off")				-- Hide the clock
 				LeaPlusLC:LoadVarChk("HideMiniZoneText", "Off")				-- Hide the zone text bar
 				LeaPlusLC:LoadVarChk("HideMiniAddonButtons", "On")			-- Hide addon buttons
 				LeaPlusLC:LoadVarNum("MinimapScale", 1, 1, 4)				-- Minimap scale slider
 				LeaPlusLC:LoadVarNum("MinimapSize", 140, 140, 560)			-- Minimap size slider
+				LeaPlusLC:LoadVarNum("MiniClusterScale", 1, 1, 2)			-- Minimap cluster scale
 				LeaPlusLC:LoadVarAnc("MinimapA", "TOPRIGHT")				-- Minimap anchor
 				LeaPlusLC:LoadVarAnc("MinimapR", "TOPRIGHT")				-- Minimap relative
 				LeaPlusLC:LoadVarNum("MinimapX", -17, -5000, 5000)			-- Minimap X
@@ -11141,13 +11185,13 @@
 			LeaPlusDB["MiniShowBugSack"]		= LeaPlusLC["MiniShowBugSack"]
 			LeaPlusDB["NewCovenantButton"]		= LeaPlusLC["NewCovenantButton"]
 			LeaPlusDB["CombineAddonButtons"]	= LeaPlusLC["CombineAddonButtons"]
-			LeaPlusDB["MiniCustomButtons"]		= LeaPlusLC["MiniCustomButtons"]
 			LeaPlusDB["HideMiniZoomBtns"]		= LeaPlusLC["HideMiniZoomBtns"]
 			LeaPlusDB["HideMiniClock"]			= LeaPlusLC["HideMiniClock"]
 			LeaPlusDB["HideMiniZoneText"]		= LeaPlusLC["HideMiniZoneText"]
 			LeaPlusDB["HideMiniAddonButtons"]	= LeaPlusLC["HideMiniAddonButtons"]
 			LeaPlusDB["MinimapScale"]			= LeaPlusLC["MinimapScale"]
 			LeaPlusDB["MinimapSize"]			= LeaPlusLC["MinimapSize"]
+			LeaPlusDB["MiniClusterScale"]		= LeaPlusLC["MiniClusterScale"]
 			LeaPlusDB["MinimapA"]				= LeaPlusLC["MinimapA"]
 			LeaPlusDB["MinimapR"]				= LeaPlusLC["MinimapR"]
 			LeaPlusDB["MinimapX"]				= LeaPlusLC["MinimapX"]
@@ -13049,20 +13093,34 @@
 				return
 			elseif str == "camp" then
 				-- Camp
-				local origCampMsg = _G.IDLE_MESSAGE
 				if not LeaPlusLC.NoCampFrame then
-					local frame = CreateFrame("FRAME", nil, UIParent)
-					LeaPlusLC.NoCampFrame = frame
+					-- First time initialisation
+					if not LibStub("LibChatAnims", true) then
+						Leatrix_Plus:LeaPlusLCA()
+					end
+					-- Chat filter
+					function LeaPlusLC.CampFilterFunc(self, event, msg)
+						if msg:match(_G["MARKED_AFK_MESSAGE"]:gsub("%%s", "%s-"))
+						or msg:match(_G["MARKED_AFK"])
+						or msg:match(_G["CLEARED_AFK"])
+						or msg:match(_G["IDLE_MESSAGE"])
+						then return true
+						end
+					end
+					LeaPlusLC.NoCampFrame = CreateFrame("FRAME", nil, UIParent)
 				end
 				if LeaPlusLC.NoCampFrame:IsEventRegistered("PLAYER_CAMPING") then
+					-- Disable camp
 					LeaPlusLC.NoCampFrame:UnregisterEvent("PLAYER_CAMPING")
-					_G.IDLE_MESSAGE = origCampMsg
+					ChatFrame_RemoveMessageEventFilter("CHAT_MSG_SYSTEM", LeaPlusLC.CampFilterFunc)
 					LeaPlusLC:Print("Camping enabled.  You will camp.")
 				else
+					-- Enable camp
 					LeaPlusLC.NoCampFrame:RegisterEvent("PLAYER_CAMPING")
-					_G.IDLE_MESSAGE = nil
+					ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", LeaPlusLC.CampFilterFunc)
 					LeaPlusLC:Print("Camping disabled.  You won't camp.")
 				end
+				-- Event handler
 				LeaPlusLC.NoCampFrame:SetScript("OnEvent", function()
 					local p = StaticPopup_Visible("CAMP")
 					_G[p .. "Button1"]:Click()
@@ -13266,6 +13324,51 @@
 					end
 				end)
 				return
+			elseif str == "dis" then
+				-- Disband group
+				if not LeaPlusLC:IsInLFGQueue() and not IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
+					local x = GetNumGroupMembers() or 0
+					for i = x, 1, -1 do
+						if GetNumGroupMembers() > 0 then
+							local name = GetRaidRosterInfo(i)
+							if name and name ~= UnitName("player") then
+								UninviteUnit(name)
+							end
+						end
+					end
+				else
+					LeaPlusLC:Print("You cannot do that while in group finder.")
+				end
+				return
+			elseif str == "reinv" then
+				-- Disband and reinvite raid
+				if not LeaPlusLC:IsInLFGQueue() and not IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
+					if UnitIsGroupLeader("player") then
+						-- Disband
+						local groupNames = {}
+						local x = GetNumGroupMembers() or 0
+						for i = x, 1, -1 do
+							if GetNumGroupMembers() > 0 then
+								local name = GetRaidRosterInfo(i)
+								if name and name ~= UnitName("player") then
+									UninviteUnit(name)
+									tinsert(groupNames, name)
+								end
+							end
+						end
+						-- Reinvite
+						C_Timer.After(0.1, function()
+							for k, v in pairs(groupNames) do
+								C_PartyInfo.InviteUnit(v)
+							end
+						end)
+					else
+						LeaPlusLC:Print("You need to be group leader.")
+					end
+				else
+					LeaPlusLC:Print("You cannot do that while in group finder.")
+				end
+				return
 			elseif str == "admin" then
 				-- Preset profile (used for testing)
 				LpEvt:UnregisterAllEvents()						-- Prevent changes
@@ -13338,9 +13441,9 @@
 				LeaPlusDB["MiniShowBugSack"] = "On"				-- Exclude BugSack
 				LeaPlusDB["NewCovenantButton"] = "On"			-- New covenant button
 				LeaPlusDB["CombineAddonButtons"] = "On"			-- Combine addon buttons
-				LeaPlusDB["MiniCustomButtons"] = "On"			-- Replace non-standard buttons
 				LeaPlusDB["MinimapScale"] = 1.40				-- Minimap scale slider
 				LeaPlusDB["MinimapSize"] = 180					-- Minimap size slider
+				LeaPlusDB["MiniClusterScale"] = 1				-- Minimap cluster scale
 				LeaPlusDB["MinimapA"] = "TOPRIGHT"				-- Minimap anchor
 				LeaPlusDB["MinimapR"] = "TOPRIGHT"				-- Minimap relative
 				LeaPlusDB["MinimapX"] = 0						-- Minimap X
@@ -13735,7 +13838,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "InviteFromWhisper"			,   "Invite from whispers"			,	340, -152,	false,	L["If checked, a group invite will be sent to anyone who whispers you with a set keyword as long as you are ungrouped, group leader or raid assistant and not queued for a dungeon or raid.|n|nFriends who message the keyword using Battle.net will not be sent a group invite if they are appearing offline.  They need to either change their online status or use character whispers."] .. "|n|n" .. L["Keyword"] .. ": |cffffffff" .. "dummy" .. "|r")
 
 	-- Show footer
-	LeaPlusLC:MakeFT(LeaPlusLC[pg], "For all of the social options above, you can treat guild members and members of your communities as friends too.", 146, 380)
+	LeaPlusLC:MakeFT(LeaPlusLC[pg], "For all of the social options above, you can treat guild members and members of your communities as friends too.", 146, 380, 96)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "FriendlyGuild"				, 	"Guild"							, 	146, -282, 	false,	"If checked, members of your guild will be treated as friends for all of the options on this page.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "FriendlyCommunities"		, 	"Communities"					, 	340, -282, 	false,	"If checked, members of your communities will be treated as friends for all of the options on this page.")
 
