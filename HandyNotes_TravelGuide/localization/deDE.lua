@@ -32,6 +32,9 @@ L["config_warfront_portal_desc"] = "Zeigt die Positionen von Kriegsfrontportalen
 L["config_petbattle_portal"] = "Haustierkampfportale"
 L["config_petbattle_portal_desc"] = "Zeigt die Positionen von Haustierkampfportalen an."
 
+L["config_ogreWaygate"] = "Ogerportale"
+L["config_ogreWaygate_desc"] = "Zeigt die Positionen von Ogerportalen an."
+
 L["config_boat"] = "Schiffe"
 L["config_boat_desc"] = "Zeigt die Positionen von Schiffen an."
 L["config_boat_alliance"] = "Allianz Schiffe"
@@ -51,11 +54,11 @@ L["config_note_desc"] = "Zeigt zusätzliche Notizen an, wenn diese verfügbar si
 L["config_easy_waypoints"] = "Vereinfachte Wegpunkte"
 L["config_easy_waypoints_desc"] = "Aktiviert die vereinfachte Wegpunkterstellung. \nErlaubt es per Rechtsklick einen Wegpunkt zu setzen und per STRG + Rechtsklick mehr Optionen aufzurufen."
 
-L["config_teleport_platform"] = "Teleportplattformen in Oribos"
-L["config_teleport_platform_desc"] = "Zeigt die Positionen von Teleportplattformen in Oribos an."
+L["config_teleportPlatform"] = "Teleportplattformen in Oribos"
+L["config_teleportPlatform_desc"] = "Zeigt die Positionen von Teleportplattformen in Oribos an."
 
-L["config_anima_gateway"] = "Animaportale in der Bastion"
-L["config_anima_gateway_desc"] = "Zeigt die Positionen von Animaportalen in der Bastion an."
+L["config_animaGateway"] = "Animaportale in der Bastion"
+L["config_animaGateway_desc"] = "Zeigt die Positionen von Animaportalen in der Bastion an."
 
 L["config_others"] = "Anderes"
 L["config_others_desc"] = "Zeige alle anderen POIs."
@@ -111,6 +114,7 @@ L["To Ring of Fates"] = "Zum Ring der Schicksale"
 L["Into the Maw"] = "In den Schlund"
 L["To Keeper's Respite"] = "Zur Zuflucht des Hüters"
 L["Portal to Torghast"] = "Portal nach Torghast"
+L["Portal to Zereth Mortis"] = "Portal nach Zereth Mortis"
 
 --============================================Bastion=============================================--
 
@@ -158,6 +162,7 @@ L["Portal to Warspear"] = "Portal nach Kriegsspeer"
 L["Portal to Stormshield"] = "Portal zum Sturmschild"
 L["Portal to Vol'mar"] = "Portal nach Vol'mar"
 L["Portal to Lion's watch"] = "Portal zur Löwenwacht"
+L["Ogre Waygate"] = "Ogerportal"
 
 -------------------------------------------------MoP------------------------------------------------
 
@@ -188,6 +193,7 @@ L["Boat to Borean Tundra"] = "Schiff in die Boreanische Tundra"
 L["Boat to Unu'Pe"] = "Schiff nach Unu'pe"
 L["Zeppelin to Borean Tundra"] = "Zeppelin in die Boreanische Tundra"
 L["Boat to Moa'Ki Harbor"] = "Schiff zum Hafen Moa'ki"
+L["Waygate to Sholazar Basin"] = "Tor ins Sholazarbecken"
 
 -------------------------------------------------BC-------------------------------------------------
 
@@ -236,4 +242,6 @@ L["Portal to Caverns of Time"] = "Portal zu den Höhlen der Zeit"
 
 L["Portal to Dalaran Crater"] = "Portal zum Dalaran Krater"
 L["Portal to the Sepulcher"] = "Portal zum Grabmal"
+
+L["Waygate to Un'Goro Crater"] = "Tor zum Krater von Un'Goro"
 end

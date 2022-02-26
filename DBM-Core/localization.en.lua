@@ -273,7 +273,7 @@ L.TIMER_USAGE						= {
 	"-----------------",
 	"/dbm timer <sec> <text>: Starts a <sec> second timer with your <text>.",
 	"/dbm ltimer <sec> <text>: Starts a timer that also automatically loops until canceled.",
-	"('Broadcast' in front of any timer also shares it with raid if leader/promoted)",
+	"('Broadcast' in front of the 'timer' or 'ltimer' also shares it with raid if leader/promoted)",
 	"/dbm timer endloop: Stops any looping ltimer."
 }
 
@@ -308,7 +308,7 @@ L.AUTO_ANNOUNCE_TEXTS = {
 	ends 							= "%s ended",
 	endtarget						= "%s ended: >%%s<",
 	fades							= "%s faded",
-	adds							= "%s remaining: %%d",
+	addsleft						= "%s remaining: %%d",
 	cast							= "Casting %s: %.1f sec",
 	soon							= "%s soon",
 	sooncount						= "%s (%%s) soon",
@@ -333,7 +333,7 @@ L.AUTO_ANNOUNCE_OPTIONS = {
 	ends							= "Announce when $spell:%s has ended",
 	endtarget						= "Announce when $spell:%s has ended (with target)",
 	fades							= "Announce when $spell:%s has faded",
-	adds							= "Announce how many $spell:%s remain",
+	addsleft						= "Announce how many $spell:%s remain",
 	cast							= "Announce when $spell:%s begins casting",
 	soon							= prewarnOption,
 	sooncount						= prewarnOption,
@@ -389,8 +389,8 @@ L.AUTO_SPEC_WARN_TEXTS = {
 	switch							= "%s - switch targets",
 	switchcount						= "%s - switch targets (%%s)",
 	gtfo							= "%%s damage - move away",
-	adds							= "Incoming Adds - switch targets",
-	addscustom						= "Incoming Adds - %%s",
+	adds							= "Incoming Adds - switch targets",--Basically a generic of switch
+	addscustom						= "Incoming Adds - %%s",--Same as above, but more info, pretty much made for like 3 boss mods, such as akama
 	targetchange					= "Target Change - switch to %%s"
 }
 

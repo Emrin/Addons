@@ -264,7 +264,7 @@ L.TIMER_USAGE	= {
 	"-----------------",
 	"/dbm timer <秒數> <文字>: 開始一個時間為<秒數>秒並以<文字>為名稱的計時器。",
 	"/dbm ltimer <秒數> <文字>: 開始一個時間為<秒數>秒的計時器同時無限循環直到取消。",
-	"(在任何計時器指令前加入'Broadcast'可以把指令分享給團隊，如果有團隊隊長或助理權限)",
+	"(如果有團長或助理權限，在'timer'或'ltimer'計時器指令前加入'Broadcast'可以將此分享給團隊)",
 	"/dbm timer endloop: 停止任何無限循環ltimer的計時器。",
 }
 
@@ -297,7 +297,7 @@ L.AUTO_ANNOUNCE_TEXTS.spell					= "%s"
 L.AUTO_ANNOUNCE_TEXTS.ends 					= "%s結束"
 L.AUTO_ANNOUNCE_TEXTS.endtarget				= "%s結束:>%%s<"
 L.AUTO_ANNOUNCE_TEXTS.fades					= "%s消退"
-L.AUTO_ANNOUNCE_TEXTS.adds					= "%s還剩下:%%d"
+L.AUTO_ANNOUNCE_TEXTS.addsleft				= "%s還剩下:%%d"
 L.AUTO_ANNOUNCE_TEXTS.cast					= "施放%s:%.1f秒"
 L.AUTO_ANNOUNCE_TEXTS.soon					= "%s即將到來"
 L.AUTO_ANNOUNCE_TEXTS.sooncount				= "%s (%%s)即將到來"
@@ -320,7 +320,7 @@ L.AUTO_ANNOUNCE_OPTIONS.spell				= "提示：當$spell:%s施放時"
 L.AUTO_ANNOUNCE_OPTIONS.ends				= "提示：當$spell:%s結束"
 L.AUTO_ANNOUNCE_OPTIONS.endtarget			= "提示：當$spell:%s結束(包含目標)"
 L.AUTO_ANNOUNCE_OPTIONS.fades				= "提示：當$spell:%s消退"
-L.AUTO_ANNOUNCE_OPTIONS.adds				= "提示：$spell:%s剩餘數量"
+L.AUTO_ANNOUNCE_OPTIONS.addsleft			= "提示：$spell:%s剩餘數量"
 L.AUTO_ANNOUNCE_OPTIONS.cast				= "提示：當$spell:%s開始施放"
 L.AUTO_ANNOUNCE_OPTIONS.soon				= prewarnOption
 L.AUTO_ANNOUNCE_OPTIONS.sooncount			= prewarnOption

@@ -12,6 +12,7 @@ local RSGuideDB = private.ImportLib("RareScannerGuideDB")
 
 -- RareScanner service libraries
 local RSTooltip = private.ImportLib("RareScannerTooltip")
+local RSMinimap = private.ImportLib("RareScannerMinimap")
 
 -- RareScanner services
 local RSGuidePOI = private.ImportLib("RareScannerGuidePOI")
@@ -84,6 +85,9 @@ function RSGroupPinMixin:ShowOverlay(childPOI)
 					self:GetMap():RemovePin(pin)
 				end
 			end
+			
+			-- Cleans the replaced overly in the minimap
+			RSMinimap.RemoveOverlay(replacedEntityID)
 		end
 		
 		-- Adds the new one
@@ -91,29 +95,8 @@ function RSGroupPinMixin:ShowOverlay(childPOI)
 			local x, y = strsplit("-", coordinates)
 			self:GetMap():AcquirePin("RSOverlayTemplate", tonumber(x), tonumber(y), r, g, b, childPOI);
 		end
-	end
-end
-
-function RSGroupPinMixin:ShowGuide(childPOI)
-	-- Guide
-	local guide = nil
-	if (childPOI.isNpc) then
-		guide = RSGuideDB.GetNpcGuide(childPOI.entityID)
-	elseif (childPOI.isContainer) then
-		guide = RSGuideDB.GetContainerGuide(childPOI.entityID)
-	else
-		guide = RSGuideDB.GetEventGuide(childPOI.entityID)
-	end
-
-	if (guide) then
-		for pinType, info in pairs (guide) do
-			if (not info.questID or not C_QuestLog.IsQuestFlaggedCompleted(info.questID)) then
-				local POI = RSGuidePOI.GetGuidePOI(childPOI.entityID, pinType, info)
-				self:GetMap():AcquirePin("RSGuideTemplate", POI, self);
-			end
-		end
-		RSGeneralDB.SetGuideActive(childPOI.entityID)
-	else
-		RSGeneralDB.RemoveGuideActive()
+		
+		-- Adds the new one to the minimap
+		RSMinimap.AddOverlay(childPOI.entityID)
 	end
 end

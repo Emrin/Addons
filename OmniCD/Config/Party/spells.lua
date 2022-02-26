@@ -12,11 +12,13 @@ end
 
 P.setSpell = function(info, state)
 	local tab = info[3] == "spells" and "spells" or "raidCDS"
+	local sId = info[#info]
 	local db = E.DB.profile.Party[info[2]]
-	db[tab][info[#info]] = state
+	db[tab][sId] = state
 
 	if db == E.db then
 		P:UpdateEnabledSpells()
+---     P:Refresh(sId == "6262")
 		P:Refresh()
 	end
 end
@@ -46,7 +48,7 @@ P.ClearAllDefault = function(info)
 	end
 end
 
-local runClearAllDefault = function(info) E[info[1]].ClearAllDefault(info) end
+local runClearAllDefault = function(info) E[info[1]].ClearAllDefault(info) end -- enemy plugin
 
 local isSpellsOption = function(info) return info[3] == "spells" end
 local isRaidCDOption = function(info) return info[4] == "raidCDS" end

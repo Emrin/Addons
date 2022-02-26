@@ -5,6 +5,9 @@ local L = DBM_CORE_L
 
 L.HOW_TO_USE_MOD					= "Добро пожаловать в " .. L.DBM .. ". Наберите /dbm help, чтобы получить список поддерживаемых команд. Для доступа к настройкам наберите /dbm в чате. Загрузите конкретные зоны вручную, чтобы настроить определённых боссов по Вашему вкусу. " .. L.DBM .. " установит настройки по умолчанию для Вашей специализации, но Вы, возможно, захотите настроить их более тонко."
 L.SILENT_REMINDER					= "Напоминание: " .. L.DBM .. " всё ещё в тихом режиме."
+L.NEWS_UPDATE						= "|h|c11ff1111Новости|r|h: Это обновление представляет собой повторный выпуск версии 9.1.9 для устранения ложного обнаружения вредоносного ПО в хэше предыдущего выпуска файла. Подробнее об этом |Hgarrmission:DBM:news|h|cff3588ff[здесь]|r|h"
+
+L.COPY_URL_DIALOG_NEWS				= "Чтобы прочитать последние новости, перейдите по ссылке ниже"
 
 L.LOAD_MOD_ERROR					= "Ошибка при загрузке босс модуля для %s: %s"
 L.LOAD_MOD_SUCCESS					= "Загружен модуль для '%s'. Для дополнительных настроек введите /dbm или /dbm help в чате."
@@ -135,6 +138,7 @@ L.OPTION_CATEGORY_WARNINGS			= "Общие предупреждения"
 L.OPTION_CATEGORY_WARNINGS_YOU		= "Персональные предупреждения"
 L.OPTION_CATEGORY_WARNINGS_OTHER	= "Предупреждения для цели"
 L.OPTION_CATEGORY_WARNINGS_ROLE		= "Предупреждения для роли"
+L.OPTION_CATEGORY_SPECWARNINGS		= "Специальные предупреждения"
 
 L.OPTION_CATEGORY_SOUNDS			= "Звуки"
 --Misc object broken down into sub cats
@@ -266,6 +270,7 @@ L.TIMER_USAGE = {
 }
 
 L.ERROR_NO_PERMISSION				= "У Вас недостаточно прав для выполнения этой операции."
+L.TIME_TOO_SHORT					= "Таймер атаки должен быть больше 3 секунд."
 
 L.BREAK_USAGE						= "Перерыв не может быть дольше 60 минут. Убедитесь, что Вы вводите время в минутах, а не секундах."
 L.BREAK_START						= "Перерыв начинается -- у Вас есть %s! (отправил %s)"
@@ -294,7 +299,7 @@ L.AUTO_ANNOUNCE_TEXTS.spell 		= "%s"
 L.AUTO_ANNOUNCE_TEXTS.ends			= "%s заканчивается"
 L.AUTO_ANNOUNCE_TEXTS.endtarget		= "%s заканчивается: >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.fades			= "%s спадает"
-L.AUTO_ANNOUNCE_TEXTS.adds			= "Осталось %s: %%d"
+L.AUTO_ANNOUNCE_TEXTS.addsleft		= "Осталось %s: %%d"
 L.AUTO_ANNOUNCE_TEXTS.cast 			= "Применение заклинания %s: %.1f сек"
 L.AUTO_ANNOUNCE_TEXTS.soon 			= "Скоро %s"
 L.AUTO_ANNOUNCE_TEXTS.sooncount		= "Скоро %s (%%s)"
@@ -315,7 +320,7 @@ L.AUTO_ANNOUNCE_OPTIONS.spell 			= "Предупреждение для $spell:%
 L.AUTO_ANNOUNCE_OPTIONS.ends			= "Предупреждать об окончании $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.endtarget		= "Предупреждать об окончании $spell:%s (цель)"
 L.AUTO_ANNOUNCE_OPTIONS.fades			= "Предупреждать о спадении $spell:%s"
-L.AUTO_ANNOUNCE_OPTIONS.adds			= "Объявлять сколько осталось $spell:%s"
+L.AUTO_ANNOUNCE_OPTIONS.addsleft		= "Объявлять сколько осталось $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.cast 			= "Предупреждать о применении заклинания $spell:%s"
 L.AUTO_ANNOUNCE_OPTIONS.soon 			= prewarnOption
 L.AUTO_ANNOUNCE_OPTIONS.sooncount		= prewarnOption
@@ -547,6 +552,7 @@ L.LAG_FOOTER						= "Нет ответа: %s"
 
 --LDB
 L.LDB_TOOLTIP_HELP1					= "Левый клик, чтобы открыть " .. L.DBM
+L.LDB_TOOLTIP_HELP2					= "Alt+ПКМ для переключения в беззвучный режим"
 L.SILENTMODE_IS						= "Тихий режим "
 
 L.WORLD_BUFFS.hordeOny			= "Народы Орды, жители Оргриммара! Приходите, собирайтесь и поздравляйте героя Орды"

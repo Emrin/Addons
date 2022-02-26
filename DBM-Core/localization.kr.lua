@@ -262,8 +262,8 @@ L.TIMER_USAGE	= {
 	"--------------",
 	"/dbm timer <초> <텍스트>: <초> 만큼 지속되는 <텍스트> 타이머가 시작됩니다.",
 	"/dbm ltimer <초> <텍스트>: 취소하기 전까진 자동 반복되는 타이머가 시작됩니다.",
-	"(공대장이나 승급자일 경우 타이머 텍스트 앞에 'Broadcast'를 입력하면 공격대에 공유)",
-	"/dbm timer endloop: ltimer와 반복 작동을 멈춥니다."
+	"(공대장이나 승급자일 경우 'timer'와 'ltimer' 앞에 'Broadcast'를 입력하면 공격대에 공유)",
+	"/dbm timer endloop: 반복 작동중인 모든 ltimer를 멈춥니다."
 }
 
 L.ERROR_NO_PERMISSION				= "이 명령어를 실행하기 위한 권한을 가지고 있지 않습니다."
@@ -295,7 +295,7 @@ L.AUTO_ANNOUNCE_TEXTS.targetcount	= "%s (%%s): >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.ends			= "%s 종료"
 L.AUTO_ANNOUNCE_TEXTS.endtarget		= "%s 종료: >%%s<"
 L.AUTO_ANNOUNCE_TEXTS.fades			= "%s 사라짐"
-L.AUTO_ANNOUNCE_TEXTS.adds			= "%s 남은 수: %%d"
+L.AUTO_ANNOUNCE_TEXTS.addsleft		= "%s 남은 수: %%d"
 L.AUTO_ANNOUNCE_TEXTS.cast			= "%s 시전: %.1f초"
 L.AUTO_ANNOUNCE_TEXTS.soon			= "곧 %s"
 L.AUTO_ANNOUNCE_TEXTS.sooncount		= "곧 %s (%%s)"
@@ -317,7 +317,7 @@ L.AUTO_ANNOUNCE_OPTIONS.spell		= "$spell:%s 시전 완료 알림 보기"
 L.AUTO_ANNOUNCE_OPTIONS.ends			= "$spell:%s 지속 시간 종료시 알림 보기"
 L.AUTO_ANNOUNCE_OPTIONS.endtarget	= "$spell:%s 지속 시간 종료시 알림 보기 (대상 포함)"
 L.AUTO_ANNOUNCE_OPTIONS.fades		= "$spell:%s|1이;가; 사라졌을 때 알림 보기"
-L.AUTO_ANNOUNCE_OPTIONS.adds			= "$spell:%s의 남은 수 알림 보기"
+L.AUTO_ANNOUNCE_OPTIONS.addsleft		= "$spell:%s의 남은 수 알림 보기"
 L.AUTO_ANNOUNCE_OPTIONS.cast			= "$spell:%s 시전 시작 알림 보기"
 L.AUTO_ANNOUNCE_OPTIONS.soon		= prewarnOption
 L.AUTO_ANNOUNCE_OPTIONS.sooncount	= prewarnOption

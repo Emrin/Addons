@@ -32,6 +32,9 @@ L["config_warfront_portal_desc"] = "Show the Warfront portal locations."
 L["config_petbattle_portal"] = "Petbattle Portal"
 L["config_petbattle_portal_desc"] = "Show the Petbattle portal locations."
 
+L["config_ogreWaygate"] = "Ogre Waygate"
+L["config_ogreWaygate_desc"] = "Show the Ogre Waygat portal locations."
+
 L["config_boat"] = "Boat"
 L["config_boat_desc"] = "Show the boat locations."
 L["config_boat_alliance"] = "Alliance Boat"
@@ -51,11 +54,11 @@ L["config_note_desc"] = "Show the node's additional notes when it's available."
 L["config_easy_waypoints"] = "Easy Waypoints"
 L["config_easy_waypoints_desc"] = "Activates simplified waypoint creation. \nAllows you to set a waypoint by right-clicking and access to more options by CTRL + right-clicking."
 
-L["config_teleport_platform"] = "Teleport platforms in Oribos"
-L["config_teleport_platform_desc"] = "Show the teleport plattform locations in Oribos."
+L["config_teleportPlatform"] = "Teleport platforms in Oribos"
+L["config_teleportPlatform_desc"] = "Show the teleport plattform locations in Oribos."
 
-L["config_anima_gateway"] = "Anima Gateways in Bastion"
-L["config_anima_gateway_desc"] = "Show the anima gateway locations in Bastion."
+L["config_animaGateway"] = "Anima Gateways in Bastion"
+L["config_animaGateway_desc"] = "Show the anima gateway locations in Bastion."
 
 L["config_others"] = "Others"
 L["config_others_desc"] = "Show all the other POIs."
@@ -111,6 +114,7 @@ L["To Ring of Fates"] = true
 L["Into the Maw"] = true
 L["To Keeper's Respite"] = true
 L["Portal to Torghast"] = true
+L["Portal to Zereth Mortis"] = true
 
 --============================================Bastion=============================================--
 
@@ -158,6 +162,7 @@ L["Portal to Warspear"] = true
 L["Portal to Stormshield"] = true
 L["Portal to Vol'mar"] = true
 L["Portal to Lion's watch"] = true
+L["Ogre Waygate"] = true
 
 -------------------------------------------------MoP------------------------------------------------
 
@@ -188,6 +193,7 @@ L["Boat to Borean Tundra"] = true
 L["Boat to Unu'Pe"] = true
 L["Zeppelin to Borean Tundra"] = true
 L["Boat to Moa'Ki Harbor"] = true
+L["Waygate to Sholazar Basin"] = true
 
 -------------------------------------------------BC-------------------------------------------------
 
@@ -236,4 +242,6 @@ L["Portal to Caverns of Time"] = true
 
 L["Portal to Dalaran Crater"] = true
 L["Portal to the Sepulcher"] = true
+
+L["Waygate to Un'Goro Crater"] = true
 end

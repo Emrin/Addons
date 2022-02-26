@@ -1,3 +1,23 @@
+9.2.00 - 23rd February 2022
+- Updated for game version 9.2.0.
+- For 'Mute game sounds' ('System'), added some new sounds to 'Shouts' for various races.
+- Added media 'Zereth Mortis' music (Zones) and 'Sepulcher of the First Ones' music (Dungeons).
+- Added media 'Shattered Legacies' cinematic (you can watch it in Movies > Shadowlands or listen to it in Various > Cinematics).
+
+9.1.45 - 16th February 2022
+- For 'Enhance minimap' ('Interface'), added a new setting 'Show who pinged'.  It's enabled by default.  Note that this does not apply to your own pings.
+
+9.1.44 - 9th February 2022
+- For 'Automate quests' ('Automation'), quests from Warlord Breka Grimaxe and Captain Garrick will no longer be accepted automatically.
+
+9.1.42 - 27th January 2022
+- Added 'Mechstriders' to 'Mute game sounds' ('System').  If enabled, mechanostriders will be muted.
+- Released again to address CurseForge App issue.
+
+9.1.40 - 26th January 2022
+- If 'Automate quests' ('Automation') is enabled, you can now set the override key to be shift, alt or control.
+- For 'Mute game sounds' ('System'), the 'Chimes' setting will now mute the Ironforge hourly horn sound.  Also added a new 'Anima' setting which makes the 'Experimental Anima Cell' toy quieter.
+
 9.1.39 - 19th January 2022
 - The 'Faster auto loot' option ('System') will now work with TSM Destroy.  You no longer need to disable faster auto loot when using TSM Destroy.
 - Added 'Soul Eaters' to 'Mute game sounds' ('System').

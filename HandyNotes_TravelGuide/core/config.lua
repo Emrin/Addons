@@ -62,11 +62,17 @@ config.options = {
                     desc = L["config_warfront_portal_desc"],
                     order = 12.2,
                 },
-                show_petbattleportal = {
+                show_petBattlePortal = {
                     type = "toggle",
                     name = L["config_petbattle_portal"],
                     desc = L["config_petbattle_portal_desc"],
                     order = 12.3,
+                },
+                show_ogreWaygate = {
+                    type = "toggle",
+                    name = L["config_ogreWaygate"],
+                    desc = L["config_ogreWaygate_desc"],
+                    order = 12.4,
                 },
                 show_boat = {
                     type = "toggle",
@@ -79,7 +85,7 @@ config.options = {
                     name = L["config_boat_alliance"],
                     desc = L["config_boat_alliance_desc"],
                     hidden = function()
-                        if select(1, UnitFactionGroup("player")) == "Alliance" then
+                        if (select(1, UnitFactionGroup("player")) == "Alliance") then
                             return true
                         end
                     end,
@@ -90,7 +96,7 @@ config.options = {
                     name = L["config_zeppelin"],
                     desc = L["config_zeppelin_desc"],
                     hidden = function()
-                        if select(1, UnitFactionGroup("player")) == "Alliance" then
+                        if (select(1, UnitFactionGroup("player")) == "Alliance") then
                             return true
                         end
                     end,
@@ -101,7 +107,7 @@ config.options = {
                     name = L["config_zeppelin_horde"],
                     desc = L["config_zeppelin_horde_desc"],
                     hidden = function()
-                        if select(1, UnitFactionGroup("player")) == "Horde" then
+                        if (select(1, UnitFactionGroup("player")) == "Horde") then
                             return true
                         end
                     end,
@@ -124,18 +130,18 @@ config.options = {
                     name = "",
                     order = 21,
                 },
-                show_anima_gateway = {
+                show_animaGateway = {
                     type = "toggle",
                     width = "full",
-                    name = L["config_anima_gateway"],
-                    desc = L["config_anima_gateway_desc"],
+                    name = L["config_animaGateway"],
+                    desc = L["config_animaGateway_desc"],
                     order = 22,
                 },
-                show_teleport_platform = {
+                show_teleportPlatform = {
                     type = "toggle",
                     width = "full",
-                    name = L["config_teleport_platform"],
-                    desc = L["config_teleport_platform_desc"],
+                    name = L["config_teleportPlatform"],
+                    desc = L["config_teleportPlatform_desc"],
                     order = 23,
                 },
                 other_line = {
@@ -147,7 +153,7 @@ config.options = {
                     type = "toggle",
                     width = "full",
                     name = function()
-                        if IsAddOnLoaded("TomTom") then
+                        if (IsAddOnLoaded("TomTom")) then
                             return L["config_easy_waypoints"]
                         else
                             return L["config_easy_waypoints"].." |cFFFF0000("..L["handler_tooltip_requires"].." TomTom)|r"

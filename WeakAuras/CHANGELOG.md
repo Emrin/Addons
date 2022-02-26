@@ -1,29 +1,28 @@
-# [3.7.7](https://github.com/WeakAuras/WeakAuras2/tree/3.7.7) (2022-01-23)
+# [3.7.11](https://github.com/WeakAuras/WeakAuras2/tree/3.7.11) (2022-02-22)
 
-[Full Changelog](https://github.com/WeakAuras/WeakAuras2/compare/3.7.6...3.7.7)
+[Full Changelog](https://github.com/WeakAuras/WeakAuras2/compare/3.7.10...3.7.11)
 
 ## Highlights
 
- - Bugfixes 
+ - Bug fixes
+- Enable Autocast Glow for Classic/BCC 
 
 ## Commits
 
-InfusOnWoW (5):
+InfusOnWoW (3):
 
-- Transmission: Check sender before decompression
-- Spell Changes: Also check for name/icon changes
-- Fix unnecessary calls to ApplyStateToRegion
-- Fix Modernize calling GetProperties lua error
-- Fix validate not actually moving conditions
+- BCC: Correctly disabled Glaives and enable Thrown Weapons
+- BCC: Correctly disable Goblins
+- Fix Order of Subelements in Dynamic Groups
 
-Stanzilla (2):
+Stanzilla (1):
 
-- Update TOC for BCC Patch 2.5.3
-- Update WeakAurasModelPaths from wow.tools
+- Update TOC for 9.2.0 and 1.14.2
 
-mrbuds (3):
+mrbuds (4):
 
-- remove boss unit for BBC
-- Disable WeakAurasModelPaths auto update
-- Allow unitId filtering on various events, fixes #3432 (#3433)
+- enable autocast glow for bcc & som
+- clear scripts on import/export frame fixes #3496
+- restore hastepercent to previous state on retail
+- Faction Reputation trigger: support friendship standing
 
