@@ -88,7 +88,7 @@ local function Update(self, _, unit)
 		(element.Focus and not oUF.isClassic and UnitExists('focus')) or
 		(element.Health and UnitHealth(unit) < UnitHealthMax(unit)) or
 		(element.Power and (PowerTypesFull[powerType] and UnitPower(unit) < UnitPowerMax(unit))) or
-		(element.Vehicle and oUF.isRetail and UnitHasVehicleUI(unit)) or
+		(element.Vehicle and (oUF.isRetail or oUF.isWrath) and UnitHasVehicleUI(unit)) or
 		(element.Hover and GetMouseFocus() == (self.__faderobject or self))
 	then
 		ToggleAlpha(self, element, element.MaxAlpha)
@@ -218,10 +218,15 @@ local options = {
 	},
 	Health = {
 		enable = function(self)
-			self:RegisterEvent('UNIT_HEALTH', Update)
+			if oUF.isRetail then
+				self:RegisterEvent('UNIT_HEALTH', Update)
+			else
+				self:RegisterEvent('UNIT_HEALTH_FREQUENT', Update)
+			end
+
 			self:RegisterEvent('UNIT_MAXHEALTH', Update)
 		end,
-		events = {'UNIT_HEALTH','UNIT_MAXHEALTH'}
+		events = oUF.isRetail and {'UNIT_HEALTH','UNIT_MAXHEALTH'} or {'UNIT_HEALTH_FREQUENT','UNIT_MAXHEALTH'}
 	},
 	Power = {
 		enable = function(self)
@@ -258,10 +263,6 @@ local options = {
 	Delay = {countIgnored = true},
 }
 
-if not oUF.isRetail then
-	tinsert(options.Health.events, 'UNIT_HEALTH_FREQUENT')
-end
-
 if not oUF.isClassic then
 	options.Focus = {
 		enable = function(self)
@@ -271,7 +272,7 @@ if not oUF.isClassic then
 	}
 end
 
-if oUF.isRetail then
+if oUF.isRetail or oUF.isWrath then
 	options.Vehicle = {
 		enable = function(self)
 			self:RegisterEvent('UNIT_ENTERED_VEHICLE', Update, true)

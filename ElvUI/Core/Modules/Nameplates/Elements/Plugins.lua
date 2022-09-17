@@ -30,10 +30,10 @@ function NP:Construct_QuestIcons(nameplate)
 end
 
 function NP:Update_QuestIcons(nameplate)
-	local frameType = nameplate.frameType
-	local db = frameType and NP.db.units[frameType].questIcon
+	local plateDB = NP:PlateDB(nameplate)
+	local db = plateDB.questIcon
 
-	if db and db.enable and not nameplate.isBattlePet and (frameType == 'FRIENDLY_NPC' or frameType == 'ENEMY_NPC') then
+	if db and db.enable and not nameplate.isBattlePet and (nameplate.frameType == 'FRIENDLY_NPC' or nameplate.frameType == 'ENEMY_NPC') then
 		if not nameplate:IsElementEnabled('QuestIcons') then
 			nameplate:EnableElement('QuestIcons')
 		end
@@ -65,10 +65,10 @@ function NP:Construct_ClassificationIndicator(nameplate)
 end
 
 function NP:Update_ClassificationIndicator(nameplate)
-	local frameType = nameplate.frameType
-	local db = frameType and NP.db.units[frameType].eliteIcon
+	local plateDB = NP:PlateDB(nameplate)
+	local db = plateDB.eliteIcon
 
-	if db and db.enable and (frameType == 'FRIENDLY_NPC' or frameType == 'ENEMY_NPC') then
+	if db and db.enable and (nameplate.frameType == 'FRIENDLY_NPC' or nameplate.frameType == 'ENEMY_NPC') then
 		if not nameplate:IsElementEnabled('ClassificationIndicator') then
 			nameplate:EnableElement('ClassificationIndicator')
 		end
@@ -114,6 +114,7 @@ function NP:Update_TargetIndicator(nameplate)
 	local indicator = nameplate.TargetIndicator
 	indicator.arrow = E.Media.Arrows[NP.db.units.TARGET.arrow] or E.Media.Arrows.Arrow9
 	indicator.lowHealthThreshold = NP.db.lowHealthThreshold
+	indicator.preferGlowColor = NP.db.colors.preferGlowColor
 	indicator.style = tdb.glowStyle
 
 	if indicator.style ~= 'none' then

@@ -7,6 +7,7 @@ local ipairs = ipairs
 local unpack = unpack
 local tinsert = tinsert
 
+local LSM = E.Libs.LSM
 local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
 local GetBagSlotFlag = GetBagSlotFlag
@@ -25,19 +26,17 @@ local NUM_LE_BAG_FILTER_FLAGS = NUM_LE_BAG_FILTER_FLAGS
 local commandNames = {
 	[-1] = 'TOGGLEBACKPACK',
 	[0] = 'TOGGLEBAG4',
-	'TOGGLEBAG3', -- 1
-	'TOGGLEBAG2', -- 2
-	'TOGGLEBAG1'  -- 3
+	'TOGGLEBAG3',	-- 1
+	'TOGGLEBAG2',	-- 2
+	'TOGGLEBAG1'	-- 3
 }
 
 function B:BagBar_OnEnter()
-	if not E.db.bags.bagBar.mouseover then return end
-	E:UIFrameFadeIn(B.BagBar, 0.2, B.BagBar:GetAlpha(), 1)
+	return E.db.bags.bagBar.mouseover and E:UIFrameFadeIn(B.BagBar, 0.2, B.BagBar:GetAlpha(), 1)
 end
 
 function B:BagBar_OnLeave()
-	if not E.db.bags.bagBar.mouseover then return end
-	E:UIFrameFadeOut(B.BagBar, 0.2, B.BagBar:GetAlpha(), 0)
+	return E.db.bags.bagBar.mouseover and E:UIFrameFadeOut(B.BagBar, 0.2, B.BagBar:GetAlpha(), 0)
 end
 
 function B:BagButton_OnEnter()
@@ -105,10 +104,12 @@ function B:SizeAndPositionBagBar()
 	RegisterStateDriver(B.BagBar, 'visibility', visibility)
 	B.BagBar:SetAlpha(db.mouseover and 0 or 1)
 
+	_G.MainMenuBarBackpackButtonCount:FontTemplate(LSM:Fetch('font', db.font), db.fontSize, db.fontOutline)
+
 	local firstButton, lastButton
 	for i, button in ipairs(B.BagBar.buttons) do
 		if E.Retail then
-			button.filterIcon.FilterBackdrop:Size(bagBarSize / 2)
+			button.filterIcon.FilterBackdrop:Size(bagBarSize * 0.5)
 		end
 
 		button:Size(bagBarSize)
@@ -230,7 +231,7 @@ function B:LoadBagBar()
 
 	_G.MainMenuBarBackpackButton:SetParent(B.BagBar)
 	_G.MainMenuBarBackpackButton:ClearAllPoints()
-	_G.MainMenuBarBackpackButtonCount:FontTemplate(nil, 10)
+	_G.MainMenuBarBackpackButtonCount:FontTemplate(LSM:Fetch('font', E.db.bags.bagBar.font), E.db.bags.bagBar.fontSize, E.db.bags.bagBar.fontOutline)
 	_G.MainMenuBarBackpackButtonCount:ClearAllPoints()
 	_G.MainMenuBarBackpackButtonCount:Point('BOTTOMRIGHT', _G.MainMenuBarBackpackButton, 'BOTTOMRIGHT', -1, 4)
 	_G.MainMenuBarBackpackButton:HookScript('OnEnter', B.BagButton_OnEnter)

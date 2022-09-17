@@ -132,13 +132,13 @@ local function CastStart(self, real, unit, castGUID)
 	local name, _, texture, startTime, endTime, isTradeSkill, castID, notInterruptible, spellID = UnitCastingInfo(unit)
 
 	local event = 'UNIT_SPELLCAST_START'
-	if (not name) then
+	if not name then
 		name, _, texture, startTime, endTime, isTradeSkill, notInterruptible, spellID = UnitChannelInfo(unit)
 
 		event = 'UNIT_SPELLCAST_CHANNEL_START'
 	end
 
-	if(not name or (isTradeSkill and element.hideTradeSkills)) then
+	if not name or (isTradeSkill and element.hideTradeSkills) then
 		resetAttributes(element)
 		element:Hide()
 
@@ -166,12 +166,12 @@ local function CastStart(self, real, unit, castGUID)
 	end
 
 	-- ElvUI block
-	if(mergeTradeskill and isTradeSkill and UnitIsUnit(unit, "player")) then
-		element.duration = element.duration + (element.max * tradeskillCurrent);
-		element.max = element.max * tradeskillTotal;
+	if mergeTradeskill and isTradeSkill and UnitIsUnit(unit, "player") then
+		element.duration = element.duration + (element.max * tradeskillCurrent)
+		element.max = element.max * tradeskillTotal
 		element.holdTime = 1
 
-		if(unit == "player") then
+		if unit == 'player' then
 			tradeskillCurrent = tradeskillCurrent + 1;
 		end
 	end
@@ -364,6 +364,8 @@ local function CastInterruptible(self, event, unit)
 end
 
 local function onUpdate(self, elapsed)
+	self.elapsed = (self.elapsed or 0) + elapsed
+
 	if(self.casting or self.channeling) then
 		local isCasting = self.casting
 		if(isCasting) then
@@ -396,7 +398,7 @@ local function onUpdate(self, elapsed)
 			end
 		end
 
-		if(self.Time) then
+		if(self.Time) and (self.elapsed >= .01) then
 			if(self.delay ~= 0) then
 				if(self.CustomDelayText) then
 					self:CustomDelayText(self.duration)
@@ -410,6 +412,8 @@ local function onUpdate(self, elapsed)
 					self.Time:SetFormattedText('%.1f', self.duration)
 				end
 			end
+
+			self.elapsed = 0
 		end
 
 		self:SetValue(self.duration)
@@ -524,7 +528,7 @@ local function Disable(self)
 			self:UnregisterEvent('UNIT_SPELLCAST_INTERRUPTED', CastFail)
 		end
 
-		if oUF.isRetail then
+		if oUF.isRetail or oUF.isWrath then
 			self:UnregisterEvent('UNIT_SPELLCAST_INTERRUPTIBLE', CastInterruptible)
 			self:UnregisterEvent('UNIT_SPELLCAST_NOT_INTERRUPTIBLE', CastInterruptible)
 		end

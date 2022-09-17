@@ -672,6 +672,14 @@ function RSConfigDB.SetShowingEvents(value)
 	private.db.map.displayEventIcons = value
 end
 
+function RSConfigDB.IsEventFilteredOnlyOnWorldMap()
+	return private.db.eventFilters.filterOnlyMap
+end
+
+function RSConfigDB.SetEventFilteredOnlyOnWorldMap(value)
+	private.db.eventFilters.filterOnlyMap = value
+end
+
 function RSConfigDB.IsShowingCompletedEvents()
 	return private.db.map.keepShowingAfterCompleted
 end
@@ -718,16 +726,33 @@ function RSConfigDB.SetMaxSeenEventTimeFilter(value, clearBak)
 	end
 end
 
----============================================================================
--- WorldMap icons scale
----============================================================================
+function RSConfigDB.IsEventFiltered(eventID)
+	if (eventID) then
+		return private.db.general.filteredEvents[eventID] == false
+	end
 
-function RSConfigDB.GetIconsWorldMapScale()
-	return private.db.map.scale
+	return false
 end
 
-function RSConfigDB.SetIconsWorldMapScale(value)
-	private.db.map.scale = value
+function RSConfigDB.GetEventFiltered(eventID)
+	if (eventID) then
+		local value = private.db.general.filteredEvents[eventID]
+		if (value == nil) then
+			return true
+		else
+			return value
+		end
+	end
+end
+
+function RSConfigDB.SetEventFiltered(eventID, value)
+	if (eventID) then
+		if (value == false) then
+			private.db.general.filteredEvents[eventID] = false
+		else
+			private.db.general.filteredEvents[eventID] = nil
+		end
+	end
 end
 
 ---============================================================================
@@ -972,6 +997,14 @@ function RSConfigDB.IsShowFiltered()
 	return private.db.collections.showFiltered
 end
 
+function RSConfigDB.SetShowWithoutCollectibles(value)
+	private.db.collections.showWithoutCollectibles = value
+end
+
+function RSConfigDB.IsShowWithoutCollectibles()
+	return private.db.collections.showWithoutCollectibles
+end
+
 function RSConfigDB.SetShowDead(value)
 	private.db.collections.showDead = value
 end
@@ -1150,11 +1183,11 @@ function RSConfigDB.IsShowingWorldMapSearcher()
 end
 
 function RSConfigDB.SetClearingWorldMapSearcher(value)
-	private.db.map.cleanWorldMapSearcherOnHide = value
+	private.db.map.cleanWorldMapSearcherOnChange = value
 end
 
 function RSConfigDB.IsClearingWorldMapSearcher()
-	return private.db.map.cleanWorldMapSearcherOnHide
+	return private.db.map.cleanWorldMapSearcherOnChange
 end
 
 ---============================================================================
@@ -1175,6 +1208,18 @@ end
 
 function RSConfigDB.SetAddingWorldMapIngameWaypoints(value)
 	private.db.map.waypointIngame = value
+end
+
+---============================================================================
+-- WorldMap icons scale
+---============================================================================
+
+function RSConfigDB.GetIconsWorldMapScale()
+	return private.db.map.scale
+end
+
+function RSConfigDB.SetIconsWorldMapScale(value)
+	private.db.map.scale = value
 end
 
 ---============================================================================
@@ -1252,6 +1297,29 @@ end
 function RSConfigDB.SetShowingTooltipsCommands(value)
 	private.db.map.tooltipsCommands = value
 end
+
+---============================================================================
+-- Worldmap loot tooltips
+---============================================================================
+
+function RSConfigDB.GetWorldMapLootAchievTooltipsScale()
+	if (private.db.map.lootAchievTooltipsScale) then
+		return private.db.map.lootAchievTooltipsScale
+	end
+	return RSConfigDB.GetWorldMapTooltipsScale()
+end
+
+function RSConfigDB.SetWorldMapLootAchievTooltipsScale(value)
+	private.db.map.lootAchievTooltipsScale = value
+end
+
+function RSConfigDB.GetWorldMapLootAchievTooltipPosition()
+	return private.db.map.lootAchievementsPosition
+end 
+
+function RSConfigDB.SetWorldMapLootAchievTooltipPosition(value)
+	private.db.map.lootAchievementsPosition = value
+end 
 
 ---============================================================================
 -- Worldmap overlay

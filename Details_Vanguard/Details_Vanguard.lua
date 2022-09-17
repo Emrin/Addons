@@ -1,3 +1,9 @@
+
+--do not load if this is a classic version of the game
+if (DetailsFramework.IsTBCWow() or DetailsFramework.IsWotLKWow()) then
+	return
+end
+
 local AceLocale = LibStub ("AceLocale-3.0")
 local Loc = AceLocale:GetLocale ("Details")
 local SharedMedia = LibStub:GetLibrary ("LibSharedMedia-3.0")
@@ -274,8 +280,7 @@ local function CreatePluginFrames (data)
 				bar:SetLeftColor (0, .25, 0, 1)
 				bar:SetHeight(Vanguard.db.bar_height)
 				bar:SetTexture(SharedMedia:Fetch ("statusbar", Vanguard.db.tank_block_texture))
-				bar.div:SetHeight(Vanguard.db.bar_height*2)
-				bar.div:SetAlpha(0.79)
+				bar:SetBackgroundTexture(SharedMedia:Fetch ("statusbar", Vanguard.db.tank_block_texture))
 				bar:Show()
 			end
 		else
@@ -979,8 +984,8 @@ local build_options_panel = function()
 			min = 10,
 			max = 50,
 			step = 1,
-			--desc = "Inc Damage Height",
-			name = "Incoming Damage Height",
+			--desc = "Inc Damage Heigth",
+			name = "Incoming Damage Heigth",
 		},
 		{type = "blank"},
 

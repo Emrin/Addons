@@ -5,13 +5,14 @@
 ]]
 
 local _G, format, next = _G, format, next
-local gsub, pairs, type = gsub, pairs, type
+local gsub, pairs, tinsert, type = gsub, pairs, tinsert, type
 
-local BAG_ITEM_QUALITY_COLORS = BAG_ITEM_QUALITY_COLORS
 local CreateFrame = CreateFrame
+local RegisterCVar = C_CVar.RegisterCVar
 local GetAddOnEnableState = GetAddOnEnableState
 local GetAddOnMetadata = GetAddOnMetadata
 local DisableAddOn = DisableAddOn
+local IsAddOnLoaded = IsAddOnLoaded
 local ReloadUI = ReloadUI
 local GetLocale = GetLocale
 local GetTime = GetTime
@@ -42,7 +43,9 @@ Engine[4] = E.DF.profile
 Engine[5] = E.DF.global
 _G.ElvUI = Engine
 
-E.oUF = Engine.oUF
+E.oUF = _G.ElvUF
+assert(E.oUF, 'ElvUI was unable to locate oUF.')
+
 E.ActionBars = E:NewModule('ActionBars','AceHook-3.0','AceEvent-3.0')
 E.AFK = E:NewModule('AFK','AceEvent-3.0','AceTimer-3.0')
 E.Auras = E:NewModule('Auras','AceHook-3.0','AceEvent-3.0')
@@ -73,15 +76,11 @@ E.twoPixelsPlease = false -- changing this option is not supported! :P
 -- Expansions
 E.Retail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 E.Classic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
-E.TBC = WOW_PROJECT_ID == (WOW_PROJECT_BURNING_CRUSADE_CLASSIC or 5)
-E.Wrath = false
+E.TBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+E.Wrath = WOW_PROJECT_ID == WOW_PROJECT_WRATH_CLASSIC
 
--- Item Qualitiy stuff - used by MerathilisUI
-E.QualityColors = {}
-local qualityColors = BAG_ITEM_QUALITY_COLORS
-for index, value in pairs(qualityColors) do
-	E.QualityColors[index] = {r = value.r, g = value.g, b = value.b}
-end
+-- Item Qualitiy stuff, also used by MerathilisUI
+E.QualityColors = CopyTable(_G.BAG_ITEM_QUALITY_COLORS)
 E.QualityColors[-1] = {r = 0, g = 0, b = 0}
 E.QualityColors[Enum.ItemQuality.Poor] = {r = .61, g = .61, b = .61}
 E.QualityColors[Enum.ItemQuality.Common or Enum.ItemQuality.Standard] = {r = 0, g = 0, b = 0}
@@ -118,17 +117,20 @@ do
 	E:AddLib('LAB', 'LibActionButton-1.0-ElvUI')
 	E:AddLib('LDB', 'LibDataBroker-1.1')
 	E:AddLib('SimpleSticky', 'LibSimpleSticky-1.0')
-	E:AddLib('RangeCheck', 'LibRangeCheck-2.0-ElvUI')
+	E:AddLib('RangeCheck', 'LibRangeCheck-2.0')
 	E:AddLib('CustomGlow', 'LibCustomGlow-1.0')
 	E:AddLib('ItemSearch', 'LibItemSearch-1.2-ElvUI')
 	E:AddLib('Compress', 'LibCompress')
 	E:AddLib('Base64', 'LibBase64-1.0-ElvUI')
 	E:AddLib('Masque', 'Masque', true)
 	E:AddLib('Translit', 'LibTranslit-1.0')
+	E:AddLib('Dispel', 'LibDispel-1.0')
 
-	if E.Retail then
+	if E.Retail or E.Wrath then
 		E:AddLib('DualSpec', 'LibDualSpec-1.0')
-	else
+	end
+
+	if not E.Retail then
 		E:AddLib('LCS', 'LibClassicSpecs-ElvUI')
 
 		if E.Classic then
@@ -205,6 +207,10 @@ do
 		'ElvUI_CustomTags'
 	}
 
+	if not IsAddOnLoaded('ShadowedUnitFrames') then
+		tinsert(alwaysDisable, 'kExtraBossFrames')
+	end
+
 	for _, addon in next, alwaysDisable do
 		DisableAddOn(addon)
 	end
@@ -257,6 +263,10 @@ function E:OnInitialize()
 
 	if E.private.general.minimap.enable then
 		E.Minimap:SetGetMinimapShape() -- This is just to support for other mods, keep below UIMult
+	end
+
+	if E.Classic or E.TBC then
+		RegisterCVar('fstack_showhighlight', '1')
 	end
 
 	if GetAddOnEnableState(E.myname, 'Tukui') == 2 then

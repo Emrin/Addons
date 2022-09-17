@@ -4,6 +4,7 @@ local UF = E:GetModule('UnitFrames')
 local LSM = E.Libs.LSM
 
 local _G = _G
+local wipe = wipe
 local unpack = unpack
 local CreateFrame = CreateFrame
 
@@ -68,6 +69,7 @@ end
 
 function NP:Construct_AuraIcon(button)
 	if not button then return end
+
 	button:SetTemplate(nil, nil, nil, nil, nil, true, true)
 
 	button.cd:SetReverse(true)
@@ -87,7 +89,10 @@ function NP:Construct_AuraIcon(button)
 	E:RegisterCooldown(button.cd)
 
 	local auras = button:GetParent()
-	button.db = auras and NP.db.units and NP.db.units[auras.__owner.frameType] and NP.db.units[auras.__owner.frameType][auras.type]
+	if auras and auras.type then
+		local db = NP:PlateDB(auras.__owner)
+		button.db = db[auras.type]
+	end
 
 	NP:UpdateAuraSettings(button)
 end
@@ -110,7 +115,6 @@ function NP:Configure_Auras(nameplate, auras, db)
 	auras.smartPosition, auras.smartFluid = UF:SetSmartPosition(nameplate)
 	auras.attachTo = UF:GetAuraAnchorFrame(nameplate, db.attachTo) -- keep below SetSmartPosition
 	auras.num = db.numAuras * db.numRows
-	auras.lastActive = -1 -- for SetPosition
 	auras.db = db -- for auraSort
 
 	local index = 1
@@ -173,6 +177,12 @@ function NP:UpdateAuraSettings(button)
 		button.count:SetJustifyH(point:find('RIGHT') and 'RIGHT' or 'LEFT')
 		button.count:Point(point, db.countXOffset, db.countYOffset)
 		button.count:FontTemplate(LSM:Fetch('font', db.countFont), db.countFontSize, db.countFontOutline)
+	end
+
+	if button.auraInfo then
+		wipe(button.auraInfo)
+	else
+		button.auraInfo = {}
 	end
 
 	button.needsIconTrim = true

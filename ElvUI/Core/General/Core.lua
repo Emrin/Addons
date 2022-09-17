@@ -27,7 +27,7 @@ local GetBindingKey = GetBindingKey
 local SetBinding = SetBinding
 local SaveBindings = SaveBindings
 local GetCurrentBindingSet = GetCurrentBindingSet
-local GetSpecialization = not E.Retail and LCS.GetSpecialization or GetSpecialization
+local GetSpecialization = (E.Classic or E.TBC or E.Wrath and LCS.GetSpecialization) or GetSpecialization
 
 local ERR_NOT_IN_COMBAT = ERR_NOT_IN_COMBAT
 local LE_PARTY_CATEGORY_HOME = LE_PARTY_CATEGORY_HOME
@@ -64,14 +64,14 @@ E.myLocalizedRace, E.myrace = UnitRace('player')
 E.myname = UnitName('player')
 E.myrealm = GetRealmName()
 E.mynameRealm = format('%s - %s', E.myname, E.myrealm) -- contains spaces/dashes in realm (for profile keys)
-E.myspec = GetSpecialization()
+E.myspec = E.Retail and GetSpecialization()
 E.wowpatch, E.wowbuild, E.wowdate, E.wowtoc = GetBuildInfo()
 E.wowbuild = tonumber(E.wowbuild)
 E.physicalWidth, E.physicalHeight = GetPhysicalScreenSize()
 E.screenWidth, E.screenHeight = GetScreenWidth(), GetScreenHeight()
 E.resolution = format('%dx%d', E.physicalWidth, E.physicalHeight)
 E.perfect = 768 / E.physicalHeight
-E.NewSign = [[|TInterface\OptionsFrame\UI-OptionsFrame-NewFeatureIcon:14:14|t]] -- not used by ElvUI yet, but plugins like BenikUI and MerathilisUI use it.
+E.NewSign = [[|TInterface\OptionsFrame\UI-OptionsFrame-NewFeatureIcon:14:14|t]]
 E.TexturePath = [[Interface\AddOns\ElvUI\Media\Textures\]] -- for plugins?
 E.UserList = {}
 
@@ -118,24 +118,7 @@ E.InverseAnchors = {
 	TOPRIGHT = 'BOTTOMLEFT'
 }
 
-E.DispelClasses = {
-	PALADIN = { Poison = true, Disease = true },
-	PRIEST = { Magic = true, Disease = true },
-	MONK = { Disease = true, Poison = true },
-	DRUID = { Curse = true, Poison = true },
-	MAGE = { Curse = true },
-	WARLOCK = {},
-	SHAMAN = {}
-}
-
-if E.Retail then
-	E.DispelClasses.SHAMAN.Curse = true
-else
-	E.DispelClasses.SHAMAN.Poison = true
-	E.DispelClasses.SHAMAN.Disease = true
-
-	E.DispelClasses.PALADIN.Magic = true
-end
+E.DispelFilter = E.Libs.Dispel:GetMyDispelTypes()
 
 E.BadDispels = {
 	[34914]		= 'Vampiric Touch',		-- horrifies
@@ -288,17 +271,22 @@ function E:GetColorTable(data)
 	end
 end
 
-function E:UpdateMedia()
-	if not E.db.general or not E.private.general then return end --Prevent rare nil value errors
+function E:UpdateMedia(mediaType)
+	if not E.db.general or not E.private.general then return end
 
-	-- Fonts
 	E.media.normFont = LSM:Fetch('font', E.db.general.font)
 	E.media.combatFont = LSM:Fetch('font', E.private.general.dmgfont)
-
-	-- Textures
 	E.media.blankTex = LSM:Fetch('background', 'ElvUI Blank')
 	E.media.normTex = LSM:Fetch('statusbar', E.private.general.normTex)
 	E.media.glossTex = LSM:Fetch('statusbar', E.private.general.glossTex)
+
+	if mediaType then -- callback from SharedMedia: LSM.Register
+		if mediaType == 'font' then
+			E:UpdateBlizzardFonts()
+		end
+
+		return
+	end
 
 	-- Colors
 	E.media.bordercolor = E:SetColorTable(E.media.bordercolor, E:UpdateClassColor(E.db.general.bordercolor))
@@ -313,18 +301,28 @@ function E:UpdateMedia()
 	E.media.rgbvaluecolor = E:SetColorTable(E.media.rgbvaluecolor, value)
 	E.media.hexvaluecolor = E:RGBToHex(value.r, value.g, value.b)
 
-	-- Chat Tab Selector Color
-	E:UpdateClassColor(E.db.chat.tabSelectorColor)
+	if E.private.nameplates.enable then
+		-- Colors for Target Indicator
+		E:UpdateClassColor(E.db.nameplates.colors.glowColor)
+		E:UpdateClassColor(E.db.nameplates.colors.lowHealthColor)
+		E:UpdateClassColor(E.db.nameplates.colors.lowHealthHalf)
+	end
 
-	-- Chat Panel Background Texture
-	local LeftChatPanel, RightChatPanel = _G.LeftChatPanel, _G.RightChatPanel
-	if LeftChatPanel and LeftChatPanel.tex and RightChatPanel and RightChatPanel.tex then
-		LeftChatPanel.tex:SetTexture(E.db.chat.panelBackdropNameLeft)
-		RightChatPanel.tex:SetTexture(E.db.chat.panelBackdropNameRight)
+	if E.private.chat.enable then
+		-- Chat Tab Selector Color
+		E:UpdateClassColor(E.db.chat.tabSelectorColor)
+		E:UpdateClassColor(E.db.chat.tabSelectedTextColor)
 
-		local a = E.db.general.backdropfadecolor.a or 0.5
-		LeftChatPanel.tex:SetAlpha(a)
-		RightChatPanel.tex:SetAlpha(a)
+		-- Chat Panel Background Texture
+		local LeftChatPanel, RightChatPanel = _G.LeftChatPanel, _G.RightChatPanel
+		if LeftChatPanel and LeftChatPanel.tex and RightChatPanel and RightChatPanel.tex then
+			LeftChatPanel.tex:SetTexture(E.db.chat.panelBackdropNameLeft)
+			RightChatPanel.tex:SetTexture(E.db.chat.panelBackdropNameRight)
+
+			local a = E.db.general.backdropfadecolor.a or 0.5
+			LeftChatPanel.tex:SetAlpha(a)
+			RightChatPanel.tex:SetAlpha(a)
+		end
 	end
 
 	E:ValueFuncCall()
@@ -358,23 +356,18 @@ function E:GeneralMedia_ApplyToAll()
 	E.db.general.minimap.locationFont = font
 	E.db.tooltip.font = font
 	E.db.tooltip.fontSize = fontSize
+	E.db.tooltip.headerFont = font
 	E.db.tooltip.headerFontSize = fontSize
 	E.db.tooltip.textFontSize = fontSize
 	E.db.tooltip.smallTextFontSize = fontSize
 	E.db.tooltip.healthBar.font = font
 	E.db.unitframe.font = font
 	E.db.unitframe.units.party.rdebuffs.font = font
-	E.db.unitframe.units.raid.rdebuffs.font = font
-	E.db.unitframe.units.raid40.rdebuffs.font = font
+	E.db.unitframe.units.raid1.rdebuffs.font = font
+	E.db.unitframe.units.raid2.rdebuffs.font = font
+	E.db.unitframe.units.raid3.rdebuffs.font = font
 
 	E:StaggeredUpdateAll()
-end
-
-do	--Update font/texture paths when they are registered by the addon providing them
-	--This helps fix most of the issues with fonts or textures reverting to default because the addon providing them is loading after ElvUI.
-	--We use a wrapper to avoid errors in :UpdateMedia because 'self' is passed to the function with a value other than ElvUI.
-	local function LSMCallback() E:UpdateMedia() end
-	LSM.RegisterCallback(E, 'LibSharedMedia_Registered', LSMCallback)
 end
 
 function E:ValueFuncCall()
@@ -891,8 +884,7 @@ do
 		if event == 'CHAT_MSG_ADDON' then
 			if sender == PLAYER_NAME then return end
 			if prefix == 'ELVUI_VERSIONCHK' then
-				local msg, ver = tonumber(message), E.version
-				local inCombat = InCombatLockdown()
+				local ver, msg, inCombat = E.version, tonumber(message), InCombatLockdown()
 
 				E.UserList[E:StripMyRealm(sender)] = msg
 
@@ -1008,7 +1000,7 @@ do -- BFA Convert, deprecated..
 				E.db.unitframe.OORAlpha = nil
 			end
 
-			for _, unit in ipairs({'target','targettarget','targettargettarget','focus','focustarget','pet','pettarget','boss','arena','party','raid','raid40','raidpet','tank','assist'}) do
+			for _, unit in ipairs({'target','targettarget','targettargettarget','focus','focustarget','pet','pettarget','boss','arena','party','raid1','raid2','raid3','raidpet','tank','assist'}) do
 				if E.db.unitframe.units[unit].rangeCheck ~= nil then
 					local enabled = E.db.unitframe.units[unit].rangeCheck
 					E.db.unitframe.units[unit].fader.enable = enabled
@@ -1084,7 +1076,7 @@ do -- BFA Convert, deprecated..
 		end
 
 		--Heal Prediction is now a table instead of a bool
-		for _, unit in ipairs({'player','target','focus','pet','arena','party','raid','raid40','raidpet'}) do
+		for _, unit in ipairs({'player','target','focus','pet','arena','party','raid1','raid2','raid3','raidpet'}) do
 			if type(E.db.unitframe.units[unit].healPrediction) ~= 'table' then
 				local enabled = E.db.unitframe.units[unit].healPrediction
 				E.db.unitframe.units[unit].healPrediction = {}
@@ -1311,10 +1303,10 @@ function E:DBConvertSL()
 	if E.db.unitframe.units.party.groupBy == 'ROLE2' or E.db.unitframe.units.party.groupBy == 'CLASSROLE' then
 		E.db.unitframe.units.party.groupBy = 'ROLE'
 	end
-	if E.db.unitframe.units.raid.groupBy == 'ROLE2' or E.db.unitframe.units.raid.groupBy == 'CLASSROLE' then
+	if E.db.unitframe.units.raid and (E.db.unitframe.units.raid.groupBy == 'ROLE2' or E.db.unitframe.units.raid.groupBy == 'CLASSROLE') then
 		E.db.unitframe.units.raid.groupBy = 'ROLE'
 	end
-	if E.db.unitframe.units.raid40.groupBy == 'ROLE2' or E.db.unitframe.units.raid40.groupBy == 'CLASSROLE' then
+	if E.db.unitframe.units.raid40 and (E.db.unitframe.units.raid40.groupBy == 'ROLE2' or E.db.unitframe.units.raid40.groupBy == 'CLASSROLE') then
 		E.db.unitframe.units.raid40.groupBy = 'ROLE'
 	end
 	if E.db.unitframe.units.raidpet.groupBy == 'ROLE2' or E.db.unitframe.units.raidpet.groupBy == 'CLASSROLE' then
@@ -1325,6 +1317,40 @@ function E:DBConvertSL()
 		if E.global.unitframe.aurafilters[name] and E.global.unitframe.aurafilters[name].type ~= infoTable.type then
 			E.global.unitframe.aurafilters[name].type = infoTable.type
 		end
+	end
+
+	-- rune convert
+	for _, data in ipairs({E.db.unitframe.colors.classResources.DEATHKNIGHT, E.db.nameplates.colors.classResources.DEATHKNIGHT}) do
+		if data.r or data.g or data.b then
+			data[0].r, data[0].g, data[0].b = data.r, data.g, data.b
+			data.r, data.g, data.b = nil, nil, nil
+		end
+	end
+
+	-- raid 1-3 converts
+	E.db.unitframe.smartRaidFilter = nil
+
+	if E.db.unitframe.units.raid then
+		E.db.unitframe.units.raid.visibility = nil
+		E.db.unitframe.units.raid.enable = nil
+		E:CopyTable(E.db.unitframe.units.raid1, E.db.unitframe.units.raid)
+		E.db.unitframe.units.raid = nil
+	end
+
+	if E.db.unitframe.units.raid40 then
+		E.db.unitframe.units.raid40.visibility = nil
+		E.db.unitframe.units.raid40.enable = nil
+		E:CopyTable(E.db.unitframe.units.raid3, E.db.unitframe.units.raid40)
+		E.db.unitframe.units.raid40 = nil
+	end
+
+	if E.db.movers and E.db.movers.ElvUF_RaidMover then
+		E.db.movers.ElvUF_Raid1Mover = E.db.movers.ElvUF_RaidMover
+		E.db.movers.ElvUF_RaidMover = nil
+	end
+	if E.db.movers and E.db.movers.ElvUF_Raid40Mover then
+		E.db.movers.ElvUF_Raid3Mover = E.db.movers.ElvUF_Raid40Mover
+		E.db.movers.ElvUF_Raid40Mover = nil
 	end
 end
 
@@ -1396,6 +1422,10 @@ function E:UpdateActionBars(skipCallback)
 
 	if E.Retail then
 		ActionBars:UpdateExtraButtons()
+	end
+
+	if E.Wrath and E.myclass == 'SHAMAN' then
+		ActionBars:UpdateTotemBindings()
 	end
 
 	if not skipCallback then
@@ -1475,6 +1505,8 @@ function E:UpdateMisc(skipCallback)
 	if E.Retail then
 		Blizzard:SetObjectiveFrameHeight()
 		Totems:PositionAndSize()
+	elseif E.Wrath then
+		ActionBars:PositionAndSizeTotemBar()
 	elseif E.TBC then
 		Totems:PositionAndSize()
 	end
@@ -1899,8 +1931,11 @@ function E:Initialize()
 	E:Contruct_StaticPopups()
 
 	if E.Retail then
-		E.Libs.DualSpec:EnhanceDatabase(E.data, 'ElvUI')
 		E:Tutorials()
+	end
+
+	if E.Retail or E.Wrath then
+		E.Libs.DualSpec:EnhanceDatabase(E.data, 'ElvUI')
 	end
 
 	E.initialized = true

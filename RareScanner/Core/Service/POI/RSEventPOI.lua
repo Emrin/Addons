@@ -21,6 +21,9 @@ local RSLogger = private.ImportLib("RareScannerLogger")
 local RSTimeUtils = private.ImportLib("RareScannerTimeUtils")
 local RSUtils = private.ImportLib("RareScannerUtils")
 
+-- RareScanner services
+local RSRecentlySeenTracker = private.ImportLib("RareScannerRecentlySeenTracker")
+
 
 ---============================================================================
 -- Not discovered entities
@@ -72,7 +75,7 @@ function RSEventPOI.GetEventPOI(eventID, mapID, eventInfo, alreadyFoundInfo)
 	-- Textures
 	if (POI.isCompleted) then
 		POI.Texture = RSConstants.BLUE_EVENT_TEXTURE
-	elseif (RSGeneralDB.IsRecentlySeen(eventID)) then
+	elseif (RSRecentlySeenTracker.IsRecentlySeen(eventID, POI.x, POI.y)) then
 		POI.Texture = RSConstants.PINK_EVENT_TEXTURE
 	elseif (not POI.isDiscovered and not POI.achievementLink) then
 		POI.Texture = RSConstants.RED_EVENT_TEXTURE
@@ -109,6 +112,12 @@ local function IsEventPOIFiltered(eventID, mapID, zoneQuestID, vignetteGUIDs, on
 			RSLogger:PrintDebugMessageEntityID(eventID, string.format("Saltado Evento [%s]: Evento asociado no esta activo.", eventID))
 			return true
 		end
+	end
+
+	-- Skip if the entity is filtered
+	if (RSConfigDB.IsEventFiltered(eventID) and not RSEventDB.IsWorldMap(eventID) and (not RSConfigDB.IsEventFilteredOnlyOnWorldMap() or (RSConfigDB.IsEventFilteredOnlyOnWorldMap() and not RSGeneralDB.IsRecentlySeen(eventID)))) then
+		RSLogger:PrintDebugMessageEntityID(eventID, string.format("Saltado Evento [%s]: Filtrado en opciones.", eventID))
+		return true
 	end
 
 	-- A 'not discovered' event will be setted as completed when the action is detected while loading the addon and its questID is completed

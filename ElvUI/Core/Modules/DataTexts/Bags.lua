@@ -5,6 +5,7 @@ local format = format
 local strjoin = strjoin
 local GetBagName = GetBagName
 local ToggleAllBags = ToggleAllBags
+local GetBackpackCurrencyInfo = GetBackpackCurrencyInfo
 local GetContainerNumFreeSlots = GetContainerNumFreeSlots
 local GetContainerNumSlots = GetContainerNumSlots
 local GetInventoryItemQuality = GetInventoryItemQuality
@@ -76,18 +77,19 @@ local function OnEnter()
 		end
 	end
 
-	if E.Retail then
+	if E.Retail or E.Wrath then
 		for i = 1, MAX_WATCHED_TOKENS do
-			local info = C_CurrencyInfo_GetBackpackCurrencyInfo(i)
-			if info then
-				if i == 1 then
-					DT.tooltip:AddLine(' ')
-					DT.tooltip:AddLine(CURRENCY)
-					DT.tooltip:AddLine(' ')
-				end
-				if info.quantity then
-					DT.tooltip:AddDoubleLine(format(iconString, info.iconFileID, info.name), info.quantity, 1, 1, 1, 1, 1, 1)
-				end
+			local info = E.Retail and C_CurrencyInfo_GetBackpackCurrencyInfo(i) or E.Wrath and {}
+			if E.Wrath then info.name, info.quantity, info.iconFileID, info.currencyTypesID = GetBackpackCurrencyInfo(i) end
+			if not (info and info.name) then break end
+
+			if i == 1 then
+				DT.tooltip:AddLine(' ')
+				DT.tooltip:AddLine(CURRENCY)
+				DT.tooltip:AddLine(' ')
+			end
+			if info.quantity then
+				DT.tooltip:AddDoubleLine(format(iconString, info.iconFileID, info.name), info.quantity, 1, 1, 1, 1, 1, 1)
 			end
 		end
 	end
@@ -97,11 +99,10 @@ end
 
 local function ValueColorUpdate(hex)
 	local textFormat = E.global.datatexts.settings.Bags.textFormat
-	if textFormat == 'FREE' or textFormat == 'USED' then
-		displayString = strjoin('', L["Bags"], ': ', hex, '%d|r')
-	else
-		displayString = strjoin('', L["Bags"], ': ', hex, '%d/%d|r')
-	end
+	local noLabel = E.global.datatexts.settings.Bags.NoLabel and ''
+	local labelString = noLabel or (E.global.datatexts.settings.Bags.Label ~= '' and E.global.datatexts.settings.Bags.Label) or strjoin('', L["Bags"], ': ')
+
+	displayString = strjoin('', labelString, hex, (textFormat == 'FREE' or textFormat == 'USED') and '%d|r' or '%d/%d|r')
 
 	if lastPanel then OnEvent(lastPanel) end
 end

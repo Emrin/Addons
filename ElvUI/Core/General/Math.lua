@@ -49,15 +49,17 @@ end
 
 --Return short value of a number
 function E:ShortValue(value, dec)
-	local abs_value = value<0 and -value or value
 	local decimal = dec and format('%%.%df', tonumber(dec) or 0)
+	local abs_value = value<0 and -value or value
+	local values = E.ShortPrefixValues
 
-	for i = 1, #E.ShortPrefixValues do
-		if abs_value >= E.ShortPrefixValues[i][1] then
+	for i = 1, #values do
+		local arg1, arg2, arg3 = unpack(values[i])
+		if abs_value >= arg1 then
 			if decimal then
-				return format(decimal..E.ShortPrefixValues[i][2], value / E.ShortPrefixValues[i][1])
+				return format(decimal..arg2, value / arg1)
 			else
-				return format(E.ShortPrefixValues[i][3], value / E.ShortPrefixValues[i][1])
+				return format(arg3, value / arg1)
 			end
 		end
 	end
@@ -71,13 +73,14 @@ end
 
 -- http://www.wowwiki.com/ColorGradient
 function E:ColorGradient(perc, ...)
+	local value = select('#', ...)
 	if perc >= 1 then
-		return select(select('#', ...) - 2, ...)
+		return select(value - 2, ...)
 	elseif perc <= 0 then
 		return ...
 	end
 
-	local num = select('#', ...) / 3
+	local num = value / 3
 	local segment, relperc = modf(perc*(num-1))
 	local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...)
 
@@ -86,16 +89,16 @@ end
 
 -- Text Gradient by Simpy
 function E:TextGradient(text, ...)
-	local msg, len, idx = '', utf8len(text), 0
+	local msg, total = '', utf8len(text)
+	local idx, num = 0, select('#', ...) / 3
 
-	for i = 1, len do
+	for i = 1, total do
 		local x = utf8sub(text, i, i)
 		if strmatch(x, '%s') then
 			msg = msg .. x
 			idx = idx + 1
 		else
-			local num = select('#', ...) / 3
-			local segment, relperc = modf((idx/len)*num)
+			local segment, relperc = modf((idx/total)*num)
 			local r1, g1, b1, r2, g2, b2 = select((segment*3)+1, ...)
 
 			if not r2 then
@@ -347,17 +350,14 @@ function E:StringTitle(str)
 	return gsub(str, '(.)', strupper, 1)
 end
 
+E.TimeColors = {} -- 0:days 1:hours 2:minutes 3:seconds 4:expire 5:mmss 6:hhmm 7:modRate 8:targetAura 9:expiringAura 10-14:targetAura
+E.TimeIndicatorColors = {} -- same color indexes
 E.TimeThreshold = 3
 
-E.TimeColors = { -- aura time colors
-	[0] = '|cffeeeeee', -- days
-	[1] = '|cffeeeeee', -- hours
-	[2] = '|cffeeeeee', -- minutes
-	[3] = '|cffeeeeee', -- seconds
-	[4] = '|cfffe0000', -- expire (fade timer)
-	[5] = '|cff909090', -- mmss
-	[6] = '|cff707070', -- hhmm
-}
+for i = 0, 14 do
+	E.TimeColors[i] = '|cFFffffff'
+	E.TimeIndicatorColors[i] = '|cFFffffff'
+end
 
 E.TimeFormats = { -- short / indicator color
 	-- special options (3, 4): rounding
@@ -369,24 +369,18 @@ E.TimeFormats = { -- short / indicator color
 	[4] = {'%.1f', '%.1f', '%.1fs', '%.1f%ss|r'},
 
 	[5] = {'%d:%02d', '%d%s:|r%02d'}, -- mmss
-	[6] = {'%d:%02d', '%d%s:|r%02d'}, -- hhmm
 }
 
-E.TimeIndicatorColors = {
-	[0] = '|cff00b3ff',
-	[1] = '|cff00b3ff',
-	[2] = '|cff00b3ff',
-	[3] = '|cff00b3ff',
-	[4] = '|cff00b3ff',
-	[5] = '|cff00b3ff',
-	[6] = '|cff00b3ff',
-}
+E.TimeFormats[6] = E:CopyTable({}, E.TimeFormats[5]) -- hhmm
+E.TimeFormats[7] = E:CopyTable({}, E.TimeFormats[3]) -- modRate
 
 do
 	local YEAR, DAY, HOUR, MINUTE = 31557600, 86400, 3600, 60
-	function E:GetTimeInfo(sec, threshold, hhmm, mmss)
+	function E:GetTimeInfo(sec, threshold, hhmm, mmss, modRate)
 		if sec < MINUTE then
-			if sec > threshold then
+			if modRate then
+				return sec, 7, 0.5 / modRate
+			elseif sec > threshold then
 				return sec, 3, 0.5
 			else
 				return sec, 4, 0.1
@@ -445,8 +439,8 @@ function E:FormatMoney(amount, style, textonly)
 	local goldname = textonly and L["goldabbrev"] or ICON_GOLD
 
 	local value = abs(amount)
-	local gold = floor(value / 10000)
-	local silver = floor(mod(value / 100, 100))
+	local gold = floor(value * 0.0001)
+	local silver = floor(mod(value * 0.01, 100))
 	local copper = floor(mod(value, 100))
 
 	if not style or style == 'SMART' then
@@ -467,9 +461,9 @@ function E:FormatMoney(amount, style, textonly)
 		end
 	elseif style == 'SHORT' then
 		if gold > 0 then
-			return format('%.1f%s', amount / 10000, goldname)
+			return format('%.1f%s', amount * 0.0001, goldname)
 		elseif silver > 0 then
-			return format('%.1f%s', amount / 100, silvername)
+			return format('%.1f%s', amount * 0.01, silvername)
 		else
 			return format('%d%s', amount, coppername)
 		end

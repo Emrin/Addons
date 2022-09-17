@@ -1,9 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
-
-local _, ns = ...
-local ElvUF = ns.oUF
-assert(ElvUF, 'ElvUI was unable to locate oUF.')
+local ElvUF = E.oUF
 
 local _G = _G
 local unpack = unpack
@@ -103,6 +100,7 @@ end
 
 function UF:Update_ArenaFrames(frame, db)
 	frame.db = db
+	frame.colors = ElvUF.colors
 
 	do
 		frame.ORIENTATION = db.orientation --allow this value to change when unitframes position changes on screen?
@@ -115,9 +113,9 @@ function UF:Update_ArenaFrames(frame, db)
 		frame.USE_POWERBAR_OFFSET = (db.power.width == 'offset' and db.power.offset ~= 0) and frame.USE_POWERBAR and not frame.POWERBAR_DETACHED
 		frame.POWERBAR_OFFSET = frame.USE_POWERBAR_OFFSET and db.power.offset or 0
 		frame.POWERBAR_HEIGHT = not frame.USE_POWERBAR and 0 or db.power.height
-		frame.POWERBAR_WIDTH = frame.USE_MINI_POWERBAR and (frame.UNIT_WIDTH - (UF.BORDER*2))/2 or (frame.POWERBAR_DETACHED and db.power.detachedWidth or (frame.UNIT_WIDTH - ((UF.BORDER+UF.SPACING)*2)))
+		frame.POWERBAR_WIDTH = frame.USE_MINI_POWERBAR and (frame.UNIT_WIDTH - (UF.BORDER*2))*0.5 or (frame.POWERBAR_DETACHED and db.power.detachedWidth or (frame.UNIT_WIDTH - ((UF.BORDER+UF.SPACING)*2)))
 		frame.USE_PORTRAIT = db.portrait and db.portrait.enable
-		frame.USE_PORTRAIT_OVERLAY = frame.USE_PORTRAIT
+		frame.USE_PORTRAIT_OVERLAY = frame.USE_PORTRAIT and (db.portrait.overlay or frame.ORIENTATION == 'MIDDLE')
 		frame.PORTRAIT_WIDTH = (frame.USE_PORTRAIT_OVERLAY or not frame.USE_PORTRAIT) and 0 or db.portrait.width
 		frame.CLASSBAR_YOFFSET = 0
 		frame.USE_INFO_PANEL = not frame.USE_MINI_POWERBAR and not frame.USE_POWERBAR_OFFSET and db.infoPanel.enable
@@ -126,16 +124,6 @@ function UF:Update_ArenaFrames(frame, db)
 		frame.PVPINFO_WIDTH = (E.Retail and db.pvpSpecIcon and frame.UNIT_HEIGHT) or 0
 	end
 
-	if not E:IsAddOnEnabled('Clique') then
-		if db.middleClickFocus then
-			frame:SetAttribute('type3', 'focus')
-		elseif frame:GetAttribute('type3') == 'focus' then
-			frame:SetAttribute('type3', nil)
-		end
-	end
-
-	frame.colors = ElvUF.colors
-	frame:RegisterForClicks(self.db.targetOnMouseDown and 'AnyDown' or 'AnyUp')
 	frame:Size(frame.UNIT_WIDTH, frame.UNIT_HEIGHT)
 
 	UF:Configure_InfoPanel(frame)
@@ -189,6 +177,8 @@ function UF:Update_ArenaFrames(frame, db)
 		ArenaHeader:Width(frame.UNIT_WIDTH + ((frame.UNIT_WIDTH + db.spacing) * 4))
 		ArenaHeader:Height(frame.UNIT_HEIGHT)
 	end
+
+	UF:HandleRegisterClicks(frame)
 
 	frame:UpdateAllElements('ElvUI_UpdateAllElements')
 end

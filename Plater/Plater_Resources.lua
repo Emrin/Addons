@@ -182,6 +182,13 @@ local powerTypesFilter = {
     ["RUNES"] = true,
 }
 
+local eventsFilter = {
+	["UNIT_POWER_POINT_CHARGE"] = true,
+	["RUNE_POWER_UPDATE"] = true,
+    ["RUNE_TYPE_UPDATE"] = IS_WOW_PROJECT_NOT_MAINLINE,
+	["UPDATE_SHAPESHIFT_FORM"] = true,
+}
+
 local CONST_ENUMNAME_COMBOPOINT = "ComboPoints"
 local CONST_ENUMNAME_HOLYPOWER = "HolyPower"
 local CONST_ENUMNAME_RUNES = "Runes"
@@ -260,7 +267,7 @@ end
                 end
 
                 --amount of resources the player has now
-                local currentResources = UnitPower("player", Plater.Resources.playerResourceId)
+                local currentResources = PlayerClass == "DEATHKNIGHT" and 6 or UnitPower("player", Plater.Resources.playerResourceId)
 
                 --resources amount got updated?
                 if (currentResources) then
@@ -273,7 +280,7 @@ end
                 end
 
                 --update the resource bar
-                Plater.Resources.UpdateResourceBar(_, resourceBar)
+                Plater.Resources.UpdateResourceBar(nil, resourceBar)
             end
         else
             --player opt-out of using plater resources on this character
@@ -311,6 +318,27 @@ end
         end
 
         return resourceBar
+    end
+    
+    local function updateWotLKDKRuneTextures(resourceBar)
+        if IS_WOW_PROJECT_NOT_MAINLINE then
+            --wrath classic
+            local RUNETYPE_BLOOD = 1;
+            local RUNETYPE_FROST = 2;
+            local RUNETYPE_UNHOLY = 3;
+            local RUNETYPE_DEATH = 4;
+            local iconTextures = {};
+            iconTextures[RUNETYPE_BLOOD] = "Interface\\PlayerFrame\\UI-PlayerFrame-Deathknight-Blood";
+            iconTextures[RUNETYPE_FROST] = "Interface\\PlayerFrame\\UI-PlayerFrame-Deathknight-Frost";
+            iconTextures[RUNETYPE_UNHOLY] = "Interface\\PlayerFrame\\UI-PlayerFrame-Deathknight-Unholy";
+            iconTextures[RUNETYPE_DEATH] = "Interface\\PlayerFrame\\UI-PlayerFrame-Deathknight-Death";
+            for i =1, #resourceBar.widgets do
+                local runeType = GetRuneType(i);
+                resourceBar.widgets[i].texture:SetTexture(iconTextures[runeType])
+                resourceBar.widgets[i].cooldown:SetSwipeTexture("Interface\\PlayerFrame\\DK-"..Plater.Resources.GetRuneKeyBySpec(specIndex).."-Rune-CDFill")
+                resourceBar.widgets[i].cooldown:SetEdgeTexture("Interface\\PlayerFrame\\DK-"..Plater.Resources.GetCDEdgeBySpec(specIndex).."-Rune-CDSpark")
+            end
+        end
     end
 
 --> functions for class and specs resources
@@ -385,9 +413,9 @@ end
 
     resourceBarCreateFuncByEnumName[CONST_ENUMNAME_RUNES] = function(mainResourceFrame)
         local resourceWidgetCreationFunc = Plater.Resources.GetCreateResourceWidgetFunctionForSpecId(CONST_SPECID_DK_FROST)
-        local newResourceBar = createResourceBar(mainResourceFrame, "$parentDeathKnightResource", resourceWidgetCreationFunc)
-		mainResourceFrame.widgetWidth = 16
-		mainResourceFrame.widgetHeight = 16
+        mainResourceFrame.widgetWidth = IS_WOW_PROJECT_MAINLINE and 16 or 18--24
+		mainResourceFrame.widgetHeight = IS_WOW_PROJECT_MAINLINE and 16 or 18--24
+        local newResourceBar = createResourceBar(mainResourceFrame, "$parentDeathKnightResource", resourceWidgetCreationFunc, mainResourceFrame.widgetWidth, mainResourceFrame.widgetHeight)
         mainResourceFrame.resourceBars[CONST_SPECID_DK_UNHOLY] = newResourceBar
         mainResourceFrame.resourceBars[CONST_SPECID_DK_FROST] = newResourceBar
         mainResourceFrame.resourceBars[CONST_SPECID_DK_BLOOD] = newResourceBar
@@ -399,7 +427,12 @@ end
 			tinsert(newResourceBar.runeIndexes, i); 
 		end
 		
-        newResourceBar.updateResourceFunc = resourceWidgetsFunctions.OnRunesChanged
+        if IS_WOW_PROJECT_MAINLINE then
+            newResourceBar.updateResourceFunc = resourceWidgetsFunctions.OnRunesChanged
+        else
+            newResourceBar.updateResourceFunc = resourceWidgetsFunctions.OnRunesChangedWotLK
+            updateWotLKDKRuneTextures(newResourceBar)
+        end
         tinsert(mainResourceFrame.allResourceBars, newResourceBar)
         mainResourceFrame.resourceBarsByEnumName[CONST_ENUMNAME_RUNES] = newResourceBar
         return newResourceBar
@@ -442,7 +475,7 @@ end
                     local updateResourceFunc = currentResourceBar.updateResourceFunc
                     if (updateResourceFunc) then
                         --check if the power type passes the filter
-                        if (powerTypesFilter[powerType] or event == "RUNE_POWER_UPDATE") then
+                        if (powerTypesFilter[powerType] or eventsFilter[event]) then
                             lastComboPointGainedTime = GetTime()
                             Plater.StartLogPerformanceCore("Plater-Resources", "Events", event)
                             updateResourceFunc(self, currentResourceBar, false, event, unit, powerType)
@@ -474,6 +507,14 @@ end
         if (IS_WOW_PROJECT_NOT_MAINLINE) then --classic
             if (playerClass == "ROGUE") then
                 local classResourceFunc = resourceBarCreateFuncByEnumName[CONST_ENUMNAME_COMBOPOINT]
+                if (classResourceFunc) then
+                    local resourceBar = classResourceFunc(mainResourceFrame)
+					mainResourceFrame.currentResourceBarShown = resourceBar
+					Plater.Resources.UpdateResourceBar(nil, resourceBar)
+                    return resourceBar
+                end
+            elseif (playerClass == "DEATHKNIGHT") then
+                local classResourceFunc = resourceBarCreateFuncByEnumName[CONST_ENUMNAME_RUNES]
                 if (classResourceFunc) then
                     local resourceBar = classResourceFunc(mainResourceFrame)
 					mainResourceFrame.currentResourceBarShown = resourceBar
@@ -597,12 +638,17 @@ end
 		-- update DK rune visuals:
 		if PlayerClass == "DEATHKNIGHT" then
 			local resourceBar =  Plater.Resources.GetResourceBarInUse()
-			local specIndex = GetSpecialization()
-			for i =1, #resourceBar.widgets do
-				resourceBar.widgets[i].texture:SetAtlas("DK-"..Plater.Resources.GetRuneKeyBySpec(specIndex).."-Rune-Ready")
-				resourceBar.widgets[i].cooldown:SetSwipeTexture("Interface\\PlayerFrame\\DK-"..Plater.Resources.GetRuneKeyBySpec(specIndex).."-Rune-CDFill")
-				resourceBar.widgets[i].cooldown:SetEdgeTexture("Interface\\PlayerFrame\\DK-"..Plater.Resources.GetCDEdgeBySpec(specIndex).."-Rune-CDSpark")
-			end
+            if not resourceBar then return end
+            if IS_WOW_PROJECT_MAINLINE then
+                local specIndex = GetSpecialization()
+                for i =1, #resourceBar.widgets do
+                    resourceBar.widgets[i].texture:SetAtlas("DK-"..Plater.Resources.GetRuneKeyBySpec(specIndex).."-Rune-Ready")
+                    resourceBar.widgets[i].cooldown:SetSwipeTexture("Interface\\PlayerFrame\\DK-"..Plater.Resources.GetRuneKeyBySpec(specIndex).."-Rune-CDFill")
+                    resourceBar.widgets[i].cooldown:SetEdgeTexture("Interface\\PlayerFrame\\DK-"..Plater.Resources.GetCDEdgeBySpec(specIndex).."-Rune-CDSpark")
+                end
+            else
+                updateWotLKDKRuneTextures(resourceBar)
+            end
 		end
 		
 		
@@ -634,7 +680,7 @@ end
 
         local playerClass = PlayerClass
         if (IS_WOW_PROJECT_NOT_MAINLINE) then
-            if (playerClass == "ROGUE") then
+            if (playerClass == "ROGUE" or playerClass == "DEATHKNIGHT") then
                 Plater.EndLogPerformanceCore("Plater-Resources", "Update", "CanUsePlaterResourceFrame")
                 return true
             end
@@ -709,7 +755,9 @@ end
         Plater.Resources.EnableEvents()
 
         if (IS_WOW_PROJECT_NOT_MAINLINE) then
-            Plater.Resources.UpdateResourceBar(plateFrame, mainResourceFrame.resourceBarsByEnumName[CONST_ENUMNAME_COMBOPOINT])
+            --Plater.Resources.UpdateResourceBar(plateFrame, mainResourceFrame.resourceBarsByEnumName[CONST_ENUMNAME_COMBOPOINT])
+            local resourceBar =  Plater.Resources.GetResourceBarInUse()
+            Plater.Resources.UpdateResourceBar(plateFrame, resourceBar)
         else
             local resourceBar =  Plater.Resources.GetResourceBarInUse()
             Plater.Resources.UpdateResourceBar(plateFrame, resourceBar)
@@ -763,11 +811,41 @@ end
 
         if (DB_PLATER_RESOURCE_SHOW_DEPLETED) then
             Plater.Resources.UpdateResourcesFor_ShowDepleted(mainResourceFrame, resourceBar)
+        else
+            Plater.Resources.UpdateResourcesFor_HideDepleted(mainResourceFrame, resourceBar)
         end
 
         Plater.EndLogPerformanceCore("Plater-Resources", "Update", "UpdateResourceBar")
     end
 
+--update the resources widgets when hiding the resources background for depleted
+--on this type, the location of each resource icon is depending on the amount shown
+    function Plater.Resources.UpdateResourcesFor_HideDepleted(mainResourceFrame, resourceBar)
+        Plater.StartLogPerformanceCore("Plater-Resources", "Update", "UpdateResourcesFor_HideDepleted")
+        
+        --get the table with the widgets created
+        local widgetTable = resourceBar.widgets
+		--fallback if it is not implemented/created
+		if (not widgetTable[1]) then
+            return
+        end
+        
+        --store the amount of widgets currently in use - as we are hiding before update: 0
+        resourceBar.widgetsInUseAmount = 0
+        --set the amount of resources the player has - 0 before update
+        resourceBar.lastResourceAmount = 0
+        
+        for i = 1, CONST_NUM_RESOURCES_WIDGETS do
+            local thisResourceWidget = widgetTable[i]
+            thisResourceWidget.inUse = false
+            thisResourceWidget:Hide()
+            resourceBar.widgetsBackground[i]:Hide()
+        end
+        
+        mainResourceFrame.currentResourceBarShown.updateResourceFunc(mainResourceFrame, mainResourceFrame.currentResourceBarShown, true)
+        
+        Plater.EndLogPerformanceCore("Plater-Resources", "Update", "UpdateResourcesFor_HideDepleted")
+    end
 
 --update the resources widgets when using the resources showing the background of depleted
 --on this type, the location of each resource icon is precomputed
@@ -782,7 +860,7 @@ end
         end
 
         --warning: calling UnitPowerMax with a nil resource id is returning a default resource amount, example in shadow priest which returns max insanity amount
-        local totalWidgetsShown = UnitPowerMax("player", Plater.Resources.playerResourceId)
+        local totalWidgetsShown = PlayerClass == "DEATHKNIGHT" and 6 or UnitPowerMax("player", Plater.Resources.playerResourceId)
 
         --store the amount of widgets currently in use
         resourceBar.widgetsInUseAmount = totalWidgetsShown
@@ -831,6 +909,7 @@ end
                 else
                     thisResourceWidget:SetPoint("left", lastResourceWidget, "right", DB_PLATER_RESOURCE_PADDING, 0)
                 end
+                thisResourceWidget:Hide() -- ensure 'reset'. will be shown through update later, if needed.
 
                 local widgetBackground = resourceBar.widgetsBackground[i]
                 widgetBackground:SetSize(widgetWidth, widgetHeight)
@@ -889,6 +968,7 @@ end
         local widgetHeight = mainResourceFrame.widgetHeight or CONST_WIDGET_HEIGHT
         --sum of the width of all resources shown
         local totalWidth = 0
+		local now = GetTime()
 
         for i = 1, currentResources do
             local thisResourceWidget = widgetTable[i]
@@ -900,7 +980,7 @@ end
                 thisResouceBackground:Show()
 
                 thisResourceWidget.inUse = true
-                if (lastComboPointGainedTime == GetTime()) then
+                if (lastComboPointGainedTime == now) then
                     thisResourceWidget.ShowAnimation:Play()
                 end
                 thisResourceWidget:SetSize (widgetWidth, widgetHeight)
@@ -934,6 +1014,8 @@ end
         resourceBar:SetWidth(totalWidth)
         resourceBar:SetPoint(DB_PLATER_RESOURCE_GROW_DIRECTON, mainResourceFrame, DB_PLATER_RESOURCE_GROW_DIRECTON, 0, 0)
 
+        --store current resources
+        resourceBar.widgetsInUseAmount = currentResources
         --save the amount of resources
         resourceBar.lastResourceAmount = currentResources
 
@@ -949,6 +1031,7 @@ end
         --calculate how many widgets need to be shown or need to be hide
         if (currentResources < resourceBar.lastResourceAmount) then --hide widgets
             for i = floor(resourceBar.lastResourceAmount), currentResources+1, -1 do
+                resourceBar.widgets[i].ShowAnimation:Stop()
                 resourceBar.widgets[i]:Hide()
             end
 
@@ -1015,12 +1098,14 @@ end
                 local widget = resourceBar.widgets[i]
                 local isCharged = chargedPowerPoints and tContains(chargedPowerPoints, i)
                 if (widget.isCharged ~= isCharged) then
+                    widget.isCharged = isCharged
                     if (isCharged) then
-                        widget.texture:SetAtlas("ClassOverlay-ComboPoint-Kyrian")
-                        widget.background:SetAtlas("ClassOverlay-ComboPoint-Off-Kyrian")
+                        widget.texture:SetAtlas("ComboPoints-ComboPoint-Kyrian")
+                        widget.background:SetAtlas("ComboPoints-PointBg-Kyrian")
+                        widget.ShowAnimation:Play()
                     else
-                        widget.texture:SetAtlas("ClassOverlay-ComboPoint")
-                        widget.background:SetAtlas("ClassOverlay-ComboPoint-Off")
+                        widget.texture:SetAtlas("ComboPoints-ComboPoint")
+                        widget.background:SetAtlas("ComboPoints-PointBg")
                     end
                 end
             end
@@ -1033,7 +1118,12 @@ end
         end
 
         --amount of resources the player has now
-        local currentResources = GetComboPoints("player", "target") --UnitPower("player", Plater.Resources.playerResourceId)
+        local currentResources
+		if Plater.PlayerHasTargetNonSelf then
+			currentResources = GetComboPoints("player", "target")
+		else
+			currentResources = UnitPower("player", Plater.Resources.playerResourceId)
+		end
 
         --resources amount got updated?
         if (currentResources == resourceBar.lastResourceAmount and not forcedRefresh) then
@@ -1080,6 +1170,9 @@ end
 				if start then
 					cooldown:SetCooldown(start, duration)
 				end
+				if not DB_PLATER_RESOURCE_SHOW_DEPLETED then
+					cooldown:SetAlpha(0)
+				end
 				runeButton.texture:SetAlpha(0)
 				--runeButton.energize:Stop()
 			else
@@ -1099,19 +1192,53 @@ end
 					runeButton.texture:SetAlpha(1)
 				end
 
+				cooldown:SetAlpha(1)
 				cooldown:Hide()
 			end
 		end
+    end
+    function resourceWidgetsFunctions.OnRunesChangedWotLK(mainResourceFrame, resourceBar, forcedRefresh, event)
+		resourceBar.runesOnCooldown = resourceBar.runesOnCooldown or {}
 		
-		
+        if (event and event == "RUNE_TYPE_UPDATE") then
+            updateWotLKDKRuneTextures(resourceBar)
+            return
+        end
+        
+		for index = 1, 6 do
+			local runeButton = resourceBar.widgets[index]
+            --runeButton.background:Hide()
+			runeButton:Show()
+			local cooldown = runeButton.cooldown
 
-        --which update method to use
-		-- can't use core updat here...
-        --[[if (DB_PLATER_RESOURCE_SHOW_DEPLETED) then
-            Plater.Resources.UpdateResources_WithDepleted(resourceBar, currentResources)
-        else
-            Plater.Resources.UpdateResources_NoDepleted(resourceBar, currentResources)
-        end]]--
+			local start, duration, runeReady = GetRuneCooldown(index)
+
+			if not runeReady then
+				resourceBar.runesOnCooldown[index] = true
+				if start then
+					CooldownFrame_Set(cooldown, start, duration, 1, true);
+                    --cooldown:SetCooldown(start, duration)
+				end
+				if not DB_PLATER_RESOURCE_SHOW_DEPLETED then
+					cooldown:SetAlpha(0)
+				end
+			else
+				if (resourceBar.runesOnCooldown[index]) then
+					local _, _, runeReadyNow = GetRuneCooldown(index)
+					if (runeReadyNow) then
+						resourceBar.runesOnCooldown[index] = nil
+						
+						runeButton.ShowAnimation:Play()
+						runeButton.texture:SetAlpha(1)
+					end
+				else
+					runeButton.texture:SetAlpha(1)
+				end
+
+				cooldown:SetAlpha(1)
+				cooldown:Hide()
+			end
+		end
     end
     
     --WL soul chards

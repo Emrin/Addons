@@ -1,4 +1,4 @@
-local E, _, V, P, G = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
+local E, _, V, P, G = unpack(ElvUI)
 local C, L = unpack(E.OptionsUI)
 local WM = E:GetModule('WorldMap')
 local MM = E:GetModule('Minimap')
@@ -47,7 +47,7 @@ Maps.args.worldMap.args.coordinatesGroup.args.xOffset = ACH:Range(L["X-Offset"],
 Maps.args.worldMap.args.coordinatesGroup.args.yOffset = ACH:Range(L["Y-Offset"], nil, 5, { min = -200, max = 200, step = 1 }, nil, nil, nil, function() return not E.global.general.WorldMapCoordinates.enable end)
 
 Maps.args.minimap = ACH:Group(L["Minimap"], nil, 2, 'tab', function(info) return E.db.general.minimap[info[#info]] end, function(info, value) E.db.general.minimap[info[#info]] = value; MM:UpdateSettings() end)
-Maps.args.minimap.args.enable = ACH:Toggle(L["Enable"], L["Enable/Disable the minimap. |cffFF0000Warning: This will prevent you from seeing the minimap datatexts.|r"], 1, nil, nil, nil, function(info) return E.private.general.minimap[info[#info]] end, function(info, value) E.private.general.minimap[info[#info]] = value; E.ShowPopup = true end)
+Maps.args.minimap.args.enable = ACH:Toggle(L["Enable"], L["Enable/Disable the minimap. |cffFF3333Warning: This will prevent you from seeing the minimap datatexts.|r"], 1, nil, nil, nil, function(info) return E.private.general.minimap[info[#info]] end, function(info, value) E.private.general.minimap[info[#info]] = value; E.ShowPopup = true end)
 Maps.args.minimap.args.size = ACH:Range(L["Size"], L["Adjust the size of the minimap."], 2, { min = 24, max = 500, step = 1 }, nil, nil, nil, function() return not E.private.general.minimap.enable end)
 Maps.args.minimap.args.scale = ACH:Range(L["Scale"], L["Adjust the scale of the minimap and also the pins. Eg: Quests, Resource nodes, Group members"], 3, { min = .5, max = 2, step = .01, isPercent = true }, nil, nil, nil, function() return not E.private.general.minimap.enable end)
 
@@ -60,7 +60,7 @@ Maps.args.minimap.args.locationTextGroup.inline = true
 
 Maps.args.minimap.args.zoomResetGroup = ACH:Group(L["Reset Zoom"], nil, 10, nil, function(info) return E.db.general.minimap.resetZoom[info[#info]] end, function(info, value) E.db.general.minimap.resetZoom[info[#info]] = value; MM:UpdateSettings() end, function() return not E.private.general.minimap.enable end)
 Maps.args.minimap.args.zoomResetGroup.args.enable = ACH:Toggle(L["Reset Zoom"], nil, 1)
-Maps.args.minimap.args.zoomResetGroup.args.time =  ACH:Range(L["Seconds"], nil, 2, { min = 1, max = 15, step = 1 })
+Maps.args.minimap.args.zoomResetGroup.args.time = ACH:Range(L["Seconds"], nil, 2, { min = 1, max = 15, step = 1 })
 Maps.args.minimap.args.zoomResetGroup.inline = true
 
 Maps.args.minimap.args.icons = ACH:Group(L["Minimap Buttons"], nil, 15, nil, function(info) return E.db.general.minimap.icons[info[#info - 1]][info[#info]] end, function(info, value) E.db.general.minimap.icons[info[#info - 1]][info[#info]] = value; MM:UpdateSettings() end, function() return not E.private.general.minimap.enable end)
@@ -126,7 +126,7 @@ Maps.args.minimap.args.icons.args.queueStatus.args.font = ACH:SharedMediaFont(L[
 Maps.args.minimap.args.icons.args.queueStatus.args.fontSize = ACH:Range(L["Font Size"], nil, 7, textFontSize, nil, nil, nil, function() return not E.db.general.minimap.icons.queueStatus.enable end)
 Maps.args.minimap.args.icons.args.queueStatus.args.fontOutline = ACH:Select(L["Font Outline"], nil, 8, C.Values.FontFlags, nil, nil, nil, nil, function() return not E.db.general.minimap.icons.queueStatus.enable end)
 
-Maps.args.minimap.args.icons.args.difficulty = ACH:Group(L["Instance Difficulty"], nil, 7, nil, nil, nil, nil, not E.Retail)
+Maps.args.minimap.args.icons.args.difficulty = ACH:Group(L["Instance Difficulty"], nil, 7, nil, nil, nil, nil, E.Classic or E.TBC)
 Maps.args.minimap.args.icons.args.difficulty.args.position = ACH:Select(L["Position"], nil, 1, buttonPositions)
 Maps.args.minimap.args.icons.args.difficulty.args.scale = ACH:Range(L["Scale"], nil, 2, buttonScale)
 Maps.args.minimap.args.icons.args.difficulty.args.xOffset = ACH:Range(L["X-Offset"], nil, 3, buttonOffsets)

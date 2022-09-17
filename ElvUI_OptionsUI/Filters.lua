@@ -1,4 +1,4 @@
-local E, _, V, P, G = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
+local E, _, V, P, G = unpack(ElvUI)
 local C, L = unpack(E.OptionsUI)
 local UF = E:GetModule('UnitFrames')
 local ACH = E.Libs.ACH
@@ -19,7 +19,7 @@ local GetSpellSubtext = GetSpellSubtext
 -- GLOBALS: MAX_PLAYER_LEVEL
 
 local quickSearchText, selectedSpell, selectedFilter, filterList, spellList = '', nil, nil, {}, {}
-local defaultFilterList = {	['Aura Indicator (Global)'] = 'Aura Indicator (Global)', ['Aura Indicator (Class)'] = 'Aura Indicator (Class)', ['Aura Indicator (Pet)'] = 'Aura Indicator (Pet)',  ['Aura Indicator (Profile)'] = 'Aura Indicator (Profile)', ['AuraBar Colors'] = 'AuraBar Colors', ['Aura Highlight'] = 'Aura Highlight' }
+local defaultFilterList = { ['Aura Indicator (Global)'] = 'Aura Indicator (Global)', ['Aura Indicator (Class)'] = 'Aura Indicator (Class)', ['Aura Indicator (Pet)'] = 'Aura Indicator (Pet)', ['Aura Indicator (Profile)'] = 'Aura Indicator (Profile)', ['AuraBar Colors'] = 'AuraBar Colors', ['Aura Highlight'] = 'Aura Highlight' }
 local auraBarDefaults = { enable = true, color = { r = 1, g = 1, b = 1 } }
 
 local function GetSelectedFilters()
@@ -212,7 +212,7 @@ local function FilterSettings(info, ...)
 		else
 			return E.global.unitframe[settingTable][spell][info[#info]]
 		end
-	else
+	elseif selectedFilter then
 		if value ~= nil then
 			E.global.unitframe.aurafilters[selectedFilter].spells[spell].enable = value
 		else
@@ -227,8 +227,12 @@ local function AddOrRemoveSpellID(info, value)
 	value = tonumber(value)
 	if not value then return end
 
-	local spellName = GetSpellInfo(value)
-	selectedSpell = (spellName and value)
+	if info[#info] == 'removeSpell' then
+		selectedSpell = nil
+	else
+		local spellName = GetSpellInfo(value)
+		selectedSpell = (spellName and value)
+	end
 
 	if selectedFilter == 'Aura Highlight' then
 		if info.type == 'select' then
@@ -357,7 +361,7 @@ Filters.mainOptions.args.resetGroup = ACH:Select(L["Reset Filter"], L["This will
 
 Filters.mainOptions.args.filterGroup = ACH:Group(function() return selectedFilter end, nil, 10, nil, nil, nil, nil, function() return not selectedFilter end)
 Filters.mainOptions.args.filterGroup.inline = true
-Filters.mainOptions.args.filterGroup.args.selectSpellheader = ACH:Description(L["|cffFF0000Warning:|r Click the arrow on the dropdown box to see a list of spells."], 0, 'medium')
+Filters.mainOptions.args.filterGroup.args.selectSpellheader = ACH:Description(L["|cffFF3333Warning:|r Click the arrow on the dropdown box to see a list of spells."], 0, 'medium')
 Filters.mainOptions.args.filterGroup.args.selectSpell = ACH:Select(L["Select Spell"], nil, 1, SetSpellList, nil, 350, function(_) return selectedSpell or '' end, function(_, value) selectedSpell = (value ~= '' and value) end)
 Filters.mainOptions.args.filterGroup.args.selectSpell.sortByValue = true
 
@@ -393,7 +397,7 @@ Filters.mainOptions.args.spellGroup.args.forDebuffIndicator.args.priority = ACH:
 Filters.mainOptions.args.spellGroup.args.forDebuffIndicator.args.stackThreshold = ACH:Range(L["Stack Threshold"], L["The debuff needs to reach this amount of stacks before it is shown. Set to 0 to always show the debuff."], 2, { min = 0, max = 99, step = 1 })
 Filters.mainOptions.args.spellGroup.args.ownOnly = ACH:Toggle(L["Casted by Player Only"], L["Only highlight the aura that originated from you and not others."], 5, nil, nil, nil, nil, nil, nil, function() return selectedFilter ~= 'Aura Highlight' end)
 
-Filters.help = ACH:Group('Help', nil, 2)
+Filters.help = ACH:Group(L["Help"], nil, 2)
 
 local COLOR = E:ClassColor(E.myclass, true)
 local COLOR1 = format('|c%s', COLOR.colorStr)

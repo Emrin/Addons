@@ -22,7 +22,7 @@ P.general = {
 	topPanel = false,
 	customGlow = {
 		style = 'Pixel Glow',
-		color = { r = 23/255, g = 132/255, b = 209/255, a = 0.9 },
+		color = { r = 0.09, g = 0.52, b = 0.82, a = 0.9 },
 		useColor = false,
 		speed = 0.3,
 		lines = 8,
@@ -85,7 +85,7 @@ P.general = {
 	bordercolor = { r = 0, g = 0, b = 0 }, -- updated in E.Initialize
 	backdropcolor = { r = 0.1, g = 0.1, b = 0.1 },
 	backdropfadecolor = { r = .06, g = .06, b = .06, a = 0.8 },
-	valuecolor = { r = 23/255, g = 132/255, b = 209/255 },
+	valuecolor = { r = 0.09, g = 0.52, b = 0.82 },
 	cropIcon = 2,
 	minimap = {
 		size = 175,
@@ -179,11 +179,20 @@ P.general = {
 	},
 	objectiveTracker = true,
 	totems = {
-		enable = true,
+		alpha = 1,
+		buttonSize = 32,
+		flyoutDirection = 'UP',
+		flyoutSize = 28,
+		flyoutSpacing = 2,
+		font = 'PT Sans Narrow',
+		fontOutline = 'OUTLINE',
+		fontSize = 12,
 		growthDirection = 'VERTICAL',
-		sortDirection = 'ASCENDING',
+		mouseover = false,
 		size = 40,
+		sortDirection = 'ASCENDING',
 		spacing = 4,
+		visibility = '[vehicleui] hide;show'
 	},
 	kittys = false
 }
@@ -205,12 +214,12 @@ P.databars = {
 			{ r = .8, g = .3, b = .22 }, -- 1
 			{ r = .8, g = .3, b = .22 }, -- 2
 			{ r = .75, g = .27, b = 0 }, -- 3
-			{ r = .9, g = .7, b = 0 },   -- 4
-			{ r = 0, g = .6, b = .1 },   -- 5
-			{ r = 0, g = .6, b = .1 },   -- 6
-			{ r = 0, g = .6, b = .1 },   -- 7
-			{ r = 0, g = .6, b = .1 },   -- 8
-			{ r = 0, g = .6, b = .1 },   -- 9
+			{ r = .9, g = .7, b = 0 },	 -- 4
+			{ r = 0, g = .6, b = .1 },	 -- 5
+			{ r = 0, g = .6, b = .1 },	 -- 6
+			{ r = 0, g = .6, b = .1 },	 -- 7
+			{ r = 0, g = .6, b = .1 },	 -- 8
+			{ r = 0, g = .6, b = .1 },	 -- 9
 		}
 	}
 }
@@ -386,6 +395,9 @@ P.bags = {
 		showCount = true,
 		justBackpack = false,
 		visibility = E.Retail and '[petbattle] hide; show' or 'show',
+		font = 'PT Sans Narrow',
+		fontOutline = 'OUTLINE',
+		fontSize = 12,
 	},
 }
 
@@ -651,12 +663,17 @@ P.nameplates = {
 	colors = {
 		auraByType = true,
 		auraByDispels = true,
+		preferGlowColor = true,
 		glowColor = {r = 1, g = 1, b = 1, a = 1},
+		lowHealthColor = {r = 1, g = 1, b = 0.3, a = 1},
+		lowHealthHalf = {r = 1, g = 0.3, b = 0.3, a = 1},
 		castColor = {r = 1, g = 0.81, b = 0},
 		tapped = {r = 0.6, g = 0.6, b = 0.6},
 		castNoInterruptColor = {r = 0.78, g = 0.25, b = 0.25},
 		castInterruptedColor = {r = 0.30, g = 0.30, b = 0.30},
 		castbarDesaturate = true,
+		chargingRunes = true,
+		runeBySpec = true,
 		reactions = {
 			good = {r = .29, g = .68, b = .30},
 			neutral = {r = .85, g = .77, b = .36},
@@ -671,61 +688,68 @@ P.nameplates = {
 			--overhealabsorbs = {r = 1, g = 0, b = 0, a = 0.25},
 		},
 		threat = {
-			goodColor = {r = 050/255, g = 180/255, b = 000/255},
-			badColor = {r = 254/255, g = 045/255, b = 045/255},
-			goodTransition = {r = 255/255, g = 217/255, b = 050/255},
-			badTransition ={r = 255/255, g = 129/255, b = 050/255},
-			offTankColor = {r = 187/255, g = 050/255, b = 255/255},
+			goodColor = {r = 0.20, g = 0.71, b = 0.00},
+			badColor = {r = 1.00, g = 0.18, b = 0.18},
+			goodTransition = {r = 1.00, g = 0.85, b = 0.20},
+			badTransition ={r = 1.00, g = 0.51, b = 0.20},
+			offTankColor = {r = 0.73, g = 0.20, b = 1.00},
 			offTankColorGoodTransition = {r = .31, g = .45, b = .63},
 			offTankColorBadTransition = {r = 0.71, g = 0.43, b = 0.27},
 		},
 		power = {
-			ENERGY = {r = 0.65, g = 0.63, b = 0.35},
-			FOCUS = {r = 0.71, g = 0.43, b = 0.27},
-			FURY = {r = 227/255, g = 126/255, b = 39/255, atlas = '_DemonHunter-DemonicFuryBar'},
-			INSANITY = {r = 0.55, g = 0.14, b = 0.69, atlas = '_Priest-InsanityBar'},
-			LUNAR_POWER = {r = .9, g = .86, b = .12, atlas = '_Druid-LunarBar'},
+			ENERGY = {r = 1, g = 0.96, b = 0.41},
+			FOCUS = {r = 1, g = 0.50, b = 0.25},
+			FURY = {r = 0.788, g = 0.259, b = 0.992, atlas = '_DemonHunter-DemonicFuryBar'},
+			INSANITY = {r = 0.4, g = 0, b = 0.8, atlas = '_Priest-InsanityBar'},
+			LUNAR_POWER = {r = 0.3, g = 0.52, b = 0.9, atlas = '_Druid-LunarBar'},
 			MAELSTROM = {r = 0, g = 0.5, b = 1, atlas = '_Shaman-MaelstromBar'},
 			MANA = {r = 0.31, g = 0.45, b = 0.63},
-			PAIN = {r = 225/255, g = 225/255, b = 225/255, atlas = '_DemonHunter-DemonicPainBar'},
+			PAIN = {r = 1, g = 0.61, b = 0, atlas = '_DemonHunter-DemonicPainBar'},
 			RAGE = {r = 0.78, g = 0.25, b = 0.25},
 			RUNIC_POWER = {r = 0, g = 0.82, b = 1},
 			ALT_POWER = {r = 0.2, g = 0.4, b = 0.8},
 		},
 		selection = {
-			[ 0] = {r = 254/255, g = 045/255, b = 045/255}, -- HOSTILE
-			[ 1] = {r = 255/255, g = 129/255, b = 050/255}, -- UNFRIENDLY
-			[ 2] = {r = 255/255, g = 217/255, b = 050/255}, -- NEUTRAL
-			[ 3] = {r = 050/255, g = 180/255, b = 000/255}, -- FRIENDLY
-			[ 5] = {r = 102/255, g = 136/255, b = 255/255}, -- PLAYER_EXTENDED
-			[ 6] = {r = 102/255, g = 050/255, b = 255/255}, -- PARTY
-			[ 7] = {r = 187/255, g = 050/255, b = 255/255}, -- PARTY_PVP
-			[ 8] = {r = 050/255, g = 255/255, b = 108/255}, -- FRIEND
-			[ 9] = {r = 153/255, g = 153/255, b = 153/255}, -- DEAD
-			[13] = {r = 025/255, g = 147/255, b = 072/255}, -- BATTLEGROUND_FRIENDLY_PVP
+			[ 0] = {r = 1.00, g = 0.18, b = 0.18}, -- HOSTILE
+			[ 1] = {r = 1.00, g = 0.51, b = 0.20}, -- UNFRIENDLY
+			[ 2] = {r = 1.00, g = 0.85, b = 0.20}, -- NEUTRAL
+			[ 3] = {r = 0.20, g = 0.71, b = 0.00}, -- FRIENDLY
+			[ 5] = {r = 0.40, g = 0.53, b = 1.00}, -- PLAYER_EXTENDED
+			[ 6] = {r = 0.40, g = 0.20, b = 1.00}, -- PARTY
+			[ 7] = {r = 0.73, g = 0.20, b = 1.00}, -- PARTY_PVP
+			[ 8] = {r = 0.20, g = 1.00, b = 0.42}, -- FRIEND
+			[ 9] = {r = 0.60, g = 0.60, b = 0.60}, -- DEAD
+			[13] = {r = 0.10, g = 0.58, b = 0.28}, -- BATTLEGROUND_FRIENDLY_PVP
 		},
 		classResources = {
-			chargedComboPoint = { r = 0.1647, g = 0.6353, b = 1.0 },
+			chargedComboPoint = { r = 0.16, g = 0.64, b = 1.0 },
 			comboPoints = {
-				[1] = {r = .69, g = .31, b = .31},
-				[2] = {r = .65, g = .42, b = .31},
-				[3] = {r = .65, g = .63, b = .35},
-				[4] = {r = .46, g = .63, b = .35},
-				[5] = {r = .33, g = .63, b = .33},
-				[6] = {r = .33, g = .63, b = .33},
+				{r = .69, g = .31, b = .31},
+				{r = .65, g = .42, b = .31},
+				{r = .65, g = .63, b = .35},
+				{r = .46, g = .63, b = .35},
+				{r = .33, g = .63, b = .33},
+				{r = .33, g = .63, b = .33},
 			},
-			DEATHKNIGHT = { r = .31, g = .45, b = .63},
-			PALADIN = { r = 228/255, g = 225/255, b = 16/255},
-			MAGE = { r = 0, g = 157/255, b = 1},
+			DEATHKNIGHT = {
+				[-1] = {r = 0.5, g = 0.5, b = 0.5},
+				[0] = {r = 0.8, g = 0.1, b = 0.28},
+				{r = 1, g = 0.25, b = 0.25},
+				{r = 0.25, g = 1, b = 1},
+				{r = 0.25, g = 1, b = 0.25},
+				{r = 0.8, g = 0.4, b = 1}
+			},
+			PALADIN = { r = 0.89, g = 0.88, b = 0.06},
+			MAGE = { r = 0, g = 0.62, b = 1},
 			MONK = {
-				[1] = {r = .57, g = .63, b = .35},
-				[2] = {r = .47, g = .63, b = .35},
-				[3] = {r = .37, g = .63, b = .35},
-				[4] = {r = .27, g = .63, b = .33},
-				[5] = {r = .17, g = .63, b = .33},
-				[6] = {r = 12/255, g = 145/255, b = 58/255}
+				{r = .57, g = .63, b = .35},
+				{r = .47, g = .63, b = .35},
+				{r = .37, g = .63, b = .35},
+				{r = .27, g = .63, b = .33},
+				{r = .17, g = .63, b = .33},
+				{r = 0.05, g = 0.57, b = 0.23}
 			},
-			WARLOCK = {r = 148/255, g = 130/255, b = 201/255}
+			WARLOCK = {r = 0.58, g = 0.51, b = 0.79}
 		},
 	},
 	visibility = {
@@ -1016,7 +1040,6 @@ P.chat = {
 	showHistory = {
 		WHISPER = true,
 		GUILD = true,
-		OFFICER = true,
 		PARTY = true,
 		RAID = true,
 		INSTANCE = true,
@@ -1032,6 +1055,7 @@ P.chat = {
 	tabSelectedTextColor = { r = 1, g = 1, b = 1 },
 	tabSelectorColor = { r = .3, g = 1, b = .3 },
 	timeStampFormat = 'NONE',
+	timeStampLocalTime = false,
 	keywords = 'ElvUI',
 	separateSizes = false,
 	panelWidth = 412,
@@ -1138,8 +1162,10 @@ P.tooltip = {
 	gender = false,
 	font = 'PT Sans Narrow',
 	fontOutline = 'NONE',
-	headerFontSize = 12,
-	textFontSize = 12,
+	textFontSize = 12, -- is fontSize (has old name)
+	headerFont = 'PT Sans Narrow',
+	headerFontOutline = 'NONE',
+	headerFontSize = 13,
 	smallTextFontSize = 12,
 	colorAlpha = 0.8,
 	visibility = {
@@ -1158,14 +1184,14 @@ P.tooltip = {
 	},
 	useCustomFactionColors = false,
 	factionColors = {
-		[1] = {r = 0.8, g = 0.3, b = 0.22},
-		[2] = {r = 0.8, g = 0.3, b = 0.22},
-		[3] = {r = 0.75, g = 0.27, b = 0},
-		[4] = {r = 0.9, g = 0.7, b = 0},
-		[5] = {r = 0, g = 0.6, b = 0.1},
-		[6] = {r = 0, g = 0.6, b = 0.1},
-		[7] = {r = 0, g = 0.6, b = 0.1},
-		[8] = {r = 0, g = 0.6, b = 0.1},
+		{r = 0.8, g = 0.3, b = 0.22},
+		{r = 0.8, g = 0.3, b = 0.22},
+		{r = 0.75, g = 0.27, b = 0},
+		{r = 0.9, g = 0.7, b = 0},
+		{r = 0, g = 0.6, b = 0.1},
+		{r = 0, g = 0.6, b = 0.1},
+		{r = 0, g = 0.6, b = 0.1},
+		{r = 0, g = 0.6, b = 0.1},
 	}
 }
 
@@ -1225,6 +1251,7 @@ local UF_AuraBars = {
 	yOffset = 0,
 	clickThrough = false,
 	reverseFill = false,
+	abbrevName = false,
 }
 
 local UF_AuraWatch = {
@@ -1272,6 +1299,7 @@ local UF_Castbar = {
 	iconYOffset = 0,
 	insideInfoPanel = true,
 	overlayOnFrame = 'None',
+	displayTarget = false,
 	reverse = false,
 	spark = true,
 	textColor = {r = 0.84, g = 0.75, b = 0.65, a = 1},
@@ -1412,6 +1440,7 @@ local UF_Power = {
 	yOffset = 0,
 	displayAltPower = false,
 	strataAndLevel = CopyTable(UF_StrataAndLevel),
+	useAtlas = false,
 }
 
 local UF_PvPClassificationIndicator = {
@@ -1432,6 +1461,7 @@ local UF_PVPIcon = {
 
 local UF_RaidRoles = {
 	enable = true,
+	scale = 1,
 	position = 'TOPLEFT',
 	xOffset = 0,
 	yOffset = 4,
@@ -1550,12 +1580,17 @@ P.unitframe = {
 	fontSize = 10,
 	fontOutline = 'MONOCHROMEOUTLINE',
 	debuffHighlighting = 'FILL',
-	smartRaidFilter = true,
 	targetOnMouseDown = false,
+	maxAllowedGroups = true,
 	modifiers = {
 		SHIFT = 'NONE',
 		CTRL = 'NONE',
 		ALT = 'NONE',
+	},
+	altManaPowers = {
+		DRUID = { Rage = true, LunarPower = true },
+		SHAMAN = { Maelstrom = true },
+		PRIEST = { Insanity = true }
 	},
 	thinBorders = true,
 	targetSound = false,
@@ -1581,12 +1616,14 @@ P.unitframe = {
 		auraByType = true,
 		auraByDispels = true,
 		auraBarTurtle = true,
-		auraBarTurtleColor = {r = 143/255, g = 101/255, b = 158/255},
+		auraBarTurtleColor = {r = 0.56, g = 0.40, b = 0.62},
 		transparentHealth = false,
 		transparentPower = false,
 		transparentCastbar = false,
 		transparentAurabars = false,
 		transparentClasspower = false,
+		chargingRunes = true,
+		runeBySpec = true,
 		invertCastBar = false,
 		invertAurabars = false,
 		invertPower = false,
@@ -1608,22 +1645,27 @@ P.unitframe = {
 		auraBarBuff = { r = .31, g = .31, b = .31 },
 		auraBarDebuff = {r = 0.8, g = 0.1, b = 0.1},
 		power = {
+			ENERGY = {r = 1, g = 0.96, b = 0.41},
+			FOCUS = {r = 1, g = 0.50, b = 0.25},
+			FURY = {r = 0.788, g = 0.259, b = 0.992, atlas = '_DemonHunter-DemonicFuryBar'},
+			INSANITY = {r = 0.4, g = 0, b = 0.8, atlas = '_Priest-InsanityBar'},
+			LUNAR_POWER = {r = 0.3, g = 0.52, b = 0.9, atlas = '_Druid-LunarBar'},
+			MAELSTROM = {r = 0, g = 0.5, b = 1, atlas = '_Shaman-MaelstromBar'},
 			MANA = {r = 0.31, g = 0.45, b = 0.63},
+			PAIN = {r = 1, g = 0.61, b = 0, atlas = '_DemonHunter-DemonicPainBar'},
 			RAGE = {r = 0.78, g = 0.25, b = 0.25},
-			FOCUS = {r = 0.71, g = 0.43, b = 0.27},
-			ENERGY = {r = 0.65, g = 0.63, b = 0.35},
 			RUNIC_POWER = {r = 0, g = 0.82, b = 1},
-			PAIN = {r = 225/255, g = 225/255, b = 225/255},
-			FURY = {r = 227/255, g = 126/255, b = 39/255},
-			LUNAR_POWER = {r = .9, g = .86, b = .12},
-			INSANITY = {r = 0.55, g = 0.14, b = 0.69},
-			MAELSTROM = {r = 0, g = 0.5, b = 1},
 			ALT_POWER = {r = 0.2, g = 0.4, b = 0.8},
 		},
+		happiness = {
+			{r = .69, g = .31, b = .31},
+			{r = .65, g = .63, b = .35},
+			{r = .33, g = .59, b = .33},
+		},
 		reaction = {
-			BAD = { r = 199/255, g = 64/255, b = 64/255 },
-			NEUTRAL = { r = 218/255, g = 197/255, b = 92/255 },
-			GOOD = { r = 75/255, g = 175/255, b = 76/255 },
+			BAD = { r = 0.78, g = 0.25, b = 0.25 },
+			NEUTRAL = { r = 0.85, g = 0.77, b = 0.36 },
+			GOOD = { r = 0.29, g = 0.69, b = 0.30 },
 		},
 		threat = {
 			[ 0] = {r = 0.5, g = 0.5, b = 0.5}, -- low
@@ -1632,16 +1674,16 @@ P.unitframe = {
 			[ 3] = {r = 1.0, g = 0.2, b = 0.2}, -- tanking securely
 		},
 		selection = {
-			[ 0] = {r = 254/255, g = 045/255, b = 045/255}, -- HOSTILE
-			[ 1] = {r = 255/255, g = 129/255, b = 050/255}, -- UNFRIENDLY
-			[ 2] = {r = 255/255, g = 217/255, b = 050/255}, -- NEUTRAL
-			[ 3] = {r = 050/255, g = 180/255, b = 000/255}, -- FRIENDLY
-			[ 5] = {r = 102/255, g = 136/255, b = 255/255}, -- PLAYER_EXTENDED
-			[ 6] = {r = 102/255, g = 050/255, b = 255/255}, -- PARTY
-			[ 7] = {r = 187/255, g = 050/255, b = 255/255}, -- PARTY_PVP
-			[ 8] = {r = 050/255, g = 255/255, b = 108/255}, -- FRIEND
-			[ 9] = {r = 153/255, g = 153/255, b = 153/255}, -- DEAD
-			[13] = {r = 025/255, g = 147/255, b = 072/255}, -- BATTLEGROUND_FRIENDLY_PVP
+			[ 0] = {r = 1.00, g = 0.18, b = 0.18}, -- HOSTILE
+			[ 1] = {r = 1.00, g = 0.51, b = 0.20}, -- UNFRIENDLY
+			[ 2] = {r = 1.00, g = 0.85, b = 0.20}, -- NEUTRAL
+			[ 3] = {r = 0.20, g = 0.71, b = 0.00}, -- FRIENDLY
+			[ 5] = {r = 0.40, g = 0.53, b = 1.00}, -- PLAYER_EXTENDED
+			[ 6] = {r = 0.40, g = 0.20, b = 1.00}, -- PARTY
+			[ 7] = {r = 0.73, g = 0.20, b = 1.00}, -- PARTY_PVP
+			[ 8] = {r = 0.20, g = 1.00, b = 0.42}, -- FRIEND
+			[ 9] = {r = 0.60, g = 0.60, b = 0.60}, -- DEAD
+			[13] = {r = 0.10, g = 0.58, b = 0.28}, -- BATTLEGROUND_FRIENDLY_PVP
 		},
 		healPrediction = {
 			personal = {r = 0, g = 1, b = 0.5, a = 0.25},
@@ -1658,27 +1700,40 @@ P.unitframe = {
 			color = {r = 1, g = 1, b = 1, a = 1},
 		},
 		classResources = {
-			chargedComboPoint = { r = 0.1647, g = 0.6353, b = 1.0 },
+			chargedComboPoint = { r = 0.16, g = 0.64, b = 1.0 },
 			comboPoints = {
-				[1] = {r = .69, g = .31, b = .31},
-				[2] = {r = .65, g = .42, b = .31},
-				[3] = {r = .65, g = .63, b = .35},
-				[4] = {r = .46, g = .63, b = .35},
-				[5] = {r = .33, g = .63, b = .33},
-				[6] = {r = .33, g = .63, b = .33},
+				{r = .69, g = .31, b = .31},
+				{r = .65, g = .42, b = .31},
+				{r = .65, g = .63, b = .35},
+				{r = .46, g = .63, b = .35},
+				{r = .33, g = .63, b = .33},
+				{r = .33, g = .63, b = .33},
 			},
-			DEATHKNIGHT = {r = 0, g = 1, b = 1},
-			PALADIN = {r = 228/255, g = 225/255, b = 16/255},
-			MAGE = {r = 0, g = 157/255, b = 255/255},
+			DEATHKNIGHT = {
+				[-1] = {r = 0.5, g = 0.5, b = 0.5},
+				[0] = {r = 0.8, g = 0.1, b = 0.28},
+				{r = 1, g = 0.25, b = 0.25},
+				{r = 0.25, g = 1, b = 1},
+				{r = 0.25, g = 1, b = 0.25},
+				{r = 0.8, g = 0.4, b = 1}
+			},
+			PALADIN = {r = 0.89, g = 0.88, b = 0.06},
+			MAGE = {r = 0, g = 0.62, b = 1.00},
 			MONK = {
-				[1] = {r = .57, g = .63, b = .35},
-				[2] = {r = .47, g = .63, b = .35},
-				[3] = {r = .37, g = .63, b = .35},
-				[4] = {r = .27, g = .63, b = .33},
-				[5] = {r = .17, g = .63, b = .33},
-				[6] = {r = 12/255, g = 145/255, b = 58/255}
+				{r = .57, g = .63, b = .35},
+				{r = .47, g = .63, b = .35},
+				{r = .37, g = .63, b = .35},
+				{r = .27, g = .63, b = .33},
+				{r = .17, g = .63, b = .33},
+				{r = 0.05, g = 0.57, b = 0.23}
 			},
-			WARLOCK = {r = 148/255, g = 130/255, b = 201/255}
+			SHAMAN = {
+				{r = .58, g = .23, b = .10},
+				{r = .23, g = .45, b = .13},
+				{r = .19, g = .48, b = .60},
+				{r = .42, g = .18, b = .74},
+			},
+			WARLOCK = {r = 0.58, g = 0.51, b = 0.79}
 		},
 		frameGlow = {
 			mainGlow = {
@@ -1739,6 +1794,7 @@ P.unitframe = {
 				xOffset = -3,
 				yOffset = 6,
 				size = 22,
+				hideAtMaxLevel = false,
 			},
 			CombatIcon = CopyTable(UF_CombatIcon),
 			classbar = CopyTable(UF_ClassBar),
@@ -1962,6 +2018,7 @@ P.unitframe = {
 			disableTargetGlow = false,
 			disableFocusGlow = false,
 			buffIndicator = CopyTable(UF_AuraWatch),
+			CombatIcon = CopyTable(UF_CombatIcon),
 			buffs = CopyTable(UF_Auras),
 			castbar = CopyTable(UF_Castbar),
 			classbar = CopyTable(UF_ClassBar),
@@ -2021,7 +2078,6 @@ P.unitframe.units.player.buffs.priority = 'Blacklist,Personal,PlayerBuffs,Whitel
 P.unitframe.units.player.debuffs.enable = true
 P.unitframe.units.player.debuffs.priority = 'Blacklist,Personal,nonPersonal'
 P.unitframe.units.player.castbar.latency = true
-P.unitframe.units.player.castbar.displayTarget = false
 
 P.unitframe.units.player.fader.enable = false
 P.unitframe.units.player.fader.casting = true
@@ -2139,6 +2195,7 @@ P.unitframe.units.pet.debuffs.numrows = 1
 P.unitframe.units.pet.debuffs.perrow = 5
 P.unitframe.units.pet.debuffs.priority = 'Blacklist,Personal,Boss,RaidDebuffs'
 P.unitframe.units.pet.healPrediction.enable = true
+P.unitframe.units.pet.health.colorHappiness = true
 P.unitframe.units.pet.infoPanel.height = 12
 P.unitframe.units.pet.name.text_format = '[classcolor][name:medium]'
 
@@ -2158,6 +2215,7 @@ P.unitframe.units.boss.buffs.perrow = 3
 P.unitframe.units.boss.buffs.priority = 'Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI'
 P.unitframe.units.boss.buffs.sizeOverride = 22
 P.unitframe.units.boss.buffs.yOffset = 20
+P.unitframe.units.boss.buffIndicator.enable = true
 P.unitframe.units.boss.castbar.width = 215
 P.unitframe.units.boss.debuffs.enable = true
 P.unitframe.units.boss.debuffs.anchorPoint = 'LEFT'
@@ -2233,46 +2291,51 @@ P.unitframe.units.party.targetsGroup.enable = false
 P.unitframe.units.party.targetsGroup.buffIndicator = nil
 P.unitframe.units.party.targetsGroup.healPrediction = nil
 
-P.unitframe.units.raid = CopyTable(P.unitframe.units.party)
-P.unitframe.units.raid.groupsPerRowCol = 1
-P.unitframe.units.raid.groupBy = 'GROUP'
-P.unitframe.units.raid.buffs.numrows = 1
-P.unitframe.units.raid.buffs.perrow = 3
-P.unitframe.units.raid.buffIndicator.enable = true
-P.unitframe.units.raid.castbar = nil
-P.unitframe.units.raid.debuffs.enable = false
-P.unitframe.units.raid.debuffs.numrows = 1
-P.unitframe.units.raid.debuffs.perrow = 3
-P.unitframe.units.raid.debuffs.sizeOverride = 0
-P.unitframe.units.raid.growthDirection = 'RIGHT_DOWN'
-P.unitframe.units.raid.health.position = 'BOTTOM'
-P.unitframe.units.raid.health.text_format = '[healthcolor][health:deficit:shortvalue]'
-P.unitframe.units.raid.health.yOffset = 2
-P.unitframe.units.raid.height = 44
-P.unitframe.units.raid.horizontalSpacing = 3
-P.unitframe.units.raid.infoPanel.height = 12
-P.unitframe.units.raid.name.text_format = '[classcolor][name:short]'
-P.unitframe.units.raid.numGroups = 5
-P.unitframe.units.raid.orientation = 'MIDDLE'
-P.unitframe.units.raid.petsGroup = nil
-P.unitframe.units.raid.power.position = 'BOTTOMRIGHT'
-P.unitframe.units.raid.power.text_format = ''
-P.unitframe.units.raid.power.xOffset = -2
-P.unitframe.units.raid.power.yOffset = 2
-P.unitframe.units.raid.targetsGroup = nil
-P.unitframe.units.raid.visibility = '[@raid6,noexists][@raid26,exists] hide;show'
-P.unitframe.units.raid.width = 80
+P.unitframe.units.raid1 = CopyTable(P.unitframe.units.party)
+P.unitframe.units.raid1.customName = ''
+P.unitframe.units.raid1.groupsPerRowCol = 1
+P.unitframe.units.raid1.groupBy = 'GROUP'
+P.unitframe.units.raid1.buffs.numrows = 1
+P.unitframe.units.raid1.buffs.perrow = 3
+P.unitframe.units.raid1.buffIndicator.enable = true
+P.unitframe.units.raid1.castbar = nil
+P.unitframe.units.raid1.debuffs.enable = false
+P.unitframe.units.raid1.debuffs.numrows = 1
+P.unitframe.units.raid1.debuffs.perrow = 3
+P.unitframe.units.raid1.debuffs.sizeOverride = 0
+P.unitframe.units.raid1.growthDirection = 'RIGHT_DOWN'
+P.unitframe.units.raid1.health.position = 'BOTTOM'
+P.unitframe.units.raid1.health.text_format = '[healthcolor][health:deficit:shortvalue]'
+P.unitframe.units.raid1.health.yOffset = 2
+P.unitframe.units.raid1.height = 44
+P.unitframe.units.raid1.horizontalSpacing = 3
+P.unitframe.units.raid1.infoPanel.height = 12
+P.unitframe.units.raid1.name.text_format = '[classcolor][name:short]'
+P.unitframe.units.raid1.numGroups = 5
+P.unitframe.units.raid1.orientation = 'MIDDLE'
+P.unitframe.units.raid1.petsGroup = nil
+P.unitframe.units.raid1.power.position = 'BOTTOMRIGHT'
+P.unitframe.units.raid1.power.text_format = ''
+P.unitframe.units.raid1.power.xOffset = -2
+P.unitframe.units.raid1.power.yOffset = 2
+P.unitframe.units.raid1.targetsGroup = nil
+P.unitframe.units.raid1.visibility = E.Retail and '[@raid6,noexists][@raid21,exists] hide;show' or '[@raid6,noexists][@raid11,exists] hide;show'
+P.unitframe.units.raid1.width = 80
 
-P.unitframe.units.raid40 = CopyTable(P.unitframe.units.raid)
-P.unitframe.units.raid40.debuffs.anchorPoint = 'RIGHT'
-P.unitframe.units.raid40.height = 27
-P.unitframe.units.raid40.numGroups = 8
-P.unitframe.units.raid40.visibility = '[@raid26,noexists] hide;show'
-P.unitframe.units.raid40.rdebuffs.enable = false
-P.unitframe.units.raid40.power.enable = false
-P.unitframe.units.raid40.roleIcon.enable = false
+P.unitframe.units.raid2 = CopyTable(P.unitframe.units.raid1)
+P.unitframe.units.raid2.debuffs.anchorPoint = 'RIGHT'
+P.unitframe.units.raid2.height = 27
+P.unitframe.units.raid2.numGroups = 5
+P.unitframe.units.raid2.visibility = E.Retail and '[@raid21,noexists][@raid31,exists] hide;show' or '[@raid11,noexists][@raid26,exists] hide;show'
+P.unitframe.units.raid2.rdebuffs.enable = false
+P.unitframe.units.raid2.power.enable = false
+P.unitframe.units.raid2.roleIcon.enable = false
 
-P.unitframe.units.raidpet = CopyTable(P.unitframe.units.raid)
+P.unitframe.units.raid3 = CopyTable(P.unitframe.units.raid2)
+P.unitframe.units.raid3.numGroups = 8
+P.unitframe.units.raid3.visibility = E.Retail and '[@raid31,noexists] hide;show' or '[@raid26,noexists] hide;show'
+
+P.unitframe.units.raidpet = CopyTable(P.unitframe.units.raid1)
 P.unitframe.units.raidpet.pvpclassificationindicator = nil
 P.unitframe.units.raidpet.buffIndicator.enable = false
 P.unitframe.units.raidpet.enable = false
@@ -2311,15 +2374,17 @@ P.unitframe.units.assist = CopyTable(P.unitframe.units.tank)
 
 for i, classTag in next, {'DRUID', 'HUNTER', 'MAGE' , 'PALADIN', 'PRIEST', 'ROGUE', 'SHAMAN', 'WARLOCK', 'WARRIOR', 'DEATHKNIGHT', 'MONK', 'DEMONHUNTER'} do
 	P.unitframe.units.party['CLASS'..i] = classTag
-	P.unitframe.units.raid['CLASS'..i] = classTag
-	P.unitframe.units.raid40['CLASS'..i] = classTag
+	for k = 1, 3 do
+		P.unitframe.units['raid'..k]['CLASS'..i] = classTag
+	end
 	P.unitframe.units.raidpet['CLASS'..i] = classTag
 end
 
 for i, role in next, {'TANK', 'HEALER', 'DAMAGER'} do
 	P.unitframe.units.party['ROLE'..i] = role
-	P.unitframe.units.raid['ROLE'..i] = role
-	P.unitframe.units.raid40['ROLE'..i] = role
+	for k = 1, 3 do
+		P.unitframe.units['raid'..k]['ROLE'..i] = role
+	end
 	P.unitframe.units.raidpet['ROLE'..i] = role
 end
 
@@ -2327,22 +2392,27 @@ end
 P.cooldown = {
 	threshold = 3,
 	roundTime = true,
+	targetAura = true,
 	hideBlizzard = false,
 	useIndicatorColor = false,
-	expiringColor = { r = 1, g = 0, b = 0 },
-	secondsColor = { r = 1, g = 1, b = 0 },
+
+	expiringColor = { r = 1, g = 0.2, b = 0.2 },
+	secondsColor = { r = 1, g = 1, b = 0.2 },
 	minutesColor = { r = 1, g = 1, b = 1 },
 	hoursColor = { r = 0.4, g = 1, b = 1 },
 	daysColor = { r = 0.4, g = 0.4, b = 1 },
-	expireIndicator = { r = 1, g = 1, b = 1 },
-	secondsIndicator = { r = 1, g = 1, b = 1 },
-	minutesIndicator = { r = 1, g = 1, b = 1 },
-	hoursIndicator = { r = 1, g = 1, b = 1 },
-	daysIndicator = { r = 1, g = 1, b = 1 },
+
+	expireIndicator = { r = 0.8, g = 0.8, b = 0.8 },
+	secondsIndicator = { r = 0.8, g = 0.8, b = 0.8 },
+	minutesIndicator = { r = 0.8, g = 0.8, b = 0.8 },
+	hoursIndicator = { r = 0.8, g = 0.8, b = 0.8 },
+	daysIndicator = { r = 0.8, g = 0.8, b = 0.8 },
 	hhmmColorIndicator = { r = 1, g = 1, b = 1 },
 	mmssColorIndicator = { r = 1, g = 1, b = 1 },
 
 	checkSeconds = false,
+	targetAuraDuration = 3600,
+	modRateColor = { r = 0.6, g = 1, b = 0.4 },
 	hhmmColor = { r = 0.43, g = 0.43, b = 0.43 },
 	mmssColor = { r = 0.56, g = 0.56, b = 0.56 },
 	hhmmThreshold = -1,
@@ -2409,7 +2479,6 @@ P.actionbar = {
 		backdropSpacing = 2,
 		alpha = 1,
 		inheritGlobalFade = false,
-		visibility = (E.Retail and '[petbattle] hide;[novehicleui,' or '[')..'pet,nooverridebar,nopossessbar] show;hide',
 	},
 	stanceBar = {
 		enabled = true,
@@ -2429,7 +2498,6 @@ P.actionbar = {
 		backdropSpacing = 2,
 		alpha = 1,
 		inheritGlobalFade = false,
-		visibility = E.Retail and '[vehicleui] hide; [petbattle] hide;show' or 'show',
 	},
 	microbar = {
 		enabled = false,
@@ -2469,8 +2537,20 @@ P.actionbar = {
 	}
 }
 
+-- Visibility
+if E.Retail then
+	P.actionbar.barPet.visibility = '[petbattle] hide; [novehicleui,pet,nooverridebar,nopossessbar] show; hide'
+	P.actionbar.stanceBar.visibility = '[vehicleui][petbattle] hide; show'
+elseif E.Wrath then
+	P.actionbar.barPet.visibility = '[novehicleui,pet,nooverridebar,nopossessbar] show; hide'
+	P.actionbar.stanceBar.visibility = '[vehicleui] hide; show'
+else
+	P.actionbar.barPet.visibility = '[nooverridebar,nopossessbar] show; hide'
+	P.actionbar.stanceBar.visibility = 'show'
+end
+
 for i = 1, 10 do
-	P.actionbar['bar'..i] = {
+	local bar = {
 		enabled = false,
 		mouseover = false,
 		clickThrough = false,
@@ -2490,7 +2570,6 @@ for i = 1, 10 do
 		showGrid = true,
 		flyoutDirection = 'AUTOMATIC',
 		paging = {},
-		visibility = (E.Retail and '[vehicleui] hide; [petbattle] hide; ' or '')..'[overridebar] hide; show',
 		countColor = { r = 1, g = 1, b = 1 },
 		countFont = 'Homespun',
 		countFontOutline = 'MONOCHROMEOUTLINE',
@@ -2521,6 +2600,16 @@ for i = 1, 10 do
 		frameStrata = 'LOW',
 		frameLevel = 1,
 	}
+
+	if E.Retail then
+		bar.visibility = '[vehicleui][petbattle][overridebar] hide; show'
+	elseif E.Wrath then
+		bar.visibility = '[vehicleui][overridebar] hide; show'
+	else
+		bar.visibility = '[overridebar] hide; show'
+	end
+
+	P.actionbar['bar'..i] = bar
 end
 
 for _, bar in next, {'barPet', 'stanceBar', 'vehicleExitButton', 'extraActionButton', 'zoneActionButton'} do
@@ -2555,16 +2644,20 @@ end
 
 P.actionbar.bar1.enabled = true
 P.actionbar.bar1.visibility = E.Retail and '[petbattle] hide; show' or 'show'
-P.actionbar.bar1.paging = {
-	ROGUE = '[bonusbar:1] 7;',
-}
+
+if E.Wrath then
+	P.actionbar.bar1.paging.ROGUE = '[bonusbar:1] 7; [bonusbar:2] 8;'
+	P.actionbar.bar1.paging.WARLOCK = '[form:1] 7;'
+else
+	P.actionbar.bar1.paging.ROGUE = '[bonusbar:1] 7;'
+end
 
 if E.Retail then
 	P.actionbar.bar1.paging.DRUID = '[bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 8; [bonusbar:3] 9; [bonusbar:4] 10;'
 else
-	P.actionbar.bar1.paging.DRUID = '[bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10; [bonusbar:5] 10;'
+	P.actionbar.bar1.paging.DRUID = '[bonusbar:1,nostealth] 7; [bonusbar:1,stealth] 8; [bonusbar:2] 10; [bonusbar:3] 9; [bonusbar:4] 10;'
 	P.actionbar.bar1.paging.PRIEST = '[bonusbar:1] 7;'
-	P.actionbar.bar1.paging.WARRIOR = '[bonusbar:1] 7; [bonusbar:2] 8; [bonusbar:3]9;'
+	P.actionbar.bar1.paging.WARRIOR = '[bonusbar:1] 7; [bonusbar:2] 8; [bonusbar:3] 9;'
 end
 
 P.actionbar.bar3.enabled = true
@@ -2582,10 +2675,16 @@ P.actionbar.bar5.buttonsPerRow = 6
 
 do -- cooldown stuff
 	P.actionbar.cooldown = CopyTable(P.cooldown)
-	P.actionbar.cooldown.expiringColor = { r = 1, g = 0, b = 0 }
+	P.actionbar.cooldown.expiringColor = { r = 1, g = 0.2, b = 0.2 }
 	P.actionbar.cooldown.secondsColor = { r = 1, g = 1, b = 1 }
 	P.actionbar.cooldown.hoursColor = { r = 1, g = 1, b = 1 }
 	P.actionbar.cooldown.daysColor = { r = 1, g = 1, b = 1 }
+
+	P.actionbar.cooldown.targetAuraColor = { r = 1, g = 0.6, b = 0.1 }
+	P.actionbar.cooldown.expiringAuraColor = { r = 1, g = 0.4, b = 0.1 }
+
+	P.actionbar.cooldown.targetAuraIndicator = { r = 0.6, g = 0.6, b = 0.6 }
+	P.actionbar.cooldown.expiringAuraIndicator = { r = 0.6, g = 0.6, b = 0.6 }
 
 	P.auras.cooldown = CopyTable(P.actionbar.cooldown)
 	P.bags.cooldown = CopyTable(P.actionbar.cooldown)
@@ -2629,8 +2728,9 @@ E.LayoutMoverPositions = {
 		ThreatBarMover = "BOTTOMRIGHT,ElvUIParent,BOTTOMRIGHT,-4,4",
 		PetAB = "RIGHT,ElvUIParent,RIGHT,-4,0",
 		ShiftAB = "BOTTOM,ElvUIParent,BOTTOM,0,58",
-		ElvUF_Raid40Mover = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
-		ElvUF_RaidMover = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+		ElvUF_Raid3Mover = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+		ElvUF_Raid2Mover = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
+		ElvUF_Raid1Mover = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
 		ElvUF_PartyMover = "BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,4,269",
 		HonorBarMover = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-251",
 		ReputationBarMover = "TOPRIGHT,ElvUIParent,TOPRIGHT,-2,-243"
@@ -2642,7 +2742,7 @@ E.LayoutMoverPositions = {
 	healer = {
 		ElvUF_PlayerCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,243',
 		ElvUF_TargetCastbarMover = 'BOTTOM,ElvUIParent,BOTTOM,0,97',
-		ElvUF_RaidMover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,202,373',
+		ElvUF_Raid1Mover = 'BOTTOMLEFT,ElvUIParent,BOTTOMLEFT,202,373',
 		LootFrameMover = 'TOPLEFT,ElvUIParent,TOPLEFT,250,-104',
 		VOICECHAT = 'TOPLEFT,ElvUIParent,TOPLEFT,250,-82'
 	}

@@ -536,9 +536,9 @@
 
 				if (instance.use_multi_fontstrings) then
 					if (type(value) == "string") then
-						Details:SetTextsOnLine(row, "", value, percent) --usando essa linha
+						instance:SetInLineTexts(row, "", value, percent) --usando essa linha
 					else
-						Details:SetTextsOnLine(row, "", SelectedToKFunction(_, value), percent)
+						instance:SetInLineTexts(row, "", SelectedToKFunction(_, value), percent)
 					end
 
 				else
@@ -558,7 +558,7 @@
 					row.lineText4:SetText (_string_replace (instance.row_info.textR_custom_text, formated_value, "", percent, self, combat, instance, rightText))
 				else
 					if (instance.use_multi_fontstrings) then
-						Details:SetTextsOnLine(row, "", formated_value, percent)
+						instance:SetInLineTexts(row, "", formated_value, percent)
 					else
 						row.lineText4:SetText (rightText)
 						row.lineText3:SetText("")
@@ -2290,7 +2290,7 @@
 			desc = "Show overall damage done on the fly.",
 			source = false,
 			target = false,
-			script_version = 7,
+			script_version = 8,
 			script = [[
 				--init:
 				local combat, instance_container, instance = ...
@@ -2353,12 +2353,13 @@
 
 				--overall
 				local player = OverallCombat [1]:GetActor (actor.nome)
-				playerTotal = playerTotal + player.total
-				local playerSpells = player:GetSpellList()
-				for spellID, spellTable in pairs (playerSpells) do
-					AllSpells [spellID] = spellTable.total
+				if (player) then
+					playerTotal = playerTotal + player.total
+					local playerSpells = player:GetSpellList()
+					for spellID, spellTable in pairs (playerSpells) do
+						AllSpells [spellID] = spellTable.total
+					end
 				end
-
 				--current
 				if (Details.in_combat) then
 					local player = CurrentCombat [1]:GetActor (actor.nome)

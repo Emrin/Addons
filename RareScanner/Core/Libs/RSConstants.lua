@@ -24,8 +24,8 @@ RSConstants.LOOT_ITEM_ID = nil
 -- Current versions
 ---============================================================================
 
-RSConstants.CURRENT_DB_VERSION = 50
-RSConstants.CURRENT_LOOT_DB_VERSION = 66
+RSConstants.CURRENT_DB_VERSION = 61
+RSConstants.CURRENT_LOOT_DB_VERSION = 75
 
 ---============================================================================
 -- Current maps (newer)
@@ -38,13 +38,18 @@ RSConstants.CURRENT_SUBMAP_ID = 1970 --Zereth Mortis
 -- Special events
 ---============================================================================
 
-RSConstants.SHADOWLANDS_PRE_PATCH_EVENT = true
+RSConstants.SHADOWLANDS_PRE_PATCH_EVENT = 1
+
+RSConstants.EVENTS = {
+	[RSConstants.SHADOWLANDS_PRE_PATCH_EVENT] = false
+}
 
 ---============================================================================
 -- Timers
 ---============================================================================
 
-RSConstants.RECENTLY_SEEN_ENTITIES_RESET_TIMER = 150 --2.5 minutes
+RSConstants.CHECK_RESET_RECENTLY_SEEN_TMER = 5 --5 seconds
+RSConstants.RECENTLY_SEEN_RESET_TIMER = 120 --2 minutes
 RSConstants.CACHE_ALL_COMPLETED_QUEST_IDS_TIMER = 60 --1 minute
 RSConstants.FIND_HIDDEN_QUESTS_TIMER = 5 --5 seconds after killing a NPC or opening a container
 RSConstants.CHECK_RESPAWN_BY_QUEST_TIMER = 150 --2.5 minutes
@@ -87,6 +92,7 @@ RSConstants.PROFILE_DEFAULTS = {
 			scanWorldmapVignette = false,
 			filteredRares = {},
 			filteredContainers = {},
+			filteredEvents = {},
 			filteredZones = {},
 			enableTomtomSupport = false,
 			autoTomtomWaypoints = false,
@@ -129,13 +135,17 @@ RSConstants.PROFILE_DEFAULTS = {
 			filtersToggled = true,
 			filterOnlyMap = false
 		},
+		eventFilters = {
+			filtersToggled = true,
+			filterOnlyMap = false
+		},
 		zoneFilters = {
 			filtersToggled = true,
 			filterOnlyMap = false
 		},
 		collections = {
 			filteredOnlyOnWorldMap = false,
-			autoFilteringOnCollect = true,
+			autoFilteringOnCollect = false,
 			createProfileBackup = true,
 			searchingPets = true,
 			searchingMounts = true,
@@ -143,6 +153,7 @@ RSConstants.PROFILE_DEFAULTS = {
 			searchingAppearances = true,
 			showFiltered = true,
 			showDead = true,
+			showWithoutCollectibles = false
 		},
 		map = {
 			displayNpcIcons = true,
@@ -173,6 +184,8 @@ RSConstants.PROFILE_DEFAULTS = {
 			tooltipsState = true,
 			tooltipsSeen = true,
 			tooltipsCommands = true,
+			lootAchievTooltipsScale = 0.7,
+			lootAchievementsPosition = "ANCHOR_LEFT",
 			overlayMaxColours = 10,
 			overlayColour1 = { 1, 0.2, 1 },
 			overlayColour2 = { 0.23, 0.943, 1 },
@@ -270,6 +283,7 @@ RSConstants.EVENT_TORMENTORS_VIGNETTE = "Tormentors-Event"
 RSConstants.ALL_ZONES_CUSTOM_NPC = 0
 RSConstants.ALL_ZONES = "all"
 RSConstants.UNKNOWN_ZONE_ID = 0
+RSConstants.TANAAN_JUNGLE_MAPID = 534
 RSConstants.MECHAGON_MAPID = 1462
 RSConstants.VALLEY_OF_ETERNAL_BLOSSOMS_MAPID = 1530
 RSConstants.ULDUM_MAPID = 1527
@@ -322,11 +336,6 @@ RSConstants.STOLEN_ANIMA_VESSEL_RIFT = { 369227, 369235, 369236 }
 -- NPCs that spawn after completing an event
 RSConstants.NPCS_WITH_PRE_EVENT = {
 -- EVENTID = NPCID
-	[164102] = 164093;
-	[167874] = 167851;
-	[168053] = 167721;
-	[165206] = 165230;
-	[160675] = 176347;
 	-- Korthia
 	[179759] = 179760;
 	[180145] = 179859;
@@ -350,6 +359,42 @@ RSConstants.NPCS_WITH_PRE_EVENT = {
 	[185836] = 180924;
 	-- Bation
 	[176543] = 171008;
+	[171012] = 171040;
+	[356756] = 167078;
+	-- Revendredth
+	[165230] = 165206;
+	[166483] = 166521;
+	[176347] = 160675;
+	-- Ardenweald
+	[164102] = 164093;
+	[167874] = 167851;
+	[168053] = 167721;
+	-- Talador
+	[84037] = 88494; 
+	[77764] = 77750;
+	-- Tanaan Jungle
+	[90524] = 90519; 
+	[243386] = 91227;
+	-- Shadowlands (Draenor)
+	[82426] = 75434; 
+	-- Spires of Arak
+	[82084] = 82050;
+	[84918] = 84912;
+	[84821] = 84833;
+	[85758] = 85037;
+	-- Nagrand (Draenor)
+	[84275] = 84263;
+	-- Frostfire Ridge
+	[75235] = 72156;
+	[74970] = 74971;
+	-- Timeless Isle
+	[71944] = 71919;
+	[55421] = 72048;
+	[220815] = 71864;
+	-- The Maw
+	[170315] = 170302;
+	[169828] = 169827;
+	[170305] = 170301;
 }
 
 -- Contains that spawn after completing an event
@@ -363,6 +408,12 @@ RSConstants.CONTAINERS_WITH_PRE_EVENT = {
 	[185285] = 375413;
 	[180507] = 369757;
 	[185416] = 375493;
+	-- Talador
+	[77664] = 227793;
+	-- Shadowlands (Draenor)
+	[79805] = 230664;
+	-- Frostfire Ridge
+	[229366] = 229367;
 }
 
 -- NPCs that spawn after killing another NPC
@@ -375,12 +426,12 @@ RSConstants.NPCS_WITH_PRE_NPCS = {
 	
 -- 156480 Next door entity inside Torghast
 -- 155660 Summons from the Depths
-RSConstants.INGNORED_VIGNETTES = { 156480, 155660, 163373, 370467, 370466 }
-RSConstants.NPCS_WITH_EVENT_VIGNETTE = { 154330, 164547, 164477, 160629, 175012, 157833, 166398, 164064, 162829, 157964, 162844, 171317, 170774, 162849, 170301, 170302, 170711, 170634, 170731, 172862, 172577, 158025, 158278, 170303, 179684, 179791, 179805, 177444, 180246, 179108, 179853, 179755, 179768, 179779, 179460, 179851, 179735 }
+RSConstants.IGNORED_VIGNETTES = { 156480, 155660, 163373, 370467, 370466, 182160, 182668, 182667, 185261 }
+RSConstants.NPCS_WITH_EVENT_VIGNETTE = { 72156, 154154, 154330, 164547, 164477, 160629, 175012, 157833, 166398, 164064, 162829, 157964, 162844, 171317, 170774, 162849, 170301, 170302, 170711, 170634, 170731, 172862, 172577, 158025, 158278, 170303, 179684, 179791, 179805, 177444, 180246, 179108, 179853, 179755, 179768, 179779, 179460, 179851, 179735, 169827 }
 RSConstants.NPCS_WITH_CONTAINER_VIGNETTE = { 179883 }
 RSConstants.CONTAINERS_WITH_NPC_VIGNETTE = { 369435 }
 RSConstants.NPCS_WITH_MULTIPLE_SPAWNS = { 69768, 69769, 69841, 69842, 70323 }
-RSConstants.CONTAINERS_WITH_MULTIPLE_SPAWNS = {  }
+RSConstants.CONTAINERS_WITH_MULTIPLE_SPAWNS = { 375366, 375530, 375362, 375363, 375373, 375290 }
 RSConstants.FIRIM_EXILE_OBJECTS = { 375973, 375982, 375983, 375984, 375985, 375986, 375987 }
 
 ---============================================================================
@@ -580,6 +631,7 @@ RSConstants.EXPLORER_FILTER_DROP_APPEARANCES = 4
 RSConstants.EXPLORER_FILTER_PART_ACHIEVEMENT = 5
 RSConstants.EXPLORER_FILTER_DEAD = 6
 RSConstants.EXPLORER_FILTER_FILTERED = 7
+RSConstants.EXPLORER_FILTER_WITHOUT_COLLECTIBLES = 8
 
 ---============================================================================
 -- Others

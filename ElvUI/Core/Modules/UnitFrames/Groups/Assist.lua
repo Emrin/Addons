@@ -1,9 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local UF = E:GetModule('UnitFrames')
-
-local _, ns = ...
-local ElvUF = ns.oUF
-assert(ElvUF, 'ElvUI was unable to locate oUF.')
+local ElvUF = E.oUF
 
 local max = max
 local InCombatLockdown = InCombatLockdown
@@ -75,7 +72,6 @@ end
 function UF:Update_AssistFrames(frame, db)
 	frame.db = db
 	frame.colors = ElvUF.colors
-	frame:RegisterForClicks(UF.db.targetOnMouseDown and 'AnyDown' or 'AnyUp')
 
 	do
 		frame.ORIENTATION = db.orientation --allow this value to change when unitframes position changes on screen?
@@ -125,20 +121,14 @@ function UF:Update_AssistFrames(frame, db)
 	UF:Configure_RaidIcon(frame)
 
 	if not frame.isChild then
-		if not E:IsAddOnEnabled('Clique') then
-			if db.middleClickFocus then
-				frame:SetAttribute('type3', 'focus')
-			elseif frame:GetAttribute('type3') == 'focus' then
-				frame:SetAttribute('type3', nil)
-			end
-		end
-
 		UF:EnableDisable_Auras(frame)
 		UF:Configure_AllAuras(frame)
 		UF:Configure_RaidDebuffs(frame)
 		UF:Configure_AuraHighlight(frame)
 		UF:Configure_AuraWatch(frame)
 	end
+
+	UF:HandleRegisterClicks(frame)
 
 	frame:UpdateAllElements('ElvUI_UpdateAllElements')
 end

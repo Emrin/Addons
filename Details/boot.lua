@@ -6,9 +6,8 @@
 
 		local version, build, date, tocversion = GetBuildInfo()
 
-		_detalhes.build_counter = 9694
-		_detalhes.alpha_build_counter = 9694 --if this is higher than the regular counter, use it instead
-		_detalhes.bcc_counter = 31
+		_detalhes.build_counter = 10018
+		_detalhes.alpha_build_counter = 10018 --if this is higher than the regular counter, use it instead
 		_detalhes.dont_open_news = true
 		_detalhes.game_version = version
 		_detalhes.userversion = version .. _detalhes.build_counter
@@ -33,6 +32,77 @@ do
 	local Loc = _G.LibStub("AceLocale-3.0"):GetLocale( "Details" )
 
 	local news = {
+		{"v9.2.0.10001.146", "Aug 10th, 2022"},
+		"New feature: Arena DPS Bar, can be enabled at the Broadcaster Tools section, shows a bar in 'kamehameha' style showing which team is doing more damage in the latest 3 seconds.",
+		"/keystone now has more space for the dungeon name.",
+		"Revamp on the options section for Broadcaster tools.",
+		"Added 'Icon Size Offset' under Options > Bars: General, this new option allow to adjust the size of the class/spec icon shown on each bar.",
+		"Added 'Show Faction Icon' under Options > Bars: General, with this new option, you can choose to not show the faction icon, this icon is usually shown during battlegrounds.",
+		"Added 'Faction Icon Size Offset' under Options > Bars: General, new option to adjust the size of the faction icon.",
+		"Added 'Show Arena Role Icon' under Options > Bars: General, new option to hide or show the role icon of players during an arena match.",
+		"Added 'Clear On Start PVP' overall data option (Flamanis).",
+		"Added 'Arena Role Icon Size Offset' under Options > Bars: General, new option which allow to control the size of the arena role icon.",
+		"Added 'Level' option to Wallpapers, the wallpaper can now be placed on different levels which solves issues where the wallpaper is too low of certain configuration.",
+		"Streamer! plugin got updates, now it is more clear to pick which mode to use.",
+		"WotLK classic compatibility (Flamanis, Daniel Henry).",
+		"Fixed Grimrail Depot cannon and granades damage be added to players (dios-david).",
+		"Fixed the title bar text not showing when using the Custom Title Bar feature.",
+		"Fixed an issue with Dynamic Overall Damage printing errors into the chat window (Flamanis).",
+		"Role detection in classic versions got improvements.",
+		"New API: Details:GetTop5Actors(attributeId), return the top 5 actors from the selected attribute.",
+		"New API: Details:GetActorByRank(attributeId, rankIndex), return an actor from the selected attribute and rankIndex.",
+		"Major cleanup and code improvements on dropdowns for library Details! Framework.",
+		"Cleanup on NickTag library.",
+		"Removed LibGroupInSpecT, LibItemUpgradeInfo and LibCompress. These libraries got replaced by OpenRaidLib and LibDeflate.",
+
+		{"v9.2.0.9814.146", "May 15th, 2022"},
+		"Added slash command /keystone, this command show keystones of other users with addons using Open Raid library.",
+		"Added a second Title Bar (disabled by default), is recomended to make the Skin Color (under Window Body) full transparent while using it.",
+		"Added Overlay Texture and Color options under Bars: General.",
+		"Added Wallpaper Alignment 'Full Body', this alignment make the wallpaper fill over the title bar.",
+		"Added Auto Alignment for 'Aligned Text Columns', this option is enabled by default.",
+		"Added 'Window Area Border' and 'Row Area Border' under 'Window Body' section in the options panel.",
+		"Added an option to color the Row Border by player class.",
+		"Added new automation auto hide option: Arena.",
+		"Blizzard Death Recap kill ability only shows on Dungeons and Raids now.",
+		"Fixed an issue where player names was overlapping damage numbers with enbaled 'Aligned Text Columns'.",
+		"Fixed a bug on 'DeathLog Min Healing' option where it was reseting to 1 on each logon.",
+		"Fixed several bugs with 'Bar Orientation: Right to Left' (fix by Flamanis).",
+		"Fixed an error on Vanguard plugin.",
+		"Fixed Spec Icons 'Specialization Alpha' offseted by 2 pixels to the right.",
+
+		{"v9.2.0.9778.146", "April 26th, 2022"},
+		--"A cooldown tracker experiment has been added, its options is visible at the Options Panel.",
+		"Added a search box in the '/details scroll' feature.",
+		"When using Details! Death Recap, a message is now printed to chat showing what killed you accordingly to Blizzard Death Recap.",
+		"Fixed some errors while using Mind Control on an arena match.",
+		"Fixed encounter phase detection while using voice packs for boss mods addons.",
+		"Fixed an error after killing a boss encounter on heroic dificulty for the first time.",
+		"Fixed the issue of skins installed after the window has been loaded and the skin was not found at that time.",
+		"API: added 'UNIT_SPEC' and 'UNIT_TALENTS' event to details! event listener.",
+		"API: added Details:GetUnitId(unitName) which return the unitId for a given player name.",
+
+		{"v9.2.0.9735.146", "April 8th, 2022"},
+		"Arena Enemy Player deaths has been greatly improved on this version.",
+		"Added M+ Score into the player info tooltip (hover over the spec icon).",
+		"Fixed windows ungrouping after a /reload (fix by Flamanis).",
+		"Opening a tooltip from a bar or a menu in the title bar will close the All Displays Panel (from right clicking the title bar).",
+		"[TBC] fixed an error given by users using old versions of Details! in the raid.",
+
+		{"v9.2.0.9715.146", "March 6th, 2022"},
+		"More Tiny Threat fixes and implementations (by Treeston)",
+		"Fixed Chinese and Taiwan 'Thousand' abbreviation letter (fix by github user Maioro).",
+
+		{"v9.2.0.9699.146", "March 4th, 2022"},
+		"Align Text Columns now have a warning at the bracket and separators option",
+		"Silence from interrupts shall be counted as a crowd control.",
+		"More phrases in the options panel has been added to translation.",
+		"A revamp has beed started on the erase data prompt.",
+
+		{"v9.2.0.9696.146", "February 24th, 2022"},
+		"Fixed DPS display when using Aligned Text Columns.",
+		"Fixed percent showing even it's disabled when using Aligned Text Columns.",
+
 		{"v9.2.0.9255.146", "February 22th, 2022"},
 		"Added Cosmic Healing Potion to script 'Health Potion & Stone'.",
 
@@ -409,8 +479,11 @@ do
 			_detalhes.playerdetailwindow_skins = {}
 
 		_detalhes.BitfieldSwapDebuffsIDs = {265646, 272407, 269691, 273401, 269131, 260900, 260926, 284995, 292826, 311367, 310567, 308996, 307832, 327414, 337253,
-											36797, 37122}
-		
+											36797, 37122, 362397}
+		_detalhes.BitfieldSwapDebuffsSpellIDs = {
+			[360418] = true
+		}
+
 		--> auto run code
 		_detalhes.RunCodeTypes = {
 			{Name = "On Initialization", Desc = "Run code when Details! initialize or when a profile is changed.", Value = 1, ProfileKey = "on_init"},

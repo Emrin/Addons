@@ -23,6 +23,7 @@ function P:Enable()
 
 	self.enabled = true
 
+	self.zone = select(2, IsInInstance())
 	E.Comms:InspectPlayer()
 
 	self:SetHooks()
@@ -70,11 +71,10 @@ function P:Refresh(full)
 		return
 	end
 
-	local instanceType = self.zone or select(2, IsInInstance()) -- nil on init /rl
-	local key = self.test and self.testZone or instanceType
+	local key = self.test and self.testZone or self.zone
 	key = key == "none" and E.profile.Party.noneZoneSetting or (key == "scenario" and E.profile.Party.scenarioZoneSetting) or key
 	E.db = E.profile.Party[key]
-	P.profile = E.profile.Party -- TODO: migrate
+	P.profile = E.profile.Party
 	P.db = E.db
 
 	if full then
@@ -82,6 +82,7 @@ function P:Refresh(full)
 		self:UpateTimerFormat()
 		self:PLAYER_ENTERING_WORLD(nil, nil, true)
 	else
+
 		E:SetActiveUnitFrameData()
 		self:UpdatePositionValues()
 		self:UpdateExPositionValues()
@@ -113,7 +114,7 @@ function P:UpateTimerFormat()
 end
 
 function P:UpdateEnabledSpells()
-	wipe(self.spell_enabled) -- wipe upvalue
+	wipe(self.spell_enabled)
 
 	for _, v in pairs(E.spell_db) do
 		local n = #v
@@ -135,21 +136,22 @@ function P:UpdatePositionValues()
 
 	local growLeft = string.find(self.point, "RIGHT")
 	local growX = growLeft and -1 or 1
-
-	self.anchorPoint = growLeft and "BOTTOMLEFT" or "BOTTOMRIGHT"
-	self.containerOfsX = db.offsetX * growX
-	self.containerOfsY = -db.offsetY
+	local px = (E.db.general.showRange and not E.db.position.detached and P.effectivePixelMult or E.PixelMult)
+	self.anchorPoint = self.point == "CENTER" and "CENTER" or (growLeft and "BOTTOMLEFT" or "BOTTOMRIGHT")
+	self.containerOfsX = db.offsetX * growX * px
+	self.containerOfsY = -db.offsetY * px
 	self.columns = db.columns
 	self.multiline = db.layout ~= "vertical" and db.layout ~= "horizontal"
 	self.tripleline = db.layout == "tripleRow" or db.layout == "tripleColumn"
 	self.breakPoint = E.db.priority[db.breakPoint]
 	self.breakPoint2 = E.db.priority[db.breakPoint2]
 	self.displayInactive = db.displayInactive
+	self.isVertical = db.layout == "vertical" or db.layout == "doubleColumn" or db.layout == "tripleColumn"
 
 	local growUpward = db.growUpward
 	local growY = growUpward and 1 or -1
-	local px = E.PixelMult / E.db.icons.scale
-	if db.layout == "vertical" or db.layout == "doubleColumn" or db.layout == "tripleColumn" then
+	px = px / E.db.icons.scale
+	if self.isVertical then
 		self.point2 = growUpward and "BOTTOMRIGHT" or "TOPRIGHT"
 		self.relativePoint2 = growUpward and "TOPRIGHT" or "BOTTOMRIGHT"
 		self.ofsX = growX * (E.BASE_ICON_SIZE + db.paddingX  * px)
@@ -172,6 +174,19 @@ function P:GetBuffDuration(unit, spellID)
 		if not id then return end
 		if id == spellID then
 			return duration > 0 and expTime - GetTime()
+		end
+	end
+end
+
+if E.isClassic then
+	function P:GetBuffDuration(unit, spellID)
+		for i = 1, 40 do
+			local _,_,_,_,_,_,_,_,_, id = UnitBuff(unit, i)
+			if not id then return end
+			id = E.spell_merged[id] or id
+			if id == spellID then
+				return true
+			end
 		end
 	end
 end
@@ -214,14 +229,10 @@ function P:IsTalent(talentID, guid)
 		return false
 	end
 
-	-- TODO: move to inspect? (warmode)
 	if talent == "PVP" then
 		return self.isPvP
-	elseif talent == "R" then
-		local spec = runeforge_specID[talentID]
-		return not spec and true or spec == self.groupInfo[guid].spec
 	else
-		return talent -- rankValue for Conduits
+		return talent
 	end
 end
 

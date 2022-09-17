@@ -211,11 +211,12 @@ function A:UpdateIcon(button)
 	button.statusBar:SetRotatesTexture(not isHorizontal)
 end
 
-function A:SetAuraTime(button, expiration, duration)
+function A:SetAuraTime(button, expiration, duration, modRate)
 	local oldEnd = button.endTime
 	button.expiration = expiration
 	button.endTime = expiration
 	button.duration = duration
+	button.modRate = modRate
 
 	if oldEnd ~= button.endTime then
 		if button.statusBar:IsShown() then
@@ -225,7 +226,7 @@ function A:SetAuraTime(button, expiration, duration)
 		button.nextUpdate = 0
 	end
 
-	A:UpdateTime(button, expiration)
+	A:UpdateTime(button, expiration, modRate)
 	button.elapsed = 0 -- reset the timer for UpdateTime
 end
 
@@ -233,6 +234,7 @@ function A:ClearAuraTime(button, expired)
 	button.expiration = nil
 	button.endTime = nil
 	button.duration = nil
+	button.modRate = nil
 	button.timeLeft = nil
 
 	button.text:SetText('')
@@ -251,7 +253,7 @@ function A:ClearAuraTime(button, expired)
 end
 
 function A:UpdateAura(button, index)
-	local name, icon, count, debuffType, duration, expiration = UnitAura(button.header:GetAttribute('unit'), index, button.filter)
+	local name, icon, count, debuffType, duration, expiration, _, _, _, _, _, _, _, _, modRate = UnitAura(button.header:GetAttribute('unit'), index, button.filter)
 	if not name then return end
 
 	local db = A.db[button.auraType]
@@ -269,7 +271,7 @@ function A:UpdateAura(button, index)
 	end
 
 	if duration > 0 and expiration then
-		A:SetAuraTime(button, expiration, duration)
+		A:SetAuraTime(button, expiration, duration, modRate)
 	else
 		A:ClearAuraTime(button)
 	end
@@ -293,7 +295,7 @@ function A:UpdateTempEnchant(button, index, expiration)
 		button:SetBackdropBorderColor(r, g, b)
 		button.statusBar.backdrop:SetBackdropBorderColor(r, g, b)
 
-		local remaining = (expiration / 1000) or 0
+		local remaining = (expiration * 0.001) or 0
 		A:SetAuraTime(button, remaining + GetTime(), (remaining <= 3600 and remaining > 1800) and 3600 or (remaining <= 1800 and remaining > 600) and 1800 or 600)
 	else
 		A:ClearAuraTime(button)
@@ -337,8 +339,8 @@ function A:Button_OnHide()
 	end
 end
 
-function A:UpdateTime(button, expiration)
-	button.timeLeft = expiration - GetTime()
+function A:UpdateTime(button, expiration, modRate)
+	button.timeLeft = (expiration - GetTime()) / (modRate or 1)
 
 	if button.timeLeft < 0.1 then
 		A:ClearAuraTime(button, true)
@@ -359,7 +361,7 @@ function A:Button_OnUpdate(elapsed)
 		end
 
 		if xpr then
-			A:UpdateTime(self, xpr)
+			A:UpdateTime(self, xpr, self.modRate)
 		end
 
 		self.elapsed = 0
@@ -520,6 +522,10 @@ function A:Initialize()
 	if E.private.auras.disableBlizzard then
 		_G.BuffFrame:Kill()
 		_G.TemporaryEnchantFrame:Kill()
+
+		if E.Wrath then
+			_G.ConsolidatedBuffs:Kill()
+		end
 	end
 
 	if not E.private.auras.enable then return end
@@ -530,6 +536,14 @@ function A:Initialize()
 	local xoffset = -(6 + E.Border)
 	if E.private.auras.buffsHeader then
 		A.BuffFrame = A:CreateAuraHeader('HELPFUL')
+
+		--[[
+		if E.Wrath then
+			A.BuffFrame:SetAttribute('consolidateTo', 1)
+			A.BuffFrame:SetAttribute('consolidateDuration', -1)
+		end
+		]]
+
 		A.BuffFrame:ClearAllPoints()
 		A.BuffFrame:SetPoint('TOPRIGHT', _G.MMHolder or _G.MinimapCluster, 'TOPLEFT', xoffset, -E.Spacing)
 		E:CreateMover(A.BuffFrame, 'BuffsMover', L["Player Buffs"], nil, nil, nil, nil, nil, 'auras,buffs')

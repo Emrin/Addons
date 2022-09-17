@@ -66,15 +66,13 @@ end
 
 local function EquipmentDisplayButton(button)
 	if not button.isHooked then
-		local oldTex = button.icon:GetTexture()
-		button:StripTextures()
+		button:SetNormalTexture('')
+		button:SetPushedTexture('')
 		button:SetTemplate()
 		button:StyleButton()
-		button:GetNormalTexture():SetTexture()
 
 		button.icon:SetInside()
 		button.icon:SetTexCoord(unpack(E.TexCoords))
-		button.icon:SetTexture(oldTex)
 
 		S:HandleIconBorder(button.IconBorder)
 
@@ -122,7 +120,7 @@ local function FixSidebarTabCoords()
 			tab.TabBg:Kill()
 
 			if i == 1 then
-				for x=1, tab:GetNumRegions() do
+				for x = 1, tab:GetNumRegions() do
 					local region = select(x, tab:GetRegions())
 					region:SetTexCoord(0.16, 0.86, 0.16, 0.86)
 					hooksecurefunc(region, 'SetTexCoord', function(self, x1)
@@ -279,8 +277,15 @@ function S:CharacterFrame()
 	-- General
 	local CharacterFrame = _G.CharacterFrame
 	S:HandlePortraitFrame(CharacterFrame)
+
 	S:HandleScrollBar(_G.ReputationListScrollFrameScrollBar)
+	_G.ReputationListScrollFrameScrollBar:Point('TOPLEFT', _G.ReputationListScrollFrame, 'TOPRIGHT', 11, -13)
+	_G.ReputationListScrollFrameScrollBar:Point('BOTTOMLEFT', _G.ReputationListScrollFrame, 'BOTTOMRIGHT', 11, 15)
+
 	S:HandleScrollBar(_G.TokenFrameContainerScrollBar)
+	_G.TokenFrameContainerScrollBar:Point('TOPLEFT', _G.TokenFrameContainer, 'TOPRIGHT', 5, -11)
+	_G.TokenFrameContainerScrollBar:Point('BOTTOMLEFT', _G.TokenFrameContainer, 'BOTTOMRIGHT', 5, 11)
+
 	S:HandleScrollBar(_G.GearManagerDialogPopupScrollFrameScrollBar)
 
 	for _, Slot in pairs({_G.PaperDollItemsFrame:GetChildren()}) do

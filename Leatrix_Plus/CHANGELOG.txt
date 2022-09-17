@@ -1,3 +1,113 @@
+9.2.33 - 11th September 2022
+- For 'Enhance tooltip' ('Interface'), if you use the setting to hide tooltips for world units during combat, you can now specify whether holding shift should override that setting or not.  Also updated locale code.
+
+9.2.31 - 8th September 2022
+- Dragonflight: Updated for 10.0.0.45480 (PTR).
+- Dragonflight: You should always use the latest Leatrix Plus alpha release until Dragonflight is launched.  In CurseForge App, right-click Leatrix Plus in your Retail PTR addons listing and set the release type to alpha.
+
+9.2.28 - 7th September 2022
+- Updated for Dragonflight Beta.  A few options are currently locked out (read the blue text in the locked option tooltips for more information).
+- For 'Automate quests' ('Automation'), fixed an issue which caused Darkmoon Faire quests to not be automated.
+- Dragonflight: You should always use the latest Leatrix Plus alpha release while Dragonflight is in beta.
+
+9.2.27 - 31st August 2022
+- Added a new option called 'Manage timer' ('Frames').  The 'Manage frames' option no longer includes the timer bar.
+- Added a new option 'Manage durability' ('Frames').  If enabled, you can move and scale the armored man durability frame.
+- For 'Enhance minimap' ('Interface'), added a new setting that will allow you to adjust the minimap cluster scale without it affecting the minimap scale.
+- Tweaks to ElvUI locks.
+
+9.2.26 - 24th August 2022
+- The 'Hide action button text' option ('Text') is now two options - 'Hide keybind text' and 'Hide macro text'.
+- If you use ElvUI, Leatrix Plus options which are not compatible with specific ElvUI modules will now be disabled and locked while those ElvUI modules are enabled.  The option tooltip will tell you which ElvUI module is causing the Leatrix Plus option to be disabled.  Disabling the relevant ElvUI module will make the Leatrix Plus setting available again.
+
+9.2.25 - 17th August 2022
+- Updated for game version 9.2.7.
+- Fixed a minor issue with 'Show cooldowns' ('Interface') which caused buff spell IDs to show in debuff tooltips.
+
+9.2.24 - 10th August 2022
+- If you use 'Automate quests' ('Automation') with a Mac, you can now assign the override key to be the command key if you wish.
+- If you want to see Leatrix Plus for Dragonflight, send an email to CommunityEMEA@blizzard.com and ask Blizzard to give me access to Dragonflight.
+
+9.2.22 - 3rd August 2022
+- Added 'Arena' to 'Mute game sounds' ('System').  If enabled, arena announcers will be muted.  This currently includes Je'stry the Untamed (Mugambala), Daniel Poole (Hook Point), High King Maulgar (Blade's Edge Arena) and Zo'Sorg (Enigma Crucible).
+- If 'Enhance minimap' is enabled and 'Show new covenant button' is enabled, the covenant button texture will now show your covenent.
+
+9.2.21 - 27th July 2022
+- For 'Enhance minimap', the clock and zone text bar will now be shown on top when using square minimap.  Also made some structural changes to the code.
+
+9.2.19 - 13th July 2022
+- For 'Enhance tooltip' ('Interface'), there is a new setting to hide the health bar.  It's disabled by default.
+
+9.2.18 - 6th July 2022
+- Added cinematic 'Reckoning'.  You can watch it in Movies > Battle for Azeroth and listen to it in Various > Cinematics.
+
+9.2.17 - 29th June 2022
+- Added a new option 'Set field of view' ('System').
+- In the game key bindings menu, you can now set a keybind to announce rares in chat.  Target a creature, press your keybind and detals of your target will be shown in the General chat channel.  These details include your target's name, health percentage remaining and map link location.
+- Fixed armory web links for realms Aggra (Portuguese), Area 52, Chants Eternels, Pozzo dell'Eternita and locales Korea and Taiwan.
+
+9.2.16 - 22nd June 2022
+- In the game key bindings menu, you can now set a keybind to show a web link for whatever your pointer is over (as long as it has a tooltip).  For example, if you have an item in your bag and you don't know what it's for, hover your pointer over it so the item tooltip shows up then press your defined hotkey.  A Wowhead link will show in a copy-friendly window.  If your pointer is over a player, an Armory link will show instead.  Press CTRL/C to copy the link then paste it into your browser.
+- In the game key bindings menu, you can now set a keybind to toggle Leatrix Plus.  The 'Enable hotkey' command has been removed.
+- In the game key bindings menu, you can now set keybinds to drop and clear flares (world markers).
+- The '/ltp id' command now runs the web link keybind function so if you don't want to set a keybind, you can enter '/ltp id' instead.
+
+9.2.15 - 15th June 2022
+- The 'Manage frames', 'Manage buffs', 'Manage power bar', 'Manage widget top', 'Manage widget power', 'Manage focus' and 'Manage control' settings ('Frames') now show a frame alignment grid when moving the frames (there is a button in each configuration panel to toggle the grid).  You can now drag the frames with the left button to position them freely or with the right button to position them using snap-to-grid.
+
+9.2.14 - 8th June 2022
+- Fixed an issue with 'Disable bag automation' ('System') which sometimes caused a taint error when sending mail.
+
+9.2.13 - 1st June 2022
+- Updated for game version 9.2.5.
+- For 'Mute game sounds' ('System'), the 'Mechstriders' and 'Mechsuits' settings will no longer mute footstep sounds.  There is a new setting called 'Mechsteps' that will mute footstep sounds for mechanical mounts.
+- Added cinematics 'Arbiter Pelagos' and 'Eternity's End' (you can watch them in Movies > Shadowlands and listen to them in Various > Cinematics).
+
+9.2.12 - 25th May 2022
+- Added a new option 'Show ready timer' ('Interface').  If checked, a timer will be shown under the dungeon ready frame and the PvP encounter ready frame so that you know how long you have left to click the enter button.
+
+9.2.11 - 18th May 2022
+- Added a little Tazavesh: Myza's Oasis helper.  When you pick up the goods, enter /ltp tz.  The command to target the required NPC for the goods that you have will be shown in a copy-friendly window.  Press CTRL/C to copy the command and paste it into chat.
+
+9.2.10 - 12th May 2022
+- For 'Sell junk automatically' ('Automation'), there are new settings to exclude specific junk items.  There is a checkbox that lets you exclude junk items required to purchase pets from Keeper Ta'hult.  It is enabled by default.  There is also an exclusion list where you can enter your own item IDs (separated by comma).  Item IDs will be shown in item tooltips while the configuration panel is showing.
+- If you try to use 'Enhance minimap' ('Interface') and ElvUI Minimap together, you will now be asked which one you want to use on startup.  Choosing Leatrix Plus will disable ElvUI's minimap module.  Choosing ElvUI will disable Leatrix Plus 'Enhance minimap' setting.
+
+9.2.08 - 27th April 2022
+- For 'Automate quests' ('Automation'), you can now select whether regular, daily or weekly quests are accepted automatically.  Fixed an issue which caused daily and weekly quests to not be identified.
+
+9.2.07 - 20th April 2022
+- For 'Enhance tooltip' ('Interface'), the 'Color the backdrops based on faction' setting is available once again.
+
+9.2.06 - 13th April 2022
+- For 'Enhance minimap' ('Interface'), if you use 'Hide addon buttons' or 'Combine addon buttons' but you want some buttons to remain visible around the minimap, you can now do so using a new 'Buttons' editor in the configuration panel.  Just follow the directions in the Help button.  The 'Exclude BugSack' setting has been removed since you can now add BugSack to the 'Buttons' panel to achieve the same result.
+
+9.2.05 - 6th April 2022
+- Added a new option 'Remove transforms' ('System').  If checked, you will be able to have certain transforms removed automatically when they are applied to your character.  You can choose the transforms in the configuration panel.  Examples include the Jack-o'-Lantern and Hallowed Wand.  Transforms applied during combat will be removed when combat ends.  More transforms will be added to this in future (feel free to make suggestions).
+- The 'Faster movie skip' option ('System') has a new setting that lets you skip movies played inside instances automatically.  It's disabled by default.
+- Fixed a minor issue with 'Manage widget power' ('Frames') which occasionally caused a harmless Lua error to show while dragging the frame overlay.
+- Updated code for 'Show cooldowns' ('Interface').
+
+9.2.04 - 30th March 2022
+- Added a new option 'Show train all button' ('Interface').  If checked, a button will be added to the train skills frame which will allow you to train all available skills instantly.
+- For 'Automate quests' ('Automation'), quests will not be selected automatically if there is a gossip option containing the '<' character.
+- Removed the temporary fix for the player frame not showing after completing Zereth Mortis puzzles as Blizzard have now fixed the bug in the game.
+
+9.2.03 - 23rd March 2022
+- Added 'Manage widget power' ('Frames').  If enabled, you will be able to change the scale and position of the widget power bar frame.  An example of the widget power bar frame is the cosmic energy bar in Zereth Mortis.
+- The 'Manage widget' option ('Frames') is now called 'Manage widget top'.
+- Updated the '/ltp ra' rare announcement message.
+- Added media 'The Jailer's Fall' cinematic (you can watch it in Movies > Shadowlands or listen to it in Various > Cinematics).
+- For 'Mute game sounds' ('System'), updated the sound files for 'Anima'.
+- Fixed a minor issue with 'Show cooldowns' ('Interface') which caused a Lua error when hovering the pointer over an invalid spell ID in the configuration panel editboxes.
+- Added a temporary fix for 'Manage frames' which resolves the bug where the player frame will not show after completing Zereth Mortis puzzles.  This bug is not caused by addons and the temporary fix will be removed when Blizzard fixes the bug.
+
+9.2.02 - 9th March 2022
+- Added media 'Arthas Menethil's Fate' cinematic (you can watch it in Movies > Shadowlands or listen to it in Various > Cinematics).
+
+9.2.01 - 2nd March 2022
+- For 'Automate quests' ('Automation'), quests will no longer be selected automatically if there are gossip conversation options with colored text in the quest frame (such as skip ahead options).
+
 9.2.00 - 23rd February 2022
 - Updated for game version 9.2.0.
 - For 'Mute game sounds' ('System'), added some new sounds to 'Shouts' for various races.

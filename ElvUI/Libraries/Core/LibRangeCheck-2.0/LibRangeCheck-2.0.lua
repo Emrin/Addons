@@ -40,27 +40,32 @@ License: Public Domain
 --
 -- @class file
 -- @name LibRangeCheck-2.0
-local MAJOR_VERSION = "LibRangeCheck-2.0-ElvUI"
-local MINOR_VERSION = 100206
+local MAJOR_VERSION = "LibRangeCheck-2.0"
+local MINOR_VERSION = tonumber(("$Revision: 214 $"):match("%d+")) + 100000
 
 local lib, oldminor = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
 if not lib then return end
 
+local _, _, _, toc = GetBuildInfo()
+
 local isRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
 local isClassic = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
-local isTBC = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+local isTBC = toc >= 20500 and toc < 30000 -- TODO: Wrath
+local isWrath = toc >= 30400 and toc < 40000 -- TODO: Wrath
 
--- cache
--- GLOBALS: LibStub, CreateFrame
-local setmetatable = setmetatable
-local pairs = pairs
-local tostring = tostring
-local print = print
+-- GLOBALS: LibStub, CreateFrame, C_Map, FriendColor (??), HarmColor (??)
+local _G = _G
 local next = next
+local sort = sort
 local type = type
 local wipe = wipe
+local print = print
+local pairs = pairs
+local ipairs = ipairs
 local tinsert = tinsert
 local tremove = tremove
+local tostring = tostring
+local setmetatable = setmetatable
 local BOOKTYPE_SPELL = BOOKTYPE_SPELL
 local GetSpellInfo = GetSpellInfo
 local GetSpellBookItemName = GetSpellBookItemName
@@ -114,7 +119,7 @@ local InteractLists = {
 local MeleeRange = 2
 local FriendSpells, HarmSpells, ResSpells, PetSpells = {}, {}, {}, {}
 
-for _, n in next, { 'DEATHKNIGHT', 'DEMONHUNTER', 'DRUID', 'HUNTER', 'SHAMAN', 'MAGE', 'PALADIN', 'PRIEST', 'WARLOCK', 'WARRIOR', 'MONK', 'ROGUE' } do
+for _, n in ipairs({ 'DEATHKNIGHT', 'DEMONHUNTER', 'DRUID', 'HUNTER', 'SHAMAN', 'MAGE', 'PALADIN', 'PRIEST', 'WARLOCK', 'WARRIOR', 'MONK', 'ROGUE' }) do
 	FriendSpells[n], HarmSpells[n], ResSpells[n], PetSpells[n] = {}, {}, {}, {}
 end
 
@@ -205,13 +210,15 @@ tinsert(HarmSpells.PALADIN, 20473)	-- Holy Shock (40 yards)
 tinsert(ResSpells.PALADIN, 7328)	-- Redemption (40 yards)
 
 -- Priests
-tinsert(FriendSpells.PRIEST, 2061)	-- Flash Heal (40 yards, level 3)
-tinsert(FriendSpells.PRIEST, 17)	-- Power Word: Shield (40 yards, level 4)
-tinsert(FriendSpells.PRIEST, 527)	-- Purify / Dispel Magic (40 yards retail, 30 yards tbc, level 18, rank 1)
-
-if not isRetail then
-	tinsert(FriendSpells.PRIEST, 2050) -- Lesser Heal (40 yards, level 1, rank 1)
+if isRetail then
+	tinsert(FriendSpells.PRIEST, 21562)	-- Power Word: Fortitude (40 yards, level 6) [use first to fix kyrian boon/fae soulshape]
+	tinsert(FriendSpells.PRIEST, 17)	-- Power Word: Shield (40 yards, level 4)
+else -- PWS is group only in classic, use lesser heal as main spell check
+	tinsert(FriendSpells.PRIEST, 2050)	-- Lesser Heal (40 yards, level 1, rank 1)
 end
+
+tinsert(FriendSpells.PRIEST, 527)	-- Purify / Dispel Magic (40 yards retail, 30 yards tbc, level 18, rank 1)
+tinsert(FriendSpells.PRIEST, 2061)	-- Flash Heal (40 yards, level 3 retail, level 20 tbc)
 
 tinsert(HarmSpells.PRIEST, 589)		-- Shadow Word: Pain (40 yards)
 tinsert(HarmSpells.PRIEST, 585)		-- Smite (40 yards)
@@ -284,6 +291,7 @@ tinsert(HarmSpells.WARLOCK, 5782)		-- Fear (30 yards)
 if not isRetail then
 	tinsert(HarmSpells.WARLOCK, 172)	-- Corruption (30 yards, level 4, rank 1)
 	tinsert(HarmSpells.WARLOCK, 348)	-- Immolate (30 yards, level 1, rank 1)
+	tinsert(HarmSpells.WARLOCK, 17877)	-- Shadowburn (Destruction) (20 yards)
 end
 
 tinsert(ResSpells.WARLOCK, 20707)	-- Soulstone (40 yards)
@@ -336,8 +344,8 @@ local FriendItems  = {
 		21991, -- Heavy Netherweave Bandage
 		34721, -- Frostweave Bandage
 		34722, -- Heavy Frostweave Bandage
-		--38643, -- Thick Frostweave Bandage (uncomment for Wotlk)
-		--38640, -- Dense Frostweave Bandage (uncomment for Wotlk)
+		38643, -- Thick Frostweave Bandage
+		38640, -- Dense Frostweave Bandage
 	},
 	[20] = {
 		21519, -- Mistletoe
@@ -594,7 +602,8 @@ end
 -- minRange should be nil if there's no minRange, not 0
 local function addChecker(t, range, minRange, checker, info)
 	local rc = { ["range"] = range, ["minRange"] = minRange, ["checker"] = checker, ["info"] = info }
-	for i, v in next, t do
+	for i = 1, #t do
+		local v = t[i]
 		if rc.range == v.range then return end
 		if rc.range > v.range then
 			tinsert(t, i, rc)
@@ -608,7 +617,8 @@ local function createCheckerList(spellList, itemList, interactList)
 	local res = {}
 	if itemList then
 		for range, items in pairs(itemList) do
-			for _, item in next, items do
+			for i = 1, #items do
+				local item = items[i]
 				if GetItemInfo(item) then
 					addChecker(res, range, nil, checkers_Item[item], "item:" .. item)
 					break
@@ -618,7 +628,8 @@ local function createCheckerList(spellList, itemList, interactList)
 	end
 
 	if spellList then
-		for _, sid in next, spellList do
+		for i = 1, #spellList do
+			local sid = spellList[i]
 			local name, _, _, _, minRange, range = GetSpellInfo(sid)
 			local spellIdx = findSpellIdx(name)
 			if spellIdx and range then
@@ -680,8 +691,8 @@ local function updateCheckers(origList, newList)
 		copyTable(newList, origList)
 		return true
 	end
-	for i, v in next, origList do
-		if v.range ~= newList[i].range or v.checker ~= newList[i].checker then
+	for i = 1, #origList do
+		if origList[i].range ~= newList[i].range or origList[i].checker ~= newList[i].checker then
 			wipe(origList)
 			copyTable(newList, origList)
 			return true
@@ -703,7 +714,8 @@ end
 
 local function getMinChecker(checkerList, range)
 	local checker, checkerRange
-	for _, rc in next, checkerList do
+	for i = 1, #checkerList do
+		local rc = checkerList[i]
 		if rc.range < range then
 			return checker, checkerRange
 		end
@@ -713,7 +725,8 @@ local function getMinChecker(checkerList, range)
 end
 
 local function getMaxChecker(checkerList, range)
-	for _, rc in next, checkerList do
+	for i = 1, #checkerList do
+		local rc = checkerList[i]
 		if rc.range <= range then
 			return rc.checker, rc.range
 		end
@@ -721,7 +734,8 @@ local function getMaxChecker(checkerList, range)
 end
 
 local function getChecker(checkerList, range)
-	for _, rc in next, checkerList do
+	for i = 1, #checkerList do
+		local rc = checkerList[i]
 		if rc.range == range then
 			return rc.checker
 		end
@@ -821,8 +835,8 @@ function lib:init(forced)
 	-- first try to find a nice item we can use for minRangeCheck
 	local harmItems = HarmItems[15]
 	if harmItems then
-		for _, item in next, harmItems do
-			local minCheck = minItemChecker(item)
+		for i = 1, #harmItems do
+			local minCheck = minItemChecker(harmItems[i])
 			if minCheck then
 				minRangeCheck = minCheck
 				break
@@ -1166,7 +1180,7 @@ function lib:activate()
 		frame:RegisterEvent("CHARACTER_POINTS_CHANGED")
 		frame:RegisterEvent("SPELLS_CHANGED")
 
-		if isRetail then
+		if isRetail or isWrath then
 			frame:RegisterEvent("PLAYER_TALENT_UPDATE")
 		end
 

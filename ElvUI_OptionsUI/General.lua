@@ -1,5 +1,6 @@
-local E, _, V, P, G = unpack(ElvUI) --Import: Engine, Locales, PrivateDB, ProfileDB, GlobalDB
+local E, _, V, P, G = unpack(ElvUI)
 local C, L = unpack(E.OptionsUI)
+local AB = E:GetModule('ActionBars')
 local Misc = E:GetModule('Misc')
 local Layout = E:GetModule('Layout')
 local Totems = E:GetModule('Totems')
@@ -64,13 +65,30 @@ GenGen.automation.args.autoAcceptInvite = ACH:Toggle(L["Accept Invites"], L["Aut
 GenGen.automation.args.autoTrackReputation = ACH:Toggle(L["Auto Track Reputation"], nil, 4)
 GenGen.automation.args.autoRepair = ACH:Select(L["Auto Repair"], L["Automatically repair using the following method when visiting a merchant."], 5, { NONE = L["None"], GUILD = not E.Classic and L["Guild"] or nil, PLAYER = L["Player"] })
 
-GenGen.totems = ACH:Group(L["Class Totems"], nil, 70, nil, function(info) return E.db.general.totems[info[#info]] end, function(info, value) E.db.general.totems[info[#info]] = value Totems:PositionAndSize() end, function() return not E.private.general.totemBar end)
+GenGen.totems = ACH:Group(L["Class Totems"], nil, 70, nil, function(info) return E.db.general.totems[info[#info]] end, function(info, value) E.db.general.totems[info[#info]] = value if E.Wrath then AB:PositionAndSizeTotemBar() else Totems:PositionAndSize() end end, function() return not E.private.general.totemBar end)
 GenGen.totems.inline = true
 GenGen.totems.args.enable = ACH:Toggle(L["Enable"], nil, 1, nil, nil, nil, function() return E.private.general.totemBar end, function(_, value) E.private.general.totemBar = value; E.ShowPopup = true end, false)
-GenGen.totems.args.size = ACH:Range(L["Button Size"], nil, 2, { min = 24, max = 60, step = 1 })
-GenGen.totems.args.spacing = ACH:Range(L["Button Spacing"], nil, 3, { min = 1, max = 10, step = 1 })
-GenGen.totems.args.sortDirection = ACH:Select(L["Sort Direction"], nil, 4, { ASCENDING = L["Ascending"], DESCENDING = L["Descending"] })
-GenGen.totems.args.growthDirection = ACH:Select(L["Bar Direction"], nil, 5, { VERTICAL = L["Vertical"], HORIZONTAL = L["Horizontal"] })
+GenGen.totems.args.mouseover = ACH:Toggle(L["Mouseover"], nil, 2, nil, nil, nil, nil, nil, nil, not E.Wrath)
+GenGen.totems.args.buttonGroup = ACH:Group(L["Button Options"], nil, 3)
+GenGen.totems.args.buttonGroup.inline = true
+GenGen.totems.args.buttonGroup.args.size = ACH:Range(L["Button Size"], nil, 1, { min = 24, max = 60, step = 1 }, nil, nil, nil, nil, E.Wrath)
+GenGen.totems.args.buttonGroup.args.buttonSize = ACH:Range(L["Button Size"], nil, 1, { min = 24, max = 60, step = 1 }, nil, nil, nil, nil, not E.Wrath)
+GenGen.totems.args.buttonGroup.args.spacing = ACH:Range(L["Button Spacing"], nil, 2, { min = 1, max = 10, step = 1 })
+GenGen.totems.args.buttonGroup.args.alpha = ACH:Range(L["Alpha"], L["Change the alpha level of the frame."], 3, { min = 0, max = 1, step = 0.01, isPercent = true }, nil, nil, nil, nil, not E.Wrath)
+GenGen.totems.args.buttonGroup.args.sortDirection = ACH:Select(L["Sort Direction"], nil, 3, { ASCENDING = L["Ascending"], DESCENDING = L["Descending"] }, nil, nil, nil, nil, nil, E.Wrath)
+GenGen.totems.args.buttonGroup.args.growthDirection = ACH:Select(L["Bar Direction"], nil, 4, { VERTICAL = L["Vertical"], HORIZONTAL = L["Horizontal"] }, nil, nil, nil, nil, nil, E.Wrath)
+GenGen.totems.args.flyoutGroup = ACH:Group("Flyout Options", nil, 4, nil, nil, nil, nil, not E.Wrath)
+GenGen.totems.args.flyoutGroup.inline = true
+GenGen.totems.args.flyoutGroup.args.flyoutSize = ACH:Range("Flyout Size", nil, 1, { min = 24, max = 60, step = 1 })
+GenGen.totems.args.flyoutGroup.args.flyoutSpacing = ACH:Range("Flyout Spacing", nil, 2, { min = 1, max = 10, step = 1 })
+GenGen.totems.args.flyoutGroup.args.flyoutDirection = ACH:Select(L["Flyout Direction"], nil, 3, { UP = L["Up"], DOWN = L["Down"] })
+-- TODO: Wrath (Add keybind text position + x/y offset)
+GenGen.totems.args.fontGroup = ACH:Group(L["Font Group"], nil, 5, nil, function(info) return E.db.general.totems[info[#info]] end, function(info, value) E.db.general.totems[info[#info]] = value AB:UpdateTotemBindings(info[#info], value, true) end, nil, not E.Wrath)
+GenGen.totems.args.fontGroup.inline = true
+GenGen.totems.args.fontGroup.args.font = ACH:SharedMediaFont(L["Font"], nil, 1)
+GenGen.totems.args.fontGroup.args.fontSize = ACH:Range(L["Font Size"], nil, 2, C.Values.FontSize)
+GenGen.totems.args.fontGroup.args.fontOutline = ACH:FontFlags(L["Font Outline"], nil, 3)
+GenGen.totems.args.visibility = ACH:Input(L["Visibility State"], L["This works like a macro, you can run different situations to get the actionbar to show/hide differently.\n Example: '[combat] show;hide'"], 20, nil, 'full', nil, function(_, value) E.db.general.totems.visibility = value AB:PositionAndSizeTotemBar() end, nil, not E.Wrath)
 
 General.media = ACH:Group(L["Media"], nil, 5, nil, function(info) return E.db.general[info[#info]] end, function(info, value) E.db.general[info[#info]] = value end)
 local Media = General.media.args
@@ -89,30 +107,42 @@ Media.colorsGroup.args.valuecolor = ACH:Color(L["Value"], L["Color some texts us
 Media.colorsGroup.args.bordercolor = ACH:Color(L["Border"], L["Main border color of the UI."], 5, nil, 100)
 Media.colorsGroup.args.ufBorderColors = ACH:Color(L["Unitframes Border"], nil, 6, nil, 180, function() local t, d = E.db.unitframe.colors.borderColor, P.unitframe.colors.borderColor return t.r, t.g, t.b, t.a, d.r, d.g, d.b, d.a end, function(_, r, g, b, a) local t = E.db.unitframe.colors.borderColor t.r, t.g, t.b, t.a = r, g, b, a E:UpdateMedia() E:UpdateBorderColors() end)
 
-Media.fontGroup = ACH:Group(L["Fonts"], nil, 3)
-Media.fontGroup.inline = true
-Media.fontGroup.args.main = ACH:Group(L["General"], nil, 1, nil, nil, function(info, value) E.db.general[info[#info]] = value E:UpdateMedia() E:UpdateFontTemplates() end)
-Media.fontGroup.args.main.args.font = ACH:SharedMediaFont(L["Default Font"], L["The font that the core of the UI will use."], 1)
-Media.fontGroup.args.main.args.fontSize = ACH:Range(L["Font Size"], L["Set the font size for everything in UI. Note: This doesn't effect somethings that have their own seperate options (UnitFrame Font, Datatext Font, ect..)"], 2, C.Values.FontSize)
-Media.fontGroup.args.main.args.fontStyle = ACH:FontFlags(L["Font Outline"], nil, 3)
-Media.fontGroup.args.main.args.applyFontToAll = ACH:Execute(L["Apply Font To All"], L["Applies the font and font size settings throughout the entire user interface. Note: Some font size settings will be skipped due to them having a smaller font size by default."], 4, function() E:StaticPopup_Show('APPLY_FONT_WARNING') end)
+Media.fontHeader = ACH:Header(L["Fonts"], 10)
 
-Media.fontGroup.args.blizzard = ACH:Group(L["Blizzard"], nil, 2, nil, function(info) return E.private.general[info[#info]] end, function(info, value) E.private.general[info[#info]] = value E.ShowPopup = true end)
-Media.fontGroup.args.blizzard.args.replaceCombatFont = ACH:Toggle(L["Replace Combat Font"], nil, 1, nil, nil, nil, nil, nil, function() return E.eyefinity or E.ultrawide end)
-Media.fontGroup.args.blizzard.args.dmgfont = ACH:SharedMediaFont(L["Combat Text Font"], L["The font that combat text will use. |cffFF0000WARNING: This requires a game restart or re-log for this change to take effect.|r"], 2, nil, nil, nil, function() return E.eyefinity or E.ultrawide or not E.private.general.replaceCombatFont end)
-Media.fontGroup.args.blizzard.args.replaceNameFont = ACH:Toggle(L["Replace Name Font"], nil, 3)
-Media.fontGroup.args.blizzard.args.namefont = ACH:SharedMediaFont(L["Name Font"], L["The font that appears on the text above players heads. |cffFF0000WARNING: This requires a game restart or re-log for this change to take effect.|r"], 4, nil, nil, nil, function() return not E.private.general.replaceNameFont end)
-Media.fontGroup.args.blizzard.args.replaceBlizzFonts = ACH:Toggle(L["Replace Blizzard Fonts"], L["Replaces the default Blizzard fonts on various panels and frames with the fonts chosen in the Media section of the ElvUI Options. NOTE: Any font that inherits from the fonts ElvUI usually replaces will be affected as well if you disable this. Enabled by default."], 5)
-Media.fontGroup.args.blizzard.args.unifiedBlizzFonts = ACH:Toggle(L["Unified Font Sizes"], L["This setting mimics the older style of Replace Blizzard Fonts, with a more static unified font sizing."], 6, nil, nil, nil, nil, function(info, value) E.private.general[info[#info]] = value E:UpdateBlizzardFonts() end, function() return not E.private.general.replaceBlizzFonts end)
-Media.fontGroup.args.blizzard.args.replaceNameplateFont = ACH:Toggle(L["Replace Nameplate Fonts"], nil, 7, nil, nil, 200)
-Media.fontGroup.args.blizzard.args.nameplateGroup = ACH:Group(L["Nameplates"], nil, 10, nil, nil, nil, function() return not E.private.general.replaceNameplateFont end)
-Media.fontGroup.args.blizzard.args.nameplateGroup.args.nameplateFont = ACH:SharedMediaFont(L["Normal Font"], nil, 7)
-Media.fontGroup.args.blizzard.args.nameplateGroup.args.nameplateFontSize = ACH:Range(L["Normal Size"], nil, 8, C.Values.FontSize)
-Media.fontGroup.args.blizzard.args.nameplateGroup.args.nameplateFontOutline = ACH:FontFlags(L["Normal Outline"], nil, 9)
-Media.fontGroup.args.blizzard.args.nameplateGroup.args.spacer2 = ACH:Spacer(10, 'full')
-Media.fontGroup.args.blizzard.args.nameplateGroup.args.nameplateLargeFont = ACH:SharedMediaFont(L["Larger Font"], nil, 11)
-Media.fontGroup.args.blizzard.args.nameplateGroup.args.nameplateLargeFontSize = ACH:Range(L["Larger Size"], nil, 12, C.Values.FontSize)
-Media.fontGroup.args.blizzard.args.nameplateGroup.args.nameplateLargeFontOutline = ACH:FontFlags(L["Larger Outline"], nil, 13)
+Media.general = ACH:Group('', nil, 11, nil, nil, function(info, value) E.db.general[info[#info]] = value E:UpdateMedia() E:UpdateFontTemplates() end)
+Media.general.args.font = ACH:SharedMediaFont(L["Default Font"], L["The font that the core of the UI will use."], 1)
+Media.general.args.fontSize = ACH:Range(L["Font Size"], L["Set the font size for everything in UI. Note: This doesn't effect somethings that have their own seperate options (UnitFrame Font, Datatext Font, ect..)"], 2, C.Values.FontSize)
+Media.general.args.fontStyle = ACH:FontFlags(L["Font Outline"], nil, 3)
+Media.general.args.applyFontToAll = ACH:Execute(L["Apply Font To All"], L["Applies the font and font size settings throughout the entire user interface. Note: Some font size settings will be skipped due to them having a smaller font size by default."], 4, function() E:StaticPopup_Show('APPLY_FONT_WARNING') end)
+Media.general.inline = true
+
+Media.blizzard = ACH:Group('', nil, 12, nil, function(info) return E.private.general[info[#info]] end, function(info, value) E.private.general[info[#info]] = value E.ShowPopup = true end)
+Media.blizzard.args.replaceBlizzFonts = ACH:Toggle(L["Replace Blizzard Fonts"], L["Replaces the default Blizzard fonts on various panels and frames with the fonts chosen in the Media section of the ElvUI Options. NOTE: Any font that inherits from the fonts ElvUI usually replaces will be affected as well if you disable this. Enabled by default."], 1)
+Media.blizzard.args.unifiedBlizzFonts = ACH:Toggle(L["Unified Font Sizes"], L["This setting mimics the older style of Replace Blizzard Fonts, with a more static unified font sizing."], 2, nil, nil, nil, nil, function(info, value) E.private.general[info[#info]] = value E:UpdateBlizzardFonts() end, function() return not E.private.general.replaceBlizzFonts end)
+Media.blizzard.inline = true
+
+Media.names = ACH:Group('', nil, 13, nil, function(info) return E.private.general[info[#info]] end, function(info, value) E.private.general[info[#info]] = value E.ShowPopup = true end)
+Media.names.args.replaceNameFont = ACH:Toggle(L["Replace Name Font"], nil, 1)
+Media.names.args.namefont = ACH:SharedMediaFont(L["Name Font"], L["The font that appears on the text above players heads. |cffFF3333WARNING: This requires a game restart or re-log for this change to take effect.|r"], 2, nil, nil, nil, function() return not E.private.general.replaceNameFont end)
+Media.names.inline = true
+
+Media.combat = ACH:Group('', nil, 14, nil, function(info) return E.private.general[info[#info]] end, function(info, value) E.private.general[info[#info]] = value E.ShowPopup = true end)
+Media.combat.args.replaceCombatFont = ACH:Toggle(L["Replace Combat Font"], nil, 1)
+Media.combat.args.dmgfont = ACH:SharedMediaFont(L["Combat Font"], L["The font that combat text will use. |cffFF3333WARNING: This requires a game restart or re-log for this change to take effect.|r"], 2, nil, nil, nil, function() return E.eyefinity or E.ultrawide or not E.private.general.replaceCombatFont end)
+Media.combat.args.replaceCombatText = ACH:Toggle(L["Replace Text on Me"], nil, 3)
+Media.combat.inline = true
+
+Media.nameplates = ACH:Group('', nil, 15, nil, function(info) return E.private.general[info[#info]] end, function(info, value) E.private.general[info[#info]] = value E.ShowPopup = true end, function() return not E.private.general.replaceNameplateFont end)
+Media.nameplates.args.replaceNameplateFont = ACH:Toggle(L["Replace Nameplate Fonts"], nil, 1, nil, nil, nil, nil, nil, E.noop)
+Media.nameplates.args.spacer1 = ACH:Spacer(10, 'full')
+Media.nameplates.args.nameplateFont = ACH:SharedMediaFont(L["Normal Font"], L["Replaces the font on Blizzard Nameplates."], 11)
+Media.nameplates.args.nameplateFontSize = ACH:Range(L["Normal Size"], nil, 12, C.Values.FontSize)
+Media.nameplates.args.nameplateFontOutline = ACH:FontFlags(L["Normal Outline"], nil, 13)
+Media.nameplates.args.spacer2 = ACH:Spacer(20, 'full')
+Media.nameplates.args.nameplateLargeFont = ACH:SharedMediaFont(L["Larger Font"], L["Replaces the font on Blizzard Nameplates."], 21)
+Media.nameplates.args.nameplateLargeFontSize = ACH:Range(L["Larger Size"], nil, 22, C.Values.FontSize)
+Media.nameplates.args.nameplateLargeFontOutline = ACH:FontFlags(L["Larger Outline"], nil, 23)
+Media.nameplates.inline = true
 
 General.cosmetic = ACH:Group(L["Cosmetic"], nil, 10)
 local Cosmetic = General.cosmetic.args
@@ -124,7 +154,7 @@ Cosmetic.bordersGroup.args.ufThinBorders = ACH:Toggle(L["Unitframe Thin Borders"
 Cosmetic.bordersGroup.args.npThinBorders = ACH:Toggle(L["Nameplate Thin Borders"], L["Use thin borders on certain nameplate elements."], 3, nil, nil, nil, function() return E.db.nameplates.thinBorders end, function(_, value) E.db.nameplates.thinBorders = value E.ShowPopup = true end)
 Cosmetic.bordersGroup.args.cropIcon = ACH:Toggle(L["Crop Icons"], L["This is for Customized Icons in your Interface/Icons folder."], 4, true, nil, nil, function(info) local value = E.db.general[info[#info]] if value == 2 then return true elseif value == 1 then return nil else return false end end, function(info, value) E.db.general[info[#info]] = (value and 2) or (value == nil and 1) or 0 E.ShowPopup = true end)
 
-Cosmetic.customGlowGroup = ACH:Group(E.NewSign..L["Custom Glow"], nil, 16, nil, function(info) return E.db.general.customGlow[info[#info]] end, function(info, value) E:StopAllCustomGlows() E.db.general.customGlow[info[#info]] = value end)
+Cosmetic.customGlowGroup = ACH:Group(L["Custom Glow"], nil, 16, nil, function(info) return E.db.general.customGlow[info[#info]] end, function(info, value) E:StopAllCustomGlows() E.db.general.customGlow[info[#info]] = value end)
 Cosmetic.customGlowGroup.inline = true
 Cosmetic.customGlowGroup.args.style = ACH:Select(L["Style"], nil, 1, function() local tbl = {} for _, name in next, E.Libs.CustomGlow.glowList do tbl[name] = name end return tbl end)
 Cosmetic.customGlowGroup.args.speed = ACH:Range(L["SPEED"], nil, 2, { min = -1, max = 1, softMin = -0.5, softMax = 0.5, step = .01, bigStep = .05 })
@@ -161,7 +191,7 @@ Cosmetic.chatBubblesGroup.args.chatBubbleFont = ACH:SharedMediaFont(L["Font"], n
 Cosmetic.chatBubblesGroup.args.chatBubbleFontSize = ACH:Range(L["Font Size"], nil, 3, C.Values.FontSize, nil, nil, nil, function() return not E.private.general.replaceBubbleFont end)
 Cosmetic.chatBubblesGroup.args.chatBubbleFontOutline = ACH:FontFlags(L["Font Outline"], nil, 4, nil, nil, nil, function() return not E.private.general.replaceBubbleFont end)
 Cosmetic.chatBubblesGroup.args.spacer1 = ACH:Spacer(10, 'full')
-Cosmetic.chatBubblesGroup.args.warning = ACH:Description(L["|cffFF0000This does not work in Instances or Garrisons!|r"], 11, 'medium')
+Cosmetic.chatBubblesGroup.args.warning = ACH:Description(L["|cffFF3333This does not work in Instances or Garrisons!|r"], 11, 'medium')
 Cosmetic.chatBubblesGroup.args.chatBubbles = ACH:Select(L["Chat Bubbles Style"], L["Skin the blizzard chat bubbles."], 12, { backdrop = L["Skin Backdrop"], nobackdrop = L["Remove Backdrop"], backdrop_noborder = L["Skin Backdrop (No Borders)"], disabled = L["Disable"] })
 Cosmetic.chatBubblesGroup.args.chatBubbleName = ACH:Toggle(L["Chat Bubble Names"], L["Display the name of the unit on the chat bubble. This will not work if backdrop is disabled or when you are in an instance."], 13)
 
@@ -202,10 +232,10 @@ blizz.general.args.vehicleSeatIndicatorSize = ACH:Range(L["Vehicle Seat Indicato
 blizz.general.args.durabilityScale = ACH:Range(L["Durability Scale"], nil, 17, { min = .5, max = 8, step = .5 }, nil, nil, function(info, value) E.db.general[info[#info]] = value Blizzard:UpdateDurabilityScale() end)
 blizz.general.inline = true
 
-blizz.quest = ACH:Group(L["Quest"], nil, 2)
+blizz.quest = ACH:Group(L["Quests"], nil, 2)
 blizz.quest.args.questRewardMostValueIcon = ACH:Toggle(L["Mark Quest Reward"], L["Marks the most valuable quest reward with a gold coin."], 1)
 blizz.quest.args.questXPPercent = ACH:Toggle(L["XP Quest Percent"], nil, 2, nil, nil, nil, nil, nil, nil, not E.Retail)
-blizz.quest.args.objectiveTracker = ACH:Toggle(L["Objective Frame"], L["Enable"], 1, nil, function() E.ShowPopup = true end, nil, nil, nil, nil, E.Retail)
+blizz.quest.args.objectiveTracker = ACH:Toggle(L["Objective Frame"], L["Enable"], 1, nil, function() E.ShowPopup = true end, nil, nil, nil, nil, E.Retail or E.Wrath)
 blizz.quest.inline = true
 
 blizz.lootRollGroup = ACH:Group(L["Loot Roll"], nil, 3, nil, function(info) return E.db.general.lootRoll[info[#info]] end, function(info, value) E.db.general.lootRoll[info[#info]] = value Misc:UpdateLootRollFrames() end)
@@ -238,9 +268,9 @@ blizz.itemLevelInfo.args.fontGroup.args.itemLevelFontSize = ACH:Range(L["Font Si
 blizz.itemLevelInfo.args.fontGroup.args.itemLevelFontOutline = ACH:FontFlags(L["Font Outline"], nil, 6)
 blizz.itemLevelInfo.args.fontGroup.inline = true
 
-blizz.objectiveFrameGroup = ACH:Group(L["Objective Frame"], nil, 5, nil, function(info) return E.db.general[info[#info]] end, nil, function() return (E:IsAddOnEnabled('!KalielsTracker') or E:IsAddOnEnabled('DugisGuideViewerZ')) end, not E.Retail)
-blizz.objectiveFrameGroup.args.objectiveFrameAutoHide = ACH:Toggle(L["Auto Hide"], L["Automatically hide the objective frame during boss or arena fights."], 1, nil, nil, nil, nil, function(info, value) E.db.general[info[#info]] = value Blizzard:SetObjectiveFrameAutoHide() end)
-blizz.objectiveFrameGroup.args.objectiveFrameAutoHideInKeystone = ACH:Toggle(L["Hide In Keystone"], nil, 2, nil, nil, nil, nil, nil, nil, function() return not E.db.general.objectiveFrameAutoHide end)
-blizz.objectiveFrameGroup.args.objectiveFrameHeight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 3, { min = 400, max = ceil(E.screenHeight), step = 1 }, nil, nil, function(info, value) E.db.general[info[#info]] = value Blizzard:SetObjectiveFrameHeight() end)
-blizz.objectiveFrameGroup.args.bonusObjectivePosition = ACH:Select(L["Bonus Reward Position"], L["Position of bonus quest reward frame relative to the objective tracker."], 4, { RIGHT = L["Right"], LEFT = L["Left"], AUTO = L["Automatic"] })
-blizz.objectiveFrameGroup.args.torghastBuffsPosition = ACH:Select(L["Torghast Buffs Position"], L["Position of the Torghast buff list relative to the objective tracker."], 5, { RIGHT = L["Right"], LEFT = L["Left"], AUTO = L["Automatic"] }, nil, nil, nil, function(info, value) E.db.general[info[#info]] = value Blizzard:SetupTorghastBuffFrame() end)
+blizz.objectiveFrameGroup = ACH:Group(L["Objective Frame"], nil, 5, nil, function(info) return E.db.general[info[#info]] end, nil, function() return (E:IsAddOnEnabled('!KalielsTracker') or E:IsAddOnEnabled('DugisGuideViewerZ')) end, not (E.Retail or E.Wrath))
+blizz.objectiveFrameGroup.args.objectiveFrameAutoHide = ACH:Toggle(L["Auto Hide"], L["Automatically hide the objective frame during boss or arena fights."], 1, nil, nil, nil, nil, function(info, value) E.db.general[info[#info]] = value Blizzard:SetObjectiveFrameAutoHide() end, nil, not (E.Retail or E.Wrath))
+blizz.objectiveFrameGroup.args.objectiveFrameAutoHideInKeystone = ACH:Toggle(L["Hide In Keystone"], L["Automatically hide the objective frame during boss fights while you are running a key."], 2, nil, nil, nil, nil, nil, nil, function() return not E.Retail or not E.db.general.objectiveFrameAutoHide end)
+blizz.objectiveFrameGroup.args.objectiveFrameHeight = ACH:Range(L["Objective Frame Height"], L["Height of the objective tracker. Increase size to be able to see more objectives."], 3, { min = 400, max = ceil(E.screenHeight), step = 1 }, nil, nil, function(info, value) E.db.general[info[#info]] = value Blizzard:SetObjectiveFrameHeight() end, nil, not (E.Retail or E.Wrath))
+blizz.objectiveFrameGroup.args.bonusObjectivePosition = ACH:Select(L["Bonus Reward Position"], L["Position of bonus quest reward frame relative to the objective tracker."], 4, { RIGHT = L["Right"], LEFT = L["Left"], AUTO = L["Automatic"] }, nil, nil, nil, nil, nil, not E.Retail)
+blizz.objectiveFrameGroup.args.torghastBuffsPosition = ACH:Select(L["Torghast Buffs Position"], L["Position of the Torghast buff list relative to the objective tracker."], 5, { RIGHT = L["Right"], LEFT = L["Left"], AUTO = L["Automatic"] }, nil, nil, nil, function(info, value) E.db.general[info[#info]] = value Blizzard:SetupTorghastBuffFrame() end, nil, not E.Retail)

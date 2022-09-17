@@ -58,3 +58,9 @@ L.mainEntrance = "堡垒塔楼之门（最后一面墙）"
 L.westTower = "影目塔楼（西塔）"
 L.southTower = "冬缘塔楼（南塔）"
 L.eastTower = "火光塔楼（东塔）"
+
+-- Arena
+L.arenaStartTrigger = "竞技场战斗开始了！"
+L.arenaStart60s = "竞技场战斗将在一分钟后开始！"
+L.arenaStart30s = "竞技场战斗将在三十秒后开始！"
+L.arenaStart15s = "竞技场战斗将在十五秒后开始！"

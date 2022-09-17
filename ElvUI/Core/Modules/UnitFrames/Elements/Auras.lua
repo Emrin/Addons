@@ -89,7 +89,7 @@ function UF:Construct_Debuffs(frame)
 	return debuffs
 end
 
-function UF:GetAuraRow(element, row, col, growthY, width, height, anchor, inversed, middle)
+function UF:GetAuraRow(element, row, col, growthY, width, height, spacing, anchor, inversed, middle)
 	local holder = element.rows[row]
 	if not holder then
 		holder = CreateFrame('Frame', '$parentRow'..row, element)
@@ -103,7 +103,7 @@ function UF:GetAuraRow(element, row, col, growthY, width, height, anchor, invers
 		element.currentRow = row
 
 		holder:ClearAllPoints()
-		element:Height((row + 1) * height)
+		element:Height((row + 1) * height - spacing)
 
 		local last = element.rows[row - 1]
 		if last and holder ~= last then
@@ -119,21 +119,26 @@ function UF:GetAuraRow(element, row, col, growthY, width, height, anchor, invers
 		else
 			holder:SetPoint(anchor, element)
 		end
+	elseif element.resetRowHeight then
+		element:Height(height - spacing)
+
+		element.resetRowHeight = nil
 	end
 
 	return holder
 end
 
-function UF:GetAuraPosition(element)
-	local spacing = element.spacing or 0
-	local width = (element.size or 16) + spacing
-	local height = (not element.height and width) or element.height + spacing
-	local cols = floor(element:GetWidth() / width + 0.5)
+function UF:GetAuraPosition(element, onlyHeight)
+	local size = element.size or 16
+	local height = element.height or size
+	if onlyHeight then return height end
 
 	local growthX = element.growthX == 'LEFT' and -1 or 1
 	local growthY = element.growthY == 'DOWN' and -1 or 1
 	local anchor = element.initialAnchor or 'BOTTOMLEFT'
 	local inversed = E.InversePoints[anchor]
+	local spacing = element.spacing or 0
+	local width = size + spacing
 
 	local y = growthY == 1 and 'BOTTOM' or 'TOP'
 	local x = growthX == 1 and 'LEFT' or 'RIGHT'
@@ -142,45 +147,35 @@ function UF:GetAuraPosition(element)
 	local side = anchor == 'LEFT' or anchor == 'RIGHT'
 	local point = (center or side) and (y..x) or anchor
 
-	return anchor, inversed, growthX, growthY, width, height, cols, point, side and y
+	local cols = floor(element:GetWidth() / width + 0.5)
+
+	return anchor, inversed, growthX, growthY, width, height + spacing, spacing, cols, point, side and y
 end
 
-function UF:SetAuraPosition(element, button, index, anchor, inversed, growthX, growthY, width, height, cols, point, middle)
+function UF:SetAuraPosition(element, button, index, anchor, inversed, growthX, growthY, width, height, spacing, cols, point, middle)
 	local z, col, row = index - 1, 0, 0
 	if cols > 0 then col, row = z % cols, floor(z / cols) end
 
-	local holder = UF:GetAuraRow(element, row, col + 1, growthY, width, height, anchor, inversed, middle)
+	local holder = UF:GetAuraRow(element, row, col + 1, growthY, width, height, spacing, anchor, inversed, middle)
 	button:ClearAllPoints()
 	button:SetPoint(point, holder, point, col * width * growthX, growthY)
 end
 
 function UF:SetPosition(from, to)
 	if to < from then
-		if self.lastActive ~= to then
-			self.lastActive = to
-
-			if self.smartFluid then
-				self:SetScale(0.0001)
-				self.resetScale = true
-			else
-				local height = self.height or self.size
-				if height then self:Height(height) end
-			end
+		if self.smartFluid then
+			self:SetHeight(0.00001) -- dont scale this
+			self.resetRowHeight = true
+		else
+			self:Height(UF:GetAuraPosition(self, true))
 		end
-	elseif self.lastActive ~= to then
-		self.lastActive = to
-
-		if self.resetScale then
-			self:SetScale(1)
-			self.resetScale = nil
-		end
-
-		local anchor, inversed, growthX, growthY, width, height, cols, point, middle = UF:GetAuraPosition(self)
+	else
+		local anchor, inversed, growthX, growthY, width, height, spacing, cols, point, middle = UF:GetAuraPosition(self)
 		for index = from, to do
 			local button = self.active[index]
 			if not button then break end
 
-			UF:SetAuraPosition(self, button, index, anchor, inversed, growthX, growthY, width, height, cols, point, middle)
+			UF:SetAuraPosition(self, button, index, anchor, inversed, growthX, growthY, width, height, spacing, cols, point, middle)
 		end
 	end
 end
@@ -241,6 +236,12 @@ function UF:UpdateAuraSettings(button)
 		button.count:SetJustifyH(point:find('RIGHT') and 'RIGHT' or 'LEFT')
 		button.count:Point(point, db.countXOffset, db.countYOffset)
 		button.count:FontTemplate(LSM:Fetch('font', db.countFont), db.countFontSize, db.countFontOutline)
+	end
+
+	if button.auraInfo then
+		wipe(button.auraInfo)
+	else
+		button.auraInfo = {}
 	end
 
 	button.needsIconTrim = true
@@ -328,10 +329,7 @@ function UF:Configure_Auras(frame, which)
 	local auraType = which:lower()
 	local settings = db[auraType]
 	auras.db = settings
-
-	-- not onUpdateFrequency ignores targettarget
-	auras.auraSort = UF.SortAuraFuncs[not frame.onUpdateFrequency and settings.sortMethod]
-
+	auras.auraSort = UF.SortAuraFuncs[settings.sortMethod]
 	auras.smartPosition, auras.smartFluid = UF:SetSmartPosition(frame, db)
 	auras.attachTo = UF:GetAuraAnchorFrame(frame, settings.attachTo) -- keep below SetSmartPosition
 
@@ -365,7 +363,6 @@ function UF:Configure_Auras(frame, which)
 	auras.filterList = UF:ConvertFilters(auras, settings.priority)
 	auras.numAuras = settings.perrow
 	auras.numRows = settings.numrows
-	auras.lastActive = -1 -- for SetPosition
 
 	local x, y
 	if settings.attachTo == 'HEALTH' or settings.attachTo == 'POWER' then
@@ -381,7 +378,6 @@ function UF:Configure_Auras(frame, which)
 
 	auras:ClearAllPoints()
 	auras:Point(auras.initialAnchor, auras.attachTo, auras.anchorPoint, auras.xOffset, auras.yOffset)
-	auras:SetScale(1)
 
 	local index = 1
 	while auras[index] do
@@ -477,8 +473,7 @@ function UF:UpdateAuraSmartPoisition()
 			element:ClearAllPoints()
 			element:Point(other.initialAnchor, other.attachTo, other.anchorPoint, other.xOffset, other.yOffset)
 		else
-			local height = other.height or other.size
-			if height then other:Height(height) end
+			other:Height(UF:GetAuraPosition(other, true))
 		end
 	else
 		element:ClearAllPoints()
@@ -563,19 +558,44 @@ function UF:CheckFilter(source, spellName, spellID, canDispel, isFriend, isPlaye
 	end
 end
 
-function UF:AuraFilter(unit, button, name, icon, count, debuffType, duration, expiration, source, isStealable, nameplateShowPersonal, spellID, _, isBossDebuff, castByPlayer, nameplateShowAll)
+function UF:AuraUnchanged(a, name, icon, count, debuffType, duration, expiration, source, isStealable, nameplateShowPersonal, spellID, canApplyAura, isBossDebuff, castByPlayer, nameplateShowAll)
+	if a.name ~= name or a.icon ~= icon or a.count ~= count or a.debuffType ~= debuffType or a.duration ~= duration or a.expiration ~= expiration or a.source ~= source or a.isStealable ~= isStealable or a.nameplateShowPersonal ~= nameplateShowPersonal or a.spellID ~= spellID or a.canApplyAura ~= canApplyAura or a.isBossDebuff ~= isBossDebuff or a.castByPlayer ~= castByPlayer or a.nameplateShowAll ~= nameplateShowAll then
+		a.name, a.icon, a.count, a.debuffType, a.duration, a.expiration, a.source, a.isStealable, a.nameplateShowPersonal, a.spellID, a.canApplyAura, a.isBossDebuff, a.castByPlayer, a.nameplateShowAll = name, icon, count, debuffType, duration, expiration, source, isStealable, nameplateShowPersonal, spellID, canApplyAura, isBossDebuff, castByPlayer, nameplateShowAll
+	else
+		return true
+	end
+end
+
+function UF:AuraFilter(unit, button, name, icon, count, debuffType, duration, expiration, source, isStealable, nameplateShowPersonal, spellID, canApplyAura, isBossDebuff, castByPlayer, nameplateShowAll)
 	if not name then return end -- checking for an aura that is not there, pass nil to break while loop
 
 	local db = button.db or self.db
 	if not db then return true end
 
-	local dispel = self.type == 'debuffs' and debuffType and E:IsDispellableByMe(debuffType)
+	if db.stackAuras and not UF.ExcludeStacks[spellID] then
+		local matching = source and castByPlayer and format('%s:%s', source, name) or name
+		local stack = self.stacks[matching]
+		if not stack then
+			self.stacks[matching] = button
+		elseif stack.texture == icon then
+			stack.matches = (stack.matches or 1) + ((count and count > 0 and count) or 1)
+			stack.count:SetText(stack.matches)
+
+			return false
+		end
+	end
+
+	if UF:AuraUnchanged(button.auraInfo, name, icon, count, debuffType, duration, expiration, source, isStealable, nameplateShowPersonal, spellID, canApplyAura, isBossDebuff, castByPlayer, nameplateShowAll) then
+		return button.filterPass
+	end
 
 	-- already set by oUF:
 	--- button.caster = source
 	--- button.filter = filter
 	--- button.isDebuff = isDebuff
 	--- button.isPlayer = source == 'player' or source == 'vehicle'
+
+	local dispel = self.type == 'debuffs' and debuffType and E:IsDispellableByMe(debuffType)
 
 	button.canDesaturate = db.desaturate
 	button.myPet = source == 'pet'
@@ -594,27 +614,16 @@ function UF:AuraFilter(unit, button, name, icon, count, debuffType, duration, ex
 	button.name = name
 	button.priority = 0
 
-	if db.stackAuras and not UF.ExcludeStacks[spellID] then
-		local matching = source and castByPlayer and format('%s:%s', source, name) or name
-		local stack = self.stacks[matching]
-		if not stack then
-			self.stacks[matching] = button
-		elseif stack.texture == icon then
-			stack.matches = (stack.matches or 1) + ((count and count > 0 and count) or 1)
-			stack.count:SetText(stack.matches)
-
-			return false
-		end
-	end
-
 	local noDuration = (not duration or duration == 0)
 	local allowDuration = noDuration or (duration and duration > 0 and (not db.maxDuration or db.maxDuration == 0 or duration <= db.maxDuration) and (not db.minDuration or db.minDuration == 0 or duration >= db.minDuration))
 
 	if self.filterList then
 		local filterCheck, spellPriority = UF:CheckFilter(source, name, spellID, button.canDispel, button.isFriend, button.isPlayer, button.unitIsCaster, button.myPet, button.otherPet, isBossDebuff, allowDuration, noDuration, castByPlayer, nameplateShowPersonal, nameplateShowAll, self.filterList)
 		if spellPriority then button.priority = spellPriority end -- this is the only difference from auarbars code
+		button.filterPass = filterCheck
 		return filterCheck
 	else
+		button.filterPass = allowDuration
 		return allowDuration -- Allow all auras to be shown when the filter list is empty, while obeying duration sliders
 	end
 end

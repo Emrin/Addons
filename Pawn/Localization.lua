@@ -3,7 +3,7 @@
 -- © 2006-2022 Travis Spomer.  This mod is released under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 license.
 -- See Readme.htm for more information.
 
--- 
+--
 -- English resources
 ------------------------------------------------------------
 
@@ -153,6 +153,7 @@ For more information on customizing Pawn, please see the help file (Readme.htm) 
 		["SpellDamageInfo"] = "Spell damage.  Increases the damage dealt by your offensive spells.",
 		["SpellHitInfo"] = "Spell Hit.  Increases the chance that your damaging spells hit the target, especially bosses.",
 		["SpellPenetrationInfo"] = "Spell Penetration. Negates an enemy's resistances to your spells.",
+		["SpellPowerInfo"] = "Spell power.  Increases both damage and healing dealt by spells.",
 		["SpiritInfo"] = "Spirit.  Affects your out-of-combat mana regeneration.",
 		["StaminaInfo"] = "Stamina.  Increases your health.",
 		["StrengthInfo"] = "Strength.  Increases the power of some classes' abilities.",
@@ -261,6 +262,8 @@ For more information on customizing Pawn, please see the help file (Readme.htm) 
 		["Armor"] = "^%+?# Armor$",
 		["Armor2"] = "^UNUSED$",
 		["ArmorPenetration"] = "^Equip: Your attacks ignore # of your opponent's armor%.$",
+		["ArmorPenetrationRating"] = "^Equip: Increases armor penetration rating by #%.$",
+		["ArmorPenetrationShort"] = "^%+?# Armor Penetration Rating$",
 		["Avoidance"] = "^%+# Avoidance$",
 		["Axe"] = "^Axe$",
 		["BagSlots"] = "^%d+ Slot .+$",
@@ -311,8 +314,10 @@ For more information on customizing Pawn, please see the help file (Readme.htm) 
 		["EnchantmentTitaniumWeaponChain"] = "^Titanium Weapon Chain$",
 		["Equip"] = "Equip:",
 		["ExpertiseRating"] = "^Equip: Increases your expertise rating by #%.$",
+		["ExpertiseRatingShort"] = "^%+?# Expertise Rating$",
 		["FeralAp"] = "^Equip: %+# Attack Power in Cat, Bear, and Dire Bear forms only%.$",
 		["FeralApMoonkin"] = "^Equip: Increases attack power by # in Cat, Bear, Dire Bear, and Moonkin forms only%.$",
+		["FeralApWrath"] = "^Increases attack power by # in Cat, Bear, Dire Bear, and Moonkin forms only%.$",
 		["FireResist"] = "^%+?# Fire Resistance$",
 		["FireSpellDamage"] = "^%+# Fire Spell Damage$",
 		["FireSpellDamage2"] = "^Equip: Increases damage done by Fire spells and effects by up to #%.$",
@@ -386,6 +391,7 @@ For more information on customizing Pawn, please see the help file (Readme.htm) 
 		["PvPPower"] = "^%+?# PvP Power$",
 		["RaidFinder"] = "^Raid Finder$",
 		["Rap"] = "^Equip: %+# ranged Attack Power%.$",
+		["Rap2"] = "^Equip: Increases ranged attack power by #%.$",
 		["Requires2"] = "^UNUSED$",
 		["Resilience"] = "^%+?# PvP Resilience$",
 		["Resilience2"] = "^UNUSED$",
@@ -413,6 +419,7 @@ For more information on customizing Pawn, please see the help file (Readme.htm) 
 		["SpellDamage3"] = "^%+# Healing and Spell Damage$",
 		["SpellDamage4"] = "^%+# Spell Damage$",
 		["SpellDamage5"] = "^UNUSED$",
+		["SpellDamage6"] = "^UNUSED$",
 		["SpellDamageAndHealing"] = "^Equip: Increases healing done by up to # and damage done by up to # for all magical spells and effects%.$",
 		["SpellDamageAndHealing2"] = "^UNUSED$",
 		["SpellDamageAndHealingEnchant"] = "^%+# Healing and %+# Spell Damage$",
@@ -428,6 +435,8 @@ For more information on customizing Pawn, please see the help file (Readme.htm) 
 		["SpellPenetrationClassic"] = "^Equip: Decreases the magical resistances of your spell targets by #%.$",
 		["SpellPenetrationShort"] = "^%+?# Spell Penetration$",
 		["SpellPower"] = "^%+?# Spell Power$",
+		["SpellPower2"] = "^Equip: Increases spell power by #%.$",
+		["SpellPower3"] = "^UNUSED$",
 		["Spirit"] = "^%+?# Spirit$",
 		["Staff"] = "^Staff$",
 		["Stamina"] = "^%+?# Stamina$",
@@ -658,6 +667,7 @@ This command cannot be undone!]=],
 		["ScaleRename"] = "Rename",
 		["ScaleRenameTooltip"] = "Rename this scale.",
 		["ScaleSelectorHeader"] = "Select a scale:",
+		["ScaleSelectorNoneWarning"] = "Shift-click at least one for advice.",
 		["ScaleSelectorShowingSuggestionsFor"] = "Showing suggestions for",
 		["ScaleSelectorShowScale"] = "Show this scale in tooltips",
 		["ScaleSelectorShowScaleTooltip"] = [=[Enable this option to show this scale in item tooltips and have Pawn use it to suggest upgrades.  You can have more than one scale enabled on each character.

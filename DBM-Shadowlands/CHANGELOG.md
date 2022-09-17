@@ -1,19 +1,22 @@
 # <DBM> World Bosses (Shadowlands)
 
-## [9.2.0](https://github.com/DeadlyBossMods/DBM-Retail/tree/9.2.0) (2022-02-22)
-[Full Changelog](https://github.com/DeadlyBossMods/DBM-Retail/compare/9.1.29...9.2.0) [Previous Releases](https://github.com/DeadlyBossMods/DBM-Retail/releases)
+## [9.2.33](https://github.com/DeadlyBossMods/DBM-Retail/tree/9.2.33) (2022-09-07)
+[Full Changelog](https://github.com/DeadlyBossMods/DBM-Retail/compare/9.2.32...9.2.33) [Previous Releases](https://github.com/DeadlyBossMods/DBM-Retail/releases)
 
-- prep new tags  
-- bump toc files  
-- bump toc files  
-- changing it back to spellId because that's only way i won't fuck it up  
-- Update commonlocal.fr.lua (#78)  
-- Add support for range 6 in TBC, Closes https://github.com/DeadlyBossMods/DBM-TBC-Classic/issues/104 Also fixed a regression that dates back to unified core where TBC and classic would show ranges in drop down that are unavailable.  
-- Fixed more spells in Castle Nathria that weren't grouped correctly, as well as fixed description text for dance macabre to be using the spellid that has the actually useful description.  
-    Also combined some more stuff on tredova  
-- and one more regression i missed  
-- Fixed regressionn that caused some stage warnings to get grouped funny.  
-- Adds left fix will work better if the adds left object isn't also called \"adds\"  
-- Gui Updates: - Fixed AddsLeft warnings getting filtered (not grouped) with improved object identification - Added ability to group Generic Announce and Special Announce objects with optional spellID argument  
-- Updated new GUI parsing to properly handle achievement timer objects, which exist in a lot of wrath and mop content.  
-- bump alpha versions  
+- Prep new tags for retail and wrath  
+- finish fated week 6 data  
+- First half of week 6 affixes. I'll have to do rest when I get home  
+- Apparently arc counting is hard. Every single phase change announce ever put in DBM core, is using wrong arg for sound version  
+- Disable manual requessting of libspec, it's handled all by lib now. Also pull new lib versionn to fix lua errors on DF beta when encounter evokers  
+- Update localization.ru.lua (#805)  
+- Update koKR (DF) (#804)  
+- oops, bad copy/paste  
+- add templates for remaining world bosses  
+- Because I know this will trigger me if I don't fix it, and see it again in 3 months time.  
+- bump alpha  
+- Tag new wrath. need to get new wrath check code out asap before ptr to live sync or DBM core will be hella broken  
+- update wrath constance so they continue working when next build gets pushed to live  
+- Fix missing =  
+- Update Kurog to latest encounter changes  
+- Minor cleanup Need a triggered rebuild :))  
+- Bump alpha  

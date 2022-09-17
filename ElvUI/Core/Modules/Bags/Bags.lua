@@ -19,6 +19,7 @@ local CursorHasItem = CursorHasItem
 local DepositReagentBank = DepositReagentBank
 local GameTooltip_Hide = GameTooltip_Hide
 local GetBackpackAutosortDisabled = GetBackpackAutosortDisabled
+local GetBackpackCurrencyInfo = GetBackpackCurrencyInfo
 local GetBagSlotFlag = GetBagSlotFlag
 local GetBankAutosortDisabled = GetBankAutosortDisabled
 local GetBankBagSlotFlag = GetBankBagSlotFlag
@@ -831,6 +832,7 @@ function B:AssignBagFlagMenu()
 
 				info.disabled = nil
 				info.tooltipTitle = nil
+
 				_G.UIDropDownMenu_AddButton(info)
 			end
 		end
@@ -847,6 +849,8 @@ function B:AssignBagFlagMenu()
 	info.disabled = nil
 
 	info.text = BAG_FILTER_IGNORE
+	info.checked = B:IsSortIgnored(holder.bagID)
+
 	info.func = function(_, _, _, value)
 		if holder.bagID == BANK_CONTAINER then
 			SetBankAutosortDisabled(not value)
@@ -858,17 +862,20 @@ function B:AssignBagFlagMenu()
 			SetBagSlotFlag(holder.bagID, LE_BAG_FILTER_FLAG_IGNORE_CLEANUP, not value)
 		end
 	end
-	if holder.bagID == BANK_CONTAINER then
-		info.checked = GetBankAutosortDisabled()
-	elseif holder.bagID == BACKPACK_CONTAINER then
-		info.checked = GetBackpackAutosortDisabled()
-	elseif holder.bagID > NUM_BAG_SLOTS then
-		info.checked = GetBankBagSlotFlag(holder.bagID - NUM_BAG_SLOTS, LE_BAG_FILTER_FLAG_IGNORE_CLEANUP)
-	else
-		info.checked = GetBagSlotFlag(holder.bagID, LE_BAG_FILTER_FLAG_IGNORE_CLEANUP)
-	end
 
 	_G.UIDropDownMenu_AddButton(info)
+end
+
+function B:IsSortIgnored(bagID)
+	if bagID == BANK_CONTAINER then
+		return GetBankAutosortDisabled()
+	elseif bagID == BACKPACK_CONTAINER then
+		return GetBackpackAutosortDisabled()
+	elseif bagID > NUM_BAG_SLOTS then
+		return GetBankBagSlotFlag(bagID - NUM_BAG_SLOTS, LE_BAG_FILTER_FLAG_IGNORE_CLEANUP)
+	else
+		return GetBagSlotFlag(bagID, LE_BAG_FILTER_FLAG_IGNORE_CLEANUP)
+	end
 end
 
 function B:GetBagAssignedInfo(holder)
@@ -996,7 +1003,7 @@ function B:Layout(isBank)
 					slot.filterIcon.FilterBackdrop:SetSize(buttonSize, buttonSize)
 				end
 
-				slot.JunkIcon:SetSize(buttonSize / 2, buttonSize / 2)
+				slot.JunkIcon:SetSize(buttonSize * 0.5, buttonSize * 0.5)
 
 				if slot:GetPoint() then
 					slot:ClearAllPoints()
@@ -1232,8 +1239,9 @@ function B:UpdateTokens()
 	end
 
 	for i = 1, MAX_WATCHED_TOKENS do
-		local info = C_CurrencyInfo_GetBackpackCurrencyInfo(i)
-		if not info then break end
+		local info = E.Retail and C_CurrencyInfo_GetBackpackCurrencyInfo(i) or E.Wrath and {}
+		if E.Wrath then info.name, info.quantity, info.iconFileID, info.currencyTypesID = GetBackpackCurrencyInfo(i) end
+		if not (info and info.name) then break end
 
 		local button = f.currencyButton[i]
 		button:ClearAllPoints()
@@ -1265,14 +1273,14 @@ function B:UpdateTokens()
 		end
 
 		if numTokens == 1 then
-			f.currencyButton[1]:Point('BOTTOM', f.currencyButton, 'BOTTOM', -(f.currencyButton[1].text:GetWidth() / 2), 3)
+			f.currencyButton[1]:Point('BOTTOM', f.currencyButton, 'BOTTOM', -(f.currencyButton[1].text:GetWidth() * 0.5), 3)
 		elseif numTokens == 2 then
-			f.currencyButton[1]:Point('BOTTOM', f.currencyButton, 'BOTTOM', -(f.currencyButton[1].text:GetWidth()) - (f.currencyButton[1]:GetWidth() / 2), 3)
-			f.currencyButton[2]:Point('BOTTOMLEFT', f.currencyButton, 'BOTTOM', f.currencyButton[2]:GetWidth() / 2, 3)
+			f.currencyButton[1]:Point('BOTTOM', f.currencyButton, 'BOTTOM', -(f.currencyButton[1].text:GetWidth()) - (f.currencyButton[1]:GetWidth() * 0.5), 3)
+			f.currencyButton[2]:Point('BOTTOMLEFT', f.currencyButton, 'BOTTOM', f.currencyButton[2]:GetWidth() * 0.5, 3)
 		else
 			f.currencyButton[1]:Point('BOTTOMLEFT', f.currencyButton, 'BOTTOMLEFT', 3, 3)
 			f.currencyButton[2]:Point('BOTTOM', f.currencyButton, 'BOTTOM', -(f.currencyButton[2].text:GetWidth() / 3), 3)
-			f.currencyButton[3]:Point('BOTTOMRIGHT', f.currencyButton, 'BOTTOMRIGHT', -(f.currencyButton[3].text:GetWidth()) - (f.currencyButton[3]:GetWidth() / 2), 3)
+			f.currencyButton[3]:Point('BOTTOMRIGHT', f.currencyButton, 'BOTTOMRIGHT', -(f.currencyButton[3].text:GetWidth()) - (f.currencyButton[3]:GetWidth() * 0.5), 3)
 		end
 	end
 end
@@ -1293,6 +1301,7 @@ B.ExcludeGrays = E.Retail and {
 	[36812] = "Ground Gear",
 	[62072] = "Robble's Wobbly Staff",
 	[67410] = "Very Unlucky Rock",
+	[190382] = "Warped Pocket Dimension",
 } or { -- TBC and Classic
 	[32888] = "The Relics of Terokk",
 	[28664] = "Nitrin's Instructions",
@@ -1820,7 +1829,7 @@ function B:ConstructContainerFrame(name, isBank)
 		f.vendorGraysButton:Point('RIGHT', not E.Retail and f.keyButton or f.bagsButton, 'LEFT', -5, 0)
 		B:SetButtonTexture(f.vendorGraysButton, 133784) -- Interface\ICONS\INV_Misc_Coin_01
 		f.vendorGraysButton:StyleButton(nil, true)
-		f.vendorGraysButton.ttText = L["Vendor / Delete Grays"]
+		f.vendorGraysButton.ttText = not E.Retail and L["Vendor / Delete Grays"] or L["Vendor Grays"]
 		f.vendorGraysButton.ttValue = B.GetGraysValue
 		f.vendorGraysButton:SetScript('OnEnter', B.Tooltip_Show)
 		f.vendorGraysButton:SetScript('OnLeave', GameTooltip_Hide)
@@ -1830,7 +1839,7 @@ function B:ConstructContainerFrame(name, isBank)
 		f.editBox:Point('BOTTOMLEFT', f.holderFrame, 'TOPLEFT', E.Border, 4)
 		f.editBox:Point('RIGHT', f.vendorGraysButton, 'LEFT', -5, 0)
 
-		if E.Retail then
+		if E.Retail or E.Wrath then
 			--Currency
 			f.currencyButton = CreateFrame('Frame', nil, f)
 			f.currencyButton:Point('BOTTOM', 0, 4)
@@ -1845,6 +1854,7 @@ function B:ConstructContainerFrame(name, isBank)
 				currency:SetID(i)
 				currency.icon:SetInside()
 				currency.icon:SetTexCoord(unpack(E.TexCoords))
+				currency.icon:SetDrawLayer('ARTWORK', 7)
 				currency.text = currency:CreateFontString(nil, 'OVERLAY')
 				currency.text:Point('LEFT', currency, 'RIGHT', 2, 0)
 				currency.text:FontTemplate()
@@ -2308,12 +2318,12 @@ function B:PostBagMove()
 	local screenHeight = E.UIParent:GetTop()
 	local screenWidth = E.UIParent:GetRight()
 
-	if y > (screenHeight / 2) then
+	if y > (screenHeight * 0.5) then
 		self:SetText(self.textGrowDown)
-		self.POINT = ((x > (screenWidth/2)) and 'TOPRIGHT' or 'TOPLEFT')
+		self.POINT = ((x > (screenWidth*0.5)) and 'TOPRIGHT' or 'TOPLEFT')
 	else
 		self:SetText(self.textGrowUp)
-		self.POINT = ((x > (screenWidth/2)) and 'BOTTOMRIGHT' or 'BOTTOMLEFT')
+		self.POINT = ((x > (screenWidth*0.5)) and 'BOTTOMRIGHT' or 'BOTTOMLEFT')
 	end
 
 	local bagFrame = (self.name == 'ElvUIBankMover' and B.BankFrame) or B.BagFrame
@@ -2580,8 +2590,11 @@ function B:Initialize()
 	B.BagFrame = B:ConstructContainerFrame('ElvUI_ContainerFrame')
 	B.BankFrame = B:ConstructContainerFrame('ElvUI_BankContainerFrame', true)
 
-	if E.Retail then
+	if E.Retail or E.Wrath then
 		B:SecureHook('BackpackTokenFrame_Update', 'UpdateTokens')
+	end
+
+	if E.Retail then
 		B:RegisterEvent('PLAYER_AVG_ITEM_LEVEL_UPDATE')
 
 		B.BankFrame:RegisterEvent('PLAYERREAGENTBANKSLOTS_CHANGED') -- let reagent collect data for next open

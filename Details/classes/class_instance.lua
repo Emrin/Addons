@@ -304,6 +304,58 @@ function _detalhes:GetSkinTexture()
 	return _detalhes.skins [self.skin] and _detalhes.skins [self.skin].file
 end
 
+function Details:GetAllLines()
+	return self.barras
+end
+function Details:GetLine(lineId) --alias of _detalhes:GetRow(index)
+	return self.barras[lineId]
+end
+function Details:GetNumLinesShown() --alis of _detalhes:GetNumRows()
+	return self.rows_fit_in_window
+end
+
+--@attributeId: DETAILS_ATTRIBUTE_DAMAGE, DETAILS_ATTRIBUTE_HEAL
+function Details:GetTop5Actors(attributeId)
+	local combatObject = self.showing
+	if (combatObject) then
+		local container = combatObject:GetContainer(attributeId)
+		if (container) then
+            local actorTable = container._ActorTable
+			return actorTable[1], actorTable[2], actorTable[3], actorTable[4], actorTable[5]
+		end
+	end
+end
+
+--@attributeId: DETAILS_ATTRIBUTE_DAMAGE, DETAILS_ATTRIBUTE_HEAL
+--@rankIndex: the rank id of the actor shown in the window
+function Details:GetActorByRank(attributeId, rankIndex)
+	local combatObject = self.showing
+	if (combatObject) then
+		local container = combatObject:GetContainer(attributeId)
+		if (container) then
+			return container._ActorTable[rankIndex]
+		end
+	end
+
+	--[=[
+	local firstRow = window1:GetLine(1)
+	if (firstRow and firstRow:IsShown()) then
+		local actor = firstRow:GetActor()
+		if (actor) then
+			local total = actor.total
+			local combatTime = Details:GetCurrentCombat():GetCombatTime()
+			print("dps:", total/combatTime)
+		end
+	end
+
+	local actorTable = container._ActorTable
+	for i = 1, #actorTable do
+		local actor = actorTable[rankIndex]
+		return actor
+	end	
+	--]=]
+end
+
 ------------------------------------------------------------------------------------------------------------------------
 
 --> retorna se a inst�ncia esta ou n�o ativa
@@ -416,6 +468,7 @@ end
 		if (not all) then
 			self:Desagrupar (-1)
 		end
+
 		if (self.modo == modo_raid) then
 			_detalhes.RaidTables:DisableRaidMode (self)
 			
@@ -648,8 +701,8 @@ end
 		end
 
 		self:DesaturateMenu()
-		
-	  if (not all) then
+
+		if (not all) then
 			self:Desagrupar (-1)
 		end
 		
@@ -1719,6 +1772,22 @@ function _detalhes:CheckSwitchOnCombatStart (check_segment)
 	
 end
 
+local createStatusbarOptions = function(optionsTable)
+	local newTable = {}
+	newTable.textColor = optionsTable.textColor
+	newTable.textSize = optionsTable.textSize
+	newTable.textFace = optionsTable.textFace
+	newTable.textXmod = optionsTable.textXmod
+	newTable.textYmod = optionsTable.textYmod
+	newTable.isHidden = optionsTable.isHidden
+	newTable.segmentType = optionsTable.segmentType
+	newTable.textAlign = optionsTable.textAlign
+	newTable.timeType = optionsTable.timeType
+	newTable.textStyle = optionsTable.textStyle
+
+	return newTable
+end
+
 function _detalhes:ExportSkin()
 
 	--create the table
@@ -1728,7 +1797,7 @@ function _detalhes:ExportSkin()
 
 	--export the keys
 	for key, value in pairs (self) do
-		if (_detalhes.instance_defaults [key] ~= nil) then	
+		if (_detalhes.instance_defaults [key] ~= nil) then
 			if (type (value) == "table") then
 				exported [key] = Details.CopyTable (value)
 			else
@@ -1736,14 +1805,14 @@ function _detalhes:ExportSkin()
 			end
 		end
 	end
-	
+
 	--export size and positioning
 	if (_detalhes.profile_save_pos) then
 		exported.posicao = self.posicao
 	else
 		exported.posicao = nil
 	end
-	
+
 	--export mini displays
 	if (self.StatusBar and self.StatusBar.left) then
 		exported.StatusBarSaved = {
@@ -1751,19 +1820,35 @@ function _detalhes:ExportSkin()
 			["center"] = self.StatusBar.center.real_name or "NONE",
 			["right"] = self.StatusBar.right.real_name or "NONE",
 		}
+
+		local leftOptions = createStatusbarOptions(self.StatusBar.left.options)
+		local centerOptions = createStatusbarOptions(self.StatusBar.center.options)
+		local rightOptions = createStatusbarOptions(self.StatusBar.right.options)
+
 		exported.StatusBarSaved.options = {
-			[exported.StatusBarSaved.left] = Details.CopyTable (self.StatusBar.left.options),
-			[exported.StatusBarSaved.center] = Details.CopyTable (self.StatusBar.center.options),
-			[exported.StatusBarSaved.right] = Details.CopyTable (self.StatusBar.right.options)
+			[exported.StatusBarSaved.left] = leftOptions,
+			[exported.StatusBarSaved.center] = centerOptions,
+			[exported.StatusBarSaved.right] = rightOptions,
 		}
 
 	elseif (self.StatusBarSaved) then
-		exported.StatusBarSaved = Details.CopyTable (self.StatusBarSaved)
-		
-	end
+		local leftName = self.StatusBarSaved.left
+		local centerName = self.StatusBarSaved.center
+		local rightName = self.StatusBarSaved.right
 
+		local options = self.StatusBarSaved.options
+
+		local leftOptions = createStatusbarOptions(options[leftName])
+		local centerOptions = createStatusbarOptions(options[centerName])
+		local rightOptions = createStatusbarOptions(options[rightName])
+
+		options[leftName] = leftOptions
+		options[centerName] = centerOptions
+		options[rightName] = rightOptions
+
+		exported.StatusBarSaved = DetailsFramework.table.copy({}, self.StatusBarSaved)
+	end
 	return exported
-	
 end
 
 function _detalhes:ApplySavedSkin (style)
@@ -2116,6 +2201,7 @@ function _detalhes:TrocaTabela (instancia, segmento, atributo, sub_atributo, ini
 		instancia = self
 	end
 
+	--Details:GetWindow(1):SetDisplay(DETAILS_SEGMENTID_CURRENT, 1, 1, false, DETAILS_MODE_GROUP) InstanceMode is nil on this example
 	if (InstanceMode and InstanceMode ~= instancia:GetMode()) then
 		instancia:AlteraModo (instancia, InstanceMode)
 	end

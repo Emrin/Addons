@@ -117,6 +117,21 @@ local function HandleAffixIcons(self)
 	end
 end
 
+local function DungeonReadyStatus_UpdateIcon(button, role)
+	if not role then role = select(2, GetLFGProposalMember(button:GetID())) end
+
+	button.texture:SetTexture(E.Media.Textures.RolesHQ)
+	button.texture:SetAlpha(0.6)
+
+	if role == 'DAMAGER' then
+		button.texture:SetTexCoord(_G.LFDQueueFrameRoleButtonDPS.background:GetTexCoord())
+	elseif role == 'TANK' then
+		button.texture:SetTexCoord(_G.LFDQueueFrameRoleButtonTank.background:GetTexCoord())
+	elseif role == 'HEALER' then
+		button.texture:SetTexCoord(_G.LFDQueueFrameRoleButtonHealer.background:GetTexCoord())
+	end
+end
+
 function S:LookingForGroupFrames()
 	if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.lfg) then return end
 
@@ -148,6 +163,11 @@ function S:LookingForGroupFrames()
 	_G.LFGDungeonReadyDialogBackground:SetInside()
 	_G.LFGDungeonReadyDialogBackground:Point('BOTTOMRIGHT', -E.Border, 50)
 
+	-- Brawl & Solo Shuffle
+	_G.ReadyStatus:StripTextures()
+	_G.ReadyStatus:SetTemplate('Transparent')
+	S:HandleCloseButton(_G.ReadyStatus.CloseButton)
+
 	-- Artwork background (1)
 	_G.LFGDungeonReadyDialog:CreateBackdrop('Transparent', nil, nil, nil, nil, nil, nil, nil, true)
 	_G.LFGDungeonReadyDialog.backdrop:SetOutside(_G.LFGDungeonReadyDialogBackground)
@@ -173,20 +193,8 @@ function S:LookingForGroupFrames()
 		end
 	end)
 
-	hooksecurefunc('LFGDungeonReadyStatusIndividual_UpdateIcon', function(button)
-		local _, role = GetLFGProposalMember(button:GetID())
-
-		button.texture:SetTexture(E.Media.Textures.RolesHQ)
-		button.texture:SetAlpha(0.6)
-
-		if role == 'DAMAGER' then
-			button.texture:SetTexCoord(_G.LFDQueueFrameRoleButtonDPS.background:GetTexCoord())
-		elseif role == 'TANK' then
-			button.texture:SetTexCoord(_G.LFDQueueFrameRoleButtonTank.background:GetTexCoord())
-		elseif role == 'HEALER' then
-			button.texture:SetTexCoord(_G.LFDQueueFrameRoleButtonHealer.background:GetTexCoord())
-		end
-	end)
+	hooksecurefunc('LFGDungeonReadyStatusIndividual_UpdateIcon', DungeonReadyStatus_UpdateIcon)
+	hooksecurefunc('LFGDungeonReadyStatusGrouped_UpdateIcon', DungeonReadyStatus_UpdateIcon)
 
 	_G.LFDQueueFrame:StripTextures(true)
 	_G.LFDQueueFrameRoleButtonTankIncentiveIcon:SetAlpha(0)
@@ -531,9 +539,10 @@ function S:LookingForGroupFrames()
 	S:HandleCheckBox(LFGListFrame.EntryCreation.ItemLevel.CheckButton)
 	S:HandleCheckBox(LFGListFrame.EntryCreation.MythicPlusRating.CheckButton)
 	S:HandleCheckBox(LFGListFrame.EntryCreation.PrivateGroup.CheckButton)
-	S:HandleCheckBox(LFGListFrame.EntryCreation.PVPRating.CheckButton)
 	S:HandleCheckBox(LFGListFrame.EntryCreation.PvpItemLevel.CheckButton)
+	S:HandleCheckBox(LFGListFrame.EntryCreation.PVPRating.CheckButton)
 	S:HandleCheckBox(LFGListFrame.EntryCreation.VoiceChat.CheckButton)
+	S:HandleCheckBox(LFGListFrame.EntryCreation.CrossFactionGroup.CheckButton)
 
 	LFGListFrame.EntryCreation.ActivityFinder.Dialog:StripTextures()
 	LFGListFrame.EntryCreation.ActivityFinder.Dialog:SetTemplate('Transparent')

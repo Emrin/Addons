@@ -14,13 +14,17 @@ local strfind, format, strmatch, gmatch, gsub = strfind, format, strmatch, gmatc
 local CanInspect = CanInspect
 local CreateFrame = CreateFrame
 local GameTooltip_ClearMoney = GameTooltip_ClearMoney
-local GameTooltip_ClearStatusBars = GameTooltip_ClearStatusBars
 local GameTooltip_ClearProgressBars = GameTooltip_ClearProgressBars
+local GameTooltip_ClearStatusBars = GameTooltip_ClearStatusBars
 local GameTooltip_ClearWidgetSet = GameTooltip_ClearWidgetSet
+local GetCraftReagentItemLink = GetCraftReagentItemLink
+local GetCraftSelectionIndex = GetCraftSelectionIndex
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local GetGuildInfo = GetGuildInfo
 local GetInspectSpecialization = GetInspectSpecialization
 local GetItemCount = GetItemCount
+local GetItemInfo = GetItemInfo
+local GetItemQualityColor = GetItemQualityColor
 local GetMouseFocus = GetMouseFocus
 local GetNumGroupMembers = GetNumGroupMembers
 local GetRelativeDifficultyColor = GetRelativeDifficultyColor
@@ -28,8 +32,6 @@ local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
 local GetSpecializationInfoByID = GetSpecializationInfoByID
 local GetTime = GetTime
-local GetItemInfo = GetItemInfo
-local GetItemQualityColor = GetItemQualityColor
 local InCombatLockdown = InCombatLockdown
 local IsAltKeyDown = IsAltKeyDown
 local IsControlKeyDown = IsControlKeyDown
@@ -88,8 +90,8 @@ local LEVEL1 = strlower(_G.TOOLTIP_UNIT_LEVEL:gsub('%s?%%s%s?%-?',''))
 local LEVEL2 = strlower(_G.TOOLTIP_UNIT_LEVEL_CLASS:gsub('^%%2$s%s?(.-)%s?%%1$s','%1'):gsub('^%-?г?о?%s?',''):gsub('%s?%%s%s?%-?',''))
 local IDLine = '|cFFCA3C3C%s|r %d'
 local targetList, TAPPED_COLOR = {}, { r=0.6, g=0.6, b=0.6 }
-local AFK_LABEL = ' |cffFFFFFF[|r|cffFF0000'..L["AFK"]..'|r|cffFFFFFF]|r'
-local DND_LABEL = ' |cffFFFFFF[|r|cffFFFF00'..L["DND"]..'|r|cffFFFFFF]|r'
+local AFK_LABEL = ' |cffFFFFFF[|r|cffFF9900'..L["AFK"]..'|r|cffFFFFFF]|r'
+local DND_LABEL = ' |cffFFFFFF[|r|cffFF3333'..L["DND"]..'|r|cffFFFFFF]|r'
 local genderTable = { _G.UNKNOWN..' ', _G.MALE..' ', _G.FEMALE..' ' }
 local blanchyFix = '|n%s*|n' -- thanks blizz -x- lol
 local whiteRGB = { r = 1, g = 1, b = 1 }
@@ -100,39 +102,38 @@ function TT:IsModKeyDown(db)
 end
 
 function TT:GameTooltip_SetDefaultAnchor(tt, parent)
-	if not E.private.tooltip.enable or not TT.db.visibility then return end
-	if tt:IsForbidden() or tt:GetAnchorType() ~= 'ANCHOR_NONE' then return end
-
-	if InCombatLockdown() and not TT:IsModKeyDown(TT.db.visibility.combatOverride) then
+	if not E.private.tooltip.enable or not TT.db.visibility or tt:IsForbidden() or tt:GetAnchorType() ~= 'ANCHOR_NONE' then
+		return
+	elseif InCombatLockdown() and not TT:IsModKeyDown(TT.db.visibility.combatOverride) then
 		tt:Hide()
 		return
+	elseif not AB.KeyBinder.active and not TT:IsModKeyDown(TT.db.visibility.actionbars) then
+		local owner = tt:GetOwner()
+		local ownerName = owner and owner.GetName and owner:GetName()
+		if ownerName and (strfind(ownerName, 'ElvUI_Bar') or strfind(ownerName, 'ElvUI_StanceBar') or strfind(ownerName, 'PetAction')) then
+			tt:Hide()
+			return
+		end
 	end
 
-	local owner = tt:GetOwner()
-	local ownerName = owner and owner.GetName and owner:GetName()
-	if ownerName and (strfind(ownerName, 'ElvUI_Bar') or strfind(ownerName, 'ElvUI_StanceBar') or strfind(ownerName, 'PetAction')) and not AB.KeyBinder.active and not TT:IsModKeyDown(TT.db.visibility.actionbars) then
-		tt:Hide()
-		return
-	end
+	local statusBar = tt.StatusBar
+	if statusBar then
+		local spacing = E.Spacing * 3
+		local position = TT.db.healthBar.statusPosition
+		statusBar:SetAlpha(position == 'DISABLED' and 0 or 1)
 
-	if tt.StatusBar then
-		tt.StatusBar:SetAlpha(TT.db.healthBar.statusPosition == 'DISABLED' and 0 or 1)
-		if TT.db.healthBar.statusPosition == 'BOTTOM' then
-			if tt.StatusBar.anchoredToTop then
-				tt.StatusBar:ClearAllPoints()
-				tt.StatusBar:Point('TOPLEFT', tt, 'BOTTOMLEFT', E.Border, -(E.Spacing * 3))
-				tt.StatusBar:Point('TOPRIGHT', tt, 'BOTTOMRIGHT', -E.Border, -(E.Spacing * 3))
-				tt.StatusBar.text:Point('CENTER', tt.StatusBar, 0, 0)
-				tt.StatusBar.anchoredToTop = nil
-			end
-		elseif TT.db.healthBar.statusPosition == 'TOP' then
-			if not tt.StatusBar.anchoredToTop then
-				tt.StatusBar:ClearAllPoints()
-				tt.StatusBar:Point('BOTTOMLEFT', tt, 'TOPLEFT', E.Border, (E.Spacing * 3))
-				tt.StatusBar:Point('BOTTOMRIGHT', tt, 'TOPRIGHT', -E.Border, (E.Spacing * 3))
-				tt.StatusBar.text:Point('CENTER', tt.StatusBar, 0, 0)
-				tt.StatusBar.anchoredToTop = true
-			end
+		if position == 'BOTTOM' and statusBar.anchoredToTop then
+			statusBar:ClearAllPoints()
+			statusBar:Point('TOPLEFT', tt, 'BOTTOMLEFT', E.Border, -spacing)
+			statusBar:Point('TOPRIGHT', tt, 'BOTTOMRIGHT', -E.Border, -spacing)
+			statusBar.text:Point('CENTER', statusBar, 0, 0)
+			statusBar.anchoredToTop = nil
+		elseif position == 'TOP' and not statusBar.anchoredToTop then
+			statusBar:ClearAllPoints()
+			statusBar:Point('BOTTOMLEFT', tt, 'TOPLEFT', E.Border, spacing)
+			statusBar:Point('BOTTOMRIGHT', tt, 'TOPRIGHT', -E.Border, spacing)
+			statusBar.text:Point('CENTER', statusBar, 0, 0)
+			statusBar.anchoredToTop = true
 		end
 	end
 
@@ -151,6 +152,7 @@ function TT:GameTooltip_SetDefaultAnchor(tt, parent)
 
 	if anchor == nil or anchor == B.BagFrame or anchor == RightChatPanel or anchor == TooltipMover or anchor == _G.UIParent or anchor == E.UIParent then
 		tt:ClearAllPoints()
+
 		if not E:HasMoverBeenMoved('TooltipMover') then
 			if B.BagFrame and B.BagFrame:IsShown() then
 				tt:Point('BOTTOMRIGHT', B.BagFrame, 'TOPRIGHT', 0, 18)
@@ -176,6 +178,7 @@ end
 
 function TT:RemoveTrashLines(tt)
 	if tt:IsForbidden() then return end
+
 	for i = 3, tt:NumLines() do
 		local tiptext = _G['GameTooltipTextLeft'..i]
 		local linetext = tiptext:GetText()
@@ -196,8 +199,9 @@ function TT:GetLevelLine(tt, offset, guildName)
 
 	for i = offset, tt:NumLines() do
 		local tipLine = _G['GameTooltipTextLeft'..i]
-		local tipText = tipLine and tipLine:GetText() and strlower(tipLine:GetText())
-		if tipText and (strfind(tipText, LEVEL1) or strfind(tipText, LEVEL2)) then
+		local tipText = tipLine and tipLine:GetText()
+		local tipLower = tipText and strlower(tipText)
+		if tipLower and (strfind(tipLower, LEVEL1) or strfind(tipLower, LEVEL2)) then
 			return tipLine
 		end
 	end
@@ -668,7 +672,13 @@ function TT:GameTooltip_OnTooltipSetItem(tt)
 		return
 	end
 
-	local _, link = tt:GetItem()
+	local name, link = tt:GetItem()
+
+	if not E.Retail and name == '' and _G.CraftFrame and _G.CraftFrame:IsShown() then
+		local reagentIndex = ownerName and tonumber(strmatch(ownerName, 'Reagent(%d+)'))
+		if reagentIndex then link = GetCraftReagentItemLink(GetCraftSelectionIndex(), reagentIndex) end
+	end
+
 	if not link then return end
 
 	local modKey = TT:IsModKeyDown()
@@ -892,38 +902,37 @@ function TT:SetBackpackToken(tt, id)
 end
 
 function TT:SetTooltipFonts()
-	local font = LSM:Fetch('font', TT.db.font)
-	local fontOutline = TT.db.fontOutline
-	local headerSize = TT.db.headerFontSize
-	local smallTextSize = TT.db.smallTextFontSize
-	local textSize = TT.db.textFontSize
-
-	_G.GameTooltipHeaderText:FontTemplate(font, headerSize, fontOutline)
-	_G.GameTooltipTextSmall:FontTemplate(font, smallTextSize, fontOutline)
-	_G.GameTooltipText:FontTemplate(font, textSize, fontOutline)
+	local font, fontSize, fontOutline = LSM:Fetch('font', TT.db.font), TT.db.textFontSize, TT.db.fontOutline
+	_G.GameTooltipText:FontTemplate(font, fontSize, fontOutline)
 
 	if GameTooltip.hasMoney then
 		for i = 1, GameTooltip.numMoneyFrames do
-			_G['GameTooltipMoneyFrame'..i..'PrefixText']:FontTemplate(font, textSize, fontOutline)
-			_G['GameTooltipMoneyFrame'..i..'SuffixText']:FontTemplate(font, textSize, fontOutline)
-			_G['GameTooltipMoneyFrame'..i..'GoldButtonText']:FontTemplate(font, textSize, fontOutline)
-			_G['GameTooltipMoneyFrame'..i..'SilverButtonText']:FontTemplate(font, textSize, fontOutline)
-			_G['GameTooltipMoneyFrame'..i..'CopperButtonText']:FontTemplate(font, textSize, fontOutline)
+			_G['GameTooltipMoneyFrame'..i..'PrefixText']:FontTemplate(font, fontSize, fontOutline)
+			_G['GameTooltipMoneyFrame'..i..'SuffixText']:FontTemplate(font, fontSize, fontOutline)
+			_G['GameTooltipMoneyFrame'..i..'GoldButtonText']:FontTemplate(font, fontSize, fontOutline)
+			_G['GameTooltipMoneyFrame'..i..'SilverButtonText']:FontTemplate(font, fontSize, fontOutline)
+			_G['GameTooltipMoneyFrame'..i..'CopperButtonText']:FontTemplate(font, fontSize, fontOutline)
 		end
 	end
 
+	-- Header has its own font settings
+	_G.GameTooltipHeaderText:FontTemplate(LSM:Fetch('font', TT.db.headerFont), TT.db.headerFontSize, TT.db.headerFontOutline)
+
 	-- Ignore header font size on DatatextTooltip
 	if _G.DatatextTooltip then
-		_G.DatatextTooltipTextLeft1:FontTemplate(font, textSize, fontOutline)
-		_G.DatatextTooltipTextRight1:FontTemplate(font, textSize, fontOutline)
+		_G.DatatextTooltipTextLeft1:FontTemplate(font, fontSize, fontOutline)
+		_G.DatatextTooltipTextRight1:FontTemplate(font, fontSize, fontOutline)
 	end
 
-	-- Comparison Tooltips should use smallTextSize
+	-- Comparison Tooltips has its own size setting
+	local smallSize = TT.db.smallTextFontSize
+	_G.GameTooltipTextSmall:FontTemplate(font, smallSize, fontOutline)
+
 	for _, tt in ipairs(GameTooltip.shoppingTooltips) do
-		for i=1, tt:GetNumRegions() do
+		for i = 1, tt:GetNumRegions() do
 			local region = select(i, tt:GetRegions())
 			if region:IsObjectType('FontString') then
-				region:FontTemplate(font, smallTextSize, fontOutline)
+				region:FontTemplate(font, smallSize, fontOutline)
 			end
 		end
 	end

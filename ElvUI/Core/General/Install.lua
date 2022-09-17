@@ -74,11 +74,11 @@ function E:SetupChat(noDisplayMsg)
 			frame:Point('BOTTOMLEFT', _G.LeftChatToggleButton, 'TOPLEFT', 1, 3)
 		elseif id == 2 then
 			FCF_SetWindowName(frame, GUILD_EVENT_LOG)
-		elseif (E.Retail and id == 3) then
+		elseif id == 3 then
 			VoiceTranscriptionFrame_UpdateVisibility(frame)
 			VoiceTranscriptionFrame_UpdateVoiceTab(frame)
 			VoiceTranscriptionFrame_UpdateEditBox(frame)
-		elseif (E.Retail and id == 4) or id == 3 then
+		elseif id == 4 then
 			frame:ClearAllPoints()
 			frame:Point('BOTTOMLEFT', _G.RightChatDataPanel, 'TOPLEFT', 1, 3)
 			FCF_SetWindowName(frame, LOOT..' / '..TRADE)
@@ -117,9 +117,9 @@ function E:SetupChat(noDisplayMsg)
 	end
 
 	-- Adjust Chat Colors
-	ChangeChatColor('CHANNEL1', 195/255, 230/255, 232/255) -- General
-	ChangeChatColor('CHANNEL2', 232/255, 158/255, 121/255) -- Trade
-	ChangeChatColor('CHANNEL3', 232/255, 228/255, 121/255) -- Local Defense
+	ChangeChatColor('CHANNEL1', 0.76, 0.90, 0.91) -- General
+	ChangeChatColor('CHANNEL2', 0.91, 0.62, 0.47) -- Trade
+	ChangeChatColor('CHANNEL3', 0.91, 0.89, 0.47) -- Local Defense
 
 	if E.private.chat.enable then
 		CH:PositionChats()
@@ -152,8 +152,6 @@ function E:SetupCVars(noDisplayMsg)
 	SetCVar('threatWarning', 3)
 	SetCVar('alwaysShowActionBars', 1)
 	SetCVar('lockActionBars', 1)
-	SetCVar('spamFilter', 0)
-	SetCVar('showQuestTrackingTooltips', 1)
 	SetCVar('fstack_preferParentKeys', 0) -- Add back the frame names via fstack!
 
 	if E.Retail then
@@ -231,7 +229,7 @@ function E:SetupTheme(theme, noDisplayMsg)
 	if theme == 'class' then
 		E.db.general.valuecolor = E:GetColor(classColor.r, classColor.g, classColor.b)
 	else
-		E.db.general.valuecolor = E:GetColor(23/255, 132/255, 209/255)
+		E.db.general.valuecolor = E:GetColor(0.09, 0.52, 0.82)
 	end
 
 	E:UpdateStart(true, true)
@@ -347,8 +345,6 @@ function E:SetupLayout(layout, noDataReset, noDisplayMsg)
 			E.db.nameplates.units.ENEMY_PLAYER.portrait.position = "LEFT"
 			E.db.nameplates.units.ENEMY_PLAYER.portrait.xOffset = 0
 			E.db.nameplates.units.ENEMY_PLAYER.portrait.yOffset = 0
-
-
 		--UnitFrames
 			E.db.unitframe.smoothbars = true
 			E.db.unitframe.thinBorders = true
@@ -432,26 +428,29 @@ function E:SetupLayout(layout, noDataReset, noDisplayMsg)
 				E.db.unitframe.units.party.rdebuffs.font = 'PT Sans Narrow'
 				E.db.unitframe.units.party.width = 231
 			--Raid
-				E.db.unitframe.units.raid.growthDirection = 'RIGHT_UP'
-				E.db.unitframe.units.raid.infoPanel.enable = true
-				E.db.unitframe.units.raid.name.attachTextTo = 'InfoPanel'
-				E.db.unitframe.units.raid.name.position = 'BOTTOMLEFT'
-				E.db.unitframe.units.raid.name.xOffset = 2
-				E.db.unitframe.units.raid.numGroups = 8
-				E.db.unitframe.units.raid.rdebuffs.font = 'PT Sans Narrow'
-				E.db.unitframe.units.raid.rdebuffs.size = 30
-				E.db.unitframe.units.raid.rdebuffs.xOffset = 30
-				E.db.unitframe.units.raid.rdebuffs.yOffset = 25
-				E.db.unitframe.units.raid.resurrectIcon.attachTo = 'BOTTOMRIGHT'
-				E.db.unitframe.units.raid.roleIcon.attachTo = 'InfoPanel'
-				E.db.unitframe.units.raid.roleIcon.position = 'BOTTOMRIGHT'
-				E.db.unitframe.units.raid.roleIcon.size = 12
-				E.db.unitframe.units.raid.roleIcon.xOffset = 0
-				E.db.unitframe.units.raid.visibility = '[@raid6,noexists] hide;show'
-				E.db.unitframe.units.raid.width = 92
-			--Raid40
-				E.db.unitframe.units.raid40.enable = false
-				E.db.unitframe.units.raid40.rdebuffs.font = 'PT Sans Narrow'
+				E.db.unitframe.units.raid1.growthDirection = 'RIGHT_UP'
+				E.db.unitframe.units.raid1.infoPanel.enable = true
+				E.db.unitframe.units.raid1.name.attachTextTo = 'InfoPanel'
+				E.db.unitframe.units.raid1.name.position = 'BOTTOMLEFT'
+				E.db.unitframe.units.raid1.name.xOffset = 2
+				E.db.unitframe.units.raid1.numGroups = 8
+				E.db.unitframe.units.raid1.rdebuffs.font = 'PT Sans Narrow'
+				E.db.unitframe.units.raid1.rdebuffs.size = 30
+				E.db.unitframe.units.raid1.rdebuffs.xOffset = 30
+				E.db.unitframe.units.raid1.rdebuffs.yOffset = 25
+				E.db.unitframe.units.raid1.resurrectIcon.attachTo = 'BOTTOMRIGHT'
+				E.db.unitframe.units.raid1.roleIcon.attachTo = 'InfoPanel'
+				E.db.unitframe.units.raid1.roleIcon.position = 'BOTTOMRIGHT'
+				E.db.unitframe.units.raid1.roleIcon.size = 12
+				E.db.unitframe.units.raid1.roleIcon.xOffset = 0
+				E.db.unitframe.units.raid1.visibility = '[@raid6,noexists] hide;show'
+				E.db.unitframe.units.raid1.width = 92
+			--Raid2
+				E.db.unitframe.units.raid2.enable = false
+				E.db.unitframe.units.raid2.rdebuffs.font = 'PT Sans Narrow'
+			--Raid3
+				E.db.unitframe.units.raid3.enable = false
+				E.db.unitframe.units.raid3.rdebuffs.font = 'PT Sans Narrow'
 
 			--[[
 				Layout Tweaks will be handled below,
@@ -533,7 +532,7 @@ function E:SetupComplete(reload)
 	end
 end
 
-local function ResetAll()
+function E:SetupReset()
 	_G.InstallNextButton:Disable()
 	_G.InstallPrevButton:Disable()
 	_G.InstallOption1Button:Hide()
@@ -564,7 +563,7 @@ end
 
 function E:SetPage(PageNum)
 	CURRENT_PAGE = PageNum
-	ResetAll()
+	E:SetupReset()
 
 	_G.InstallStatus.anim.progress:SetChange(PageNum)
 	_G.InstallStatus.anim.progress:Play()
@@ -582,13 +581,12 @@ function E:SetPage(PageNum)
 		_G.InstallPrevButton:Enable()
 	end
 
+	local f = ElvUIInstallFrame
 	local InstallOption1Button = _G.InstallOption1Button
 	local InstallOption2Button = _G.InstallOption2Button
 	local InstallOption3Button = _G.InstallOption3Button
 	local InstallOption4Button = _G.InstallOption4Button
 	local InstallSlider = _G.InstallSlider
-
-	local f = ElvUIInstallFrame
 
 	local r, g, b = E:ColorGradient(CURRENT_PAGE / MAX_PAGE, 1, 0, 0, 1, 1, 0, 0, 1, 0)
 	f.Status:SetStatusBarColor(r, g, b)

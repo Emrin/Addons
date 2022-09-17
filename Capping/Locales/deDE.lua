@@ -58,3 +58,9 @@ L.mainEntrance = "Haupteingang"
 L.westTower = "Westlicher Turm"
 L.southTower = "Südlicher Turm"
 L.eastTower = "Östlicher Turm"
+
+-- Arena
+--L.arenaStartTrigger = "The Arena battle has begun!" -- Needs to match the in game text exactly
+--L.arenaStart60s = "One minute until the Arena battle begins!" -- Needs to match the in game text exactly
+--L.arenaStart30s = "Thirty seconds until the Arena battle begins!" -- Needs to match the in game text exactly
+--L.arenaStart15s = "Fifteen seconds until the Arena battle begins!" -- Needs to match the in game text exactly

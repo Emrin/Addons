@@ -54,7 +54,7 @@ local function ConfigExBar(key, arg)
 			P:SetAlpha(icon)
 		elseif arg == "showName" then
 			P:SetExIconName(icon, key)
-		-- Status bar enabled
+
 		elseif arg == "useIconAlpha" then
 			P:SetExStatusBarColor(icon, key)
 			P:SetAlpha(icon)
@@ -92,7 +92,7 @@ P.setExBar = function(info, state)
 			P:SetExAnchor(bar)
 		elseif option == "scale" then
 			P:ConfigExSize(bar, true)
---          P:SetExAnchor(bar) -- update new anchor width after size timer
+
 		elseif option == "enabled" then
 			P:Refresh(true)
 		else
@@ -182,10 +182,10 @@ local progressBarColorInfo = {
 		order = 3,
 		type = "color",
 		dialogControl = "ColorPicker-OmniCD",
-		hasAlpha = function(info) return info[#info-1] == "barColors" end, -- bgColors is disabled
+		hasAlpha = function(info) return info[#info-1] == "barColors" end,
 		width = 0.5,
 	},
-	useClassColor = { -- reminent db 'classColor'
+	useClassColor = {
 		name = "",
 		order = 4,
 		type = "multiselect",
@@ -341,7 +341,7 @@ local extraBarsInfo = {
 		values = function(info) return sortByValues[info[#info-1]] end,
 	},
 	sortDirection = {
-		disabled = isRaidCDBar,
+		disabled = function(info) return not E.DB.profile.Party[info[2]].extraBars[info[4]].enabled or isRaidCDBar(info) end,
 		name = L["Sort Direction"],
 		order = 12,
 		type = "select",
@@ -414,7 +414,7 @@ local extraBarsInfo = {
 		get = function(info, k) return E.DB.profile.Party[info[2]].extraBars[info[4]][info[#info]][k] end,
 		set = function(info, k, value)
 			local key, bar, opt = info[2], info[4], info[#info]
-			-- don't disableItem, instead overwrite selection on other groups
+
 			if value then
 				E.DB.profile.Party[key].extraBars[bar][opt][k] = value
 				for i = 1, 8 do
@@ -465,7 +465,6 @@ local extraBarsInfo = {
 				type = "multiselect",
 				dialogControl = "Dropdown-OmniCD",
 				values = { 1, 2, 3, 4, 5, 6, 7, 8 },
-				disabledItem = 1,
 				get = getGroupLayout,
 				set = setGroupLayout,
 				disabledItem = setDisabledItem,
@@ -479,7 +478,6 @@ local extraBarsInfo = {
 				type = "multiselect",
 				dialogControl = "Dropdown-OmniCD",
 				values = { 1, 2, 3, 4, 5, 6, 7, 8 },
-				disabledItem = 1,
 				get = getGroupLayout,
 				set = setGroupLayout,
 				disabledItem = setDisabledItem,
@@ -602,7 +600,7 @@ local extraBarsInfo = {
 				type = "toggle",
 			},
 			showInterruptedSpell = {
-				hidden = isRaidCDBar,
+				hidden = function(info) return E.isPreWOTLKC or isRaidCDBar(info) end,
 				disabled = isDisabledOrNameBar,
 				name = L["Interrupted Spell Icon"],
 				desc = format("%s\n\n|cffff2020%s", L["Show the interrupted spell icon."], L["Mouseovering the icon will show the interrupted spell information regardless of \'Show Tooltip\' option."]),
@@ -610,7 +608,7 @@ local extraBarsInfo = {
 				type = "toggle",
 			},
 			showRaidTargetMark = {
-				hidden = function(info) return E.isPreBCC or isRaidCDBar(info) end,
+				hidden = function(info) return E.isPreWOTLKC or isRaidCDBar(info) end,
 				disabled = isDisabledOrNameBar,
 				name = L["Interrupted Target Marker"] .. E.RAID_TARGET_MARKERS[1],
 				desc = L["Show the interrupted unit's target marker if it exists."],

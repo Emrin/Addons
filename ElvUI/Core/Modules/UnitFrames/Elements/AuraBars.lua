@@ -3,8 +3,10 @@ local UF = E:GetModule('UnitFrames')
 local LSM = E.Libs.LSM
 
 local _G = _G
+local wipe = wipe
 local ipairs = ipairs
 local unpack = unpack
+local strfind = strfind
 local CreateFrame = CreateFrame
 
 function UF:Construct_AuraBars(bar)
@@ -42,6 +44,12 @@ end
 function UF:AuraBars_UpdateBar(bar)
 	local bars = bar:GetParent()
 	bar.db = bars.db
+
+	if bar.auraInfo then
+		wipe(bar.auraInfo)
+	else
+		bar.auraInfo = {}
+	end
 
 	bar:SetReverseFill(bars.reverseFill)
 	bar.spark:ClearAllPoints()
@@ -133,19 +141,20 @@ function UF:Configure_AuraBars(frame)
 			xOffset = 0
 		end
 
+		local px = UF.thinBorders and 0 or 2
 		local POWER_OFFSET, BAR_WIDTH = 0
 		if detached then
 			E:EnableMover(bars.Holder.mover:GetName())
 			BAR_WIDTH = db.detachedWidth
 
-			yOffset = below and (BORDER + (UF.BORDER - UF.SPACING)) or -(db.height + BORDER)
+			yOffset = below and BORDER or -(db.height + px)
 
 			bars.Holder:Size(db.detachedWidth, db.height + (BORDER * 2))
 		else
 			E:DisableMover(bars.Holder.mover:GetName())
 			BAR_WIDTH = frame.UNIT_WIDTH
 
-			local offset = db.yOffset + (UF.thinBorders and 0 or 2)
+			local offset = db.yOffset + px
 			yOffset = (below and -(db.height + offset) or offset) + 1 -- 1 is connecting pixel
 
 			if db.attachTo ~= 'FRAME' then
@@ -157,15 +166,21 @@ function UF:Configure_AuraBars(frame)
 			end
 		end
 
-		local point = (buffs or debuffs) and attachTo.anchorPoint or 'TOPLEFT'
-		local right = point:find('RIGHT')
-		local p1, p2, p3 = below and 'TOP' or 'BOTTOM', below and 'BOTTOM' or 'TOP', right and 'RIGHT' or 'LEFT'
-
-		bars:ClearAllPoints()
-		bars:Point(p1..p3, attachTo, p2..p3, xOffset or (right and -(UF.SPACING + BORDER * 2) or bars.height+UF.BORDER), yOffset)
 		bars.width = E:Scale(BAR_WIDTH - (BORDER * 4) - bars.height - POWER_OFFSET + 1) -- 1 is connecting pixel
-		bars.initialAnchor = 'BOTTOM'..p3
+		bars:ClearAllPoints()
 		bars:Show()
+
+		local p1 = below and 'BOTTOM' or 'TOP'
+		local p2 = detached and p1 or (buffs or debuffs) and attachTo.anchorPoint or 'TOPLEFT'
+		if p2 == 'TOP' or p2 == 'BOTTOM' then
+			bars.initialAnchor = 'BOTTOM'
+			bars:Point(p2, attachTo, p2, (bars.height * 0.5) + -(detached and px or UF.BORDER), yOffset)
+		else
+			local right = strfind(p2, 'RIGHT')
+			local p3, p4 = below and 'TOP' or 'BOTTOM', right and 'RIGHT' or 'LEFT'
+			bars.initialAnchor = 'BOTTOM'..p4
+			bars:Point(p3..p4, attachTo, p1..p4, xOffset or (right and -(BORDER * 2)) or (bars.height + UF.BORDER), yOffset)
+		end
 	elseif frame:IsElementEnabled('AuraBars') then
 		frame:DisableElement('AuraBars')
 		bars:Hide()
@@ -177,7 +192,6 @@ local GOTAK = GetSpellInfo(GOTAK_ID)
 function UF:PostUpdateBar_AuraBars(_, bar, _, _, _, _, debuffType) -- unit, bar, index, position, duration, expiration, debuffType, isStealable
 	local spellID = bar.spellID
 	local spellName = bar.name
-
 	bar.db = self.db
 
 	local colors = E.global.unitframe.AuraBarColors[spellID] and E.global.unitframe.AuraBarColors[spellID].enable and E.global.unitframe.AuraBarColors[spellID].color
@@ -198,6 +212,13 @@ function UF:PostUpdateBar_AuraBars(_, bar, _, _, _, _, debuffType) -- unit, bar,
 		else
 			colors = UF.db.colors.auraBarBuff
 		end
+	end
+
+	local text = bar.db.abbrevName and E.TagFunctions.Abbrev(bar.spell) or bar.spell
+	if bar.count > 1 then
+		bar.nameText:SetFormattedText('[%d] %s', bar.count, text)
+	else
+		bar.nameText:SetText(text)
 	end
 
 	bar.custom_backdrop = UF.db.colors.customaurabarbackdrop and UF.db.colors.aurabar_backdrop

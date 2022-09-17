@@ -153,13 +153,13 @@ do -- Auto Repair Functions
 			if STATUS == 'GUILD_REPAIR_FAILED' then
 				M:AttemptAutoRepair(true) --Try using player money instead
 			else
-				E:Print(L["Your items have been repaired using guild bank funds for: "]..E:FormatMoney(COST, 'SMART', true)) --Amount, style, textOnly
+				E:Print(L["Your items have been repaired using guild bank funds for: "]..E:FormatMoney(COST, B.db.moneyFormat, not B.db.moneyCoins))
 			end
 		elseif TYPE == 'PLAYER' then
 			if STATUS == 'PLAYER_REPAIR_FAILED' then
 				E:Print(L["You don't have enough money to repair."])
 			else
-				E:Print(L["Your items have been repaired for: "]..E:FormatMoney(COST, 'SMART', true)) --Amount, style, textOnly
+				E:Print(L["Your items have been repaired for: "]..E:FormatMoney(COST, B.db.moneyFormat, not B.db.moneyCoins))
 			end
 		end
 	end
@@ -324,7 +324,7 @@ function M:Initialize()
 	M:RegisterEvent('QUEST_COMPLETE')
 
 	do	-- questRewardMostValueIcon
-		local MostValue = CreateFrame('Frame', 'ElvUI_QuestRewardGoldIconFrame', _G.UIParent)
+		local MostValue = CreateFrame('Frame', 'ElvUI_QuestRewardGoldIconFrame', _G.QuestInfoRewardsFrame)
 		MostValue:SetFrameStrata('HIGH')
 		MostValue:Size(19)
 		MostValue:Hide()

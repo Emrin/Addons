@@ -52,7 +52,7 @@ local nameIndex = {
 }
 
 E.Options.args.search = ACH:Group(L["Search"], nil, 4)
-local Search =  E.Options.args.search.args
+local Search = E.Options.args.search.args
 
 local EditBox = ACH:Input(L["Search"], nil, 0, nil, 1.5, function() return SearchText end, function(_, value) C:Search_ClearResults() if strmatch(value, '%S+') then SearchText = strtrim(strlower(value)) C:Search_Config() C:Search_AddResults() end end)
 Search.editbox = EditBox
@@ -173,7 +173,7 @@ function C:Search_Config(tbl, loc, locName, whatsNew)
 	if not whatsNew and SearchText == '' then return end
 
 	for option, infoTable in pairs(tbl or E.Options.args) do
-		if not (blockOption[option] or infoTable.hidden or typeInvalid[infoTable.type]) then
+		if not blockOption[option] and (whatsNew or not (infoTable.hidden or typeInvalid[infoTable.type])) then
 			local location, locationName = loc and (infoTable.type == 'group' and not infoTable.inline and strjoin(',', loc, option) or loc) or option
 			local name = C:Search_GetReturn(infoTable.name, option)
 			if type(name) == 'string' then -- bad apples
