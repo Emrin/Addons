@@ -1,6 +1,8 @@
 -- Traditional Chinese localization file for zhTW.
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "zhTW")
 
+L["Abbreviate Name"] = true
+L["Max Allowed Groups"] = true
 L["Display Mana"] = true
 L["Will display mana when main power is:"] = true
 L["%s and then %s"] = "%s 與 %s"
@@ -140,7 +142,6 @@ L["Backdrop color of transparent frames"] = "透明框架的背景顏色"
 L["Backdrop Color"] = "背景顏色"
 L["Backdrop Faded"] = "背景透明"
 L["Backdrop Settings"] = "背景設定"
-L["Bag Bar"] = "背包條"
 L["Backdrop Spacing"] = "背景間距"
 L["Backdrop Transparency"] = "背景透明度"
 L["Backdrop"] = "背景"
@@ -159,7 +160,6 @@ L["Bag Spacing"] = "背包間隔"
 L["BAG_FILTER_CONSUMABLES"] = "消耗品"
 L["BAG_FILTER_EQUIPMENT"] = "裝備"
 L["BAG_FILTER_TRADE_GOODS"] = "商品"
-L["Bag-Bar"] = "背包條"
 L["Bags Only"] = "僅背包"
 L["Bags/Bank"] = "背包/銀行"
 L["Bank 1"] = "銀行 1"
@@ -238,7 +238,6 @@ L["Can Not Attack"] = "不可攻擊"
 L["Cart / Flag / Orb / Assassin Bounty"] = "推車/旗/球/刺客賞金"
 L["Cast Bar"] = "施法條"
 L["Cast Time Format"] = "施法時間格式"
-L["Castbar"] = "施法條"
 L["Casted by Player Only"] = "僅玩家施放"
 L["Casting"] = "施法"
 L["Center"] = "置中"
@@ -1039,6 +1038,7 @@ L["Mouseover"] = "滑鼠滑過顯示"
 L["Movers"] = "移動器"
 L["Multi-Monitor Support"] = "多顯示器支援"
 L["Multiply the backdrops height or width by this value. This is usefull if you wish to have more than one bar behind a backdrop."] = "根據此值增加背景的高度或寬度. 一般用來設定在一個背景框裡放置多條快捷列."
+L["Multiple Ranks"] = true
 L["Must be in group with the player if he isn't on the same server as you."] = "如果不是同一服務器, 那他必需和你在同一隊伍中."
 L["Mythic+ Best Run"] = "M+ 最佳成績"
 L["Mythic+ Data"] = "M+ 數據"
@@ -1184,7 +1184,7 @@ L["Position Buffs on Debuffs"] = "增益在減益上"
 L["Position Debuffs on Buffs"] = "減益在減益上"
 L["Position of bonus quest reward frame relative to the objective tracker."] = "額外獎勵框架相對於任務框架的相對位置"
 L["Position of the Chat EditBox, if datatexts are disabled this will be forced to be above chat."] = "對話編輯框位置,如果底部的信息文字被禁用的話,將會強制顯示在對話框頂部."
-L["Position of the Torghast buff list relative to the objective tracker."] = "托伽司增益列表位置將會自動隨任務列表位置變動."
+L["Position of the Maw Buffs list relative to the objective tracker."] = "托伽司增益列表位置將會自動隨任務列表位置變動."
 L["Position other Nameplates at the base, rather than overhead."] = "姓名版將不在上面，而是顯示在單位下方."
 L["Position the Model horizontally."] = "水平放置模型"
 L["Position the Model vertically."] = "垂直放置模型"
@@ -1250,7 +1250,7 @@ L["RAID_TARGET_7"] = "十字"
 L["RAID_TARGET_8"] = "頭顱"
 L["Raid-Wide Sorting"] = "全團隊排序"
 L["Raid"] = "團隊副本"
-L["RaidDebuff Indicator"] = "團隊副本減益光環標示"
+L["Raid Debuff Indicator"] = "團隊副本減益光環標示"
 L["Raid Role Indicator"] = "團隊角色標示"
 L["Range"] = "距離"
 L["Rank"] = "級別"
@@ -1645,11 +1645,11 @@ L["Top Panel"] = "頂部面板"
 L["Top Right"] = "右上"
 L["Top to Bottom"] = "頂部至底部"
 L["Top"] = "上"
-L["Torghast Buffs Position"] = "托伽司增益位置"
-L["TOTEM_AIR"] = true
-L["TOTEM_EARTH"] = true
-L["TOTEM_FIRE"] = true
-L["TOTEM_WATER"] = true
+L["Maw Buffs Position"] = "托伽司增益位置"
+L["TOTEM_AIR"] = "風之圖騰"
+L["TOTEM_EARTH"] = "大地圖騰"
+L["TOTEM_FIRE"] = "火焰圖騰"
+L["TOTEM_WATER"] = "水之圖騰"
 L["Totems"] = "圖騰"
 L["Tracked Quests Only"] = "僅已追蹤的任務"
 L["TRADE"] = "交易"
@@ -1718,7 +1718,7 @@ L["Use this backdrop color for units that are dead or ghosts."] = "死亡或靈�
 L["Use Threat Color"] = "使用仇恨顏色"
 L["Use Tooltip"] = "使用浮動提示"
 L["Use Zone Names"] = "使用地區名字"
-L["Used as RaidDebuff Indicator"] = "作為團隊減益指示器"
+L["Used as Raid Debuff Indicator"] = "作為團隊減益指示器"
 L["Used/Total"] = "已用/總共"
 L["Value Color"] = "數值顏色"
 L["Value"] = "數值"
@@ -1782,6 +1782,8 @@ L["blockDispellable"] = "[屏蔽] 可驅散的"
 L["blockNoDuration"] = "[屏蔽] 永久的"
 L["blockNonPersonal"] = "[屏蔽] 他人的"
 L["blockNotDispellable"] = "[屏蔽] 不可驅散的"
+L["blockMount"] = "[屏蔽] Mount"
+L["Mount"] = true
 L["CastByNPC"] = "NPC施放的"
 L["CastByPlayers"] = "玩家施放的"
 L["CastByUnit"] = "單位施放的"
@@ -1807,13 +1809,7 @@ L["SKINS_DESC"] = "調整外觀設定."
 L["TOGGLESKIN_DESC"] = "啟用/停用此外觀."
 L["TOOLTIP_DESC"] = "浮動提示資訊設定選項."
 L["UNITFRAME_DESC"] = "修改單位框架設定."
-L["VISIBILITY_DESC"] = [=[為了顯示設定過的過濾器下面的巨集必須啟用.
-
-|cffff8000預設:|r
-    隊伍: [@raid6,exists][nogroup] hide;show
-    團隊: [@raid6,noexists][@raid26,exists] hide;show
-    40人團隊: [@raid26,noexists] hide;show]
-    團隊寵物: [group:raid] show; hide]=]
+L["VISIBILITY_DESC"] = "為了顯示設定過的過濾器下面的巨集必須啟用."
 L["SEARCH_SYNTAX_DESC"] = [=[由於新增了 LibItemSearch, 你現在可以使用更進階的物品搜尋. 下面是一份搜尋語法的文件. 想要看更完整的解釋請到: https://github.com/Jaliborc/LibItemSearch-1.2/wiki/Search-Syntax.
 
 條件搜尋:

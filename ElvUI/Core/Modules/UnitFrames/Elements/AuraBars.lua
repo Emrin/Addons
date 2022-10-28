@@ -136,22 +136,22 @@ function UF:Configure_AuraBars(frame)
 			attachTo = frame.Buffs
 		elseif debuffs then
 			attachTo = frame.Debuffs
-		elseif db.attachTo == 'PLAYER_AURABARS' and _G.ElvUF_Player then
-			attachTo = _G.ElvUF_Player.AuraBars
+		elseif db.attachTo == 'PLAYER_AURABARS' then
+			attachTo = UF.units.player.AuraBars
 			xOffset = 0
 		end
 
 		local px = UF.thinBorders and 0 or 2
 		local POWER_OFFSET, BAR_WIDTH = 0
 		if detached then
-			E:EnableMover(bars.Holder.mover:GetName())
+			E:EnableMover(bars.Holder.mover.name)
 			BAR_WIDTH = db.detachedWidth
 
 			yOffset = below and BORDER or -(db.height + px)
 
 			bars.Holder:Size(db.detachedWidth, db.height + (BORDER * 2))
 		else
-			E:DisableMover(bars.Holder.mover:GetName())
+			E:DisableMover(bars.Holder.mover.name)
 			BAR_WIDTH = frame.UNIT_WIDTH
 
 			local offset = db.yOffset + px

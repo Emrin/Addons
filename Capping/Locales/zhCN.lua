@@ -9,16 +9,20 @@ L.flagRespawns = "旗帜即将刷新"
 
 L.takenTheFlagTrigger = "^(.+)夺走了旗帜！"
 L.hasTakenTheTrigger = "夺取了"
-L.upgradeToTrigger = "升级到"
 L.droppedTrigger = "丢掉了"
 L.capturedTheTrigger = "夺取"
+
+--- Alterac Valley
+--- This is the trigger option when talking to the NPC to auto hand in the quest items
+--- This chat interaction only appears when the NPC is ready to start an upgrade, and you need to confirm it
+L.upgradeToTrigger = "升级到"
 
 L.hordeGate = "部落大门"
 L.allianceGate = "联盟大门"
 L.gatePosition = "%s（%s）"
-L.west = "西"
-L.front = "前"
-L.east = "东"
+L.west = "机场"
+L.front = "工坊"
+L.east = "码头"
 L.hordeBoss = "部落将军"
 L.allianceBoss = "联盟将军"
 L.hordeGuardian = "部落守卫"
@@ -28,6 +32,8 @@ L.balinda = "巴琳达"
 L.ivus = "伊弗斯"
 L.lokholar = "洛克霍拉"
 L.handIn = "|cFF33FF99Capping|r: 自动交任务物品。"
+L.anchorTooltip = "|cffeda55f右击|r打开选项"
+L.anchorTooltipNote = "打开选项并锁定来隐藏移动锚点。"
 
 --- Alliance IoC Workshop yells:
 -- 侏儒技师喊道：我就要完成了！挡住那帮部落的家伙。他们可不是在工程学校进行战斗教学！

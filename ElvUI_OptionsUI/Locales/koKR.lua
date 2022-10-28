@@ -1,6 +1,8 @@
 -- Korean localization file for koKR.
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "koKR")
 
+L["Abbreviate Name"] = true
+L["Max Allowed Groups"] = true
 L["Display Mana"] = true
 L["Will display mana when main power is:"] = true
 L["%s and then %s"] = "%s 이후 %s"
@@ -154,12 +156,10 @@ L["Bag 2"] = true
 L["Bag 3"] = true
 L["Bag 4"] = true
 L["Bag Assignment"] = true
-L["Bag Bar"] = true
 L["Bag Spacing"] = true
 L["BAG_FILTER_CONSUMABLES"] = "소비용품"
 L["BAG_FILTER_EQUIPMENT"] = "장비"
 L["BAG_FILTER_TRADE_GOODS"] = "직업용품"
-L["Bag-Bar"] = "가방바"
 L["Bags Only"] = "가방 안에만"
 L["Bags/Bank"] = "가방/은행"
 L["Bank 1"] = true
@@ -238,7 +238,6 @@ L["Can Not Attack"] = true
 L["Cart / Flag / Orb / Assassin Bounty"] = true
 L["Cast Bar"] = "시전바"
 L["Cast Time Format"] = "시전 시간 형식"
-L["Castbar"] = "시전바"
 L["Casted by Player Only"] = true
 L["Casting"] = "시전중"
 L["Center"] = "정 중앙"
@@ -1039,6 +1038,7 @@ L["Mouseover"] = "마우스오버 시 표시"
 L["Movers"] = true
 L["Multi-Monitor Support"] = "다중모니터 지원"
 L["Multiply the backdrops height or width by this value. This is usefull if you wish to have more than one bar behind a backdrop."] = "이 값 만큼 배경의 길이가 배로 늘어납니다. 배경 하나에 여러 행동단축바를 올리고 싶은 경우에 유용합니다."
+L["Multiple Ranks"] = true
 L["Must be in group with the player if he isn't on the same server as you."] = "대상으로 잡은 유저가 타 서버 유저라면 반드시 그 유저와 파티를 맻고 있어야 합니다."
 L["Mythic+ Best Run"] = true
 L["Mythic+ Data"] = true
@@ -1185,7 +1185,7 @@ L["Position Buffs on Debuffs"] = "약화효과에 강화효과를 위치"
 L["Position Debuffs on Buffs"] = "강화효과에 약화효과를 위치"
 L["Position of bonus quest reward frame relative to the objective tracker."] = "퀘스트프레임에서 표시될 목표보상의 위치를 결정합니다."
 L["Position of the Chat EditBox, if datatexts are disabled this will be forced to be above chat."] = "대화 입력창의 위치를 결정합니다. 만약 정보문자 항목에서 패널에 정보문자를 표시하지 않게 해놨다면 위치가 채팅창 위로 고정됩니다."
-L["Position of the Torghast buff list relative to the objective tracker."] = true
+L["Position of the Maw Buffs list relative to the objective tracker."] = true
 L["Position other Nameplates at the base, rather than overhead."] = true
 L["Position the Model horizontally."] = "3D모델 가로위치"
 L["Position the Model vertically."] = "3D모델 세로위치"
@@ -1251,7 +1251,7 @@ L["RAID_TARGET_7"] = "가위표"
 L["RAID_TARGET_8"] = "해골"
 L["Raid-Wide Sorting"] = "빈칸없이 나열"
 L["Raid"] = true
-L["RaidDebuff Indicator"] = "공격대 주요 약화효과 표시기"
+L["Raid Debuff Indicator"] = "공격대 주요 약화효과 표시기"
 L["Raid Role Indicator"] = true
 L["Range"] = true
 L["Rank"] = true
@@ -1646,12 +1646,12 @@ L["Top Panel"] = "상단 패널 표시"
 L["Top Right"] = "상단 우측"
 L["Top to Bottom"] = "위에서 아래로"
 L["Top"] = "상단 중앙"
-L["Torghast Buffs Position"] = true
-L["TOTEM_AIR"] = true
-L["TOTEM_EARTH"] = true
-L["TOTEM_FIRE"] = true
-L["TOTEM_WATER"] = true
-L["Totems"] = true
+L["Maw Buffs Position"] = true
+L["TOTEM_AIR"] = "바람의 토템"
+L["TOTEM_EARTH"] = "대지의 토템"
+L["TOTEM_FIRE"] = "불의 토템"
+L["TOTEM_WATER"] = "물의 토템"
+L["Totems"] = "토템"
 L["Tracked Quests Only"] = true
 L["TRADE"] = "거래 요청"
 L["TRADESKILLS"] = "전문 기술"
@@ -1719,7 +1719,7 @@ L["Use this backdrop color for units that are dead or ghosts."] = "죽거나 유
 L["Use Threat Color"] = "위협 색상 사용"
 L["Use Tooltip"] = "툴팁 사용"
 L["Use Zone Names"] = true
-L["Used as RaidDebuff Indicator"] = true
+L["Used as Raid Debuff Indicator"] = true
 L["Used/Total"] = true
 L["Value Color"] = "강조 색상"
 L["Value"] = true
@@ -1783,6 +1783,8 @@ L["blockDispellable"] = "[차단] Dispellable"
 L["blockNoDuration"] = "[차단] No Duration"
 L["blockNonPersonal"] = "[차단] Non Personal"
 L["blockNotDispellable"] = "[차단] Not Dispellable"
+L["blockMount"] = "[차단] Mount"
+L["Mount"] = true
 L["CastByNPC"] = "Cast By NPC"
 L["CastByPlayers"] = "Cast By Players"
 L["CastByUnit"] = "Cast By Unit"
@@ -1808,13 +1810,7 @@ L["SKINS_DESC"] = "다른 애드온이나 게임 내 여러 프레임에 체크 
 L["TOGGLESKIN_DESC"] = "체크 시 해당 프레임에 스킨을 사용합니다."
 L["TOOLTIP_DESC"] = "툴팁에 관련된 옵션들입니다."
 L["UNITFRAME_DESC"] = "유닛프레임 설정을 변경합니다."
-L["VISIBILITY_DESC"] = [=[체크시 그룹의 표시 설정이 설정됩니다. 필터를 추가해서 수정이 가능합니다.
-
-|cffff8000Defaults:|r
-    Party: [@raid6,exists][nogroup] hide;show
-    Raid: [@raid6,noexists][@raid26,exists] hide;show
-    Raid40: [@raid26,noexists] hide;show]
-    Raid Pet: [group:raid] show; hide]=]
+L["VISIBILITY_DESC"] = "체크시 그룹의 표시 설정이 설정됩니다. 필터를 추가해서 수정이 가능합니다."
 L["SEARCH_SYNTAX_DESC"] = [=[
 
   각종 가방에서 검색기능을 사용할 때, 다음의 명령어들을 활용하면

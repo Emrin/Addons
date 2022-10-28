@@ -1,6 +1,8 @@
 -- German localization file for deDE.
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "deDE")
 
+L["Abbreviate Name"] = "Name abkürzen"
+L["Max Allowed Groups"] = "Max. zulässige Gruppen"
 L["Display Mana"] = "Mana Anzeige"
 L["Will display mana when main power is:"] = "Mana wird anzeigt, wenn die Hauptkraft ist:"
 L["%s and then %s"] = "%s und dann %s"
@@ -50,7 +52,7 @@ L["Additional Power Prediction Color"] = "Zusätzliche Kraft Verbrauchsfarbe"
 L["Additional Power"] = "Zusätzliche Kraft"
 L["Additional spacing between each individual group."] = "Zusätzlicher Abstand zwischen jeder Gruppe."
 L["Additive Blend"] = "Additive Überblendung"
-L["AddOn Manager"] = true --No need to translate
+L["AddOn Manager"] = "Addonmanager"
 L["Adds an arrow infront of the chat lines to copy the entire line."] = "Fügt einen Pfeil vor der Chatzeile hinzu um die gesamte Zeile zu kopieren."
 L["Adjust the height of your left chat panel."] = "Passe die Höhe deines linken Chatfensters an."
 L["Adjust the height of your right chat panel."] = "Passe die Höhe deines rechten Chatfensters an."
@@ -154,12 +156,10 @@ L["Bag 2"] = "Tasche 2"
 L["Bag 3"] = "Tasche 3"
 L["Bag 4"] = "Tasche 4"
 L["Bag Assignment"] = "Taschen Zuweisung"
-L["Bag Bar"] = "Taschenleiste"
 L["Bag Spacing"] = "Taschen Abstand"
 L["BAG_FILTER_CONSUMABLES"] = "Verbrauchbare Gegenstände"
 L["BAG_FILTER_EQUIPMENT"] = "Ausrüstung"
 L["BAG_FILTER_TRADE_GOODS"] = "Handwerkswaren"
-L["Bag-Bar"] = "Taschenleiste"
 L["Bags Only"] = "Nur Taschen"
 L["Bags/Bank"] = "Taschen/Bank"
 L["Bank 1"] = true
@@ -238,7 +238,6 @@ L["Can Not Attack"] = "Kann nicht angreifen"
 L["Cart / Flag / Orb / Assassin Bounty"] = "Wagen / Flagge / Kugel / Attentäter Kopfgeld"
 L["Cast Bar"] = "Zauberleiste"
 L["Cast Time Format"] = "Zauber Zeitformat"
-L["Castbar"] = "Zauberleiste"
 L["Casted by Player Only"] = "Nur vom Spieler gezaubert"
 L["Casting"] = "Zaubernd"
 L["Center"] = true --No need to translate
@@ -999,7 +998,7 @@ L["Maximum Duration"] = "Maximale Dauer"
 L["Maximum Level"] = "Maximales Level"
 L["Maximum Time Left"] = "Max. Zeit verbleibend"
 L["Media"] = "Medien"
-L["Medium"] = true
+L["Medium"] = "Mittel"
 L["Merchant Frame"] = "Handelsfenster"
 L["Method to sort by."] = "Methode nach dem sortiert werden soll."
 L["Middle Click - Set Focus"] = "Mittelklick - Setze Fokus"
@@ -1039,6 +1038,7 @@ L["Mouseover"] = "Mouseover"
 L["Movers"] = "Ankerpunkte"
 L["Multi-Monitor Support"] = "Multi-Monitor Unterstützung"
 L["Multiply the backdrops height or width by this value. This is usefull if you wish to have more than one bar behind a backdrop."] = "Multipliziere die Höhe und die Breite des Hintergrundes. Das ist nützlich, wenn du mehr als eine Leiste hinter einem Hintergrund haben möchtest."
+L["Multiple Ranks"] = "Mehrere Ränge"
 L["Must be in group with the player if he isn't on the same server as you."] = "Du musst mit dem Spieler in einer Gruppe sein wenn dieser nicht auf deinem Server ist wie du."
 L["Mythic+ Best Run"] = "Mythisch+ Bester Versuch"
 L["Mythic+ Data"] = "Mythisch+ Daten"
@@ -1184,7 +1184,7 @@ L["Position Buffs on Debuffs"] = "Positioniere Stärkungszauber zu Schwächungsz
 L["Position Debuffs on Buffs"] = "Positioniere Schwächungszauber zu Stärkungszauber"
 L["Position of bonus quest reward frame relative to the objective tracker."] = "Position vom Bonusbeute Fenster, relativ zum Questfenster."
 L["Position of the Chat EditBox, if datatexts are disabled this will be forced to be above chat."] = "Position der Texteingabeleiste. Sind die Infotexte deaktiviert, dann wird diese über dem Chat angebracht."
-L["Position of the Torghast buff list relative to the objective tracker."] = "Position vom Torghast Stärkungszauber Fenster relativ zur Questverfolgung."
+L["Position of the Maw Buffs list relative to the objective tracker."] = "Position vom Maw Stärkungszauber Fenster relativ zur Questverfolgung."
 L["Position other Nameplates at the base, rather than overhead."] = "Positioniert andere Namensplaketten am boden anstelle überkopf."
 L["Position the Model horizontally."] = "Positioniere das Model horizontal."
 L["Position the Model vertically."] = "Positioniere das Model vertikal."
@@ -1250,7 +1250,7 @@ L["RAID_TARGET_7"] = "Kreuz"
 L["RAID_TARGET_8"] = "Totenschädel"
 L["Raid-Wide Sorting"] = "Schlachtzugsweite Sortierung"
 L["Raid"] = "Schlachtzug"
-L["RaidDebuff Indicator"] = "Schlachtzug Debuffanzeige"
+L["Raid Debuff Indicator"] = "Schlachtzug Debuffanzeige"
 L["Raid Role Indicator"] = "Schlachtzug Rollenanzeige"
 L["Range"] = "Reichweite"
 L["Rank"] = "Rang"
@@ -1646,7 +1646,7 @@ L["Top Panel"] = "Obere Leiste"
 L["Top Right"] = true --No need to translate
 L["Top to Bottom"] = "Von oben nach unten"
 L["Top"] = true --No need to translate
-L["Torghast Buffs Position"] = "Torghast Stärkungszauber Position"
+L["Maw Buffs Position"] = "Maw Stärkungszauber Position"
 L["TOTEM_AIR"] = "Lufttotem"
 L["TOTEM_EARTH"] = "Erdtotem"
 L["TOTEM_FIRE"] = "Feuertotem"
@@ -1719,7 +1719,7 @@ L["Use this backdrop color for units that are dead or ghosts."] = "Benutze diese
 L["Use Threat Color"] = "Benutze Bedrohungsfarbe"
 L["Use Tooltip"] = "Benutze Tooltip"
 L["Use Zone Names"] = "Benutze Zonennamen"
-L["Used as RaidDebuff Indicator"] = "Verwendet als Schlachtzugsschwächungszauber Indikator"
+L["Used as Raid Debuff Indicator"] = "Verwendet als Schlachtzugsschwächungszauber Indikator"
 L["Used/Total"] = "Verwendet/Gesamt"
 L["Value Color"] = "Farbwert"
 L["Value"] = "Wert"
@@ -1783,6 +1783,8 @@ L["blockDispellable"] = "[Blocke] Bannbar"
 L["blockNoDuration"] = "[Blocke] Keine Dauer"
 L["blockNonPersonal"] = "[Blocke] Nicht Persönlich"
 L["blockNotDispellable"] = "[Blocke] Nicht Bannbar"
+L["blockMount"] = "[Blocke] Mount"
+L["Mount"] = true
 L["CastByNPC"] = "Gezaubert von NPC"
 L["CastByPlayers"] = "Gezaubert von Spieler"
 L["CastByUnit"] = "Gezaubert von Einheit"
@@ -1808,13 +1810,7 @@ L["SKINS_DESC"] = "Passe die Einstellungen für externe Addon Skins/Optionen an.
 L["TOGGLESKIN_DESC"] = "Aktiviere/Deaktiviere diesen Skin."
 L["TOOLTIP_DESC"] = "Konfiguriere die Einstellungen für Tooltips."
 L["UNITFRAME_DESC"] = "Konfiguriere die Einstellungen für die Einheitenfenster."
-L["VISIBILITY_DESC"] = [=[Das folgende Makro muss wahr sein um die Gruppe anzuzeigen. Dies gilt zusätzlich zu jeglichem Filter der möglicherweise bereits eingestellt ist.
-
-|cffff8000Standard:|r
-    Gruppe: [@raid6,exists][nogroup] hide;show
-    Schlachtzug: [@raid6,noexists][@raid26,exists] hide;show
-    40er Schlachtzung: [@raid26,noexists] hide;show
-    Schlachtzugsbegleiter: [group:raid] show; hide]=]
+L["VISIBILITY_DESC"] = "Das folgende Makro muss wahr sein um die Gruppe anzuzeigen. Dies gilt zusätzlich zu jeglichem Filter der möglicherweise bereits eingestellt ist."
 L["SEARCH_SYNTAX_DESC"] = [=[Mit der Ergänzung von LibItemSearch, kannst du jetzt erweitert nach Gegenständen suchen. Nachfolgend findest du eine Dokumentation des Suchsyntax. Die volle Erklärung findest du hier: https://github.com/Jaliborc/LibItemSearch-1.2/wiki/Search-Syntax.
 
 Spezifische Suche:

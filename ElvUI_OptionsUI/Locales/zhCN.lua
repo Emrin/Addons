@@ -1,6 +1,8 @@
 -- Simplified Chinese localization file for zhCN.
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "zhCN")
 
+L["Abbreviate Name"] = true
+L["Max Allowed Groups"] = true
 L["Display Mana"] = "显示法力"
 L["Will display mana when main power is:"] = "显示法力值当主能量是:"
 L["%s and then %s"] = "%s 于 %s"
@@ -154,12 +156,10 @@ L["Bag 2"] = "背包2"
 L["Bag 3"] = "背包3"
 L["Bag 4"] = "背包4"
 L["Bag Assignment"] = "背包分类"
-L["Bag Bar"] = "背包条"
 L["Bag Spacing"] = "背包间距"
 L["BAG_FILTER_CONSUMABLES"] = "消耗品"
 L["BAG_FILTER_EQUIPMENT"] = "装备"
 L["BAG_FILTER_TRADE_GOODS"] = "商品"
-L["Bag-Bar"] = "背包条"
 L["Bags Only"] = "仅背包"
 L["Bags/Bank"] = "背包/银行"
 L["Bank 1"] = "银行1"
@@ -238,7 +238,6 @@ L["Can Not Attack"] = "不可攻击"
 L["Cart / Flag / Orb / Assassin Bounty"] = "推车 / 旗 / 球 / 刺客赏金"
 L["Cast Bar"] = "施法条"
 L["Cast Time Format"] = "施法时间格式"
-L["Castbar"] = "施法条"
 L["Casted by Player Only"] = "仅玩家施放"
 L["Casting"] = "施法"
 L["Center"] = "居中"
@@ -1039,6 +1038,7 @@ L["Mouseover"] = "鼠标滑过显示"
 L["Movers"] = "框架位置"
 L["Multi-Monitor Support"] = "多显示器支持"
 L["Multiply the backdrops height or width by this value. This is usefull if you wish to have more than one bar behind a backdrop."] = "根据此值增加背景的高度或宽度. 一般用来在一个背景框里放置多条动作条"
+L["Multiple Ranks"] = true
 L["Must be in group with the player if he isn't on the same server as you."] = "如果不是同一服务器, 那他必须和你在同一队伍中"
 L["Mythic+ Best Run"] = "最佳史诗通关"
 L["Mythic+ Data"] = "史诗数据"
@@ -1184,7 +1184,7 @@ L["Position Buffs on Debuffs"] = "增益定位在减益上"
 L["Position Debuffs on Buffs"] = "减益定位在增益上"
 L["Position of bonus quest reward frame relative to the objective tracker."] = "额外奖励框架相对于任务框架的相对位置"
 L["Position of the Chat EditBox, if datatexts are disabled this will be forced to be above chat."] = "聊天输入框位置,如果底部的信息文字被禁用的话,将会强制显示在聊天框顶部."
-L["Position of the Torghast buff list relative to the objective tracker."] = "托加斯特增益列表于目标追踪器的位置"
+L["Position of the Maw Buffs list relative to the objective tracker."] = "托加斯特增益列表于目标追踪器的位置"
 L["Position other Nameplates at the base, rather than overhead."] = "姓名板将在角色底部显示"
 L["Position the Model horizontally."] = "水平放置模型"
 L["Position the Model vertically."] = "垂直放置模型"
@@ -1250,7 +1250,7 @@ L["RAID_TARGET_7"] = "十字"
 L["RAID_TARGET_8"] = "骷髅"
 L["Raid-Wide Sorting"] = "全团队排序"
 L["Raid"] = "团队"
-L["RaidDebuff Indicator"] = "副本减益光环"
+L["Raid Debuff Indicator"] = "副本减益光环"
 L["Raid Role Indicator"] = "团队角色标识"
 L["Range"] = "范围"
 L["Rank"] = "等级"
@@ -1645,11 +1645,11 @@ L["Top Panel"] = "顶部面板"
 L["Top Right"] = "右上"
 L["Top to Bottom"] = "顶部到底部"
 L["Top"] = "上"
-L["Torghast Buffs Position"] = "托加斯特增益位置"
-L["TOTEM_AIR"] = true
-L["TOTEM_EARTH"] = true
-L["TOTEM_FIRE"] = true
-L["TOTEM_WATER"] = true
+L["Maw Buffs Position"] = "托加斯特增益位置"
+L["TOTEM_AIR"] = "空气图腾"
+L["TOTEM_EARTH"] = "大地图腾"
+L["TOTEM_FIRE"] = "火焰图腾"
+L["TOTEM_WATER"] = "水图腾"
 L["Totems"] = "图腾"
 L["Tracked Quests Only"] = "仅已追踪的任务"
 L["TRADE"] = "交易"
@@ -1718,7 +1718,7 @@ L["Use this backdrop color for units that are dead or ghosts."] = "死亡或灵�
 L["Use Threat Color"] = "使用仇恨颜色"
 L["Use Tooltip"] = "使用鼠标提示"
 L["Use Zone Names"] = "使用区域名字"
-L["Used as RaidDebuff Indicator"] = "作为团队减益指示器"
+L["Used as Raid Debuff Indicator"] = "作为团队减益指示器"
 L["Used/Total"] = "已用/总共"
 L["Value Color"] = "数值颜色"
 L["Value"] = "数值"
@@ -1782,6 +1782,8 @@ L["blockDispellable"] = "[屏蔽]可驱散的"
 L["blockNoDuration"] = "[屏蔽]永久的"
 L["blockNonPersonal"] = "[屏蔽]他人的"
 L["blockNotDispellable"] = "[屏蔽]不可驱散的"
+L["blockMount"] = "[屏蔽]Mount"
+L["Mount"] = true
 L["CastByNPC"] = "NPC施放的"
 L["CastByPlayers"] = "玩家施放的"
 L["CastByUnit"] = "该单位施放的"
@@ -1807,13 +1809,7 @@ L["SKINS_DESC"] = "调整外观设定"
 L["TOGGLESKIN_DESC"] = "启用/停用此外观"
 L["TOOLTIP_DESC"] = "鼠标提示信息设定选项"
 L["UNITFRAME_DESC"] = "修改单位框架设定"
-L["VISIBILITY_DESC"] = [=[为了显示设定过的过滤器下面的宏必须启用.
-
-|cffff8000Defaults:|r
-    Party: [@raid6,exists][nogroup] hide;show
-    Raid: [@raid6,noexists][@raid26,exists] hide;show
-    Raid40: [@raid26,noexists] hide;show]
-    Raid Pet: [group:raid] show; hide]=]
+L["VISIBILITY_DESC"] = "为了显示设定过的过滤器下面的宏必须启用."
 L["SEARCH_SYNTAX_DESC"] = [=[因为新增了LibItemSearch，你现在可以使用更高级的物品检索. 下面是一份检索语法的文档. 查看完整说明: https://github.com/Jaliborc/LibItemSearch-1.2/wiki/Search-Syntax.
 
 特性检索:

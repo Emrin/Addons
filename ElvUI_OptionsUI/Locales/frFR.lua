@@ -1,6 +1,8 @@
 -- French localization file for frFR.
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "frFR")
 
+L["Abbreviate Name"] = true
+L["Max Allowed Groups"] = true
 L["Display Mana"] = true
 L["Will display mana when main power is:"] = true
 L["%s and then %s"] = "%s et alors %s"
@@ -154,12 +156,10 @@ L["Bag 2"] = "Sac 2"
 L["Bag 3"] = "Sac 3"
 L["Bag 4"] = "Sac 4"
 L["Bag Assignment"] = "Affectation de sac"
-L["Bag Bar"] = true
 L["Bag Spacing"] = "Mauvais espacement"
 L["BAG_FILTER_CONSUMABLES"] = "Consommables"
 L["BAG_FILTER_EQUIPMENT"] = "Équipement"
 L["BAG_FILTER_TRADE_GOODS"] = "Fournitures d’artisanat"
-L["Bag-Bar"] = "Barre des sacs"
 L["Bags Only"] = "Sacs seulement"
 L["Bags/Bank"] = "Sacs / banque"
 L["Bank 1"] = "Banque 1"
@@ -238,7 +238,6 @@ L["Can Not Attack"] = "Ne peut pas attaquer"
 L["Cart / Flag / Orb / Assassin Bounty"] = true
 L["Cast Bar"] = "Barre d'incantation"
 L["Cast Time Format"] = true
-L["Castbar"] = "Barre d'incantation"
 L["Casted by Player Only"] = "Seulement lancé par le joueur"
 L["Casting"] = "Incantation"
 L["Center"] = "Centrer"
@@ -1039,6 +1038,7 @@ L["Mouseover"] = "Au survol de la souris"
 L["Movers"] = true
 L["Multi-Monitor Support"] = "Support multi-écrans"
 L["Multiply the backdrops height or width by this value. This is usefull if you wish to have more than one bar behind a backdrop."] = "Multiplie la hauteur ou la largeur de l'arrière-plan par cette valeur. Très utile si vous souhaitez avoir une barre de plus en arrière-plan."
+L["Multiple Ranks"] = true
 L["Must be in group with the player if he isn't on the same server as you."] = "Doit être dans le même groupe avec le joueur s'il n'est pas du même serveur."
 L["Mythic+ Best Run"] = true
 L["Mythic+ Data"] = true
@@ -1184,7 +1184,7 @@ L["Position Buffs on Debuffs"] = "Positionner les améliorations sur les affaibl
 L["Position Debuffs on Buffs"] = "Positionner les affaiblissements sur les améliorations"
 L["Position of bonus quest reward frame relative to the objective tracker."] = "Position de la récompense de l'objectif par rapport à la fenêtre de suivi des objectifs"
 L["Position of the Chat EditBox, if datatexts are disabled this will be forced to be above chat."] = "Postion du cadre d'écriture de la fenêtre de Chat. Si les Texte d'informations sont désactivés, elle apparaitra au dessus du Chat."
-L["Position of the Torghast buff list relative to the objective tracker."] = true
+L["Position of the Maw Buffs list relative to the objective tracker."] = true
 L["Position other Nameplates at the base, rather than overhead."] = true
 L["Position the Model horizontally."] = "Position horizontale du modèle"
 L["Position the Model vertically."] = "Position verticale du modèle"
@@ -1250,7 +1250,7 @@ L["RAID_TARGET_7"] = "Croix"
 L["RAID_TARGET_8"] = "Crâne"
 L["Raid-Wide Sorting"] = "Affichage du raid-large"
 L["Raid"] = true
-L["RaidDebuff Indicator"] = "Indicateur d'affaiblissement en raid"
+L["Raid Debuff Indicator"] = "Indicateur d'affaiblissement en raid"
 L["Raid Role Indicator"] = true
 L["Range"] = true
 L["Rank"] = "Rang"
@@ -1645,12 +1645,12 @@ L["Top Panel"] = "Bandeau en haut"
 L["Top Right"] = "En haut à droite"
 L["Top to Bottom"] = "Du haut vers le bas"
 L["Top"] = "En haut"
-L["Torghast Buffs Position"] = true
-L["TOTEM_AIR"] = true
-L["TOTEM_EARTH"] = true
-L["TOTEM_FIRE"] = true
-L["TOTEM_WATER"] = true
-L["Totems"] = true
+L["Maw Buffs Position"] = true
+L["TOTEM_AIR"] = "Totem d'Air"
+L["TOTEM_EARTH"] = "Totem de Terre"
+L["TOTEM_FIRE"] = "Totem de Feu"
+L["TOTEM_WATER"] = "Totem d'Eau"
+L["Totems"] = "Totems"
 L["Tracked Quests Only"] = true
 L["TRADE"] = "Échanger"
 L["TRADESKILLS"] = "Artisanat"
@@ -1718,7 +1718,7 @@ L["Use this backdrop color for units that are dead or ghosts."] = "Utiliser cett
 L["Use Threat Color"] = true
 L["Use Tooltip"] = "Utiliser l'infobulle"
 L["Use Zone Names"] = true
-L["Used as RaidDebuff Indicator"] = "Utiliser comme indicateur d'affaiblissement en raid"
+L["Used as Raid Debuff Indicator"] = "Utiliser comme indicateur d'affaiblissement en raid"
 L["Used/Total"] = true
 L["Value Color"] = "Couleur des Textes d'informations"
 L["Value"] = true
@@ -1782,6 +1782,8 @@ L["blockDispellable"] = "[Block] Dispellable"
 L["blockNoDuration"] = "[Block] No Duration"
 L["blockNonPersonal"] = "[Block] Non Personal"
 L["blockNotDispellable"] = "[Block] Not Dispellable"
+L["blockMount"] = "[Block] Mount"
+L["Mount"] = true
 L["CastByNPC"] = "Cast By NPC"
 L["CastByPlayers"] = "Cast By Players"
 L["CastByUnit"] = "Cast By Unit"
@@ -1807,13 +1809,7 @@ L["SKINS_DESC"] = "Ajuste les paramètres d'habillage."
 L["TOGGLESKIN_DESC"] = "Active ou désactive l'habillage ElvUI des éléments ci-dessous."
 L["TOOLTIP_DESC"] = "Configuration des infobulles."
 L["UNITFRAME_DESC"] = "Modifier les options des cadres d'unités."
-L["VISIBILITY_DESC"] = [=[La macro suivante doit être cochée pour que le groupe soit affiché, en plus de la configuration des filtres.
-
-|cffff8000Defaults:|r
-    Party: [@raid6,exists][nogroup] hide;show
-    Raid: [@raid6,noexists][@raid26,exists] hide;show
-    Raid40: [@raid26,noexists] hide;show]
-    Raid Pet: [group:raid] show; hide]=]
+L["VISIBILITY_DESC"] = "La macro suivante doit être cochée pour que le groupe soit affiché, en plus de la configuration des filtres."
 L["SEARCH_SYNTAX_DESC"] = [=[With the new addition of LibItemSearch, you now have access to much more advanced item searches. The following is a documentation of the search syntax. See the full explanation at: https://github.com/Jaliborc/LibItemSearch-1.2/wiki/Search-Syntax.
 
 Specific Searching:

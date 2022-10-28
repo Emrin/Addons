@@ -1,6 +1,8 @@
 -- Spanish localization file for esES and esMX.
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "esMX")
 
+L["Abbreviate Name"] = "Abreviar el Nombre"
+L["Max Allowed Groups"] = "Grupos Maximos Permitidos"
 L["Display Mana"] = "Mostrar mana"
 L["Will display mana when main power is:"] = "Mostrar mana cuando la poder principal es:"
 L["%s and then %s"] = "%s y entonces %s"
@@ -154,12 +156,10 @@ L["Bag 2"] = "Bolsa 2"
 L["Bag 3"] = "Bolsa 3"
 L["Bag 4"] = "Bolsa 4"
 L["Bag Assignment"] = "Asignación de Bolsas"
-L["Bag Bar"] = true
 L["Bag Spacing"] = "Espacio entre Bolsas"
 L["BAG_FILTER_CONSUMABLES"] = "Consumibles"
 L["BAG_FILTER_EQUIPMENT"] = "Equipo"
 L["BAG_FILTER_TRADE_GOODS"] = "Objetos comerciables"
-L["Bag-Bar"] = "Barra de las Bolsas"
 L["Bags Only"] = "Sólo bolsas"
 L["Bags/Bank"] = "Bolsas y Bancos"
 L["Bank 1"] = "Banco 1"
@@ -238,7 +238,6 @@ L["Can Not Attack"] = true
 L["Cart / Flag / Orb / Assassin Bounty"] = true
 L["Cast Bar"] = true
 L["Cast Time Format"] = true
-L["Castbar"] = "Barra de Lanzamiento"
 L["Casted by Player Only"] = "Lanzado sólo por el jugador"
 L["Casting"] = "Lanzando"
 L["Center"] = "Centro"
@@ -1039,6 +1038,7 @@ L["Mouseover"] = "Pasar el ratón por encima"
 L["Movers"] = true
 L["Multi-Monitor Support"] = true
 L["Multiply the backdrops height or width by this value. This is usefull if you wish to have more than one bar behind a backdrop."] = "Multiplica el ancho o alto de los fondos por este valor. Es útil si deseas tener más de una barra con fondo."
+L["Multiple Ranks"] = true
 L["Must be in group with the player if he isn't on the same server as you."] = "Debes estar agrupado con el jugador si no está en tu mismo servidor."
 L["Mythic+ Best Run"] = true
 L["Mythic+ Data"] = true
@@ -1184,7 +1184,7 @@ L["Position Buffs on Debuffs"] = true
 L["Position Debuffs on Buffs"] = true
 L["Position of bonus quest reward frame relative to the objective tracker."] = true
 L["Position of the Chat EditBox, if datatexts are disabled this will be forced to be above chat."] = "Posición del Cuadro de Edición del Chat. Si los textos de datos se deshabilitan éste se colocará arriba del chat."
-L["Position of the Torghast buff list relative to the objective tracker."] = true
+L["Position of the Maw Buffs list relative to the objective tracker."] = true
 L["Position other Nameplates at the base, rather than overhead."] = true
 L["Position the Model horizontally."] = true
 L["Position the Model vertically."] = true
@@ -1250,7 +1250,7 @@ L["RAID_TARGET_7"] = "Cruz"
 L["RAID_TARGET_8"] = "Calavera"
 L["Raid-Wide Sorting"] = "Ordenar por toda la Banda"
 L["Raid"] = true
-L["RaidDebuff Indicator"] = "Indicador de Perjuicios de Banda"
+L["Raid Debuff Indicator"] = "Indicador de Perjuicios de Banda"
 L["Raid Role Indicator"] = "Indicador de Rol de Banda"
 L["Range"] = true
 L["Rank"] = true
@@ -1645,12 +1645,12 @@ L["Top Panel"] = true
 L["Top Right"] = "Top Derecho"
 L["Top to Bottom"] = "De Arriba hacia Abajo"
 L["Top"] = true
-L["Torghast Buffs Position"] = true
-L["TOTEM_AIR"] = true
-L["TOTEM_EARTH"] = true
-L["TOTEM_FIRE"] = true
-L["TOTEM_WATER"] = true
-L["Totems"] = true
+L["Maw Buffs Position"] = true
+L["TOTEM_AIR"] = "Tótem de Aire"
+L["TOTEM_EARTH"] = "Tótem de Tierra"
+L["TOTEM_FIRE"] = "Tótem de Fuego"
+L["TOTEM_WATER"] = "Tótem de Agua"
+L["Totems"] = "Tótems"
 L["Tracked Quests Only"] = true
 L["TRADE"] = "Comerciar"
 L["TRADESKILLS"] = "Hab. comerciales"
@@ -1718,7 +1718,7 @@ L["Use this backdrop color for units that are dead or ghosts."] = true
 L["Use Threat Color"] = true
 L["Use Tooltip"] = true
 L["Use Zone Names"] = true
-L["Used as RaidDebuff Indicator"] = true
+L["Used as Raid Debuff Indicator"] = true
 L["Used/Total"] = true
 L["Value Color"] = "Color de Dato"
 L["Value"] = true
@@ -1777,11 +1777,13 @@ L["Zone Name"] = "Nombre de Zona"
 
 ----------------------------------
 L["BlizzardNameplate"] = true
-L["blockCastByPlayers"] = "[Block] Cast By Players"
-L["blockDispellable"] = "[Block] Dispellable"
-L["blockNoDuration"] = "[Block] No Duration"
-L["blockNonPersonal"] = "[Block] Non Personal"
-L["blockNotDispellable"] = "[Block] Not Dispellable"
+L["blockCastByPlayers"] = "[Bloquear] Cast By Players"
+L["blockDispellable"] = "[Bloquear] Dispellable"
+L["blockNoDuration"] = "[Bloquear] No Duration"
+L["blockNonPersonal"] = "[Bloquear] Non Personal"
+L["blockNotDispellable"] = "[Bloquear] Not Dispellable"
+L["blockMount"] = "[Bloquear] Mount"
+L["Mount"] = true
 L["CastByNPC"] = "Cast By NPC"
 L["CastByPlayers"] = "Cast By Players"
 L["CastByUnit"] = "Cast By Unit"
@@ -1807,13 +1809,7 @@ L["SKINS_DESC"] = "Configura los Ajustes de Cubiertas."
 L["TOGGLESKIN_DESC"] = "Activa/Desactiva esta cubierta."
 L["TOOLTIP_DESC"] = "Configuración para las Descripciones Emergentes."
 L["UNITFRAME_DESC"] = "Modify the unitframe settings."
-L["VISIBILITY_DESC"] = [=[La siguiente macro debe ser verdadera para que el grupo se muestre, además de cualquier filtro que ya exista.
-
-|cffff8000Defaults:|r
-    Party: [@raid6,exists][nogroup] hide;show
-    Raid: [@raid6,noexists][@raid26,exists] hide;show
-    Raid40: [@raid26,noexists] hide;show]
-    Raid Pet: [group:raid] show; hide]=]
+L["VISIBILITY_DESC"] = "La siguiente macro debe ser verdadera para que el grupo se muestre, además de cualquier filtro que ya exista."
 L["SEARCH_SYNTAX_DESC"] = [=[With the new addition of LibItemSearch, you now have access to much more advanced item searches. The following is a documentation of the search syntax. See the full explanation at: https://github.com/Jaliborc/LibItemSearch-1.2/wiki/Search-Syntax.
 
 Specific Searching:

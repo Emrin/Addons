@@ -157,11 +157,15 @@ function E:SetupCVars(noDisplayMsg)
 	if E.Retail then
 		SetCVar('cameraDistanceMaxZoomFactor', 2.6) -- This has a setting on classic/tbc
 	else
+		SetCVar('ActionButtonUseKeyDown', 1) -- dont set this for retail because of aura right click issue
 		SetCVar('chatClassColorOverride', 0)
 	end
 
-	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue('SHIFT')
-	_G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
+	local ActionButtonPickUp = _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown
+	if ActionButtonPickUp then
+		ActionButtonPickUp:SetValue('SHIFT')
+		ActionButtonPickUp:RefreshValue()
+	end
 
 	if E.private.nameplates.enable then
 		NP:CVarReset()
@@ -425,7 +429,6 @@ function E:SetupLayout(layout, noDataReset, noDisplayMsg)
 			--Party
 				E.db.unitframe.units.party.height = 74
 				E.db.unitframe.units.party.power.height = 13
-				E.db.unitframe.units.party.rdebuffs.font = 'PT Sans Narrow'
 				E.db.unitframe.units.party.width = 231
 			--Raid
 				E.db.unitframe.units.raid1.growthDirection = 'RIGHT_UP'
@@ -434,7 +437,6 @@ function E:SetupLayout(layout, noDataReset, noDisplayMsg)
 				E.db.unitframe.units.raid1.name.position = 'BOTTOMLEFT'
 				E.db.unitframe.units.raid1.name.xOffset = 2
 				E.db.unitframe.units.raid1.numGroups = 8
-				E.db.unitframe.units.raid1.rdebuffs.font = 'PT Sans Narrow'
 				E.db.unitframe.units.raid1.rdebuffs.size = 30
 				E.db.unitframe.units.raid1.rdebuffs.xOffset = 30
 				E.db.unitframe.units.raid1.rdebuffs.yOffset = 25
@@ -443,14 +445,7 @@ function E:SetupLayout(layout, noDataReset, noDisplayMsg)
 				E.db.unitframe.units.raid1.roleIcon.position = 'BOTTOMRIGHT'
 				E.db.unitframe.units.raid1.roleIcon.size = 12
 				E.db.unitframe.units.raid1.roleIcon.xOffset = 0
-				E.db.unitframe.units.raid1.visibility = '[@raid6,noexists] hide;show'
 				E.db.unitframe.units.raid1.width = 92
-			--Raid2
-				E.db.unitframe.units.raid2.enable = false
-				E.db.unitframe.units.raid2.rdebuffs.font = 'PT Sans Narrow'
-			--Raid3
-				E.db.unitframe.units.raid3.enable = false
-				E.db.unitframe.units.raid3.rdebuffs.font = 'PT Sans Narrow'
 
 			--[[
 				Layout Tweaks will be handled below,

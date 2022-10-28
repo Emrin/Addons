@@ -1,6 +1,8 @@
 -- Italian localization file for enUS and enGB.
 local L = ElvUI[1].Libs.ACL:NewLocale("ElvUI", "itIT")
 
+L["Abbreviate Name"] = true
+L["Max Allowed Groups"] = true
 L["Display Mana"] = true
 L["Will display mana when main power is:"] = true
 L["%s and then %s"] = true
@@ -154,12 +156,10 @@ L["Bag 2"] = true
 L["Bag 3"] = true
 L["Bag 4"] = true
 L["Bag Assignment"] = true
-L["Bag Bar"] = true
 L["Bag Spacing"] = true
 L["BAG_FILTER_CONSUMABLES"] = "Consumables"
 L["BAG_FILTER_EQUIPMENT"] = "Equipment"
 L["BAG_FILTER_TRADE_GOODS"] = "Trade Goods"
-L["Bag-Bar"] = true
 L["Bags Only"] = true
 L["Bags/Bank"] = true
 L["Bank 1"] = true
@@ -238,7 +238,6 @@ L["Can Not Attack"] = true
 L["Cart / Flag / Orb / Assassin Bounty"] = true
 L["Cast Bar"] = true
 L["Cast Time Format"] = true
-L["Castbar"] = true
 L["Casted by Player Only"] = true
 L["Casting"] = true
 L["Center"] = true
@@ -1039,6 +1038,7 @@ L["Mouseover"] = true
 L["Movers"] = true
 L["Multi-Monitor Support"] = true
 L["Multiply the backdrops height or width by this value. This is usefull if you wish to have more than one bar behind a backdrop."] = true
+L["Multiple Ranks"] = true
 L["Must be in group with the player if he isn't on the same server as you."] = true
 L["Mythic+ Best Run"] = true
 L["Mythic+ Data"] = true
@@ -1184,7 +1184,7 @@ L["Position Buffs on Debuffs"] = true
 L["Position Debuffs on Buffs"] = true
 L["Position of bonus quest reward frame relative to the objective tracker."] = true
 L["Position of the Chat EditBox, if datatexts are disabled this will be forced to be above chat."] = true
-L["Position of the Torghast buff list relative to the objective tracker."] = true
+L["Position of the Maw Buffs list relative to the objective tracker."] = true
 L["Position other Nameplates at the base, rather than overhead."] = true
 L["Position the Model horizontally."] = true
 L["Position the Model vertically."] = true
@@ -1250,7 +1250,7 @@ L["RAID_TARGET_7"] = "Cross"
 L["RAID_TARGET_8"] = "Skull"
 L["Raid-Wide Sorting"] = true
 L["Raid"] = true
-L["RaidDebuff Indicator"] = true
+L["Raid Debuff Indicator"] = true
 L["Raid Role Indicator"] = true
 L["Range"] = true
 L["Rank"] = true
@@ -1644,12 +1644,12 @@ L["Top Panel"] = true
 L["Top Right"] = true
 L["Top to Bottom"] = true
 L["Top"] = true
-L["Torghast Buffs Position"] = true
-L["TOTEM_AIR"] = true
-L["TOTEM_EARTH"] = true
-L["TOTEM_FIRE"] = true
-L["TOTEM_WATER"] = true
-L["Totems"] = true
+L["Maw Buffs Position"] = true
+L["TOTEM_AIR"] = "Totem dell'Aria"
+L["TOTEM_EARTH"] = "Totem della Terra"
+L["TOTEM_FIRE"] = "Totem del Fuoco"
+L["TOTEM_WATER"] = "Totem dell'Acqua"
+L["Totems"] = "Totem"
 L["Tracked Quests Only"] = true
 L["TRADE"] = "Trade"
 L["TRADESKILLS"] = "Trade Skills"
@@ -1717,7 +1717,7 @@ L["Use this backdrop color for units that are dead or ghosts."] = true
 L["Use Threat Color"] = true
 L["Use Tooltip"] = true
 L["Use Zone Names"] = true
-L["Used as RaidDebuff Indicator"] = true
+L["Used as Raid Debuff Indicator"] = true
 L["Used/Total"] = true
 L["Value Color"] = true
 L["Value"] = true
@@ -1781,6 +1781,8 @@ L["blockDispellable"] = "[Block] Dispellable"
 L["blockNoDuration"] = "[Block] No Duration"
 L["blockNonPersonal"] = "[Block] Non Personal"
 L["blockNotDispellable"] = "[Block] Not Dispellable"
+L["blockMount"] = "[Block] Mount"
+L["Mount"] = true
 L["CastByNPC"] = "Cast By NPC"
 L["CastByPlayers"] = "Cast By Players"
 L["CastByUnit"] = "Cast By Unit"
@@ -1806,13 +1808,7 @@ L["SKINS_DESC"] = "Adjust Skin settings."
 L["TOGGLESKIN_DESC"] = "Enable/Disable this skin."
 L["TOOLTIP_DESC"] = "Setup options for the Tooltip."
 L["UNITFRAME_DESC"] = "Modify the unitframe settings."
-L["VISIBILITY_DESC"] = [=[The following macro must be true in order for the group to be shown, in addition to any filter that may already be set.
-
-|cffff8000Defaults:|r
-    Party: [@raid6,exists][nogroup] hide;show
-    Raid: [@raid6,noexists][@raid26,exists] hide;show
-    Raid40: [@raid26,noexists] hide;show]
-    Raid Pet: [group:raid] show; hide]=]
+L["VISIBILITY_DESC"] = "The following macro must be true in order for the group to be shown, in addition to any filter that may already be set."
 L["SEARCH_SYNTAX_DESC"] = [=[With the new addition of LibItemSearch, you now have access to much more advanced item searches. The following is a documentation of the search syntax. See the full explanation at: https://github.com/Jaliborc/LibItemSearch-1.2/wiki/Search-Syntax.
 
 Specific Searching:

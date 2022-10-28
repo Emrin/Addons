@@ -1,5 +1,41 @@
 ## Revision History:
 
+#### v2.12.0 (Oktober 25, 2022)
+-------------------------------
+* Added Dragonflight portals, boats and zeppelins (Dragonflight)
+* Added Emerald Dreamway for Druid by mpolewaczyk [#15](https://github.com/Dathwada/handynotes-travelguide/pull/15)
+* Added new AreaPois (Dragonflight)
+* Updated zhCN by nanjuekaien1 [#14](https://github.com/Dathwada/handynotes-travelguide/pull/14)
+* Updated molemachine coords (Dragonflight)
+* Updated config layout (Dragonflight)
+* Fixed opening the settings panel (Dragonflight)
+* Bump .toc to 100000
+
+#### v2.11.0 (Oktober 15, 2022)
+-------------------------------
+* Added Reflective Portals [#13](https://github.com/Dathwada/handynotes-travelguide/issues/13)
+* Added a new icon for Ogre Waygates
+* Updated zhCN by nanjuekaien1 [#11](https://github.com/Dathwada/handynotes-travelguide/pull/11)
+* Background changes
+
+#### v2.10.1 (Oktober 09, 2022)
+-------------------------------
+* Fix poi nil error [#12](https://github.com/Dathwada/handynotes-travelguide/issues/12)
+
+#### v2.10.0 (September 29, 2022)
+-------------------------------
+* Added the feature to remove Blizzards AreaPois (on by default)
+    * Added new portals, zeppelins and boats for this.
+* Added an option to create a Blizzard waypoint
+    * Easy waypoints now sets Blizzard waypoints by default.
+    * Please check the options to change it to TomTom (if installed)
+* Added missing requiements for a Portal node in Stormwind City and Elwynn Forest
+* Added missing Portals in Azsuna (only alliance) and Highmountain
+* Fixed a Portal in Terokkar Forest that wasn't shown up
+* Updated the Boat to Booty Bay note
+* Updated some coords
+* Some background changes
+
 #### v2.9.0 (August 17, 2022)
 -------------------------------
 * Added mole machines [Curseforge #48](https://www.curseforge.com/wow/addons/handynotes-travelguide?comment=48)
