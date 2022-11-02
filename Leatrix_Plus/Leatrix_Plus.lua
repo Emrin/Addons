@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 10.0.01 (27th October 2022)
+-- 	Leatrix Plus 10.0.05 (31st October 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -18,7 +18,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "10.0.01"
+	LeaPlusLC["AddonVer"] = "10.0.05"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -655,6 +655,7 @@
 		or	(LeaPlusLC["HideEventToasts"]		~= LeaPlusDB["HideEventToasts"])		-- Hide event toasts
 		or	(LeaPlusLC["NoClassBar"]			~= LeaPlusDB["NoClassBar"])				-- Hide stance bar
 		or	(LeaPlusLC["NoCommandBar"]			~= LeaPlusDB["NoCommandBar"])			-- Hide order hall bar
+		or	(LeaPlusLC["NoRestedSleep"]			~= LeaPlusDB["NoRestedSleep"])			-- Hide rested sleep
 
 		-- System
 		or	(LeaPlusLC["NoRestedEmotes"]		~= LeaPlusDB["NoRestedEmotes"])			-- Silence rested emotes
@@ -1959,8 +1960,8 @@
 		do
 
 			-- Function to skip gossip
-			local function SkipGossip()
-				if not IsAltKeyDown() then return end
+			local function SkipGossip(skipAltKeyRequirement)
+				if not skipAltKeyRequirement and not IsAltKeyDown() then return end
 				local gossipInfoTable = C_GossipInfo.GetOptions()
 				if gossipInfoTable[1] and gossipInfoTable[1].gossipOptionID then
 					C_GossipInfo.SelectOption(gossipInfoTable[1].gossipOptionID)
@@ -1991,11 +1992,18 @@
 					local void, void, void, void, void, npcID = strsplit("-", npcGuid)
 					if npcID then
 						-- Open rogue doors in Dalaran (Broken Isles) automatically
-						if npcID == "96782"	-- Lucian Trias
-						or npcID == "93188"	-- Mongar
-						or npcID == "97004"	-- "Red" Jack Findle
+						if npcID == "96782"		-- Lucian Trias
+						or npcID == "93188"		-- Mongar
+						or npcID == "97004"		-- "Red" Jack Findle
 						then
 							SkipGossip()
+							return
+						end
+						-- Skip gossip with no alt key requirement
+						if npcID == "132969"	-- Katy Stampwhistle (toy)
+						or npcID == "104201"	-- Katy Stampwhistle (npc)
+						then
+							SkipGossip(true) 	-- true means skip alt key requirement
 							return
 						end
 					end
@@ -2197,6 +2205,58 @@
 		----------------------------------------------------------------------
 
 		if LeaPlusLC["FasterLooting"] == "On" then
+
+			-- Hopefully this is temporary but then again how long does it take for Blizzard to comment out two print statements
+			-- (that's assuming that they actually want to fix this)
+			-- https://github.com/leatrix/leatrix-plus/issues/113
+
+			if not LeaPlusLC.ElvUI then
+
+				LootFrame:UnregisterEvent("LOOT_OPENED")
+				local abc = CreateFrame("FRAME")
+				abc:RegisterEvent("LOOT_OPENED")
+				abc:SetScript("OnEvent", function(self)
+
+					local dataProvider = CreateDataProvider()
+					for slotIndex = 1, GetNumLootItems() do
+						local texture, item, quantity, currencyID, itemQuality, locked, isQuestItem, questID, isActive, isCoin = GetLootSlotInfo(slotIndex)
+						local quality = itemQuality or Enum.ItemQuality.Common
+						local group = isCoin and 1 or 0
+						dataProvider:Insert({slotIndex = slotIndex, group = group, quality = quality})
+					end
+
+					-- Sort loot list to put quality items first
+					dataProvider:SetSortComparator(function(a, b)
+						if a.group ~= b.group then
+							return a.group > b.group
+						end
+						if a.quality ~= b.quality then
+							return a.quality > b.quality
+						end
+						return a.slotIndex < b.slotIndex
+					end)
+
+					-- Show the loot frame in the Edit Mode position
+					LootFrame.ScrollBox:SetDataProvider(dataProvider)
+
+					if GetCVarBool("lootUnderMouse") then
+						local x, y = GetCursorPosition()
+						x = x / (LootFrame:GetEffectiveScale()) - 30
+						y = math.max((y / LootFrame:GetEffectiveScale()) + 50, 350)
+						LootFrame:ClearAllPoints()
+						LootFrame:SetPoint("TOPLEFT", nil, "BOTTOMLEFT", x, y)
+						LootFrame:Raise()
+					else
+						EditModeSystemMixin.ApplySystemAnchor(LootFrame)
+					end
+
+					LootFrame:Show()
+					LootFrame:Resize()
+					LootFrame:PlayOpenAnimation()
+
+				end)
+
+			end
 
 			-- Time delay
 			local tDelay = 0
@@ -3953,6 +4013,15 @@
 
 	function LeaPlusLC:Player()
 
+
+		----------------------------------------------------------------------
+		-- Hide rested sleep
+		----------------------------------------------------------------------
+
+		if LeaPlusLC["NoRestedSleep"] == "On" and not LeaLockList["NoRestedSleep"] then
+			PlayerFrame.PlayerFrameContent.PlayerFrameContentContextual.PlayerRestLoop.RestTexture:SetTexture("")
+		end
+
 		----------------------------------------------------------------------
 		-- Manage vehicle
 		----------------------------------------------------------------------
@@ -4190,24 +4259,27 @@
 			historyFrame:SetScript("OnEvent", function(self, event)
 				if event == "PLAYER_LOGOUT" then
 					local name, realm = UnitFullName("player")
-					LeaPlusDB["ChatHistoryName"] = name .. "-" .. realm
-					LeaPlusDB["ChatHistoryTime"] = GetServerTime()
-					for i = 1, 50 do
-						if i ~= 2 and _G["ChatFrame" .. i] then
-							if FCF_IsChatWindowIndexActive(i) then
-								LeaPlusDB["ChatHistory" .. i] = {}
-								local chtfrm = _G["ChatFrame" .. i]
-								local NumMsg = chtfrm:GetNumMessages()
-								local StartMsg = 1
-								if NumMsg > 128 then StartMsg = NumMsg - 127 end
-								for iMsg = StartMsg, NumMsg do
-									local chatMessage, r, g, b, chatTypeID = chtfrm:GetMessageInfo(iMsg)
-									if chatMessage then
-										if r and g and b then
-											local colorCode = RGBToColorCode(r, g, b)
-											chatMessage = colorCode .. chatMessage
+					if not realm then realm = GetNormalizedRealmName() end
+					if name and realm then
+						LeaPlusDB["ChatHistoryName"] = name .. "-" .. realm
+						LeaPlusDB["ChatHistoryTime"] = GetServerTime()
+						for i = 1, 50 do
+							if i ~= 2 and _G["ChatFrame" .. i] then
+								if FCF_IsChatWindowIndexActive(i) then
+									LeaPlusDB["ChatHistory" .. i] = {}
+									local chtfrm = _G["ChatFrame" .. i]
+									local NumMsg = chtfrm:GetNumMessages()
+									local StartMsg = 1
+									if NumMsg > 128 then StartMsg = NumMsg - 127 end
+									for iMsg = StartMsg, NumMsg do
+										local chatMessage, r, g, b, chatTypeID = chtfrm:GetMessageInfo(iMsg)
+										if chatMessage then
+											if r and g and b then
+												local colorCode = RGBToColorCode(r, g, b)
+												chatMessage = colorCode .. chatMessage
+											end
+											tinsert(LeaPlusDB["ChatHistory" .. i], chatMessage)
 										end
-										tinsert(LeaPlusDB["ChatHistory" .. i], chatMessage)
 									end
 								end
 							end
@@ -4218,62 +4290,65 @@
 
 			-- Restore chat messages on login
 			local name, realm = UnitFullName("player")
-			if LeaPlusDB["ChatHistoryName"] and LeaPlusDB["ChatHistoryTime"] then
-				local timeDiff = GetServerTime() - LeaPlusDB["ChatHistoryTime"]
-				if LeaPlusDB["ChatHistoryName"] == name .. "-" .. realm and timeDiff and timeDiff < 10 then -- reload must be done within 15 seconds
+			if not realm then realm = GetNormalizedRealmName() end
+			if name and realm then
+				if LeaPlusDB["ChatHistoryName"] and LeaPlusDB["ChatHistoryTime"] then
+					local timeDiff = GetServerTime() - LeaPlusDB["ChatHistoryTime"]
+					if LeaPlusDB["ChatHistoryName"] == name .. "-" .. realm and timeDiff and timeDiff < 10 then -- reload must be done within 15 seconds
 
-					-- Store chat messages from current session and clear chat
-					for i = 1, 50 do
-						if i ~= 2 and _G["ChatFrame" .. i] and FCF_IsChatWindowIndexActive(i) then
-							LeaPlusDB["ChatTemp" .. i] = {}
-							local chtfrm = _G["ChatFrame" .. i]
-							local NumMsg = chtfrm:GetNumMessages()
-							for iMsg = 1, NumMsg do
-								local chatMessage, r, g, b, chatTypeID = chtfrm:GetMessageInfo(iMsg)
-								if chatMessage then
-									if r and g and b then
-										local colorCode = RGBToColorCode(r, g, b)
-										chatMessage = colorCode .. chatMessage
+						-- Store chat messages from current session and clear chat
+						for i = 1, 50 do
+							if i ~= 2 and _G["ChatFrame" .. i] and FCF_IsChatWindowIndexActive(i) then
+								LeaPlusDB["ChatTemp" .. i] = {}
+								local chtfrm = _G["ChatFrame" .. i]
+								local NumMsg = chtfrm:GetNumMessages()
+								for iMsg = 1, NumMsg do
+									local chatMessage, r, g, b, chatTypeID = chtfrm:GetMessageInfo(iMsg)
+									if chatMessage then
+										if r and g and b then
+											local colorCode = RGBToColorCode(r, g, b)
+											chatMessage = colorCode .. chatMessage
+										end
+										tinsert(LeaPlusDB["ChatTemp" .. i], chatMessage)
 									end
-									tinsert(LeaPlusDB["ChatTemp" .. i], chatMessage)
 								end
+								chtfrm:Clear()
 							end
-							chtfrm:Clear()
 						end
-					end
 
-					-- Restore chat messages from previous session
-					for i = 1, 50 do
-						if i ~= 2 and _G["ChatFrame" .. i] and LeaPlusDB["ChatHistory" .. i] and FCF_IsChatWindowIndexActive(i) then
-							LeaPlusDB["ChatHistory" .. i .. "Count"] = 0
-							-- Add previous session messages to chat
-							for k = 1, #LeaPlusDB["ChatHistory" .. i] do
-								if LeaPlusDB["ChatHistory" .. i][k] ~= string.match(LeaPlusDB["ChatHistory" .. i][k], "|cffffd800" .. L["Restored"] .. " " .. ".*" .. " " .. L["message"] .. ".*.|r") then
-									_G["ChatFrame" .. i]:AddMessage(LeaPlusDB["ChatHistory" .. i][k])
-									LeaPlusDB["ChatHistory" .. i .. "Count"] = LeaPlusDB["ChatHistory" .. i .. "Count"] + 1
+						-- Restore chat messages from previous session
+						for i = 1, 50 do
+							if i ~= 2 and _G["ChatFrame" .. i] and LeaPlusDB["ChatHistory" .. i] and FCF_IsChatWindowIndexActive(i) then
+								LeaPlusDB["ChatHistory" .. i .. "Count"] = 0
+								-- Add previous session messages to chat
+								for k = 1, #LeaPlusDB["ChatHistory" .. i] do
+									if LeaPlusDB["ChatHistory" .. i][k] ~= string.match(LeaPlusDB["ChatHistory" .. i][k], "|cffffd800" .. L["Restored"] .. " " .. ".*" .. " " .. L["message"] .. ".*.|r") then
+										_G["ChatFrame" .. i]:AddMessage(LeaPlusDB["ChatHistory" .. i][k])
+										LeaPlusDB["ChatHistory" .. i .. "Count"] = LeaPlusDB["ChatHistory" .. i .. "Count"] + 1
+									end
 								end
-							end
-							-- Show how many messages were restored
-							if LeaPlusDB["ChatHistory" .. i .. "Count"] == 1 then
-								_G["ChatFrame" .. i]:AddMessage("|cffffd800" .. L["Restored"] .. " " .. LeaPlusDB["ChatHistory" .. i .. "Count"] .. " " .. L["message from previous session"] .. ".|r")
+								-- Show how many messages were restored
+								if LeaPlusDB["ChatHistory" .. i .. "Count"] == 1 then
+									_G["ChatFrame" .. i]:AddMessage("|cffffd800" .. L["Restored"] .. " " .. LeaPlusDB["ChatHistory" .. i .. "Count"] .. " " .. L["message from previous session"] .. ".|r")
+								else
+									_G["ChatFrame" .. i]:AddMessage("|cffffd800" .. L["Restored"] .. " " .. LeaPlusDB["ChatHistory" .. i .. "Count"] .. " " .. L["messages from previous session"] .. ".|r")
+								end
 							else
-								_G["ChatFrame" .. i]:AddMessage("|cffffd800" .. L["Restored"] .. " " .. LeaPlusDB["ChatHistory" .. i .. "Count"] .. " " .. L["messages from previous session"] .. ".|r")
-							end
-						else
-							-- No messages to restore
-							LeaPlusDB["ChatHistory" .. i] = nil
-						end
-					end
-
-					-- Restore chat messages from this session
-					for i = 1, 50 do
-						if i ~= 2 and _G["ChatFrame" .. i] and LeaPlusDB["ChatTemp" .. i] and FCF_IsChatWindowIndexActive(i) then
-							for k = 1, #LeaPlusDB["ChatTemp" .. i] do
-								_G["ChatFrame" .. i]:AddMessage(LeaPlusDB["ChatTemp" .. i][k])
+								-- No messages to restore
+								LeaPlusDB["ChatHistory" .. i] = nil
 							end
 						end
-					end
 
+						-- Restore chat messages from this session
+						for i = 1, 50 do
+							if i ~= 2 and _G["ChatFrame" .. i] and LeaPlusDB["ChatTemp" .. i] and FCF_IsChatWindowIndexActive(i) then
+								for k = 1, #LeaPlusDB["ChatTemp" .. i] do
+									_G["ChatFrame" .. i]:AddMessage(LeaPlusDB["ChatTemp" .. i][k])
+								end
+							end
+						end
+
+					end
 				end
 			end
 
@@ -10899,6 +10974,7 @@
 				LeaPlusLC:LoadVarChk("HideEventToasts", "Off")				-- Hide event toasts
 				LeaPlusLC:LoadVarChk("NoClassBar", "Off")					-- Hide stance bar
 				LeaPlusLC:LoadVarChk("NoCommandBar", "Off")					-- Hide order hall bar
+				LeaPlusLC:LoadVarChk("NoRestedSleep", "Off")				-- Hide rested sleep
 
 				-- System
 				LeaPlusLC:LoadVarChk("NoScreenGlow", "Off")					-- Disable screen glow
@@ -10999,6 +11075,7 @@
 						if E.private.unitframe.disabledBlizzardFrames.player then
 							LockOption("ShowPlayerChain", "UnitFrames (Disabled Blizzard Frames Player)") -- Show player chain
 							LockOption("NoHitIndicators", "UnitFrames (Disabled Blizzard Frames Player)") -- Hide portrait numbers
+							LockOption("NoRestedSleep", "UnitFrames (Disabled Blizzard Frames Player)") -- Hide rested sleep
 						end
 
 						-- UnitFrames: Disabled Blizzard: Player, Target or Focus
@@ -11029,6 +11106,10 @@
 					if reason then
 						LeaPlusCB[option].tiptext = LeaPlusCB[option].tiptext .. "|n|n|cff00AAFF" .. L[reason]
 					end
+				end
+
+				if not LeaPlusLC.ElvUI then
+					LockDF("NoBagAutomation", "Cannot use this right now.") -- Causes block taint (open vendor, close vendor, open vendor, buy alcohol, drink from bag)
 				end
 
 				-- Run other startup items
@@ -11246,6 +11327,7 @@
 			LeaPlusDB["HideEventToasts"]		= LeaPlusLC["HideEventToasts"]
 			LeaPlusDB["NoClassBar"]				= LeaPlusLC["NoClassBar"]
 			LeaPlusDB["NoCommandBar"]			= LeaPlusLC["NoCommandBar"]
+			LeaPlusDB["NoRestedSleep"]			= LeaPlusLC["NoRestedSleep"]
 
 			-- System
 			LeaPlusDB["NoScreenGlow"] 			= LeaPlusLC["NoScreenGlow"]
@@ -13888,6 +13970,7 @@
 				LeaPlusDB["HideEventToasts"] = "On"				-- Hide event toasts
 				LeaPlusDB["NoClassBar"] = "On"					-- Hide stance bar
 				LeaPlusDB["NoCommandBar"] = "On"				-- Hide order hall bar
+				LeaPlusDB["NoRestedSleep"] = "On"				-- Hide rested sleep
 
 				-- System
 				LeaPlusDB["NoScreenGlow"] = "On"				-- Disable screen glow
@@ -14300,6 +14383,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "HideEventToasts"			, 	"Hide event toasts"				, 	340, -192, 	true,	"If checked, event toasts will not be shown.|n|nEvent toasts are used for encounter objectives, level-ups, pet battle rewards, etc.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoClassBar"				,	"Hide stance bar"				, 	340, -212, 	true,	"If checked, the stance bar will not be shown.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoCommandBar"				,	"Hide order hall bar"			, 	340, -232, 	true,	"If checked, the order hall command bar will not be shown.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoRestedSleep"				,	"Hide rested sleep"				, 	340, -252, 	true,	"If checked, the player frame rested sleep animation will not be shown.")
 
 	LeaPlusLC:CfgBtn("ManageWidgetTopButton", LeaPlusCB["ManageWidgetTop"])
 	LeaPlusLC:CfgBtn("ManageWidgetPowerButton", LeaPlusCB["ManageWidgetPower"])

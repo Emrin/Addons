@@ -152,6 +152,9 @@ function TomTom:Initialize(event, addon)
     self.dropdown = ldd:NewMenu(UIParent, "TomTomDropdown")
     self:InitializeDropdown(self.dropdown)
 
+    self.worlddropdown = ldd:NewMenu(WorldMapFrame, "TomTomWorldMapDropdown")
+    self:InitializeDropdown(self.worlddropdown)
+
     -- Both the waypoints and waypointprofile tables are going to contain subtables for each
     -- of the mapids that might exist. Under these will be a hash of key/waypoint pairs consisting
     -- of the waypoints for the given map file.
@@ -334,6 +337,9 @@ function TomTom:ShowHideWorldCoords()
         -- Create the frame if it doesn't exist
         if not TomTomWorldFrame then
             TomTomWorldFrame = CreateFrame("Frame", "TomTomWorldFrame", WorldMapFrame.BorderFrame)
+            TomTomWorldFrame:SetFrameStrata("HIGH")
+            TomTomWorldFrame:SetFrameLevel(9000)
+            TomTomWorldFrame:SetAllPoints(true)
             TomTomWorldFrame.Player = TomTomWorldFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
             TomTomWorldFrame.Cursor = TomTomWorldFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
             TomTomWorldFrame:SetScript("OnUpdate", WorldMap_OnUpdate)
@@ -702,8 +708,8 @@ end
 local function _world_onclick(event, uid, self, button)
     if TomTom.db.profile.worldmap.menu then
         TomTom.dropdown_uid = uid
-        TomTom.dropdown:SetAnchor("TOPRIGHT", self, "BOTTOMLEFT", -25, -25)
-        TomTom.dropdown:Toggle()
+        TomTom.worlddropdown:SetAnchor("TOPRIGHT", self, "BOTTOMLEFT", -25, -25)
+        TomTom.worlddropdown:Toggle()
     end
 end
 
