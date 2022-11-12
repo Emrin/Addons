@@ -14,8 +14,8 @@ BINDING_NAME_AngryAssign_SHOW_DISPLAY = "Show Display"
 BINDING_NAME_AngryAssign_HIDE_DISPLAY = "Hide Display"
 BINDING_NAME_AngryAssign_OUTPUT = "Output Assignment to Chat"
 
-local AngryAssign_Version = 'v1.14.6'
-local AngryAssign_Timestamp = '20220309161549'
+local AngryAssign_Version = 'v1.15.0'
+local AngryAssign_Timestamp = '20221102051903'
 
 local isClassic = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 
@@ -872,7 +872,7 @@ function AngryAssign:CreateWindow()
 	AngryAssign.window = window
 
 	AngryAssign_Window = window.frame
-	window.frame:SetMinResize(700, 400)
+	window.frame:SetResizeBounds(700, 400)
 	window.frame:SetFrameStrata("HIGH")
 	window.frame:SetFrameLevel(1)
 	window.frame:SetClampedToScreen(true)
@@ -1612,8 +1612,7 @@ function AngryAssign:CreateDisplay()
 	frame:SetMovable(true)
 	frame:SetResizable(true)
 	frame:SetClampedToScreen(true)
-	frame:SetMinResize(180,1)
-	frame:SetMaxResize(830,1)
+	frame:SetResizeBounds(180,1, 830,1)
 	frame:SetFrameStrata("MEDIUM")	
 	self.frame = frame
 
@@ -2094,7 +2093,7 @@ local configDefaults = {
 	hideoncombat = false,
 	fontName = "Friz Quadrata TT",
 	fontHeight = 12,
-	fontFlags = "NONE",
+	fontFlags = "",
 	highlight = "",
 	highlightColor = "ffd200",
 	color = "ffffff",
