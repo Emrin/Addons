@@ -8,6 +8,14 @@ end
 do
 	local UnitGUID, strsplit, GetNumGossipActiveQuests, SelectGossipActiveQuest = UnitGUID, strsplit, C_GossipInfo.GetNumActiveQuests, C_GossipInfo.SelectActiveQuest
 	local tonumber, GetGossipOptions, GetItemCount = tonumber, C_GossipInfo.GetOptions, GetItemCount
+	local blockedIds = {
+		[30907] = true, -- alliance
+		[30908] = true, -- alliance
+		[30909] = true, -- alliance
+		[35739] = true, -- horde
+		[35740] = true, -- horde
+		[35741] = true, -- horde
+	}
 	function mod:GOSSIP_SHOW()
 		if not cap.db.profile.autoTurnIn then return end
 
@@ -17,23 +25,41 @@ do
 			local mobId = tonumber(id)
 			if mobId == 13176 or mobId == 13257 then -- Smith Regzar, Murgot Deepforge
 				-- Open Quest to Smith or Murgot
-				local gossipOptions = GetGossipOptions()
-				if gossipOptions[1] then--and strmatch(tbl[1].name, L.upgradeToTrigger)
-					for i = 1, #gossipOptions do
-						local gossipTable = gossipOptions[i]
-						if gossipTable.gossipOptionID ~= 30907 and gossipTable.gossipOptionID ~= 35739 then -- alliance, horde
-							print("|cFF33FF99Capping|r: NEW ID FOUND, TELL THE DEVS!", gossipTable.gossipOptionID, mobId, gossipTable.name)
-							geterrorhandler()("|cFF33FF99Capping|r: NEW ID FOUND, TELL THE DEVS! ".. tostring(gossipTable.gossipOptionID) ..", ".. mobId ..", ".. tostring(gossipTable.name))
-							return
+				if self:GetGossipID(30904) then -- Alliance
+					self:SelectGossipID(30904) -- Upgrade to seasoned units!
+				elseif self:GetGossipID(30905) then -- Alliance
+					self:SelectGossipID(30905) -- Upgrade to veteran units!
+				elseif self:GetGossipID(30906) then -- Alliance
+					self:SelectGossipID(30906) -- Upgrade to champion units!
+				elseif self:GetGossipID(35736) then -- Horde
+					self:SelectGossipID(35736) -- Upgrade to seasoned units!
+				elseif self:GetGossipID(35737) then -- Horde
+					self:SelectGossipID(35737) -- Upgrade to veteran units!
+				elseif self:GetGossipID(35738) then -- Horde
+					self:SelectGossipID(35738) -- Upgrade to champion units!
+				else
+					local gossipOptions = GetGossipOptions()
+					if gossipOptions[1] then
+						for i = 1, #gossipOptions do
+							local gossipTable = gossipOptions[i]
+							if not blockedIds[gossipTable.gossipOptionID] then
+								print("|cFF33FF99Capping|r: NEW ID FOUND, TELL THE DEVS!", gossipTable.gossipOptionID, mobId, gossipTable.name)
+								geterrorhandler()("|cFF33FF99Capping|r: NEW ID FOUND, TELL THE DEVS! ".. tostring(gossipTable.gossipOptionID) ..", ".. mobId ..", ".. tostring(gossipTable.name))
+								return
+							end
 						end
 					end
-					--self:SelectGossipID(1)
 				end
+
 				if GetItemCount(17422) >= 20 then -- Armor Scraps 17422
 					if self:GetGossipAvailableQuestID(6781) then -- Alliance, More Armor Scraps
 						self:SelectGossipAvailableQuestID(6781)
 					elseif self:GetGossipAvailableQuestID(6741) then -- Horde, More Booty!
 						self:SelectGossipAvailableQuestID(6741)
+					elseif self:GetGossipAvailableQuestID(57318) then -- Horde, More Booty! [Specific to Korrak's Revenge]
+						self:SelectGossipAvailableQuestID(57318)
+					elseif self:GetGossipAvailableQuestID(57306) then -- Alliance, More Armor Scraps [Specific to Korrak's Revenge]
+						self:SelectGossipAvailableQuestID(57306)
 					end
 				end
 			elseif mobId == 13236 then -- Horde, Primalist Thurloga
@@ -109,10 +135,12 @@ do
 end
 
 do
-	local GetQuestReward = GetQuestReward
+	local GetNumQuestRewards, GetQuestReward = GetNumQuestRewards, GetQuestReward
 	function mod:QUEST_COMPLETE()
 		if not cap.db.profile.autoTurnIn then return end
-		GetQuestReward(0)
+		if GetNumQuestRewards() == 0 then
+			GetQuestReward(0)
+		end
 	end
 end
 
@@ -140,6 +168,7 @@ local function AVSyncRequest()
 	hasData = true
 end
 
+local currentWorldMapId = 91
 do
 	local timer = nil
 	local function SendAVTimers()
@@ -174,7 +203,7 @@ do
 			end
 
 			if next(inProgressDataTbl) then
-				self:RestoreFlagCaptures(91, inProgressDataTbl, 242)
+				self:RestoreFlagCaptures(currentWorldMapId, inProgressDataTbl, 242)
 			end
 		end
 
@@ -201,8 +230,14 @@ end
 
 do
 	local RequestBattlefieldScoreData = RequestBattlefieldScoreData
-	function mod:EnterZone()
-		self:StartFlagCaptures(242, 91)
+	function mod:EnterZone(id)
+		if id == 2197 then
+			currentWorldMapId = 1537
+			self:StartFlagCaptures(241, currentWorldMapId) -- Korrak's Revenge (WoW 15th)
+		else
+			currentWorldMapId = 91
+			self:StartFlagCaptures(242, currentWorldMapId)
+		end
 		self:SetupHealthCheck("11946", L.hordeBoss, "Horde Boss", 236452, "colorAlliance") -- Interface/Icons/Achievement_Character_Orc_Male
 		self:SetupHealthCheck("11948", L.allianceBoss, "Alliance Boss", 236444, "colorHorde") -- Interface/Icons/Achievement_Character_Dwarf_Male
 		self:SetupHealthCheck("11947", L.galvangar, "Galvangar", 236452, "colorAlliance") -- Interface/Icons/Achievement_Character_Orc_Male
@@ -229,3 +264,4 @@ function mod:ExitZone()
 end
 
 mod:RegisterZone(30)
+mod:RegisterZone(2197) -- Korrak's Revenge (WoW 15th)

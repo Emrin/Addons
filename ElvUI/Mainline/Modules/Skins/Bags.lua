@@ -12,12 +12,11 @@ local CreateFrame = CreateFrame
 local GetItemInfo = GetItemInfo
 local GetCVarBool = GetCVarBool
 local GetItemQualityColor = GetItemQualityColor
-local GetContainerItemInfo = GetContainerItemInfo
-local GetContainerItemCooldown = GetContainerItemCooldown
-local GetContainerItemQuestInfo = GetContainerItemQuestInfo
 local GetInventoryItemTexture = GetInventoryItemTexture
 local GetInventorySlotInfo = GetInventorySlotInfo
 local hooksecurefunc = hooksecurefunc
+
+local GetContainerItemCooldown = GetContainerItemCooldown or (C_Container and C_Container.GetContainerItemCooldown)
 
 local NUM_CONTAINER_FRAMES = NUM_CONTAINER_FRAMES
 local BACKPACK_TOOLTIP = BACKPACK_TOOLTIP
@@ -51,7 +50,7 @@ local function BackpackToken_Update(container)
 		if not token.Icon.backdrop then
 			S:HandleIcon(token.Icon, true)
 			token.Count:ClearAllPoints()
-			token.Count:SetPoint('RIGHT', token.Icon, 'LEFT', -3, 0)
+			token.Count:Point('RIGHT', token.Icon, 'LEFT', -3, 0)
 			token.Count:FontTemplate(nil, 12)
 			token.Icon:Size(14)
 		end
@@ -283,20 +282,18 @@ local function UpdateBankItem(button)
 
 	if not button.isBag then
 		local container = button:GetParent():GetID()
-		local _, _, _, rarity, _, _, itemLink, _, _, itemID = GetContainerItemInfo(container, slotID)
-		local isQuestItem, questId = GetContainerItemQuestInfo(container, slotID)
-		button.itemID, button.itemLink = itemID, itemLink
+		local info = B:GetContainerItemInfo(container, slotID)
+		local questInfo = B:GetContainerItemQuestInfo(container, slotID)
+		button.itemID, button.itemLink = info.itemID, info.hyperlink
 
-		if itemLink then
-			button.name, _, button.quality, _, _, button.type = GetItemInfo(itemLink)
-			if not button.quality then
-				button.quality = rarity
-			end
+		if info.hyperlink then
+			local _
+			button.name, _, button.quality, _, _, button.type = GetItemInfo(info.hyperlink)
 		else
 			button.name, button.quality, button.type = nil, nil, nil
 		end
 
-		if isQuestItem or questId then
+		if questInfo.isQuestItem or questInfo.questID then
 			button.type = QUESTS_LABEL
 		end
 

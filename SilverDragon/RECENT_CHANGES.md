@@ -1,8 +1,7 @@
-## Changed in v2022.22
+## Changed in v2022.25
 
-* Macro fixes:
-    * In Wrath the lines with `/print` were apparently causing issues
-    * In Retail, `/click` now absolutely requires that you specify the fake mouse button you want to use rather than assuming left-click
-    * As such, I've added some automatic regeneration of the macro so it can be updated to the new version without you needing to manually touch it
-    * Turns out macros on secure action buttons can be much longer than real macros, so I've reduced the number of fake passthrough macro buttons I create
+* Major data improvements to Burning Crusade rares (because I also released [HandyNotes: Burning Crusade](https://www.curseforge.com/wow/addons/handynotes-burning-crusade)...)
+* Another fix for macro generation with 10.0.2's new /click requirements
+* Fix for mob tooltips being prevented from fading away in Classic
+* Minor data fixes for Warlords, including finally showing Warleader Tome's route
 
