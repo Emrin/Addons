@@ -1,5 +1,46 @@
 # Changelog
 
+## Changed in v2022.32
+
+* Major mining of mobs and loot
+* Fix the addon being stuck in debug mode for everyone because of a bad check (say goodbye to "ID" and "location" on all the map tooltips)
+* Since we were stuck in debug mode for everyone, everyone has been getting experiemental mob-name code for the last few releases... so properly release that and clean up. This noticably reduces SavedVariables size and memory usage.
+
+## Changed in v2022.31
+
+* Differentiate treasure vignettes on GUID rather than ID -- this is going to make things like the Expedition Scout's Pack or Disturbed Dirt pop up alerts more frequently, since every separate copy of them is going to alert
+* A bunch of data improvements
+* Don't double-up on the LDB mob-tooltip
+
+## Changed in v2022.30
+
+* Questids and some added loot for all the ["super rares"](https://www.wowhead.com/news/defeat-super-rares-each-day-for-up-to-385-item-level-gear-330298), thanks to Znuff
+* Show Sleeping on the Job and Who's a Good Bakar in mob tooltips
+* Show requirements for active mobs in map tooltips, too
+
+## Changed in v2022.29
+
+* Update Dragonflight rares
+* Add Who's A Good Bakar? to tooltips
+* Improve how the popup's loot button count behaves when only showing items relevant to your character; it'll now notice when item data isn't loaded from the server completely and refresh the count once it's available
+* Fix display of the Battle For Azeroth Black Empire Assault rares, which I had tied to the continent-level icons that Blizzard removed when Dragonflight launched
+
+## Changed in v2022.28
+
+* Changed the behavior of the loot button on the popup a bit: it'll now always show if there's any loot, but loot not suitable for your character will be grayed out
+* Add the Expedition Scout's Pack loot-data for vignettes
+* Fixed an error that would pop up on logging in for people playing Wrath
+
+## Changed in v2022.27
+
+* Dragonflight data added. It's incomplete (some achievement-rares were never even seen in the beta period), so expect a bunch of releases over the next month or two.
+* Improve the model position/background in a few of the non-default popup skins
+* Workaround for the 10.0 model-interior-alpha bug in the popup models (the model still being visible until combat ended if a popup auto-hid in combat)
+
+## Changed in v2022.26
+
+* Classic: route lines were sometimes being hidden behind explored territory on maps
+
 ## Changed in v2022.25
 
 * Major data improvements to Burning Crusade rares (because I also released [HandyNotes: Burning Crusade](https://www.curseforge.com/wow/addons/handynotes-burning-crusade)...)

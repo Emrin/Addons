@@ -1,7 +1,6 @@
-## Changed in v2022.25
+## Changed in v2022.32
 
-* Major data improvements to Burning Crusade rares (because I also released [HandyNotes: Burning Crusade](https://www.curseforge.com/wow/addons/handynotes-burning-crusade)...)
-* Another fix for macro generation with 10.0.2's new /click requirements
-* Fix for mob tooltips being prevented from fading away in Classic
-* Minor data fixes for Warlords, including finally showing Warleader Tome's route
+* Major mining of mobs and loot
+* Fix the addon being stuck in debug mode for everyone because of a bad check (say goodbye to "ID" and "location" on all the map tooltips)
+* Since we were stuck in debug mode for everyone, everyone has been getting experiemental mob-name code for the last few releases... so properly release that and clean up. This noticably reduces SavedVariables size and memory usage.
 

@@ -86,6 +86,10 @@ local L = WeakAuras.L
 	L["%s Trigger Function"] = "%s Trigger Function"
 	--[[Translation missing --]]
 	L["%s Untrigger Function"] = "%s Untrigger Function"
+	--[[Translation missing --]]
+	L["%s X offset by %d"] = "%s X offset by %d"
+	--[[Translation missing --]]
+	L["%s Y offset by %d"] = "%s Y offset by %d"
 	L["%s Zoom: %d%%"] = "%s 확대: %d%%"
 	L["%s, Border"] = "%s, 테두리"
 	L["%s, Offset: %0.2f;%0.2f"] = "%s, 좌표: %0.2f;%0.2f"
@@ -169,7 +173,8 @@ Enable this setting if you want this timer to be hidden, or when using a WeakAur
 	L["Align"] = "정렬"
 	L["Alignment"] = "정렬"
 	L["All of"] = "다음 모두"
-	L["Allow Full Rotation"] = "전체 회전 허용"
+	--[[Translation missing --]]
+	L["Allow Full Rotation"] = "Allow Full Rotation"
 	L["Alpha"] = "투명도"
 	L["Anchor"] = "고정시키기"
 	L["Anchor Point"] = "고정 지점"
@@ -211,6 +216,8 @@ Off Screen]=] ] = "Aura가 화면 밖에 있음"
 	L["Aura Name"] = "효과 이름"
 	L["Aura Name Pattern"] = "효과 이름 패턴"
 	--[[Translation missing --]]
+	L["Aura Order"] = "Aura Order"
+	--[[Translation missing --]]
 	L["Aura received from: %s"] = "Aura received from: %s"
 	L["Aura Type"] = "효과 유형"
 	L["Aura: '%s'"] = "효과: '%s'"
@@ -231,8 +238,9 @@ Off Screen]=] ] = "Aura가 화면 밖에 있음"
 	L["Background Offset"] = "배경 위치"
 	L["Background Texture"] = "배경 텍스쳐"
 	L["Bar Alpha"] = "바 투명도"
-	L["Bar Color"] = "바 색상"
 	L["Bar Color Settings"] = "바 색상 설정"
+	--[[Translation missing --]]
+	L["Bar Color/Gradient Start"] = "Bar Color/Gradient Start"
 	L["Bar Texture"] = "바 텍스쳐"
 	L["Big Icon"] = "큰 아이콘"
 	L["Blend Mode"] = "혼합 모드"
@@ -305,6 +313,8 @@ Off Screen]=] ] = "Aura가 화면 밖에 있음"
 	L["Control-click to select multiple displays"] = "Ctrl+클릭 - 여러 디스플레이 선택"
 	L["Controls the positioning and configuration of multiple displays at the same time"] = "여러 디스플레이의 위치 및 구성을 동시에 조절합니다"
 	L["Convert to..."] = "변환하기..."
+	--[[Translation missing --]]
+	L["Cooldown Numbers might be added by WoW. You can configure these in the game settings."] = "Cooldown Numbers might be added by WoW. You can configure these in the game settings."
 	L["Cooldown Reduction changes the duration of seconds instead of showing the real time seconds."] = "재사용 대기시간 감소는 실시간 초를 표시하는 대신 초의 지속 시간을 바꿉니다."
 	L["Copy"] = "복사"
 	L["Copy settings..."] = "설정 복사..."
@@ -369,7 +379,8 @@ UNIT_POWER_UPDATE, UNIT_AURA PLAYER_TARGET_CHANGED]=]
 	L["Disabled"] = "비활성화됨"
 	--[[Translation missing --]]
 	L["Disallow Entry Reordering"] = "Disallow Entry Reordering"
-	L["Discrete Rotation"] = "90도 단위 회전"
+	--[[Translation missing --]]
+	L["Discrete Rotation"] = "Discrete Rotation"
 	L["Display"] = "디스플레이"
 	L["Display Name"] = "디스플레이 이름"
 	L["Display Text"] = "디스플레이 문자"
@@ -420,6 +431,8 @@ UNIT_POWER_UPDATE, UNIT_AURA PLAYER_TARGET_CHANGED]=]
 	L["Enable \"swipe\" part of the overlay"] = "Enable \"swipe\" part of the overlay"
 	L["Enable Debug Log"] = "디버그 로그 사용"
 	L["Enable Debug Logging"] = "디버그 로깅 사용"
+	--[[Translation missing --]]
+	L["Enable Gradient"] = "Enable Gradient"
 	--[[Translation missing --]]
 	L["Enable Swipe"] = "Enable Swipe"
 	--[[Translation missing --]]
@@ -526,6 +539,10 @@ Can use \ to escape -.]=] ] = "필터 형식: '이름', '이름-서버', '-서�
 	--[[Translation missing --]]
 	L["Glow Frame Type"] = "Glow Frame Type"
 	L["Glow Type"] = "반짝임 유형"
+	--[[Translation missing --]]
+	L["Gradient End"] = "Gradient End"
+	--[[Translation missing --]]
+	L["Gradient Orientation"] = "Gradient Orientation"
 	L["Green Rune"] = "녹색 룬"
 	--[[Translation missing --]]
 	L["Grid direction"] = "Grid direction"
@@ -946,8 +963,18 @@ Can use \ to escape -.]=] ] = "필터 형식: '이름', '이름-서버', '-서�
 	L["Text Settings"] = "문자 설정"
 	L["Texture"] = "텍스쳐"
 	L["Texture Info"] = "텍스쳐 정보"
+	--[[Translation missing --]]
+	L["Texture Rotation"] = "Texture Rotation"
 	L["Texture Settings"] = "텍스쳐 설정"
 	L["Texture Wrap"] = "텍스쳐 줄바꿈"
+	--[[Translation missing --]]
+	L["Texture X Offset"] = "Texture X Offset"
+	--[[Translation missing --]]
+	L["Texture Y Offset"] = "Texture Y Offset"
+	--[[Translation missing --]]
+	L["The addon ElvUI is enabled. It might add cooldown numbers to the swipe. You can configure these in the ElvUI settings"] = "The addon ElvUI is enabled. It might add cooldown numbers to the swipe. You can configure these in the ElvUI settings"
+	--[[Translation missing --]]
+	L["The addon OmniCC is enabled. It might add cooldown numbers to the swipe. You can configure these in the OmniCC settings"] = "The addon OmniCC is enabled. It might add cooldown numbers to the swipe. You can configure these in the OmniCC settings"
 	L["The duration of the animation in seconds."] = "애니메이션 지속시간 (초)"
 	L["The duration of the animation in seconds. The finish animation does not start playing until after the display would normally be hidden."] = "애니메이션의 지속 시간(초)입니다. 종료 애니메이션은 디스플레이가 보통 숨겨질 때까지 재생을 시작하지 않습니다."
 	L["The type of trigger"] = "활성 조건의 유형"
@@ -1031,6 +1058,8 @@ It might not work correctly with your version!]=] ] = "이 효과는 최신 버�
 	L["Use Texture"] = "텍스쳐 사용"
 	L["Used in Auras:"] = "사용되는 효과:"
 	L["Used in auras:"] = "사용되는 효과:"
+	--[[Translation missing --]]
+	L["Uses Texture Coordinates to rotate the texture."] = "Uses Texture Coordinates to rotate the texture."
 	L["Uses UnitIsVisible() to check if in range. This is polled every second."] = "사정 거리를 확인하는 데 UnitIsVisible() 함수를 사용합니다. 매 초마다 확인합니다."
 	L["Value %i"] = "값 %i"
 	L["Values are in normalized rgba format."] = "값은 정규화된 rgba 형식입니다."

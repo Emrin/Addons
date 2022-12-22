@@ -1,3 +1,45 @@
+10.0.24 - 21st December 2022
+- For 'Mute game sounds' ('System'), the mount settings have been moved into a new option called 'Mute mount sounds'.  You can now make ottuks quieter.
+- For 'Enhance minimap', adjusted the way that the 'Combine addon buttons' button frame is layered with other frames.
+- For 'Automate quests' ('Automation'), quests from Khuri <Fishing Trainer> (The Waking Shores, Dragon Isles) will no longer be automated.
+- PTR: For game version 10.0.5 (currently on the PTR), the 'Sell junk automatically' option will no longer sell grey transmogable items if you have not collected the appearance.
+
+10.0.23 - 16th December 2022
+- For 'Automate quests' ('Automation'), quests which require Blizzard account-bound items will no longer be turned-in automatically.  The waygate quests from Thaelin Darkanvil will no longer be selected automatically.
+
+10.0.22 - 11th December 2022
+- For 'Remove transforms' ('System'), the 'Professions' setting now applies to all professions except fishing.
+
+10.0.21 - 11th December 2022
+- For 'Mute game sounds' ('System'), 'Dragonriding' now includes Highland Drake roars.
+- Fixed an issue with 'Recent chat window' ('Chat') which caused some chat links to interfere with dragging and highlighting text.
+
+10.0.20 - 10th December 2022
+- Updated code for 'Remove transforms' ('System') and 'Show cooldowns' ('Interface').
+
+10.0.19 - 9th December 2022
+- For 'Sell junk automatically' ('Automation'), whitelisted a few grey quest items that the game thinks can be sold but actually they cannot be sold.
+- Updated code for 'Remove transforms' ('System') and fixed an issue with the 'Professions' setting.
+- Updated code for 'Show cooldowns' ('Interface').
+
+10.0.18 - 6th December 2022
+- For 'Mute game sounds' ('System'), 'Dragonriding' now includes Windborne Velocidrake roars.
+- For 'Sell junk automatically' ('Automation'), Leatrix Plus will no longer attempt to sell Carefully Rolled Message (junk item).
+- For 'Remove transforms' ('System'), the 'Professions' setting no longer applies to fishing.
+- For 'Faster auto loot' ('System'), you can now specify the looting delay.  It's recommended to leave this setting at the default value of 0.3 but you can try lower values if you wish.
+
+10.0.17 - 3rd December 2022
+- For 'Mute game sounds' ('System'), you can now make dragonriding quieter.  This includes summon, roar and landing stomp sounds.
+- For 'Remove transforms' ('System'), the 'Professions' setting now applies to enchanting, fishing, engineering, herbalism and skinning in addition to mining.
+- For 'Automate quests' ('Automation'), quests from Khadin <Master Artisan> (Ohn'ahran Plains) will no longer be selected, accepted or turned-in automatically.
+
+10.0.16 - 30th November 2022
+- For 'Enhance minimap' ('Interface'), there is a new setting in the configuration panel to unclamp the minimap cluster so you can drag it to the edge of the screen.
+- For 'Remove transforms' ('System'), there is a new setting in the configuration panel to automatically remove Dragonflight profession transforms (such as Rockin' Mining Gear).
+- For 'Enhance minimap' ('Interface'), the 'Combine addon buttons' setting now supports the Armory addon.
+- Added some new movies.  You can watch at Media > Movies (Dragonflight) and listen at Media > Various > Cinematics (Dragonflight).
+- Added a music track to Media > Dungeons > Uldaman (Dragonflight).
+
 10.0.15 - 24th November 2022
 - The 'Faster movie skip' ('System') setting to skip instance movies automatically has been removed.
 

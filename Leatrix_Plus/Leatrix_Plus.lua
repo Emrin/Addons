@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 10.0.15 (24th November 2022)
+-- 	Leatrix Plus 10.0.24 (21st December 2022)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -18,7 +18,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "10.0.15"
+	LeaPlusLC["AddonVer"] = "10.0.24"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -33,6 +33,9 @@
 				print(L["LEATRIX PLUS: WRONG VERSION INSTALLED!"])
 			end)
 			return
+		end
+		if gametocversion == 100005 then
+			LeaPlusLC.NewPatch = true
 		end
 	end
 
@@ -59,10 +62,6 @@
 	_G.BINDING_NAME_LEATRIX_PLUS_GLOBAL_WEBLINK = L["Show web link"]
 	_G.BINDING_NAME_LEATRIX_PLUS_GLOBAL_RARE = L["Announce rare"]
 	_G.BINDING_NAME_LEATRIX_PLUS_GLOBAL_MOUNTSPECIAL = L["Mount special"]
-
-	-- Faster auto loot
-	-- Prints NO QUALITY LOOT in chat frequently but it does this with or without addons (just less frequent without addons)
-	-- Currently employing a fix to replace the loot function.
 
 	-- Minimap compartment button
 	-- LibDBIcon will be updated in future with a better replacement for Blizzard's compartment menu
@@ -596,6 +595,8 @@
 		LeaPlusLC:LockOption("ClassColFrames", "ClassColFramesBtn", true)			-- Class colored frames
 		LeaPlusLC:LockOption("SetWeatherDensity", "SetWeatherDensityBtn", false)	-- Set weather density
 		LeaPlusLC:LockOption("MuteGameSounds", "MuteGameSoundsBtn", false)			-- Mute game sounds
+		LeaPlusLC:LockOption("MuteMountSounds", "MuteMountSoundsBtn", false)		-- Mute mount sounds
+		LeaPlusLC:LockOption("FasterLooting", "FasterLootingBtn", true)				-- Faster auto loot
 		LeaPlusLC:LockOption("NoTransforms", "NoTransformsBtn", false)				-- Remove transforms
 	end
 
@@ -636,6 +637,7 @@
 		or	(LeaPlusLC["MinimapModder"]			~= LeaPlusDB["MinimapModder"])			-- Enhance minimap
 		or	(LeaPlusLC["SquareMinimap"]			~= LeaPlusDB["SquareMinimap"])			-- Square minimap
 		or	(LeaPlusLC["HideMiniAddonMenu"]		~= LeaPlusDB["HideMiniAddonMenu"])		-- Hide addon menu
+		or	(LeaPlusLC["UnclampMinimap"]		~= LeaPlusDB["UnclampMinimap"])			-- Unclamp minimap cluster
 		or	(LeaPlusLC["CombineAddonButtons"]	~= LeaPlusDB["CombineAddonButtons"])	-- Combine addon buttons
 		or	(LeaPlusLC["MiniExcludeList"]		~= LeaPlusDB["MiniExcludeList"])		-- Minimap exclude list
 		or	(LeaPlusLC["TipModEnable"]			~= LeaPlusDB["TipModEnable"])			-- Enhance tooltip
@@ -799,54 +801,125 @@
 	function LeaPlusLC:Isolated()
 
 		----------------------------------------------------------------------
-		-- Easy item destroy
+		-- Mute mount sounds (no reload required)
 		----------------------------------------------------------------------
 
-		if LeaPlusLC["EasyItemDestroy"] == "On" then
+		do
 
-			-- Get the type "DELETE" into the field to confirm text
-			local TypeDeleteLine = gsub(DELETE_GOOD_ITEM, "[\r\n]", "@")
-			local void, TypeDeleteLine = strsplit("@", TypeDeleteLine, 2)
+			-- Get mute table
+			local mountTable = Leatrix_Plus["mountTable"]
 
-			-- Add hyperlinks to regular item destroy
-			StaticPopupDialogs["DELETE_ITEM"].OnHyperlinkEnter = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkEnter
-			StaticPopupDialogs["DELETE_ITEM"].OnHyperlinkLeave = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkLeave
-			StaticPopupDialogs["DELETE_QUEST_ITEM"].OnHyperlinkEnter = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkEnter
-			StaticPopupDialogs["DELETE_QUEST_ITEM"].OnHyperlinkLeave = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkLeave
-			StaticPopupDialogs["DELETE_GOOD_QUEST_ITEM"].OnHyperlinkEnter = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkEnter
-			StaticPopupDialogs["DELETE_GOOD_QUEST_ITEM"].OnHyperlinkLeave = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkLeave
+			-- Give table file level scope (its used during logout and for wipe and admin commands)
+			LeaPlusLC["mountTable"] = mountTable
 
-			-- Hide editbox and set item link
-			local easyDelFrame = CreateFrame("FRAME")
-			easyDelFrame:RegisterEvent("DELETE_ITEM_CONFIRM")
-			easyDelFrame:SetScript("OnEvent", function()
-				if StaticPopup1EditBox:IsShown() then
-					-- Item requires player to type delete so hide editbox and show link
-					StaticPopup1EditBox:Hide()
-					StaticPopup1Button1:Enable()
-					local link = select(3, GetCursorInfo())
-					-- Custom link for battle pets
-					local linkType, linkOptions, name = LinkUtil.ExtractLink(link)
-					if linkType == "battlepet" then
-						local speciesID, level, breedQuality = strsplit(":", linkOptions)
-						local qualityColor = BAG_ITEM_QUALITY_COLORS[tonumber(breedQuality)]
-						link = qualityColor:WrapTextInColorCode(name .. " |n" .. L["Level"] .. " " .. level .. L["Battle Pet"])
-					end
-					StaticPopup1Text:SetText(gsub(StaticPopup1Text:GetText(), gsub(TypeDeleteLine, "@", ""), "") .. "|n" .. link)
+			-- Load saved settings or set default values
+			for k, v in pairs(mountTable) do
+				if LeaPlusDB[k] and type(LeaPlusDB[k]) == "string" and LeaPlusDB[k] == "On" or LeaPlusDB[k] == "Off" then
+					LeaPlusLC[k] = LeaPlusDB[k]
 				else
-					-- Item does not require player to type delete so just show item link
-					StaticPopup1:SetHeight(StaticPopup1:GetHeight() + 40)
-					StaticPopup1EditBox:Hide()
-					StaticPopup1Button1:Enable()
-					local link = select(3, GetCursorInfo())
-					-- Custom link for battle pets
-					local linkType, linkOptions, name = LinkUtil.ExtractLink(link)
-					if linkType == "battlepet" then
-						local speciesID, level, breedQuality = strsplit(":", linkOptions)
-						local qualityColor = BAG_ITEM_QUALITY_COLORS[tonumber(breedQuality)]
-						link = qualityColor:WrapTextInColorCode(name .. " |n" .. L["Level"] .. " " .. level .. L["Battle Pet"])
+					LeaPlusLC[k] = "Off"
+					LeaPlusDB[k] = "Off"
+				end
+			end
+
+			-- Create configuration panel
+			local MountPanel = LeaPlusLC:CreatePanel("Mute mount sounds", "MountPanel")
+
+			-- Add checkboxes
+			LeaPlusLC:MakeTx(MountPanel, "Mounts", 16, -72)
+			LeaPlusLC:MakeCB(MountPanel, "MuteAerials", "Aerials", 16, -92, false, "If checked, jet aerial units will be quieter.|n|nThis applies to Aerial Unit R-21X and Rustbolt Resistor.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteAirships", "Airships", 16, -112, false, "If checked, airships will be muted.|n|nThis applies to airship mounts and transports.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteBanLu", "Ban-Lu", 16, -132, false, "If checked, Ban-Lu will no longer talk to you.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteBikes", "Bikes", 16, -152, false, "If checked, most of the bike mount sounds will be muted.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteBrooms", "Brooms", 16, -172, false, "If checked, broom mounts will be muted.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteDragonriding", "Dragonriding", 16, -192, false, "If checked, dragonriding mounts will be quieter.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteFurlines", "Furlines", 16, -212, false, "If checked, furlines will be muted.|n|nThis applies to Sunwarmed Furline.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteGyrocopters", "Gyrocopters", 16, -232, false, "If checked, gyrocopters will be muted.|n|nThis applies to Mimiron's Head, Mecha-Mogul MK2 and other gyrocopter mounts.|n|nEnabling this option will also mute airplane gear shift sounds.")
+
+			LeaPlusLC:MakeCB(MountPanel, "MuteHovercraft", "Hovercraft", 150, -92, false, "If checked, hovercraft will be quieter.|n|nThis applies to Xiwyllag ATV.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteMechSteps", "Mechsteps", 150, -112, false, "If checked, footsteps for mechanical mounts will be muted.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteStriders", "Mechstriders", 150, -132, false, "If checked, mechanostriders will be quieter.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteMechsuits", "Mechsuits", 150, -152, false, "If checked, mechsuits will be quieter.|n|nThis applies to Felsteel Annihilator, Lightforged Warframe, Sky Golem and other mechsuits.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteOttuks", "Ottuks", 150, -172, false, "If checked, ottuks will be quieter.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteRazorwings", "Razorwings", 150, -192, false, "If checked, razorwings will be muted.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteRockets", "Rockets", 150, -212, false, "If checked, rockets will be muted.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteSoulEaters", "Soul Eaters", 150, -232, false, "If checked, Gladiator Soul Eater mounts will be quieter.")
+
+			LeaPlusLC:MakeCB(MountPanel, "MuteSoulseekers", "Soulseekers", 284, -92, false, "If checked, soulseekers will be quieter.|n|nThis applies to Corridor Creeper, Mawsworn Soulhunter and Bound Shadehound.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteTravelers", "Travelers", 284, -112, false, "If checked, traveling merchant greetings and farewells will be muted.|n|nThis applies to Traveler's Tundra Mammoth, Grand Expedition Yak and Mighty Caravan Brutosaur.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteUnicorns", "Unicorns", 284, -132, false, "If checked, unicorns will be quieter.|n|nThis applies to Lucid Nightmare, Wild Dreamrunner, Pureheart Courser and other unicorn mounts.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteZeppelins", "Zeppelins", 284, -152, false, "If checked, zeppelins will be muted.|n|nThis applies to zeppelin mounts and transports.")
+
+			-- Set click width for sounds checkboxes
+			for k, v in pairs(mountTable) do
+				LeaPlusCB[k].f:SetWidth(90)
+				if LeaPlusCB[k].f:GetStringWidth() > 90 then
+					LeaPlusCB[k]:SetHitRectInsets(0, -80, 0, 0)
+				else
+					LeaPlusCB[k]:SetHitRectInsets(0, -LeaPlusCB[k].f:GetStringWidth() + 4, 0, 0)
+				end
+			end
+
+			-- Function to mute and unmute sounds
+			local function SetupMute()
+				for k, v in pairs(mountTable) do
+					if LeaPlusLC["MuteMountSounds"] == "On" and LeaPlusLC[k] == "On" then
+						for i, e in pairs(v) do
+							local file, soundID = e:match("([^,]+)%#([^,]+)")
+							MuteSoundFile(soundID)
+						end
+					else
+						for i, e in pairs(v) do
+							local file, soundID = e:match("([^,]+)%#([^,]+)")
+							UnmuteSoundFile(soundID)
+						end
 					end
-					StaticPopup1Text:SetText(gsub(StaticPopup1Text:GetText(), gsub(TypeDeleteLine, "@", ""), "") .. "|n|n" .. link)
+				end
+			end
+
+			-- Setup mute on startup if option is enabled
+			if LeaPlusLC["MuteMountSounds"] == "On" then SetupMute() end
+
+			-- Setup mute when options are clicked
+			for k, v in pairs(mountTable) do
+				LeaPlusCB[k]:HookScript("OnClick", SetupMute)
+			end
+			LeaPlusCB["MuteMountSounds"]:HookScript("OnClick", SetupMute)
+
+			-- Help button hidden
+			MountPanel.h:Hide()
+
+			-- Back button handler
+			MountPanel.b:SetScript("OnClick", function()
+				MountPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page7"]:Show()
+				return
+			end)
+
+			-- Reset button handler
+			MountPanel.r:SetScript("OnClick", function()
+
+				-- Reset checkboxes
+				for k, v in pairs(mountTable) do
+					LeaPlusLC[k] = "Off"
+				end
+				SetupMute()
+
+				-- Refresh panel
+				MountPanel:Hide(); MountPanel:Show()
+
+			end)
+
+			-- Show panal when options panel button is clicked
+			LeaPlusCB["MuteMountSoundsBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					for k, v in pairs(mountTable) do
+						LeaPlusLC[k] = "On"
+					end
+					SetupMute()
+				else
+					MountPanel:Show()
+					LeaPlusLC:HideFrames()
 				end
 			end)
 
@@ -879,47 +952,27 @@
 
 			-- Add checkboxes
 			LeaPlusLC:MakeTx(SoundPanel, "General", 16, -72)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteFizzle", "Fizzle", 16, -92, false, "If checked, the spell fizzle sounds will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteInterface", "Interface", 16, -112, false, "If checked, the interface button sound, the chat frame tab click sound and the game menu toggle sound will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteSniffing", "Sniffing", 16, -132, false, "If checked, the worgen sniffing sounds will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteTrains", "Trains", 16, -152, false, "If checked, train sounds will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteBalls", "Balls", 16, -172, false, "If checked, the Foot Ball sounds will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteEvents", "Events", 16, -192, false, "If checked, holiday event sounds will be muted.|n|nThis applies to Headless Horseman.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteChimes", "Chimes", 16, -212, false, "If checked, clock hourly chimes will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteChimes", "Chimes", 16, -92, false, "If checked, clock hourly chimes will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteEvents", "Events", 16, -112, false, "If checked, holiday event sounds will be muted.|n|nThis applies to Headless Horseman.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteFizzle", "Fizzle", 16, -132, false, "If checked, the spell fizzle sounds will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteInterface", "Interface", 16, -152, false, "If checked, the interface button sound, the chat frame tab click sound and the game menu toggle sound will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteReady", "Ready", 16, -172, false, "If checked, the ready check sound will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteSniffing", "Sniffing", 16, -192, false, "If checked, the worgen sniffing sounds will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteTrains", "Trains", 16, -212, false, "If checked, train sounds will be muted.")
 			LeaPlusLC:MakeCB(SoundPanel, "MuteVaults", "Vaults", 16, -232, false, "If checked, the mechanical guild vault idle sound will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteReady", "Ready", 16, -252, false, "If checked, the ready check sound will be muted.")
 
-			LeaPlusLC:MakeTx(SoundPanel, "Mounts", 150, -72)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteBikes", "Bikes", 150, -92, false, "If checked, most of the bike mount sounds will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteTravelers", "Travelers", 150, -112, false, "If checked, traveling merchant greetings and farewells will be muted.|n|nThis applies to Traveler's Tundra Mammoth, Grand Expedition Yak and Mighty Caravan Brutosaur.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteUnicorns", "Unicorns", 150, -132, false, "If checked, unicorns will be quieter.|n|nThis applies to Lucid Nightmare, Wild Dreamrunner, Pureheart Courser and other unicorn mounts.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteGyrocopters", "Gyrocopters", 150, -152, false, "If checked, gyrocopters will be muted.|n|nThis applies to Mimiron's Head, Mecha-Mogul MK2 and other gyrocopter mounts.|n|nEnabling this option will also mute airplane gear shift sounds.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteRockets", "Rockets", 150, -172, false, "If checked, rockets will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteAerials", "Aerials", 150, -192, false, "If checked, jet aerial units will be quieter.|n|nThis applies to Aerial Unit R-21X and Rustbolt Resistor.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteHovercraft", "Hovercraft", 150, -212, false, "If checked, hovercraft will be quieter.|n|nThis applies to Xiwyllag ATV.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteSoulseekers", "Soulseekers", 150, -232, false, "If checked, soulseekers will be quieter.|n|nThis applies to Corridor Creeper, Mawsworn Soulhunter and Bound Shadehound.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteAirships", "Airships", 150, -252, false, "If checked, airships will be muted.|n|nThis applies to airship mounts and transports.")
+			LeaPlusLC:MakeTx(SoundPanel, "Pets", 150, -72)
+			LeaPlusLC:MakeCB(SoundPanel, "MutePierre", "Pierre", 150, -92, false, "If checked, Pierre will be quieter.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteSunflower", "Sunflower", 150, -112, false, "If checked, the Singing Sunflower pet will be muted.")
 
-			LeaPlusLC:MakeTx(SoundPanel, "Mounts", 284, -72)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteZeppelins", "Zeppelins", 284, -92, false, "If checked, zeppelins will be muted.|n|nThis applies to zeppelin mounts and transports.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteFurlines", "Furlines", 284, -112, false, "If checked, furlines will be muted.|n|nThis applies to Sunwarmed Furline.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteRazorwings", "Razorwings", 284, -132, false, "If checked, razorwings will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteSoulEaters", "Soul Eaters", 284, -152, false, "If checked, Gladiator Soul Eater mounts will be quieter.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteMechsuits", "Mechsuits", 284, -172, false, "If checked, mechsuits will be quieter.|n|nThis applies to Felsteel Annihilator, Lightforged Warframe, Sky Golem and other mechsuits.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteStriders", "Mechstriders", 284, -192, false, "If checked, mechanostriders will be quieter.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteMechSteps", "Mechsteps", 284, -212, false, "If checked, footsteps for mechanical mounts will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteBrooms", "Brooms", 284, -232, false, "If checked, broom mounts will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteBanLu", "Ban-Lu", 284, -252, false, "If checked, Ban-Lu will no longer talk to you.")
+			LeaPlusLC:MakeTx(SoundPanel, "Toys", 150, -152)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteAnima", "Anima", 150, -172, false, "If checked, the Experimental Anima Cell toy will be quieter.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteBalls", "Balls", 150, -192, false, "If checked, the Foot Ball sounds will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteHarp", "Harp", 150, -212, false, "If checked, the Fae Harp toy will be muted.")
 
-			LeaPlusLC:MakeTx(SoundPanel, "Misc", 418, -72)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteSunflower", "Sunflower", 418, -92, false, "If checked, the Singing Sunflower pet will be muted.")
-			LeaPlusLC:MakeCB(SoundPanel, "MutePierre", "Pierre", 418, -112, false, "If checked, Pierre will be quieter.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteAnima", "Anima", 418, -132, false, "If checked, the Experimental Anima Cell toy will be quieter.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteHarp", "Harp", 418, -152, false, "If checked, the Fae Harp toy will be muted.")
-
-			LeaPlusLC:MakeTx(SoundPanel, "Combat", 418, -192)
-			LeaPlusLC:MakeCB(SoundPanel, "MuteBattleShouts", "Shouts", 418, -212, false, "If checked, your character will not shout and wail during combat.")
-			LeaPlusLC:MakeCB(SoundPanel, "MuteArena", "Arena", 418, -232, false, "If checked, arena announcers will be muted.")
+			LeaPlusLC:MakeTx(SoundPanel, "Combat", 284, -72)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteArena", "Arena", 284, -92, false, "If checked, arena announcers will be muted.")
+			LeaPlusLC:MakeCB(SoundPanel, "MuteBattleShouts", "Shouts", 284, -112, false, "If checked, your character will not shout and wail during combat.")
 
 			-- Set click width for sounds checkboxes
 			for k, v in pairs(muteTable) do
@@ -992,6 +1045,60 @@
 				else
 					SoundPanel:Show()
 					LeaPlusLC:HideFrames()
+				end
+			end)
+
+		end
+
+		----------------------------------------------------------------------
+		-- Easy item destroy
+		----------------------------------------------------------------------
+
+		if LeaPlusLC["EasyItemDestroy"] == "On" then
+
+			-- Get the type "DELETE" into the field to confirm text
+			local TypeDeleteLine = gsub(DELETE_GOOD_ITEM, "[\r\n]", "@")
+			local void, TypeDeleteLine = strsplit("@", TypeDeleteLine, 2)
+
+			-- Add hyperlinks to regular item destroy
+			StaticPopupDialogs["DELETE_ITEM"].OnHyperlinkEnter = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkEnter
+			StaticPopupDialogs["DELETE_ITEM"].OnHyperlinkLeave = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkLeave
+			StaticPopupDialogs["DELETE_QUEST_ITEM"].OnHyperlinkEnter = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkEnter
+			StaticPopupDialogs["DELETE_QUEST_ITEM"].OnHyperlinkLeave = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkLeave
+			StaticPopupDialogs["DELETE_GOOD_QUEST_ITEM"].OnHyperlinkEnter = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkEnter
+			StaticPopupDialogs["DELETE_GOOD_QUEST_ITEM"].OnHyperlinkLeave = StaticPopupDialogs["DELETE_GOOD_ITEM"].OnHyperlinkLeave
+
+			-- Hide editbox and set item link
+			local easyDelFrame = CreateFrame("FRAME")
+			easyDelFrame:RegisterEvent("DELETE_ITEM_CONFIRM")
+			easyDelFrame:SetScript("OnEvent", function()
+				if StaticPopup1EditBox:IsShown() then
+					-- Item requires player to type delete so hide editbox and show link
+					StaticPopup1EditBox:Hide()
+					StaticPopup1Button1:Enable()
+					local link = select(3, GetCursorInfo())
+					-- Custom link for battle pets
+					local linkType, linkOptions, name = LinkUtil.ExtractLink(link)
+					if linkType == "battlepet" then
+						local speciesID, level, breedQuality = strsplit(":", linkOptions)
+						local qualityColor = BAG_ITEM_QUALITY_COLORS[tonumber(breedQuality)]
+						link = qualityColor:WrapTextInColorCode(name .. " |n" .. L["Level"] .. " " .. level .. L["Battle Pet"])
+					end
+					StaticPopup1Text:SetText(gsub(StaticPopup1Text:GetText(), gsub(TypeDeleteLine, "@", ""), "") .. "|n" .. link)
+				else
+					-- Item does not require player to type delete so just show item link
+					StaticPopup1:SetHeight(StaticPopup1:GetHeight() + 40)
+					StaticPopup1EditBox:Hide()
+					StaticPopup1Button1:Enable()
+					local link = select(3, GetCursorInfo())
+					-- Custom link for battle pets
+					local linkType, linkOptions, name = LinkUtil.ExtractLink(link)
+					if linkType == "battlepet" then
+						local speciesID, level, breedQuality = strsplit(":", linkOptions)
+						local qualityColor = BAG_ITEM_QUALITY_COLORS[tonumber(breedQuality)]
+						link = qualityColor:WrapTextInColorCode(name .. " |n" .. L["Level"] .. " " .. level .. L["Battle Pet"])
+					end
+					StaticPopup1Text:SetText(gsub(StaticPopup1Text:GetText(), gsub(TypeDeleteLine, "@", ""), "") .. "|n|n" .. link)
 				end
 			end)
 
@@ -2167,12 +2274,52 @@
 
 		if LeaPlusLC["FasterLooting"] == "On" then
 
+
+			-- Create configuration panel
+			local FasterLootPanel = LeaPlusLC:CreatePanel("Faster auto loot", "FasterLootPanel")
+
+			LeaPlusLC:MakeTx(FasterLootPanel, "Delay", 16, -72)
+			LeaPlusLC:MakeSL(FasterLootPanel, "LeaPlusFasterLootDelay", "Drag to set the delay between looting items.|n|nLower is faster but may not always give the best results.|n|nIt's recommended that you leave this setting at 0.3 but feel free to try lower values if you wish.", 0.1, 0.3, 0.1, 16, -92, "%.1f")
+			LeaPlusLC:MakeFT(FasterLootPanel, "The default delay setting is 0.3.  Lower is faster but may not always give the best results.  It's recommended that you leave this setting at 0.3.", 16, 510, 96)
+
+			-- Help button hidden
+			FasterLootPanel.h:Hide()
+
+			-- Back button handler
+			FasterLootPanel.b:SetScript("OnClick", function()
+				FasterLootPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page7"]:Show()
+				return
+			end)
+
+			-- Reset button handler
+			FasterLootPanel.r:SetScript("OnClick", function()
+
+				-- Reset slider
+				LeaPlusLC["LeaPlusFasterLootDelay"] = 0.3
+
+				-- Refresh side panel
+				FasterLootPanel:Hide(); FasterLootPanel:Show()
+
+			end)
+
+			-- Show configuration panal when options panel button is clicked
+			LeaPlusCB["FasterLootingBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					LeaPlusLC["LeaPlusFasterLootDelay"] = 0.3
+					FasterLootPanel:Hide(); FasterLootPanel:Show()
+				else
+					FasterLootPanel:Show()
+					LeaPlusLC:HideFrames()
+				end
+			end)
+
 			-- Time delay
 			local tDelay = 0
 
 			-- Fast loot function
 			local function FastLoot()
-				if GetTime() - tDelay >= 0.3 then
+				if GetTime() - tDelay >= LeaPlusLC["LeaPlusFasterLootDelay"] then
 					tDelay = GetTime()
 					if GetCVarBool("autoLootDefault") ~= IsModifiedClick("AUTOLOOTTOGGLE") then
 						if TSMDestroyBtn and TSMDestroyBtn:IsShown() and TSMDestroyBtn:GetButtonState() == "DISABLED" then tDelay = GetTime() return end
@@ -2387,6 +2534,9 @@
 						or npcID == "142983" 	-- Swizzle Fizzcrank (Dazar'alor)
 						or npcID == "142992" 	-- Uma'wi (Dazar'alor)
 						or npcID == "142159" 	-- Zen'kin (Dazar'alor)
+						-- Dragonflight
+						or npcID == "193110" 	-- Khadin <Master Artisan> (Ohn'ahran Plains)
+						or npcID == "194584" 	-- Khuri <Fishing Trainer> (The Waking Shores)
 						then
 							return true
 						end
@@ -2411,14 +2561,31 @@
 					if questID == 43923		-- Starlight Rose
 					or questID == 43924		-- Leyblood
 					or questID == 43925		-- Runescale Koi
-
+					or questID == 71162		-- Waygate: Algeth'era (Thaelin Darkanvil, Dragonflight)
+					or questID == 71165		-- Waygate: Eon's Fringe (Thaelin Darkanvil, Dragonflight)
+					or questID == 71138		-- Waygate: Rusza'thar Reach (Thaelin Darkanvil, Dragonflight)
+					or questID == 71178		-- Waygate: Shady Sanctuary (Thaelin Darkanvil, Dragonflight)
+					or questID == 71157		-- Waygate: Skytop Observatory (Thaelin Darkanvil, Dragonflight)
+					or questID == 71161		-- Waygate: Vakthros (Thaelin Darkanvil, Dragonflight)
 					then
 						return true
 					end
 				end
 			end
 
-			-- Function to check if quest requires currency or a crafting reagent
+			-- Function to check if a required item is account-bound
+			local function IsItemAccountBound(itemID)
+				local tooltipData = C_TooltipInfo.GetItemByID(itemID)
+				TooltipUtil.SurfaceArgs(tooltipData)
+				for row, line in ipairs(tooltipData.lines) do
+				   TooltipUtil.SurfaceArgs(line)
+					if tooltipData.lines[row] and tooltipData.lines[row].leftText and (tooltipData.lines[row].leftText == ITEM_BNETACCOUNTBOUND or tooltipData.lines[row].leftText == ITEM_BIND_TO_BNETACCOUNT or tooltipData.lines[row].leftText == ITEM_BIND_TO_ACCOUNT or tooltipData.lines[row].leftText == ITEM_ACCOUNTBOUND) then
+						return true
+					end
+				end
+			end
+
+			-- Function to check if quest requires currency or a crafting reagent or required item is account-bound
 			local function QuestRequiresCurrency()
 				for i = 1, 6 do
 					local progItem = _G["QuestProgressItem" ..i] or nil
@@ -2428,18 +2595,12 @@
 							return true
 						elseif progItem.objectType == "item" then
 							-- Quest requires an item
-							local name, texture, numItems = GetQuestItemInfo("required", i)
-							if name then
-								local itemID = GetItemInfoInstant(name)
-								if itemID then
-									local void, void, void, void, void, void, void, void, void, void, void, void, void, void, void, void, isCraftingReagent = GetItemInfo(itemID)
-									if isCraftingReagent then
-										-- Item is a crafting reagent so do nothing
-										return true
-									end
-									if itemID == 104286 then -- Quivering Firestorm Egg
-										return true
-									end
+							local name, texture, numItems, void, void, itemID = GetQuestItemInfo("required", i)
+							if name and itemID then
+								local void, void, void, void, void, void, void, void, void, void, void, void, void, void, void, void, isCraftingReagent = GetItemInfo(itemID)
+								if isCraftingReagent or IsItemAccountBound(itemID) then
+									-- Item is a crafting reagent or account-bound so do nothing
+									return true
 								end
 							end
 						end
@@ -2917,6 +3078,22 @@
 
 				end
 
+				-- These items cannot be sold but the game thinks they can be
+				-- https://www.wowhead.com/items/quest/min-level:1/max-level:1/quality:0?filter=64;3;1
+
+				-- Continued Waygate Exploration
+				whiteList[200590] = "Carefully Rolled Message"
+				whiteList[200593] = "Sealed Expedition Note"
+				whiteList[200594] = "Thaelin's Second Favorite Comb"
+				whiteList[200595] = "Odorous Parchment"
+				whiteList[200596] = "Letter from Thaelin Darkanvil"
+
+				-- Dirty Old Satchel
+				whiteList[200592] = "Dirty Old Satchel"
+				whiteList[200606] = "Previously Owned Map"
+
+				-- End of whitelist
+
 				local whiteString = eb.Text:GetText()
 				if whiteString and whiteString ~= "" then
 					whiteString = whiteString:gsub("[^,%d]", "")
@@ -3093,13 +3270,33 @@
 							if itemID and whiteList[itemID] then
 								if Rarity == 0 then
 									-- Junk item to keep
-									Rarity = 3
+									Rarity = 20
 									ItemPrice = 0
 								elseif Rarity == 1 then
 									-- White item to sell
 									Rarity = 0
 								end
 							end
+							-- Don't sell grey items that are a weapon or armor if the transmog appearance is not known
+							if Rarity == 0 and (classID == 2 or classID == 4) then -- Weapon or armor
+								local appearanceID, sourceID = C_TransmogCollection.GetItemInfo(itemID)
+								if sourceID then
+									local void, void, void, void, isCollected = C_TransmogCollection.GetAppearanceSourceInfo(sourceID)
+									if not isCollected then
+										Rarity = 20
+										ItemPrice = 0
+									end
+								end
+							end
+							-- Don't sell grey quest items (some quest items have a sell price when they cannot actually be sold)
+							-- This is not currently used as the affected items are whitelisted above
+							-- if classID == 12 then
+							-- 	if Rarity == 0 or Rarity == 20 then
+							-- 		-- local name22 = GetItemInfo(CurrentItemLink); print(name22, classID)
+							-- 		Rarity = 20
+							-- 		ItemPrice = 0
+							-- 	end
+							-- end
 							-- Continue
 							local cInfo = C_Container.GetContainerItemInfo(BagID, BagSlot)
 							local itemCount = cInfo.stackCount
@@ -4404,6 +4601,7 @@
 			LeaPlusLC:MakeCB(SideMinimap, "SquareMinimap", "Square minimap", 16, -132, true, "If checked, the minimap shape will be square.")
 			LeaPlusLC:MakeCB(SideMinimap, "ShowWhoPinged", "Show who pinged", 16, -152, false, "If checked, when someone pings the minimap, their name will be shown.  This does not apply to your pings.")
 			LeaPlusLC:MakeCB(SideMinimap, "HideMiniAddonMenu", "Hide addon menu", 16, -172, true, "If checked, the addon menu will be hidden.|n|nThe addon menu appears as a number in the corner of the minimap if you have any addons installed which make use of it.")
+			LeaPlusLC:MakeCB(SideMinimap, "UnclampMinimap", "Unclamp minimap cluster", 16, -192, true, "If checked, you will be able to drag the minimap cluster to the edge of the screen using Edit Mode.|n|nWhile positioning the minimap with Edit Mode, you may need to disable Snap to position the minimap precisely.")
 
 			-- Add excluded button
 			local MiniExcludedButton = LeaPlusLC:CreateButton("MiniExcludedButton", SideMinimap, "Buttons", "TOPLEFT", 16, -72, 0, 25, true, "Click to toggle the addon buttons editor.")
@@ -4435,6 +4633,14 @@
 				AddonCompartmentFrame:HookScript("OnShow", AddonCompartmentFrame.Hide)
 				AddonCompartmentFrame:Hide()
 
+			end
+
+			----------------------------------------------------------------------
+			-- Unclamp minimap cluster
+			----------------------------------------------------------------------
+
+			if LeaPlusLC["UnclampMinimap"] == "On" then
+				MinimapCluster:SetClampedToScreen(false)
 			end
 
 			----------------------------------------------------------------------
@@ -4691,12 +4897,20 @@
 				LeaPlusLC:LockItem(LeaPlusCB["HideMiniAddonButtons"], true)
 				LeaPlusCB["HideMiniAddonButtons"].tiptext = LeaPlusCB["HideMiniAddonButtons"].tiptext .. "|n|n|cff00AAFF" .. L["Cannot be used with Combine addon buttons."]
 
-				-- Create button frame (parenting to cluster ensures bFrame scales correctly)
-				local bFrame = CreateFrame("FRAME", nil, MinimapCluster, "BackdropTemplate")
+				-- Create button frame
+				local bFrame = CreateFrame("FRAME", nil, UIParent)
 				bFrame:ClearAllPoints()
 				bFrame:SetPoint("TOPLEFT", Minimap, "TOPRIGHT", 4, 4)
 				bFrame:Hide()
-				bFrame:SetFrameLevel(8)
+
+				-- Set top level to ensure button frame shows on top of frames such as the main action bar
+				bFrame:SetToplevel(true)
+
+				-- Set buttm frame scale to match minimap cluster scale
+				bFrame:SetScale(MinimapCluster:GetScale())
+				MinimapCluster:HookScript("OnSizeChanged", function()
+					bFrame:SetScale(MinimapCluster:GetScale())
+				end)
 
 				LeaPlusLC.bFrame = bFrame -- Used in LibDBIcon callback
 				_G["LeaPlusGlobalMinimapCombinedButtonFrame"] = bFrame -- For third party addons
@@ -4802,6 +5016,7 @@
 								local buttonName = strlower(buttons[i])
 								if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
 									local button = LibDBIconStub:GetMinimapButton(buttons[i])
+									if buttonName == "armory" then button.db.hide = false end -- Armory addon sets hidden to true
 									if not button.db.hide then
 										button:SetParent(bFrame)
 										button:ClearAllPoints()
@@ -5152,6 +5367,7 @@
 						LeaPlusLC["ShowWhoPinged"] = "On"; LeaPlusLC:SetPingFunc()
 						LeaPlusLC["HideMiniAddonMenu"] = "On"
 						LeaPlusLC["MiniClusterScale"] = 1; LeaPlusLC["MinimapNoScale"] = "Off"; SetClusterScale()
+						LeaPlusLC["UnclampMinimap"] = "On"
 						LeaPlusLC:ReloadCheck() -- Special reload check
 					else
 						-- Show configuration panel
@@ -5738,6 +5954,28 @@
 					--[[Wisp]] 24740,
 				},
 
+				-- Professions
+				["TransProfessions"] = {
+					-- Crafting
+					--[[Blacksmithing: Suited for Smithing]] 388658,
+					--[[Jewelcrafting: An Eye For Shine]] 394015,
+					--[[Tailoring: Wrapped Up In Weaving]] 391312,
+					--[[Engineering: Ready To Build]] 394007,
+					--[[Enchanting: A Looker's Charm]] 394008,
+					--[[Alchemy: Spark of Madness]] 394003,
+					--[[Inscription: Artist's Duds]] 394016,
+					--[[Leatherworking: Sculpting Leather Finery]] 394001,
+
+					-- Gathering
+					--[[Herbalism: A Cultivator's Colors]] 394005,
+					--[[Mining: Rockin' Mining Gear]] 394006,
+					--[[Skinning: Dressed To Kill]] 394011,
+
+					-- Secondary
+					--[[Cooking: What's Cookin', Good Lookin'?]] 391775,
+					--[[Fishing: Fishing For Attention 394009,]] -- Not used as removing the buff also cancels fishing
+				},
+
 			}
 
 			-- Give table file level scope (its used during logout and for admin command)
@@ -5779,6 +6017,7 @@
 			LeaPlusLC:MakeCB(transPanel, "TransWitch", "Witch", 16, -132, false, "If checked, the Lucille's Sewing Needle transform (witch) will be removed when applied.")
 			LeaPlusLC:MakeCB(transPanel, "TransTurkey", "Turkey", 16, -152, false, "If checked, the Turkey transform (Pilgrim's Bounty) will be removed when applied.")
 			LeaPlusLC:MakeCB(transPanel, "TransSpraybots", "Spraybots", 16, -172, false, "If checked, the Spraybot transforms will be removed when applied.")
+			LeaPlusLC:MakeCB(transPanel, "TransProfessions", "Professions", 16, -192, false, "If checked, the Dragonflight profession transforms will be removed when applied.")
 
 			-- Function to populate cTable with spell IDs for settings that are enabled
 			local function UpdateList()
@@ -5817,23 +6056,19 @@
 			local GetPlayerAuraBySpellID = GetPlayerAuraBySpellID
 
 			-- Check for buffs
-			spellFrame:SetScript("OnEvent", function(self, event, unit, isFullUpdate, updatedAuras)
+			spellFrame:SetScript("OnEvent", function(self, event, unit, updatedAuras)
 				if event == "UNIT_AURA" then
-
-					-- Full update
-					if isFullUpdate and not updatedAuras then
-						eventFunc()
+					if updatedAuras then
+						if updatedAuras.isFullUpdate then
+							eventFunc()
+						elseif updatedAuras.addedAuras then
+							for void, aura in ipairs(updatedAuras.addedAuras) do
+								if aura.spellId and cTable[aura.spellId] then
+									eventFunc()
+								end
+							end
+						end
 					end
-
-					-- Change update
-					if not updatedAuras then return end
-
-					-- Traverse updated auras to check if one is in cTable and is active on the player
-					for void, auraData in pairs(updatedAuras) do
-						auraSpellId = auraData.spellId
-						if auraSpellId and cTable[auraSpellId] and GetPlayerAuraBySpellID(auraSpellId) then eventFunc() end
-					end
-
 				elseif event == "PLAYER_REGEN_ENABLED" then
 
 					-- Traverse buffs (will only run spell was found in cTable previously)
@@ -7947,6 +8182,7 @@
 						end
 
 						chatMessage = gsub(chatMessage, "|T.-|t", "") -- Remove textures
+						chatMessage = gsub(chatMessage, "|A.-|a", "") -- Remove links
 						editBox:Insert(chatMessage .. "|r|n")
 
 					end
@@ -8031,7 +8267,6 @@
 				-- Create cooldown frame
 				icon[i] = CreateFrame("Frame", nil, UIParent)
 				icon[i]:SetFrameStrata("MEDIUM")
-				icon[i]:SetToplevel(true)
 				icon[i]:SetWidth(21)
 				icon[i]:SetHeight(21)
 
@@ -8093,7 +8328,7 @@
 					-- Handle events
 					icon[i]:RegisterUnitEvent("UNIT_AURA", owner)
 					icon[i]:RegisterUnitEvent("UNIT_PET", "player")
-					icon[i]:SetScript("OnEvent", function(self, event, arg1, isFullUpdate, updatedAuras)
+					icon[i]:SetScript("OnEvent", function(self, event, arg1, updatedAuras)
 
 						-- If pet was dismissed (or otherwise disappears such as when flying), hide pet cooldowns
 						if event == "UNIT_PET" then
@@ -8106,47 +8341,16 @@
 						-- Ensure cooldown belongs to the owner we are watching (player or pet)
 						elseif arg1 == owner then
 
-							-- Full update
-							if isFullUpdate and not updatedAuras then
+							-- Hide the cooldown frame (required for cooldowns to disappear after the duration)
+							icon[i]:Hide()
 
-								-- Hide the cooldown frame (required for cooldowns to disappear after the duration)
-								icon[i]:Hide()
-
-								-- If buff matches cooldown we want, start the cooldown
-								for q = 1, 40 do
-									local void, void, void, void, length, expire, void, void, void, spellID = UnitBuff(owner, q)
-									if spellID and id == spellID then
-										icon[i]:Show()
-										local start = expire - length
-										CooldownFrame_Set(icon[i].c, start, length, 1)
-									end
+							-- If buff matches cooldown we want, start the cooldown
+							AuraUtil.ForEachAura(owner, "HELPFUL", nil, function(aura)
+								if aura.spellId and aura.spellId == id and aura.expirationTime and aura.duration then
+									icon[i]:Show()
+									CooldownFrame_Set(icon[i].c, aura.expirationTime - aura.duration, aura.duration, 1)
 								end
-
-							end
-
-							-- Change update
-							if not updatedAuras then return end
-
-							-- Traverse updated auras to check the one we want
-							for void, auraData in pairs(updatedAuras) do
-								local auraSpellId = auraData.spellId
-								if auraSpellId and auraSpellId == id then
-
-									-- Hide the cooldown frame (required for cooldowns to disappear after the duration)
-									icon[i]:Hide()
-
-									-- If buff matches cooldown we want, start the cooldown
-									for q = 1, 40 do
-										local void, void, void, void, length, expire, void, void, void, spellID = UnitBuff(owner, q)
-										if spellID and id == spellID then
-											icon[i]:Show()
-											local start = expire - length
-											CooldownFrame_Set(icon[i].c, start, length, 1)
-										end
-									end
-
-								end
-							end
+							end, true)
 
 						end
 					end)
@@ -8268,14 +8472,13 @@
 						icon[i]:Hide()
 
 						-- If buff matches spell we want, show cooldown icon
-						for q = 1, 40 do
-							local void, void, void, void, length, expire, void, void, void, spellID = UnitBuff(newowner, q)
-							if spellID and newspell == spellID then
+						AuraUtil.ForEachAura(newowner, "HELPFUL", nil, function(aura)
+							if aura.spellId and aura.spellId == newspell and aura.expirationTime and aura.duration then
 								icon[i]:Show()
-								-- Set the cooldown to the buff cooldown
-								CooldownFrame_Set(icon[i].c, expire - length, length, 1)
+								CooldownFrame_Set(icon[i].c, aura.expirationTime - aura.duration, aura.duration, 1)
 							end
-						end
+						end, true)
+
 					end
 
 				end
@@ -10673,23 +10876,13 @@
 					if LeaPlusDB[oldvar] and not LeaPlusDB[newvar] then LeaPlusDB[newvar] = LeaPlusDB[oldvar]; LeaPlusDB[oldvar] = nil end
 				end
 
-				UpdateVars("MuteHorned", "MuteUnicorns")					-- 9.0.22 (27th March 2021)
-				UpdateVars("MuteCreeper", "MuteSoulseekers")				-- 9.0.22 (27th March 2021)
-				UpdateVars("MuteATV", "MuteHovercraft")						-- 9.0.22 (27th March 2021)
-				UpdateVars("MuteR21X", "MuteAerials")						-- 9.0.22 (27th March 2021)
-				UpdateVars("MuteGolem", "MuteMechsuits")					-- 9.0.22 (27th March 2021)
-				UpdateVars("HideLevelUpDisplay", "HideEventToasts")			-- 9.1.24 (19th November 2021)
-				UpdateVars("ManageWidget", "ManageWidgetTop")				-- 9.2.03 (16th March 2022)
-				UpdateVars("WidgetA", "WidgetTopA")							-- 9.2.03 (16th March 2022)
-				UpdateVars("WidgetR", "WidgetTopR")							-- 9.2.03 (16th March 2022)
-				UpdateVars("WidgetX", "WidgetTopX")							-- 9.2.03 (16th March 2022)
-				UpdateVars("WidgetY", "WidgetTopY")							-- 9.2.03 (16th March 2022)
-				UpdateVars("WidgetScale", "WidgetTopScale")					-- 9.2.03 (16th March 2022)
-				UpdateVars("AutoQuestAvailable", "AutoQuestRegular")		-- 9.2.07 (27th April 2022)
-				UpdateVars("MuteMechsuits", "MuteMechSteps")				-- 9.2.13 (1st June 2022)
-				UpdateVars("MuteStriders", "MuteMechSteps")					-- 9.2.13 (1st June 2022)
 				UpdateVars("MinimapMod", "MinimapModder")					-- 9.2.26 (24th August 2022)
 				UpdateVars("RestorechatMessages", "RestoreChatMessages")	-- 9.2.36 (20th September 2022)
+
+				-- Minimum faster auto loot delay changed from 0.0 to 0.1 in 10.0.20
+				if LeaPlusDB["LeaPlusFasterLootDelay"] and LeaPlusDB["LeaPlusFasterLootDelay"] == 0 then
+					LeaPlusDB["LeaPlusFasterLootDelay"] = 0.1
+				end
 
 				if LeaPlusDB["AutoQuestNoDaily"] and not LeaPlusDB["AutoQuestDaily"] then
 					if LeaPlusDB["AutoQuestNoDaily"] == "On" then
@@ -10700,13 +10893,32 @@
 					LeaPlusDB["AutoQuestNoDaily"] = nil
 				end
 
-				if LeaPlusDB["AutoQuestNoWeekly"] and not LeaPlusDB["AutoQuestWeekly"] then
-					if LeaPlusDB["AutoQuestNoWeekly"] == "On" then
-						LeaPlusDB["AutoQuestWeekly"] = "Off"
-					else
-						LeaPlusDB["AutoQuestWeekly"] = "On"
+				-- Mute game sounds split with Mute mount sounds
+				if LeaPlusDB["MuteGameSounds"] == "On" and not LeaPlusDB["MuteMountSounds"] then
+					if LeaPlusDB["MuteAerials"] == "On"
+					or LeaPlusDB["MuteAirships"] == "On"
+					or LeaPlusDB["MuteBanLu"] == "On"
+					or LeaPlusDB["MuteBikes"] == "On"
+					or LeaPlusDB["MuteBrooms"] == "On"
+					or LeaPlusDB["MuteDragonriding"] == "On"
+					or LeaPlusDB["MuteFurlines"] == "On"
+					or LeaPlusDB["MuteGyrocopters"] == "On"
+					or LeaPlusDB["MuteHovercraft"] == "On"
+					or LeaPlusDB["MuteMechSteps"] == "On"
+					or LeaPlusDB["MuteMechsuits"] == "On"
+					or LeaPlusDB["MuteOttuks"] == "On"
+					or LeaPlusDB["MuteRazorwings"] == "On"
+					or LeaPlusDB["MuteRockets"] == "On"
+					or LeaPlusDB["MuteSoulEaters"] == "On"
+					or LeaPlusDB["MuteSoulseekers"] == "On"
+					or LeaPlusDB["MuteStriders"] == "On"
+					or LeaPlusDB["MuteTravelers"] == "On"
+					or LeaPlusDB["MuteUnicorns"] == "On"
+					or LeaPlusDB["MuteZeppelins"] == "On"
+					then
+						LeaPlusLC["MuteMountSounds"] = "On"
+						LeaPlusDB["MuteMountSounds"] = "On"
 					end
-					LeaPlusDB["AutoQuestNoWeekly"] = nil
 				end
 
 				-- Automation
@@ -10795,6 +11007,7 @@
 				LeaPlusLC:LoadVarChk("SquareMinimap", "On")					-- Square minimap
 				LeaPlusLC:LoadVarChk("ShowWhoPinged", "On")					-- Show who pinged
 				LeaPlusLC:LoadVarChk("HideMiniAddonMenu", "On")				-- Hide addon menu
+				LeaPlusLC:LoadVarChk("UnclampMinimap", "Off")				-- Unclamp minimap cluster
 				LeaPlusLC:LoadVarChk("CombineAddonButtons", "Off")			-- Combine addon buttons
 				LeaPlusLC:LoadVarStr("MiniExcludeList", "")					-- Minimap exclude list
 				LeaPlusLC:LoadVarChk("HideMiniAddonButtons", "On")			-- Hide addon buttons
@@ -10911,11 +11124,14 @@
 
 				LeaPlusLC:LoadVarChk("NoRestedEmotes", "Off")				-- Silence rested emotes
 				LeaPlusLC:LoadVarChk("MuteGameSounds", "Off")				-- Mute game sounds
+				LeaPlusLC:LoadVarChk("MuteMountSounds", "Off")				-- Mute mount sounds
 
 				LeaPlusLC:LoadVarChk("NoPetAutomation", "Off")				-- Disable pet automation
 				LeaPlusLC:LoadVarChk("NoRaidRestrictions", "Off")			-- Remove raid restrictions
 				LeaPlusLC:LoadVarChk("NoConfirmLoot", "Off")				-- Disable loot warnings
 				LeaPlusLC:LoadVarChk("FasterLooting", "Off")				-- Faster auto loot
+				LeaPlusLC:LoadVarNum("LeaPlusFasterLootDelay", 0.3, 0.1, 0.3)	-- Faster auto loot delay
+
 				LeaPlusLC:LoadVarChk("FasterMovieSkip", "Off")				-- Faster movie skip
 				LeaPlusLC:LoadVarChk("CombatPlates", "Off")					-- Combat plates
 				LeaPlusLC:LoadVarChk("EasyItemDestroy", "Off")				-- Easy item destroy
@@ -11174,6 +11390,7 @@
 			LeaPlusDB["SquareMinimap"]			= LeaPlusLC["SquareMinimap"]
 			LeaPlusDB["ShowWhoPinged"]			= LeaPlusLC["ShowWhoPinged"]
 			LeaPlusDB["HideMiniAddonMenu"]		= LeaPlusLC["HideMiniAddonMenu"]
+			LeaPlusDB["UnclampMinimap"]			= LeaPlusLC["UnclampMinimap"]
 			LeaPlusDB["CombineAddonButtons"]	= LeaPlusLC["CombineAddonButtons"]
 			LeaPlusDB["MiniExcludeList"] 		= LeaPlusLC["MiniExcludeList"]
 			LeaPlusDB["HideMiniAddonButtons"]	= LeaPlusLC["HideMiniAddonButtons"]
@@ -11291,11 +11508,14 @@
 
 			LeaPlusDB["NoRestedEmotes"]			= LeaPlusLC["NoRestedEmotes"]
 			LeaPlusDB["MuteGameSounds"]			= LeaPlusLC["MuteGameSounds"]
+			LeaPlusDB["MuteMountSounds"]		= LeaPlusLC["MuteMountSounds"]
 
 			LeaPlusDB["NoPetAutomation"]		= LeaPlusLC["NoPetAutomation"]
 			LeaPlusDB["NoRaidRestrictions"]		= LeaPlusLC["NoRaidRestrictions"]
 			LeaPlusDB["NoConfirmLoot"] 			= LeaPlusLC["NoConfirmLoot"]
 			LeaPlusDB["FasterLooting"] 			= LeaPlusLC["FasterLooting"]
+			LeaPlusDB["LeaPlusFasterLootDelay"] = LeaPlusLC["LeaPlusFasterLootDelay"]
+
 			LeaPlusDB["FasterMovieSkip"] 		= LeaPlusLC["FasterMovieSkip"]
 			LeaPlusDB["CombatPlates"]			= LeaPlusLC["CombatPlates"]
 			LeaPlusDB["EasyItemDestroy"]		= LeaPlusLC["EasyItemDestroy"]
@@ -11318,6 +11538,11 @@
 
 			-- Mute game sounds (LeaPlusLC["MuteGameSounds"])
 			for k, v in pairs(LeaPlusLC["muteTable"]) do
+				LeaPlusDB[k] = LeaPlusLC[k]
+			end
+
+			-- Mute mount sounds (LeaPlusLC["MuteMountSounds"])
+			for k, v in pairs(LeaPlusLC["mountTable"]) do
 				LeaPlusDB[k] = LeaPlusLC[k]
 			end
 
@@ -11374,6 +11599,14 @@
 
 			-- Mute game sounds (LeaPlusLC["MuteGameSounds"])
 			for k, v in pairs(LeaPlusLC["muteTable"]) do
+				for i, e in pairs(v) do
+					local file, soundID = e:match("([^,]+)%#([^,]+)")
+					UnmuteSoundFile(soundID)
+				end
+			end
+
+			-- Mute mount sounds (LeaPlusLC["MuteMountSounds"])
+			for k, v in pairs(LeaPlusLC["mountTable"]) do
 				for i, e in pairs(v) do
 					local file, soundID = e:match("([^,]+)%#([^,]+)")
 					UnmuteSoundFile(soundID)
@@ -13837,6 +14070,7 @@
 				LeaPlusDB["SquareMinimap"] = "On"				-- Square minimap
 				LeaPlusDB["ShowWhoPinged"] = "On"				-- Show who pinged
 				LeaPlusDB["HideMiniAddonMenu"] = "On"			-- Hide addon menu
+				LeaPlusDB["UnclampMinimap"] = "On"				-- Unclamp minimap cluster
 				LeaPlusDB["CombineAddonButtons"] = "On"			-- Combine addon buttons
 				LeaPlusDB["MiniExcludeList"] = "BugSack, Leatrix_Plus" -- Excluded addon list
 				LeaPlusDB["MiniClusterScale"] = 1				-- Minimap cluster scale
@@ -13930,11 +14164,14 @@
 				LeaPlusDB["MaxCameraZoom"] = "On"				-- Max camera zoom
 				LeaPlusDB["NoRestedEmotes"] = "On"				-- Silence rested emotes
 				LeaPlusDB["MuteGameSounds"] = "On"				-- Mute game sounds
+				LeaPlusDB["MuteMountSounds"] = "On"				-- Mute mount sounds
 
 				LeaPlusDB["NoPetAutomation"] = "On"				-- Disable pet automation
 				LeaPlusDB["NoRaidRestrictions"] = "On"			-- Remove raid restrictions
 				LeaPlusDB["NoConfirmLoot"] = "On"				-- Disable loot warnings
 				LeaPlusDB["FasterLooting"] = "On"				-- Faster auto loot
+				LeaPlusDB["LeaPlusFasterLootDelay"] = 0.3		-- Faster loot delay
+
 				LeaPlusDB["FasterMovieSkip"] = "On"				-- Faster movie skip
 				LeaPlusDB["CombatPlates"] = "On"				-- Combat plates
 				LeaPlusDB["EasyItemDestroy"] = "On"				-- Easy item destroy
@@ -14021,6 +14258,11 @@
 				end
 				LeaPlusDB["MuteReady"] = "Off"	-- Mute ready check
 
+				-- Mute mount sounds (LeaPlusLC["MuteMountSounds"])
+				for k, v in pairs(LeaPlusLC["mountTable"]) do
+					LeaPlusDB[k] = "On"
+				end
+
 				-- Remove transforms (LeaPlusLC["NoTransforms"])
 				for k, v in pairs(LeaPlusLC["transTable"]) do
 					LeaPlusDB[k] = "On"
@@ -14053,6 +14295,9 @@
 	-- Slash command for global function
 	--_G.SLASH_Leatrix_Plus1 = "/ltp"
 	--_G.SLASH_Leatrix_Plus2 = "/leaplus"
+
+	_G.SLASH_Leatrix_Plus1 = "/ztp" -- temp
+
 	SlashCmdList["Leatrix_Plus"] = function(self)
 		-- Run slash command function
 		LeaPlusLC:SlashFunc(self)
@@ -14179,7 +14424,7 @@
 	pg = "Page1"
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Character"					, 	146, -72)
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutomateQuests"			,	"Automate quests"				,	146, -92, 	false,	"If checked, quests will be selected, accepted and turned-in automatically.|n|nQuests which have a gold, currency or crafting reagent requirement will not be turned-in automatically.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutomateQuests"			,	"Automate quests"				,	146, -92, 	false,	"If checked, quests will be selected, accepted and turned-in automatically.|n|nQuests which require gold, currency, a crafting reagent or an account-bound item will not be turned-in automatically.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutomateGossip"			,	"Automate gossip"				,	146, -112, 	false,	"If checked, you can hold down the alt key while opening a gossip window to automatically select a single gossip option.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutoAcceptSummon"			,	"Accept summon"					, 	146, -132, 	false,	"If checked, summon requests will be accepted automatically unless you are in combat.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "AutoAcceptRes"				,	"Accept resurrection"			, 	146, -152, 	false,	"If checked, resurrection requests will be accepted automatically.|n|nResurrection requests from a Brazier of Awakening or a Failure Detection Pylon will not be accepted automatically.")
@@ -14358,6 +14603,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MaxCameraZoom"				, 	"Max camera zoom"				, 	146, -152, 	false,	"If checked, you will be able to zoom out to a greater distance.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoRestedEmotes"			, 	"Silence rested emotes"			,	146, -172, 	true,	"If checked, emote sounds will be silenced while your character is:|n|n- resting|n- in a pet battle|n- at the Halfhill Market|n- at the Grim Guzzler|n|nEmote sounds will be enabled when none of the above apply.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MuteGameSounds"			, 	"Mute game sounds"				,	146, -192, 	false,	"If checked, you will be able to mute a selection of game sounds.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MuteMountSounds"			, 	"Mute mount sounds"				,	146, -212, 	false,	"If checked, you will be able to mute a selection of mount sounds.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Game Options"				, 	340, -72)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoPetAutomation"			, 	"Disable pet automation"		, 	340, -92, 	true, 	"If checked, battle pets which are automatically summoned will be dismissed within a few seconds.|n|nThis includes dragging a pet onto the first team slot in the pet journal and entering a battle pet team save command.|n|nNote that pets which are automatically summoned during combat will be dismissed when combat ends.")
@@ -14372,6 +14618,8 @@
 
 	LeaPlusLC:CfgBtn("SetWeatherDensityBtn", LeaPlusCB["SetWeatherDensity"])
 	LeaPlusLC:CfgBtn("MuteGameSoundsBtn", LeaPlusCB["MuteGameSounds"])
+	LeaPlusLC:CfgBtn("MuteMountSoundsBtn", LeaPlusCB["MuteMountSounds"])
+	LeaPlusLC:CfgBtn("FasterLootingBtn", LeaPlusCB["FasterLooting"])
 	LeaPlusLC:CfgBtn("NoTransformsBtn", LeaPlusCB["NoTransforms"])
 
 ----------------------------------------------------------------------

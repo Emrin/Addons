@@ -61,13 +61,13 @@ local function GetAll(baseObject, path, property, default)
   return result
 end
 
-local function SetAll(baseObject, path, property, value, width, height)
+local function SetAll(baseObject, path, property, value, width, height, adjustSize)
   local valueFromPath = OptionsPrivate.Private.ValueFromPath
   for child in OptionsPrivate.Private.TraverseLeafsOrAura(baseObject) do
     local object = valueFromPath(child, path)
       if object then
         object[property] = value
-        if width and height then
+        if adjustSize and width and height then
           child.width = width
           child.height = height
         end
@@ -130,7 +130,7 @@ local function ConstructTexturePicker(frame)
         else
           textureWidget:SetTexture(texturePath, textureName);
           local d = group.textureData;
-          textureWidget:ChangeTexture(d.r, d.g, d.b, d.a, d.rotate, d.discrete_rotation, d.rotation, d.mirror, d.blendMode);
+          textureWidget:ChangeTexture(d.r, d.g, d.b, d.a, d.texRotation, d.auraRotation, d.mirror, d.blendMode)
         end
         if group.selectedTextures[texturePath] then
           textureWidget:Pick()
@@ -253,14 +253,14 @@ local function ConstructTexturePicker(frame)
     wipe(group.selectedTextures)
     group.selectedTextures[texturePath] = true
 
-    SetAll(self.baseObject, self.path, self.properties.texture, texturePath, width, height)
+    SetAll(self.baseObject, self.path, self.properties.texture, texturePath, width, height, self.adjustSize)
 
     group:UpdateList();
     local status = dropdown.status or dropdown.localstatus
     dropdown.dropdown:SetText(dropdown.list[status.selected]);
   end
 
-  function group.Open(self, baseObject, path, properties, textures, SetTextureFunc)
+  function group.Open(self, baseObject, path, properties, textures, SetTextureFunc, adjustSize)
     local valueFromPath = OptionsPrivate.Private.ValueFromPath
     self.baseObject = baseObject
     self.path = path
@@ -269,6 +269,7 @@ local function ConstructTexturePicker(frame)
     self.SetTextureFunc = SetTextureFunc
     self.givenPath = {};
     self.selectedTextures = {}
+    self.adjustSize = adjustSize
 
     for child in OptionsPrivate.Private.TraverseLeafsOrAura(baseObject) do
       local object = valueFromPath(child, path)
@@ -284,9 +285,8 @@ local function ConstructTexturePicker(frame)
       g = colorAll[2] or 1,
       b = colorAll[3] or 1,
       a = colorAll[4] or 1,
-      rotate = GetAll(baseObject, path, properties.rotate, true),
-      discrete_rotation = GetAll(baseObject, path, properties.discrete_rotation, 0),
-      rotation = GetAll(baseObject, path, properties.rotation, 0),
+      auraRotation = GetAll(baseObject, path, properties.auraRotation, 0),
+      texRotation = GetAll(baseObject, path, properties.rotation, 0),
       mirror = GetAll(baseObject, path, properties.mirror, false),
       blendMode = GetAll(baseObject, path, properties.blendMode, "ADD")
     }

@@ -514,6 +514,16 @@ local achievements = {
 	}, -- Completing the Code
 	[15391] = {}, -- Adventurer of Zereth Mortis
 	[15392] = {}, -- Dune Dominance
+	-- TODO: this has overlap with the adventurer mobs, so I need to improve mobs_to_achievement (also all the mobs in the achievement are kill-credit fake mobs, so I need to dig up the actual IDs)
+	-- [16446] = { -- That's Pretty Neat!
+	-- 	completed = SCREENSHOT_SUCCESS, -- "Screen captured"
+	-- },
+	[16676] = {}, -- Adventurer of the Waking Shores
+	[16677] = {}, -- Adventurer of the Ohn'ahran Plains
+	[16678] = {}, -- Adventurer of the Azure Span
+	[16679] = {}, -- Adventurer of the Thaldraszus
+	[16424] = {need=EMOTE410_CMD1, completed=DONE}, -- Who's A Good Bakar
+	[16574] = {need=EMOTE88_CMD1, completed=DONE}, -- Sleeping on the Job
 }
 ns.achievements = achievements
 local mobs_to_achievement = {
@@ -646,7 +656,9 @@ function ns:UpdateTooltipWithCompletion(tooltip, id)
 
 	local achievement, name, completed = ns:AchievementMobStatus(id)
 	if achievement then
-		tooltip:AddDoubleLine(name, completed and (achievements[achievement].completed or ACTION_PARTY_KILL) or NEED,
+		tooltip:AddDoubleLine(
+			name,
+			completed and (achievements[achievement].completed or BOSS_DEAD) or (achievements[achievement].need or ACTION_PARTY_KILL),
 			1, 1, 0,
 			completed and 0 or 1, completed and 1 or 0, 0
 		)

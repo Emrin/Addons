@@ -1,2 +1,2 @@
-- Updated ToC version for patch 10.0
-- Fix GUI bugs from 10.0 changes
+- Fix top bar button placement
+- Scale pull number on the map with zoom level
