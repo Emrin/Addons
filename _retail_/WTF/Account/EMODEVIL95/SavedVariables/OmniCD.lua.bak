@@ -1,0 +1,144 @@
+
+OmniCDDB = {
+	["profileKeys"] = {
+		["Crystalol - Outland"] = "Default",
+		["Nolifey - Ravencrest"] = "Default",
+		["Trax - Stormscale"] = "Default",
+		["Bloodlustguy - Draenor"] = "Default",
+		["Chocosham - Draenor"] = "Default",
+		["Pixiel - Draenor"] = "Default",
+		["Leafgirl - Silvermoon"] = "Default",
+		["Apokalol - Outland"] = "Default",
+		["Aclipt - Outland"] = "Default",
+		["Ravegirl - Draenor"] = "Default",
+		["Pokipoki - Draenor"] = "Default",
+		["Nolifey - Draenor"] = "Default",
+		["Yubiyubi - Draenor"] = "Default",
+		["Yeetalot - Draenor"] = "Default",
+		["Holiloli - Silvermoon"] = "Default",
+		["Taizai - Draenor"] = "Default",
+		["Nolifey - Silvermoon"] = "Default",
+		["Raingirl - Silvermoon"] = "Default",
+		["Cutetroll - Draenor"] = "Default",
+		["Unchill - Draenor"] = "Default",
+		["Hentaihero - Draenor"] = "Default",
+		["Venetha - Draenor"] = "Default",
+		["Hentaihero - Outland"] = "Default",
+		["Fuwu - Silvermoon"] = "Default",
+		["Apoka - Outland"] = "Default",
+		["Nolifey - Moonglade"] = "Default",
+		["Lifey - Moonglade"] = "Default",
+		["Lifey - Draenor"] = "Default",
+		["Missuccubus - Draenor"] = "Default",
+		["Crystalol - Draenor"] = "Default",
+		["Wasdasdasd - Draenor"] = "Default",
+		["Apoki - Silvermoon"] = "Default",
+		["Yhewrgrhn - Draenor"] = "Default",
+		["Lifey - Silvermoon"] = "Default",
+	},
+	["global"] = {
+		["disableElvMsg"] = true,
+		["oodChk"] = 220703,
+		["oodVer"] = 2719,
+	},
+	["namespaces"] = {
+		["LibDualSpec-1.0"] = {
+		},
+	},
+	["cooldowns"] = {
+	},
+	["version"] = 3,
+	["profiles"] = {
+		["Default"] = {
+			["Party"] = {
+				["party"] = {
+					["extraBars"] = {
+						["raidBar0"] = {
+							["manualPos"] = {
+								["raidBar0"] = {
+									["y"] = 424.2669180153753,
+									["x"] = 1266.932712370704,
+								},
+							},
+							["enabled"] = false,
+							["textColors"] = {
+								["useClassColor"] = {
+									["active"] = true,
+								},
+							},
+						},
+						["raidBar1"] = {
+							["manualPos"] = {
+								["raidBar1"] = {
+									["y"] = 266.9332821508215,
+									["x"] = 2.933625183518046,
+								},
+							},
+						},
+					},
+					["position"] = {
+						["attach"] = "TOPLEFT",
+						["preset"] = "TOPLEFT",
+						["anchor"] = "TOPRIGHT",
+					},
+				},
+				["arena"] = {
+					["position"] = {
+						["attach"] = "TOPLEFT",
+						["preset"] = "TOPLEFT",
+						["anchor"] = "TOPRIGHT",
+					},
+				},
+				["raid"] = {
+					["position"] = {
+						["attach"] = "TOPLEFT",
+						["preset"] = "TOPLEFT",
+						["anchor"] = "TOPRIGHT",
+					},
+					["manualPos"] = {
+						["interruptBar"] = {
+							["y"] = 257.8666963915039,
+							["x"] = 85.06699662408937,
+						},
+						["raidCDBar"] = {
+							["y"] = 291.466812076178,
+							["x"] = 95.73366384706605,
+						},
+					},
+				},
+				["visibility"] = {
+					["scenario"] = true,
+					["raid"] = true,
+					["pvp"] = true,
+					["none"] = true,
+				},
+				["pvp"] = {
+					["position"] = {
+						["attach"] = "TOPLEFT",
+						["preset"] = "TOPLEFT",
+						["anchor"] = "TOPRIGHT",
+					},
+				},
+			},
+			["General"] = {
+				["fonts"] = {
+					["statusBar"] = {
+						["font"] = "2002 Bold",
+					},
+					["optionSmall"] = {
+						["font"] = "2002 Bold",
+					},
+					["anchor"] = {
+						["font"] = "2002 Bold",
+					},
+					["icon"] = {
+						["font"] = "2002 Bold",
+					},
+					["option"] = {
+						["font"] = "2002 Bold",
+					},
+				},
+			},
+		},
+	},
+}

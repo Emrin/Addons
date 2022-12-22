@@ -1,0 +1,2 @@
+- Fix top bar button placement
+- Scale pull number on the map with zoom level

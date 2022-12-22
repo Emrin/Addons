@@ -1,0 +1,23 @@
+VER 3 010000000000000A "eat" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/use [nomod] Conjured Mana Bun
+/use [mod] Mana Gem
+END
+VER 3 0100000000000008 "inv" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [nomod] Greater Invisibility
+/cast [mod] Mass Invisibility
+END
+VER 3 0100000000000003 "poly" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [mod,@focus,exists,harm][@mouseover,harm,exists][] Polymorph
+END
+VER 3 0100000000000006 "s" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [nomod,@mouseover,harm,exists][nomod] Fire Blast
+/cast [mod] Frostbolt
+END
+VER 3 0100000000000005 "slow" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [mod,@focus,exists,harm][@mouseover,harm,exists][] Slow
+END
