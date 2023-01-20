@@ -34,7 +34,7 @@ HandyNotesDB = {
 		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
+		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
 		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
@@ -42,7 +42,7 @@ HandyNotesDB = {
 		["Demonphile - Draenor"] = "Demonphile - Draenor",
 		["Eucleius - Outland"] = "Eucleius - Outland",
 		["Lolisama - Draenor"] = "Lolisama - Draenor",
-		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Nolifey - Draenor"] = "Nolifey - Draenor",
 		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
 		["Vanilia - Outland"] = "Vanilia - Outland",
@@ -114,7 +114,7 @@ HandyNotesDB = {
 		},
 		["Apoka - Outland"] = {
 		},
-		["Nolifey - Moonglade"] = {
+		["Bowbie - Ravencrest"] = {
 		},
 		["Lifey - Moonglade"] = {
 		},
@@ -130,7 +130,7 @@ HandyNotesDB = {
 		},
 		["Lolisama - Draenor"] = {
 		},
-		["Bowbie - Ravencrest"] = {
+		["Nolifey - Moonglade"] = {
 		},
 		["Nolifey - Draenor"] = {
 		},
@@ -175,7 +175,7 @@ HandyNotes_HandyNotesDB = {
 		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
+		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
 		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
@@ -183,7 +183,7 @@ HandyNotes_HandyNotesDB = {
 		["Demonphile - Draenor"] = "Demonphile - Draenor",
 		["Eucleius - Outland"] = "Eucleius - Outland",
 		["Lolisama - Draenor"] = "Lolisama - Draenor",
-		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Nolifey - Draenor"] = "Nolifey - Draenor",
 		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
 		["Vanilia - Outland"] = "Vanilia - Outland",
@@ -255,7 +255,7 @@ HandyNotes_HandyNotesDB = {
 		},
 		["Apoka - Outland"] = {
 		},
-		["Nolifey - Moonglade"] = {
+		["Bowbie - Ravencrest"] = {
 		},
 		["Lifey - Moonglade"] = {
 		},
@@ -271,7 +271,7 @@ HandyNotes_HandyNotesDB = {
 		},
 		["Lolisama - Draenor"] = {
 		},
-		["Bowbie - Ravencrest"] = {
+		["Nolifey - Moonglade"] = {
 		},
 		["Nolifey - Draenor"] = {
 		},

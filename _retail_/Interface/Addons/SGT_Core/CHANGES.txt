@@ -1,0 +1,14 @@
+tag 5a3a1fe924836065880ab2f5d06d89265443af5b v1.0.5
+Author:	Stroeckx <stijnstroeckx@hotmail.com>
+Date:	Wed Dec 21 21:50:11 2022 +0100
+
+commit fa8f51da9da885791c0acc88810ecce8d568d64a
+Author: Stroeckx <stijnstroeckx@hotmail.com>
+Date:   Wed Dec 21 21:50:00 2022 +0100
+
+    Added Button creator
+    
+    - Added Button creator
+    - Added wrapper in slider creator to handle spacing around extra text elements
+    - Potentially fixed an issue causing SGT core to be seen as "modified" by the curseforge client
+

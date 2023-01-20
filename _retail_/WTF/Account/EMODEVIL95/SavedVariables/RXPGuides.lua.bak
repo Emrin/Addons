@@ -5,6 +5,7 @@ RXPData = {
 }
 RXPDB = {
 	["profileKeys"] = {
+		["Cutetroll - Draenor"] = "global",
 		["Pixiel - Draenor"] = "global",
 		["Unchill - Draenor"] = "global",
 	},

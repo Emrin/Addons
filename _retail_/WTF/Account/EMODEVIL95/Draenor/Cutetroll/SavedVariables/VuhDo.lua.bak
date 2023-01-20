@@ -130,750 +130,7 @@ VUHDO_CONFIG = {
 	["CUSTOM_DEBUFF"] = {
 		["point"] = "TOPRIGHT",
 		["scale"] = 0.5,
-		["STORED"] = {
-			"271222", -- [1]
-			"267821", -- [2]
-			"262313", -- [3]
-			"262314", -- [4]
-			"264219", -- [5]
-			"265360", -- [6]
-			"265662", -- [7]
-			"265129", -- [8]
-			"265178", -- [9]
-			"265212", -- [10]
-			"273365", -- [11]
-			"269936", -- [12]
-			"274358", -- [13]
-			"274271", -- [14]
-			"272336", -- [15]
-			"272536", -- [16]
-			"263334", -- [17]
-			"263372", -- [18]
-			"261552", -- [19]
-			"261632", -- [20]
-			"261509", -- [21]
-			"260908", -- [22]
-			"274891", -- [23]
-			"271246", -- [24]
-			"274839", -- [25]
-			"274904", -- [26]
-			"274932", -- [27]
-			"Necrotic Wound", -- [28]
-			"278961", -- [29]
-			"265206", -- [30]
-			"275270", -- [31]
-			"265127", -- [32]
-			"267160", -- [33]
-			"267161", -- [34]
-			"267162", -- [35]
-			"267163", -- [36]
-			"267164", -- [37]
-			"267165", -- [38]
-			"267166", -- [39]
-			"267167", -- [40]
-			"267168", -- [41]
-			"276020", -- [42]
-			"272506", -- [43]
-			"grevious wound", -- [44]
-			"Grievous Wound", -- [45]
-			"285875", -- [46]
-			"282215", -- [47]
-			"282471", -- [48]
-			"285659", -- [49]
-			"286434", -- [50]
-			"285632", -- [51]
-			"286988", -- [52]
-			"287072", -- [53]
-			"283507", -- [54]
-			"284519", -- [55]
-			"282444", -- [56]
-			"286811", -- [57]
-			"282209", -- [58]
-			"285213", -- [59]
-			"288449", -- [60]
-			"284662", -- [61]
-			"285349", -- [62]
-			"284781", -- [63]
-			"286480", -- [64]
-			"282182", -- [65]
-			"287757", -- [66]
-			"283411", -- [67]
-			"284405", -- [68]
-			"285000", -- [69]
-			"285350", -- [70]
-			"287365", -- [71]
-			"289220", -- [72]
-			"288038", -- [73]
-			"Reap Soul", -- [74]
-			"Galvanize", -- [75]
-			"Spit Gold", -- [76]
-			"Conduction", -- [77]
-			"Severing Axe", -- [78]
-			"Drain Fluids", -- [79]
-			"Gut Shot", -- [80]
-			"Iron Gaze", -- [81]
-			"Decaying Spores", -- [82]
-			"Rotting Spores", -- [83]
-			"Jagged Nettles", -- [84]
-			"Serrated Teeth", -- [85]
-			"Thirst For Blood", -- [86]
-			"Severing Blade", -- [87]
-			"Infected Thorn", -- [88]
-			"Rending Maul", -- [89]
-			"Blood Maw", -- [90]
-			"Torch Strike", -- [91]
-			"Shadow Barrage", -- [92]
-			"Frost Shock", -- [93]
-			"Itchy Bite", -- [94]
-			"Jagged Cut", -- [95]
-			"Spit", -- [96]
-			"Ravaging Leap", -- [97]
-			"293300", -- [98]
-			"282540", -- [99]
-			"282432", -- [100]
-			"287762", -- [101]
-			"131097", -- [102]
-			"131098", -- [103]
-			"282437", -- [104]
-			"282386", -- [105]
-			"283524", -- [106]
-			"293488", -- [107]
-			"285345", -- [108]
-			"285652", -- [109]
-			"295609", -- [110]
-			"286770", -- [111]
-			"284733", -- [112]
-			"283053", -- [113]
-			"282738", -- [114]
-			"285367", -- [115]
-			"Insidious Gift", -- [116]
-			"Rat Traps", -- [117]
-			"Explosive Burst", -- [118]
-			"Venomous Spit", -- [119]
-			"284722", -- [120]
-			"286771", -- [121]
-			"295421", -- [122]
-			"295348", -- [123]
-			"300882", -- [124]
-			"300957", -- [125]
-			"292127", -- [126]
-			"292307", -- [127]
-			"292167", -- [128]
-			"301494", -- [129]
-			"298595", -- [130]
-			"296737", -- [131]
-			"296746", -- [132]
-			"296693", -- [133]
-			"297333", -- [134]
-			"298306", -- [135]
-			"295779", -- [136]
-			"297586", -- [137]
-			"299914", -- [138]
-			"296851", -- [139]
-			"300545", -- [140]
-			"292971", -- [141]
-			"292963", -- [142]
-			"293509", -- [143]
-			"298192", -- [144]
-			"303828", -- [145]
-			"303825", -- [146]
-			"303657", -- [147]
-			"300492", -- [148]
-			"297907", -- [149]
-			"Plague Step", -- [150]
-			"Gust slash", -- [151]
-			"Gust Slash", -- [152]
-			"Gale Slash", -- [153]
-			"Stinging Venom", -- [154]
-			"306163", -- [155]
-			"314347", -- [156]
-			"307013", -- [157]
-			"307806", -- [158]
-			"306301", -- [159]
-			"308059", -- [160]
-			"307950", -- [161]
-			"308065", -- [162]
-			"313198", -- [163]
-			"312406", -- [164]
-			"309569", -- [165]
-			"307314", -- [166]
-			"307359", -- [167]
-			"310323", -- [168]
-			"313461", -- [169]
-			"313129", -- [170]
-			"313460", -- [171]
-			"313227", -- [172]
-			"310019", -- [173]
-			"310022", -- [174]
-			"313077", -- [175]
-			"315252", -- [176]
-			"316065", -- [177]
-			"307358", -- [178]
-			"307945", -- [179]
-			"306929", -- [180]
-			"307260", -- [181]
-			"310552", -- [182]
-			"310358", -- [183]
-			"275269", -- [184]
-			"311159", -- [185]
-			"307008", -- [186]
-			"306973", -- [187]
-			"306984", -- [188]
-			"308885", -- [189]
-			"317112", -- [190]
-			"309980", -- [191]
-			"316541", -- [192]
-			"316542", -- [193]
-			"Widowmaker Toxin", -- [194]
-			"Static Pulse", -- [195]
-			"Furious Quake", -- [196]
-			"Energy Lash", -- [197]
-			"Festering Bite", -- [198]
-			"Echo Blade", -- [199]
-			"Transmute: Enemy to Goo", -- [200]
-			"Caustic Compound", -- [201]
-			"Chemical Burn", -- [202]
-			"Homing Missile", -- [203]
-			"Mine Blast", -- [204]
-			"Savage Cleave", -- [205]
-			"Hooked Snare", -- [206]
-			"Dark Omen", -- [207]
-			"Wicked Assault", -- [208]
-			"Withering Curse", -- [209]
-			"Death Bolt", -- [210]
-			"Maddening Gaze", -- [211]
-			"Upheaval", -- [212]
-			"Putrid Blood", -- [213]
-			"Squeeze", -- [214]
-			"Massive Chomp", -- [215]
-			"Debilitating Shout", -- [216]
-			"Makeshift Shiv", -- [217]
-			"Crippling Shiv", -- [218]
-			"Handcuff", -- [219]
-			"Suppression Fire", -- [220]
-			"Fuselighter", -- [221]
-			"Righteous Flames", -- [222]
-			"Incendiary Rounds", -- [223]
-			"Freezing Trap", -- [224]
-			"Severing Serpent", -- [225]
-			"Rotten Expulsion", -- [226]
-			"Marking Cleave", -- [227]
-			"Spellbind", -- [228]
-			"Drain Essence", -- [229]
-			"Bone Splinter", -- [230]
-			"Toad Blight", -- [231]
-			"Aura of Dread", -- [232]
-			"Unstable Runic Mark", -- [233]
-			"Grasping Thorns", -- [234]
-			"Pallid Glare", -- [235]
-			"Runic Mark", -- [236]
-			"Thorned Barrage", -- [237]
-			"Tearing Strike", -- [238]
-			"Shatter", -- [239]
-			"Dread Mark", -- [240]
-			"Lingering Dread", -- [241]
-			"Decaying Touch", -- [242]
-			"Fragment Soul", -- [243]
-			"Wasting Strike", -- [244]
-			"Virulent Pathogen", -- [245]
-			"Dark Leap", -- [246]
-			"Soulburn", -- [247]
-			"Transfusion", -- [248]
-			"Molten Gold", -- [249]
-			"Venom-Tipped Blade", -- [250]
-			"Unstable Hex", -- [251]
-			"Lingering Nausea", -- [252]
-			"Terrifying Screech", -- [253]
-			"Terrifying Visage", -- [254]
-			"Soulrend", -- [255]
-			"Wracking Pain", -- [256]
-			"Soulfeast", -- [257]
-			"Crippling Bite", -- [258]
-			"Poisoning Strike", -- [259]
-			"Infected Wound", -- [260]
-			"Earth Shaker", -- [261]
-			"Scabrous Bite", -- [262]
-			"Frost Blast", -- [263]
-			"Cutting Surge", -- [264]
-			"Ripper Punch", -- [265]
-			"Oiled Blade", -- [266]
-			"Flaming Shrapnel", -- [267]
-			"Darkshot", -- [268]
-			"Hidden Blade", -- [269]
-			"Axe Barrage", -- [270]
-			"Purification Beam", -- [271]
-			"Hex", -- [272]
-			"Poison Barrage", -- [273]
-			"Poison Nova", -- [274]
-			"Whirling Axes", -- [275]
-			"Shattered Defenses", -- [276]
-			"Embalming Fluid", -- [277]
-			"Anchor of Binding", -- [278]
-			"Rising Tides", -- [279]
-			"Choking Brine", -- [280]
-			"Sundering Blow", -- [281]
-			"Carve Flesh", -- [282]
-			"Electrifying Shock", -- [283]
-			"Unending Darkness", -- [284]
-			"Touch of the Drowned", -- [285]
-			"Rip Mind", -- [286]
-			"Mental Assault", -- [287]
-			"Lash", -- [288]
-			"Mind Rend", -- [289]
-			"Abyssal Strike", -- [290]
-			"Whispers of Power", -- [291]
-			"Yawning Gate", -- [292]
-			"Slicing Blast", -- [293]
-			"Hindering Cut", -- [294]
-			"Hangman's Noose", -- [295]
-			"Feral Charge", -- [296]
-			"Clamping Jaws", -- [297]
-			"Cursed Slash", -- [298]
-			"Sighted Artillery", -- [299]
-			"Viscous Slobber", -- [300]
-			"Choking Waters", -- [301]
-			"Rotting Wounds", -- [302]
-			"Putrid Waters", -- [303]
-			"Neurotoxin", -- [304]
-			"Cheap Shot", -- [305]
-			"Noxious Breath", -- [306]
-			"Cytotoxin", -- [307]
-			"Scouring Sand", -- [308]
-			"Blinding Sand", -- [309]
-			"Toxic Pool", -- [310]
-			"Flame Shock", -- [311]
-			"Heart Attack", -- [312]
-			"Snake Charm", -- [313]
-			"Plague", -- [314]
-			"Pulse", -- [315]
-			"Giga-Zap", -- [316]
-			"Inconspicuous Plant", -- [317]
-			"Omega-Buster", -- [318]
-			"Blood of the Corruptor", -- [319]
-			"Cascading Terror", -- [320]
-			"\"Hidden\" Flame Cannon", -- [321]
-			"Blossom Blast", -- [322]
-			"Electrical Charge", -- [323]
-			"Taze", -- [324]
-			"Mega Taze", -- [325]
-			"Pounce", -- [326]
-			"Nanoslicer", -- [327]
-			"Grand Delusions", -- [328]
-			"Shrink", -- [329]
-			"Shrunk", -- [330]
-			"Short Out", -- [331]
-			"Spirit Breaker", -- [332]
-			"Crippling Pestilence", -- [333]
-			"Lingering Doubt", -- [334]
-			"Defiled Ground", -- [335]
-			"Wreck", -- [336]
-			"Flaming Refuse", -- [337]
-			"Arcing Zap", -- [338]
-			"Chainblade", -- [339]
-			"280605", -- [340]
-			"253562", -- [341]
-			"Eye of Corruption", -- [342]
-			"Grasping Tendrils", -- [343]
-			"Tear Flesh", -- [344]
-			"Consuming Slime", -- [345]
-			"Vile Corruption", -- [346]
-			"Volatile Rupture", -- [347]
-			"Sledgehammer", -- [348]
-			"Grasping Hex", -- [349]
-			"Bork", -- [350]
-			"Ripping Slash", -- [351]
-			"Slimebolt", -- [352]
-			"Gooped", -- [353]
-			"Fulminating Zap", -- [354]
-			"Capacitor Discharge", -- [355]
-			"Sonic Pulse", -- [356]
-			"Explosive Leap", -- [357]
-			"Blazing Chomp", -- [358]
-			"Burst", -- [359]
-			"306311", -- [360]
-			"306184", -- [361]
-			"Discom-BOMB-ulator", -- [362]
-			"Hammer of Justice", -- [363]
-			"Touch of Death", -- [364]
-			"Touch of Karma", -- [365]
-			"Infinite Stars", -- [366]
-			"Obsidian Claw", -- [367]
-			"Ignite", -- [368]
-			"Artillery Barrage", -- [369]
-			"266206", -- [370]
-			"Jagged Quarrel", -- [371]
-			"Soul Corruption", -- [372]
-			"Dark Stride", -- [373]
-			"Castigate", -- [374]
-			"Agonize", -- [375]
-			"Wrack Soul", -- [376]
-			"Wicked Gash", -- [377]
-			"Bone Flay", -- [378]
-			"Tenderize", -- [379]
-			"Chill of the Damned", -- [380]
-			"Soulless", -- [381]
-			"Chill of the Beyond", -- [382]
-			"Boneflay", -- [383]
-			"Ricocheting Blade", -- [384]
-			"Dying Breath", -- [385]
-			"Bloodletting", -- [386]
-			"Soul Split", -- [387]
-			"Mistveil Tear", -- [388]
-			"Stigma of Pride", -- [389]
-			"Ritual of Woe", -- [390]
-			"Jagged Swipe", -- [391]
-			"Shattered", -- [392]
-			"Glass Shards", -- [393]
-			"Anguish", -- [394]
-			"Rake", -- [395]
-			"Maw-Touched Spital", -- [396]
-			"Residual Impact", -- [397]
-			"Infernal Strife", -- [398]
-			"Ionized Plasma", -- [399]
-			"Dark Lance", -- [400]
-			"Anima Surge", -- [401]
-			"Lost Confidence", -- [402]
-			"Deep Connection", -- [403]
-			"Reaver", -- [404]
-			"Rage", -- [405]
-			"Decrepit Bite", -- [406]
-			"Shimmerdust Sleep", -- [407]
-			"Soporific Shimmerdust", -- [408]
-			"Absorbing Haze", -- [409]
-			"Disgusting Guts", -- [410]
-			"Clinging Darkness", -- [411]
-			"Wrath of Zolramus", -- [412]
-			"Chilled", -- [413]
-			"Frostbolt Volley", -- [414]
-			"Rasping Scream", -- [415]
-			"Final Bargain", -- [416]
-			"Necrotic Bolt", -- [417]
-			"Grim Fate", -- [418]
-			"Shared Agony", -- [419]
-			"Mindless Fixation", -- [420]
-			"Morbid Fixation", -- [421]
-			"Fetid Gas", -- [422]
-			"Heaving Retch", -- [423]
-			"Carrion Eruption", -- [424]
-			"Necrotic Ichor", -- [425]
-			"Necrotic Breath", -- [426]
-			"Stitchneedle", -- [427]
-			"Embalmbing Ichor", -- [428]
-			"Comet Storm", -- [429]
-			"Frozen Binds", -- [430]
-			"Binding Fungus", -- [431]
-			"Clinging Infestation", -- [432]
-			"Corroded Claws", -- [433]
-			"Hungering Drain", -- [434]
-			"Sanctified Mists", -- [435]
-			"Severing Slice", -- [436]
-			"Overbearing Presence", -- [437]
-			"Barbed Shackle", -- [438]
-			"Crushing Doubt", -- [439]
-			"Tear", -- [440]
-			"Master of Death", -- [441]
-			"Cosmic Artifice", -- [442]
-			"Arcane Lightning", -- [443]
-			"Arcane Vulnerability", -- [444]
-			"Localized Explosive Contrivance", -- [445]
-			"Throw Buzz-Saw", -- [446]
-			"Buzz-Saw", -- [447]
-			"Blood Barrage", -- [448]
-			"Spilled Essence", -- [449]
-			"Zealous", -- [450]
-			"Purifying Blast", -- [451]
-			"Soulcrusher", -- [452]
-			"Corrupted Blood", -- [453]
-			"Debilitating Poison", -- [454]
-			"W-00F", -- [455]
-			"Overwhelming Power!", -- [456]
-			"Shadowfury", -- [457]
-			"Bleeding", -- [458]
-			"Lightning Discharge", -- [459]
-			"Shadow Word: Pain", -- [460]
-			"Gushing Wound", -- [461]
-			"Beak Slice", -- [462]
-			"Wailing Grief", -- [463]
-			"Curse of Obliteration", -- [464]
-			"Collect Sins", -- [465]
-			"Siphon Life", -- [466]
-			"Sinlight Visions", -- [467]
-			"Turn to Stone", -- [468]
-			"Stony Veins", -- [469]
-			"Ankle Bites", -- [470]
-			"Blood Torrent", -- [471]
-			"Stone Shattering Leap", -- [472]
-			"Curse of Stone", -- [473]
-			"322486", -- [474]
-			"322487", -- [475]
-			"Bewildering Pollen", -- [476]
-			"Bramble Burst", -- [477]
-			"Repulsive Visage", -- [478]
-			"Anima Puddle", -- [479]
-			"Bramblethorn Entanglement", -- [480]
-			"Anima Injection", -- [481]
-			"Patty Cake", -- [482]
-			"Freezing Burst", -- [483]
-			"Volatile Acid", -- [484]
-			"Decomposition Pool", -- [485]
-			"Stinging Assault", -- [486]
-			"Parasitic Pacification", -- [487]
-			"Parasitic Incapacitation", -- [488]
-			"Parasitic Domination", -- [489]
-			"Poisonous Secretions", -- [490]
-			"Shred Armor", -- [491]
-			"Blightbeak", -- [492]
-			"Plagued Carrion", -- [493]
-			"Poison Dart", -- [494]
-			"Fen Stinger", -- [495]
-			"Hurl Spores", -- [496]
-			"Debilitating Plague", -- [497]
-			"Slime Wave", -- [498]
-			"Violent Detonation", -- [499]
-			"Plague Bomb", -- [500]
-			"Blinding Sleet", -- [501]
-			"Gripping Infection", -- [502]
-			"Withering Filth", -- [503]
-			"Crushing Embrace", -- [504]
-			"Wasting Blight", -- [505]
-			"Slime Injection", -- [506]
-			"Burning Strain", -- [507]
-			"Venomarrows", -- [508]
-			"Venompiercer", -- [509]
-			"Venomfangs", -- [510]
-			"Enveloping Webbing", -- [511]
-			"Shadow Ambush", -- [512]
-			"Venomblades", -- [513]
-			"Infectious Rain", -- [514]
-			"Curse of Suppression", -- [515]
-			"Dread Bindings", -- [516]
-			"Barbed Shackles", -- [517]
-			"Explosive Anger", -- [518]
-			"Growing Mistrust", -- [519]
-			"Iron Spikes", -- [520]
-			"Burden of Knowledge", -- [521]
-			"Insidious Venom", -- [522]
-			"Weakened", -- [523]
-			"Blinding Flash", -- [524]
-			"Charged Anima", -- [525]
-			"Charged Spear", -- [526]
-			"Frostbolt", -- [527]
-			"Goresplatter", -- [528]
-			"Festering Rot", -- [529]
-			"Embalming Ichor", -- [530]
-			"Noxious Spores", -- [531]
-			"Searing Death", -- [532]
-			"Necromantic Bolt", -- [533]
-			"Opportunity Strikes", -- [534]
-			"Bind Soul", -- [535]
-			"Shadow Vulnerability", -- [536]
-			"Bone Spear", -- [537]
-			"Necrotic Bolt Volley", -- [538]
-			"Curse of Desolation", -- [539]
-			"Phantasmal Parasite", -- [540]
-			"Grasping Hands", -- [541]
-			"Decaying Blight", -- [542]
-			"Withering Blight", -- [543]
-			"Chop", -- [544]
-			"Manifest Death", -- [545]
-			"Colossus Smash", -- [546]
-			"Gut Slice", -- [547]
-			"319070", -- [548]
-			"Rapid Infection", -- [549]
-			"Wretched Phlegm", -- [550]
-			"Forced Confession", -- [551]
-			"Cytotoxic Slash", -- [552]
-			"Internal Strife", -- [553]
-			"Vile Spit", -- [554]
-			"Triple Bite", -- [555]
-			"Assassinate", -- [556]
-			"Concentrated Plague", -- [557]
-			"Sanguine Ichor", -- [558]
-			"Wave of Blood", -- [559]
-			"Exsanguinated", -- [560]
-			"Earsplitting Shriek", -- [561]
-			"Echoing Sonar", -- [562]
-			"Sinseeker", -- [563]
-			"Jagged Claws", -- [564]
-			"Deathly Roar", -- [565]
-			"Petrifying Howl", -- [566]
-			"Stone Shards", -- [567]
-			"Smoldering Remnants", -- [568]
-			"Burning Remnants", -- [569]
-			"Lingering Embers", -- [570]
-			"Vanquished", -- [571]
-			"Crimson Flurry", -- [572]
-			"Vulgar Brand", -- [573]
-			"Soul Infusion", -- [574]
-			"Greater Castigation", -- [575]
-			"Dimensional Tear", -- [576]
-			"Glyph of Destruction", -- [577]
-			"Withering Touch", -- [578]
-			"Gluttonous Miasma", -- [579]
-			"Anima Release", -- [580]
-			"Warped Desires", -- [581]
-			"Lingering Anima", -- [582]
-			"Shared Suffering", -- [583]
-			"Indemnification", -- [584]
-			"Anima Web", -- [585]
-			"Lightly Concentrated Anima", -- [586]
-			"Rooted in Anima", -- [587]
-			"Fragment of Shadow", -- [588]
-			"Unconscionable Guilt", -- [589]
-			"Duelist's Riposte", -- [590]
-			"Sintouched Blade", -- [591]
-			"Dreadbolt Volley", -- [592]
-			"Soul Spikes", -- [593]
-			"Evasive Lunge", -- [594]
-			"Ravenous Horrors", -- [595]
-			"Burden of Sin", -- [596]
-			"Night Hunter", -- [597]
-			"Desolation", -- [598]
-			"Searing Censure", -- [599]
-			"Carnage", -- [600]
-			"Impale", -- [601]
-			"Rancor", -- [602]
-			"Scorn", -- [603]
-			"Fatal Finesse", -- [604]
-			"Wicked Laceration", -- [605]
-			"Heart Rend", -- [606]
-			"Heart Hemorrhage", -- [607]
-			"Serrated Tear", -- [608]
-			"Stone Fist", -- [609]
-			"Seismic Upheavel", -- [610]
-			"Wicked Blade", -- [611]
-			"Volatile Anima Infection", -- [612]
-			"Ravenous Feast", -- [613]
-			"Chain Slam", -- [614]
-			"Chain Bleed", -- [615]
-			"328897", -- [616]
-			"342077", -- [617]
-			"341684", -- [618]
-			"341489", -- [619]
-			"335111", -- [620]
-			"334971", -- [621]
-			"334945", -- [622]
-			"334852", -- [623]
-			"323402", -- [624]
-			"328479", -- [625]
-			"326583", -- [626]
-			"339251", -- [627]
-			"332871", -- [628]
-			"338600", -- [629]
-			"343026", -- [630]
-			"337859", -- [631]
-			"328448", -- [632]
-			"325236", -- [633]
-			"327902", -- [634]
-			"340860", -- [635]
-			"329298", -- [636]
-			"325936", -- [637]
-			"324983", -- [638]
-			"332664", -- [639]
-			"330967", -- [640]
-			"331706", -- [641]
-			"331637", -- [642]
-			"331209", -- [643]
-			"342420", -- [644]
-			"342419", -- [645]
-			"335470", -- [646]
-			"333377", -- [647]
-			"339690", -- [648]
-			"342655", -- [649]
-			"327796", -- [650]
-			"329906", -- [651]
-			"332794", -- [652]
-			"327992", -- [653]
-			"Crushed Soul", -- [654]
-			"317103", -- [655]
-			"Jagged Gash", -- [656]
-			"345805", -- [657]
-			"Polymorph", -- [658]
-			"320462", -- [659]
-			"320170", -- [660]
-			"330784", -- [661]
-			"330868", -- [662]
-			"223929", -- [663]
-			"330713", -- [664]
-			"335304", -- [665]
-			"335112", -- [666]
-			"335113", -- [667]
-			"326538", -- [668]
-			"324982", -- [669]
-			"328468", -- [670]
-			"326302", -- [671]
-			"331636", -- [672]
-			"346651", -- [673]
-			"339189", -- [674]
-			"333913", -- [675]
-			"334771", -- [676]
-			"342735", -- [677]
-			"342698", -- [678]
-			"332797", -- [679]
-			"335873", -- [680]
-			"329951", -- [681]
-			"347668", -- [682]
-			"350713", -- [683]
-			"350542", -- [684]
-			"350109", -- [685]
-			"350073", -- [686]
-			"353429", -- [687]
-			"350496", -- [688]
-			"352833", -- [689]
-			"353931", -- [690]
-			"350568", -- [691]
-			"354289", -- [692]
-			"348760", -- [693]
-			"347670", -- [694]
-			"347807", -- [695]
-			"347607", -- [696]
-			"351091", -- [697]
-			"347704", -- [698]
-			"360458", -- [699]
-			"366393", -- [700]
-			"367571", -- [701]
-			"360448", -- [702]
-			"359981", -- [703]
-			"366070", -- [704]
-			"362882", -- [705]
-			"362803", -- [706]
-			"364030", -- [707]
-			"365681", -- [708]
-			"361309", -- [709]
-			"368957", -- [710]
-			"369207", -- [711]
-			"364289", -- [712]
-			"361018", -- [713]
-			"361225", -- [714]
-			"360259", -- [715]
-			"361067", -- [716]
-			"362352", -- [717]
-			"362383", -- [718]
-			"362622", -- [719]
-			"363795", -- [720]
-			"364073", -- [721]
-			"360869", -- [722]
-			"365293", -- [723]
-			"365024", -- [724]
-			"365021", -- [725]
-			"366849", -- [726]
-			"360006", -- [727]
-			"360012", -- [728]
-			"359963", -- [729]
-			"360287", -- [730]
-			"361548", -- [731]
-			"362806", -- [732]
-			"362081", -- [733]
-			"362798", -- [734]
-			"362088", -- [735]
-			"365153", -- [736]
-			"359868", -- [737]
-			"366132", -- [738]
-			"366020", -- [739]
-			"360282", -- [740]
-			"360281", -- [741]
-			"365219", -- [742]
-		},
+		["blacklistModi"] = "ALT-CTRL-SHIFT",
 		["isIcon"] = true,
 		["selected"] = "",
 		["SELECTED"] = "",
@@ -888,7 +145,7 @@ VUHDO_CONFIG = {
 			["SCALE"] = 85,
 			["COLOR"] = {
 				["TG"] = 1,
-				["R"] = 0,
+				["B"] = 0,
 				["TB"] = 1,
 				["G"] = 0,
 				["TR"] = 1,
@@ -897,7 +154,7 @@ VUHDO_CONFIG = {
 				["useText"] = true,
 				["useBackground"] = true,
 				["O"] = 1,
-				["B"] = 0,
+				["R"] = 0,
 			},
 			["USE_SHADOW"] = true,
 			["FONT"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
@@ -912,7 +169,7 @@ VUHDO_CONFIG = {
 			["SCALE"] = 70,
 			["COLOR"] = {
 				["TG"] = 1,
-				["R"] = 0,
+				["B"] = 0,
 				["TB"] = 0,
 				["G"] = 0,
 				["TR"] = 0,
@@ -921,7 +178,7 @@ VUHDO_CONFIG = {
 				["useText"] = true,
 				["useBackground"] = true,
 				["O"] = 1,
-				["B"] = 0,
+				["R"] = 0,
 			},
 			["USE_SHADOW"] = true,
 			["FONT"] = "Interface\\AddOns\\ElvUI\\Media\\Fonts\\Expressway.ttf",
@@ -1095,7 +352,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Withering Blight"] = {
+			["Blood of the Corruptor"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -1238,18 +495,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Righteous Flames"] = {
+			["365681"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
-			["Hex"] = {
+			["Volatile Anima Infection"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -1337,7 +594,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Burden of Knowledge"] = {
+			["Serrated Teeth"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -1359,7 +616,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Unstable Hex"] = {
+			["Echoing Sonar"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -1392,7 +649,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Death Bolt"] = {
+			["Wicked Blade"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -1601,16 +858,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["359981"] = {
+			["Necrotic Breath"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 			},
 			["307260"] = {
 				["animate"] = false,
@@ -1623,7 +880,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Night Hunter"] = {
+			["Thirst For Blood"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -1678,23 +935,23 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Repulsive Visage"] = {
+			["345805"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Reap Soul"] = {
+			["307806"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -1766,7 +1023,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Shrunk"] = {
+			["Growing Mistrust"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -1788,12 +1045,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["282182"] = {
+			["Rasping Scream"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -1887,23 +1144,23 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Plague"] = {
+			["342655"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Soulcrusher"] = {
+			["285632"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -1953,12 +1210,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Tearing Strike"] = {
+			["265178"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -2140,7 +1397,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Overwhelming Power!"] = {
+			["Darkshot"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -2173,7 +1430,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["303657"] = {
+			["282386"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -2294,7 +1551,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Drain Essence"] = {
+			["Earsplitting Shriek"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -2305,7 +1562,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Upheaval"] = {
+			["Blood Barrage"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -2338,7 +1595,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Localized Explosive Contrivance"] = {
+			["Manifest Death"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -2404,12 +1661,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["276020"] = {
+			["Consuming Slime"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -2437,7 +1694,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Energy Lash"] = {
+			["Torch Strike"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -2602,7 +1859,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Shared Suffering"] = {
+			["Artillery Barrage"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -2844,18 +2101,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Withering Curse"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
+			["339189"] = {
+				["animate"] = true,
 				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = false,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["343026"] = {
+			["293300"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -2921,23 +2178,23 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["285367"] = {
+			["Wrack Soul"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["292167"] = {
+			["Cutting Surge"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -2976,7 +2233,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Cursed Slash"] = {
+			["Blood Maw"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -2987,12 +2244,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Choking Waters"] = {
+			["333377"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -3086,7 +2343,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Severing Axe"] = {
+			["Cytotoxic Slash"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -3163,16 +2420,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Arcane Vulnerability"] = {
+			["361309"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
 			["Blinding Sleet"] = {
 				["animate"] = false,
@@ -3196,7 +2453,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["332871"] = {
+			["262314"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -3317,18 +2574,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Rage"] = {
+			["364030"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
-			["267821"] = {
+			["329906"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -3361,7 +2618,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Searing Death"] = {
+			["Virulent Pathogen"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -3416,18 +2673,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["360012"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
-			},
-			["Morbid Fixation"] = {
+			["Transmute: Enemy to Goo"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -3438,7 +2684,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["295779"] = {
+			["265129"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -3446,6 +2692,17 @@ VUHDO_CONFIG = {
 				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["288218"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isStacks"] = true,
+				["isOthers"] = true,
+				["isMine"] = true,
+				["timer"] = true,
+				["isIcon"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
@@ -3460,12 +2717,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Hooked Snare"] = {
+			["307358"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -3537,16 +2794,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["342419"] = {
+			["361548"] = {
 				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
 				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
 			["265360"] = {
 				["animate"] = false,
@@ -4450,16 +3707,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["361548"] = {
+			["Infected Wound"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 			},
 			["Terrifying Visage"] = {
 				["animate"] = false,
@@ -4483,12 +3740,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Transmute: Enemy to Goo"] = {
+			["342419"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -4516,18 +3773,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["320462"] = {
-				["animate"] = true,
+			["328479"] = {
+				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
-				["isStacks"] = false,
+				["isStacks"] = true,
 				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Infected Wound"] = {
+			["Charged Spear"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -4549,28 +3806,6 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Debilitating Shout"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Charged Spear"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
 			["Dreadbolt Volley"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -4582,18 +3817,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["367571"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
-			},
-			["Shattered"] = {
+			["Hooked Snare"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -4615,27 +3839,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Decaying Touch"] = {
+			["360012"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Virulent Pathogen"] = {
-				["animate"] = false,
-				["isColor"] = false,
 				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
 			},
 			["Goresplatter"] = {
 				["animate"] = false,
@@ -4648,6 +3861,50 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["312406"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Decaying Touch"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Flaming Shrapnel"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["365024"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isOthers"] = true,
+			},
 			["369207"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -4659,12 +3916,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["312406"] = {
+			["Searing Death"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -4714,14 +3971,14 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["288218"] = {
+			["306184"] = {
 				["animate"] = false,
-				["isColor"] = false,
-				["isStacks"] = true,
-				["isOthers"] = true,
 				["isMine"] = true,
-				["timer"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
+				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
@@ -4747,39 +4004,6 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Flaming Shrapnel"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["262314"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["306184"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
 			["Curse of Suppression"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -4791,12 +4015,45 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Slime Wave"] = {
+			["Rage"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Maw-Touched Spital"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Residual Impact"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["306973"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -4857,7 +4114,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Maw-Touched Spital"] = {
+			["332871"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Crushing Embrace"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -4868,23 +4136,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Residual Impact"] = {
+			["Insidious Venom"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["306973"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -4923,7 +4180,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Evasive Lunge"] = {
+			["Arcane Vulnerability"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -4934,12 +4191,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Crushing Embrace"] = {
+			["306311"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -4967,16 +4224,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["Insidious Venom"] = {
+			["350073"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
 			["326302"] = {
 				["animate"] = true,
@@ -5011,7 +4268,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["Plague Bomb"] = {
+			["Shadow Vulnerability"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5022,7 +4279,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Embalmbing Ichor"] = {
+			["Soulless"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5044,7 +4301,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Cytotoxin"] = {
+			["Desolation"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5077,18 +4334,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["350073"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
-			},
-			["Shadow Vulnerability"] = {
+			["Chop"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5099,7 +4345,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["333377"] = {
+			["303825"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -5110,7 +4356,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Sinseeker"] = {
+			["334945"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Shadow Ambush"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5121,12 +4378,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["306311"] = {
+			["Choking Waters"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -5143,7 +4400,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Desolation"] = {
+			["Embalmbing Ichor"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5154,18 +4411,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["328479"] = {
+			["Ripper Punch"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Chop"] = {
+			["Anima Puddle"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5187,7 +4444,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Venomfangs"] = {
+			["Discom-BOMB-ulator"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5242,7 +4499,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["Soulless"] = {
+			["Withering Curse"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5275,7 +4532,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Stinging Venom"] = {
+			["Colossus Smash"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5297,12 +4554,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["300545"] = {
+			["Chain Slam"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -5330,38 +4587,38 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Plague Step"] = {
+			["343026"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Shatter"] = {
+			["338600"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["339189"] = {
-				["animate"] = true,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = false,
+			["360458"] = {
+				["animate"] = false,
 				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
 			["Crippling Pestilence"] = {
 				["animate"] = false,
@@ -5396,18 +4653,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["286434"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Ripper Punch"] = {
+			["322487"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5418,7 +4664,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Blood Barrage"] = {
+			["267162"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Crimson Flurry"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5429,7 +4686,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Discom-BOMB-ulator"] = {
+			["Evasive Lunge"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5440,7 +4697,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Chain Slam"] = {
+			["Jagged Nettles"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5473,18 +4730,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Necrotic Ichor"] = {
+			["276020"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Colossus Smash"] = {
+			["Cytotoxin"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5517,7 +4774,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Consuming Slime"] = {
+			["Upheaval"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5528,29 +4785,29 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["293300"] = {
+			["Drain Essence"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["350109"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 			},
-			["Slicing Blast"] = {
+			["Gust slash"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Anima Release"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5572,7 +4829,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["334945"] = {
+			["285000"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -5605,7 +4862,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["288038"] = {
+			["303657"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -5616,7 +4873,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Unending Darkness"] = {
+			["Overwhelming Power!"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5627,23 +4884,23 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Earsplitting Shriek"] = {
+			["308059"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["338600"] = {
+			["Rake"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -5660,23 +4917,23 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["360458"] = {
+			["Stinging Venom"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 			},
-			["Shred Armor"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
+			["328468"] = {
+				["animate"] = true,
 				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = false,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -5693,16 +4950,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["360282"] = {
+			["286434"] = {
 				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
 				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 			},
 			["307314"] = {
 				["animate"] = false,
@@ -5737,12 +4994,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["267162"] = {
+			["Plague Step"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -5759,7 +5016,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Shadow Ambush"] = {
+			["Anima Injection"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5770,18 +5027,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["335873"] = {
-				["animate"] = true,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = false,
+			["360282"] = {
+				["animate"] = false,
 				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
-			["Crimson Flurry"] = {
+			["Soulcrusher"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5803,7 +5060,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Bone Splinter"] = {
+			["Plague"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5825,7 +5082,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Soporific Shimmerdust"] = {
+			["Wicked Assault"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -5836,40 +5093,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Tear Flesh"] = {
+			["350109"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Rasping Scream"] = {
-				["animate"] = false,
-				["isColor"] = false,
 				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
 			},
-			["Rake"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["282432"] = {
+			["331209"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -5880,16 +5115,38 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["350542"] = {
+			["316542"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["265662"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Scorn"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 			},
 			["Ritual of Woe"] = {
 				["animate"] = false,
@@ -5913,11 +5170,11 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["328468"] = {
-				["animate"] = true,
+			["282182"] = {
+				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
-				["isStacks"] = false,
+				["isStacks"] = true,
 				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
@@ -5935,16 +5192,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Gust slash"] = {
+			["350542"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
 			["271246"] = {
 				["animate"] = false,
@@ -6012,7 +5269,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["327902"] = {
+			["286770"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -6023,12 +5280,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["308059"] = {
+			["Repulsive Visage"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -6067,12 +5324,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Anima Injection"] = {
+			["328448"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -6100,12 +5357,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["265178"] = {
+			["Wicked Laceration"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -6155,7 +5412,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Necrotic Breath"] = {
+			["Tear Flesh"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6166,7 +5423,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["285632"] = {
+			["297907"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -6177,18 +5434,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["316542"] = {
+			["Soporific Shimmerdust"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Scorn"] = {
+			["Concentrated Plague"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6221,95 +5478,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["342655"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["328448"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["362622"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
-			},
-			["Wicked Laceration"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Echo Blade"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["297907"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["297333"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Concentrated Plague"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["366849"] = {
+			["359981"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isIconGlow"] = false,
@@ -6331,6 +5500,17 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["362622"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isOthers"] = true,
+			},
 			["Homing Missile"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -6342,7 +5522,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Carrion Eruption"] = {
+			["Echo Blade"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6353,16 +5533,27 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["365681"] = {
+			["Furious Quake"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["297333"] = {
+				["animate"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
 			},
 			["Conduction"] = {
 				["animate"] = false,
@@ -6374,6 +5565,17 @@ VUHDO_CONFIG = {
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
+			},
+			["366849"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isOthers"] = true,
 			},
 			["303828"] = {
 				["animate"] = false,
@@ -6397,7 +5599,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Bone Spear"] = {
+			["Carrion Eruption"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6408,7 +5610,62 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Blood of the Corruptor"] = {
+			["Unstable Hex"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Crushing Doubt"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Righteous Flames"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["365021"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isOthers"] = true,
+			},
+			["353931"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isOthers"] = true,
+			},
+			["Fuselighter"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6430,7 +5687,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Crushing Doubt"] = {
+			["Hex"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6441,29 +5698,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["353931"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
-			},
-			["310358"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Fuselighter"] = {
+			["Withering Blight"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6474,12 +5709,34 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["307945"] = {
+			["Shred Armor"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["320170"] = {
+				["animate"] = true,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = false,
 				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Frost Shock"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -6507,7 +5764,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Sledgehammer"] = {
+			["Purification Beam"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6518,12 +5775,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["320170"] = {
-				["animate"] = true,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = false,
+			["Hungering Drain"] = {
+				["animate"] = false,
 				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -6540,7 +5797,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Frost Shock"] = {
+			["Arcing Zap"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6551,7 +5808,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Deathly Roar"] = {
+			["Dread Mark"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6595,7 +5852,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Arcing Zap"] = {
+			["Sledgehammer"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6650,7 +5907,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Hungering Drain"] = {
+			["Giga-Zap"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6683,7 +5940,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Dread Mark"] = {
+			["Unstable Runic Mark"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6705,18 +5962,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Giga-Zap"] = {
+			["288038"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Unstable Runic Mark"] = {
+			["Deathly Roar"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6760,7 +6017,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Burst"] = {
+			["Fetid Gas"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -6782,17 +6039,6 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Fetid Gas"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
 			["Forced Confession"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -6804,7 +6050,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["282209"] = {
+			["334771"] = {
+				["animate"] = true,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = false,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["316065"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -6826,14 +6083,27 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["282437"] = {
+			["278961"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["color"] = {
+					["TG"] = 0.5,
+					["R"] = 0.6,
+					["TB"] = 0,
+					["G"] = 0.3,
+					["TR"] = 0.8,
+					["TO"] = 1,
+					["B"] = 0,
+					["useText"] = true,
+					["useBackground"] = true,
+					["O"] = 1,
+					["useOpacity"] = true,
+				},
 				["isOthers"] = true,
+				["isColor"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
+				["isMine"] = true,
 				["timer"] = true,
+				["isIcon"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
@@ -6848,38 +6118,25 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["316065"] = {
+			["Burst"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["278961"] = {
+			["Dread Bindings"] = {
 				["animate"] = false,
-				["color"] = {
-					["TG"] = 0.5,
-					["B"] = 0,
-					["TB"] = 0,
-					["G"] = 0.3,
-					["TR"] = 0.8,
-					["TO"] = 1,
-					["R"] = 0.6,
-					["useText"] = true,
-					["useBackground"] = true,
-					["O"] = 1,
-					["useOpacity"] = true,
-				},
+				["isColor"] = false,
 				["isOthers"] = true,
-				["isColor"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
-				["timer"] = true,
 				["isIcon"] = true,
+				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
@@ -6905,18 +6162,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Dread Bindings"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["298306"] = {
+			["342420"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -6933,6 +6179,17 @@ VUHDO_CONFIG = {
 				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["282437"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -6982,7 +6239,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Petrifying Howl"] = {
+			["Frostbolt Volley"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -7015,50 +6272,6 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["306984"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["296737"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Deep Connection"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Frostbolt Volley"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
 			["Stitchneedle"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -7076,6 +6289,50 @@ VUHDO_CONFIG = {
 				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Deep Connection"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Bind Soul"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["306984"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["296737"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -7345,7 +6602,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["313198"] = {
+			["283411"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -7356,12 +6613,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["283411"] = {
+			["Searing Censure"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -7466,7 +6723,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Freezing Burst"] = {
+			["Severing Blade"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -7477,7 +6734,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Severing Blade"] = {
+			["Freezing Burst"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -7642,12 +6899,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["Searing Censure"] = {
+			["313198"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -7807,23 +7064,23 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["Petrifying Howl"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
 			["342735"] = {
 				["animate"] = true,
 				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = false,
 				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Bind Soul"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -7906,6 +7163,17 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["298306"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
 			["Sanctified Mists"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -7917,23 +7185,23 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["334771"] = {
-				["animate"] = true,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = false,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
 			["Embalming Fluid"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["282209"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -7955,17 +7223,6 @@ VUHDO_CONFIG = {
 				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = false,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["342420"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
 				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
@@ -8027,12 +7284,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Purification Beam"] = {
+			["307945"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -8126,6 +7383,17 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["310358"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
 			["284781"] = {
 				["animate"] = false,
 				["isMine"] = true,
@@ -8137,18 +7405,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["274358"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Furious Quake"] = {
+			["Burden of Knowledge"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8170,7 +7427,73 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Volatile Anima Infection"] = {
+			["Death Bolt"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["367571"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isIconGlow"] = false,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isOthers"] = true,
+			},
+			["332664"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["274358"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["266206"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Bone Spear"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Tearing Strike"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8192,17 +7515,6 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["332664"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
 			["350496"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -8214,84 +7526,29 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["266206"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Serrated Teeth"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["347704"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
-			},
-			["Wicked Blade"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["365021"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
-			},
-			["Greater Castigation"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["331209"] = {
-				["animate"] = false,
+			["320462"] = {
+				["animate"] = true,
 				["isMine"] = true,
 				["isOthers"] = true,
-				["isStacks"] = true,
+				["isStacks"] = false,
 				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Wicked Assault"] = {
+			["335873"] = {
+				["animate"] = true,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = false,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Night Hunter"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8313,27 +7570,27 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["265662"] = {
+			["Sinseeker"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Thirst For Blood"] = {
+			["347704"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 			},
 			["Explosive Anger"] = {
 				["animate"] = false,
@@ -8357,7 +7614,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Echoing Sonar"] = {
+			["Reap Soul"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8368,7 +7625,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["345805"] = {
+			["282432"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -8379,18 +7636,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["307806"] = {
+			["Shrunk"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Growing Mistrust"] = {
+			["Greater Castigation"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8522,7 +7779,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["322487"] = {
+			["Unending Darkness"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8566,7 +7823,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["Manifest Death"] = {
+			["Necrotic Ichor"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8577,7 +7834,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Darkshot"] = {
+			["Bone Splinter"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8588,7 +7845,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["282386"] = {
+			["327902"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -8599,12 +7856,12 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["286770"] = {
+			["Localized Explosive Contrivance"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -8632,7 +7889,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Torch Strike"] = {
+			["Energy Lash"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8643,18 +7900,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["324982"] = {
-				["animate"] = true,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = false,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Turn to Stone"] = {
+			["Shared Suffering"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8665,7 +7911,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Artillery Barrage"] = {
+			["300545"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Slicing Blast"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8698,18 +7955,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Anima Release"] = {
+			["285367"] = {
 				["animate"] = false,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["303825"] = {
+			["292167"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
@@ -8731,7 +7988,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Wrack Soul"] = {
+			["324982"] = {
+				["animate"] = true,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = false,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Cursed Slash"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8742,18 +8010,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Cutting Surge"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Blood Maw"] = {
+			["Turn to Stone"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8797,7 +8054,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isOthers"] = true,
 			},
-			["Anima Puddle"] = {
+			["Shatter"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8819,6 +8076,39 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["Venomfangs"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Severing Axe"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Plagued Carrion"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
 			["Vanquished"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -8830,18 +8120,18 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["285000"] = {
+			["Shattered"] = {
 				["animate"] = false,
-				["isMine"] = true,
+				["isColor"] = false,
 				["isOthers"] = true,
 				["isStacks"] = true,
-				["isColor"] = false,
+				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Plagued Carrion"] = {
+			["Plague Bomb"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8863,23 +8153,23 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["Chainblade"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
 			["310022"] = {
 				["animate"] = false,
 				["isMine"] = true,
 				["isOthers"] = true,
 				["isStacks"] = true,
 				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Cytotoxic Slash"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
@@ -8896,40 +8186,7 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["Chainblade"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["361309"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
-			},
 			["Touch of the Drowned"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["Jagged Nettles"] = {
 				["animate"] = false,
 				["isColor"] = false,
 				["isOthers"] = true,
@@ -8951,6 +8208,28 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["267821"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["Slime Wave"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
 			["313461"] = {
 				["animate"] = false,
 				["isMine"] = true,
@@ -8961,28 +8240,6 @@ VUHDO_CONFIG = {
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
-			},
-			["329906"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["365024"] = {
-				["animate"] = false,
-				["isColor"] = false,
-				["isIconGlow"] = false,
-				["isStacks"] = true,
-				["isMine"] = true,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isOthers"] = true,
 			},
 			["Bewildering Pollen"] = {
 				["animate"] = false,
@@ -9017,6 +8274,28 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
+			["Morbid Fixation"] = {
+				["animate"] = false,
+				["isColor"] = false,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isMine"] = true,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
+			["295779"] = {
+				["animate"] = false,
+				["isMine"] = true,
+				["isOthers"] = true,
+				["isStacks"] = true,
+				["isColor"] = false,
+				["isIcon"] = true,
+				["timer"] = true,
+				["isBarGlow"] = false,
+				["isIconGlow"] = false,
+			},
 			["Shattered Defenses"] = {
 				["animate"] = false,
 				["isColor"] = false,
@@ -9038,28 +8317,6 @@ VUHDO_CONFIG = {
 				["timer"] = true,
 				["isBarGlow"] = false,
 				["isOthers"] = true,
-			},
-			["265129"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
-			},
-			["307358"] = {
-				["animate"] = false,
-				["isMine"] = true,
-				["isOthers"] = true,
-				["isStacks"] = true,
-				["isColor"] = false,
-				["isIcon"] = true,
-				["timer"] = true,
-				["isBarGlow"] = false,
-				["isIconGlow"] = false,
 			},
 			["Axe Barrage"] = {
 				["animate"] = false,
@@ -9105,16 +8362,16 @@ VUHDO_CONFIG = {
 				["isBarGlow"] = false,
 				["isIconGlow"] = false,
 			},
-			["364030"] = {
+			["Debilitating Shout"] = {
 				["animate"] = false,
 				["isColor"] = false,
-				["isIconGlow"] = false,
+				["isOthers"] = true,
 				["isStacks"] = true,
 				["isMine"] = true,
 				["isIcon"] = true,
 				["timer"] = true,
 				["isBarGlow"] = false,
-				["isOthers"] = true,
+				["isIconGlow"] = false,
 			},
 			["360259"] = {
 				["animate"] = false,
@@ -9133,7 +8390,750 @@ VUHDO_CONFIG = {
 		["timer"] = true,
 		["isName"] = false,
 		["xAdjust"] = 0,
-		["blacklistModi"] = "ALT-CTRL-SHIFT",
+		["STORED"] = {
+			"271222", -- [1]
+			"267821", -- [2]
+			"262313", -- [3]
+			"262314", -- [4]
+			"264219", -- [5]
+			"265360", -- [6]
+			"265662", -- [7]
+			"265129", -- [8]
+			"265178", -- [9]
+			"265212", -- [10]
+			"273365", -- [11]
+			"269936", -- [12]
+			"274358", -- [13]
+			"274271", -- [14]
+			"272336", -- [15]
+			"272536", -- [16]
+			"263334", -- [17]
+			"263372", -- [18]
+			"261552", -- [19]
+			"261632", -- [20]
+			"261509", -- [21]
+			"260908", -- [22]
+			"274891", -- [23]
+			"271246", -- [24]
+			"274839", -- [25]
+			"274904", -- [26]
+			"274932", -- [27]
+			"Necrotic Wound", -- [28]
+			"278961", -- [29]
+			"265206", -- [30]
+			"275270", -- [31]
+			"265127", -- [32]
+			"267160", -- [33]
+			"267161", -- [34]
+			"267162", -- [35]
+			"267163", -- [36]
+			"267164", -- [37]
+			"267165", -- [38]
+			"267166", -- [39]
+			"267167", -- [40]
+			"267168", -- [41]
+			"276020", -- [42]
+			"272506", -- [43]
+			"grevious wound", -- [44]
+			"Grievous Wound", -- [45]
+			"285875", -- [46]
+			"282215", -- [47]
+			"282471", -- [48]
+			"285659", -- [49]
+			"286434", -- [50]
+			"285632", -- [51]
+			"286988", -- [52]
+			"287072", -- [53]
+			"283507", -- [54]
+			"284519", -- [55]
+			"282444", -- [56]
+			"286811", -- [57]
+			"282209", -- [58]
+			"285213", -- [59]
+			"288449", -- [60]
+			"284662", -- [61]
+			"285349", -- [62]
+			"284781", -- [63]
+			"286480", -- [64]
+			"282182", -- [65]
+			"287757", -- [66]
+			"283411", -- [67]
+			"284405", -- [68]
+			"285000", -- [69]
+			"285350", -- [70]
+			"287365", -- [71]
+			"289220", -- [72]
+			"288038", -- [73]
+			"Reap Soul", -- [74]
+			"Galvanize", -- [75]
+			"Spit Gold", -- [76]
+			"Conduction", -- [77]
+			"Severing Axe", -- [78]
+			"Drain Fluids", -- [79]
+			"Gut Shot", -- [80]
+			"Iron Gaze", -- [81]
+			"Decaying Spores", -- [82]
+			"Rotting Spores", -- [83]
+			"Jagged Nettles", -- [84]
+			"Serrated Teeth", -- [85]
+			"Thirst For Blood", -- [86]
+			"Severing Blade", -- [87]
+			"Infected Thorn", -- [88]
+			"Rending Maul", -- [89]
+			"Blood Maw", -- [90]
+			"Torch Strike", -- [91]
+			"Shadow Barrage", -- [92]
+			"Frost Shock", -- [93]
+			"Itchy Bite", -- [94]
+			"Jagged Cut", -- [95]
+			"Spit", -- [96]
+			"Ravaging Leap", -- [97]
+			"293300", -- [98]
+			"282540", -- [99]
+			"282432", -- [100]
+			"287762", -- [101]
+			"131097", -- [102]
+			"131098", -- [103]
+			"282437", -- [104]
+			"282386", -- [105]
+			"283524", -- [106]
+			"293488", -- [107]
+			"285345", -- [108]
+			"285652", -- [109]
+			"295609", -- [110]
+			"286770", -- [111]
+			"284733", -- [112]
+			"283053", -- [113]
+			"282738", -- [114]
+			"285367", -- [115]
+			"Insidious Gift", -- [116]
+			"Rat Traps", -- [117]
+			"Explosive Burst", -- [118]
+			"Venomous Spit", -- [119]
+			"284722", -- [120]
+			"286771", -- [121]
+			"295421", -- [122]
+			"295348", -- [123]
+			"300882", -- [124]
+			"300957", -- [125]
+			"292127", -- [126]
+			"292307", -- [127]
+			"292167", -- [128]
+			"301494", -- [129]
+			"298595", -- [130]
+			"296737", -- [131]
+			"296746", -- [132]
+			"296693", -- [133]
+			"297333", -- [134]
+			"298306", -- [135]
+			"295779", -- [136]
+			"297586", -- [137]
+			"299914", -- [138]
+			"296851", -- [139]
+			"300545", -- [140]
+			"292971", -- [141]
+			"292963", -- [142]
+			"293509", -- [143]
+			"298192", -- [144]
+			"303828", -- [145]
+			"303825", -- [146]
+			"303657", -- [147]
+			"300492", -- [148]
+			"297907", -- [149]
+			"Plague Step", -- [150]
+			"Gust slash", -- [151]
+			"Gust Slash", -- [152]
+			"Gale Slash", -- [153]
+			"Stinging Venom", -- [154]
+			"306163", -- [155]
+			"314347", -- [156]
+			"307013", -- [157]
+			"307806", -- [158]
+			"306301", -- [159]
+			"308059", -- [160]
+			"307950", -- [161]
+			"308065", -- [162]
+			"313198", -- [163]
+			"312406", -- [164]
+			"309569", -- [165]
+			"307314", -- [166]
+			"307359", -- [167]
+			"310323", -- [168]
+			"313461", -- [169]
+			"313129", -- [170]
+			"313460", -- [171]
+			"313227", -- [172]
+			"310019", -- [173]
+			"310022", -- [174]
+			"313077", -- [175]
+			"315252", -- [176]
+			"316065", -- [177]
+			"307358", -- [178]
+			"307945", -- [179]
+			"306929", -- [180]
+			"307260", -- [181]
+			"310552", -- [182]
+			"310358", -- [183]
+			"275269", -- [184]
+			"311159", -- [185]
+			"307008", -- [186]
+			"306973", -- [187]
+			"306984", -- [188]
+			"308885", -- [189]
+			"317112", -- [190]
+			"309980", -- [191]
+			"316541", -- [192]
+			"316542", -- [193]
+			"Widowmaker Toxin", -- [194]
+			"Static Pulse", -- [195]
+			"Furious Quake", -- [196]
+			"Energy Lash", -- [197]
+			"Festering Bite", -- [198]
+			"Echo Blade", -- [199]
+			"Transmute: Enemy to Goo", -- [200]
+			"Caustic Compound", -- [201]
+			"Chemical Burn", -- [202]
+			"Homing Missile", -- [203]
+			"Mine Blast", -- [204]
+			"Savage Cleave", -- [205]
+			"Hooked Snare", -- [206]
+			"Dark Omen", -- [207]
+			"Wicked Assault", -- [208]
+			"Withering Curse", -- [209]
+			"Death Bolt", -- [210]
+			"Maddening Gaze", -- [211]
+			"Upheaval", -- [212]
+			"Putrid Blood", -- [213]
+			"Squeeze", -- [214]
+			"Massive Chomp", -- [215]
+			"Debilitating Shout", -- [216]
+			"Makeshift Shiv", -- [217]
+			"Crippling Shiv", -- [218]
+			"Handcuff", -- [219]
+			"Suppression Fire", -- [220]
+			"Fuselighter", -- [221]
+			"Righteous Flames", -- [222]
+			"Incendiary Rounds", -- [223]
+			"Freezing Trap", -- [224]
+			"Severing Serpent", -- [225]
+			"Rotten Expulsion", -- [226]
+			"Marking Cleave", -- [227]
+			"Spellbind", -- [228]
+			"Drain Essence", -- [229]
+			"Bone Splinter", -- [230]
+			"Toad Blight", -- [231]
+			"Aura of Dread", -- [232]
+			"Unstable Runic Mark", -- [233]
+			"Grasping Thorns", -- [234]
+			"Pallid Glare", -- [235]
+			"Runic Mark", -- [236]
+			"Thorned Barrage", -- [237]
+			"Tearing Strike", -- [238]
+			"Shatter", -- [239]
+			"Dread Mark", -- [240]
+			"Lingering Dread", -- [241]
+			"Decaying Touch", -- [242]
+			"Fragment Soul", -- [243]
+			"Wasting Strike", -- [244]
+			"Virulent Pathogen", -- [245]
+			"Dark Leap", -- [246]
+			"Soulburn", -- [247]
+			"Transfusion", -- [248]
+			"Molten Gold", -- [249]
+			"Venom-Tipped Blade", -- [250]
+			"Unstable Hex", -- [251]
+			"Lingering Nausea", -- [252]
+			"Terrifying Screech", -- [253]
+			"Terrifying Visage", -- [254]
+			"Soulrend", -- [255]
+			"Wracking Pain", -- [256]
+			"Soulfeast", -- [257]
+			"Crippling Bite", -- [258]
+			"Poisoning Strike", -- [259]
+			"Infected Wound", -- [260]
+			"Earth Shaker", -- [261]
+			"Scabrous Bite", -- [262]
+			"Frost Blast", -- [263]
+			"Cutting Surge", -- [264]
+			"Ripper Punch", -- [265]
+			"Oiled Blade", -- [266]
+			"Flaming Shrapnel", -- [267]
+			"Darkshot", -- [268]
+			"Hidden Blade", -- [269]
+			"Axe Barrage", -- [270]
+			"Purification Beam", -- [271]
+			"Hex", -- [272]
+			"Poison Barrage", -- [273]
+			"Poison Nova", -- [274]
+			"Whirling Axes", -- [275]
+			"Shattered Defenses", -- [276]
+			"Embalming Fluid", -- [277]
+			"Anchor of Binding", -- [278]
+			"Rising Tides", -- [279]
+			"Choking Brine", -- [280]
+			"Sundering Blow", -- [281]
+			"Carve Flesh", -- [282]
+			"Electrifying Shock", -- [283]
+			"Unending Darkness", -- [284]
+			"Touch of the Drowned", -- [285]
+			"Rip Mind", -- [286]
+			"Mental Assault", -- [287]
+			"Lash", -- [288]
+			"Mind Rend", -- [289]
+			"Abyssal Strike", -- [290]
+			"Whispers of Power", -- [291]
+			"Yawning Gate", -- [292]
+			"Slicing Blast", -- [293]
+			"Hindering Cut", -- [294]
+			"Hangman's Noose", -- [295]
+			"Feral Charge", -- [296]
+			"Clamping Jaws", -- [297]
+			"Cursed Slash", -- [298]
+			"Sighted Artillery", -- [299]
+			"Viscous Slobber", -- [300]
+			"Choking Waters", -- [301]
+			"Rotting Wounds", -- [302]
+			"Putrid Waters", -- [303]
+			"Neurotoxin", -- [304]
+			"Cheap Shot", -- [305]
+			"Noxious Breath", -- [306]
+			"Cytotoxin", -- [307]
+			"Scouring Sand", -- [308]
+			"Blinding Sand", -- [309]
+			"Toxic Pool", -- [310]
+			"Flame Shock", -- [311]
+			"Heart Attack", -- [312]
+			"Snake Charm", -- [313]
+			"Plague", -- [314]
+			"Pulse", -- [315]
+			"Giga-Zap", -- [316]
+			"Inconspicuous Plant", -- [317]
+			"Omega-Buster", -- [318]
+			"Blood of the Corruptor", -- [319]
+			"Cascading Terror", -- [320]
+			"\"Hidden\" Flame Cannon", -- [321]
+			"Blossom Blast", -- [322]
+			"Electrical Charge", -- [323]
+			"Taze", -- [324]
+			"Mega Taze", -- [325]
+			"Pounce", -- [326]
+			"Nanoslicer", -- [327]
+			"Grand Delusions", -- [328]
+			"Shrink", -- [329]
+			"Shrunk", -- [330]
+			"Short Out", -- [331]
+			"Spirit Breaker", -- [332]
+			"Crippling Pestilence", -- [333]
+			"Lingering Doubt", -- [334]
+			"Defiled Ground", -- [335]
+			"Wreck", -- [336]
+			"Flaming Refuse", -- [337]
+			"Arcing Zap", -- [338]
+			"Chainblade", -- [339]
+			"280605", -- [340]
+			"253562", -- [341]
+			"Eye of Corruption", -- [342]
+			"Grasping Tendrils", -- [343]
+			"Tear Flesh", -- [344]
+			"Consuming Slime", -- [345]
+			"Vile Corruption", -- [346]
+			"Volatile Rupture", -- [347]
+			"Sledgehammer", -- [348]
+			"Grasping Hex", -- [349]
+			"Bork", -- [350]
+			"Ripping Slash", -- [351]
+			"Slimebolt", -- [352]
+			"Gooped", -- [353]
+			"Fulminating Zap", -- [354]
+			"Capacitor Discharge", -- [355]
+			"Sonic Pulse", -- [356]
+			"Explosive Leap", -- [357]
+			"Blazing Chomp", -- [358]
+			"Burst", -- [359]
+			"306311", -- [360]
+			"306184", -- [361]
+			"Discom-BOMB-ulator", -- [362]
+			"Hammer of Justice", -- [363]
+			"Touch of Death", -- [364]
+			"Touch of Karma", -- [365]
+			"Infinite Stars", -- [366]
+			"Obsidian Claw", -- [367]
+			"Ignite", -- [368]
+			"Artillery Barrage", -- [369]
+			"266206", -- [370]
+			"Jagged Quarrel", -- [371]
+			"Soul Corruption", -- [372]
+			"Dark Stride", -- [373]
+			"Castigate", -- [374]
+			"Agonize", -- [375]
+			"Wrack Soul", -- [376]
+			"Wicked Gash", -- [377]
+			"Bone Flay", -- [378]
+			"Tenderize", -- [379]
+			"Chill of the Damned", -- [380]
+			"Soulless", -- [381]
+			"Chill of the Beyond", -- [382]
+			"Boneflay", -- [383]
+			"Ricocheting Blade", -- [384]
+			"Dying Breath", -- [385]
+			"Bloodletting", -- [386]
+			"Soul Split", -- [387]
+			"Mistveil Tear", -- [388]
+			"Stigma of Pride", -- [389]
+			"Ritual of Woe", -- [390]
+			"Jagged Swipe", -- [391]
+			"Shattered", -- [392]
+			"Glass Shards", -- [393]
+			"Anguish", -- [394]
+			"Rake", -- [395]
+			"Maw-Touched Spital", -- [396]
+			"Residual Impact", -- [397]
+			"Infernal Strife", -- [398]
+			"Ionized Plasma", -- [399]
+			"Dark Lance", -- [400]
+			"Anima Surge", -- [401]
+			"Lost Confidence", -- [402]
+			"Deep Connection", -- [403]
+			"Reaver", -- [404]
+			"Rage", -- [405]
+			"Decrepit Bite", -- [406]
+			"Shimmerdust Sleep", -- [407]
+			"Soporific Shimmerdust", -- [408]
+			"Absorbing Haze", -- [409]
+			"Disgusting Guts", -- [410]
+			"Clinging Darkness", -- [411]
+			"Wrath of Zolramus", -- [412]
+			"Chilled", -- [413]
+			"Frostbolt Volley", -- [414]
+			"Rasping Scream", -- [415]
+			"Final Bargain", -- [416]
+			"Necrotic Bolt", -- [417]
+			"Grim Fate", -- [418]
+			"Shared Agony", -- [419]
+			"Mindless Fixation", -- [420]
+			"Morbid Fixation", -- [421]
+			"Fetid Gas", -- [422]
+			"Heaving Retch", -- [423]
+			"Carrion Eruption", -- [424]
+			"Necrotic Ichor", -- [425]
+			"Necrotic Breath", -- [426]
+			"Stitchneedle", -- [427]
+			"Embalmbing Ichor", -- [428]
+			"Comet Storm", -- [429]
+			"Frozen Binds", -- [430]
+			"Binding Fungus", -- [431]
+			"Clinging Infestation", -- [432]
+			"Corroded Claws", -- [433]
+			"Hungering Drain", -- [434]
+			"Sanctified Mists", -- [435]
+			"Severing Slice", -- [436]
+			"Overbearing Presence", -- [437]
+			"Barbed Shackle", -- [438]
+			"Crushing Doubt", -- [439]
+			"Tear", -- [440]
+			"Master of Death", -- [441]
+			"Cosmic Artifice", -- [442]
+			"Arcane Lightning", -- [443]
+			"Arcane Vulnerability", -- [444]
+			"Localized Explosive Contrivance", -- [445]
+			"Throw Buzz-Saw", -- [446]
+			"Buzz-Saw", -- [447]
+			"Blood Barrage", -- [448]
+			"Spilled Essence", -- [449]
+			"Zealous", -- [450]
+			"Purifying Blast", -- [451]
+			"Soulcrusher", -- [452]
+			"Corrupted Blood", -- [453]
+			"Debilitating Poison", -- [454]
+			"W-00F", -- [455]
+			"Overwhelming Power!", -- [456]
+			"Shadowfury", -- [457]
+			"Bleeding", -- [458]
+			"Lightning Discharge", -- [459]
+			"Shadow Word: Pain", -- [460]
+			"Gushing Wound", -- [461]
+			"Beak Slice", -- [462]
+			"Wailing Grief", -- [463]
+			"Curse of Obliteration", -- [464]
+			"Collect Sins", -- [465]
+			"Siphon Life", -- [466]
+			"Sinlight Visions", -- [467]
+			"Turn to Stone", -- [468]
+			"Stony Veins", -- [469]
+			"Ankle Bites", -- [470]
+			"Blood Torrent", -- [471]
+			"Stone Shattering Leap", -- [472]
+			"Curse of Stone", -- [473]
+			"322486", -- [474]
+			"322487", -- [475]
+			"Bewildering Pollen", -- [476]
+			"Bramble Burst", -- [477]
+			"Repulsive Visage", -- [478]
+			"Anima Puddle", -- [479]
+			"Bramblethorn Entanglement", -- [480]
+			"Anima Injection", -- [481]
+			"Patty Cake", -- [482]
+			"Freezing Burst", -- [483]
+			"Volatile Acid", -- [484]
+			"Decomposition Pool", -- [485]
+			"Stinging Assault", -- [486]
+			"Parasitic Pacification", -- [487]
+			"Parasitic Incapacitation", -- [488]
+			"Parasitic Domination", -- [489]
+			"Poisonous Secretions", -- [490]
+			"Shred Armor", -- [491]
+			"Blightbeak", -- [492]
+			"Plagued Carrion", -- [493]
+			"Poison Dart", -- [494]
+			"Fen Stinger", -- [495]
+			"Hurl Spores", -- [496]
+			"Debilitating Plague", -- [497]
+			"Slime Wave", -- [498]
+			"Violent Detonation", -- [499]
+			"Plague Bomb", -- [500]
+			"Blinding Sleet", -- [501]
+			"Gripping Infection", -- [502]
+			"Withering Filth", -- [503]
+			"Crushing Embrace", -- [504]
+			"Wasting Blight", -- [505]
+			"Slime Injection", -- [506]
+			"Burning Strain", -- [507]
+			"Venomarrows", -- [508]
+			"Venompiercer", -- [509]
+			"Venomfangs", -- [510]
+			"Enveloping Webbing", -- [511]
+			"Shadow Ambush", -- [512]
+			"Venomblades", -- [513]
+			"Infectious Rain", -- [514]
+			"Curse of Suppression", -- [515]
+			"Dread Bindings", -- [516]
+			"Barbed Shackles", -- [517]
+			"Explosive Anger", -- [518]
+			"Growing Mistrust", -- [519]
+			"Iron Spikes", -- [520]
+			"Burden of Knowledge", -- [521]
+			"Insidious Venom", -- [522]
+			"Weakened", -- [523]
+			"Blinding Flash", -- [524]
+			"Charged Anima", -- [525]
+			"Charged Spear", -- [526]
+			"Frostbolt", -- [527]
+			"Goresplatter", -- [528]
+			"Festering Rot", -- [529]
+			"Embalming Ichor", -- [530]
+			"Noxious Spores", -- [531]
+			"Searing Death", -- [532]
+			"Necromantic Bolt", -- [533]
+			"Opportunity Strikes", -- [534]
+			"Bind Soul", -- [535]
+			"Shadow Vulnerability", -- [536]
+			"Bone Spear", -- [537]
+			"Necrotic Bolt Volley", -- [538]
+			"Curse of Desolation", -- [539]
+			"Phantasmal Parasite", -- [540]
+			"Grasping Hands", -- [541]
+			"Decaying Blight", -- [542]
+			"Withering Blight", -- [543]
+			"Chop", -- [544]
+			"Manifest Death", -- [545]
+			"Colossus Smash", -- [546]
+			"Gut Slice", -- [547]
+			"319070", -- [548]
+			"Rapid Infection", -- [549]
+			"Wretched Phlegm", -- [550]
+			"Forced Confession", -- [551]
+			"Cytotoxic Slash", -- [552]
+			"Internal Strife", -- [553]
+			"Vile Spit", -- [554]
+			"Triple Bite", -- [555]
+			"Assassinate", -- [556]
+			"Concentrated Plague", -- [557]
+			"Sanguine Ichor", -- [558]
+			"Wave of Blood", -- [559]
+			"Exsanguinated", -- [560]
+			"Earsplitting Shriek", -- [561]
+			"Echoing Sonar", -- [562]
+			"Sinseeker", -- [563]
+			"Jagged Claws", -- [564]
+			"Deathly Roar", -- [565]
+			"Petrifying Howl", -- [566]
+			"Stone Shards", -- [567]
+			"Smoldering Remnants", -- [568]
+			"Burning Remnants", -- [569]
+			"Lingering Embers", -- [570]
+			"Vanquished", -- [571]
+			"Crimson Flurry", -- [572]
+			"Vulgar Brand", -- [573]
+			"Soul Infusion", -- [574]
+			"Greater Castigation", -- [575]
+			"Dimensional Tear", -- [576]
+			"Glyph of Destruction", -- [577]
+			"Withering Touch", -- [578]
+			"Gluttonous Miasma", -- [579]
+			"Anima Release", -- [580]
+			"Warped Desires", -- [581]
+			"Lingering Anima", -- [582]
+			"Shared Suffering", -- [583]
+			"Indemnification", -- [584]
+			"Anima Web", -- [585]
+			"Lightly Concentrated Anima", -- [586]
+			"Rooted in Anima", -- [587]
+			"Fragment of Shadow", -- [588]
+			"Unconscionable Guilt", -- [589]
+			"Duelist's Riposte", -- [590]
+			"Sintouched Blade", -- [591]
+			"Dreadbolt Volley", -- [592]
+			"Soul Spikes", -- [593]
+			"Evasive Lunge", -- [594]
+			"Ravenous Horrors", -- [595]
+			"Burden of Sin", -- [596]
+			"Night Hunter", -- [597]
+			"Desolation", -- [598]
+			"Searing Censure", -- [599]
+			"Carnage", -- [600]
+			"Impale", -- [601]
+			"Rancor", -- [602]
+			"Scorn", -- [603]
+			"Fatal Finesse", -- [604]
+			"Wicked Laceration", -- [605]
+			"Heart Rend", -- [606]
+			"Heart Hemorrhage", -- [607]
+			"Serrated Tear", -- [608]
+			"Stone Fist", -- [609]
+			"Seismic Upheavel", -- [610]
+			"Wicked Blade", -- [611]
+			"Volatile Anima Infection", -- [612]
+			"Ravenous Feast", -- [613]
+			"Chain Slam", -- [614]
+			"Chain Bleed", -- [615]
+			"328897", -- [616]
+			"342077", -- [617]
+			"341684", -- [618]
+			"341489", -- [619]
+			"335111", -- [620]
+			"334971", -- [621]
+			"334945", -- [622]
+			"334852", -- [623]
+			"323402", -- [624]
+			"328479", -- [625]
+			"326583", -- [626]
+			"339251", -- [627]
+			"332871", -- [628]
+			"338600", -- [629]
+			"343026", -- [630]
+			"337859", -- [631]
+			"328448", -- [632]
+			"325236", -- [633]
+			"327902", -- [634]
+			"340860", -- [635]
+			"329298", -- [636]
+			"325936", -- [637]
+			"324983", -- [638]
+			"332664", -- [639]
+			"330967", -- [640]
+			"331706", -- [641]
+			"331637", -- [642]
+			"331209", -- [643]
+			"342420", -- [644]
+			"342419", -- [645]
+			"335470", -- [646]
+			"333377", -- [647]
+			"339690", -- [648]
+			"342655", -- [649]
+			"327796", -- [650]
+			"329906", -- [651]
+			"332794", -- [652]
+			"327992", -- [653]
+			"Crushed Soul", -- [654]
+			"317103", -- [655]
+			"Jagged Gash", -- [656]
+			"345805", -- [657]
+			"Polymorph", -- [658]
+			"320462", -- [659]
+			"320170", -- [660]
+			"330784", -- [661]
+			"330868", -- [662]
+			"223929", -- [663]
+			"330713", -- [664]
+			"335304", -- [665]
+			"335112", -- [666]
+			"335113", -- [667]
+			"326538", -- [668]
+			"324982", -- [669]
+			"328468", -- [670]
+			"326302", -- [671]
+			"331636", -- [672]
+			"346651", -- [673]
+			"339189", -- [674]
+			"333913", -- [675]
+			"334771", -- [676]
+			"342735", -- [677]
+			"342698", -- [678]
+			"332797", -- [679]
+			"335873", -- [680]
+			"329951", -- [681]
+			"347668", -- [682]
+			"350713", -- [683]
+			"350542", -- [684]
+			"350109", -- [685]
+			"350073", -- [686]
+			"353429", -- [687]
+			"350496", -- [688]
+			"352833", -- [689]
+			"353931", -- [690]
+			"350568", -- [691]
+			"354289", -- [692]
+			"348760", -- [693]
+			"347670", -- [694]
+			"347807", -- [695]
+			"347607", -- [696]
+			"351091", -- [697]
+			"347704", -- [698]
+			"360458", -- [699]
+			"366393", -- [700]
+			"367571", -- [701]
+			"360448", -- [702]
+			"359981", -- [703]
+			"366070", -- [704]
+			"362882", -- [705]
+			"362803", -- [706]
+			"364030", -- [707]
+			"365681", -- [708]
+			"361309", -- [709]
+			"368957", -- [710]
+			"369207", -- [711]
+			"364289", -- [712]
+			"361018", -- [713]
+			"361225", -- [714]
+			"360259", -- [715]
+			"361067", -- [716]
+			"362352", -- [717]
+			"362383", -- [718]
+			"362622", -- [719]
+			"363795", -- [720]
+			"364073", -- [721]
+			"360869", -- [722]
+			"365293", -- [723]
+			"365024", -- [724]
+			"365021", -- [725]
+			"366849", -- [726]
+			"360006", -- [727]
+			"360012", -- [728]
+			"359963", -- [729]
+			"360287", -- [730]
+			"361548", -- [731]
+			"362806", -- [732]
+			"362081", -- [733]
+			"362798", -- [734]
+			"362088", -- [735]
+			"365153", -- [736]
+			"359868", -- [737]
+			"366132", -- [738]
+			"366020", -- [739]
+			"360282", -- [740]
+			"360281", -- [741]
+			"365219", -- [742]
+		},
 	},
 	["SMARTCAST_BUFF"] = false,
 	["SHOW_OVERSHIELD_BAR"] = false,
@@ -9234,7 +9234,7 @@ VUHDO_PANEL_SETUP = {
 			["scale"] = 1,
 			["relativePoint"] = "BOTTOMLEFT",
 			["orientation"] = "BOTTOM",
-			["height"] = 55.00001907348633,
+			["height"] = 69,
 			["growth"] = "BOTTOM",
 			["width"] = 179,
 		},
@@ -9247,11 +9247,11 @@ VUHDO_PANEL_SETUP = {
 		},
 		["frameStrata"] = "MEDIUM",
 		["MODEL"] = {
-			["sort"] = 5,
 			["groups"] = {
 				1, -- [1]
 			},
 			["ordering"] = 0,
+			["sort"] = 5,
 			["isReverse"] = false,
 		},
 		["TOOLTIP"] = {
@@ -9362,7 +9362,7 @@ VUHDO_PANEL_SETUP = {
 			["arrangeHorizontal"] = false,
 			["damFlashFactor"] = 0.75,
 			["isTarClassColText"] = true,
-			["barHeight"] = 55,
+			["barHeight"] = 69,
 			["alignBottom"] = false,
 		},
 		["LIFE_TEXT"] = {
@@ -11762,7 +11762,7 @@ VUHDO_HOSTILE_SPELL_ASSIGNMENTS = {
 	},
 }
 VUHDO_MM_SETTINGS = {
-	["minimapPos"] = 159.893816113859,
+	["minimapPos"] = 165.8196764643551,
 	["hide"] = false,
 }
 VUHDO_PLAYER_TARGETS = {
@@ -12052,7 +12052,7 @@ VUHDO_BUFF_SETTINGS = {
 			["O"] = 1,
 			["R"] = 1,
 		},
-		["name"] = "Eddielee",
+		["name"] = "Cutetroll",
 		["filter"] = {
 			[999] = true,
 		},
@@ -12196,6 +12196,7 @@ VUHDO_BUFF_SETTINGS = {
 			["O"] = 1,
 			["useOpacity"] = true,
 		},
+		["buff"] = "Wind Rush Totem",
 		["enabled"] = false,
 		["filter"] = {
 			[999] = true,
@@ -12237,6 +12238,7 @@ VUHDO_BUFF_SETTINGS = {
 			["O"] = 1,
 			["useOpacity"] = true,
 		},
+		["buff"] = "Mana Spring Totem",
 		["enabled"] = false,
 		["filter"] = {
 			[999] = true,
@@ -12588,9 +12590,9 @@ VUHDO_SPELLS_KEYBOARD = {
 			"-w10", -- [2]
 			"", -- [3]
 		},
-		["ctrl2"] = {
-			"CTRL-", -- [1]
-			"-w6", -- [2]
+		["shift1"] = {
+			"SHIFT-", -- [1]
+			"-w7", -- [2]
 			"", -- [3]
 		},
 		["2"] = {
@@ -12598,9 +12600,9 @@ VUHDO_SPELLS_KEYBOARD = {
 			"-w2", -- [2]
 			"", -- [3]
 		},
-		["ctrlshift2"] = {
-			"CTRL-SHIFT-", -- [1]
-			"-w14", -- [2]
+		["ctrl2"] = {
+			"CTRL-", -- [1]
+			"-w6", -- [2]
 			"", -- [3]
 		},
 		["shift2"] = {
@@ -12653,9 +12655,9 @@ VUHDO_SPELLS_KEYBOARD = {
 			"-w1", -- [2]
 			"", -- [3]
 		},
-		["shift1"] = {
-			"SHIFT-", -- [1]
-			"-w7", -- [2]
+		["ctrlshift2"] = {
+			"CTRL-SHIFT-", -- [1]
+			"-w14", -- [2]
 			"", -- [3]
 		},
 	},
@@ -12685,9 +12687,9 @@ VUHDO_SPELLS_KEYBOARD = {
 			"-w10", -- [2]
 			"", -- [3]
 		},
-		["ctrl2"] = {
-			"CTRL-", -- [1]
-			"-w6", -- [2]
+		["shift1"] = {
+			"SHIFT-", -- [1]
+			"-w7", -- [2]
 			"", -- [3]
 		},
 		["2"] = {
@@ -12695,9 +12697,9 @@ VUHDO_SPELLS_KEYBOARD = {
 			"-w2", -- [2]
 			"", -- [3]
 		},
-		["ctrlshift2"] = {
-			"CTRL-SHIFT-", -- [1]
-			"-w14", -- [2]
+		["ctrl2"] = {
+			"CTRL-", -- [1]
+			"-w6", -- [2]
 			"", -- [3]
 		},
 		["shift2"] = {
@@ -12750,9 +12752,9 @@ VUHDO_SPELLS_KEYBOARD = {
 			"-w1", -- [2]
 			"", -- [3]
 		},
-		["shift1"] = {
-			"SHIFT-", -- [1]
-			"-w7", -- [2]
+		["ctrlshift2"] = {
+			"CTRL-SHIFT-", -- [1]
+			"-w14", -- [2]
 			"", -- [3]
 		},
 	},
@@ -12869,16 +12871,16 @@ VUHDO_INDICATOR_CONFIG = {
 			"", -- [9]
 			"", -- [10]
 		},
-		["SIDE_LEFT"] = "",
+		["CLUSTER_BORDER"] = "",
 		["INCOMING_BAR"] = "",
-		["SWIFTMEND_INDICATOR"] = "",
+		["DAMAGE_FLASH_BAR"] = "",
 		["THREAT_MARK"] = "",
-		["SIDE_RIGHT"] = "",
 		["MANA_BAR"] = "",
 		["BAR_BORDER"] = "Border: Multi + Aggro",
+		["SIDE_RIGHT"] = "",
 		["HEALTH_BAR"] = "Health (generic, class col)",
-		["DAMAGE_FLASH_BAR"] = "",
-		["CLUSTER_BORDER"] = "",
+		["SWIFTMEND_INDICATOR"] = "",
+		["SIDE_LEFT"] = "",
 	},
 	["CUSTOM"] = {
 		["THREAT_BAR"] = {

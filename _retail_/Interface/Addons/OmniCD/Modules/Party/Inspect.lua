@@ -671,7 +671,7 @@ end) or (E.isWOTLKC and function(info, inspectUnit, isInspect)
 		end
 	end
 
-	local talentGroup = GetActiveTalentGroup and GetActiveTalentGroup(true, nil)
+	local talentGroup = GetActiveTalentGroup and GetActiveTalentGroup(isInspect, nil)
 	for tabIndex = 1, 3 do
 		for talentIndex = 1, MAX_NUM_TALENTS do
 			local name, _,_,_, currentRank = GetTalentInfo(tabIndex, talentIndex, isInspect, inspectUnit, talentGroup)

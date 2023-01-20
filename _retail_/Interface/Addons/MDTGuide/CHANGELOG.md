@@ -1,3 +1,21 @@
+Version 1.17
+
+- Fix more errors caused by missing dungeon POIs
+
+Version 1.16
+
+- Fix portal map building for dungeons without portals
+- Improve zoom levels for dragonflight season 1 dungeons
+
+Version 1.15
+
+- Fix current instance detection and zooming to current pull
+
+Version 1.14
+
+- Fix top bar button placement
+- Scale pull number on the map with zoom level
+
 Version 1.13
 
 - Updated ToC version

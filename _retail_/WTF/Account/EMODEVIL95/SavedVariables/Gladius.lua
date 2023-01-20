@@ -31,10 +31,10 @@ Gladius2DB = {
 		["Clawra - Ravencrest"] = "Clawra - Ravencrest",
 		["Hentaihero - Outland"] = "Hentaihero - Outland",
 		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
+		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Arena",
-		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
 		["Lifey - Draenor"] = "Lifey - Draenor",
 		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
@@ -93,9 +93,9 @@ Gladius2DB = {
 			["x"] = {
 				["arena1"] = 923.199276239888,
 			},
-			["bottomMargin"] = 84,
 			["healthBarTexture"] = "Blizzard Raid Bar",
-			["healthBarAdjustWidth"] = false,
+			["bottomMargin"] = 84,
+			["healthBarHeight"] = 40,
 			["trinketCooldown"] = false,
 			["targetBarAttachTo"] = "Dispel",
 			["aurasBuffsWidth"] = 18,
@@ -112,17 +112,17 @@ Gladius2DB = {
 				["dest"] = "say",
 				["dispell"] = true,
 			},
-			["targetBarOffsetX"] = 11,
-			["targetBarIcon"] = false,
-			["dispellSize"] = 41,
-			["aurasDebuffs"] = true,
 			["castBarBackgroundColor"] = {
 				["a"] = 1,
 				["b"] = 0,
 				["g"] = 0,
 				["r"] = 0,
 			},
-			["classIconCooldownReverse"] = true,
+			["targetBarIcon"] = false,
+			["aurasBuffsPerColumn"] = 17,
+			["aurasDebuffs"] = true,
+			["targetBarOffsetX"] = 11,
+			["dispellSize"] = 41,
 			["targetBarHeight"] = 40,
 			["auraVersion"] = 1,
 			["targetBarOffsetY"] = -11,
@@ -202,7 +202,7 @@ Gladius2DB = {
 			},
 			["aurasDebuffsSpacingX"] = 1,
 			["castBarTextureUninterruptible"] = "Details Flat",
-			["aurasBuffsPerColumn"] = 17,
+			["classIconCooldownReverse"] = true,
 			["backgroundColor"] = {
 				["a"] = 1,
 			},
@@ -210,7 +210,7 @@ Gladius2DB = {
 			["aurasDebuffsSpacingY"] = 4,
 			["classIconCooldown"] = true,
 			["classIconCrop"] = true,
-			["healthBarHeight"] = 40,
+			["healthBarAdjustWidth"] = false,
 			["tagsVersion"] = 4,
 			["healthBarWidth"] = 253,
 			["barWidth"] = 200,
@@ -701,7 +701,7 @@ Gladius2DB = {
 			},
 			["tagsVersion"] = 4,
 			["aurasDebuffsHideTimer"] = false,
-			["dispellSize"] = 25,
+			["aurasBuffsGrow"] = "UPRIGHT",
 			["castTextSize"] = 16,
 			["aurasDebuffs"] = true,
 			["dispellOffsetX"] = 100,
@@ -714,7 +714,7 @@ Gladius2DB = {
 			["dispellGridStyleIcon"] = true,
 			["aurasBuffsTrackerCooldown"] = false,
 			["aurasDebuffsSpacingY"] = 4,
-			["aurasBuffsGrow"] = "UPRIGHT",
+			["dispellSize"] = 25,
 			["highlightInset"] = true,
 			["aurasBuffsAnchor"] = "BOTTOMLEFT",
 			["barWidth"] = 314,
@@ -753,10 +753,10 @@ Gladius2DB = {
 			["auraVersion"] = 1,
 			["tagsVersion"] = 4,
 			["y"] = {
-				["arena1"] = 519.9134741315211,
+				["arena1"] = 516.1800862715318,
 			},
 			["x"] = {
-				["arena1"] = 946.9324842834903,
+				["arena1"] = 950.1324108685658,
 			},
 		},
 		["Lifey - Silvermoon"] = {
@@ -837,14 +837,14 @@ Gladius2DB = {
 			["auraVersion"] = 1,
 			["tagsVersion"] = 4,
 		},
-		["Nolifey - Moonglade"] = {
+		["Bowbie - Ravencrest"] = {
 			["auraVersion"] = 1,
 			["tagsVersion"] = 4,
 			["x"] = {
-				["arena1"] = 887.4666478474901,
+				["arena1"] = 1151.466596511993,
 			},
 			["y"] = {
-				["arena1"] = 383.9999549229906,
+				["arena1"] = 499.7332617402026,
 			},
 		},
 		["Fuwu - Silvermoon"] = {
@@ -935,14 +935,14 @@ Gladius2DB = {
 				},
 			},
 		},
-		["Bowbie - Ravencrest"] = {
+		["Nolifey - Moonglade"] = {
 			["auraVersion"] = 1,
 			["tagsVersion"] = 4,
 			["x"] = {
-				["arena1"] = 1151.466596511993,
+				["arena1"] = 887.4666478474901,
 			},
 			["y"] = {
-				["arena1"] = 499.7332617402026,
+				["arena1"] = 383.9999549229906,
 			},
 		},
 		["Crystalol - Draenor"] = {

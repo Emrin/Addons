@@ -2,9 +2,9 @@
 ## Title: MDTGuide
 ## Notes: Guide mode for Mythic Dungeon Tools.
 ## Notes-deDE: Guide-Modus für Mythic Dungeon Tools.
-## Version: 1.14
-## OptionalDeps: MythicDungeonTools, ManbabyDungeonTools, DungeonTools
-## SavedVariables: MDTGuideActive, MDTGuideRoute, MDTGuideOptions
+## Version: 1.18
+## OptionalDeps: MythicDungeonTools
+## SavedVariables: MDTGuideDB, MDTGuideActive, MDTGuideOptions
 
 Data.lua
 Util.lua

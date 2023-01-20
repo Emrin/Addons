@@ -12,50 +12,6 @@ ElvCharacterDB = {
 			0, -- [8]
 			"", -- [9]
 			0, -- [10]
-			2257, -- [11]
-			"Player-1403-09E47E11", -- [12]
-			0, -- [13]
-			false, -- [14]
-			false, -- [15]
-			false, -- [16]
-			false, -- [17]
-			[52] = "|cff0070ddCutetroll|r",
-			[51] = 1667331501,
-			[50] = "CHAT_MSG_SAY",
-		}, -- [1]
-		{
-			"3", -- [1]
-			"Cutetroll-Draenor", -- [2]
-			"", -- [3]
-			"", -- [4]
-			"Cutetroll-Draenor", -- [5]
-			"", -- [6]
-			0, -- [7]
-			0, -- [8]
-			"", -- [9]
-			0, -- [10]
-			2260, -- [11]
-			"Player-1403-09E47E11", -- [12]
-			0, -- [13]
-			false, -- [14]
-			false, -- [15]
-			false, -- [16]
-			false, -- [17]
-			[52] = "|cff0070ddCutetroll|r",
-			[51] = 1667331502,
-			[50] = "CHAT_MSG_SAY",
-		}, -- [2]
-		{
-			"3", -- [1]
-			"Cutetroll-Draenor", -- [2]
-			"", -- [3]
-			"", -- [4]
-			"Cutetroll-Draenor", -- [5]
-			"", -- [6]
-			0, -- [7]
-			0, -- [8]
-			"", -- [9]
-			0, -- [10]
 			2263, -- [11]
 			"Player-1403-09E47E11", -- [12]
 			0, -- [13]
@@ -66,7 +22,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331504,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [3]
+		}, -- [1]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -88,7 +44,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331505,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [4]
+		}, -- [2]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -110,7 +66,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331507,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [5]
+		}, -- [3]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -132,7 +88,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331508,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [6]
+		}, -- [4]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -154,7 +110,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331510,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [7]
+		}, -- [5]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -176,7 +132,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331511,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [8]
+		}, -- [6]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -198,7 +154,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331513,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [9]
+		}, -- [7]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -220,7 +176,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331514,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [10]
+		}, -- [8]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -242,7 +198,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331516,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [11]
+		}, -- [9]
 		{
 			"3", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -264,7 +220,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331517,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [12]
+		}, -- [10]
 		{
 			"Link!", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -286,7 +242,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331596,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [13]
+		}, -- [11]
 		{
 			"%s has earned the achievement |cffffff00|Hachievement:15416:Player-1403-09E47E11:1:11:1:22:4294967295:4294967295:4294967295:4294967295|h[Domination's Grasp]|h|r!", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -308,7 +264,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331599,
 			[50] = "CHAT_MSG_GUILD_ACHIEVEMENT",
-		}, -- [14]
+		}, -- [12]
 		{
 			"%s has earned the achievement |cffffff00|Hachievement:15417:Player-1403-09E47E11:1:11:1:22:4294967295:4294967295:4294967295:4294967295|h[Sepulcher of the First Ones]|h|r!", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -330,7 +286,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667331599,
 			[50] = "CHAT_MSG_GUILD_ACHIEVEMENT",
-		}, -- [15]
+		}, -- [13]
 		{
 			"orixal up", -- [1]
 			"Xiwang-Draenor", -- [2]
@@ -352,7 +308,7 @@ ElvCharacterDB = {
 			[52] = "|cffff7c0aXiwang|r",
 			[51] = 1667332190,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [16]
+		}, -- [14]
 		{
 			"Mother Phestis 100.00% ~(55.2, 33.6) |cffffff00|Hworldmap:1970:5520:3360|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Apè-Draenor", -- [2]
@@ -374,7 +330,7 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Apè|r",
 			[51] = 1667332754,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [17]
+		}, -- [15]
 		{
 			"Tahkwitz 100.00% ~(50.04, 42.39) |cffffff00|Hworldmap:1970:5004:4239|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Apè-Draenor", -- [2]
@@ -396,7 +352,7 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Apè|r",
 			[51] = 1667333285,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [18]
+		}, -- [16]
 		{
 			"7wa", -- [1]
 			"Mgsm-Draenor", -- [2]
@@ -418,7 +374,7 @@ ElvCharacterDB = {
 			[52] = "|cffff7c0aMgsm|r",
 			[51] = 1667333880,
 			[50] = "CHAT_MSG_SAY",
-		}, -- [19]
+		}, -- [17]
 		{
 			"Otaris the Provoked (1%) |cffffff00|Hworldmap:1970:5865:4040|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Deathric-Draenor", -- [2]
@@ -440,7 +396,7 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Deathric|r",
 			[51] = 1667334075,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [20]
+		}, -- [18]
 		{
 			"Otaris the Provoked (100%) |cffffff00|Hworldmap:1970:5865:4040|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Deathric-Draenor", -- [2]
@@ -462,7 +418,7 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Deathric|r",
 			[51] = 1667334130,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [21]
+		}, -- [19]
 		{
 			"Mother Phestis (100%) |cffffff00|Hworldmap:1970:5410:3495|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Deathric-Draenor", -- [2]
@@ -484,7 +440,7 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Deathric|r",
 			[51] = 1667334286,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [22]
+		}, -- [20]
 		{
 			"so.. what was the jailer trying to do anyways", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -506,7 +462,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667334599,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [23]
+		}, -- [21]
 		{
 			"open a bakery, the hardest way possible", -- [1]
 			"Foxshadow-Draenor", -- [2]
@@ -528,7 +484,7 @@ ElvCharacterDB = {
 			[52] = "|cffa330c9Foxshadow|r",
 			[51] = 1667334559,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [24]
+		}, -- [22]
 		{
 			"lol", -- [1]
 			"Bonanox-Draenor", -- [2]
@@ -550,7 +506,7 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Bonanox|r",
 			[51] = 1667334642,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [25]
+		}, -- [23]
 		{
 			"Shifting Stargorger (100%) |cffffff00|Hworldmap:1970:4230:2100|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Scarletwïtch-Draenor", -- [2]
@@ -572,7 +528,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaScarletwïtch|r",
 			[51] = 1667334847,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [26]
+		}, -- [24]
 		{
 			"w", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -594,7 +550,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667334947,
 			[50] = "CHAT_MSG_WHISPER",
-		}, -- [27]
+		}, -- [25]
 		{
 			"w", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -616,7 +572,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667334947,
 			[50] = "CHAT_MSG_WHISPER_INFORM",
-		}, -- [28]
+		}, -- [26]
 		{
 			"51490", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -638,7 +594,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667334912,
 			[50] = "CHAT_MSG_WHISPER",
-		}, -- [29]
+		}, -- [27]
 		{
 			"51490", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -660,7 +616,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667334912,
 			[50] = "CHAT_MSG_WHISPER_INFORM",
-		}, -- [30]
+		}, -- [28]
 		{
 			"383009", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -682,7 +638,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667334920,
 			[50] = "CHAT_MSG_WHISPER",
-		}, -- [31]
+		}, -- [29]
 		{
 			"383009", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -704,7 +660,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667334920,
 			[50] = "CHAT_MSG_WHISPER_INFORM",
-		}, -- [32]
+		}, -- [30]
 		{
 			"%s has earned the achievement |cffffff00|Hachievement:15218:Player-1403-09E47E11:1:11:6:22:4294967295:4294967295:4294967295:4294967295|h[WoW's 18th Anniversary]|h|r!", -- [1]
 			"Cutetroll-Draenor", -- [2]
@@ -726,7 +682,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddCutetroll|r",
 			[51] = 1667734278,
 			[50] = "CHAT_MSG_GUILD_ACHIEVEMENT",
-		}, -- [33]
+		}, -- [31]
 		{
 			"garudeon up", -- [1]
 			"Licvich-Twilight'sHammer", -- [2]
@@ -748,7 +704,7 @@ ElvCharacterDB = {
 			[52] = "|cff3fc7ebLicvich-Twilight'sHammer|r",
 			[51] = 1667734546,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [34]
+		}, -- [32]
 		{
 			"otaris up", -- [1]
 			"Licvich-Twilight'sHammer", -- [2]
@@ -770,7 +726,7 @@ ElvCharacterDB = {
 			[52] = "|cff3fc7ebLicvich-Twilight'sHammer|r",
 			[51] = 1667734660,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [35]
+		}, -- [33]
 		{
 			"Xy up", -- [1]
 			"Perigee-Draenor", -- [2]
@@ -792,7 +748,7 @@ ElvCharacterDB = {
 			[52] = "|cff3fc7ebPerigee|r",
 			[51] = 1668525003,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [36]
+		}, -- [34]
 		{
 			"hoping it is not insta dead", -- [1]
 			"Iamqt-Draenor", -- [2]
@@ -814,7 +770,7 @@ ElvCharacterDB = {
 			[52] = "|cffa330c9Iamqt|r",
 			[51] = 1668525016,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [37]
+		}, -- [35]
 		{
 			"not pulled yet", -- [1]
 			"Perigee-Draenor", -- [2]
@@ -836,7 +792,7 @@ ElvCharacterDB = {
 			[52] = "|cff3fc7ebPerigee|r",
 			[51] = 1668525021,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [38]
+		}, -- [36]
 		{
 			"not insta dead", -- [1]
 			"Bingerz-Draenor", -- [2]
@@ -858,7 +814,7 @@ ElvCharacterDB = {
 			[52] = "|cff00ff98Bingerz|r",
 			[51] = 1668525037,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [39]
+		}, -- [37]
 		{
 			"still not pulled", -- [1]
 			"Perigee-Draenor", -- [2]
@@ -880,7 +836,7 @@ ElvCharacterDB = {
 			[52] = "|cff3fc7ebPerigee|r",
 			[51] = 1668525040,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [40]
+		}, -- [38]
 		{
 			"any1 to boost the rep with this guys ?", -- [1]
 			"Smáck-Draenor", -- [2]
@@ -902,7 +858,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dSmáck|r",
 			[51] = 1668525045,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [41]
+		}, -- [39]
 		{
 			"lusting popping pots", -- [1]
 			"Bingerz-Draenor", -- [2]
@@ -924,7 +880,7 @@ ElvCharacterDB = {
 			[52] = "|cff00ff98Bingerz|r",
 			[51] = 1668525049,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [42]
+		}, -- [40]
 		{
 			"pulled", -- [1]
 			"Perigee-Draenor", -- [2]
@@ -946,7 +902,7 @@ ElvCharacterDB = {
 			[52] = "|cff3fc7ebPerigee|r",
 			[51] = 1668525050,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [43]
+		}, -- [41]
 		{
 			"any way*", -- [1]
 			"Smáck-Draenor", -- [2]
@@ -968,7 +924,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dSmáck|r",
 			[51] = 1668525050,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [44]
+		}, -- [42]
 		{
 			"(after maintenance)", -- [1]
 			"Beeniz-Draenor", -- [2]
@@ -990,7 +946,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeBeeniz|r",
 			[51] = 1668525594,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [45]
+		}, -- [43]
 		{
 			"<RTC> Otiosen (99%) seen at |cffffff00|Hworldmap:1970:4332:8915|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Áida-Draenor", -- [2]
@@ -1012,7 +968,7 @@ ElvCharacterDB = {
 			[52] = "|cff00ff98Áida|r",
 			[51] = 1668525752,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [46]
+		}, -- [44]
 		{
 			"<RTC> Otiosen (98%) seen at |cffffff00|Hworldmap:1970:4332:8915|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Áida-Draenor", -- [2]
@@ -1034,7 +990,7 @@ ElvCharacterDB = {
 			[52] = "|cff00ff98Áida|r",
 			[51] = 1668525753,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [47]
+		}, -- [45]
 		{
 			"<RTC> Gluttonous Overgrowth (100%) seen at |cffffff00|Hworldmap:1970:5310:9310|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Áida-Draenor", -- [2]
@@ -1056,7 +1012,7 @@ ElvCharacterDB = {
 			[52] = "|cff00ff98Áida|r",
 			[51] = 1668526161,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [48]
+		}, -- [46]
 		{
 			"Mother Phestis|cffffff00|Hworldmap:1970:5455:3448|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Kufrix-Draenor", -- [2]
@@ -1078,7 +1034,7 @@ ElvCharacterDB = {
 			[52] = "|cffffffffKufrix|r",
 			[51] = 1668526468,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [49]
+		}, -- [47]
 		{
 			"anyone for custos?", -- [1]
 			"Zulni-Draenor", -- [2]
@@ -1100,7 +1056,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddZulni|r",
 			[51] = 1668527296,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [50]
+		}, -- [48]
 		{
 			"Blizzard has now added an option for brand-new level 60 Evokers to pick up their Covenant directly in Shadowlands, without having to go through the covenant campaign!", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1122,7 +1078,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668527319,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [51]
+		}, -- [49]
 		{
 			"Gluttonous overgrowth is up", -- [1]
 			"Cynodar-Draenor", -- [2]
@@ -1144,7 +1100,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dCynodar|r",
 			[51] = 1668527478,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [52]
+		}, -- [50]
 		{
 			"<RTC> Chitali the Eldest (100%) seen at |cffffff00|Hworldmap:1970:5020:6799|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Áida-Draenor", -- [2]
@@ -1166,7 +1122,7 @@ ElvCharacterDB = {
 			[52] = "|cff00ff98Áida|r",
 			[51] = 1668527622,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [53]
+		}, -- [51]
 		{
 			"hirukon up", -- [1]
 			"Ândrëw-Draenor", -- [2]
@@ -1188,7 +1144,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaÂndrëw|r",
 			[51] = 1668527955,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [54]
+		}, -- [52]
 		{
 			"and dead", -- [1]
 			"Chakmukee-Draenor", -- [2]
@@ -1210,7 +1166,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeChakmukee|r",
 			[51] = 1668528101,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [55]
+		}, -- [53]
 		{
 			"Xy up", -- [1]
 			"Peri-Draenor", -- [2]
@@ -1232,7 +1188,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aPeri|r",
 			[51] = 1668528190,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [56]
+		}, -- [54]
 		{
 			"Xy'rath the Covetous |cffffff00|Hworldmap:1970:6405:4975|h[|A:Waypoint-MapPin-ChatIcon:13:13:0:0|a Map Pin Location]|h|r", -- [1]
 			"Ýõh-Draenor", -- [2]
@@ -1254,7 +1210,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeÝõh|r",
 			[51] = 1668528253,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [57]
+		}, -- [55]
 		{
 			"Yall klnow the suyicidal cheetah in spires?", -- [1]
 			"Beenis-Draenor", -- [2]
@@ -1276,7 +1232,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aBeenis|r",
 			[51] = 1668529693,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [58]
+		}, -- [56]
 		{
 			"no stfu", -- [1]
 			"Juicceed-Draenor", -- [2]
@@ -1298,7 +1254,7 @@ ElvCharacterDB = {
 			[52] = "|cffff7c0aJuicceed|r",
 			[51] = 1668529763,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [59]
+		}, -- [57]
 		{
 			"fr tho", -- [1]
 			"Beenis-Draenor", -- [2]
@@ -1320,7 +1276,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aBeenis|r",
 			[51] = 1668529773,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [60]
+		}, -- [58]
 		{
 			"Why is it there though", -- [1]
 			"Beenis-Draenor", -- [2]
@@ -1342,7 +1298,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aBeenis|r",
 			[51] = 1668529828,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [61]
+		}, -- [59]
 		{
 			"lana", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1364,7 +1320,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668529910,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [62]
+		}, -- [60]
 		{
 			"no responds", -- [1]
 			"Beenis-Draenor", -- [2]
@@ -1386,7 +1342,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aBeenis|r",
 			[51] = 1668529941,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [63]
+		}, -- [61]
 		{
 			"trouser torpedo", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1408,7 +1364,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668530041,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [64]
+		}, -- [62]
 		{
 			"sheesh", -- [1]
 			"Beenis-Draenor", -- [2]
@@ -1430,7 +1386,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aBeenis|r",
 			[51] = 1668530124,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [65]
+		}, -- [63]
 		{
 			",man overboardd", -- [1]
 			"Beenis-Draenor", -- [2]
@@ -1452,7 +1408,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aBeenis|r",
 			[51] = 1668530144,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [66]
+		}, -- [64]
 		{
 			"penis", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1474,7 +1430,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668531560,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [67]
+		}, -- [65]
 		{
 			"uh i like that!", -- [1]
 			"Dejana-Draenor", -- [2]
@@ -1496,7 +1452,7 @@ ElvCharacterDB = {
 			[52] = "|cffffffffDejana|r",
 			[51] = 1668531546,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [68]
+		}, -- [66]
 		{
 			"i have one of those!", -- [1]
 			"Eitt-Draenor", -- [2]
@@ -1518,7 +1474,7 @@ ElvCharacterDB = {
 			[52] = "|cfffff468Eitt|r",
 			[51] = 1668531619,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [69]
+		}, -- [67]
 		{
 			"<_>", -- [1]
 			"Beenis-Draenor", -- [2]
@@ -1540,7 +1496,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aBeenis|r",
 			[51] = 1668531639,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [70]
+		}, -- [68]
 		{
 			"omg you have one eitt?", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1562,7 +1518,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668531663,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [71]
+		}, -- [69]
 		{
 			"yes:)", -- [1]
 			"Eitt-Draenor", -- [2]
@@ -1584,7 +1540,7 @@ ElvCharacterDB = {
 			[52] = "|cfffff468Eitt|r",
 			[51] = 1668531775,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [72]
+		}, -- [70]
 		{
 			"good for you...its good to see the adoption of this tech rising~!", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1606,7 +1562,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668531939,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [73]
+		}, -- [71]
 		{
 			"im trying this new tech, a white ass cheek that changes colour in the sun to red", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1628,7 +1584,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668532289,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [74]
+		}, -- [72]
 		{
 			"sounds promising ", -- [1]
 			"Asdfgclap-Draenor", -- [2]
@@ -1650,7 +1606,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dAsdfgclap|r",
 			[51] = 1668532302,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [75]
+		}, -- [73]
 		{
 			"how do i invest", -- [1]
 			"Búmjam-Draenor", -- [2]
@@ -1672,7 +1628,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddBúmjam|r",
 			[51] = 1668532303,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [76]
+		}, -- [74]
 		{
 			"its already fully funded, it will come out soon!", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1694,7 +1650,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668532341,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [77]
+		}, -- [75]
 		{
 			"no one watching the wow pre launch stream?", -- [1]
 			"Dopamean-Draenor", -- [2]
@@ -1716,7 +1672,7 @@ ElvCharacterDB = {
 			[52] = "|cffff7c0aDopamean|r",
 			[51] = 1668532406,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [78]
+		}, -- [76]
 		{
 			"why", -- [1]
 			"Engoth-Draenor", -- [2]
@@ -1738,7 +1694,7 @@ ElvCharacterDB = {
 			[52] = "|cfffff468Engoth|r",
 			[51] = 1668532414,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [79]
+		}, -- [77]
 		{
 			"nah", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1760,7 +1716,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668532415,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [80]
+		}, -- [78]
 		{
 			"yes", -- [1]
 			"Seekérs-Draenor", -- [2]
@@ -1782,7 +1738,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeSeekérs|r",
 			[51] = 1668532418,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [81]
+		}, -- [79]
 		{
 			"nah bro", -- [1]
 			"Asdfgclap-Draenor", -- [2]
@@ -1804,7 +1760,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dAsdfgclap|r",
 			[51] = 1668532457,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [82]
+		}, -- [80]
 		{
 			"too busy playing game", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1826,7 +1782,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668532466,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [83]
+		}, -- [81]
 		{
 			"dont you guys have phones / second monitors?", -- [1]
 			"Dopamean-Draenor", -- [2]
@@ -1848,7 +1804,7 @@ ElvCharacterDB = {
 			[52] = "|cffff7c0aDopamean|r",
 			[51] = 1668532479,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [84]
+		}, -- [82]
 		{
 			"no", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1870,7 +1826,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668532485,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [85]
+		}, -- [83]
 		{
 			"wait, you actually play?!", -- [1]
 			"Seekérs-Draenor", -- [2]
@@ -1892,7 +1848,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeSeekérs|r",
 			[51] = 1668532444,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [86]
+		}, -- [84]
 		{
 			"isnt that what we are supposed to do", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1914,7 +1870,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668532608,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [87]
+		}, -- [85]
 		{
 			"thought people just logged on to complain tbh", -- [1]
 			"Seekérs-Draenor", -- [2]
@@ -1936,7 +1892,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeSeekérs|r",
 			[51] = 1668532571,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [88]
+		}, -- [86]
 		{
 			"twitch drops' out?", -- [1]
 			"Makento-Draenor", -- [2]
@@ -1958,7 +1914,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aMakento|r",
 			[51] = 1668534157,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [89]
+		}, -- [87]
 		{
 			"why does the DF trailer look like an advert for a kid's film?", -- [1]
 			"Steinway-Draenor", -- [2]
@@ -1980,7 +1936,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeSteinway|r",
 			[51] = 1668536973,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [90]
+		}, -- [88]
 		{
 			"because this is a kids game", -- [1]
 			"Tragetdruid-Draenor", -- [2]
@@ -2002,7 +1958,7 @@ ElvCharacterDB = {
 			[52] = "|cffff7c0aTragetdruid|r",
 			[51] = 1668536983,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [91]
+		}, -- [89]
 		{
 			"+1", -- [1]
 			"Silverghost-Draenor", -- [2]
@@ -2024,7 +1980,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddSilverghost|r",
 			[51] = 1668536941,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [92]
+		}, -- [90]
 		{
 			"+1", -- [1]
 			"Darksolrun-Draenor", -- [2]
@@ -2046,7 +2002,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarksolrun|r",
 			[51] = 1668536944,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [93]
+		}, -- [91]
 		{
 			"-1", -- [1]
 			"Daarkmatter-Draenor", -- [2]
@@ -2068,7 +2024,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDaarkmatter|r",
 			[51] = 1668537020,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [94]
+		}, -- [92]
 		{
 			"you probably started playing this game when you were a teenager", -- [1]
 			"Vensferatu-Draenor", -- [2]
@@ -2090,7 +2046,7 @@ ElvCharacterDB = {
 			[52] = "|cffffffffVensferatu|r",
 			[51] = 1668537037,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [95]
+		}, -- [93]
 		{
 			"or was before 18 years :)", -- [1]
 			"Darksolrun-Draenor", -- [2]
@@ -2112,7 +2068,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarksolrun|r",
 			[51] = 1668537042,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [96]
+		}, -- [94]
 		{
 			"Disney Activision Blizzard", -- [1]
 			"Steinmann-Draenor", -- [2]
@@ -2134,7 +2090,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaSteinmann|r",
 			[51] = 1668537043,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [97]
+		}, -- [95]
 		{
 			"then eat em hmmmm", -- [1]
 			"Madfu-Draenor", -- [2]
@@ -2156,7 +2112,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dMadfu|r",
 			[51] = 1668707895,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [98]
+		}, -- [96]
 		{
 			"so whos looking forward to the 5-6k ques on launch day lol", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -2178,6 +2134,50 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1668707964,
 			[50] = "CHAT_MSG_CHANNEL",
+		}, -- [97]
+		{
+			"%s has earned the achievement |cffffff00|Hachievement:32:Player-1403-09E47E11:1:1:13:23:4294967295:4294967295:4294967295:4294967295|h[2000 Quests Completed]|h|r!", -- [1]
+			"Cutetroll-Draenor", -- [2]
+			"", -- [3]
+			"", -- [4]
+			"Cutetroll-Draenor", -- [5]
+			"", -- [6]
+			0, -- [7]
+			0, -- [8]
+			"", -- [9]
+			0, -- [10]
+			1, -- [11]
+			"Player-1403-09E47E11", -- [12]
+			0, -- [13]
+			false, -- [14]
+			false, -- [15]
+			false, -- [16]
+			false, -- [17]
+			[52] = "|cff0070ddCutetroll|r",
+			[51] = 1673616450,
+			[50] = "CHAT_MSG_GUILD_ACHIEVEMENT",
+		}, -- [98]
+		{
+			"%s has earned the achievement |cffffff00|Hachievement:16736:Player-1403-09E47E11:1:1:13:23:4294967295:4294967295:4294967295:4294967295|h[Grand Theft Mammoth]|h|r!", -- [1]
+			"Cutetroll-Draenor", -- [2]
+			"", -- [3]
+			"", -- [4]
+			"Cutetroll-Draenor", -- [5]
+			"", -- [6]
+			0, -- [7]
+			0, -- [8]
+			"", -- [9]
+			0, -- [10]
+			2, -- [11]
+			"Player-1403-09E47E11", -- [12]
+			0, -- [13]
+			false, -- [14]
+			false, -- [15]
+			false, -- [16]
+			false, -- [17]
+			[52] = "|cff0070ddCutetroll|r",
+			[51] = 1673616450,
+			[50] = "CHAT_MSG_GUILD_ACHIEVEMENT",
 		}, -- [99]
 	},
 	["ChatEditHistory"] = {

@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 10.0.24 (21st December 2022)
+-- 	Leatrix Plus 10.0.30 (16th January 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -18,7 +18,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "10.0.24"
+	LeaPlusLC["AddonVer"] = "10.0.30"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -587,7 +587,6 @@
 		LeaPlusLC:LockOption("ShowPlayerChain", "ModPlayerChain", true)				-- Show player chain
 		LeaPlusLC:LockOption("ShowWowheadLinks", "ShowWowheadLinksBtn", true)		-- Show Wowhead links
 		LeaPlusLC:LockOption("ManageWidgetTop", "ManageWidgetTopButton", true)		-- Manage widget top
-		LeaPlusLC:LockOption("ManageWidgetPower", "ManageWidgetPowerButton", true)	-- Manage widget power
 		LeaPlusLC:LockOption("ManageControl", "ManageControlButton", true)			-- Manage control
 		LeaPlusLC:LockOption("ManageTimer", "ManageTimerButton", true)				-- Manage timer
 		LeaPlusLC:LockOption("ManageDurability", "ManageDurabilityButton", true)	-- Manage durability
@@ -596,6 +595,7 @@
 		LeaPlusLC:LockOption("SetWeatherDensity", "SetWeatherDensityBtn", false)	-- Set weather density
 		LeaPlusLC:LockOption("MuteGameSounds", "MuteGameSoundsBtn", false)			-- Mute game sounds
 		LeaPlusLC:LockOption("MuteMountSounds", "MuteMountSoundsBtn", false)		-- Mute mount sounds
+		LeaPlusLC:LockOption("MuteCustomSounds", "MuteCustomSoundsBtn", false)		-- Mute custom sounds
 		LeaPlusLC:LockOption("FasterLooting", "FasterLootingBtn", true)				-- Faster auto loot
 		LeaPlusLC:LockOption("NoTransforms", "NoTransformsBtn", false)				-- Remove transforms
 	end
@@ -656,7 +656,6 @@
 
 		-- Frames
 		or	(LeaPlusLC["ManageWidgetTop"]		~= LeaPlusDB["ManageWidgetTop"])		-- Manage widget top
-		or	(LeaPlusLC["ManageWidgetPower"]		~= LeaPlusDB["ManageWidgetPower"])		-- Manage widget power
 		or	(LeaPlusLC["ManageControl"]			~= LeaPlusDB["ManageControl"])			-- Manage control
 		or	(LeaPlusLC["ManageTimer"]			~= LeaPlusDB["ManageTimer"])			-- Manage timer
 		or	(LeaPlusLC["ManageDurability"]		~= LeaPlusDB["ManageDurability"])		-- Manage durability
@@ -837,18 +836,19 @@
 			LeaPlusLC:MakeCB(MountPanel, "MuteGyrocopters", "Gyrocopters", 16, -232, false, "If checked, gyrocopters will be muted.|n|nThis applies to Mimiron's Head, Mecha-Mogul MK2 and other gyrocopter mounts.|n|nEnabling this option will also mute airplane gear shift sounds.")
 
 			LeaPlusLC:MakeCB(MountPanel, "MuteHovercraft", "Hovercraft", 150, -92, false, "If checked, hovercraft will be quieter.|n|nThis applies to Xiwyllag ATV.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteMechSteps", "Mechsteps", 150, -112, false, "If checked, footsteps for mechanical mounts will be muted.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteStriders", "Mechstriders", 150, -132, false, "If checked, mechanostriders will be quieter.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteMechsuits", "Mechsuits", 150, -152, false, "If checked, mechsuits will be quieter.|n|nThis applies to Felsteel Annihilator, Lightforged Warframe, Sky Golem and other mechsuits.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteOttuks", "Ottuks", 150, -172, false, "If checked, ottuks will be quieter.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteRazorwings", "Razorwings", 150, -192, false, "If checked, razorwings will be muted.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteRockets", "Rockets", 150, -212, false, "If checked, rockets will be muted.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteSoulEaters", "Soul Eaters", 150, -232, false, "If checked, Gladiator Soul Eater mounts will be quieter.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteLunarwing", "Lunarwing", 150, -112, false, "If checked, Archdruid's Lunarwing Form will be quieter.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteMechSteps", "Mechsteps", 150, -132, false, "If checked, footsteps for mechanical mounts will be muted.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteStriders", "Mechstriders", 150, -152, false, "If checked, mechanostriders will be quieter.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteMechsuits", "Mechsuits", 150, -172, false, "If checked, mechsuits will be quieter.|n|nThis applies to Felsteel Annihilator, Lightforged Warframe, Sky Golem and other mechsuits.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteOttuks", "Ottuks", 150, -192, false, "If checked, ottuks will be quieter.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteRazorwings", "Razorwings", 150, -212, false, "If checked, razorwings will be muted.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteRockets", "Rockets", 150, -232, false, "If checked, rockets will be muted.")
 
-			LeaPlusLC:MakeCB(MountPanel, "MuteSoulseekers", "Soulseekers", 284, -92, false, "If checked, soulseekers will be quieter.|n|nThis applies to Corridor Creeper, Mawsworn Soulhunter and Bound Shadehound.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteTravelers", "Travelers", 284, -112, false, "If checked, traveling merchant greetings and farewells will be muted.|n|nThis applies to Traveler's Tundra Mammoth, Grand Expedition Yak and Mighty Caravan Brutosaur.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteUnicorns", "Unicorns", 284, -132, false, "If checked, unicorns will be quieter.|n|nThis applies to Lucid Nightmare, Wild Dreamrunner, Pureheart Courser and other unicorn mounts.")
-			LeaPlusLC:MakeCB(MountPanel, "MuteZeppelins", "Zeppelins", 284, -152, false, "If checked, zeppelins will be muted.|n|nThis applies to zeppelin mounts and transports.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteSoulEaters", "Soul Eaters", 284, -92, false, "If checked, Gladiator Soul Eater mounts will be quieter.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteSoulseekers", "Soulseekers", 284, -112, false, "If checked, soulseekers will be quieter.|n|nThis applies to Corridor Creeper, Mawsworn Soulhunter and Bound Shadehound.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteTravelers", "Travelers", 284, -132, false, "If checked, traveling merchant greetings and farewells will be muted.|n|nThis applies to Traveler's Tundra Mammoth, Grand Expedition Yak and Mighty Caravan Brutosaur.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteUnicorns", "Unicorns", 284, -152, false, "If checked, unicorns will be quieter.|n|nThis applies to Lucid Nightmare, Wild Dreamrunner, Pureheart Courser and other unicorn mounts.")
+			LeaPlusLC:MakeCB(MountPanel, "MuteZeppelins", "Zeppelins", 284, -172, false, "If checked, zeppelins will be muted.|n|nThis applies to zeppelin mounts and transports.")
 
 			-- Set click width for sounds checkboxes
 			for k, v in pairs(mountTable) do
@@ -974,6 +974,9 @@
 			LeaPlusLC:MakeCB(SoundPanel, "MuteArena", "Arena", 284, -92, false, "If checked, arena announcers will be muted.")
 			LeaPlusLC:MakeCB(SoundPanel, "MuteBattleShouts", "Shouts", 284, -112, false, "If checked, your character will not shout and wail during combat.")
 
+			LeaPlusLC:MakeTx(SoundPanel, "Dragons", 284, -152)
+			LeaPlusLC:MakeCB(SoundPanel, "MuteVigor", "Vigor", 284, -172, false, "If checked, the dragonriding vigor recharging sound will be muted.")
+
 			-- Set click width for sounds checkboxes
 			for k, v in pairs(muteTable) do
 				LeaPlusCB[k].f:SetWidth(90)
@@ -1041,6 +1044,7 @@
 						LeaPlusLC[k] = "On"
 					end
 					LeaPlusLC["MuteReady"] = "Off"
+					LeaPlusLC["MuteVigor"] = "Off"
 					SetupMute()
 				else
 					SoundPanel:Show()
@@ -2963,6 +2967,38 @@
 			LeaPlusLC:MakeTx(SellJunkFrame, "Settings", 16, -72)
 			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellShowSummary", "Show vendor summary in chat", 16, -92, false, "If checked, a vendor summary will be shown in chat when junk is automatically sold.")
 			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellNoKeeperTahult", "Exclude Keeper Ta'hult's pet items", 16, -112, false, L["If checked, the following junk items required to purchase pets from Keeper Ta'hult in Oribos will not be sold automatically."] .. L["|cff889D9D|n"] .. L["|n- A Frayed Knot|n- Dark Iron Baby Booties|n- Ground Gear|n- Large Slimy Bone|n- Rabbits Foot|n- Robbles Wobbly Staff|n- Rotting Bear Carcass|n- The Stoppable Force|n- Very Unlucky Rock"] .. "|r")
+			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellNoGreyGear", "Exclude all grey gear", 16, -132, false, L["If checked, grey gear will not be sold.|n|nUse this setting if you plan to sell grey gear in the auction house."])
+
+			LeaPlusLC:MakeTx(SellJunkFrame, "Transmog", 16, -172)
+			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellExcludeMyChar", "Exclude gear designed for my character", 16, -192, false, L["If checked, uncollected grey gear that is designed for your character will not be sold.|n|nUse this setting if you plan to collect transmog appearances from grey gear that is designed for your character."])
+			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellExcludeMyAlts", "Exclude gear designed for my alts", 16, -212, false, L["If checked, uncollected grey gear that is designed for your alts will not be sold.|n|nUse this setting if you plan to collect transmog appearances from grey gear that is designed for your alts."])
+
+			-- Exclude all grey gear checkbox lock
+			local NoGreyTransmogTipText = LeaPlusCB["AutoSellExcludeMyChar"].tiptext
+			local NoGreyTransmogCharTipText = LeaPlusCB["AutoSellExcludeMyAlts"].tiptext
+			local function SetTransmogLockFunc()
+				if not LeaPlusLC.NewPatch then
+					LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyChar"], true)
+					LeaPlusCB["AutoSellExcludeMyChar"].tiptext = NoGreyTransmogTipText .. "|n|n|cff00AAFF" .. L["This is for game patch 10.0.5.|n|nIn 10.0.5, you will be able to transmogrify grey armor and weapons so this setting could be very useful."]
+					LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyAlts"], true)
+					LeaPlusCB["AutoSellExcludeMyAlts"].tiptext = NoGreyTransmogCharTipText .. "|n|n|cff00AAFF" .. L["This is for game patch 10.0.5.|n|nIn 10.0.5, you will be able to transmogrify grey armor and weapons so this setting could be very useful."]
+				else
+					if LeaPlusLC["AutoSellNoGreyGear"] == "On" then
+						LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyChar"], true)
+						LeaPlusCB["AutoSellExcludeMyChar"].tiptext = NoGreyTransmogTipText .. "|n|n|cff00AAFF" .. L["You have excluded all grey armor and weapons from being sold so this setting is ignored."]
+						LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyAlts"], true)
+						LeaPlusCB["AutoSellExcludeMyAlts"].tiptext = NoGreyTransmogCharTipText .. "|n|n|cff00AAFF" .. L["You have excluded all grey armor and weapons from being sold so this setting is ignored."]
+					else
+						LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyChar"], false)
+						LeaPlusCB["AutoSellExcludeMyChar"].tiptext = NoGreyTransmogTipText
+						LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyAlts"], false)
+						LeaPlusCB["AutoSellExcludeMyAlts"].tiptext = NoGreyTransmogCharTipText
+					end
+				end
+			end
+			LeaPlusCB["AutoSellNoGreyGear"]:HookScript("OnClick", SetTransmogLockFunc)
+			LeaPlusCB["AutoSellExcludeMyChar"]:HookScript("OnClick", SetTransmogLockFunc)
+			SetTransmogLockFunc()
 
 			-- Help button hidden
 			SellJunkFrame.h:Hide()
@@ -2980,6 +3016,9 @@
 				-- Reset checkboxes
 				LeaPlusLC["AutoSellShowSummary"] = "On"
 				LeaPlusLC["AutoSellNoKeeperTahult"] = "On"
+				LeaPlusLC["AutoSellNoGreyGear"] = "Off"
+				LeaPlusLC["AutoSellExcludeMyChar"] = "On"; SetTransmogLockFunc() -- Must be after AutoSellNoGreyGear
+				LeaPlusLC["AutoSellExcludeMyAlts"] = "On"; SetTransmogLockFunc() -- Must be after AutoSellNoGreyGear
 
 				-- Refresh panel
 				SellJunkFrame:Hide(); SellJunkFrame:Show()
@@ -2992,6 +3031,9 @@
 					-- Preset profile
 					LeaPlusLC["AutoSellShowSummary"] = "On"
 					LeaPlusLC["AutoSellNoKeeperTahult"] = "On"
+					LeaPlusLC["AutoSellNoGreyGear"] = "Off"
+					LeaPlusLC["AutoSellExcludeMyChar"] = "On"; SetTransmogLockFunc() -- Must be after AutoSellNoGreyGear
+					LeaPlusLC["AutoSellExcludeMyAlts"] = "Off"; SetTransmogLockFunc() -- Must be after AutoSellNoGreyGear
 				else
 					SellJunkFrame:Show()
 					LeaPlusLC:HideFrames()
@@ -3124,8 +3166,7 @@
 			SellJunkFrame.r:HookScript("OnClick", UpdateWhiteList)
 			LeaPlusCB["AutoSellJunkBtn"]:HookScript("OnClick", function()
 				if IsShiftKeyDown() and IsControlKeyDown() then
-					-- Preset profile
-					LeaPlusLC["AutoSellNoKeeperTahult"] = "On"
+					-- Preset profile (just the whitelist part)
 					UpdateWhiteList()
 				end
 			end)
@@ -3240,31 +3281,32 @@
 			eb.Text:SetScript("OnLeave", GameTooltip_Hide)
 
 			-- Show item ID in item tooltips while configuration panel is showing
-			if TooltipDataProcessor then
-				TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(self)
-					if SellJunkFrame:IsShown() then
-						local void, itemLink = self:GetItem()
-						if itemLink then
-							local itemID = GetItemInfoFromHyperlink(itemLink)
-							if itemID then self:AddLine(L["Item ID"] .. ": " .. itemID) end
-						end
+			TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(self)
+				if self ~= GameTooltip then return end
+				if SellJunkFrame:IsShown() then
+					local void, itemLink = self:GetItem()
+					if itemLink then
+						local itemID = GetItemInfoFromHyperlink(itemLink)
+						if itemID then self:AddLine(L["Item ID"] .. ": " .. itemID) end
 					end
-				end)
-			end
+				end
+			end)
 
 			-- Vendor function
 			local function SellJunkFunc()
 
 				-- Variables
 				local SoldCount, Rarity, ItemPrice = 0, 0, 0
-				local CurrentItemLink, void
+				local CurrentItemLink, classID, void
+				local itemTypeWeapon = Enum.ItemClass.Weapon
+				local itemTypeArmor = Enum.ItemClass.Armor
 
 				-- Traverse bags and sell grey items
 				for BagID = 0, 4 do
 					for BagSlot = 1, C_Container.GetContainerNumSlots(BagID) do
 						CurrentItemLink = C_Container.GetContainerItemLink(BagID, BagSlot)
 						if CurrentItemLink then
-							void, void, Rarity, void, void, void, void, void, void, void, ItemPrice = GetItemInfo(CurrentItemLink)
+							void, void, Rarity, void, void, void, void, void, void, void, ItemPrice, classID = GetItemInfo(CurrentItemLink)
 							-- Don't sell whitelisted items
 							local itemID = GetItemInfoFromHyperlink(CurrentItemLink)
 							if itemID and whiteList[itemID] then
@@ -3277,26 +3319,39 @@
 									Rarity = 0
 								end
 							end
-							-- Don't sell grey items that are a weapon or armor if the transmog appearance is not known
-							if Rarity == 0 and (classID == 2 or classID == 4) then -- Weapon or armor
-								local appearanceID, sourceID = C_TransmogCollection.GetItemInfo(itemID)
-								if sourceID then
-									local void, void, void, void, isCollected = C_TransmogCollection.GetAppearanceSourceInfo(sourceID)
-									if not isCollected then
-										Rarity = 20
-										ItemPrice = 0
+							-- Exclude grey gear
+							if Rarity == 0 and classID and (classID == itemTypeWeapon or classID == itemTypeArmor) then -- Weapon or armor
+								if LeaPlusLC["AutoSellNoGreyGear"] == "On" then
+									-- Exclude all grey gear is checked so do not sell
+									Rarity = 20
+									ItemPrice = 0
+								else
+									-- Exclude uncollected grey gear (exclude all grey gear is off)
+									if LeaPlusLC.NewPatch then -- remove LeaPlusLC.NewPatch in 10.0.5
+										if LeaPlusLC["AutoSellExcludeMyChar"] == "On" or LeaPlusLC["AutoSellExcludeMyAlts"] == "On" then
+											local appearanceID, sourceID = C_TransmogCollection.GetItemInfo(itemID)
+											if sourceID then
+												local void, void, void, void, isCollected = C_TransmogCollection.GetAppearanceSourceInfo(sourceID)
+												local hasItemData, canCollect = C_TransmogCollection.PlayerCanCollectSource(sourceID)
+												if not isCollected then
+													-- Item is not collected at all
+													if not canCollect then
+														if LeaPlusLC["AutoSellExcludeMyAlts"] == "On" then
+															-- Gear is designed for my alts and exclude gear designed for my alts is checked so do not sell
+															Rarity = 20
+															ItemPrice = 0
+														end
+													elseif LeaPlusLC["AutoSellExcludeMyChar"] == "On" then
+														-- Gear is designed for my character and exclude gear designed for my character is checked so do not sell
+														Rarity = 20
+														ItemPrice = 0
+													end
+												end
+											end
+										end
 									end
 								end
 							end
-							-- Don't sell grey quest items (some quest items have a sell price when they cannot actually be sold)
-							-- This is not currently used as the affected items are whitelisted above
-							-- if classID == 12 then
-							-- 	if Rarity == 0 or Rarity == 20 then
-							-- 		-- local name22 = GetItemInfo(CurrentItemLink); print(name22, classID)
-							-- 		Rarity = 20
-							-- 		ItemPrice = 0
-							-- 	end
-							-- end
 							-- Continue
 							local cInfo = C_Container.GetContainerItemInfo(BagID, BagSlot)
 							local itemCount = cInfo.stackCount
@@ -4113,6 +4168,201 @@
 
 	function LeaPlusLC:Player()
 
+		----------------------------------------------------------------------
+		-- Mute custom sounds (no reload required)
+		----------------------------------------------------------------------
+
+		do
+
+			-- Create configuration panel
+			local MuteCustomPanel = LeaPlusLC:CreatePanel("Mute custom sounds", "MuteCustomPanel")
+
+			local titleTX = LeaPlusLC:MakeTx(MuteCustomPanel, "Editor", 16, -72)
+			titleTX:SetWidth(534)
+			titleTX:SetWordWrap(false)
+			titleTX:SetJustifyH("LEFT")
+
+			-- Show help button for title
+			LeaPlusLC:CreateHelpButton("MuteGameSoundsCustomHelpButton", MuteCustomPanel, titleTX, "Enter sound file IDs separated by comma then click the Mute button.|n|nIf you wish, you can enter a brief note for each file ID but do not include numbers in your notes.|n|nFor example, you can enter 'DevAura 569679, RetAura 568744' to mute the Devotion Aura and Retribution Aura spells.|n|nUse Leatrix Sounds to find, test and play sound file IDs.")
+
+			-- Add large editbox
+			local eb = CreateFrame("Frame", nil, MuteCustomPanel, "BackdropTemplate")
+			eb:SetSize(548, 180)
+			eb:SetPoint("TOPLEFT", 10, -92)
+			eb:SetBackdrop({
+				bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+				edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight",
+				edgeSize = 16,
+				insets = { left = 8, right = 6, top = 8, bottom = 8 },
+			})
+			eb:SetBackdropBorderColor(1.0, 0.85, 0.0, 0.5)
+
+			eb.scroll = CreateFrame("ScrollFrame", nil, eb, "UIPanelScrollFrameTemplate")
+			eb.scroll:SetPoint("TOPLEFT", eb, 12, -10)
+			eb.scroll:SetPoint("BOTTOMRIGHT", eb, -30, 10)
+
+			eb.Text = CreateFrame("EditBox", nil, eb)
+			eb.Text:SetMultiLine(true)
+			eb.Text:SetWidth(494)
+			eb.Text:SetHeight(230)
+			eb.Text:SetPoint("TOPLEFT", eb.scroll)
+			eb.Text:SetPoint("BOTTOMRIGHT", eb.scroll)
+			eb.Text:SetMaxLetters(2000)
+			eb.Text:SetFontObject(GameFontNormalLarge)
+			eb.Text:SetAutoFocus(false)
+			eb.Text:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
+			eb.scroll:SetScrollChild(eb.Text)
+
+			-- Set focus on the editbox text when clicking the editbox
+			eb:SetScript("OnMouseDown", function()
+				eb.Text:SetFocus()
+				eb.Text:SetCursorPosition(eb.Text:GetMaxLetters())
+			end)
+
+			-- Function to save the custom sound list
+			local function SaveString(self, userInput)
+				local keytext = eb.Text:GetText()
+				if keytext and keytext ~= "" then
+					LeaPlusLC["MuteCustomList"] = strtrim(eb.Text:GetText())
+				else
+					LeaPlusLC["MuteCustomList"] = ""
+				end
+			end
+
+			-- Save the custom sound list when it changes and at startup
+			eb.Text:SetScript("OnTextChanged", SaveString)
+			eb.Text:SetText(LeaPlusLC["MuteCustomList"])
+			SaveString()
+
+			-- Help button hidden
+			MuteCustomPanel.h:Hide()
+
+			-- Back button handler
+			MuteCustomPanel.b:SetScript("OnClick", function()
+				MuteCustomPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page7"]:Show()
+				return
+			end)
+
+			-- Reset button hidden
+			MuteCustomPanel.r:Hide()
+
+			-- Show configuration panal when options panel button is clicked
+			LeaPlusCB["MuteCustomSoundsBtn"]:SetScript("OnClick", function()
+				if IsShiftKeyDown() and IsControlKeyDown() then
+					-- Preset profile
+					LeaPlusLC["MuteCustomList"] = "Devotion Aura 569679, Retribution Aura 568744"
+					eb.Text:SetText(LeaPlusLC["MuteCustomList"])
+				else
+					MuteCustomPanel:Show()
+					LeaPlusLC:HideFrames()
+				end
+			end)
+
+			-- Function to mute custom sound list
+			local function MuteCustomListFunc(unmute, userInput)
+				-- local mutedebug = true -- Debug
+				local counter = 0
+				local muteString = LeaPlusLC["MuteCustomList"]
+				if muteString and muteString ~= "" then
+					muteString = muteString:gsub("%s", ",")
+					muteString = muteString:gsub("[\n]", ",")
+					muteString = muteString:gsub("[^,%d]", "")
+					if mutedebug then print(muteString) end
+					local tList = {strsplit(",", muteString)}
+					if mutedebug then ChatFrame1:Clear() end
+					for i = 1, #tList do
+						if tList[i] then
+							tList[i] = tonumber(tList[i])
+							if tList[i] and tList[i] < 20000000 then
+								if mutedebug then print(tList[i]) end
+								if unmute then
+									UnmuteSoundFile(tList[i])
+								else
+									MuteSoundFile(tList[i])
+								end
+								counter = counter + 1
+							end
+						end
+					end
+					if userInput then
+						if unmute then
+							if counter == 1 then
+								LeaPlusLC:Print(L["Unmuted"] .. " " .. counter .. " " .. L["sound"] .. ".")
+							else
+								LeaPlusLC:Print(L["Unmuted"] .. " " .. counter .. " " .. L["sounds"] .. ".")
+							end
+						else
+							if counter == 1 then
+								LeaPlusLC:Print(L["Muted"] .. " " .. counter .. " " .. L["sound"] .. ".")
+							else
+								LeaPlusLC:Print(L["Muted"] .. " " .. counter .. " " .. L["sounds"] .. ".")
+							end
+						end
+					end
+				end
+			end
+
+			-- Mute custom list on startup if option is enabled
+			if LeaPlusLC["MuteCustomSounds"] == "On" then
+				MuteCustomListFunc()
+			end
+
+			-- Mute or unmute when option is clicked
+			LeaPlusCB["MuteCustomSounds"]:HookScript("OnClick", function()
+				if LeaPlusLC["MuteCustomSounds"] == "On" then
+					MuteCustomListFunc(false, false)
+				else
+					MuteCustomListFunc(true, false)
+				end
+			end)
+
+			-- Add mute button
+			local MuteCustomNowButton = LeaPlusLC:CreateButton("MuteCustomNowButton", MuteCustomPanel, "Mute", "TOPLEFT", 16, -292, 0, 25, true, "Click to mute sounds in the list.")
+			LeaPlusCB["MuteCustomNowButton"]:SetScript("OnClick", function() MuteCustomListFunc(false, true) end)
+
+			-- Add unmute button
+			local UnmuteCustomNowButton = LeaPlusLC:CreateButton("UnmuteCustomNowButton", MuteCustomPanel, "Unmute", "TOPLEFT", 16, -72, 0, 25, true, "Click to unmute sounds in the list.")
+			LeaPlusCB["UnmuteCustomNowButton"]:ClearAllPoints()
+			LeaPlusCB["UnmuteCustomNowButton"]:SetPoint("LEFT", MuteCustomNowButton, "RIGHT", 10, 0)
+			LeaPlusCB["UnmuteCustomNowButton"]:SetScript("OnClick", function() MuteCustomListFunc(true, true) end)
+
+			-- Add play sound file editbox
+			local willPlay, musicHandle
+			local MuteCustomSoundsStopButton = LeaPlusLC:CreateButton("MuteCustomSoundsStopButton", MuteCustomPanel, "Stop", "TOPRIGHT", -18, -66, 0, 25, true, "")
+			MuteCustomSoundsStopButton:SetScript("OnClick", function()
+				if musicHandle then StopSound(musicHandle) end
+			end)
+
+			local MuteCustomSoundsPlayButton = LeaPlusLC:CreateButton("MuteCustomSoundsPlayButton", MuteCustomPanel, "Play", "TOPRIGHT", -18, -66, 0, 25, true, "")
+			MuteCustomSoundsPlayButton:ClearAllPoints()
+			MuteCustomSoundsPlayButton:SetPoint("RIGHT", MuteCustomSoundsStopButton, "LEFT", -10, 0)
+
+			local MuteCustomSoundsSoundBox = LeaPlusLC:CreateEditBox("MuteCustomSoundsSoundBox", eb, 80, 8, "TOPRIGHT", -10, 20, "PlaySoundBox", "PlaySoundBox")
+			MuteCustomSoundsSoundBox:SetNumeric(true)
+			MuteCustomSoundsSoundBox:ClearAllPoints()
+			MuteCustomSoundsSoundBox:SetPoint("RIGHT", MuteCustomSoundsPlayButton, "LEFT", -10, 0)
+			MuteCustomSoundsPlayButton:SetScript("OnClick", function()
+				MuteCustomSoundsSoundBox:GetText()
+				if musicHandle then StopSound(musicHandle) end
+				willPlay, musicHandle = PlaySoundFile(MuteCustomSoundsSoundBox:GetText(), "Master")
+			end)
+
+			-- Add mousewheel support to the editbox
+			MuteCustomSoundsSoundBox:SetScript("OnMouseWheel", function(self, delta)
+				local endSound = tonumber(MuteCustomSoundsSoundBox:GetText())
+				if endSound then
+					if delta == 1 then endSound = endSound + 1 else endSound = endSound - 1 end
+					if endSound < 1 then endSound = 1 elseif endSound >= 10000000 then endSound = 10000000 end
+					MuteCustomSoundsSoundBox:SetText(endSound)
+					MuteCustomSoundsPlayButton:Click()
+				end
+			end)
+
+			local titlePlayer = LeaPlusLC:MakeTx(MuteCustomPanel, "Player", 16, -72)
+			titlePlayer:ClearAllPoints()
+			titlePlayer:SetPoint("TOPLEFT", MuteCustomSoundsSoundBox, "TOPLEFT", -4, 16)
+			LeaPlusLC:CreateHelpButton("MuteGameSoundsCustomPlayHelpButton", MuteCustomPanel, titlePlayer, "If you want to listen to a sound file, enter the sound file ID into the editbox and click the play button.|n|nYou can scroll the mousewheel over the editbox to play neighbouring sound files.")
+		end
 
 		----------------------------------------------------------------------
 		-- Hide rested sleep
@@ -5923,6 +6173,7 @@
 			local transTable = {
 
 				-- Single spell IDs
+				["TransAtomic"] = {399502}, -- Atomically Recalibrated toy
 				["TransLantern"] = {44212}, -- Weighted Jack-o'-Lantern
 				["TransWitch"] = {279509}, -- Lucille's Sewing Needle (witch)
 				["TransTurkey"] = {61781}, -- Turkey (Pilgrim's Bounty)
@@ -6012,12 +6263,13 @@
 
 			-- Add checkboxes
 			LeaPlusLC:MakeTx(transPanel, "General", 16, -72)
-			LeaPlusLC:MakeCB(transPanel, "TransLantern", "Lantern", 16, -92, false, "If checked, the Weighted Jack-o'-Lantern transform will be removed when applied.")
+			LeaPlusLC:MakeCB(transPanel, "TransAtomic", "Atomic", 16, -92, false, "If checked, the Atomically Recalibrated transform (from the Atomic Recalibrator toy) will be removed when applied.")
 			LeaPlusLC:MakeCB(transPanel, "TransHallowed", "Hallowed", 16, -112, false, "If checked, the Hallowed Wand transforms will be removed when applied.")
-			LeaPlusLC:MakeCB(transPanel, "TransWitch", "Witch", 16, -132, false, "If checked, the Lucille's Sewing Needle transform (witch) will be removed when applied.")
-			LeaPlusLC:MakeCB(transPanel, "TransTurkey", "Turkey", 16, -152, false, "If checked, the Turkey transform (Pilgrim's Bounty) will be removed when applied.")
+			LeaPlusLC:MakeCB(transPanel, "TransLantern", "Lantern", 16, -132, false, "If checked, the Weighted Jack-o'-Lantern transform will be removed when applied.")
+			LeaPlusLC:MakeCB(transPanel, "TransProfessions", "Professions", 16, -152, false, "If checked, the Dragonflight profession transforms will be removed when applied.|n|nThis does not apply to fishing.")
 			LeaPlusLC:MakeCB(transPanel, "TransSpraybots", "Spraybots", 16, -172, false, "If checked, the Spraybot transforms will be removed when applied.")
-			LeaPlusLC:MakeCB(transPanel, "TransProfessions", "Professions", 16, -192, false, "If checked, the Dragonflight profession transforms will be removed when applied.")
+			LeaPlusLC:MakeCB(transPanel, "TransTurkey", "Turkey", 16, -192, false, "If checked, the Turkey transform (Pilgrim's Bounty) will be removed when applied.")
+			LeaPlusLC:MakeCB(transPanel, "TransWitch", "Witch", 16, -212, false, "If checked, the Lucille's Sewing Needle transform (witch) will be removed when applied.")
 
 			-- Function to populate cTable with spell IDs for settings that are enabled
 			local function UpdateList()
@@ -6178,6 +6430,9 @@
 					LeaPlusCB["TrainAllButton"]:GetFontString():SetWidth(gap - 8)
 				end
 
+				-- Give button global scope (useful for compatibility with other addons and essential for ElvUI)
+				_G.LeaPlusGlobalTrainAllButton = LeaPlusCB["TrainAllButton"]
+
 				-- Button tooltip
 				LeaPlusCB["TrainAllButton"]:SetScript("OnEnter", function(self)
 					-- Get number of available skills and total cost
@@ -6239,7 +6494,6 @@
 					if E.private.skins.blizzard.enable and E.private.skins.blizzard.trainer then
 						LeaPlusCB["TrainAllButton"]:ClearAllPoints()
 						LeaPlusCB["TrainAllButton"]:SetPoint("RIGHT", ClassTrainerTrainButton, "LEFT", -6, 0)
-						_G.LeaPlusGlobalTrainAllButton = LeaPlusCB["TrainAllButton"]
 						E:GetModule("Skins"):HandleButton(_G.LeaPlusGlobalTrainAllButton)
 						if LeaPlusCB["TrainAllButton"]:GetWidth() > gap then
 							LeaPlusCB["TrainAllButton"]:GetFontString():SetWordWrap(false)
@@ -6268,231 +6522,6 @@
 		end
 
 		----------------------------------------------------------------------
-		-- Manage widget power
-		----------------------------------------------------------------------
-
-		if LeaPlusLC["ManageWidgetPower"] == "On" and not LeaLockList["ManageWidgetPower"] then
-
-			-- Create and manage container for UIWidgetPowerBarContainerFrame
-			local powerBarHolder = CreateFrame("Frame", nil, UIParent)
-			powerBarHolder:SetPoint("BOTTOM", UIParent, "BOTTOM", 0, 305)
-			powerBarHolder:SetSize(10, 58)
-
-			local powerBarContainer = _G.UIWidgetPowerBarContainerFrame
-			powerBarContainer:ClearAllPoints()
-			powerBarContainer:SetPoint('CENTER', powerBarHolder)
-
-			hooksecurefunc(powerBarContainer, 'SetPoint', function(self, void, b)
-				if b and (b ~= powerBarHolder) then
-					-- Reset parent if it changes from powerBarHolder
-					self:ClearAllPoints()
-					self:SetPoint('CENTER', powerBarHolder)
-					self:SetParent(powerBarHolder)
-				end
-			end)
-
-			-- Allow widget power frame to be moved
-			powerBarHolder:SetMovable(true)
-			powerBarHolder:SetUserPlaced(true)
-			powerBarHolder:SetDontSavePosition(true)
-			powerBarHolder:SetClampedToScreen(false)
-
-			-- Needed to fix setpoint anchor family connection while dragging drag frame (54.5, 28.8, ZM)
-			UIWidgetPowerBarContainerFrame:SetMovable(true)
-			UIWidgetPowerBarContainerFrame:SetUserPlaced(true)
-			UIWidgetPowerBarContainerFrame:SetDontSavePosition(true)
-			UIWidgetPowerBarContainerFrame:SetClampedToScreen(false)
-
-			-- Set widget power frame position at startup
-			powerBarHolder:ClearAllPoints()
-			powerBarHolder:SetPoint(LeaPlusLC["WidgetPowerA"], UIParent, LeaPlusLC["WidgetPowerR"], LeaPlusLC["WidgetPowerX"], LeaPlusLC["WidgetPowerY"])
-			powerBarHolder:SetScale(LeaPlusLC["WidgetPowerScale"])
-			UIWidgetPowerBarContainerFrame:SetScale(LeaPlusLC["WidgetPowerScale"])
-
-			-- Create drag frame
-			local dragframe = CreateFrame("FRAME", nil, nil, "BackdropTemplate")
-			dragframe:SetPoint("CENTER", powerBarHolder, "CENTER", 0, 1)
-			dragframe:SetBackdropColor(0.0, 0.5, 1.0)
-			dragframe:SetBackdrop({edgeFile = "Interface/Tooltips/UI-Tooltip-Border", tile = false, tileSize = 0, edgeSize = 16, insets = { left = 0, right = 0, top = 0, bottom = 0}})
-			dragframe:SetToplevel(true)
-			dragframe:Hide()
-			dragframe:SetScale(LeaPlusLC["WidgetPowerScale"])
-
-			dragframe.t = dragframe:CreateTexture()
-			dragframe.t:SetAllPoints()
-			dragframe.t:SetColorTexture(0.0, 1.0, 0.0, 0.5)
-			dragframe.t:SetAlpha(0.5)
-
-			dragframe.f = dragframe:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
-			dragframe.f:SetPoint('CENTER', 0, 0)
-			dragframe.f:SetText(L["Widget Power"])
-
-			-- Click handler
-			dragframe:SetScript("OnMouseDown", function(self, btn)
-				-- Start dragging if left clicked
-				if btn == "LeftButton" then
-					powerBarHolder:StartMoving()
-				end
-			end)
-
-			dragframe:SetScript("OnMouseUp", function()
-				-- Save frame position
-				powerBarHolder:StopMovingOrSizing()
-				LeaPlusLC["WidgetPowerA"], void, LeaPlusLC["WidgetPowerR"], LeaPlusLC["WidgetPowerX"], LeaPlusLC["WidgetPowerY"] = powerBarHolder:GetPoint()
-				powerBarHolder:SetMovable(true)
-				powerBarHolder:ClearAllPoints()
-				powerBarHolder:SetPoint(LeaPlusLC["WidgetPowerA"], UIParent, LeaPlusLC["WidgetPowerR"], LeaPlusLC["WidgetPowerX"], LeaPlusLC["WidgetPowerY"])
-			end)
-
-			-- Snap-to-grid
-			do
-				local frame, grid = dragframe, 10
-				local w, h = 0, 60
-				local xpos, ypos, scale, uiscale
-				frame:RegisterForDrag("RightButton")
-				frame:HookScript("OnDragStart", function()
-					frame:SetScript("OnUpdate", function()
-						scale, uiscale = frame:GetScale(), UIParent:GetScale()
-						xpos, ypos = GetCursorPosition()
-						xpos = floor((xpos / scale / uiscale) / grid) * grid - w / 2
-						ypos = ceil((ypos / scale / uiscale) / grid) * grid + h / 2
-						powerBarHolder:ClearAllPoints()
-						powerBarHolder:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", xpos, ypos)
-					end)
-				end)
-				frame:HookScript("OnDragStop", function()
-					frame:SetScript("OnUpdate", nil)
-					frame:GetScript("OnMouseUp")()
-				end)
-			end
-
-			-- Create configuration panel
-			local WidgetPowerPanel = LeaPlusLC:CreatePanel("Manage widget power", "WidgetPowerPanel")
-
-			-- Create Titan Panel screen adjust warning
-			local titanFrame = CreateFrame("FRAME", nil, WidgetPowerPanel)
-			titanFrame:SetAllPoints()
-			titanFrame:Hide()
-			LeaPlusLC:MakeTx(titanFrame, "Warning", 16, -172)
-			titanFrame.txt = LeaPlusLC:MakeWD(titanFrame, "Titan Panel screen adjust needs to be disabled for the frame to be saved correctly.", 16, -192, 500)
-			titanFrame.txt:SetWordWrap(false)
-			titanFrame.txt:SetWidth(520)
-			titanFrame.btn = LeaPlusLC:CreateButton("fixTitanBtn", titanFrame, "Okay, disable screen adjust for me", "TOPLEFT", 16, -212, 0, 25, true, "Click to disable Titan Panel screen adjust.  Your UI will be reloaded.")
-			titanFrame.btn:SetScript("OnClick", function()
-				TitanPanelSetVar("ScreenAdjust", 1)
-				ReloadUI()
-			end)
-
-			LeaPlusLC:MakeTx(WidgetPowerPanel, "Scale", 16, -72)
-			LeaPlusLC:MakeSL(WidgetPowerPanel, "WidgetPowerScale", "Drag to set the widget power scale.", 0.5, 2, 0.05, 16, -92, "%.2f")
-
-			-- Set scale when slider is changed
-			LeaPlusCB["WidgetPowerScale"]:HookScript("OnValueChanged", function()
-				powerBarHolder:SetScale(LeaPlusLC["WidgetPowerScale"])
-				UIWidgetPowerBarContainerFrame:SetScale(LeaPlusLC["WidgetPowerScale"])
-				dragframe:SetScale(LeaPlusLC["WidgetPowerScale"])
-				-- Show formatted slider value
-				LeaPlusCB["WidgetPowerScale"].f:SetFormattedText("%.0f%%", LeaPlusLC["WidgetPowerScale"] * 100)
-			end)
-
-			-- Hide frame alignment grid with panel
-			WidgetPowerPanel:HookScript("OnHide", function()
-				LeaPlusLC.grid:Hide()
-			end)
-
-			-- Toggle grid button
-			local WidgetPowerToggleGridButton = LeaPlusLC:CreateButton("WidgetPowerToggleGridButton", WidgetPowerPanel, "Toggle Grid", "TOPLEFT", 16, -72, 0, 25, true, "Click to toggle the frame alignment grid.")
-			LeaPlusCB["WidgetPowerToggleGridButton"]:ClearAllPoints()
-			LeaPlusCB["WidgetPowerToggleGridButton"]:SetPoint("LEFT", WidgetPowerPanel.h, "RIGHT", 10, 0)
-			LeaPlusCB["WidgetPowerToggleGridButton"]:SetScript("OnClick", function()
-				if LeaPlusLC.grid:IsShown() then LeaPlusLC.grid:Hide() else LeaPlusLC.grid:Show() end
-			end)
-			WidgetPowerPanel:HookScript("OnHide", function()
-				if LeaPlusLC.grid then LeaPlusLC.grid:Hide() end
-			end)
-
-			-- Help button tooltip
-			WidgetPowerPanel.h.tiptext = L["Drag the frame overlay with the left button to position it freely or with the right button to position it using snap-to-grid."]
-
-			-- Back button handler
-			WidgetPowerPanel.b:SetScript("OnClick", function()
-				WidgetPowerPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page6"]:Show()
-				return
-			end)
-
-			-- Reset button handler
-			WidgetPowerPanel.r:SetScript("OnClick", function()
-
-				-- Reset position and scale
-				LeaPlusLC["WidgetPowerA"] = "BOTTOM"
-				LeaPlusLC["WidgetPowerR"] = "BOTTOM"
-				LeaPlusLC["WidgetPowerX"] = 0
-				LeaPlusLC["WidgetPowerY"] = 305
-				LeaPlusLC["WidgetPowerScale"] = 1
-				powerBarHolder:ClearAllPoints()
-				powerBarHolder:SetPoint(LeaPlusLC["WidgetPowerA"], UIParent, LeaPlusLC["WidgetPowerR"], LeaPlusLC["WidgetPowerX"], LeaPlusLC["WidgetPowerY"])
-
-				-- Refresh configuration panel
-				WidgetPowerPanel:Hide(); WidgetPowerPanel:Show()
-				dragframe:Show()
-
-				-- Show frame alignment grid
-				LeaPlusLC.grid:Show()
-
-			end)
-
-			-- Show configuration panel when options panel button is clicked
-			LeaPlusCB["ManageWidgetPowerButton"]:SetScript("OnClick", function()
-				if IsShiftKeyDown() and IsControlKeyDown() then
-					-- Preset profile
-					LeaPlusLC["WidgetPowerA"] = "BOTTOM"
-					LeaPlusLC["WidgetPowerR"] = "BOTTOM"
-					LeaPlusLC["WidgetPowerX"] = 0
-					LeaPlusLC["WidgetPowerY"] = 305
-					LeaPlusLC["WidgetPowerScale"] = 1
-					powerBarHolder:ClearAllPoints()
-					powerBarHolder:SetPoint(LeaPlusLC["WidgetPowerA"], UIParent, LeaPlusLC["WidgetPowerR"], LeaPlusLC["WidgetPowerX"], LeaPlusLC["WidgetPowerY"])
-					powerBarHolder:SetScale(LeaPlusLC["WidgetPowerScale"])
-					UIWidgetPowerBarContainerFrame:SetScale(LeaPlusLC["WidgetPowerScale"])
-				else
-					-- Show Titan Panel screen adjust warning if Titan Panel is installed with screen adjust enabled
-					if select(2, GetAddOnInfo("Titan")) then
-						if IsAddOnLoaded("Titan") then
-							if TitanPanelSetVar and TitanPanelGetVar then
-								if not TitanPanelGetVar("ScreenAdjust") then
-									titanFrame:Show()
-								end
-							end
-						end
-					end
-
-					-- Find out if the UI has a non-standard scale
-					if GetCVar("useuiscale") == "1" then
-						LeaPlusLC["gscale"] = GetCVar("uiscale")
-					else
-						LeaPlusLC["gscale"] = 1
-					end
-
-					-- Set drag frame size according to UI scale
-					dragframe:SetWidth(260 * LeaPlusLC["gscale"])
-					dragframe:SetHeight(40 * LeaPlusLC["gscale"])
-
-					-- Show configuration panel
-					WidgetPowerPanel:Show()
-					LeaPlusLC:HideFrames()
-					dragframe:Show()
-
-					-- Show frame alignment grid
-					LeaPlusLC.grid:Show()
-				end
-			end)
-
-			-- Hide drag frame when configuration panel is closed
-			WidgetPowerPanel:HookScript("OnHide", function() dragframe:Hide() end)
-
-		end
-
-		----------------------------------------------------------------------
 		-- Filter chat messages
 		----------------------------------------------------------------------
 
@@ -6507,7 +6536,7 @@
 			local ChatFilterPanel = LeaPlusLC:CreatePanel("Filter chat messages", "ChatFilterPanel")
 
 			LeaPlusLC:MakeTx(ChatFilterPanel, "Settings", 16, -72)
-			LeaPlusLC:MakeCB(ChatFilterPanel, "BlockSpellLinks", "Block spell links during combat", 16, -92, false, "If checked, messages containing spell links will be blocked while you are in combat.|n|nThis is useful for blocking spell interrupt spam.|n|nThis applies to the say, party, raid, instance and emote channels.")
+			LeaPlusLC:MakeCB(ChatFilterPanel, "BlockSpellLinks", "Block spell links during combat", 16, -92, false, "If checked, messages containing spell links will be blocked while you are in combat.|n|nThis is useful for blocking spell interrupt spam.|n|nThis applies to the say, party, raid, instance, emote and yell channels.")
 			LeaPlusLC:MakeCB(ChatFilterPanel, "BlockDrunkenSpam", "Block drunken spam", 16, -112, false, "If checked, drunken messages will be blocked unless they apply to your character.|n|nThis applies to the system channel.")
 			LeaPlusLC:MakeCB(ChatFilterPanel, "BlockDuelSpam", "Block duel spam", 16, -132, false, "If checked, duel victory and retreat messages will be blocked unless your character took part in the duel.|n|nThis applies to the system channel.")
 
@@ -6579,6 +6608,7 @@
 					ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT", ChatFilterFunc)
 					ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT_LEADER", ChatFilterFunc)
 					ChatFrame_AddMessageEventFilter("CHAT_MSG_EMOTE", ChatFilterFunc)
+					ChatFrame_AddMessageEventFilter("CHAT_MSG_YELL", ChatFilterFunc)
 				else
 					ChatFrame_RemoveMessageEventFilter("CHAT_MSG_SAY", ChatFilterFunc)
 					ChatFrame_RemoveMessageEventFilter("CHAT_MSG_PARTY", ChatFilterFunc)
@@ -6588,6 +6618,7 @@
 					ChatFrame_RemoveMessageEventFilter("CHAT_MSG_INSTANCE_CHAT", ChatFilterFunc)
 					ChatFrame_RemoveMessageEventFilter("CHAT_MSG_INSTANCE_CHAT_LEADER", ChatFilterFunc)
 					ChatFrame_RemoveMessageEventFilter("CHAT_MSG_EMOTE", ChatFilterFunc)
+					ChatFrame_RemoveMessageEventFilter("CHAT_MSG_YELL", ChatFilterFunc)
 				end
 				if LeaPlusLC["BlockDrunkenSpam"] == "On" or LeaPlusLC["BlockDuelSpam"] == "On" then
 					ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", ChatFilterFunc)
@@ -9106,7 +9137,10 @@
 			end
 
 			-- Show tooltip
-			local function ShowTip()
+			local function ShowTip(self)
+
+				-- Required for Dragonflight (or not self:IsTooltipType(Enum.TooltipDataType.Unit))
+				if self ~= GameTooltip then return end
 
 				-- Do nothing if CTRL, SHIFT and ALT are being held
 				if IsControlKeyDown() and IsAltKeyDown() and IsShiftKeyDown() then
@@ -10943,6 +10977,9 @@
 				LeaPlusLC:LoadVarChk("AutoSellJunk", "Off")					-- Sell junk automatically
 				LeaPlusLC:LoadVarChk("AutoSellShowSummary", "On")			-- Sell junk summary in chat
 				LeaPlusLC:LoadVarChk("AutoSellNoKeeperTahult", "On")		-- Sell junk exclude Keeper Ta'hult
+				LeaPlusLC:LoadVarChk("AutoSellExcludeMyChar", "On")			-- Sell junk exclude gear designed for my character
+				LeaPlusLC:LoadVarChk("AutoSellExcludeMyAlts", "On")			-- Sell junk exclude gear designed for my alts
+				LeaPlusLC:LoadVarChk("AutoSellNoGreyGear", "Off")			-- Sell junk exclude all grey gear
 				LeaPlusLC:LoadVarStr("AutoSellExcludeList", "")				-- Sell junk exclude list
 				LeaPlusLC:LoadVarChk("AutoRepairGear", "Off")				-- Repair automatically
 				LeaPlusLC:LoadVarChk("AutoRepairGuildFunds", "On")			-- Repair using guild funds
@@ -11066,13 +11103,6 @@
 				LeaPlusLC:LoadVarNum("WidgetTopY", -15, -5000, 5000)		-- Manage widget top position Y
 				LeaPlusLC:LoadVarNum("WidgetTopScale", 1, 0.5, 2)			-- Manage widget top scale
 
-				LeaPlusLC:LoadVarChk("ManageWidgetPower", "Off")			-- Manage widget power
-				LeaPlusLC:LoadVarAnc("WidgetPowerA", "BOTTOM")				-- Manage widget power anchor
-				LeaPlusLC:LoadVarAnc("WidgetPowerR", "BOTTOM")				-- Manage widget power relative
-				LeaPlusLC:LoadVarNum("WidgetPowerX", 0, -5000, 5000)		-- Manage widget power position X
-				LeaPlusLC:LoadVarNum("WidgetPowerY", 305, -5000, 5000)		-- Manage widget power position Y
-				LeaPlusLC:LoadVarNum("WidgetPowerScale", 1, 0.5, 2)			-- Manage widget power scale
-
 				LeaPlusLC:LoadVarChk("ManageControl", "Off")				-- Manage control
 				LeaPlusLC:LoadVarAnc("ControlA", "CENTER")					-- Manage control anchor
 				LeaPlusLC:LoadVarAnc("ControlR", "CENTER")					-- Manage control relative
@@ -11125,6 +11155,8 @@
 				LeaPlusLC:LoadVarChk("NoRestedEmotes", "Off")				-- Silence rested emotes
 				LeaPlusLC:LoadVarChk("MuteGameSounds", "Off")				-- Mute game sounds
 				LeaPlusLC:LoadVarChk("MuteMountSounds", "Off")				-- Mute mount sounds
+				LeaPlusLC:LoadVarChk("MuteCustomSounds", "Off")				-- Mute custom sounds
+				LeaPlusLC:LoadVarStr("MuteCustomList", "")					-- Mute custom sounds list
 
 				LeaPlusLC:LoadVarChk("NoPetAutomation", "Off")				-- Disable pet automation
 				LeaPlusLC:LoadVarChk("NoRaidRestrictions", "Off")			-- Remove raid restrictions
@@ -11152,15 +11184,18 @@
 				-- Start page
 				LeaPlusLC:LoadVarNum("LeaStartPage", 0, 0, LeaPlusLC["NumberOfPages"])
 
-
-				-- Disable items that conflict with Glass
-				if LeaPlusLC.Glass then
+				-- Lock conflicting options
+				do
 
 					-- Function to disable and lock an option and add a note to the tooltip
-					local function LockOption(option)
+					local function Lock(option, reason, optmodule)
 						LeaLockList[option] = LeaPlusLC[option]
 						LeaPlusLC:LockItem(LeaPlusCB[option], true)
-						LeaPlusCB[option].tiptext = LeaPlusCB[option].tiptext .. "|n|n|cff00AAFF" .. L["Cannot be used with Glass."]
+						LeaPlusCB[option].tiptext = LeaPlusCB[option].tiptext .. "|n|n|cff00AAFF" .. reason
+						if optmodule then
+							LeaPlusCB[option].tiptext = LeaPlusCB[option].tiptext .. " " .. optmodule .. " " .. L["module"]
+						end
+						LeaPlusCB[option].tiptext = LeaPlusCB[option].tiptext .. "."
 						-- Remove hover from configuration button if there is one
 						local temp = {LeaPlusCB[option]:GetChildren()}
 						if temp and temp[1] and temp[1].t and temp[1].t:GetTexture() == 311225 then
@@ -11169,107 +11204,100 @@
 						end
 					end
 
-					LockOption("UseEasyChatResizing") -- Use easy resizing
-					LockOption("NoCombatLogTab") -- Hide the combat log
-					LockOption("NoChatButtons") -- Hide chat buttons
-					LockOption("NoSocialButton") -- Hide social button
-					LockOption("UnclampChat") -- Unclamp chat frame
-					LockOption("MoveChatEditBoxToTop") -- Move editbox to top
-					LockOption("SetChatFontSize") -- Set chat font size
-					LockOption("NoChatFade") --  Disable chat fade
-					LockOption("RecentChatWindow") -- Recent chat window
-
-				end
-
-				-- Disable items that conflict with ElvUI
-				if LeaPlusLC.ElvUI then
-					local E = LeaPlusLC.ElvUI
-					if E and E.private then
-
-						-- Function to disable and lock an option and add a note to the tooltip
-						local function LockOption(option, emodule)
-							LeaLockList[option] = LeaPlusLC[option]
-							LeaPlusLC:LockItem(LeaPlusCB[option], true)
-							if emodule == "Base" then
-								LeaPlusCB[option].tiptext = LeaPlusCB[option].tiptext .. "|n|n|cff00AAFF" .. L["Cannot be used with ElvUI."]
-							else
-								LeaPlusCB[option].tiptext = LeaPlusCB[option].tiptext .. "|n|n|cff00AAFF" .. L["Cannot be used with ElvUI"] .. " " .. L[emodule] .. " " .. L["module"] .. "."
-							end
-							-- Remove hover from configuration button if there is one
-							local temp = {LeaPlusCB[option]:GetChildren()}
-							if temp and temp[1] and temp[1].t and temp[1].t:GetTexture() == 311225 then
-								temp[1]:SetHighlightTexture(0)
-								temp[1]:SetScript("OnEnter", nil)
-							end
-						end
-
-						-- Chat
-						if E.private.chat.enable then
-							LockOption("UseEasyChatResizing", "Chat") -- Use easy resizing
-							LockOption("NoCombatLogTab", "Chat") -- Hide the combat log
-							LockOption("NoChatButtons", "Chat") -- Hide chat buttons
-							LockOption("NoSocialButton", "Chat") -- Hide social button
-							LockOption("UnclampChat", "Chat") -- Unclamp chat frame
-							LockOption("SetChatFontSize", "Chat") --  Set chat font size
-							LockOption("NoStickyChat", "Chat") -- Disable sticky chat
-							LockOption("UseArrowKeysInChat", "Chat") -- Use arrow keys in chat
-							LockOption("NoChatFade", "Chat") -- Disable chat fade
-							LockOption("MaxChatHstory", "Chat") -- Increase chat history
-							LockOption("RestoreChatMessages", "Chat") -- Restore chat messages (E.db.chat.chatHistory)
-						end
-
-						-- Minimap
-						if E.private.general.minimap.enable then
-							LockOption("MinimapModder", "Minimap") -- Enhance minimap
-						end
-
-						-- UnitFrames
-						if E.private.unitframe.enable then
-							LockOption("ShowRaidToggle", "UnitFrames") -- Show raid button
-						end
-
-						-- ActionBars
-						if E.private.actionbar.enable then
-							LockOption("NoClassBar", "ActionBars") -- Hide stance bar
-							LockOption("HideKeybindText", "ActionBars") -- Hide keybind text
-							LockOption("HideMacroText", "ActionBars") -- Hide macro text
-						end
-
-						-- Bags
-						if E.private.bags.enable then
-							LockOption("HideCleanupBtns", "Bags") -- Hide clean-up buttons
-						end
-
-						-- Tooltip
-						if E.private.tooltip.enable then
-							LockOption("TipModEnable", "Tooltip") -- Enhance tooltip
-						end
-
-						-- UnitFrames: Disabled Blizzard: Player
-						if E.private.unitframe.disabledBlizzardFrames.player then
-							LockOption("ShowPlayerChain", "UnitFrames (Disabled Blizzard Frames Player)") -- Show player chain
-							LockOption("NoHitIndicators", "UnitFrames (Disabled Blizzard Frames Player)") -- Hide portrait numbers
-							LockOption("NoRestedSleep", "UnitFrames (Disabled Blizzard Frames Player)") -- Hide rested sleep
-						end
-
-						-- UnitFrames: Disabled Blizzard: Player, Target or Focus
-						if E.private.unitframe.disabledBlizzardFrames.player or E.private.unitframe.disabledBlizzardFrames.target or E.private.unitframe.disabledBlizzardFrames.focus then
-							LockOption("ClassColFrames", "UnitFrames (Disabled Blizzard Frames Player, Target and Focus)") -- Class-colored frames
-						end
-
-						-- Base
-						do
-							LockOption("ManageWidgetTop", "Base") -- Manage widget top
-							LockOption("ManageWidgetPower", "Base") -- Manage widget power
-							LockOption("ManageControl", "Base") -- Manage control
-							LockOption("ManageTimer", "Base") -- Manage timer
-							LockOption("ManageDurability", "Base") -- Manage durability
-							LockOption("ManageVehicle", "Base") -- Manage vehicle
-						end
-
+					-- Disable items that conflict with Glass
+					if LeaPlusLC.Glass then
+						local reason = L["Cannot be used with Glass"]
+						Lock("UseEasyChatResizing", reason) -- Use easy resizing
+						Lock("NoCombatLogTab", reason) -- Hide the combat log
+						Lock("NoChatButtons", reason) -- Hide chat buttons
+						Lock("NoSocialButton", reason) -- Hide social button
+						Lock("UnclampChat", reason) -- Unclamp chat frame
+						Lock("MoveChatEditBoxToTop", reason) -- Move editbox to top
+						Lock("SetChatFontSize", reason) -- Set chat font size
+						Lock("NoChatFade", reason) --  Disable chat fade
+						Lock("RecentChatWindow", reason) -- Recent chat window
 					end
 
-					EnableAddOn("Leatrix_Plus")
+					-- Disable items that conflict with ElvUI
+					if LeaPlusLC.ElvUI then
+						local E = LeaPlusLC.ElvUI
+						if E and E.private then
+
+							local reason = L["Cannot be used with ElvUI"]
+
+							-- Chat
+							if E.private.chat.enable then
+								Lock("UseEasyChatResizing", reason, "Chat") -- Use easy resizing
+								Lock("NoCombatLogTab", reason, "Chat") -- Hide the combat log
+								Lock("NoChatButtons", reason, "Chat") -- Hide chat buttons
+								Lock("NoSocialButton", reason, "Chat") -- Hide social button
+								Lock("UnclampChat", reason, "Chat") -- Unclamp chat frame
+								Lock("SetChatFontSize", reason, "Chat") --  Set chat font size
+								Lock("NoStickyChat", reason, "Chat") -- Disable sticky chat
+								Lock("UseArrowKeysInChat", reason, "Chat") -- Use arrow keys in chat
+								Lock("NoChatFade", reason, "Chat") -- Disable chat fade
+								Lock("MaxChatHstory", reason, "Chat") -- Increase chat history
+								Lock("RestoreChatMessages", reason, "Chat") -- Restore chat messages (E.db.chat.chatHistory)
+							end
+
+							-- Minimap
+							if E.private.general.minimap.enable then
+								Lock("MinimapModder", reason, "Minimap") -- Enhance minimap
+							end
+
+							-- UnitFrames
+							if E.private.unitframe.enable then
+								Lock("ShowRaidToggle", reason, "UnitFrames") -- Show raid button
+							end
+
+							-- ActionBars
+							if E.private.actionbar.enable then
+								Lock("NoClassBar", reason, "ActionBars") -- Hide stance bar
+								Lock("HideKeybindText", reason, "ActionBars") -- Hide keybind text
+								Lock("HideMacroText", reason, "ActionBars") -- Hide macro text
+							end
+
+							-- Bags
+							if E.private.bags.enable then
+								Lock("HideCleanupBtns", reason, "Bags") -- Hide clean-up buttons
+							end
+
+							-- Tooltip
+							if E.private.tooltip.enable then
+								Lock("TipModEnable", reason, "Tooltip") -- Enhance tooltip
+							end
+
+							-- UnitFrames: Disabled Blizzard: Player
+							if E.private.unitframe.disabledBlizzardFrames.player then
+								Lock("ShowPlayerChain", reason, "UnitFrames (Disabled Blizzard Frames Player)") -- Show player chain
+								Lock("NoHitIndicators", reason, "UnitFrames (Disabled Blizzard Frames Player)") -- Hide portrait numbers
+								Lock("NoRestedSleep", reason, "UnitFrames (Disabled Blizzard Frames Player)") -- Hide rested sleep
+							end
+
+							-- UnitFrames: Disabled Blizzard: Player, Target or Focus
+							if E.private.unitframe.disabledBlizzardFrames.player or E.private.unitframe.disabledBlizzardFrames.target or E.private.unitframe.disabledBlizzardFrames.focus then
+								Lock("ClassColFrames", reason, "UnitFrames (Disabled Blizzard Frames Player, Target and Focus)") -- Class-colored frames
+							end
+
+							-- Base
+							do
+								Lock("ManageWidgetTop", reason) -- Manage widget top
+								Lock("ManageControl", reason) -- Manage control
+								Lock("ManageTimer", reason) -- Manage timer
+								Lock("ManageDurability", reason) -- Manage durability
+								Lock("ManageVehicle", reason) -- Manage vehicle
+							end
+
+						end
+
+						EnableAddOn("Leatrix_Plus")
+					end
+
+					-- Disable items that conflict with game patch 10.0.5
+					if LeaPlusLC.NewPatch then
+						Lock("ManageDurability", L["You can move this frame with Edit Mode."]) -- Manage durability
+					end
+
 				end
 
 				-- Lock options currently not compatible with Dragonflight (LeaPlusLC.DF)
@@ -11326,6 +11354,9 @@
 			LeaPlusDB["AutoSellJunk"] 			= LeaPlusLC["AutoSellJunk"]
 			LeaPlusDB["AutoSellShowSummary"] 	= LeaPlusLC["AutoSellShowSummary"]
 			LeaPlusDB["AutoSellNoKeeperTahult"] = LeaPlusLC["AutoSellNoKeeperTahult"]
+			LeaPlusDB["AutoSellExcludeMyChar"]	= LeaPlusLC["AutoSellExcludeMyChar"]
+			LeaPlusDB["AutoSellExcludeMyAlts"]	= LeaPlusLC["AutoSellExcludeMyAlts"]
+			LeaPlusDB["AutoSellNoGreyGear"] 	= LeaPlusLC["AutoSellNoGreyGear"]
 			LeaPlusDB["AutoSellExcludeList"] 	= LeaPlusLC["AutoSellExcludeList"]
 			LeaPlusDB["AutoRepairGear"] 		= LeaPlusLC["AutoRepairGear"]
 			LeaPlusDB["AutoRepairGuildFunds"] 	= LeaPlusLC["AutoRepairGuildFunds"]
@@ -11450,13 +11481,6 @@
 			LeaPlusDB["WidgetTopY"]				= LeaPlusLC["WidgetTopY"]
 			LeaPlusDB["WidgetTopScale"]			= LeaPlusLC["WidgetTopScale"]
 
-			LeaPlusDB["ManageWidgetPower"]		= LeaPlusLC["ManageWidgetPower"]
-			LeaPlusDB["WidgetPowerA"]			= LeaPlusLC["WidgetPowerA"]
-			LeaPlusDB["WidgetPowerR"]			= LeaPlusLC["WidgetPowerR"]
-			LeaPlusDB["WidgetPowerX"]			= LeaPlusLC["WidgetPowerX"]
-			LeaPlusDB["WidgetPowerY"]			= LeaPlusLC["WidgetPowerY"]
-			LeaPlusDB["WidgetPowerScale"]		= LeaPlusLC["WidgetPowerScale"]
-
 			LeaPlusDB["ManageControl"]			= LeaPlusLC["ManageControl"]
 			LeaPlusDB["ControlA"]				= LeaPlusLC["ControlA"]
 			LeaPlusDB["ControlR"]				= LeaPlusLC["ControlR"]
@@ -11509,6 +11533,8 @@
 			LeaPlusDB["NoRestedEmotes"]			= LeaPlusLC["NoRestedEmotes"]
 			LeaPlusDB["MuteGameSounds"]			= LeaPlusLC["MuteGameSounds"]
 			LeaPlusDB["MuteMountSounds"]		= LeaPlusLC["MuteMountSounds"]
+			LeaPlusDB["MuteCustomSounds"]		= LeaPlusLC["MuteCustomSounds"]
+			LeaPlusDB["MuteCustomList"]			= LeaPlusLC["MuteCustomList"]
 
 			LeaPlusDB["NoPetAutomation"]		= LeaPlusLC["NoPetAutomation"]
 			LeaPlusDB["NoRaidRestrictions"]		= LeaPlusLC["NoRaidRestrictions"]
@@ -13993,6 +14019,30 @@
 					LeaPlusLC:Print("Gossip frame not open.")
 				end
 				return
+			elseif str == "traits" then
+				-- Set dragonriding traits
+				if IsAddOnLoaded("Blizzard_GenericTraitUI") and GenericTraitFrame:IsShown() then
+					local c = C_Traits.GetConfigIDBySystemID(1)
+					for count = 1, 10 do
+						for i, n in ipairs(C_Traits.GetTreeNodes(672)) do
+							local f = C_Traits.GetNodeInfo(c, n)
+							if #f.entryIDs < 2 then
+								-- One trait only
+								C_Traits.PurchaseRank(c, n)
+							else
+								-- Two trait choices
+								C_Traits.SetSelection(c, n, f.entryIDs[2]) -- 1 for left-side trait, 2 for right-side trait
+							end
+						end
+					end
+					-- Save changes
+					C_Traits.CommitConfig(c)
+					-- Reload to clear everything
+					ReloadUI()
+				else
+					LeaPlusLC:Print("Open the dragonriding trait frame first!")
+				end
+				return
 			elseif str == "admin" then
 				-- Preset profile (used for testing)
 				LpEvt:UnregisterAllEvents()						-- Prevent changes
@@ -14011,6 +14061,7 @@
 				LeaPlusDB["AutoAcceptRes"] = "On"				-- Accept resurrection
 				LeaPlusDB["AutoReleasePvP"] = "On"				-- Release in PvP
 				LeaPlusDB["AutoSellJunk"] = "On"				-- Sell junk automatically
+				LeaPlusDB["AutoSellExcludeMyAlts"] = "Off"		-- Sell junk exclude gear designed for my alts
 				LeaPlusDB["AutoSellExcludeList"] = ""			-- Sell junk exclusions list
 				LeaPlusDB["AutoRepairGear"] = "On"				-- Repair automatically
 
@@ -14109,13 +14160,6 @@
 				LeaPlusDB["WidgetTopY"] = -432					-- Manage widget top position Y
 				LeaPlusDB["WidgetTopScale"] = 1.25				-- Manage widget top scale
 
-				LeaPlusDB["ManageWidgetPower"] = "On"			-- Manage widget power
-				LeaPlusDB["WidgetPowerA"] = "BOTTOM"			-- Manage widget power anchor
-				LeaPlusDB["WidgetPowerR"] = "BOTTOM"			-- Manage widget power relative
-				LeaPlusDB["WidgetPowerX"] = 0					-- Manage widget power position X
-				LeaPlusDB["WidgetPowerY"] = 305					-- Manage widget power position Y
-				LeaPlusDB["WidgetPowerScale"] = 1.00			-- Manage widget power scale
-
 				LeaPlusDB["ManageControl"] = "On"				-- Manage control
 				LeaPlusDB["ControlA"] = "CENTER"				-- Manage control anchor
 				LeaPlusDB["ControlR"] = "CENTER"				-- Manage control relative
@@ -14165,6 +14209,8 @@
 				LeaPlusDB["NoRestedEmotes"] = "On"				-- Silence rested emotes
 				LeaPlusDB["MuteGameSounds"] = "On"				-- Mute game sounds
 				LeaPlusDB["MuteMountSounds"] = "On"				-- Mute mount sounds
+				LeaPlusDB["MuteCustomSounds"] = "On"			-- Mute custom sounds
+				LeaPlusDB["MuteCustomList"] = ""				-- Mute custom sounds list
 
 				LeaPlusDB["NoPetAutomation"] = "On"				-- Disable pet automation
 				LeaPlusDB["NoRaidRestrictions"] = "On"			-- Remove raid restrictions
@@ -14257,6 +14303,7 @@
 					LeaPlusDB[k] = "On"
 				end
 				LeaPlusDB["MuteReady"] = "Off"	-- Mute ready check
+				LeaPlusDB["MuteVigor"] = "Off"	-- Mute vigor
 
 				-- Mute mount sounds (LeaPlusLC["MuteMountSounds"])
 				for k, v in pairs(LeaPlusLC["mountTable"]) do
@@ -14564,12 +14611,11 @@
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Features"					, 	146, -72)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageWidgetTop"			,	"Manage widget top"				, 	146, -92, 	true,	"If checked, you will be able to change the position and scale of the widget top frame.|n|nThe widget top frame is commonly used for showing PvP scores and tracking objectives.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageWidgetPower"			,	"Manage widget power"			, 	146, -112, 	true,	"If checked, you will be able to change the position and scale of the widget power frame.|n|nAn example of the widget power frame is the cosmic energy bar in Zereth Mortis.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageControl"				,	"Manage control"				, 	146, -132, 	true,	"If checked, you will be able to change the position and scale of the loss of control frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageTimer"				,	"Manage timer"					, 	146, -152, 	true,	"If checked, you will be able to change the position and scale of the timer bar.|n|nThe timer bar is used for showing remaining breath when underwater as well as other things.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageDurability"			,	"Manage durability"				, 	146, -172, 	true,	"If checked, you will be able to change the position and scale of the armored man durability frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageVehicle"				,	"Manage vehicle"				, 	146, -192, 	true,	"If checked, you will be able to change the position and scale of the vehicle seat indicator frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ClassColFrames"			, 	"Class colored frames"			,	146, -212, 	true,	"If checked, class coloring will be used in the player frame, target frame and focus frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageControl"				,	"Manage control"				, 	146, -112, 	true,	"If checked, you will be able to change the position and scale of the loss of control frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageTimer"				,	"Manage timer"					, 	146, -132, 	true,	"If checked, you will be able to change the position and scale of the timer bar.|n|nThe timer bar is used for showing remaining breath when underwater as well as other things.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageDurability"			,	"Manage durability"				, 	146, -152, 	true,	"If checked, you will be able to change the position and scale of the armored man durability frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageVehicle"				,	"Manage vehicle"				, 	146, -172, 	true,	"If checked, you will be able to change the position and scale of the vehicle seat indicator frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ClassColFrames"			, 	"Class colored frames"			,	146, -192, 	true,	"If checked, class coloring will be used in the player frame, target frame and focus frame.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Visibility"				, 	340, -72)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoAlerts"					,	"Hide alerts"					, 	340, -92, 	true,	"If checked, alert frames will not be shown.")
@@ -14583,7 +14629,6 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoRestedSleep"				,	"Hide rested sleep"				, 	340, -252, 	true,	"If checked, the player frame rested sleep animation will not be shown.")
 
 	LeaPlusLC:CfgBtn("ManageWidgetTopButton", LeaPlusCB["ManageWidgetTop"])
-	LeaPlusLC:CfgBtn("ManageWidgetPowerButton", LeaPlusCB["ManageWidgetPower"])
 	LeaPlusLC:CfgBtn("ManageControlButton", LeaPlusCB["ManageControl"])
 	LeaPlusLC:CfgBtn("ManageTimerButton", LeaPlusCB["ManageTimer"])
 	LeaPlusLC:CfgBtn("ManageDurabilityButton", LeaPlusCB["ManageDurability"])
@@ -14604,6 +14649,7 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoRestedEmotes"			, 	"Silence rested emotes"			,	146, -172, 	true,	"If checked, emote sounds will be silenced while your character is:|n|n- resting|n- in a pet battle|n- at the Halfhill Market|n- at the Grim Guzzler|n|nEmote sounds will be enabled when none of the above apply.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MuteGameSounds"			, 	"Mute game sounds"				,	146, -192, 	false,	"If checked, you will be able to mute a selection of game sounds.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MuteMountSounds"			, 	"Mute mount sounds"				,	146, -212, 	false,	"If checked, you will be able to mute a selection of mount sounds.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "MuteCustomSounds"			, 	"Mute custom sounds"			,	146, -232, 	false,	"If checked, you will be able to mute your own choice of sounds.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Game Options"				, 	340, -72)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoPetAutomation"			, 	"Disable pet automation"		, 	340, -92, 	true, 	"If checked, battle pets which are automatically summoned will be dismissed within a few seconds.|n|nThis includes dragging a pet onto the first team slot in the pet journal and entering a battle pet team save command.|n|nNote that pets which are automatically summoned during combat will be dismissed when combat ends.")
@@ -14619,6 +14665,7 @@
 	LeaPlusLC:CfgBtn("SetWeatherDensityBtn", LeaPlusCB["SetWeatherDensity"])
 	LeaPlusLC:CfgBtn("MuteGameSoundsBtn", LeaPlusCB["MuteGameSounds"])
 	LeaPlusLC:CfgBtn("MuteMountSoundsBtn", LeaPlusCB["MuteMountSounds"])
+	LeaPlusLC:CfgBtn("MuteCustomSoundsBtn", LeaPlusCB["MuteCustomSounds"])
 	LeaPlusLC:CfgBtn("FasterLootingBtn", LeaPlusCB["FasterLooting"])
 	LeaPlusLC:CfgBtn("NoTransformsBtn", LeaPlusCB["NoTransforms"])
 

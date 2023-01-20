@@ -435,14 +435,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -529,8 +529,8 @@ ActionBarProfilesDBv3 = {
 						["FLIPCAMERAYAW"] = {
 							"CTRL-0", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
@@ -814,14 +814,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -908,8 +908,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -1382,14 +1382,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -1476,8 +1476,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -1958,14 +1958,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -2052,8 +2052,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -2501,14 +2501,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -2595,8 +2595,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -3072,14 +3072,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -3166,8 +3166,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -3844,14 +3844,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -3938,8 +3938,8 @@ ActionBarProfilesDBv3 = {
 						["FLIPCAMERAYAW"] = {
 							"CTRL-0", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
@@ -4386,14 +4386,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -4480,8 +4480,8 @@ ActionBarProfilesDBv3 = {
 						["FLIPCAMERAYAW"] = {
 							"CTRL-0", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
@@ -4924,14 +4924,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -5018,8 +5018,8 @@ ActionBarProfilesDBv3 = {
 						["FLIPCAMERAYAW"] = {
 							"CTRL-0", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
@@ -5461,14 +5461,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -5555,8 +5555,8 @@ ActionBarProfilesDBv3 = {
 						["ACTIONBUTTON6"] = {
 							"E", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
@@ -6015,14 +6015,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -6109,8 +6109,8 @@ ActionBarProfilesDBv3 = {
 						["ACTIONBUTTON6"] = {
 							"E", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
@@ -6618,8 +6618,8 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -6664,11 +6664,11 @@ ActionBarProfilesDBv3 = {
 						["ACTIONBUTTON12"] = {
 							"T", -- [1]
 						},
+						["TURNLEFT"] = {
+							"A", -- [1]
+						},
 						["TOGGLEDUNGEONSANDRAIDS"] = {
 							"CTRL-I", -- [1]
-						},
-						["TOGGLERUN"] = {
-							"NUMPADDIVIDE", -- [1]
 						},
 						["COMBATLOGPAGEDOWN"] = {
 							"CTRL-PAGEDOWN", -- [1]
@@ -6694,8 +6694,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON12"] = {
 							"F6", -- [1]
 						},
-						["TURNLEFT"] = {
-							"A", -- [1]
+						["TOGGLERUN"] = {
+							"NUMPADDIVIDE", -- [1]
 						},
 						["TARGETNEARESTFRIEND"] = {
 							"CTRL-TAB", -- [1]
@@ -6713,14 +6713,14 @@ ActionBarProfilesDBv3 = {
 							"=", -- [1]
 							"CTRL-B", -- [2]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR3BUTTON4"] = {
 							"6", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
@@ -7186,8 +7186,8 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -7232,11 +7232,11 @@ ActionBarProfilesDBv3 = {
 						["ACTIONBUTTON12"] = {
 							"T", -- [1]
 						},
+						["TURNLEFT"] = {
+							"A", -- [1]
+						},
 						["TOGGLEDUNGEONSANDRAIDS"] = {
 							"CTRL-I", -- [1]
-						},
-						["TOGGLERUN"] = {
-							"NUMPADDIVIDE", -- [1]
 						},
 						["COMBATLOGPAGEDOWN"] = {
 							"CTRL-PAGEDOWN", -- [1]
@@ -7262,8 +7262,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON12"] = {
 							"F6", -- [1]
 						},
-						["TURNLEFT"] = {
-							"A", -- [1]
+						["TOGGLERUN"] = {
+							"NUMPADDIVIDE", -- [1]
 						},
 						["TARGETNEARESTFRIEND"] = {
 							"CTRL-TAB", -- [1]
@@ -7281,14 +7281,14 @@ ActionBarProfilesDBv3 = {
 							"=", -- [1]
 							"CTRL-B", -- [2]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR3BUTTON4"] = {
 							"6", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
@@ -7751,8 +7751,8 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -7797,11 +7797,11 @@ ActionBarProfilesDBv3 = {
 						["ACTIONBUTTON12"] = {
 							"T", -- [1]
 						},
+						["TURNLEFT"] = {
+							"A", -- [1]
+						},
 						["TOGGLEDUNGEONSANDRAIDS"] = {
 							"CTRL-I", -- [1]
-						},
-						["TOGGLERUN"] = {
-							"NUMPADDIVIDE", -- [1]
 						},
 						["COMBATLOGPAGEDOWN"] = {
 							"CTRL-PAGEDOWN", -- [1]
@@ -7827,8 +7827,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON12"] = {
 							"F6", -- [1]
 						},
-						["TURNLEFT"] = {
-							"A", -- [1]
+						["TOGGLERUN"] = {
+							"NUMPADDIVIDE", -- [1]
 						},
 						["TARGETNEARESTFRIEND"] = {
 							"CTRL-TAB", -- [1]
@@ -7846,14 +7846,14 @@ ActionBarProfilesDBv3 = {
 							"=", -- [1]
 							"CTRL-B", -- [2]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR3BUTTON4"] = {
 							"6", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
@@ -7910,213 +7910,6 @@ ActionBarProfilesDBv3 = {
 		["WARLOCK"] = {
 			["list"] = {
 				["Warlock Demo"] = {
-					["name"] = "Warlock Demo",
-					["talents"] = {
-						"|cff71d5ff|Htalent:23138|h[Demonic Strength]|h|r", -- [1]
-						"|cff71d5ff|Htalent:21694|h[Power Siphon]|h|r", -- [2]
-						"|cff71d5ff|Htalent:19285|h[Burning Rush]|h|r", -- [3]
-						"|cff71d5ff|Htalent:22042|h[Soul Strike]|h|r", -- [4]
-						"|cff71d5ff|Htalent:19291|h[Mortal Coil]|h|r", -- [5]
-						"|cff71d5ff|Htalent:23146|h[Inner Demons]|h|r", -- [6]
-						"|cff71d5ff|Htalent:22479|h[Demonic Consumption]|h|r", -- [7]
-					},
-					["petActions"] = {
-						"|cffff0000|Habp:pet:PET_ACTION_ATTACK|h[Attack]|h|r", -- [1]
-						"|cffff0000|Habp:pet:PET_ACTION_FOLLOW|h[Follow]|h|r", -- [2]
-						"|cffff0000|Habp:pet:PET_ACTION_MOVE_TO|h[Move To]|h|r", -- [3]
-						"|cff71d5ff|Hspell:3110:0|h[Firebolt]|h|r", -- [4]
-						"|cff71d5ff|Hspell:89808:0|h[Singe Magic]|h|r", -- [5]
-						"|cff71d5ff|Hspell:89792:0|h[Flee]|h|r", -- [6]
-						"|cffff0000|Habp:pet:PET_ACTION_WAIT|h[Stay]|h|r", -- [7]
-					},
-					["actions"] = {
-						"|cffff0000|Habp:macro:136138:#showtooltip~0a/cast ~5bnomod,@mouseover,exists,nodead~5d~5bnomod~5d Curse of Weakness~0a/cast ~5bmod,@mouseover,exists,nodead~5d~5bmod~5d Curse of Tongues~0a|h[curse]|h|r", -- [1]
-						"|cff71d5ff|Hspell:234153:0|h[Drain Life]|h|r", -- [2]
-						"|cff71d5ff|Htalent:22042|h[Soul Strike]|h|r", -- [3]
-						"|cff71d5ff|Htalent:21694|h[Power Siphon]|h|r", -- [4]
-						"|cff71d5ff|Hspell:196277:0|h[Implosion]|h|r", -- [5]
-						"|cff71d5ff|Hspell:686:0|h[Shadow Bolt]|h|r", -- [6]
-						"|cff71d5ff|Hspell:105174:0|h[Hand of Gul'dan]|h|r", -- [7]
-						"|cff71d5ff|Hspell:104316:0|h[Call Dreadstalkers]|h|r", -- [8]
-						nil, -- [9]
-						"|cff71d5ff|Hspell:212619:0|h[Call Felhunter]|h|r", -- [10]
-						"|cff71d5ff|Hspell:119905:0|h[Singe Magic]|h|r", -- [11]
-						"|cff71d5ff|Hspell:325289:0|h[Decimating Bolt]|h|r", -- [12]
-						"|cff71d5ff|Hspell:255661:0|h[Cantrips]|h|r", -- [13]
-						"|cff71d5ff|Hspell:126:0|h[Eye of Kilrogg]|h|r", -- [14]
-						"|cff71d5ff|Hspell:172:0|h[Corruption]|h|r", -- [15]
-						"|cff71d5ff|Hspell:6201:0|h[Create Healthstone]|h|r", -- [16]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Spinefin Souffle and Fries~0a/use ~5bmod~3actrl~5d Ambroria Dew~0a/use ~5bmod~3aalt~5d Conjured Mana Bun~0a:1|h[_mb_]|h|r", -- [17]
-						"|cffffffff|Hitem:124640::::::::60:266:::::::::|h[Inky Black Potion]|h|r", -- [18]
-						"|cff71d5ff|Hspell:1714:0|h[Curse of Tongues]|h|r", -- [19]
-						"|cff71d5ff|Hspell:702:0|h[Curse of Weakness]|h|r", -- [20]
-						nil, -- [21]
-						"|cff71d5ff|Hspell:386452:0|h[Frostbrood Proto-Wyrm]|h|r", -- [22]
-						nil, -- [23]
-						"|cff71d5ff|Hspell:150544:0|h[Summon Random Favorite Mount]|h|r", -- [24]
-						"|cffff0000|Habp:macro:524348:/petassist~0a/petfollow~0a/petattack ~5b@mouseover,exists~5d~5b@target~5d~0a:1|h[_assist]|h|r", -- [25]
-						"|cffff0000|Habp:macro:132311:/petpassive~0a/petfollow~0a:1|h[_passive]|h|r", -- [26]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Potion of Spectral Intellect~0a/use ~5bmod~5d Phial of Serenity~0a:1|h[_pi]|h|r", -- [27]
-						"|cffff0000|Habp:macro:134400:#/use ~5bnomod~5d Clasp of Waning Shadow~0a/use ~5bnomod~5d Coiled Stygian Grapnel~0a/use ~5bmod~5d Rocket Jump~0a:1|h[_belt]|h|r", -- [28]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5b@mouseover,exists~5d~5b~5d Disposable Spectrophasic Reanimator~0a:1|h[_cr]|h|r", -- [29]
-						"|cff71d5ff|Hspell:1098:0|h[Subjugate Demon]|h|r", -- [30]
-						nil, -- [31]
-						"|cff71d5ff|Hspell:189998:0|h[Illidari Felstalker]|h|r", -- [32]
-						"|cff71d5ff|Hspell:342601:0|h[Ritual of Doom]|h|r", -- [33]
-						"|cff71d5ff|Hspell:698:0|h[Ritual of Summoning]|h|r", -- [34]
-						"|cff71d5ff|Hspell:122708:0|h[Grand Expedition Yak]|h|r", -- [35]
-						"|cff71d5ff|Hspell:60002:0|h[Time-Lost Proto-Drake]|h|r", -- [36]
-						"|cffffffff|Hitem:171370::::::::60:266:::::::::|h[Potion of Specter Swiftness]|h|r", -- [37]
-						"|cffff0000|Habp:macro:132327:/petmoveto~0a:1|h[_go]|h|r", -- [38]
-						"|cffff0000|Habp:macro:1033497:/focus ~5b@mouseover,exists,nodead~5d ~5b~5d~0a:1|h[_foc]|h|r", -- [39]
-						"|cff71d5ff|Hspell:5697:0|h[Unending Breath]|h|r", -- [40]
-						"|cff71d5ff|Hspell:48018:0|h[Demonic Circle]|h|r", -- [41]
-						"|cff71d5ff|Hspell:48020:0|h[Demonic Circle: Teleport]|h|r", -- [42]
-						nil, -- [43]
-						nil, -- [44]
-						nil, -- [45]
-						nil, -- [46]
-						nil, -- [47]
-						"|cffffffff|Hitem:171266::::::::60:266:::::::::|h[Potion of the Hidden Spirit]|h|r", -- [48]
-						"|cffff0000|Habp:flyout:10|h[Summon Demon]|h|r", -- [49]
-						"|cff71d5ff|Hspell:324631:0|h[Fleshcraft]|h|r", -- [50]
-						"|cffff0000|Habp:macro:136194:#showtooltip~0a/cast ~5bnomod~5d Create Soulwell~0a/cast ~5bmod~5d Create Healthstone~0a|h[hs]|h|r", -- [51]
-						"|cff71d5ff|Hspell:20707:0|h[Soulstone]|h|r", -- [52]
-						"|cffffffff|Hitem:109076::::::::60:266:::::::::|h[Goblin Glider Kit]|h|r", -- [53]
-						"|cff71d5ff|Hspell:111771:0|h[Demonic Gateway]|h|r", -- [54]
-						"|cff71d5ff|Hspell:334275:0|h[Curse of Exhaustion]|h|r", -- [55]
-						"|cffff0000|Habp:macro:3566860:#showtooltip~0a/use ~5bnomod~5d Spiritual Healing Potion~0a/use ~5bmod~5d Healthstone~0a:1|h[_hp_]|h|r", -- [56]
-						"|cff71d5ff|Hspell:264178:0|h[Demonbolt]|h|r", -- [57]
-						"|cff71d5ff|Hspell:328774:0|h[Amplify Curse]|h|r", -- [58]
-						"|cffff0000|Habp:macro:236292:#showtooltip~0a/cast ~5btalent~3a1/2~5d Bilescourge Bombers~0a/cast ~5btalent~3a1/3~5d Demonic Strength~0a|h[t1]|h|r", -- [59]
-						"|cffff0000|Habp:macro:133254:#showtooltip~0a/use ~5bnomod,@mouseover,exists,nodead~5d~5bnomod~5d 13~0a/use ~5bmod,@mouseover,exists,nodead~5d~5bmod~5d 14~0a:1|h[_trink]|h|r", -- [60]
-						"|cff71d5ff|Htalent:19291|h[Mortal Coil]|h|r", -- [61]
-						"|cff71d5ff|Hspell:30283:0|h[Shadowfury]|h|r", -- [62]
-						"|cff71d5ff|Hspell:755:0|h[Health Funnel]|h|r", -- [63]
-						"|cffff0000|Habp:macro:538043:#showtooltip~0a/cast ~5btalent~3a3/2~5d Burning Rush~0a/cast ~5btalent~3a3/3~5d Dark Pact~0a|h[t3]|h|r", -- [64]
-						"|cff71d5ff|Hspell:5782:0|h[Fear]|h|r", -- [65]
-						"|cff71d5ff|Hspell:104773:0|h[Unending Resolve]|h|r", -- [66]
-						"|cff71d5ff|Hspell:264119:0|h[Summon Vilefiend]|h|r", -- [67]
-						"|cff71d5ff|Hspell:111898:0|h[Grimoire: Felguard]|h|r", -- [68]
-						"|cff71d5ff|Hspell:265187:0|h[Summon Demonic Tyrant]|h|r", -- [69]
-						"|cff71d5ff|Hspell:710:0|h[Banish]|h|r", -- [70]
-						"|cff71d5ff|Hspell:333889:0|h[Fel Domination]|h|r", -- [71]
-						"|cff71d5ff|Hspell:260364:0|h[Arcane Pulse]|h|r", -- [72]
-					},
-					["macros"] = {
-						"|cffff0000|Habp:macro:134331:/way 53.3, 32.5 path~0a/way 50.7, 33.0 7~0a/way 64.3, 30.4 8~0a/way 61.0, 35.3 9~0a/way 38.0, 35.8 10~0a/way 61.8, 58.8 11~0a/way 30.3, 54.9 cave~0a/way 35.0, 46.8 12~0a/way 24.8, 56.2 13~0a/way 55.5, 65.0 14~0a/way 54.2 54.8 14~0aRift Caches 2~0a/way 54.9, 42.5 1~0a/way 55.1, 17~0a:1|h[-waypoint list]|h|r", -- [1]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Potion of Spectral Agility~0a/use ~5bmod~5d Phial of Serenity~0a:1|h[_pa]|h|r", -- [2]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Potion of Spectral Strength~0a/use ~5bmod~5d Phial of Serenity~0a:1|h[_ps]|h|r", -- [3]
-						"|cffff0000|Habp:macro:134400:/targetexact Time-Lost Proto-Drake~0a/targetexact Vyragosa~0a/run local N = UnitName(\"Target\");if N and (N==\"Vyragosa\") then PlaySound(13363, \"master\");print(date(),N,\"Found\");SetRaidTarget(\"target\",8);end~0a:1|h[_sc2]|h|r", -- [4]
-						"|cffff0000|Habp:macro:134400:/targetexact Time-Lost Proto-Drake~0a/targetexact Vyragosa~0a/run local N = UnitName(\"Target\");if N and (N==\"Time-Lost Proto-Drake\") then PlaySound(13363,\"master\");print(date(),N,\"Found\");SetRaidTarget(\"target\",8);end~0a:1|h[_scn]|h|r", -- [5]
-						"|cffff0000|Habp:macro:134400:/run PickupInventoryItem(7)PutItemInBackpack()~0a:1|h[_uneq]|h|r", -- [6]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Alter Time~0a/cast ~5bmod~5d Temporal Shield~0a:1|h[a]|h|r", -- [7]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use Re-Sizer v9.0.1~0a:1|h[AAP_MACRO]|h|r", -- [8]
-						"|cffff0000|Habp:macro:134400:#showtooltip Asphyxiate~0a/cast ~5bmod~3ashift,@focus,exists,harm~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Asphyxiate~0a:1|h[Asp]|h|r", -- [9]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Solar Beam~0a:1|h[beam]|h|r", -- [10]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@cursor~5d Blizzard~0a/cast ~5bmod~5d Arcane Explosion~0a:1|h[bliz]|h|r", -- [11]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Blessing of Freedom~0a:1|h[bof]|h|r", -- [12]
-						"|cffff0000|Habp:macro:134400:#showtooltip Corpse Exploder~0a/cast ~5b@mouseover,exists~5d~5bmod~3ashift,@focus~5d~5b~5d Corpse Exploder~0a:1|h[boom]|h|r", -- [13]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Blessing of Protection~0a:1|h[bop]|h|r", -- [14]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a3/1~5d Typhoon~0a/cast ~5btalent~3a3/3~5d Incapacitating Roar~0a:1|h[cc]|h|r", -- [15]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift,@focus,harm~5d~5b@mouseover,nodead,harm~5d~5b~5d Chain Lightning~0a:1|h[cha]|h|r", -- [16]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Chill Streak~0a:1|h[chill]|h|r", -- [17]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a3/2,mod~3ashift,@focus,exists,harm~5d~5btalent~3a3/2,@mouseover,exists,harm,nodead~5d~5btalent~3a3/2~5d Asphyxiate~0a/cast ~5btalent~3a3/3~5d Blinding Sleet~0a:1|h[chok]|h|r", -- [18]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,help~5d~5bmod~3ashift,@focus~5d~5b~5d Cleanse Spirit~0a:1|h[clens]|h|r", -- [19]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast Death Coil~0a#/cast ~5b@pettarget~5d claw~0a:1|h[coil]|h|r", -- [20]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,harm,exists,nodead~5d~5b~5d Counterspell~0a:1|h[cs]|h|r", -- [21]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,exists,nodead,help~5d~5bnomod~5d Cenarion Ward~0a/cast ~5bmod~5d Nature's Swiftness~0a:1|h[cw]|h|r", -- [22]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Cyclone~0a:1|h[cyc]|h|r", -- [23]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,help,exists~5d~5b~5d Remove Curse~0a:1|h[disp]|h|r", -- [24]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@cursor~5d Door of Shadows~0a/cast ~5bmod,@cursor~5d Ring of Frost~0a:1|h[door]|h|r", -- [25]
-						"|cffff0000|Habp:macro:134400:#showtooltip Outbreak~0a/cast ~5bmod~3ashift,@focus~5d~5b@mouseover,exists~5d~5b~5d Outbreak~0a:1|h[dot]|h|r", -- [26]
-						"|cffff0000|Habp:macro:134400:#showtooltip Death Strike~0a/cast ~5b@focus~5dDark Command~0a/cast Death Strike~0a:1|h[DS]|h|r", -- [27]
-						"|cffff0000|Habp:macro:134400:#showtooltip Gnaw~0a/cast ~5bmod~3ashift,@focus~5d~5b@mouseover,exists~5d~5b~5d Gnaw~0a:1|h[eat]|h|r", -- [28]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Fire Elemental~0a/cast ~5bnomod~5d Berserking~0a/cast ~5bmod~5d Earth Elemental~0a:1|h[ele]|h|r", -- [29]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@cursor~5d Flamestrike~0a/cast ~5bmod~5d Arcane Explosion~0a:1|h[flame]|h|r", -- [30]
-						"|cffff0000|Habp:macro:136224:#showtooltip Unholy Frenzy~0a/cast ~5b@mouseover,exists~5d~5bmod~3actrl,@Zaytox~5d~5bmod~3aalt,@Akadian~5d~5b~5d Unholy Frenzy~0a:1|h[Frenzy]|h|r", -- [31]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d Freeze~0a/cast ~5b@cursor~5d Freeze~0a:1|h[frez]|h|r", -- [32]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast Festering Strike~0a#/cast ~5b@pettarget~5d claw~0a:1|h[fs]|h|r", -- [33]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/petfollow~0a/petassist~0a/petattack ~5b@mouseover, exists~5d~5bmod,@focus~5d~5b~5d~0a/cast ~5b@mouseover,exists~5d~5bmod,@focus~5d~5b~5d Leap~0a:1|h[go]|h|r", -- [34]
-						"|cffff0000|Habp:macro:134400:#showtooltip Gorefiend's Grasp~0a/cast ~5b@mouseover,exists~5d~5bmod, @focus~5d~5b~5d Gorefiend's Grasp~0a:1|h[grab]|h|r", -- [35]
-						"|cffff0000|Habp:macro:132165:    GGGGG       ZZZZZZZ~0aGG          G              ZZ~0aGG   GG               ZZ~0aGG      GG         ZZ~0a  GGGGGG      ZZZZZZZ~0a:1|h[GZ]|h|r", -- [36]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,harm,exists~5d~5bnomod~5d Ice Lance~0a/cast ~5bmod,@mouseover,harm,exists~5d~5bmod~5d Fire Blast~0a:1|h[ice]|h|r", -- [37]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Greater Invisibility~0a/cast ~5bmod~5d Mass Invisibility~0a:1|h[inv]|h|r", -- [38]
-						"|cffff0000|Habp:macro:134400::1|h[invis]|h|r", -- [39]
-						"|cffff0000|Habp:macro:134400:#showtooltip Mind Freeze~0a/cast ~5bmod~3ashift, @focus~5d~5b@mouseover,exists~5d~5b~5d Mind Freeze~0a:1|h[kick]|h|r", -- [40]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists~5d~5b@mouseover,nodead,harm~5d~5b~5d Wind Shear~0a:1|h[kick]|h|r", -- [41]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Lifebloom~0a:1|h[lb]|h|r", -- [42]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/petfollow~0a/petassist~0a/petattack ~5b@mouseover, exists~5d~5bmod,@focus~5d~5b~5d~0a/cast ~5b@mouseover,exists~5d~5bmod,@focus~5d~5b~5d Leap~0a:1|h[leap]|h|r", -- [43]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,help~5d~5b~5d Unleash Life~0a:1|h[life]|h|r", -- [44]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5b@cursor~5d Spirit Link Totem~0a/cast Berserking~0a:1|h[link]|h|r", -- [45]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Light's Judgment~0a:1|h[lj]|h|r", -- [46]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Light of Dawn~0a/cast ~5bmod~5d Shield of the Righteous~0a:1|h[lod]|h|r", -- [47]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Mind Blast~0a:1|h[mbl]|h|r", -- [48]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@cursor~5d Door of Shadows~0a/cast ~5bmod,@cursor~5d Mass Dispel~0a:1|h[md]|h|r", -- [49]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Mindgames~0a:1|h[mg]|h|r", -- [50]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists~5d~5b@mouseover,exists,nodead~5d~5b~5d Mind Sear~0a:1|h[ms]|h|r", -- [51]
-						"|cffff0000|Habp:macro:134400:/mountspecial~0a:1|h[msp]|h|r", -- [52]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast Mana Tide Totem~0a/s Mana Totem~0a:1|h[mto]|h|r", -- [53]
-						"|cffff0000|Habp:macro:134400:/cancelaura Levitate~0a:1|h[nl]|h|r", -- [54]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5b~5d Frozen Orb~0a/cast ~5b@cursor~5d~5b~5d Frozen Orb~0a:1|h[orb]|h|r", -- [55]
-						"|cffff0000|Habp:macro:134400:1 6 1 3 = A N A L ~7c~7c d a p is or ok 294 = y o u lo ve me NUD E ~7c~7c ss = no ~7c~7c D E D 42 3 125 3 1 33 = LOL IL L KIL L A LL ~7c~7c ss ee oo d a p = me lo ve y o u ~7c~7c D A P EE BB = YOU LO SE ~7c~7c Y o u re Me an = D a p aa Ss pp~0a forfeit~0a:1|h[Orc]|h|r", -- [56]
-						"|cffff0000|Habp:macro:134400:#showtooltip Control Undead~0a/target pet~0a/run PetDismiss()~0a/use Control Undead~0a/petassist~0a:1|h[pat]|h|r", -- [57]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,harm,exists~5d~5b~5d Polymorph~0a:1|h[poly]|h|r", -- [58]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@cursor~5d Downpour~0a:1|h[pour]|h|r", -- [59]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,exists~5d~5bmod~3ashift,@focus,exists~5d~5bmod~3aalt,@player~5d~5b~5d Primordial Wave~0a:1|h[prime]|h|r", -- [60]
-						"|cffff0000|Habp:macro:133706:/pull 15~0a:1|h[pull]|h|r", -- [61]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,help~5d~5b~5d Leap of Faith~0a:1|h[pull]|h|r", -- [62]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift,@focus,exists~5d~5b@mouseover,nodead,harm~5d~5b~5d Purge~0a:1|h[purg]|h|r", -- [63]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Sinful Gladiator's Medallion~0a#/use ~5bmod~3ashift~5d~0a#/use ~5bmod~3actrl~5d~0a#/use ~5bmod~3aalt~5d~0a:1|h[PvP]|h|r", -- [64]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a6/1,mod,@focus,exists,harm,nodead~5d~5btalent~3a6/1,@mouseover,exists,harm,nodead~5d~5btalent~3a6/1~5d Purge the Wicked~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Shadow Word~3a Pain~0a:1|h[pw]|h|r", -- [65]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5b@cursor~5d Earthquake~0a:1|h[quak]|h|r", -- [66]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Remove Corruption~0a:1|h[rc]|h|r", -- [67]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Rejuvenation~0a:1|h[re]|h|r", -- [68]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,exists,nodead,help~5d~5bnomod~5d Regrowth~0a/cast ~5bmod~5d Nature's Swiftness~0a:1|h[re]|h|r", -- [69]
-						"|cffff0000|Habp:macro:134400:#showtooltip Soul Reaper~0a/cast ~5b@mouseover,exists~5d~5bmod~3ashift, @focus~5d~5b~5d Soul Reaper~0a:1|h[rea]|h|r", -- [70]
-						"|cffff0000|Habp:macro:134400:#showtooltip Leap~0a/petpassive ~5bmod~5d~0a/petmoveto ~5bmod~5d~0a/petfollow ~5bnomod~5d~0a/petassist ~5bnomod~5d~0a/petattack ~5bnomod,@mouseover,exists~5d~0a/cast ~5bnomod,@mouseover,exists~5d Leap~0a:1|h[REE]|h|r", -- [71]
-						"|cffff0000|Habp:macro:133706:/pull 0~0a:1|h[reset]|h|r", -- [72]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d Ring of Frost~0a/cast ~5b@cursor~5d Ring of Frost~0a:1|h[ring]|h|r", -- [73]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Earth Elemental~0a/target ~5bmod~5d Greater Earth Elemental~0a:1|h[ROK]|h|r", -- [74]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5bnomod,@mouseover,exists,help,nodead~5d~5b~5d Rapture~0a:1|h[rt]|h|r", -- [75]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift~5d Necrotic Strike~0a/cast ~5btalent~3a1/3~5d Clawing Shadows~0a/cast Scourge Strike~0a#/cast ~5b@pettarget~5d claw~0a:1|h[s]|h|r", -- [76]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,harm,exists~5d~5bnomod~5d Fire Blast~0a/cast ~5bmod~5d Frostbolt~0a:1|h[s]|h|r", -- [77]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Schism~0a:1|h[sch]|h|r", -- [78]
-						"|cffff0000|Habp:macro:134400:#showtooltip Penance~0a/cast ~5b@player~5d Penance~0a:1|h[self]|h|r", -- [79]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,help~5d~5b~5d Slow Fall~0a:1|h[sfall]|h|r", -- [80]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,exists,harm,nodead~5d~5b~5d Shackle Undead~0a:1|h[shak]|h|r", -- [81]
-						"|cffff0000|Habp:macro:134400:#showtooltip Corpse Shield~0a/cast Huddle~0a/cast Corpse Shield~0a:1|h[shield]|h|r", -- [82]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift,@focus~5d~5b@mouseover,exists~5d~5b~5d Dark Simulacrum~0a:1|h[sim]|h|r", -- [83]
-						"|cffff0000|Habp:macro:134400:/aap skip~0a:1|h[skip]|h|r", -- [84]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,harm,exists~5d~5b~5d Slow~0a:1|h[slow]|h|r", -- [85]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Smite~0a:1|h[smit]|h|r", -- [86]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a3/3,mod,@focus,exists,harm,nodead~5d~5btalent~3a3/3,@mouseover,exists,harm,nodead~5d~5btalent~3a3/3~5d Power Word~3a Solace~0a/cast ~5btalent~3a3/2,mod,@focus,exists,harm,nodead~5d~5btalent~3a3/2,@mouseover,exists,harm,nodead~5d~5btalent~3a3/2~5d Mindbender~0a:1|h[sol]|h|r", -- [87]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,harm,exists~5d~5b~5d Spellsteal~0a:1|h[ss]|h|r", -- [88]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift,@focus~5d~5b@mouseover,exists~5d~5b~5d Strangulate~0a:1|h[str]|h|r", -- [89]
-						"|cffff0000|Habp:macro:135770:/cast Unholy Presence~0a/cast Blood Presence~0a:1|h[Switch]|h|r", -- [90]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,exists,nodead,help~5d~5b~5d Swiftmend~0a:1|h[swm]|h|r", -- [91]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a6/2~5d Divine Star~0a/cast ~5btalent~3a6/3~5d Halo~0a:1|h[t6]|h|r", -- [92]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a7/2~5d Wellspring~0a/cast ~5btalent~3a7/3~5d Ascendance~0a/cast ~5btalent~3a7/3~5d Berserking~0a:1|h[t7]|h|r", -- [93]
-						"|cffff0000|Habp:macro:134400:/targetexact Time-Lost Proto-Drake~0a/targetexact Vyragosa~0a/run local N = UnitName(\"Target\");if N and (N==\"Time-Lost Proto-Drake\") then PlaySound(13363);print(date(),N,\"Found\");SetRaidTarget(\"target\",8);end~0a:1|h[target]|h|r", -- [94]
-						"|cffff0000|Habp:macro:134400:/cast ~5bnomod~5d Healing Surge~0a/cast ~5bmod~5d Healing Wave~0a:1|h[test]|h|r", -- [95]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Thorns~0a:1|h[th]|h|r", -- [96]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,exists,nodead,help~5d~5bnomod,@target,exists,help~5d~5bnomod,@player~5d Divine Toll~0a/cast ~5bmod,@mouseover,exists,nodead,harm~5d~5bmod~5d Divine Toll~0a:1|h[toll]|h|r", -- [97]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Arcane Torrent~0a/cast ~5b@mouseover,exists~5d~5bmod~3ashift,@focus~5d~5b~5d Dark Simulacrum~0a:1|h[tor]|h|r", -- [98]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Tremor Totem~0a/cast ~5bmod,@cursor~5d Wind Rush Totem~0a:1|h[tot]|h|r", -- [99]
-						"|cffff0000|Habp:macro:460686:/target Spirit Link Totem~0a/petattack ~5b@target~5d~0a/startattack~0a/cast Icy Touch~0a:1|h[totem]|h|r", -- [100]
-						"|cffff0000|Habp:macro:134400:#showtooltip Vampiric Touch~0a/cast ~5b@mouseover, exists~5d~5b~5d Vampiric Touch~0a:1|h[vamp]|h|r", -- [101]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5b@cursor~5d Vesper Totem~0a:1|h[vesp]|h|r", -- [102]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,help~5d~5b~5d Water Walking~0a:1|h[walk]|h|r", -- [103]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a4/2,mod,@player~5d~5b@cursor~5d Earthen Wall Totem~0a/cast ~5btalent~3a4/3,mod,@player~5d~5b@cursor~5d Ancestral Protection Totem~0a:1|h[wall]|h|r", -- [104]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Wild Growth~0a:1|h[wg]|h|r", -- [105]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast Apocalypse~0a/cast Leap~0a:1|h[world]|h|r", -- [106]
-						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Wrath~0a:1|h[wra]|h|r", -- [107]
-						"|cffff0000|Habp:macro:134400:#showtooltip Anti-Magic Zone~0a/cast ~5bmod,@player~5d~5b@cursor~5d Anti-Magic Zone~0a:1|h[Zone]|h|r", -- [108]
-						"|cffff0000|Habp:macro:132281:P~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d1LR~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~0a|h[VuhDoDCShieldData]|h|r", -- [109]
-						"|cffff0000|Habp:macro:132281:N~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5dVen~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~0a|h[VuhDoDCShieldNames]|h|r", -- [110]
-					},
-					["class"] = "WARLOCK",
-					["icon"] = 136172,
 					["bindings"] = {
 						["SITORSTAND"] = {
 							"X", -- [1]
@@ -8321,14 +8114,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -8415,8 +8208,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -8478,6 +8271,213 @@ ActionBarProfilesDBv3 = {
 						["TOGGLESOUND"] = {
 							"CTRL--", -- [1]
 						},
+					},
+					["talents"] = {
+						"|cff71d5ff|Htalent:23138|h[Demonic Strength]|h|r", -- [1]
+						"|cff71d5ff|Htalent:21694|h[Power Siphon]|h|r", -- [2]
+						"|cff71d5ff|Htalent:19285|h[Burning Rush]|h|r", -- [3]
+						"|cff71d5ff|Htalent:22042|h[Soul Strike]|h|r", -- [4]
+						"|cff71d5ff|Htalent:19291|h[Mortal Coil]|h|r", -- [5]
+						"|cff71d5ff|Htalent:23146|h[Inner Demons]|h|r", -- [6]
+						"|cff71d5ff|Htalent:22479|h[Demonic Consumption]|h|r", -- [7]
+					},
+					["name"] = "Warlock Demo",
+					["actions"] = {
+						"|cffff0000|Habp:macro:136138:#showtooltip~0a/cast ~5bnomod,@mouseover,exists,nodead~5d~5bnomod~5d Curse of Weakness~0a/cast ~5bmod,@mouseover,exists,nodead~5d~5bmod~5d Curse of Tongues~0a|h[curse]|h|r", -- [1]
+						"|cff71d5ff|Hspell:234153:0|h[Drain Life]|h|r", -- [2]
+						"|cff71d5ff|Htalent:22042|h[Soul Strike]|h|r", -- [3]
+						"|cff71d5ff|Htalent:21694|h[Power Siphon]|h|r", -- [4]
+						"|cff71d5ff|Hspell:196277:0|h[Implosion]|h|r", -- [5]
+						"|cff71d5ff|Hspell:686:0|h[Shadow Bolt]|h|r", -- [6]
+						"|cff71d5ff|Hspell:105174:0|h[Hand of Gul'dan]|h|r", -- [7]
+						"|cff71d5ff|Hspell:104316:0|h[Call Dreadstalkers]|h|r", -- [8]
+						nil, -- [9]
+						"|cff71d5ff|Hspell:212619:0|h[Call Felhunter]|h|r", -- [10]
+						"|cff71d5ff|Hspell:119905:0|h[Singe Magic]|h|r", -- [11]
+						"|cff71d5ff|Hspell:325289:0|h[Decimating Bolt]|h|r", -- [12]
+						"|cff71d5ff|Hspell:255661:0|h[Cantrips]|h|r", -- [13]
+						"|cff71d5ff|Hspell:126:0|h[Eye of Kilrogg]|h|r", -- [14]
+						"|cff71d5ff|Hspell:172:0|h[Corruption]|h|r", -- [15]
+						"|cff71d5ff|Hspell:6201:0|h[Create Healthstone]|h|r", -- [16]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Spinefin Souffle and Fries~0a/use ~5bmod~3actrl~5d Ambroria Dew~0a/use ~5bmod~3aalt~5d Conjured Mana Bun~0a:1|h[_mb_]|h|r", -- [17]
+						"|cffffffff|Hitem:124640::::::::60:266:::::::::|h[Inky Black Potion]|h|r", -- [18]
+						"|cff71d5ff|Hspell:1714:0|h[Curse of Tongues]|h|r", -- [19]
+						"|cff71d5ff|Hspell:702:0|h[Curse of Weakness]|h|r", -- [20]
+						nil, -- [21]
+						"|cff71d5ff|Hspell:386452:0|h[Frostbrood Proto-Wyrm]|h|r", -- [22]
+						nil, -- [23]
+						"|cff71d5ff|Hspell:150544:0|h[Summon Random Favorite Mount]|h|r", -- [24]
+						"|cffff0000|Habp:macro:524348:/petassist~0a/petfollow~0a/petattack ~5b@mouseover,exists~5d~5b@target~5d~0a:1|h[_assist]|h|r", -- [25]
+						"|cffff0000|Habp:macro:132311:/petpassive~0a/petfollow~0a:1|h[_passive]|h|r", -- [26]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Potion of Spectral Intellect~0a/use ~5bmod~5d Phial of Serenity~0a:1|h[_pi]|h|r", -- [27]
+						"|cffff0000|Habp:macro:134400:#/use ~5bnomod~5d Clasp of Waning Shadow~0a/use ~5bnomod~5d Coiled Stygian Grapnel~0a/use ~5bmod~5d Rocket Jump~0a:1|h[_belt]|h|r", -- [28]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5b@mouseover,exists~5d~5b~5d Disposable Spectrophasic Reanimator~0a:1|h[_cr]|h|r", -- [29]
+						"|cff71d5ff|Hspell:1098:0|h[Subjugate Demon]|h|r", -- [30]
+						nil, -- [31]
+						"|cff71d5ff|Hspell:189998:0|h[Illidari Felstalker]|h|r", -- [32]
+						"|cff71d5ff|Hspell:342601:0|h[Ritual of Doom]|h|r", -- [33]
+						"|cff71d5ff|Hspell:698:0|h[Ritual of Summoning]|h|r", -- [34]
+						"|cff71d5ff|Hspell:122708:0|h[Grand Expedition Yak]|h|r", -- [35]
+						"|cff71d5ff|Hspell:60002:0|h[Time-Lost Proto-Drake]|h|r", -- [36]
+						"|cffffffff|Hitem:171370::::::::60:266:::::::::|h[Potion of Specter Swiftness]|h|r", -- [37]
+						"|cffff0000|Habp:macro:132327:/petmoveto~0a:1|h[_go]|h|r", -- [38]
+						"|cffff0000|Habp:macro:1033497:/focus ~5b@mouseover,exists,nodead~5d ~5b~5d~0a:1|h[_foc]|h|r", -- [39]
+						"|cff71d5ff|Hspell:5697:0|h[Unending Breath]|h|r", -- [40]
+						"|cff71d5ff|Hspell:48018:0|h[Demonic Circle]|h|r", -- [41]
+						"|cff71d5ff|Hspell:48020:0|h[Demonic Circle: Teleport]|h|r", -- [42]
+						nil, -- [43]
+						nil, -- [44]
+						nil, -- [45]
+						nil, -- [46]
+						nil, -- [47]
+						"|cffffffff|Hitem:171266::::::::60:266:::::::::|h[Potion of the Hidden Spirit]|h|r", -- [48]
+						"|cffff0000|Habp:flyout:10|h[Summon Demon]|h|r", -- [49]
+						"|cff71d5ff|Hspell:324631:0|h[Fleshcraft]|h|r", -- [50]
+						"|cffff0000|Habp:macro:136194:#showtooltip~0a/cast ~5bnomod~5d Create Soulwell~0a/cast ~5bmod~5d Create Healthstone~0a|h[hs]|h|r", -- [51]
+						"|cff71d5ff|Hspell:20707:0|h[Soulstone]|h|r", -- [52]
+						"|cffffffff|Hitem:109076::::::::60:266:::::::::|h[Goblin Glider Kit]|h|r", -- [53]
+						"|cff71d5ff|Hspell:111771:0|h[Demonic Gateway]|h|r", -- [54]
+						"|cff71d5ff|Hspell:334275:0|h[Curse of Exhaustion]|h|r", -- [55]
+						"|cffff0000|Habp:macro:3566860:#showtooltip~0a/use ~5bnomod~5d Spiritual Healing Potion~0a/use ~5bmod~5d Healthstone~0a:1|h[_hp_]|h|r", -- [56]
+						"|cff71d5ff|Hspell:264178:0|h[Demonbolt]|h|r", -- [57]
+						"|cff71d5ff|Hspell:328774:0|h[Amplify Curse]|h|r", -- [58]
+						"|cffff0000|Habp:macro:236292:#showtooltip~0a/cast ~5btalent~3a1/2~5d Bilescourge Bombers~0a/cast ~5btalent~3a1/3~5d Demonic Strength~0a|h[t1]|h|r", -- [59]
+						"|cffff0000|Habp:macro:133254:#showtooltip~0a/use ~5bnomod,@mouseover,exists,nodead~5d~5bnomod~5d 13~0a/use ~5bmod,@mouseover,exists,nodead~5d~5bmod~5d 14~0a:1|h[_trink]|h|r", -- [60]
+						"|cff71d5ff|Htalent:19291|h[Mortal Coil]|h|r", -- [61]
+						"|cff71d5ff|Hspell:30283:0|h[Shadowfury]|h|r", -- [62]
+						"|cff71d5ff|Hspell:755:0|h[Health Funnel]|h|r", -- [63]
+						"|cffff0000|Habp:macro:538043:#showtooltip~0a/cast ~5btalent~3a3/2~5d Burning Rush~0a/cast ~5btalent~3a3/3~5d Dark Pact~0a|h[t3]|h|r", -- [64]
+						"|cff71d5ff|Hspell:5782:0|h[Fear]|h|r", -- [65]
+						"|cff71d5ff|Hspell:104773:0|h[Unending Resolve]|h|r", -- [66]
+						"|cff71d5ff|Hspell:264119:0|h[Summon Vilefiend]|h|r", -- [67]
+						"|cff71d5ff|Hspell:111898:0|h[Grimoire: Felguard]|h|r", -- [68]
+						"|cff71d5ff|Hspell:265187:0|h[Summon Demonic Tyrant]|h|r", -- [69]
+						"|cff71d5ff|Hspell:710:0|h[Banish]|h|r", -- [70]
+						"|cff71d5ff|Hspell:333889:0|h[Fel Domination]|h|r", -- [71]
+						"|cff71d5ff|Hspell:260364:0|h[Arcane Pulse]|h|r", -- [72]
+					},
+					["macros"] = {
+						"|cffff0000|Habp:macro:134331:/way 53.3, 32.5 path~0a/way 50.7, 33.0 7~0a/way 64.3, 30.4 8~0a/way 61.0, 35.3 9~0a/way 38.0, 35.8 10~0a/way 61.8, 58.8 11~0a/way 30.3, 54.9 cave~0a/way 35.0, 46.8 12~0a/way 24.8, 56.2 13~0a/way 55.5, 65.0 14~0a/way 54.2 54.8 14~0aRift Caches 2~0a/way 54.9, 42.5 1~0a/way 55.1, 17~0a:1|h[-waypoint list]|h|r", -- [1]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Potion of Spectral Agility~0a/use ~5bmod~5d Phial of Serenity~0a:1|h[_pa]|h|r", -- [2]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Potion of Spectral Strength~0a/use ~5bmod~5d Phial of Serenity~0a:1|h[_ps]|h|r", -- [3]
+						"|cffff0000|Habp:macro:134400:/targetexact Time-Lost Proto-Drake~0a/targetexact Vyragosa~0a/run local N = UnitName(\"Target\");if N and (N==\"Vyragosa\") then PlaySound(13363, \"master\");print(date(),N,\"Found\");SetRaidTarget(\"target\",8);end~0a:1|h[_sc2]|h|r", -- [4]
+						"|cffff0000|Habp:macro:134400:/targetexact Time-Lost Proto-Drake~0a/targetexact Vyragosa~0a/run local N = UnitName(\"Target\");if N and (N==\"Time-Lost Proto-Drake\") then PlaySound(13363,\"master\");print(date(),N,\"Found\");SetRaidTarget(\"target\",8);end~0a:1|h[_scn]|h|r", -- [5]
+						"|cffff0000|Habp:macro:134400:/run PickupInventoryItem(7)PutItemInBackpack()~0a:1|h[_uneq]|h|r", -- [6]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Alter Time~0a/cast ~5bmod~5d Temporal Shield~0a:1|h[a]|h|r", -- [7]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use Re-Sizer v9.0.1~0a:1|h[AAP_MACRO]|h|r", -- [8]
+						"|cffff0000|Habp:macro:134400:#showtooltip Asphyxiate~0a/cast ~5bmod~3ashift,@focus,exists,harm~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Asphyxiate~0a:1|h[Asp]|h|r", -- [9]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Solar Beam~0a:1|h[beam]|h|r", -- [10]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@cursor~5d Blizzard~0a/cast ~5bmod~5d Arcane Explosion~0a:1|h[bliz]|h|r", -- [11]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Blessing of Freedom~0a:1|h[bof]|h|r", -- [12]
+						"|cffff0000|Habp:macro:134400:#showtooltip Corpse Exploder~0a/cast ~5b@mouseover,exists~5d~5bmod~3ashift,@focus~5d~5b~5d Corpse Exploder~0a:1|h[boom]|h|r", -- [13]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Blessing of Protection~0a:1|h[bop]|h|r", -- [14]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a3/1~5d Typhoon~0a/cast ~5btalent~3a3/3~5d Incapacitating Roar~0a:1|h[cc]|h|r", -- [15]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift,@focus,harm~5d~5b@mouseover,nodead,harm~5d~5b~5d Chain Lightning~0a:1|h[cha]|h|r", -- [16]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Chill Streak~0a:1|h[chill]|h|r", -- [17]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a3/2,mod~3ashift,@focus,exists,harm~5d~5btalent~3a3/2,@mouseover,exists,harm,nodead~5d~5btalent~3a3/2~5d Asphyxiate~0a/cast ~5btalent~3a3/3~5d Blinding Sleet~0a:1|h[chok]|h|r", -- [18]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,help~5d~5bmod~3ashift,@focus~5d~5b~5d Cleanse Spirit~0a:1|h[clens]|h|r", -- [19]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast Death Coil~0a#/cast ~5b@pettarget~5d claw~0a:1|h[coil]|h|r", -- [20]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,harm,exists,nodead~5d~5b~5d Counterspell~0a:1|h[cs]|h|r", -- [21]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,exists,nodead,help~5d~5bnomod~5d Cenarion Ward~0a/cast ~5bmod~5d Nature's Swiftness~0a:1|h[cw]|h|r", -- [22]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Cyclone~0a:1|h[cyc]|h|r", -- [23]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,help,exists~5d~5b~5d Remove Curse~0a:1|h[disp]|h|r", -- [24]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@cursor~5d Door of Shadows~0a/cast ~5bmod,@cursor~5d Ring of Frost~0a:1|h[door]|h|r", -- [25]
+						"|cffff0000|Habp:macro:134400:#showtooltip Outbreak~0a/cast ~5bmod~3ashift,@focus~5d~5b@mouseover,exists~5d~5b~5d Outbreak~0a:1|h[dot]|h|r", -- [26]
+						"|cffff0000|Habp:macro:134400:#showtooltip Death Strike~0a/cast ~5b@focus~5dDark Command~0a/cast Death Strike~0a:1|h[DS]|h|r", -- [27]
+						"|cffff0000|Habp:macro:134400:#showtooltip Gnaw~0a/cast ~5bmod~3ashift,@focus~5d~5b@mouseover,exists~5d~5b~5d Gnaw~0a:1|h[eat]|h|r", -- [28]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Fire Elemental~0a/cast ~5bnomod~5d Berserking~0a/cast ~5bmod~5d Earth Elemental~0a:1|h[ele]|h|r", -- [29]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@cursor~5d Flamestrike~0a/cast ~5bmod~5d Arcane Explosion~0a:1|h[flame]|h|r", -- [30]
+						"|cffff0000|Habp:macro:136224:#showtooltip Unholy Frenzy~0a/cast ~5b@mouseover,exists~5d~5bmod~3actrl,@Zaytox~5d~5bmod~3aalt,@Akadian~5d~5b~5d Unholy Frenzy~0a:1|h[Frenzy]|h|r", -- [31]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d Freeze~0a/cast ~5b@cursor~5d Freeze~0a:1|h[frez]|h|r", -- [32]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast Festering Strike~0a#/cast ~5b@pettarget~5d claw~0a:1|h[fs]|h|r", -- [33]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/petfollow~0a/petassist~0a/petattack ~5b@mouseover, exists~5d~5bmod,@focus~5d~5b~5d~0a/cast ~5b@mouseover,exists~5d~5bmod,@focus~5d~5b~5d Leap~0a:1|h[go]|h|r", -- [34]
+						"|cffff0000|Habp:macro:134400:#showtooltip Gorefiend's Grasp~0a/cast ~5b@mouseover,exists~5d~5bmod, @focus~5d~5b~5d Gorefiend's Grasp~0a:1|h[grab]|h|r", -- [35]
+						"|cffff0000|Habp:macro:132165:    GGGGG       ZZZZZZZ~0aGG          G              ZZ~0aGG   GG               ZZ~0aGG      GG         ZZ~0a  GGGGGG      ZZZZZZZ~0a:1|h[GZ]|h|r", -- [36]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,harm,exists~5d~5bnomod~5d Ice Lance~0a/cast ~5bmod,@mouseover,harm,exists~5d~5bmod~5d Fire Blast~0a:1|h[ice]|h|r", -- [37]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Greater Invisibility~0a/cast ~5bmod~5d Mass Invisibility~0a:1|h[inv]|h|r", -- [38]
+						"|cffff0000|Habp:macro:134400::1|h[invis]|h|r", -- [39]
+						"|cffff0000|Habp:macro:134400:#showtooltip Mind Freeze~0a/cast ~5bmod~3ashift, @focus~5d~5b@mouseover,exists~5d~5b~5d Mind Freeze~0a:1|h[kick]|h|r", -- [40]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists~5d~5b@mouseover,nodead,harm~5d~5b~5d Wind Shear~0a:1|h[kick]|h|r", -- [41]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Lifebloom~0a:1|h[lb]|h|r", -- [42]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/petfollow~0a/petassist~0a/petattack ~5b@mouseover, exists~5d~5bmod,@focus~5d~5b~5d~0a/cast ~5b@mouseover,exists~5d~5bmod,@focus~5d~5b~5d Leap~0a:1|h[leap]|h|r", -- [43]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,help~5d~5b~5d Unleash Life~0a:1|h[life]|h|r", -- [44]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5b@cursor~5d Spirit Link Totem~0a/cast Berserking~0a:1|h[link]|h|r", -- [45]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Light's Judgment~0a:1|h[lj]|h|r", -- [46]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Light of Dawn~0a/cast ~5bmod~5d Shield of the Righteous~0a:1|h[lod]|h|r", -- [47]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Mind Blast~0a:1|h[mbl]|h|r", -- [48]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@cursor~5d Door of Shadows~0a/cast ~5bmod,@cursor~5d Mass Dispel~0a:1|h[md]|h|r", -- [49]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Mindgames~0a:1|h[mg]|h|r", -- [50]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists~5d~5b@mouseover,exists,nodead~5d~5b~5d Mind Sear~0a:1|h[ms]|h|r", -- [51]
+						"|cffff0000|Habp:macro:134400:/mountspecial~0a:1|h[msp]|h|r", -- [52]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast Mana Tide Totem~0a/s Mana Totem~0a:1|h[mto]|h|r", -- [53]
+						"|cffff0000|Habp:macro:134400:/cancelaura Levitate~0a:1|h[nl]|h|r", -- [54]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5b~5d Frozen Orb~0a/cast ~5b@cursor~5d~5b~5d Frozen Orb~0a:1|h[orb]|h|r", -- [55]
+						"|cffff0000|Habp:macro:134400:1 6 1 3 = A N A L ~7c~7c d a p is or ok 294 = y o u lo ve me NUD E ~7c~7c ss = no ~7c~7c D E D 42 3 125 3 1 33 = LOL IL L KIL L A LL ~7c~7c ss ee oo d a p = me lo ve y o u ~7c~7c D A P EE BB = YOU LO SE ~7c~7c Y o u re Me an = D a p aa Ss pp~0a forfeit~0a:1|h[Orc]|h|r", -- [56]
+						"|cffff0000|Habp:macro:134400:#showtooltip Control Undead~0a/target pet~0a/run PetDismiss()~0a/use Control Undead~0a/petassist~0a:1|h[pat]|h|r", -- [57]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,harm,exists~5d~5b~5d Polymorph~0a:1|h[poly]|h|r", -- [58]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@cursor~5d Downpour~0a:1|h[pour]|h|r", -- [59]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,exists~5d~5bmod~3ashift,@focus,exists~5d~5bmod~3aalt,@player~5d~5b~5d Primordial Wave~0a:1|h[prime]|h|r", -- [60]
+						"|cffff0000|Habp:macro:133706:/pull 15~0a:1|h[pull]|h|r", -- [61]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,help~5d~5b~5d Leap of Faith~0a:1|h[pull]|h|r", -- [62]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift,@focus,exists~5d~5b@mouseover,nodead,harm~5d~5b~5d Purge~0a:1|h[purg]|h|r", -- [63]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/use ~5bnomod~5d Sinful Gladiator's Medallion~0a#/use ~5bmod~3ashift~5d~0a#/use ~5bmod~3actrl~5d~0a#/use ~5bmod~3aalt~5d~0a:1|h[PvP]|h|r", -- [64]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a6/1,mod,@focus,exists,harm,nodead~5d~5btalent~3a6/1,@mouseover,exists,harm,nodead~5d~5btalent~3a6/1~5d Purge the Wicked~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Shadow Word~3a Pain~0a:1|h[pw]|h|r", -- [65]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5b@cursor~5d Earthquake~0a:1|h[quak]|h|r", -- [66]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Remove Corruption~0a:1|h[rc]|h|r", -- [67]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Rejuvenation~0a:1|h[re]|h|r", -- [68]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,exists,nodead,help~5d~5bnomod~5d Regrowth~0a/cast ~5bmod~5d Nature's Swiftness~0a:1|h[re]|h|r", -- [69]
+						"|cffff0000|Habp:macro:134400:#showtooltip Soul Reaper~0a/cast ~5b@mouseover,exists~5d~5bmod~3ashift, @focus~5d~5b~5d Soul Reaper~0a:1|h[rea]|h|r", -- [70]
+						"|cffff0000|Habp:macro:134400:#showtooltip Leap~0a/petpassive ~5bmod~5d~0a/petmoveto ~5bmod~5d~0a/petfollow ~5bnomod~5d~0a/petassist ~5bnomod~5d~0a/petattack ~5bnomod,@mouseover,exists~5d~0a/cast ~5bnomod,@mouseover,exists~5d Leap~0a:1|h[REE]|h|r", -- [71]
+						"|cffff0000|Habp:macro:133706:/pull 0~0a:1|h[reset]|h|r", -- [72]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d Ring of Frost~0a/cast ~5b@cursor~5d Ring of Frost~0a:1|h[ring]|h|r", -- [73]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Earth Elemental~0a/target ~5bmod~5d Greater Earth Elemental~0a:1|h[ROK]|h|r", -- [74]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5bnomod,@mouseover,exists,help,nodead~5d~5b~5d Rapture~0a:1|h[rt]|h|r", -- [75]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift~5d Necrotic Strike~0a/cast ~5btalent~3a1/3~5d Clawing Shadows~0a/cast Scourge Strike~0a#/cast ~5b@pettarget~5d claw~0a:1|h[s]|h|r", -- [76]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,harm,exists~5d~5bnomod~5d Fire Blast~0a/cast ~5bmod~5d Frostbolt~0a:1|h[s]|h|r", -- [77]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Schism~0a:1|h[sch]|h|r", -- [78]
+						"|cffff0000|Habp:macro:134400:#showtooltip Penance~0a/cast ~5b@player~5d Penance~0a:1|h[self]|h|r", -- [79]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,help~5d~5b~5d Slow Fall~0a:1|h[sfall]|h|r", -- [80]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,exists,harm,nodead~5d~5b~5d Shackle Undead~0a:1|h[shak]|h|r", -- [81]
+						"|cffff0000|Habp:macro:134400:#showtooltip Corpse Shield~0a/cast Huddle~0a/cast Corpse Shield~0a:1|h[shield]|h|r", -- [82]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift,@focus~5d~5b@mouseover,exists~5d~5b~5d Dark Simulacrum~0a:1|h[sim]|h|r", -- [83]
+						"|cffff0000|Habp:macro:134400:/aap skip~0a:1|h[skip]|h|r", -- [84]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,harm,exists~5d~5b~5d Slow~0a:1|h[slow]|h|r", -- [85]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm,nodead~5d~5b@mouseover,exists,harm,nodead~5d~5b~5d Smite~0a:1|h[smit]|h|r", -- [86]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a3/3,mod,@focus,exists,harm,nodead~5d~5btalent~3a3/3,@mouseover,exists,harm,nodead~5d~5btalent~3a3/3~5d Power Word~3a Solace~0a/cast ~5btalent~3a3/2,mod,@focus,exists,harm,nodead~5d~5btalent~3a3/2,@mouseover,exists,harm,nodead~5d~5btalent~3a3/2~5d Mindbender~0a:1|h[sol]|h|r", -- [87]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,harm,exists~5d~5b~5d Spellsteal~0a:1|h[ss]|h|r", -- [88]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod~3ashift,@focus~5d~5b@mouseover,exists~5d~5b~5d Strangulate~0a:1|h[str]|h|r", -- [89]
+						"|cffff0000|Habp:macro:135770:/cast Unholy Presence~0a/cast Blood Presence~0a:1|h[Switch]|h|r", -- [90]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,exists,nodead,help~5d~5b~5d Swiftmend~0a:1|h[swm]|h|r", -- [91]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a6/2~5d Divine Star~0a/cast ~5btalent~3a6/3~5d Halo~0a:1|h[t6]|h|r", -- [92]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a7/2~5d Wellspring~0a/cast ~5btalent~3a7/3~5d Ascendance~0a/cast ~5btalent~3a7/3~5d Berserking~0a:1|h[t7]|h|r", -- [93]
+						"|cffff0000|Habp:macro:134400:/targetexact Time-Lost Proto-Drake~0a/targetexact Vyragosa~0a/run local N = UnitName(\"Target\");if N and (N==\"Time-Lost Proto-Drake\") then PlaySound(13363);print(date(),N,\"Found\");SetRaidTarget(\"target\",8);end~0a:1|h[target]|h|r", -- [94]
+						"|cffff0000|Habp:macro:134400:/cast ~5bnomod~5d Healing Surge~0a/cast ~5bmod~5d Healing Wave~0a:1|h[test]|h|r", -- [95]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Thorns~0a:1|h[th]|h|r", -- [96]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod,@mouseover,exists,nodead,help~5d~5bnomod,@target,exists,help~5d~5bnomod,@player~5d Divine Toll~0a/cast ~5bmod,@mouseover,exists,nodead,harm~5d~5bmod~5d Divine Toll~0a:1|h[toll]|h|r", -- [97]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Arcane Torrent~0a/cast ~5b@mouseover,exists~5d~5bmod~3ashift,@focus~5d~5b~5d Dark Simulacrum~0a:1|h[tor]|h|r", -- [98]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bnomod~5d Tremor Totem~0a/cast ~5bmod,@cursor~5d Wind Rush Totem~0a:1|h[tot]|h|r", -- [99]
+						"|cffff0000|Habp:macro:460686:/target Spirit Link Totem~0a/petattack ~5b@target~5d~0a/startattack~0a/cast Icy Touch~0a:1|h[totem]|h|r", -- [100]
+						"|cffff0000|Habp:macro:134400:#showtooltip Vampiric Touch~0a/cast ~5b@mouseover, exists~5d~5b~5d Vampiric Touch~0a:1|h[vamp]|h|r", -- [101]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@player~5d~5b@cursor~5d Vesper Totem~0a:1|h[vesp]|h|r", -- [102]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5b@mouseover,nodead,help~5d~5b~5d Water Walking~0a:1|h[walk]|h|r", -- [103]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5btalent~3a4/2,mod,@player~5d~5b@cursor~5d Earthen Wall Totem~0a/cast ~5btalent~3a4/3,mod,@player~5d~5b@cursor~5d Ancestral Protection Totem~0a:1|h[wall]|h|r", -- [104]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,help~5d~5b@mouseover,exists,nodead,help~5d~5b~5d Wild Growth~0a:1|h[wg]|h|r", -- [105]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast Apocalypse~0a/cast Leap~0a:1|h[world]|h|r", -- [106]
+						"|cffff0000|Habp:macro:134400:#showtooltip~0a/cast ~5bmod,@focus,exists,harm~5d~5b@mouseover,exists,nodead,harm~5d~5b~5d Wrath~0a:1|h[wra]|h|r", -- [107]
+						"|cffff0000|Habp:macro:134400:#showtooltip Anti-Magic Zone~0a/cast ~5bmod,@player~5d~5b@cursor~5d Anti-Magic Zone~0a:1|h[Zone]|h|r", -- [108]
+						"|cffff0000|Habp:macro:132281:P~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d1LR~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~0a|h[VuhDoDCShieldData]|h|r", -- [109]
+						"|cffff0000|Habp:macro:132281:N~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5dVen~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~5bx~5d~0a|h[VuhDoDCShieldNames]|h|r", -- [110]
+					},
+					["class"] = "WARLOCK",
+					["icon"] = 136172,
+					["petActions"] = {
+						"|cffff0000|Habp:pet:PET_ACTION_ATTACK|h[Attack]|h|r", -- [1]
+						"|cffff0000|Habp:pet:PET_ACTION_FOLLOW|h[Follow]|h|r", -- [2]
+						"|cffff0000|Habp:pet:PET_ACTION_MOVE_TO|h[Move To]|h|r", -- [3]
+						"|cff71d5ff|Hspell:3110:0|h[Firebolt]|h|r", -- [4]
+						"|cff71d5ff|Hspell:89808:0|h[Singe Magic]|h|r", -- [5]
+						"|cff71d5ff|Hspell:89792:0|h[Flee]|h|r", -- [6]
+						"|cffff0000|Habp:pet:PET_ACTION_WAIT|h[Stay]|h|r", -- [7]
 					},
 				},
 				["Warlock Afflic"] = {
@@ -8695,14 +8695,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -8789,8 +8789,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -9261,14 +9261,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -9355,8 +9355,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -9832,14 +9832,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -9926,8 +9926,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -10365,14 +10365,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -10459,8 +10459,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]
@@ -10672,11 +10672,11 @@ ActionBarProfilesDBv3 = {
 						[108] = "|cff0070dd|Hitem:172179::::::::60:577:::::::::|h[Eternal Traveler's Hearthstone]|h|r",
 						[85] = "|cffff0000|Habp:macro:1716865:#showtooltip~0a/use ~5bnomod,@mouseover,exists,nodead~5d~5bnomod~5d 13~0a/use ~5bmod,@mouseover,exists,nodead~5d~5bmod~5d 14~0a:1|h[_trink]|h|r",
 						[53] = "|cff71d5ff|Hspell:185245:0|h[Torment]|h|r",
+						[49] = "|cff71d5ff|Hspell:188501:0|h[Spectral Sight]|h|r",
 						[65] = "|cff71d5ff|Hspell:217832:0|h[Imprison]|h|r",
-						[96] = "|cffff0000|Habp:macro:134331:/way 53.3, 32.5 path~0a/way 50.7, 33.0 7~0a/way 64.3, 30.4 8~0a/way 61.0, 35.3 9~0a/way 38.0, 35.8 10~0a/way 61.8, 58.8 11~0a/way 30.3, 54.9 cave~0a/way 35.0, 46.8 12~0a/way 24.8, 56.2 13~0a/way 55.5, 65.0 14~0a/way 54.2 54.8 14~0aRift Caches 2~0a/way 54.9, 42.5 1~0a/way 55.1, 17~0a:1|h[-waypoint list]|h|r",
 						[98] = "|cffff0000|Habp:macro:133706:/pull 0~0a:1|h[reset]|h|r",
 						[66] = "|cff71d5ff|Hspell:196718:0|h[Darkness]|h|r",
-						[49] = "|cff71d5ff|Hspell:188501:0|h[Spectral Sight]|h|r",
+						[96] = "|cffff0000|Habp:macro:134331:/way 53.3, 32.5 path~0a/way 50.7, 33.0 7~0a/way 64.3, 30.4 8~0a/way 61.0, 35.3 9~0a/way 38.0, 35.8 10~0a/way 61.8, 58.8 11~0a/way 30.3, 54.9 cave~0a/way 35.0, 46.8 12~0a/way 24.8, 56.2 13~0a/way 55.5, 65.0 14~0a/way 54.2 54.8 14~0aRift Caches 2~0a/way 54.9, 42.5 1~0a/way 55.1, 17~0a:1|h[-waypoint list]|h|r",
 						[27] = "|cffff0000|Habp:macro:3566835:#showtooltip~0a/use ~5bnomod~5d Potion of Spectral Agility~0a/use ~5bmod~5d Phial of Serenity~0a:1|h[_pa]|h|r",
 						[70] = "|cffffffff|Hitem:159899::::::::60:577:::::::::|h[Cinnamon Raisin Pretzel]|h|r",
 						[55] = "|cff71d5ff|Hspell:310143:0|h[Soulshape]|h|r",
@@ -11115,14 +11115,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -11209,8 +11209,8 @@ ActionBarProfilesDBv3 = {
 						["ACTIONBUTTON6"] = {
 							"E", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
@@ -11704,14 +11704,14 @@ ActionBarProfilesDBv3 = {
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -11798,8 +11798,8 @@ ActionBarProfilesDBv3 = {
 						["ACTIONBUTTON6"] = {
 							"E", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
@@ -12081,14 +12081,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -12175,8 +12175,8 @@ ActionBarProfilesDBv3 = {
 						["FLIPCAMERAYAW"] = {
 							"CTRL-0", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEQUESTLOG"] = {
 							"L", -- [1]
@@ -12682,14 +12682,14 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR3BUTTON8"] = {
 							"0", -- [1]
 						},
-						["TOGGLEUI"] = {
-							"ALT-Z", -- [1]
+						["OPENCHAT"] = {
+							"ENTER", -- [1]
 						},
 						["TOGGLEPETBOOK"] = {
 							"SHIFT-I", -- [1]
 						},
-						["TOGGLESPELLBOOK"] = {
-							"P", -- [1]
+						["TOGGLEUI"] = {
+							"ALT-Z", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON3"] = {
 							"CTRL-MOUSEWHEELDOWN", -- [1]
@@ -12776,8 +12776,8 @@ ActionBarProfilesDBv3 = {
 						["MULTIACTIONBAR4BUTTON8"] = {
 							"F10", -- [1]
 						},
-						["OPENCHAT"] = {
-							"ENTER", -- [1]
+						["TOGGLESPELLBOOK"] = {
+							"P", -- [1]
 						},
 						["MULTIACTIONBAR4BUTTON6"] = {
 							"ALT-MOUSEWHEELUP", -- [1]

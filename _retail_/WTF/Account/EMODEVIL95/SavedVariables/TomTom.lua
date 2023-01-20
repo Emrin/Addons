@@ -29,21 +29,21 @@ TomTomDB = {
 		["Hentaihero - Draenor"] = "Default",
 		["Crystalol - Draenor"] = "Default",
 		["Nolifey - Silvermoon"] = "Default",
-		["Apoki - Silvermoon"] = "Default",
-		["Clawra - Ravencrest"] = "Default",
 		["Hentaihero - Outland"] = "Default",
+		["Clawra - Ravencrest"] = "Default",
+		["Apoki - Silvermoon"] = "Default",
 		["Wasdasdasd - Draenor"] = "Default",
 		["Venetha - Draenor"] = "Default",
 		["Demonphile - Draenor"] = "Default",
 		["Apoka - Stormscale"] = "Default",
 		["Fuwu - Silvermoon"] = "Default",
 		["Apoka - Outland"] = "Default",
-		["Bowbie - Ravencrest"] = "Default",
+		["Nolifey - Moonglade"] = "Default",
 		["Lifey - Moonglade"] = "Default",
 		["Lifey - Draenor"] = "Default",
 		["Trapchan - Draenor"] = "Default",
 		["Missuccubus - Draenor"] = "Default",
-		["Nolifey - Moonglade"] = "Default",
+		["Bowbie - Ravencrest"] = "Default",
 		["Apokalol - Outland"] = "Default",
 		["Lolisama - Draenor"] = "Default",
 		["Yhewrgrhn - Draenor"] = "Default",
@@ -109,21 +109,21 @@ TomTomWaypointsM = {
 		["Hentaihero - Draenor"] = "Hentaihero - Draenor",
 		["Crystalol - Draenor"] = "Crystalol - Draenor",
 		["Nolifey - Silvermoon"] = "Nolifey - Silvermoon",
-		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
-		["Clawra - Ravencrest"] = "Clawra - Ravencrest",
 		["Hentaihero - Outland"] = "Hentaihero - Outland",
+		["Clawra - Ravencrest"] = "Clawra - Ravencrest",
+		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
 		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
 		["Venetha - Draenor"] = "Venetha - Draenor",
 		["Demonphile - Draenor"] = "Demonphile - Draenor",
 		["Apoka - Stormscale"] = "Apoka - Stormscale",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
-		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
 		["Trapchan - Draenor"] = "Trapchan - Draenor",
 		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
+		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Apokalol - Outland"] = "Apokalol - Outland",
 		["Lolisama - Draenor"] = "Lolisama - Draenor",
 		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
@@ -206,39 +206,6 @@ TomTomWaypointsM = {
 		["Cutetroll - Draenor"] = {
 		},
 		["Unchill - Draenor"] = {
-			[2022] = {
-				["2022:396000000:550000000:TomTom waypoint"] = {
-					2022, -- [1]
-					0.396, -- [2]
-					0.55, -- [3]
-					["arrivaldistance"] = 15,
-					["crazy"] = true,
-					["persistent"] = true,
-					["desc"] = "TomTom waypoint",
-					["silent"] = true,
-					["cleardistance"] = 10,
-					["title"] = "TomTom waypoint",
-					["from"] = "TomTom/way",
-					["callbacks"] = {
-						["distance"] = {
-							[10] = nil --[[ skipped inline function ]],
-							[15] = nil --[[ skipped inline function ]],
-						},
-						["world"] = {
-							["onclick"] = nil --[[ skipped inline function ]],
-							["tooltip_update"] = nil --[[ skipped inline function ]],
-							["tooltip_show"] = nil --[[ skipped inline function ]],
-						},
-						["minimap"] = {
-							["onclick"] = nil --[[ skipped inline function ]],
-							["tooltip_update"] = nil --[[ skipped inline function ]],
-							["tooltip_show"] = nil --[[ skipped inline function ]],
-						},
-					},
-					["minimap"] = true,
-					["world"] = true,
-				},
-			},
 		},
 		["Hentaihero - Draenor"] = {
 		},
@@ -246,11 +213,11 @@ TomTomWaypointsM = {
 		},
 		["Nolifey - Silvermoon"] = {
 		},
-		["Apoki - Silvermoon"] = {
+		["Hentaihero - Outland"] = {
 		},
 		["Clawra - Ravencrest"] = {
 		},
-		["Hentaihero - Outland"] = {
+		["Apoki - Silvermoon"] = {
 		},
 		["Wasdasdasd - Draenor"] = {
 		},
@@ -264,7 +231,7 @@ TomTomWaypointsM = {
 		},
 		["Apoka - Outland"] = {
 		},
-		["Bowbie - Ravencrest"] = {
+		["Nolifey - Moonglade"] = {
 		},
 		["Lifey - Moonglade"] = {
 		},
@@ -274,7 +241,7 @@ TomTomWaypointsM = {
 		},
 		["Missuccubus - Draenor"] = {
 		},
-		["Nolifey - Moonglade"] = {
+		["Bowbie - Ravencrest"] = {
 		},
 		["Apokalol - Outland"] = {
 		},

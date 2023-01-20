@@ -31,10 +31,10 @@ HandyNotesDB = {
 		["Venetha - Draenor"] = "Venetha - Draenor",
 		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
 		["Nolifey - Draenor"] = "Nolifey - Draenor",
-		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
+		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
 		["Trapchan - Draenor"] = "Trapchan - Draenor",
@@ -108,13 +108,13 @@ HandyNotesDB = {
 		},
 		["Nolifey - Draenor"] = {
 		},
-		["Bowbie - Ravencrest"] = {
+		["Nolifey - Moonglade"] = {
 		},
 		["Fuwu - Silvermoon"] = {
 		},
 		["Apoka - Outland"] = {
 		},
-		["Nolifey - Moonglade"] = {
+		["Bowbie - Ravencrest"] = {
 		},
 		["Lifey - Moonglade"] = {
 		},
@@ -172,10 +172,10 @@ HandyNotes_HandyNotesDB = {
 		["Venetha - Draenor"] = "Venetha - Draenor",
 		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
 		["Nolifey - Draenor"] = "Nolifey - Draenor",
-		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
+		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
 		["Trapchan - Draenor"] = "Trapchan - Draenor",
@@ -249,13 +249,13 @@ HandyNotes_HandyNotesDB = {
 		},
 		["Nolifey - Draenor"] = {
 		},
-		["Bowbie - Ravencrest"] = {
+		["Nolifey - Moonglade"] = {
 		},
 		["Fuwu - Silvermoon"] = {
 		},
 		["Apoka - Outland"] = {
 		},
-		["Nolifey - Moonglade"] = {
+		["Bowbie - Ravencrest"] = {
 		},
 		["Lifey - Moonglade"] = {
 		},

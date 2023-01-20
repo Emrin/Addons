@@ -1,49 +1,37 @@
 local mod	= DBM:NewMod(2491, "DBM-VaultoftheIncarnates", nil, 1200)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision("20221220184317")
+mod:SetRevision("20230117031931")
 mod:SetCreatureID(184986)
 mod:SetEncounterID(2605)
 mod:SetUsedIcons(1, 2, 3, 4, 5, 6, 7, 8)
-mod:SetHotfixNoticeRev(20221218000000)
+mod:SetHotfixNoticeRev(20230112000000)
 --mod:SetMinSyncRevision(20211203000000)
 --mod.respawnTime = 29
 
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_CAST_START 390548 373678 382563 373487 374022 372456 375450 374691 374215 376669 397338 374430 374623 374624 374622 391019 392125 392192 392152 391268 393314 393295 393296 392098 393459 394719 393429 395893 394416",
-	"SPELL_CAST_SUCCESS 373415",
-	"SPELL_SUMMON 374935 374931 374939 374943",
-	"SPELL_AURA_APPLIED 371971 372158 373487 372458 372514 372517 374779 374380 374427 391056 390920 391419 396109 396113 396106 396085 396241 391696",
+	"SPELL_CAST_START 390548 373678 382563 373487 374022 372456 375450 374691 374215 376669 397338 374430 374623 374624 374622 391019 392125 392192 392152 391268 393314 393295 393296 392098 393459 394719 393429 395893 394416 393309",
+	"SPELL_CAST_SUCCESS 375825 375828 375824 375792 373415",
+	"SPELL_AURA_APPLIED 371971 372158 373494 372458 372514 372517 374779 374380 374427 391056 390920 391419 396109 396113 396106 396085 396241 391696",
 	"SPELL_AURA_APPLIED_DOSE 372158 374321",
-	"SPELL_AURA_REMOVED 371971 373487 373494 372458 372514 374779 374380 374427 390920 391419 391056",
+	"SPELL_AURA_REMOVED 371971 373494 372458 372514 374779 374380 374427 390920 391419 391056",
 	"SPELL_PERIODIC_DAMAGE 374554 391555",
 	"SPELL_PERIODIC_MISSED 374554 391555",
-	"INSTANCE_ENCOUNTER_ENGAGE_UNIT",
 	"UNIT_DIED",
 	"UNIT_SPELLCAST_SUCCEEDED boss1"
 )
 
---TODO, also add a stack too high warning on https://www.wowhead.com/beta/spell=373535/lightning-crash when strategies and tuning are established
---TODO, See how things play out with WA/BW on handling some of this bosses mechanics, right now drycode is steering clear of computational/solving for things and sticking to just showing them
---TODO, is https://www.wowhead.com/beta/npc=190807/seismic-rupture tangible or invisible script bunny
---TODO, is https://www.wowhead.com/beta/npc=190586/seismic-pillar tangible/in need of killing or no?
---TODO, GTFO https://www.wowhead.com/beta/spell=374705/seismic-rupture ?
---TODO, revisit thunder strike automation. May want to combine warnings to generalized warning instead of saying soak/avoid
---TODO, target scan https://www.wowhead.com/beta/spell=374622/storm-front ?
---TODO, announce https://www.wowhead.com/beta/spell=391555/raging-inferno spawns on mythic? They spawn from Searing
---TODO, smart change checker for https://www.wowhead.com/beta/spell=391272/icy-tempest on mythic
---TODO, verify Dark Clouds mechanic on mythic
---TODO, add https://www.wowhead.com/beta/spell=374321/breaking-gravel if requires an actual tank swap to clear
 --[[
 (ability.id = 390548 or ability.id = 373678 or ability.id = 382563 or ability.id = 392125 or ability.id = 373487 or ability.id = 373329
  or ability.id = 374022 or ability.id = 392192 or ability.id = 392152 or ability.id = 372456 or ability.id = 375450 or ability.id = 395893
  or ability.id = 374691 or ability.id = 376669 or ability.id = 374215 or ability.id = 397338 or ability.id = 374430 or ability.id = 390920
  or ability.id = 374623 or ability.id = 374624 or ability.id = 374622 or ability.id = 391019 or ability.id = 391055
  or ability.id = 391268 or ability.id = 393314 or ability.id = 393309 or ability.id = 393295 or ability.id = 394416
- or ability.id = 393296 or ability.id = 392098 or ability.id = 393459 or ability.id = 394719 or ability.id = 393429) and type = "begincast"
+ or ability.id = 393296 or ability.id = 392098 or ability.id = 393459 or ability.id = 394719 or ability.id = 393429 or ability.id = 397341) and type = "begincast"
  or ability.id = 373415 and type = "cast" or ability.id = 396241 and type = "applybuff"
+ or (ability.id = 375828 or ability.id = 375825 or ability.id = 375824 or ability.id = 375792) and type = "cast"
  or ability.id = 374779
 --]]
 --General
@@ -59,7 +47,7 @@ local warnSplinteredBones						= mod:NewStackAnnounce(372158, 2, nil, "Tank|Heal
 local specWarnSunderStrike						= mod:NewSpecialWarningDefensive(390548, nil, nil, nil, 1, 2)
 local specWarnSplinteredBones					= mod:NewSpecialWarningTaunt(372158, nil, nil, nil, 1, 2)
 
-local timerSunderStrikeCD						= mod:NewCDTimer(30.3, 390548, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
+local timerSunderStrikeCD						= mod:NewCDTimer(19.4, 390548, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 --General timers for handling of bosses ability rotation
 local timerDamageCD								= mod:NewTimer(30, "timerDamageCD", 391096, nil, nil, 3)--Magma Burst, Biting Chill, Enveloping Earth, Lightning Crash
 local timerAvoidCD								= mod:NewTimer(60, "timerAvoidCD", 391100, nil, nil, 3)--Molten Rupture, Frigid Torrent, Erupting Bedrock, Shocking Burst
@@ -130,9 +118,9 @@ mod:AddTimerLine(DBM:EJ_GetSectionInfo(25068))
 local warnLightningCrash						= mod:NewTargetNoFilterAnnounce(373487, 4)
 local warnShockingBurst							= mod:NewTargetNoFilterAnnounce(390920, 3)
 
-local specWarnLightningCrash					= mod:NewSpecialWarningYouPos(373487, nil, nil, nil, 1, 2)
+local specWarnLightningCrash					= mod:NewSpecialWarningMoveAway(373487, nil, nil, nil, 1, 2)
 local yellLightningCrash						= mod:NewShortPosYell(373487)
-local yellLightningCrashFades					= mod:NewIconFadesYell(373487)
+--local yellLightningCrashFades					= mod:NewIconFadesYell(373487)
 --local specWarnLightningCrashStacks			= mod:NewSpecialWarningStack(373535, nil, 8, nil, nil, 1, 6)
 local specWarnShockingBurst						= mod:NewSpecialWarningMoveAway(390920, nil, nil, nil, 1, 2)
 local yellShockingBurst							= mod:NewShortYell(390920)
@@ -220,7 +208,7 @@ function mod:OnCombatStart(delay)
 	self.vb.damageSpell = "?"
 	self.vb.avoidSpell = "?"
 	self.vb.ultimateSpell = "?"
-	timerSunderStrikeCD:Start(8.2-delay)
+	timerSunderStrikeCD:Start(8-delay)
 	timerPhaseCD:Start(125-delay)--125-127
 	self.vb.damageTimer = 19.5--Alternating in P1
 	self.vb.avoidTimer = 45
@@ -328,7 +316,7 @@ function mod:SPELL_CAST_START(args)
 	--Mythic Stuff
 	elseif spellId == 391268 then
 		timerEarthSmiteCD:Start()
-		if self:IsTanking("player", nil, nil, nil, args.sourceGUID) then
+		if self:IsTanking("player", nil, nil, true, args.sourceGUID) then
 			specWarnEarthSmite:Show()
 			specWarnEarthSmite:Play("carefly")
 		end
@@ -339,7 +327,7 @@ function mod:SPELL_CAST_START(args)
 		timerRagingInfernoCD:Start(27.7)
 		timerAddEnrageCD:Start(94, L.Fire)
 	elseif spellId == 393309 then
-		if self:IsTanking("player", nil, nil, nil, args.sourceGUID) then
+		if self:IsTanking("player", nil, nil, true, args.sourceGUID) then
 			specWarnFlameSmite:Show()
 			specWarnFlameSmite:Play("shockwave")
 		end
@@ -354,7 +342,7 @@ function mod:SPELL_CAST_START(args)
 		timerFrigidTorrentCD:Start(27.7)
 		timerAddEnrageCD:Start(94, L.Frost)
 	elseif spellId == 393296 then
-		if self:IsTanking("player", nil, nil, nil, args.sourceGUID) then
+		if self:IsTanking("player", nil, nil, true, args.sourceGUID) then
 			specWarnFrostSmite:Show()
 			specWarnFrostSmite:Play("shockwave")
 		end
@@ -375,7 +363,7 @@ function mod:SPELL_CAST_START(args)
 		warnOrbLightning:Show()
 		timerOrbLightningCD:Start()
 	elseif spellId == 393429 then
-		if self:IsTanking("player", nil, nil, nil, args.sourceGUID) then
+		if self:IsTanking("player", nil, nil, true, args.sourceGUID) then
 			specWarnStormSmite:Show()
 			specWarnStormSmite:Play("shockwave")
 		end
@@ -385,38 +373,30 @@ end
 
 function mod:SPELL_CAST_SUCCESS(args)
 	local spellId = args.spellId
-	if spellId == 373415 then
+	if spellId == 375825 then--Frozen Destroyer
+		timerFreezingTempestCD:Start(30.4)
+		if self:IsMythic() then
+			timerAbsoluteZeroCD:Start(20.3, 1)
+		end
+	elseif spellId == 375828 then--Blazing Fiend
+		if self:IsMythic() then
+			timerSearingCarnageCD:Start(20.2)
+		end
+	elseif spellId == 375824 then--Tectonic Crusher
+		timerGroundShatterCD:Start(5.9)
+		timerViolentUpheavelCD:Start(20.6)
+		if self:IsMythic() then
+			timerSeismicRuptureCD:Start(45)
+		end
+	elseif spellId == 375792 then--Thundering Ravager
+		timerStormBreakCD:Start(7.2)
+		if self:IsMythic() then
+			timerThunderStrikeCD:Start(38.5)
+		end
+	elseif spellId == 373415 then
 		DBM:AddMsg("373415 is combat logging now, notify DBM author")
 		--specWarnMoltenRupture:Show()
 		--specWarnMoltenRupture:Play("farfromline")
-	end
-end
-
-function mod:SPELL_SUMMON(args)
-	local spellId = args.spellId
-	if args:IsSpellID(374935, 374931, 374939, 374943) then--Not logged
-		DBM:AddMsg(spellId.. " is combat logging now, notify DBM author")
-		if spellId == 374935 then--Frozen Incarnation
-			--timerFreezingTempestCD:Start(1, args.destGUID)
-			--if self:IsHard() then
-			--	timerAbsoluteZeroCD:Start()
-			--end
-		elseif spellId == 374931 then--Blazing Incarnation
-			--if self:IsHard() then
-			--	timerSearingCarnageCD:Start()
-			--end
-		elseif spellId == 374939 then--Tectonic Incarnation
-			--timerGroundShatterCD:Start(1, args.destGUID)
-			--timerViolentUpheavelCD:Start(1, args.destGUID)
-			--if self:IsHard() then
-			--	timerSeismicRuptureCD:Start()
-			--end
-		elseif spellId == 374943 then--Thundering Incarnation
-			--timerStormBreakCD:Start(1, args.destGUID)
-			--if self:IsHard() then
-			--	timerThunderStrikeCD:Start()
-			--end
-		end
 	end
 end
 
@@ -444,31 +424,26 @@ function mod:SPELL_AURA_APPLIED(args)
 		self.vb.curAltar = 4
 		updateAltar(self)
 	elseif spellId == 372158 and not args:IsPlayer() then
-		local amount = args.amount or 1
-		local _, _, _, _, _, expireTime = DBM:UnitDebuff("player", spellId)
-		local remaining
-		if expireTime then
-			remaining = expireTime-GetTime()
-		end
-		if (not remaining or remaining and remaining < 6.1) and not UnitIsDeadOrGhost("player") and not self:IsHealer() then
-			specWarnSplinteredBones:Show(args.destName)
-			specWarnSplinteredBones:Play("tauntboss")
-		else
-			local uId = DBM:GetRaidUnitId(args.destName)
-			if self:IsTanking(uId) then
+		local uId = DBM:GetRaidUnitId(args.destName)
+		if self:IsTanking(uId) then
+			local amount = args.amount or 1
+			if not UnitIsDeadOrGhost("player") and not self:IsHealer() then
+				specWarnSplinteredBones:Show(args.destName)
+				specWarnSplinteredBones:Play("tauntboss")
+			else
 				warnSplinteredBones:Show(args.destName, amount)
 			end
 		end
-	elseif spellId == 373487 then
+	elseif spellId == 373494 then
 		local icon = self.vb.litCrashIcon
 		if self.Options.SetIconOnLightningCrash and icon < 9 then--On 30 man it's 9 icons :\
 			self:SetIcon(args.destName, icon)
 		end
 		if args:IsPlayer() then
-			specWarnLightningCrash:Show(self:IconNumToTexture(icon))
-			specWarnLightningCrash:Play("mm"..icon)
+			specWarnLightningCrash:Show()
+			specWarnLightningCrash:Play("scatter")
 			yellLightningCrash:Yell(icon, icon)
-			yellLightningCrashFades:Countdown(spellId, nil, icon)
+--			yellLightningCrashFades:Countdown(spellId, nil, icon)
 		end
 		warnLightningCrash:CombinedShow(0.5, args.destName)
 		self.vb.litCrashIcon = self.vb.litCrashIcon + 1
@@ -535,7 +510,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		specWarnFreezing:Cancel()
 		specWarnFreezing:Schedule(2.5, DBM_COMMON_L.ALLIES)--Might adjust timing
 		specWarnFreezing:ScheduleVoice(2.5, "gathershare")
-	elseif spellId == 396241 then
+--	elseif spellId == 396241 then
 		--berserk
 	elseif spellId == 391696 then
 		if args:IsPlayer() then
@@ -556,13 +531,13 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.NPAuraOnSurge then
 			DBM.Nameplate:Hide(true, args.destGUID, spellId)
 		end
-	elseif spellId == 373487 then
+--	elseif spellId == 373487 then
 --		if self.Options.SetIconOnLightningCrash then
 --			self:SetIcon(args.destName, 0)
 --		end
-		if args:IsPlayer() then
-			yellLightningCrashFades:Cancel()
-		end
+--		if args:IsPlayer() then
+--			yellLightningCrashFades:Cancel()
+--		end
 	elseif spellId == 373494 then--Icon removed off secondary debuff
 		if self.Options.SetIconOnLightningCrash then
 			self:SetIcon(args.destName, 0)
@@ -582,10 +557,14 @@ function mod:SPELL_AURA_REMOVED(args)
 		self.vb.damageCount = 0
 		self.vb.zeroCount = 0
 		self:SetStage(1)
-		timerSunderStrikeCD:Start(7.2)
-		timerPhaseCD:Start(127)
+		timerSunderStrikeCD:Start(11.3)
+		if self.vb.stageTotality == 3 then
+			timerPhaseCD:Start(127)--Second intermission
+		else
+			timerPhaseCD:Start(94)--Primal Attunement
+		end
 		timerDamageCD:Start(14.5, "?")
-		timerAvoidCD:Start(68.4, "?")
+		timerAvoidCD:Start(22.2, "?")--They fixed the skip bug apparently and it's no longer 68.4
 		timerUltimateCD:Start(45, "?")--if it's seismic rupture it's 53 else 45
 	elseif spellId == 374380 then
 		if self.Options.NPAuraOnElementalBond then
@@ -656,37 +635,6 @@ function mod:SPELL_PERIODIC_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId, spell
 	end
 end
 mod.SPELL_PERIODIC_MISSED = mod.SPELL_PERIODIC_DAMAGE
-
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	for i = 1, 5 do
-		local guid = UnitGUID("boss"..i)
-		if guid and not castsPerGUID[guid] then
-			castsPerGUID[guid] = true
-			local cid = self:GetCIDFromGUID(guid)
-			if cid == 190690  then--Thundering Ravager
-				timerStormBreakCD:Start(7.8)
-				if self:IsMythic() then
-					timerThunderStrikeCD:Start(39)
-				end
-			elseif cid == 190588 then--Tectonic Crusher
-				timerGroundShatterCD:Start(5.9)
-				timerViolentUpheavelCD:Start(20.6)
-				if self:IsMythic() then
-					timerSeismicRuptureCD:Start(45)
-				end
-			elseif cid == 190686 then--Frozen Destroyer
-				timerFreezingTempestCD:Start(30.5)
-				if self:IsMythic() then
-					timerAbsoluteZeroCD:Start(22, 1)
-				end
-			elseif cid == 190688  then--Blazing Fiend
-				if self:IsMythic() then
-					timerSearingCarnageCD:Start(20.5)
-				end
-			end
-		end
-	end
-end
 
 do
 	local spellEasyMapping = {

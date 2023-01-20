@@ -1,4 +1,7 @@
-local Name, Addon = ...
+---@type string
+local Name = ...
+---@class Addon
+local Addon = select(2, ...)
 
 -- # of hops to track back from previous result
 Addon.ROUTE_TRACK_BACK = 15
@@ -17,11 +20,13 @@ Addon.ROUTE_MAX_FRAME = 20
 Addon.ROUTE_MAX_FRAME_SCALE = 0.3
 -- Total time to spend on route estimation (in s)
 Addon.ROUTE_MAX_TOTAL = 5
+-- Tolerance for spawn time comparison
+Addon.SPAWN_TIME_TOLERANCE = 2
 
 local queue, queueSize, weights = {}, 0, {}
 local maxLength, minWeight = 0, math.huge
 local pulls, groups, portals = {}, {}, {}
-local hits, kills = {}, {}
+local combatStart, hits = math.huge, {}
 local co, rerun, zoom, retry
 
 -- DEBUG
@@ -53,19 +58,17 @@ end
 local function Last(path, enemies)
     if path == "" then
         local dungeon = Addon.GetCurrentDungeonId()
+        local pois = MDT.mapPOIs[dungeon]
 
         if Addon.dungeons[dungeon] and Addon.dungeons[dungeon].start then
             return nil, Addon.dungeons[dungeon].start
-        else
-            for _,poi in ipairs(MDT.mapPOIs[dungeon][1]) do
+        elseif pois and pois[1] then
+            for _,poi in ipairs(pois[1]) do
                 if poi.type == "graveyard" then
                     return nil, poi
                 end
             end
         end
-
-        debug("No starting point!")
-        return
     else
         local enemyId, cloneId = path:match("-e(%d+)c(%d+)-$")
         if enemyId and cloneId then
@@ -89,30 +92,30 @@ local function Distance(from, to, forceSub)
 
     if not fromSub or not toSub or fromSub == toSub then
         return math.sqrt(math.pow(from.x - to.x, 2) + math.pow(from.y - to.y, 2))
-    else
-        local pois = MDT.mapPOIs[Addon.GetCurrentDungeonId()]
+    end
 
-        local min = math.huge
-        for _,fromPoi in pairs(pois[fromSub]) do
-            if fromPoi.type == "mapLink" then
-                local i = fromPoi.connectionIndex
-                local fromDist = Distance(from, fromPoi, fromSub)
-                for _,toPoi in pairs(pois[toSub]) do
-                    if toPoi.type == "mapLink" then
-                        local j = toPoi.connectionIndex
-                        local dist = portals[i][j]
-                        if dist and dist < min then
-                            min = math.min(min, fromDist + dist + Distance(toPoi, to, toSub))
-                        end
+    local min = math.huge
+
+    local pois = MDT.mapPOIs[Addon.GetCurrentDungeonId()]
+    if not pois or not pois[fromSub] or not pois[toSub] then return min end
+
+    for _,fromPoi in pairs(pois[fromSub]) do
+        if fromPoi.type == "mapLink" then
+            local i = fromPoi.connectionIndex
+            local fromDist = Distance(from, fromPoi, fromSub)
+            for _,toPoi in pairs(pois[toSub]) do
+                if toPoi.type == "mapLink" then
+                    local j = toPoi.connectionIndex
+                    local dist = portals[i][j]
+                    if dist and dist < min then
+                        min = math.min(min, fromDist + dist + Distance(toPoi, to, toSub))
                     end
                 end
             end
         end
-
-        return min
     end
 
-    return math.huge
+    return min
 end
 
 local function Weight(path, enemies)
@@ -126,12 +129,12 @@ local function Weight(path, enemies)
 
         local currNode, curr = Last(path, enemies)
         local currPull = currNode and pulls[currNode]
-        
+
         -- Base distance
         local dist = Distance(prev, curr)
 
         -- Weighted by group
-        if prev.g and curr.g and prev.g == curr.g then
+        if prev and curr and prev.g and curr.g and prev.g == curr.g then
             dist = dist * Addon.ROUTE_WEIGHT_GROUP
         end
 
@@ -187,7 +190,7 @@ local function Dequeue()
         local val = queue[1]
 
         queue[1], queue[queueSize], queueSize = queue[queueSize], nil, queueSize - 1
-        
+
         -- Heapify
         local min, i, l, r = 1
         repeat
@@ -208,7 +211,7 @@ local function Dequeue()
 end
 
 local function DeepSearch(path, enemies, grp)
-    local enemyId = kills[Length(path)+1]
+    local enemyId = MDTGuideDB.route.kills[Length(path)+1]
     local minPath
 
     if grp and grp[enemyId] then
@@ -229,12 +232,12 @@ local function DeepSearch(path, enemies, grp)
             end
         end
     end
-    
+
     return minPath or path
 end
 
 local function WideSearch(path, enemies, grps)
-    local enemyId = kills[Length(path)+1]
+    local enemyId = MDTGuideDB.route.kills[Length(path)+1]
     local found
 
     if enemies and enemies[enemyId] then
@@ -260,17 +263,16 @@ local function WideSearch(path, enemies, grps)
     for _,p in pairs(grps) do
         Enqueue(p)
     end
-    
+
     return found
 end
 
 function Addon.CalculateRoute()
     local enemies = Addon.GetCurrentEnemies()
-    local dungeon = Addon.GetCurrentDungeonId()
     local t, i, n, grps = GetTime(), 1, 1, {}
 
     -- Start route
-    local start = Sub(MDTGuideRoute, Addon.ROUTE_TRACK_BACK)
+    local start = Sub(MDTGuideDB.route.path, Addon.ROUTE_TRACK_BACK)
     weights[start] = 0
     Enqueue(start)
 
@@ -295,12 +297,12 @@ function Addon.CalculateRoute()
             useRoute, rerun = false, false
             break
         end
-        
+
         local length = Length(path)
-        
+
         -- Success
-        if length == #kills then
-            MDTGuideRoute = path
+        if length == #MDTGuideDB.route.kills then
+            MDTGuideDB.route.path = path
             break
         end
 
@@ -310,7 +312,7 @@ function Addon.CalculateRoute()
 
             -- Skip current enemy if no path was found
             if not found then
-                table.remove(kills, length+1)
+                table.remove(MDTGuideDB.route.kills, length+1)
                 Enqueue(path)
             end
 
@@ -320,8 +322,8 @@ function Addon.CalculateRoute()
         i, n = i+1, n+1
     end
 
-    debug("LENGTH", Length(MDTGuideRoute))
-    debug("WEIGHT", weights[MDTGuideRoute])
+    debug("LENGTH", Length(MDTGuideDB.route.path))
+    debug("WEIGHT", weights[MDTGuideDB.route.path])
     debug("LOOPS", n)
     debug("TIME", GetTime() - t)
     debug("QUEUE", queueSize)
@@ -349,50 +351,53 @@ end
 
 function Addon.UseRoute(val)
     if val ~= nil then
-        MDTGuideOptions.route = val
+        MDTGuideDB.options.route = val
         if val == true then
             useRoute = true
         end
     end
 
-    return MDTGuideOptions.route and useRoute
+    return MDTGuideDB.options.route and useRoute
 end
 
 function Addon.UpdateRoute(z)
     zoom = zoom or z
     rerun = false
-    if Addon.IsCurrentInstance() then
-        if co and coroutine.status(co) == "running" then
-            rerun = true
-        else
-            co = coroutine.create(Addon.CalculateRoute)
-            local ok, err = coroutine.resume(co)
-            if not ok then error(err) end
-        end
+
+    if not Addon.IsCurrentInstance() then return end
+
+    if co and coroutine.status(co) == "running" then
+        rerun = true
+    else
+        co = coroutine.create(Addon.CalculateRoute)
+        local ok, err = coroutine.resume(co)
+        if not ok then error(err .. "\n" .. debugstack(co)) end
     end
 end
 
 function Addon.AddKill(npcId)
-    for i,enemy in ipairs(MDT.dungeonEnemies[Addon.currentDungeon]) do
+    for i,enemy in ipairs(MDT.dungeonEnemies[MDTGuideDB.dungeon]) do
         if enemy.id == npcId then
-            table.insert(kills, i)
+            table.insert(MDTGuideDB.route.kills, i)
             return i
         end
     end
 end
 
-function Addon.ClearKills()
+function Addon.ResetRoute()
     wipe(hits)
-    wipe(kills)
-    MDTGuideRoute = ""
+    wipe(MDTGuideDB.route.kills)
+    MDTGuideDB.route.path = ""
     useRoute = true
 end
 
 function Addon.GetCurrentPullByRoute()
-    local path = MDTGuideRoute
+    local path = MDTGuideDB.route.path
+
     while path and path:len() > 0 do
-        local node = Last(path)
+        local node = Last(path) ---@cast node string
         local n = pulls[node]
+
         if n then
             local a, b = Addon.IteratePull(n, function (_, _, cloneId, enemyId, pull)
                 if not Contains(path, Node(enemyId, cloneId)) then
@@ -408,22 +413,37 @@ function Addon.GetCurrentPullByRoute()
                 return n, currPulls[n]
             end
         end
+
         path = path:sub(1, -node:len() - 3)
     end
 end
 
-function Addon.SetDungeon()
+function Addon.SetCurrentDungeon()
     wipe(pulls)
 
     Addon.BuildGroups()
     Addon.BuildPortals()
-    Addon.UpdateRoute()
+    Addon.UpdateUseRoute()
 end
 
-function Addon.SetInstanceDungeon(dungeon)
-    Addon.currentDungeon = dungeon
-    Addon.ClearKills()
-    Addon.UpdateRoute()
+Addon.SetInstanceDungeon = Addon.FnDebounce(
+    function (dungeon)
+        if dungeon and MDTGuideDB.dungeon == dungeon then return end
+
+        MDTGuideDB.dungeon = dungeon
+
+        Addon.ResetRoute()
+        Addon.UpdateUseRoute()
+    end,
+    1, false, true
+)
+
+function Addon.UpdateUseRoute()
+    if not Addon.IsCurrentInstance() then return end
+
+    useRoute = useRoute and select(2, Last("")) ~= nil
+
+    if Addon.UseRoute() then Addon.UpdateRoute() end
 end
 
 function Addon.BuildGroups()
@@ -453,14 +473,13 @@ function Addon.BuildGroups()
 end
 
 function Addon.BuildPortals()
-    local start = GetTime()
-    local levels = MDT.mapPOIs[Addon.GetCurrentDungeonId()]
-    local numLevels = #levels
-
     wipe(portals)
 
+    local levels = MDT.mapPOIs[Addon.GetCurrentDungeonId()]
+    if not levels then return end
+
     -- Build cost matrix
-    for level,pois in pairs(levels) do
+    for _,pois in pairs(levels) do
         for _,poi in pairs(pois) do
             if poi.type == "mapLink" then
                 local i = poi.connectionIndex
@@ -499,42 +518,46 @@ local Frame = CreateFrame("Frame")
 local OnEvent = function (_, ev, ...)
     if not MDT or MDT:GetDB().devMode then return end
 
-    if ev == "PLAYER_ENTERING_WORLD" then
-        local _, instanceType = IsInInstance()
-        if instanceType == "party" then
-            local map = C_Map.GetBestMapForUnit("player")
-            if map then
-                local dungeon = Addon.GetInstanceDungeonId(EJ_GetInstanceForMap(map))
+    if ev == "PLAYER_ENTERING_WORLD" or ev == "ZONE_CHANGED_NEW_AREA" then
+        local isParty = select(2, IsInInstance()) == "party"
+        if not isParty then Frame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED") return end
 
-                if dungeon ~= Addon.currentDungeon then
-                    Addon.SetInstanceDungeon(dungeon)
+        local map = C_Map.GetBestMapForUnit("player")
+        if not map then retry = {ev, ...} return end
 
-                    if dungeon then
-                        Frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-                    else
-                        Frame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-                    end
-                end
-            else
-                retry = {ev, ...}
-            end
-        else
-            if instanceType then
-                Addon.SetInstanceDungeon()
-            end
-            Frame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-        end
+        local dungeon = Addon.GetInstanceDungeonId(map)
+        Addon.SetInstanceDungeon(dungeon)
+        if dungeon then Frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED") end
     elseif ev == "SCENARIO_COMPLETED" or ev == "CHAT_MSG_SYSTEM" and (...):match(Addon.PATTERN_INSTANCE_RESET) then
         Addon.SetInstanceDungeon()
         Frame:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+    elseif ev == "PLAYER_REGEN_DISABLED" then
+        combatStart = GetServerTime()
+    elseif ev == "PLAYER_REGEN_ENABLED" then
+        combatStart = math.huge
     elseif ev == "COMBAT_LOG_EVENT_UNFILTERED" then
-        local _, event, _, _, _, sourceFlags, _, destGUID, _, destFlags = CombatLogGetCurrentEventInfo()
+        ---@type _, string, _, _, _, number, _, string, _, number
+        local _, event, _, _, _, sourceFlags, _, destGUID, _, destFlags = CombatLogGetCurrentEventInfo() --[[@as any]]
+
+        -- Ignore summoned mobs
+        local unitType, _, _, _, _, _, spawnUID = strsplit("-", destGUID)
+        if unitType == "Creature" or unitType == "Vehicle" then
+           local spawnEpoch = GetServerTime() - (GetServerTime() % 2^23)
+           local spawnEpochOffset = bit.band(tonumber(string.sub(spawnUID, 5), 16), 0x7fffff)
+           local spawnTime = spawnEpoch + spawnEpochOffset
+
+           -- Adjust for epoch rollover
+           if spawnTime > GetServerTime() then spawnTime = spawnTime - ((2^23) - 1) end
+
+           -- Ignore mobs that spawned during combat
+           if spawnTime - Addon.SPAWN_TIME_TOLERANCE > combatStart then return end
+        end
 
         if event == "UNIT_DIED" then
             if hits[destGUID] then
                 hits[destGUID] = nil
                 local npcId = Addon.GetNPCId(destGUID)
-                if Addon.AddKill(npcId) and Addon.UseRoute() then
+                if Addon.AddKill(npcId) and Addon.IsActive() and Addon.UseRoute() then
                     Addon.ZoomToCurrentPull(true)
                 end
             end
@@ -565,5 +588,8 @@ end
 Frame:SetScript("OnEvent", OnEvent)
 Frame:SetScript("OnUpdate", OnUpdate)
 Frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+Frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 Frame:RegisterEvent("SCENARIO_COMPLETED")
 Frame:RegisterEvent("CHAT_MSG_SYSTEM")
+Frame:RegisterEvent("PLAYER_REGEN_DISABLED")
+Frame:RegisterEvent("PLAYER_REGEN_ENABLED")

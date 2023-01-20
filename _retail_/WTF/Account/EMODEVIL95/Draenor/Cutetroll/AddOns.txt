@@ -125,3 +125,6 @@ LibStub: enabled
 Ace3: enabled
 ManbabyDungeonTools: enabled
 DungeonTools: enabled
+BigWigs_Core: enabled
+BigWigs_Options: enabled
+BigWigs_Plugins: enabled

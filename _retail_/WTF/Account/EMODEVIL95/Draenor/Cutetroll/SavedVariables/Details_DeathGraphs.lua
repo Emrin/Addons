@@ -537,12 +537,12 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Totemgrill",
 			},
-			["Édenkert-Ragnaros"] = {
-				["deaths"] = {
-				},
-				["class"] = "SHAMAN",
-				["name"] = "Édenkert-Ragnaros",
+			["Бовнсамди-Ревущийфьорд"] = {
+				["name"] = "Бовнсамди-Ревущийфьорд",
+				["class"] = "WARRIOR",
 				["overall"] = {
+				},
+				["deaths"] = {
 				},
 			},
 			["Krûzadê-Thrall"] = {
@@ -577,11 +577,11 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Antára-Eredar"] = {
+			["Édenkert-Ragnaros"] = {
 				["deaths"] = {
 				},
-				["class"] = "HUNTER",
-				["name"] = "Antára-Eredar",
+				["class"] = "SHAMAN",
+				["name"] = "Édenkert-Ragnaros",
 				["overall"] = {
 				},
 			},
@@ -617,12 +617,12 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Бовнсамди-Ревущийфьорд"] = {
-				["name"] = "Бовнсамди-Ревущийфьорд",
-				["class"] = "WARRIOR",
-				["overall"] = {
-				},
+			["Antára-Eredar"] = {
 				["deaths"] = {
+				},
+				["class"] = "HUNTER",
+				["name"] = "Antára-Eredar",
+				["overall"] = {
 				},
 			},
 			["Ðoctør"] = {
@@ -641,13 +641,13 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Iceiceicee-Aggra(Português)"] = {
-				["name"] = "Iceiceicee-Aggra(Português)",
-				["class"] = "MAGE",
-				["overall"] = {
-				},
+			["Kelmai-TwistingNether"] = {
+				["class"] = "WARLOCK",
 				["deaths"] = {
 				},
+				["overall"] = {
+				},
+				["name"] = "Kelmai-TwistingNether",
 			},
 			["Truenecitos-Zul'jin"] = {
 				["name"] = "Truenecitos-Zul'jin",
@@ -657,13 +657,13 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Kelmai-TwistingNether"] = {
-				["class"] = "WARLOCK",
-				["deaths"] = {
-				},
+			["Iceiceicee-Aggra(Português)"] = {
+				["name"] = "Iceiceicee-Aggra(Português)",
+				["class"] = "MAGE",
 				["overall"] = {
 				},
-				["name"] = "Kelmai-TwistingNether",
+				["deaths"] = {
+				},
 			},
 			["Viannai-TarrenMill"] = {
 				["name"] = "Viannai-TarrenMill",
@@ -705,9 +705,9 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Hizoka",
 			},
-			["Эльфсанты-Ревущийфьорд"] = {
-				["name"] = "Эльфсанты-Ревущийфьорд",
-				["class"] = "MONK",
+			["Квагга-СвежевательДуш"] = {
+				["name"] = "Квагга-СвежевательДуш",
+				["class"] = "SHAMAN",
 				["overall"] = {
 				},
 				["deaths"] = {
@@ -801,9 +801,9 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Valkyrina-TwistingNether",
 			},
-			["Квагга-СвежевательДуш"] = {
-				["name"] = "Квагга-СвежевательДуш",
-				["class"] = "SHAMAN",
+			["Эльфсанты-Ревущийфьорд"] = {
+				["name"] = "Эльфсанты-Ревущийфьорд",
+				["class"] = "MONK",
 				["overall"] = {
 				},
 				["deaths"] = {
@@ -1089,9 +1089,9 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Gaarapa"] = {
-				["name"] = "Gaarapa",
-				["class"] = "PALADIN",
+			["Shinnervate-Zul'jin"] = {
+				["name"] = "Shinnervate-Zul'jin",
+				["class"] = "DRUID",
 				["overall"] = {
 				},
 				["deaths"] = {
@@ -1177,13 +1177,13 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Thellei-TwistingNether"] = {
+			["Ieladrak-Blackrock"] = {
+				["name"] = "Ieladrak-Blackrock",
 				["class"] = "WARRIOR",
-				["deaths"] = {
-				},
 				["overall"] = {
 				},
-				["name"] = "Thellei-TwistingNether",
+				["deaths"] = {
+				},
 			},
 			["Stefow"] = {
 				["class"] = "PRIEST",
@@ -1201,13 +1201,13 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Angelstrike-Kazzak"] = {
-				["name"] = "Angelstrike-Kazzak",
-				["class"] = "PALADIN",
-				["overall"] = {
-				},
+			["Thellei-TwistingNether"] = {
+				["class"] = "WARRIOR",
 				["deaths"] = {
 				},
+				["overall"] = {
+				},
+				["name"] = "Thellei-TwistingNether",
 			},
 			["Eruunprowl"] = {
 				["class"] = "ROGUE",
@@ -1233,9 +1233,9 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Ieladrak-Blackrock"] = {
-				["name"] = "Ieladrak-Blackrock",
-				["class"] = "WARRIOR",
+			["Angelstrike-Kazzak"] = {
+				["name"] = "Angelstrike-Kazzak",
+				["class"] = "PALADIN",
 				["overall"] = {
 				},
 				["deaths"] = {
@@ -1281,17 +1281,17 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Shinnervate-Zul'jin"] = {
-				["name"] = "Shinnervate-Zul'jin",
-				["class"] = "DRUID",
+			["Rageinside"] = {
+				["name"] = "Rageinside",
+				["class"] = "DEMONHUNTER",
 				["overall"] = {
 				},
 				["deaths"] = {
 				},
 			},
-			["Rageinside"] = {
-				["name"] = "Rageinside",
-				["class"] = "DEMONHUNTER",
+			["Gaarapa"] = {
+				["name"] = "Gaarapa",
+				["class"] = "PALADIN",
 				["overall"] = {
 				},
 				["deaths"] = {
@@ -8455,12 +8455,12 @@ DeathGraphsDBEndurance = {
 				["deaths"] = {
 				},
 			},
-			["Föglöba-TwistingNether"] = {
+			["Msoul-Kazzak"] = {
 				["encounters"] = 1,
 				["points"] = 100,
-				["class"] = "ROGUE",
 				["deaths"] = {
 				},
+				["class"] = "PALADIN",
 			},
 			["Vatia-KhazModan"] = {
 				["encounters"] = 1,
@@ -8476,12 +8476,12 @@ DeathGraphsDBEndurance = {
 				["deaths"] = {
 				},
 			},
-			["Msoul-Kazzak"] = {
+			["Ivaanof-Kazzak"] = {
 				["encounters"] = 1,
 				["points"] = 100,
+				["class"] = "ROGUE",
 				["deaths"] = {
 				},
-				["class"] = "PALADIN",
 			},
 			["Cutetroll"] = {
 				["encounters"] = 2,
@@ -8497,7 +8497,7 @@ DeathGraphsDBEndurance = {
 				["deaths"] = {
 				},
 			},
-			["Ivaanof-Kazzak"] = {
+			["Föglöba-TwistingNether"] = {
 				["encounters"] = 1,
 				["points"] = 100,
 				["class"] = "ROGUE",
@@ -16534,11 +16534,16 @@ DeathGraphsDBEndurance = {
 				["deaths"] = {
 				},
 			},
-			["Amooth-Hyjal"] = {
+			["Tingleff-TwistingNether"] = {
 				["encounters"] = 4,
-				["points"] = 400,
-				["class"] = "WARLOCK",
+				["points"] = 390,
+				["class"] = "DEMONHUNTER",
 				["deaths"] = {
+					{
+						4, -- [1]
+						148.955999999991, -- [2]
+						"Torment |cFFFF333333,035|r", -- [3]
+					}, -- [1]
 				},
 			},
 			["Фробениус-СвежевательДуш"] = {
@@ -16548,10 +16553,10 @@ DeathGraphsDBEndurance = {
 				["deaths"] = {
 				},
 			},
-			["Кастеон-Ревущийфьорд"] = {
-				["encounters"] = 1,
-				["points"] = 100,
-				["class"] = "SHAMAN",
+			["Amooth-Hyjal"] = {
+				["encounters"] = 4,
+				["points"] = 400,
+				["class"] = "WARLOCK",
 				["deaths"] = {
 				},
 			},
@@ -16748,16 +16753,11 @@ DeathGraphsDBEndurance = {
 				["deaths"] = {
 				},
 			},
-			["Tingleff-TwistingNether"] = {
-				["encounters"] = 4,
-				["points"] = 390,
-				["class"] = "DEMONHUNTER",
+			["Кастеон-Ревущийфьорд"] = {
+				["encounters"] = 1,
+				["points"] = 100,
+				["class"] = "SHAMAN",
 				["deaths"] = {
-					{
-						4, -- [1]
-						148.955999999991, -- [2]
-						"Torment |cFFFF333333,035|r", -- [3]
-					}, -- [1]
 				},
 			},
 			["Sweetemper"] = {
@@ -28658,15 +28658,15 @@ DeathGraphsDBGraph = {
 	},
 	["2434-16"] = {
 		["deaths"] = {
-			[118] = {
-				1631736722, -- [1]
+			[60] = {
+				1631736189, -- [1]
 			},
 			[228] = {
 				1631737310, -- [1]
 				1631737310, -- [2]
 			},
-			[232] = {
-				1631739058, -- [1]
+			[118] = {
+				1631736722, -- [1]
 			},
 			[159] = {
 				1631735747, -- [1]
@@ -28789,8 +28789,8 @@ DeathGraphsDBGraph = {
 				1631734033, -- [5]
 				1631734033, -- [6]
 			},
-			[60] = {
-				1631736189, -- [1]
+			[232] = {
+				1631739058, -- [1]
 			},
 		},
 		["spells"] = {

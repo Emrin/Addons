@@ -1,24 +1,40 @@
 # <DBM> World Bosses (Dragonflight)
 
-## [10.0.11](https://github.com/DeadlyBossMods/DBM-Retail/tree/10.0.11) (2022-12-20)
-[Full Changelog](https://github.com/DeadlyBossMods/DBM-Retail/compare/10.0.10...10.0.11) [Previous Releases](https://github.com/DeadlyBossMods/DBM-Retail/releases)
+## [10.0.20](https://github.com/DeadlyBossMods/DBM-Retail/tree/10.0.20) (2023-01-17)
+[Full Changelog](https://github.com/DeadlyBossMods/DBM-Retail/compare/10.0.19...10.0.20) [Previous Releases](https://github.com/DeadlyBossMods/DBM-Retail/releases)
 
-- Prep another release to get latest fixes out. probably be another tomorrow with LFR updates if it has changes.  
-- Convert thundering yell to repeat yell, eliminating need to run custom weak auras for thundering  
-- Fix stupid  
-- Bugfix magnetnc charge on rasageth which was broken and still using ai timers  
-    Bugfix Volatile current from showing bad timers after known timers completed.  
-- Fix error and move ground shatter back to combat log events  
-- Buf fixess and updates to Kurog  
-- Show notification that no dungeon mods are installed in M+ more aggressively (this check also still makes sure BW isn't installed either and only nags if you're in a M+ with NO MODS for that dungeon). No longer allow pve nag messages to be disabled for missing mods (for current content) as well. It's one thing for pvp or solo content, but don't be a liability to your dungeon groups, especially M+  
-- Update localization.ru.lua (#839)  
-- Push correct D mod, not unfinished brood mod  
-- Fix bug where blowbath didn't work on normal difficulty Dathea  
-- Improve debug to try and figure out why hymdall mod keeps premature ending combat.  
-- I wear i typed 5 there  
-- Ok now that it forced me to push broken code, push actual working code  
-- Git is so stupid at conflict resolution  
-- Fix typo on newCaastAnnounce  
-- Restore partial functionalty to ground shatter. Timer works again and pre cast will announce. No longer possible to get targets after spellid change  
-- Fixed a bug that caused shocking burst icons and alerts not to work correctly on Kurog  
+- prep new retail tag  
+- Raszageth Update  
+     - Fixed a bug where initial timers where showing LFR/Normal timers on all difficulties. Mythic and Heroic timers on engage will now show correctly.  
+     - Fixed a bug where an extra storm surge timer would start in P2 for a 4th stormsurge that wasn't possible to happen.  
+     - Added additional P3 timers for normal and LFR difficulty  
+     - Updated Lightning Devastation timers for normal and LFR difficulty  
+     - Enabled phase duration timer for phase 2 , it should be accurate for most part in non mythic difficulties.  
+- Timer updates for LFR Broodkeeper  
+- bump alphas  
+- prep new tags for wrath classic and classic era, retail's new tag on hold until LFR wing 3 can be logged at (LFR raszageth was never tested,, so it's gonna need updates first)  
+- Fixed a few unregistered events that caused following things not to work  
+     - Empowered storm was broken do to invalid spellid on Strunraan  
+     - Rending bite timer/alert never worked on Broodkeeper  
+     - Add auto marking never worked on Dathea  
+     - Flame Smite alert never worked on Kurog  
+     - Scattered Charge alert never worked on Raszageth  
+     - Lighting strike alert/timer never worked on Raszageth  
+     - Wrapped in Webs alert didn't work on LFR/Normal Sennarth  
+     - Reflections alert didn't work on aniversery Azuregos world boss  
+- Brawlers guild: no idea what was going on here or what this will break, but it'll fix another thing. these mods were made so long ago  
+- Fix last  
+- code cleanup  
+- Fix bug where no clear yell was showing if you got negative charge with the new antispam code  
+- Fixed a bug that causd empowered great staff warning/say to never work in p2 broodkeeper. How do bugs this obvious take months to get reported. Either everyone using DBM is only 6/8 or they just don't care when it's broken. :\  
+- Comment cleanup  
+- Even more anti spam against player clearing thundering  
+- Fix German localization for roleplay timer text (#177)  
+- Fix lightning crash on Kurog, which was apparently redesigned at some point to not have a 4 second pre targetting debuff and never knew because no one reported it hasn't worked in weeks.  
+- Fix cast time in blowback alert  
+- Update localization.cn.lua (#175)  
+- Update commonlocal.cn.lua (#176)  
+- Fix some minor debug errors with deleted journal entries  
+- Update koKR (#174)  
+- Fix sundering crash again, update timers for Basrikron  
 - bump alpha  

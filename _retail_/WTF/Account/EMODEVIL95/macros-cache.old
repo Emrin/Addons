@@ -61,7 +61,7 @@ VER 3 0000000000000054 "_passive" "132311"
 END
 VER 3 000000000000004E "_pi" "INV_MISC_QUESTIONMARK"
 #showtooltip
-/use [nomod] Potion of Spectral Intellect
+/use [nomod] Elemental Potion of Power
 /use [mod] Phial of Serenity
 END
 VER 3 0000000000000070 "_ps" "INV_MISC_QUESTIONMARK"

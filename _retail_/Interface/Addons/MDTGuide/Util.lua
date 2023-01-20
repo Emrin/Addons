@@ -1,4 +1,5 @@
-local Name, Addon = ...
+---@class Addon
+local Addon = select(2, ...)
 
 function Addon.IsNPC(guid)
     return guid and guid:sub(1, 8) == "Creature"
@@ -8,13 +9,20 @@ function Addon.GetNPCId(guid)
     return tonumber(select(6, ("-"):split(guid)), 10)
 end
 
-function Addon.GetInstanceDungeonId(instance)
-    if instance then
-        for id,enemies in pairs(MDT.dungeonEnemies) do
-            for _,enemy in pairs(enemies) do
-                if enemy.instanceID == instance then
-                    return id
-                end
+function Addon.GetInstanceDungeonId(map)
+    if not map then return end
+
+    if MDT.zoneIdToDungeonIdx[map] then
+        return MDT.zoneIdToDungeonIdx[map]
+    end
+
+    local instance = EJ_GetInstanceForMap(map)
+    if not instance or instance == 0 then return end
+
+    for id,enemies in pairs(MDT.dungeonEnemies) do
+        for _,enemy in pairs(enemies) do
+            if enemy.instanceID == instance then
+                return id
             end
         end
     end
@@ -25,11 +33,16 @@ function Addon.GetCurrentDungeonId()
 end
 
 function Addon.IsCurrentInstance()
-    return Addon.currentDungeon == Addon.GetCurrentDungeonId()
+    return MDTGuideDB.dungeon == Addon.GetCurrentDungeonId()
 end
 
 function Addon.GetDungeonScale(dungeon)
     return MDT.scaleMultiplier[dungeon or Addon.GetCurrentDungeonId()] or 1
+end
+
+function Addon.GetZoomScale(dungeon)
+    local data = Addon.dungeons[dungeon or Addon.GetCurrentDungeonId()]
+    return data and data.scale or 1
 end
 
 function Addon.GetCurrentEnemies()
@@ -67,8 +80,10 @@ function Addon.IteratePulls(fn, ...)
     end
 end
 
-function Addon.GetPullRect(pull, level)
+function Addon.GetPullRect(pull, level, border)
+    ---@type number, number, number, number
     local minX, minY, maxX, maxY
+
     Addon.IteratePull(pull, function (clone)
         local sub, x, y = clone.sublevel, clone.x, clone.y
         if sub == level then
@@ -76,23 +91,29 @@ function Addon.GetPullRect(pull, level)
             maxX, maxY = max(maxX or x, x), max(maxY or y, y)
         end
     end)
+
+    if border then
+        minX, minY, maxX, maxY = Addon.ExtendRect(minX, minY, maxX, maxY, border)
+    end
+
     return minX, minY, maxX, maxY
 end
 
 function Addon.ExtendRect(minX, minY, maxX, maxY, left, top, right, bottom)
-    if minX and left then
-        top = top or left
-        right = right or left
-        bottom = bottom or top
-        return max(0, minX - left), min(0, minY - top), maxX + right, maxY + bottom
-    end
+    if not minX or not left then return minX, minY, maxX, maxY end
+
+    top = top or left
+    right = right or left
+    bottom = bottom or top
+
+    return max(0, minX - left), min(0, minY - top), maxX + right, maxY + bottom
 end
 
 function Addon.CombineRects(minX, minY, maxX, maxY, minX2, minY2, maxX2, maxY2)
-    if minX and minX2 then
-        local diffX, diffY = max(0, minX - minX2, maxX2 - maxX), max(0, minY - minY2, maxY2 - maxY)
-        return Addon.ExtendRect(minX, minY, maxX, maxY, diffX, diffY)
-    end
+    if not minX or not minX2 then return minX, minY, maxX, maxY end
+
+    local diffX, diffY = max(0, minX - minX2, maxX2 - maxX), max(0, minY - minY2, maxY2 - maxY)
+    return Addon.ExtendRect(minX, minY, maxX, maxY, diffX, diffY)
 end
 
 function Addon.GetBestSubLevel(pull)
@@ -135,4 +156,79 @@ Addon.Chat = function (msg)
     else
         Addon.Echo(nil, msg)
     end
+end
+
+-- General purpose function slow-down
+---@param fn function
+---@param n number
+---@param debounce boolean
+---@param leading boolean
+---@param update boolean
+function Addon.FnSlowDown(fn, n, debounce, leading, update)
+    local args = {}
+    local handle, called, scheduler, handler
+
+    scheduler = function (...)
+        if not handle or update then
+            Addon.Pack(args, ...)
+        end
+
+        if handle then
+            called = true
+            if debounce then
+                handle = handle:Cancel()
+            end
+        elseif leading then
+            fn(...)
+        end
+
+        if not handle or debounce then
+            handle = C_Timer.NewTimer(n, handler)
+        end
+    end
+
+    handler = function ()
+        handle = handle:Cancel()
+        if not leading then
+            fn(Addon.Unpack(args))
+        elseif called then
+            called = nil
+            scheduler(Addon.Unpack(args))
+        end
+    end
+
+    return scheduler
+end
+
+-- Throttle a function, so it is executed at most every n seconds
+---@param fn function
+---@param n number
+---@param leading boolean
+---@param update boolean
+function Addon.FnThrottle(fn, n, leading, update)
+    return Addon.FnSlowDown(fn, n, false, leading, update)
+end
+
+-- Debounce a function, so it is executed only n seconds after the last call
+---@param fn function
+---@param n number
+---@param leading boolean
+---@param update boolean
+function Addon.FnDebounce(fn, n, leading, update)
+    return Addon.FnSlowDown(fn, n, true, leading, update)
+end
+
+-- Pack vararg data into an existing table
+---@param t table
+function Addon.Pack(t, ...)
+    wipe(t)
+    for i = 1, select('#', ...) do t[i] = select(i, ...) end
+    return t
+end
+
+local unpackFn = function (t, ...) wipe(t) return ... end
+-- Unpack and wipe a table
+---@param t table
+function Addon.Unpack(t)
+    return unpackFn(t, unpack(t))
 end

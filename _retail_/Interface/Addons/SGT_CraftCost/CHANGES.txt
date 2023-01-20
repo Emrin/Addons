@@ -1,0 +1,10 @@
+tag 00e0c2e27e7a941bfb6014fbcb050fae3be433f3 v1.0.8
+Author:	Stroeckx <stijnstroeckx@hotmail.com>
+Date:	Fri Dec 23 14:57:14 2022 +0100
+
+commit 439bbb9a6f1abaa176e616572dd13cc71c9f7a02
+Author: Stroeckx <stijnstroeckx@hotmail.com>
+Date:   Fri Dec 23 14:57:03 2022 +0100
+
+    Added support for enchants
+

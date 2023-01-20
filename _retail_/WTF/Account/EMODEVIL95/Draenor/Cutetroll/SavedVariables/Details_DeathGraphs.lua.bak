@@ -601,13 +601,13 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Drakarí",
 			},
-			["Квагга-СвежевательДуш"] = {
-				["class"] = "SHAMAN",
+			["Эльфсанты-Ревущийфьорд"] = {
+				["class"] = "MONK",
 				["deaths"] = {
 				},
 				["overall"] = {
 				},
-				["name"] = "Квагга-СвежевательДуш",
+				["name"] = "Эльфсанты-Ревущийфьорд",
 			},
 			["Vapr-Kazzak"] = {
 				["class"] = "MONK",
@@ -617,13 +617,13 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Vapr-Kazzak",
 			},
-			["Бовнсамди-Ревущийфьорд"] = {
-				["class"] = "WARRIOR",
-				["deaths"] = {
-				},
+			["Antára-Eredar"] = {
+				["name"] = "Antára-Eredar",
+				["class"] = "HUNTER",
 				["overall"] = {
 				},
-				["name"] = "Бовнсамди-Ревущийфьорд",
+				["deaths"] = {
+				},
 			},
 			["Farsalina-TwistingNether"] = {
 				["class"] = "HUNTER",
@@ -705,13 +705,13 @@ DeathGraphsDBDeaths = {
 				["name"] = "Hizoka",
 				["class"] = "DRUID",
 			},
-			["Iceiceicee-Aggra(Português)"] = {
-				["class"] = "MAGE",
-				["deaths"] = {
-				},
+			["Kelmai-TwistingNether"] = {
 				["overall"] = {
 				},
-				["name"] = "Iceiceicee-Aggra(Português)",
+				["deaths"] = {
+				},
+				["name"] = "Kelmai-TwistingNether",
+				["class"] = "WARLOCK",
 			},
 			["Lyopa-Krasus"] = {
 				["name"] = "Lyopa-Krasus",
@@ -801,13 +801,13 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Blough",
 			},
-			["Эльфсанты-Ревущийфьорд"] = {
-				["class"] = "MONK",
+			["Квагга-СвежевательДуш"] = {
+				["class"] = "SHAMAN",
 				["deaths"] = {
 				},
 				["overall"] = {
 				},
-				["name"] = "Эльфсанты-Ревущийфьорд",
+				["name"] = "Квагга-СвежевательДуш",
 			},
 			["Errissa-TwistingNether"] = {
 				["overall"] = {
@@ -1049,13 +1049,13 @@ DeathGraphsDBDeaths = {
 				["deaths"] = {
 				},
 			},
-			["Gaarapa"] = {
-				["class"] = "PALADIN",
+			["Shinnervate-Zul'jin"] = {
+				["class"] = "DRUID",
 				["deaths"] = {
 				},
 				["overall"] = {
 				},
-				["name"] = "Gaarapa",
+				["name"] = "Shinnervate-Zul'jin",
 			},
 			["Funkykitty"] = {
 				["overall"] = {
@@ -1065,13 +1065,13 @@ DeathGraphsDBDeaths = {
 				["name"] = "Funkykitty",
 				["class"] = "PALADIN",
 			},
-			["Rageinside"] = {
-				["class"] = "DEMONHUNTER",
+			["Gaarapa"] = {
+				["class"] = "PALADIN",
 				["deaths"] = {
 				},
 				["overall"] = {
 				},
-				["name"] = "Rageinside",
+				["name"] = "Gaarapa",
 			},
 			["Géra-Gilneas"] = {
 				["name"] = "Géra-Gilneas",
@@ -1089,13 +1089,13 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Däzzel-Kazzak",
 			},
-			["Shinnervate-Zul'jin"] = {
-				["class"] = "DRUID",
+			["Rageinside"] = {
+				["class"] = "DEMONHUNTER",
 				["deaths"] = {
 				},
 				["overall"] = {
 				},
-				["name"] = "Shinnervate-Zul'jin",
+				["name"] = "Rageinside",
 			},
 			["Killuridols-TarrenMill"] = {
 				["class"] = "SHAMAN",
@@ -1177,13 +1177,13 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Tomowarr",
 			},
-			["Angelstrike-Kazzak"] = {
-				["class"] = "PALADIN",
-				["deaths"] = {
-				},
+			["Thellei-TwistingNether"] = {
 				["overall"] = {
 				},
-				["name"] = "Angelstrike-Kazzak",
+				["deaths"] = {
+				},
+				["name"] = "Thellei-TwistingNether",
+				["class"] = "WARRIOR",
 			},
 			["Eruunprowl"] = {
 				["overall"] = {
@@ -1201,13 +1201,13 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Äbäddon-TwistingNether",
 			},
-			["Ieladrak-Blackrock"] = {
-				["class"] = "WARRIOR",
+			["Angelstrike-Kazzak"] = {
+				["class"] = "PALADIN",
 				["deaths"] = {
 				},
 				["overall"] = {
 				},
-				["name"] = "Ieladrak-Blackrock",
+				["name"] = "Angelstrike-Kazzak",
 			},
 			["Stefow"] = {
 				["overall"] = {
@@ -1233,13 +1233,13 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Estroy-Thrall",
 			},
-			["Thellei-TwistingNether"] = {
-				["overall"] = {
-				},
+			["Ieladrak-Blackrock"] = {
+				["class"] = "WARRIOR",
 				["deaths"] = {
 				},
-				["name"] = "Thellei-TwistingNether",
-				["class"] = "WARRIOR",
+				["overall"] = {
+				},
+				["name"] = "Ieladrak-Blackrock",
 			},
 			["Neitheia"] = {
 				["class"] = "HUNTER",
@@ -1401,13 +1401,13 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Nervok-Kazzak",
 			},
-			["Kelmai-TwistingNether"] = {
-				["overall"] = {
-				},
+			["Iceiceicee-Aggra(Português)"] = {
+				["class"] = "MAGE",
 				["deaths"] = {
 				},
-				["name"] = "Kelmai-TwistingNether",
-				["class"] = "WARLOCK",
+				["overall"] = {
+				},
+				["name"] = "Iceiceicee-Aggra(Português)",
 			},
 			["Sweetemper"] = {
 				["overall"] = {
@@ -1433,9 +1433,9 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Tôtemhoof-TwistingNether",
 			},
-			["Antára-Eredar"] = {
-				["name"] = "Antára-Eredar",
-				["class"] = "HUNTER",
+			["Édenkert-Ragnaros"] = {
+				["name"] = "Édenkert-Ragnaros",
+				["class"] = "SHAMAN",
 				["overall"] = {
 				},
 				["deaths"] = {
@@ -1457,13 +1457,13 @@ DeathGraphsDBDeaths = {
 				["name"] = "Warvet-TarrenMill",
 				["class"] = "HUNTER",
 			},
-			["Édenkert-Ragnaros"] = {
-				["name"] = "Édenkert-Ragnaros",
-				["class"] = "SHAMAN",
-				["overall"] = {
-				},
+			["Бовнсамди-Ревущийфьорд"] = {
+				["class"] = "WARRIOR",
 				["deaths"] = {
 				},
+				["overall"] = {
+				},
+				["name"] = "Бовнсамди-Ревущийфьорд",
 			},
 			["Ishaman-TwistingNether"] = {
 				["overall"] = {
@@ -8460,7 +8460,7 @@ DeathGraphsDBEndurance = {
 				},
 				["class"] = "WARRIOR",
 			},
-			["Ivaanof-Kazzak"] = {
+			["Föglöba-TwistingNether"] = {
 				["encounters"] = 1,
 				["points"] = 100,
 				["deaths"] = {
@@ -8481,12 +8481,12 @@ DeathGraphsDBEndurance = {
 				},
 				["class"] = "DEATHKNIGHT",
 			},
-			["Föglöba-TwistingNether"] = {
+			["Msoul-Kazzak"] = {
 				["encounters"] = 1,
 				["points"] = 100,
+				["class"] = "PALADIN",
 				["deaths"] = {
 				},
-				["class"] = "ROGUE",
 			},
 			["Cutetroll"] = {
 				["encounters"] = 2,
@@ -8502,12 +8502,12 @@ DeathGraphsDBEndurance = {
 				},
 				["class"] = "ROGUE",
 			},
-			["Msoul-Kazzak"] = {
+			["Ivaanof-Kazzak"] = {
 				["encounters"] = 1,
 				["points"] = 100,
-				["class"] = "PALADIN",
 				["deaths"] = {
 				},
+				["class"] = "ROGUE",
 			},
 			["Crémier-KhazModan"] = {
 				["encounters"] = 1,
@@ -16686,12 +16686,12 @@ DeathGraphsDBEndurance = {
 				},
 				["class"] = "PRIEST",
 			},
-			["Кастеон-Ревущийфьорд"] = {
-				["encounters"] = 1,
-				["points"] = 100,
+			["Amooth-Hyjal"] = {
+				["encounters"] = 4,
+				["points"] = 400,
 				["deaths"] = {
 				},
-				["class"] = "SHAMAN",
+				["class"] = "WARLOCK",
 			},
 			["Фробениус-СвежевательДуш"] = {
 				["encounters"] = 3,
@@ -16700,17 +16700,12 @@ DeathGraphsDBEndurance = {
 				},
 				["class"] = "MAGE",
 			},
-			["Tingleff-TwistingNether"] = {
-				["encounters"] = 4,
-				["points"] = 390,
+			["Кастеон-Ревущийфьорд"] = {
+				["encounters"] = 1,
+				["points"] = 100,
 				["deaths"] = {
-					{
-						4, -- [1]
-						148.955999999991, -- [2]
-						"Torment |cFFFF333333,035|r", -- [3]
-					}, -- [1]
 				},
-				["class"] = "DEMONHUNTER",
+				["class"] = "SHAMAN",
 			},
 			["Zukima-Kazzak"] = {
 				["encounters"] = 1,
@@ -16905,12 +16900,17 @@ DeathGraphsDBEndurance = {
 				},
 				["class"] = "MAGE",
 			},
-			["Amooth-Hyjal"] = {
+			["Tingleff-TwistingNether"] = {
 				["encounters"] = 4,
-				["points"] = 400,
+				["points"] = 390,
 				["deaths"] = {
+					{
+						4, -- [1]
+						148.955999999991, -- [2]
+						"Torment |cFFFF333333,035|r", -- [3]
+					}, -- [1]
 				},
-				["class"] = "WARLOCK",
+				["class"] = "DEMONHUNTER",
 			},
 			["Sweetemper"] = {
 				["encounters"] = 2,
@@ -28658,15 +28658,15 @@ DeathGraphsDBGraph = {
 	},
 	["2434-16"] = {
 		["deaths"] = {
-			[232] = {
-				1631739058, -- [1]
+			[118] = {
+				1631736722, -- [1]
 			},
 			[228] = {
 				1631737310, -- [1]
 				1631737310, -- [2]
 			},
-			[60] = {
-				1631736189, -- [1]
+			[232] = {
+				1631739058, -- [1]
 			},
 			[97] = {
 				1631734277, -- [1]
@@ -28789,8 +28789,8 @@ DeathGraphsDBGraph = {
 				1631734033, -- [5]
 				1631734033, -- [6]
 			},
-			[118] = {
-				1631736722, -- [1]
+			[60] = {
+				1631736189, -- [1]
 			},
 		},
 		["spells"] = {

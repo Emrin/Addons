@@ -1,7 +1,7 @@
 
 DBMDragonIsles_SavedStats = {
 	["2506"] = {
-		["normalPulls"] = 0,
+		["normalPulls"] = 1,
 		["challengeKills"] = 0,
 		["challengeBestRank"] = 0,
 		["mythicKills"] = 0,
@@ -9,7 +9,7 @@ DBMDragonIsles_SavedStats = {
 		["heroic25Pulls"] = 0,
 		["lfr25Pulls"] = 0,
 		["normal25Pulls"] = 0,
-		["normalKills"] = 0,
+		["normalKills"] = 1,
 		["heroic25Kills"] = 0,
 		["timewalkerPulls"] = 0,
 		["heroicKills"] = 0,
@@ -39,7 +39,7 @@ DBMDragonIsles_SavedStats = {
 		["challengePulls"] = 0,
 	},
 	["2515"] = {
-		["normalPulls"] = 0,
+		["normalPulls"] = 1,
 		["challengeKills"] = 0,
 		["challengeBestRank"] = 0,
 		["mythicKills"] = 0,
@@ -47,7 +47,7 @@ DBMDragonIsles_SavedStats = {
 		["heroic25Pulls"] = 0,
 		["lfr25Pulls"] = 0,
 		["normal25Pulls"] = 0,
-		["normalKills"] = 0,
+		["normalKills"] = 1,
 		["heroic25Kills"] = 0,
 		["timewalkerPulls"] = 0,
 		["heroicKills"] = 0,

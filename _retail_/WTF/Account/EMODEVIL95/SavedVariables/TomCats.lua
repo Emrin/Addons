@@ -1,18 +1,18 @@
 
 TomCats_Account = {
 	["errorLog"] = {
-		["version"] = "2.4.43",
+		["version"] = "2.4.46",
 	},
 	["hallowsend"] = {
 	},
-	["lastExpirationWarning"] = 1671612802,
+	["lastExpirationWarning"] = 1674122331,
 	["discoveriesResetCount"] = 0,
 	["lunarfestival"] = {
 	},
 	["loveisintheair"] = {
 	},
 	["discoveriesVersion"] = "2.4.35",
-	["lastVersionSeen"] = "2.4.43",
+	["lastVersionSeen"] = "2.4.46",
 	["preferences"] = {
 		["dragonGlyphsTipShown"] = true,
 		["TomCats-LunarFestivalMinimapButton"] = {
@@ -56,10 +56,10 @@ TomCats_Account = {
 			},
 			["dimmedItems"] = {
 				["Unchill-Draenor"] = {
-					["EARTH"] = 1,
 					["FIRE"] = 1,
-					["WATER"] = 1,
+					["EARTH"] = 1,
 					["AIR"] = 0,
+					["WATER"] = 1,
 				},
 			},
 			["eligibleClasses"] = {
