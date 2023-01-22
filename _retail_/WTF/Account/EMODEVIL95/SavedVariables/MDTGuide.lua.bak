@@ -1,12 +1,20 @@
 
-MDTGuideActive = false
-MDTGuideRoute = ""
-MDTGuideOptions = {
-	["zoomBorder"] = 20,
-	["route"] = false,
-	["zoomMax"] = 1,
-	["widthSide"] = 200,
-	["zoomMin"] = 1,
-	["height"] = 200,
-	["version"] = 1,
+MDTGuideDB = {
+	["route"] = {
+		["path"] = "",
+		["kills"] = {
+		},
+	},
+	["options"] = {
+		["zoomBorder"] = 20,
+		["route"] = false,
+		["zoomMax"] = 1,
+		["widthSide"] = 200,
+		["zoomMin"] = 1,
+		["version"] = 1,
+		["height"] = 200,
+	},
+	["active"] = false,
 }
+MDTGuideActive = nil
+MDTGuideOptions = nil

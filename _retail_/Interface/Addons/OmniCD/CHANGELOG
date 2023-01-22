@@ -1,6 +1,19 @@
 ------------------------------------------------------------------------------
 -- Dragonflight
 --
+v10.0.2.2740
+	Non-PvP talent changes made by non-synced units are now updated instantly
+	Fixed item inspection
+
+v10.0.2.2737
+	version update
+
+v10.0.2.2736
+	Fixed Time Spiral on non-Evoker classes
+	Fixed Lay on Hands, Sprint CD
+	Fixed interrupted spell & marker display for pet interrupts
+	Added Healing potion (doesn't check availability)
+
 v10.0.2.2735
 	Cooldowns will correctly reset inbetween solo shuffle rounds #3
 	Desperate Prayer w/ Angel's Mercy (Talent) has been added to Sync
@@ -595,6 +608,14 @@ v2.5.0
 ------------------------------------------------------------------------------
 -- WOTLKC
 --
+v3.4.1.2740
+	Fixed Set bonus inspection
+	Added Season 6 tier set bonuses
+
+v3.4.1.2737
+	Fixed dual spec inspection
+	Fixed nil error
+
 v3.4.1.2736
 	Compatibility updates for 3.4.1
 
@@ -671,6 +692,12 @@ v2.6.01-bcc
 ------------------------------------------------------------------------------
 -- classic era
 --
+v1.14.3.2740
+	version update
+
+v1.14.3.2737
+	version update
+
 v1.14.3.2724
 	Fixed sync for cross realm group members
 

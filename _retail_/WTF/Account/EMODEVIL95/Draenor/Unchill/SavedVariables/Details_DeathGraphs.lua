@@ -7,76 +7,76 @@ DeathGraphsDBDeaths = {
 		["id"] = "2587-14",
 		["player_db"] = {
 			["Ziva-TarrenMill"] = {
-				["overall"] = {
-				},
-				["deaths"] = {
-				},
 				["name"] = "Ziva-TarrenMill",
 				["class"] = "DEATHKNIGHT",
+				["overall"] = {
+				},
+				["deaths"] = {
+				},
 			},
 			["Láur-ArgentDawn"] = {
-				["overall"] = {
-				},
-				["deaths"] = {
-				},
 				["name"] = "Láur-ArgentDawn",
 				["class"] = "WARRIOR",
+				["overall"] = {
+				},
+				["deaths"] = {
+				},
 			},
 			["Morgraín-Quel'Thalas"] = {
-				["overall"] = {
-				},
-				["deaths"] = {
-				},
 				["name"] = "Morgraín-Quel'Thalas",
 				["class"] = "WARRIOR",
+				["overall"] = {
+				},
+				["deaths"] = {
+				},
 			},
 			["Liøth-Stormscale"] = {
-				["overall"] = {
-				},
-				["deaths"] = {
-				},
 				["name"] = "Liøth-Stormscale",
 				["class"] = "MONK",
+				["overall"] = {
+				},
+				["deaths"] = {
+				},
 			},
 			["Poofit-Silvermoon"] = {
-				["overall"] = {
-				},
-				["deaths"] = {
-				},
 				["name"] = "Poofit-Silvermoon",
 				["class"] = "MONK",
-			},
-			["Elch-Nathrezim"] = {
 				["overall"] = {
 				},
 				["deaths"] = {
 				},
-				["name"] = "Elch-Nathrezim",
-				["class"] = "WARRIOR",
-			},
-			["Daamien"] = {
-				["overall"] = {
-				},
-				["deaths"] = {
-				},
-				["name"] = "Daamien",
-				["class"] = "DEMONHUNTER",
 			},
 			["Yerxo-Drak'thul"] = {
-				["overall"] = {
-				},
-				["deaths"] = {
-				},
 				["name"] = "Yerxo-Drak'thul",
 				["class"] = "HUNTER",
-			},
-			["Myuke-Magtheridon"] = {
 				["overall"] = {
 				},
 				["deaths"] = {
 				},
+			},
+			["Elch-Nathrezim"] = {
+				["name"] = "Elch-Nathrezim",
+				["class"] = "WARRIOR",
+				["overall"] = {
+				},
+				["deaths"] = {
+				},
+			},
+			["Daamien"] = {
+				["name"] = "Daamien",
+				["class"] = "DEMONHUNTER",
+				["overall"] = {
+				},
+				["deaths"] = {
+				},
+			},
+			["Myuke-Magtheridon"] = {
 				["name"] = "Myuke-Magtheridon",
 				["class"] = "WARRIOR",
+				["overall"] = {
+				},
+				["deaths"] = {
+				},
 			},
 		},
 		["diff"] = 14,
@@ -166,12 +166,12 @@ DeathGraphsDBEndurance = {
 				},
 				["class"] = "HUNTER",
 			},
-			["Drakon-Dragonmaw"] = {
+			["Yerxo-Drak'thul"] = {
 				["encounters"] = 1,
 				["points"] = 100,
 				["deaths"] = {
 				},
-				["class"] = "EVOKER",
+				["class"] = "HUNTER",
 			},
 			["Pyrolysine-Ysondre"] = {
 				["encounters"] = 1,
@@ -179,6 +179,13 @@ DeathGraphsDBEndurance = {
 				["deaths"] = {
 				},
 				["class"] = "EVOKER",
+			},
+			["Ziva-TarrenMill"] = {
+				["encounters"] = 1,
+				["points"] = 100,
+				["deaths"] = {
+				},
+				["class"] = "DEATHKNIGHT",
 			},
 			["Poofit-Silvermoon"] = {
 				["encounters"] = 1,
@@ -191,13 +198,6 @@ DeathGraphsDBEndurance = {
 					}, -- [1]
 				},
 				["class"] = "MONK",
-			},
-			["Ziva-TarrenMill"] = {
-				["encounters"] = 1,
-				["points"] = 100,
-				["deaths"] = {
-				},
-				["class"] = "DEATHKNIGHT",
 			},
 			["Unchill"] = {
 				["encounters"] = 1,
@@ -279,12 +279,12 @@ DeathGraphsDBEndurance = {
 				},
 				["class"] = "ROGUE",
 			},
-			["Yerxo-Drak'thul"] = {
+			["Drakon-Dragonmaw"] = {
 				["encounters"] = 1,
 				["points"] = 100,
 				["deaths"] = {
 				},
-				["class"] = "HUNTER",
+				["class"] = "EVOKER",
 			},
 			["Khypsos-Hyjal"] = {
 				["encounters"] = 1,

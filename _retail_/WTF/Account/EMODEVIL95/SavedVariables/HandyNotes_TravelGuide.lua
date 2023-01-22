@@ -1,22 +1,22 @@
 
 HandyNotes_TravelGuideDB = {
 	["profileKeys"] = {
-		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
+		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
 		["Taizai - Draenor"] = "Taizai - Draenor",
 		["Nolifey - Silvermoon"] = "Nolifey - Silvermoon",
 		["Nolifey - Ravencrest"] = "Nolifey - Ravencrest",
 		["Cutetroll - Draenor"] = "Cutetroll - Draenor",
-		["Bloodlustguy - Draenor"] = "Bloodlustguy - Draenor",
-		["Trax - Stormscale"] = "Trax - Stormscale",
+		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
+		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
 		["Unchill - Draenor"] = "Unchill - Draenor",
 		["Hentaihero - Draenor"] = "Hentaihero - Draenor",
-		["Raingirl - Silvermoon"] = "Raingirl - Silvermoon",
+		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Pixiel - Draenor"] = "Pixiel - Draenor",
 		["Leafgirl - Silvermoon"] = "Leafgirl - Silvermoon",
 		["Apokalol - Outland"] = "Apokalol - Outland",
 		["Hentaihero - Outland"] = "Hentaihero - Outland",
 		["Aclipt - Outland"] = "Aclipt - Outland",
-		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
+		["Yubiyubi - Draenor"] = "Yubiyubi - Draenor",
 		["Ravegirl - Draenor"] = "Ravegirl - Draenor",
 		["Pokipoki - Draenor"] = "Pokipoki - Draenor",
 		["Crystalol - Draenor"] = "Crystalol - Draenor",
@@ -29,13 +29,13 @@ HandyNotes_TravelGuideDB = {
 		["Yeetalot - Draenor"] = "Yeetalot - Draenor",
 		["Venetha - Draenor"] = "Venetha - Draenor",
 		["Holiloli - Silvermoon"] = "Holiloli - Silvermoon",
-		["Yubiyubi - Draenor"] = "Yubiyubi - Draenor",
 		["Nolifey - Draenor"] = "Nolifey - Draenor",
-		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
-		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
+		["Raingirl - Silvermoon"] = "Raingirl - Silvermoon",
+		["Trax - Stormscale"] = "Trax - Stormscale",
+		["Bloodlustguy - Draenor"] = "Bloodlustguy - Draenor",
 	},
 	["profiles"] = {
-		["Yhewrgrhn - Draenor"] = {
+		["Lifey - Silvermoon"] = {
 		},
 		["Taizai - Draenor"] = {
 		},
@@ -45,15 +45,15 @@ HandyNotes_TravelGuideDB = {
 		},
 		["Cutetroll - Draenor"] = {
 		},
-		["Bloodlustguy - Draenor"] = {
+		["Yhewrgrhn - Draenor"] = {
 		},
-		["Trax - Stormscale"] = {
+		["Apoki - Silvermoon"] = {
 		},
 		["Unchill - Draenor"] = {
 		},
 		["Hentaihero - Draenor"] = {
 		},
-		["Raingirl - Silvermoon"] = {
+		["Fuwu - Silvermoon"] = {
 		},
 		["Pixiel - Draenor"] = {
 		},
@@ -65,7 +65,7 @@ HandyNotes_TravelGuideDB = {
 		},
 		["Aclipt - Outland"] = {
 		},
-		["Fuwu - Silvermoon"] = {
+		["Yubiyubi - Draenor"] = {
 		},
 		["Ravegirl - Draenor"] = {
 		},
@@ -91,13 +91,13 @@ HandyNotes_TravelGuideDB = {
 		},
 		["Holiloli - Silvermoon"] = {
 		},
-		["Yubiyubi - Draenor"] = {
-		},
 		["Nolifey - Draenor"] = {
 		},
-		["Apoki - Silvermoon"] = {
+		["Raingirl - Silvermoon"] = {
 		},
-		["Lifey - Silvermoon"] = {
+		["Trax - Stormscale"] = {
+		},
+		["Bloodlustguy - Draenor"] = {
 		},
 	},
 }

@@ -12,10 +12,10 @@ TomCats_Character = {
 			},
 			["dimmedItems"] = {
 				["Unchill-Draenor"] = {
-					["AIR"] = 0,
-					["EARTH"] = 0,
 					["WATER"] = 0,
 					["FIRE"] = 0,
+					["AIR"] = 0,
+					["EARTH"] = 0,
 				},
 			},
 			["WindowLocation"] = {
@@ -50,10 +50,10 @@ TomCats_Character = {
 			},
 			["dimmedItems"] = {
 				["Unchill-Draenor"] = {
-					["AIR"] = 0,
-					["EARTH"] = 0,
 					["WATER"] = 0,
 					["FIRE"] = 0,
+					["AIR"] = 0,
+					["EARTH"] = 0,
 				},
 			},
 			["WindowLocation"] = {

@@ -10,6 +10,12 @@ MacroToolkitDB = {
 			},
 		},
 	},
+	["global"] = {
+		["backups"] = {
+		},
+		["ebackups"] = {
+		},
+	},
 	["profileKeys"] = {
 		["Crystalol - Outland"] = "profile",
 		["Nolifey - Ravencrest"] = "profile",
@@ -39,21 +45,15 @@ MacroToolkitDB = {
 		["Bowbie - Ravencrest"] = "profile",
 		["Lifey - Moonglade"] = "profile",
 		["Lifey - Draenor"] = "profile",
-		["Apoki - Silvermoon"] = "profile",
-		["Missuccubus - Draenor"] = "profile",
-		["Wasdasdasd - Draenor"] = "profile",
-		["Nolifey - Draenor"] = "profile",
-		["Demonphile - Draenor"] = "profile",
-		["Lifey - Silvermoon"] = "profile",
-		["Venetha - Draenor"] = "profile",
-		["Yhewrgrhn - Draenor"] = "profile",
 		["Nolifey - Moonglade"] = "profile",
-	},
-	["global"] = {
-		["ebackups"] = {
-		},
-		["backups"] = {
-		},
+		["Missuccubus - Draenor"] = "profile",
+		["Yhewrgrhn - Draenor"] = "profile",
+		["Venetha - Draenor"] = "profile",
+		["Lifey - Silvermoon"] = "profile",
+		["Demonphile - Draenor"] = "profile",
+		["Nolifey - Draenor"] = "profile",
+		["Wasdasdasd - Draenor"] = "profile",
+		["Apoki - Silvermoon"] = "profile",
 	},
 	["profiles"] = {
 		["profile"] = {

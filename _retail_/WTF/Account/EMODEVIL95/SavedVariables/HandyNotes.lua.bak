@@ -29,22 +29,22 @@ HandyNotesDB = {
 		["Clawra - Ravencrest"] = "Clawra - Ravencrest",
 		["Hentaihero - Outland"] = "Hentaihero - Outland",
 		["Venetha - Draenor"] = "Venetha - Draenor",
-		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
-		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
-		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
+		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
+		["Nolifey - Draenor"] = "Nolifey - Draenor",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
 		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
-		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
 		["Trapchan - Draenor"] = "Trapchan - Draenor",
-		["Demonphile - Draenor"] = "Demonphile - Draenor",
+		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
 		["Eucleius - Outland"] = "Eucleius - Outland",
+		["Demonphile - Draenor"] = "Demonphile - Draenor",
 		["Lolisama - Draenor"] = "Lolisama - Draenor",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
-		["Nolifey - Draenor"] = "Nolifey - Draenor",
-		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
+		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
+		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
+		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
 		["Vanilia - Outland"] = "Vanilia - Outland",
 	},
 	["profiles"] = {
@@ -104,11 +104,11 @@ HandyNotesDB = {
 		},
 		["Venetha - Draenor"] = {
 		},
-		["Apoki - Silvermoon"] = {
+		["Yhewrgrhn - Draenor"] = {
 		},
-		["Lifey - Silvermoon"] = {
+		["Nolifey - Draenor"] = {
 		},
-		["Wasdasdasd - Draenor"] = {
+		["Nolifey - Moonglade"] = {
 		},
 		["Fuwu - Silvermoon"] = {
 		},
@@ -120,21 +120,21 @@ HandyNotesDB = {
 		},
 		["Lifey - Draenor"] = {
 		},
-		["Missuccubus - Draenor"] = {
-		},
 		["Trapchan - Draenor"] = {
 		},
-		["Demonphile - Draenor"] = {
+		["Missuccubus - Draenor"] = {
 		},
 		["Eucleius - Outland"] = {
 		},
+		["Demonphile - Draenor"] = {
+		},
 		["Lolisama - Draenor"] = {
 		},
-		["Nolifey - Moonglade"] = {
+		["Wasdasdasd - Draenor"] = {
 		},
-		["Nolifey - Draenor"] = {
+		["Lifey - Silvermoon"] = {
 		},
-		["Yhewrgrhn - Draenor"] = {
+		["Apoki - Silvermoon"] = {
 		},
 		["Vanilia - Outland"] = {
 		},
@@ -170,22 +170,22 @@ HandyNotes_HandyNotesDB = {
 		["Clawra - Ravencrest"] = "Clawra - Ravencrest",
 		["Hentaihero - Outland"] = "Hentaihero - Outland",
 		["Venetha - Draenor"] = "Venetha - Draenor",
-		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
-		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
-		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
+		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
+		["Nolifey - Draenor"] = "Nolifey - Draenor",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
 		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
-		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
 		["Trapchan - Draenor"] = "Trapchan - Draenor",
-		["Demonphile - Draenor"] = "Demonphile - Draenor",
+		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
 		["Eucleius - Outland"] = "Eucleius - Outland",
+		["Demonphile - Draenor"] = "Demonphile - Draenor",
 		["Lolisama - Draenor"] = "Lolisama - Draenor",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
-		["Nolifey - Draenor"] = "Nolifey - Draenor",
-		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
+		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
+		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
+		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
 		["Vanilia - Outland"] = "Vanilia - Outland",
 	},
 	["profiles"] = {
@@ -245,11 +245,11 @@ HandyNotes_HandyNotesDB = {
 		},
 		["Venetha - Draenor"] = {
 		},
-		["Apoki - Silvermoon"] = {
+		["Yhewrgrhn - Draenor"] = {
 		},
-		["Lifey - Silvermoon"] = {
+		["Nolifey - Draenor"] = {
 		},
-		["Wasdasdasd - Draenor"] = {
+		["Nolifey - Moonglade"] = {
 		},
 		["Fuwu - Silvermoon"] = {
 		},
@@ -261,21 +261,21 @@ HandyNotes_HandyNotesDB = {
 		},
 		["Lifey - Draenor"] = {
 		},
-		["Missuccubus - Draenor"] = {
-		},
 		["Trapchan - Draenor"] = {
 		},
-		["Demonphile - Draenor"] = {
+		["Missuccubus - Draenor"] = {
 		},
 		["Eucleius - Outland"] = {
 		},
+		["Demonphile - Draenor"] = {
+		},
 		["Lolisama - Draenor"] = {
 		},
-		["Nolifey - Moonglade"] = {
+		["Wasdasdasd - Draenor"] = {
 		},
-		["Nolifey - Draenor"] = {
+		["Lifey - Silvermoon"] = {
 		},
-		["Yhewrgrhn - Draenor"] = {
+		["Apoki - Silvermoon"] = {
 		},
 		["Vanilia - Outland"] = {
 		},

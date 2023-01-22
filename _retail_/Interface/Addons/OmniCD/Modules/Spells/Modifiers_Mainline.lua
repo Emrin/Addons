@@ -1079,7 +1079,6 @@ local class_set_bonus = {
 	]]
 }
 
-
 E.item_set_bonus = {
 	[200354] = class_set_bonus.DRUID,
 	[200356] = class_set_bonus.DRUID,
@@ -1092,6 +1091,10 @@ E.item_set_bonus = {
 	[200387] = class_set_bonus.HUNTER,
 	[200389] = class_set_bonus.HUNTER,
 	[200391] = class_set_bonus.HUNTER,
+	]]
+	--[[ TEST SET
+	[198595] = {[1468]={384565, 2}},
+	[198593] = {[1468]={384565, 2}},
 	]]
 }
 

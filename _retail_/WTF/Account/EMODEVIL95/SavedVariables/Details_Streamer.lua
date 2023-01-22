@@ -30,24 +30,24 @@ Details_StreamerDB = {
 		["Demonphile - Draenor"] = "Aclipt - Outland",
 		["Raingirl - Silvermoon"] = "Aclipt - Outland",
 		["Clawra - Ravencrest"] = "Aclipt - Outland",
-		["Apoki - Silvermoon"] = "Aclipt - Outland",
+		["Hentaihero - Outland"] = "Aclipt - Outland",
 		["Lifey - Silvermoon"] = "Aclipt - Outland",
 		["Yhewrgrhn - Draenor"] = "Aclipt - Outland",
 		["Wasdasdasd - Draenor"] = "Aclipt - Outland",
-		["Bowbie - Ravencrest"] = "Aclipt - Outland",
+		["Nolifey - Moonglade"] = "Aclipt - Outland",
 		["Fuwu - Silvermoon"] = "Aclipt - Outland",
 		["Apoka - Outland"] = "Aclipt - Outland",
-		["Nolifey - Moonglade"] = "Aclipt - Outland",
+		["Bowbie - Ravencrest"] = "Aclipt - Outland",
 		["Lifey - Moonglade"] = "Aclipt - Outland",
 		["Lifey - Draenor"] = "Aclipt - Outland",
 		["Apokalol - Outland"] = "Aclipt - Outland",
-		["Trapchan - Draenor"] = "Aclipt - Outland",
 		["Missuccubus - Draenor"] = "Aclipt - Outland",
+		["Trapchan - Draenor"] = "Aclipt - Outland",
 		["Crystalol - Draenor"] = "Aclipt - Outland",
 		["Lolisama - Draenor"] = "Aclipt - Outland",
 		["Venetha - Draenor"] = "Aclipt - Outland",
 		["Nolifey - Silvermoon"] = "Aclipt - Outland",
-		["Hentaihero - Outland"] = "Aclipt - Outland",
+		["Apoki - Silvermoon"] = "Aclipt - Outland",
 		["Vanilia - Outland"] = "Aclipt - Outland",
 	},
 	["profiles"] = {
@@ -62,7 +62,10 @@ Details_StreamerDB = {
 				0.5, -- [4]
 			},
 			["scale"] = 1,
-			["arrow_anchor_y"] = 0,
+			["main_frame_size"] = {
+				299.9999389648438, -- [1]
+				499.9999084472656, -- [2]
+			},
 			["minimap"] = {
 				["minimapPos"] = 19.02563305941643,
 				["radius"] = 160,
@@ -83,21 +86,6 @@ Details_StreamerDB = {
 			["square_amount"] = 5,
 			["enabled"] = false,
 			["arrow_size"] = 10,
-			["font_size"] = 10,
-			["row_spacement"] = 21,
-			["main_frame_color"] = {
-				0, -- [1]
-				0, -- [2]
-				0, -- [3]
-				0.2, -- [4]
-			},
-			["row_color"] = {
-				0.1019607843137255, -- [1]
-				0.1019607843137255, -- [2]
-				0.1019607843137255, -- [3]
-				0.4000000357627869, -- [4]
-			},
-			["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
 			["per_second"] = {
 				["enabled"] = false,
 				["point"] = "CENTER",
@@ -109,17 +97,29 @@ Details_StreamerDB = {
 				["update_speed"] = 0.05,
 				["attribute_type"] = 1,
 			},
-			["use_spark"] = true,
+			["row_spacement"] = 21,
+			["main_frame_color"] = {
+				0, -- [1]
+				0, -- [2]
+				0, -- [3]
+				0.2, -- [4]
+			},
+			["author"] = "Details! Team",
+			["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+			["y"] = -4.57763671875e-05,
+			["font_size"] = 10,
 			["x"] = 0,
 			["font_face"] = "2002 Bold",
 			["square_size"] = 32,
-			["y"] = -4.57763671875e-05,
-			["author"] = "Details! Team",
-			["main_frame_locked"] = false,
-			["main_frame_size"] = {
-				299.9999389648438, -- [1]
-				499.9999084472656, -- [2]
+			["use_spark"] = true,
+			["row_color"] = {
+				0.1019607843137255, -- [1]
+				0.1019607843137255, -- [2]
+				0.1019607843137255, -- [3]
+				0.4000000357627869, -- [4]
 			},
+			["main_frame_locked"] = false,
+			["arrow_anchor_y"] = 0,
 		},
 	},
 }
