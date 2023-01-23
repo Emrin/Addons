@@ -55,10 +55,10 @@ TomCats_Account = {
 			},
 			["dimmedItems"] = {
 				["Unchill-Draenor"] = {
-					["EARTH"] = 1,
 					["FIRE"] = 1,
-					["WATER"] = 1,
+					["EARTH"] = 1,
 					["AIR"] = 0,
+					["WATER"] = 1,
 				},
 			},
 			["eligibleClasses"] = {

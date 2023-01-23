@@ -20,8 +20,8 @@ GladiusExDB = {
 		["DRTracker"] = {
 			["profiles"] = {
 				["Unchill - Draenor"] = {
-					["drFontSize"] = 14,
 					["drTrackerCooldownReverse"] = true,
+					["drFontSize"] = 14,
 					["drTrackerSize"] = 40,
 				},
 			},
@@ -87,16 +87,16 @@ GladiusExDB = {
 					["castBarAttachMode"] = "InFrame",
 					["castBarPosition"] = "BOTTOM",
 					["castBarOffsetY"] = 0,
-					["castBarOffsetX"] = 0,
-					["castTextOffsetX"] = 0,
 					["castBarHeight"] = 25,
-					["castTimeText"] = false,
 					["castBarBackgroundColor"] = {
 						["a"] = 1,
 						["b"] = 0.1294117718935013,
 						["g"] = 0.1294117718935013,
 						["r"] = 0.1294117718935013,
 					},
+					["castBarOffsetX"] = 0,
+					["castTimeText"] = false,
+					["castTextOffsetX"] = 0,
 					["castIconOffsetX"] = 0,
 				},
 			},
@@ -107,19 +107,19 @@ GladiusExDB = {
 					["growDirection"] = "UP",
 					["y"] = {
 						["player"] = 486.0521240306989,
-						["party2"] = 580.3921512867091,
-						["anchor_party"] = 441.5320940853271,
 						["party4"] = 674.7322755886125,
-						["party3"] = 627.5622134376608,
+						["anchor_party"] = 441.5320940853271,
 						["party1"] = 533.2221861816506,
+						["party3"] = 627.5622134376608,
+						["party2"] = 580.3921512867091,
 					},
 					["x"] = {
 						["player"] = 58.22043943834615,
-						["party2"] = 58.22043943834615,
-						["anchor_party"] = 13.70044386339487,
 						["party4"] = 58.22043943834615,
-						["party3"] = 58.22043943834615,
+						["anchor_party"] = 13.70044386339487,
 						["party1"] = 58.22043943834615,
+						["party3"] = 58.22043943834615,
+						["party2"] = 58.22043943834615,
 					},
 				},
 			},
@@ -153,9 +153,9 @@ GladiusExDB = {
 		},
 		["party_Clicks"] = {
 		},
-		["Announcements"] = {
-		},
 		["party_Interrupts"] = {
+		},
+		["Announcements"] = {
 		},
 		["Alerts"] = {
 		},

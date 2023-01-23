@@ -18,11 +18,11 @@ AdiBagsDB = {
 		},
 		["MoneyFrame"] = {
 		},
+		["ItemSets"] = {
+		},
 		["CurrencyFrame"] = {
 		},
 		["DataSource"] = {
-		},
-		["ItemSets"] = {
 		},
 		["Junk"] = {
 		},

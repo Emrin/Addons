@@ -31,14 +31,14 @@ TomTomDB = {
 		["Raingirl - Silvermoon"] = "Default",
 		["Lifey - Silvermoon"] = "Default",
 		["Clawra - Ravencrest"] = "Default",
-		["Hentaihero - Outland"] = "Default",
+		["Apoki - Silvermoon"] = "Default",
 		["Yhewrgrhn - Draenor"] = "Default",
 		["Venetha - Draenor"] = "Default",
 		["Apokalol - Outland"] = "Default",
-		["Bowbie - Ravencrest"] = "Default",
+		["Nolifey - Moonglade"] = "Default",
 		["Fuwu - Silvermoon"] = "Default",
 		["Apoka - Outland"] = "Default",
-		["Nolifey - Moonglade"] = "Default",
+		["Bowbie - Ravencrest"] = "Default",
 		["Lifey - Moonglade"] = "Default",
 		["Lifey - Draenor"] = "Default",
 		["Missuccubus - Draenor"] = "Default",
@@ -47,7 +47,7 @@ TomTomDB = {
 		["Demonphile - Draenor"] = "Default",
 		["Lolisama - Draenor"] = "Default",
 		["Wasdasdasd - Draenor"] = "Default",
-		["Apoki - Silvermoon"] = "Default",
+		["Hentaihero - Outland"] = "Default",
 		["Nolifey - Silvermoon"] = "Default",
 		["Vanilia - Outland"] = "Default",
 	},
@@ -111,14 +111,14 @@ TomTomWaypointsM = {
 		["Raingirl - Silvermoon"] = "Raingirl - Silvermoon",
 		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
 		["Clawra - Ravencrest"] = "Clawra - Ravencrest",
-		["Hentaihero - Outland"] = "Hentaihero - Outland",
+		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
 		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
 		["Venetha - Draenor"] = "Venetha - Draenor",
 		["Apokalol - Outland"] = "Apokalol - Outland",
-		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
+		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
-		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
+		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
 		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
@@ -127,7 +127,7 @@ TomTomWaypointsM = {
 		["Demonphile - Draenor"] = "Demonphile - Draenor",
 		["Lolisama - Draenor"] = "Lolisama - Draenor",
 		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
-		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
+		["Hentaihero - Outland"] = "Hentaihero - Outland",
 		["Nolifey - Silvermoon"] = "Nolifey - Silvermoon",
 		["Vanilia - Outland"] = "Vanilia - Outland",
 	},
@@ -217,7 +217,7 @@ TomTomWaypointsM = {
 		},
 		["Clawra - Ravencrest"] = {
 		},
-		["Hentaihero - Outland"] = {
+		["Apoki - Silvermoon"] = {
 		},
 		["Yhewrgrhn - Draenor"] = {
 		},
@@ -225,13 +225,13 @@ TomTomWaypointsM = {
 		},
 		["Apokalol - Outland"] = {
 		},
-		["Bowbie - Ravencrest"] = {
+		["Nolifey - Moonglade"] = {
 		},
 		["Fuwu - Silvermoon"] = {
 		},
 		["Apoka - Outland"] = {
 		},
-		["Nolifey - Moonglade"] = {
+		["Bowbie - Ravencrest"] = {
 		},
 		["Lifey - Moonglade"] = {
 		},
@@ -249,7 +249,7 @@ TomTomWaypointsM = {
 		},
 		["Wasdasdasd - Draenor"] = {
 		},
-		["Apoki - Silvermoon"] = {
+		["Hentaihero - Outland"] = {
 		},
 		["Nolifey - Silvermoon"] = {
 		},
