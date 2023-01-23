@@ -3,7 +3,13 @@ RaiderIO_Config = {
 }
 RaiderIO_LastCharacter = "eu-Unchill-draenor"
 RaiderIO_MissingCharacters = {
-	["eu-Anmriya-draenor"] = true,
+	["eu-Mwpronekills-draenor"] = true,
+	["eu-Ronswansøn-draenor"] = true,
+	["eu-Jinxa-draenor"] = true,
+	["eu-Mottoevo-draenor"] = true,
+	["eu-Urri-draenor"] = true,
+	["eu-Slaskfrazze-draenor"] = true,
+	["eu-Rognea-draenor"] = true,
 }
 RaiderIO_MissingServers = {
 }

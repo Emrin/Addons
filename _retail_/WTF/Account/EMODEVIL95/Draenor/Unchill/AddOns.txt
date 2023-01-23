@@ -37,9 +37,9 @@ AAP-Core: disabled
 AngryAssignments: disabled
 BigDebuffs: disabled
 Capping: disabled
-Clique: disabled
+Clique: enabled
 DeathNote: disabled
-Gladius: enabled
+Gladius: disabled
 Grid2: disabled
 Grid2Options: disabled
 Grid2RaidDebuffs: disabled
@@ -186,6 +186,13 @@ EquipCompare: enabled
 LinkWrangler: enabled
 MobInfo2: enabled
 MultiTips: enabled
-GladiusEx: disabled
+GladiusEx: enabled
 Capping_Options: disabled
 OmniBar: disabled
+OmniCD: enabled
+DRList-1.0: enabled
+LibGroupInSpecT-1.1: enabled
+LibCooldownTracker-1.0: enabled
+LibFunctional-1.0: enabled
+LibCustomGlow-1.0: enabled
+LibDispellable-1.0: enabled

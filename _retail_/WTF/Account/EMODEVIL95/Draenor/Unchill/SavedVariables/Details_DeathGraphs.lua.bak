@@ -46,6 +46,14 @@ DeathGraphsDBDeaths = {
 				},
 				["name"] = "Poofit-Silvermoon",
 			},
+			["Yerxo-Drak'thul"] = {
+				["class"] = "HUNTER",
+				["deaths"] = {
+				},
+				["overall"] = {
+				},
+				["name"] = "Yerxo-Drak'thul",
+			},
 			["Elch-Nathrezim"] = {
 				["class"] = "WARRIOR",
 				["deaths"] = {
@@ -61,14 +69,6 @@ DeathGraphsDBDeaths = {
 				["overall"] = {
 				},
 				["name"] = "Daamien",
-			},
-			["Yerxo-Drak'thul"] = {
-				["class"] = "HUNTER",
-				["deaths"] = {
-				},
-				["overall"] = {
-				},
-				["name"] = "Yerxo-Drak'thul",
 			},
 			["Myuke-Magtheridon"] = {
 				["class"] = "WARRIOR",

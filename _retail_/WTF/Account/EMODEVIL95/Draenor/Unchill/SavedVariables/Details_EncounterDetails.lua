@@ -7501,12 +7501,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Kyra",
 		},
-		[351399] = {
-			["school"] = 32,
+		[363681] = {
+			["school"] = 106,
+			["type"] = "DEBUFF",
 			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
 				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Skyja",
+			["source"] = "Lihuvim",
 		},
 		[373915] = {
 			["school"] = 1,
@@ -7540,12 +7542,12 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Anduin Wrynn",
 		},
-		[388245] = {
-			["school"] = 8,
+		[351399] = {
+			["school"] = 32,
 			["token"] = {
 				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Gulping Goliath",
+			["source"] = "Skyja",
 		},
 		[188046] = {
 			["school"] = 72,
@@ -8731,13 +8733,13 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Umbrelskul",
 		},
-		[366278] = {
-			["school"] = 1,
+		[372419] = {
+			["school"] = 106,
+			["type"] = "BUFF",
 			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_CAST_START"] = true,
+				["SPELL_AURA_APPLIED"] = true,
 			},
-			["source"] = "Taskmaster Xy'pro",
+			["source"] = "Lihuvim",
 		},
 		[332525] = {
 			["school"] = 64,
@@ -8772,12 +8774,13 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Remornia",
 		},
-		[386748] = {
+		[366278] = {
 			["school"] = 1,
 			["token"] = {
 				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
 			},
-			["source"] = "Dragonkiller Lance",
+			["source"] = "Taskmaster Xy'pro",
 		},
 		[388283] = {
 			["school"] = 1,
@@ -8789,13 +8792,12 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Granyth",
 		},
-		[372419] = {
-			["school"] = 106,
-			["type"] = "BUFF",
+		[386748] = {
+			["school"] = 1,
 			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
 			},
-			["source"] = "Lihuvim",
+			["source"] = "Dragonkiller Lance",
 		},
 		[362206] = {
 			["school"] = 106,
@@ -8867,6 +8869,13 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Rygelon",
 		},
+		[342740] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_DAMAGE"] = true,
+			},
+			["source"] = "Stone Legion Goliath",
+		},
 		[365257] = {
 			["school"] = 106,
 			["token"] = {
@@ -8874,13 +8883,6 @@ EncounterDetailsDB = {
 				["SPELL_CAST_START"] = true,
 			},
 			["source"] = "Guardian Automa",
-		},
-		[30153] = {
-			["school"] = 1,
-			["token"] = {
-				["SPELL_DAMAGE"] = true,
-			},
-			["source"] = "Felguard",
 		},
 		[361675] = {
 			["school"] = 1,
@@ -9038,14 +9040,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Khajin the Unyielding",
 		},
-		[366287] = {
+		[388804] = {
 			["school"] = 64,
 			["token"] = {
 				["SPELL_CAST_START"] = true,
 				["SPELL_CAST_SUCCESS"] = true,
 				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Taskmaster Xy'pro",
+			["source"] = "Umbrelskul",
 		},
 		[360145] = {
 			["school"] = 32,
@@ -9063,13 +9065,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Kin'tessa",
 		},
-		[364240] = {
+		[366287] = {
 			["school"] = 64,
 			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
 				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Prototype of War",
+			["source"] = "Taskmaster Xy'pro",
 		},
 		[378057] = {
 			["school"] = 1,
@@ -9078,14 +9081,13 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Decaying Slime",
 		},
-		[388804] = {
+		[364240] = {
 			["school"] = 64,
 			["token"] = {
-				["SPELL_CAST_START"] = true,
 				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_DAMAGE"] = true,
+				["SPELL_CAST_START"] = true,
 			},
-			["source"] = "Umbrelskul",
+			["source"] = "Prototype of War",
 		},
 		[360658] = {
 			["school"] = 1,
@@ -9460,12 +9462,12 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Balakar Khan",
 		},
-		[342740] = {
+		[30153] = {
 			["school"] = 1,
 			["token"] = {
 				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Stone Legion Goliath",
+			["source"] = "Felguard",
 		},
 		[386747] = {
 			["school"] = 1,
@@ -10083,14 +10085,12 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Lihuvim",
 		},
-		[363681] = {
-			["school"] = 106,
-			["type"] = "DEBUFF",
+		[388245] = {
+			["school"] = 8,
 			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
 				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Lihuvim",
+			["source"] = "Gulping Goliath",
 		},
 		[392929] = {
 			["school"] = 1,

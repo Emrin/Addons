@@ -16,10 +16,10 @@ HandyNotes_TravelGuideDB = {
 		["Apokalol - Outland"] = "Apokalol - Outland",
 		["Hentaihero - Outland"] = "Hentaihero - Outland",
 		["Aclipt - Outland"] = "Aclipt - Outland",
-		["Crystalol - Draenor"] = "Crystalol - Draenor",
+		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Ravegirl - Draenor"] = "Ravegirl - Draenor",
 		["Pokipoki - Draenor"] = "Pokipoki - Draenor",
-		["Nolifey - Draenor"] = "Nolifey - Draenor",
+		["Crystalol - Draenor"] = "Crystalol - Draenor",
 		["Apoka - Outland"] = "Apoka - Outland",
 		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
@@ -30,7 +30,7 @@ HandyNotes_TravelGuideDB = {
 		["Venetha - Draenor"] = "Venetha - Draenor",
 		["Holiloli - Silvermoon"] = "Holiloli - Silvermoon",
 		["Yubiyubi - Draenor"] = "Yubiyubi - Draenor",
-		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
+		["Nolifey - Draenor"] = "Nolifey - Draenor",
 		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
 		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
 	},
@@ -65,13 +65,13 @@ HandyNotes_TravelGuideDB = {
 		},
 		["Aclipt - Outland"] = {
 		},
-		["Crystalol - Draenor"] = {
+		["Fuwu - Silvermoon"] = {
 		},
 		["Ravegirl - Draenor"] = {
 		},
 		["Pokipoki - Draenor"] = {
 		},
-		["Nolifey - Draenor"] = {
+		["Crystalol - Draenor"] = {
 		},
 		["Apoka - Outland"] = {
 		},
@@ -93,7 +93,7 @@ HandyNotes_TravelGuideDB = {
 		},
 		["Yubiyubi - Draenor"] = {
 		},
-		["Fuwu - Silvermoon"] = {
+		["Nolifey - Draenor"] = {
 		},
 		["Apoki - Silvermoon"] = {
 		},
