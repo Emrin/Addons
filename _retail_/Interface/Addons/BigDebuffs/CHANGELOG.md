@@ -1,2 +1,2 @@
 - Spell updates
-- Bug fix
+- Add PitBull support

@@ -1,5 +1,5 @@
 ﻿----------------------------------------------------------------------
--- 	Leatrix Plus 10.0.31 (20th January 2023)
+-- 	Leatrix Plus 10.0.33 (25th January 2023)
 ----------------------------------------------------------------------
 
 --	01:Functns, 02:Locks, 03:Restart, 20:Live, 30:Isolated, 40:Player
@@ -18,7 +18,7 @@
 	local void
 
 	-- Version
-	LeaPlusLC["AddonVer"] = "10.0.31"
+	LeaPlusLC["AddonVer"] = "10.0.33"
 
 	-- Get locale table
 	local void, Leatrix_Plus = ...
@@ -33,9 +33,6 @@
 				print(L["LEATRIX PLUS: WRONG VERSION INSTALLED!"])
 			end)
 			return
-		end
-		if gametocversion == 100005 then
-			LeaPlusLC.NewPatch = true
 		end
 	end
 
@@ -589,7 +586,6 @@
 		LeaPlusLC:LockOption("ManageWidgetTop", "ManageWidgetTopButton", true)		-- Manage widget top
 		LeaPlusLC:LockOption("ManageControl", "ManageControlButton", true)			-- Manage control
 		LeaPlusLC:LockOption("ManageTimer", "ManageTimerButton", true)				-- Manage timer
-		LeaPlusLC:LockOption("ManageDurability", "ManageDurabilityButton", true)	-- Manage durability
 		LeaPlusLC:LockOption("ManageVehicle", "ManageVehicleButton", true)			-- Manage vehicle
 		LeaPlusLC:LockOption("ClassColFrames", "ClassColFramesBtn", true)			-- Class colored frames
 		LeaPlusLC:LockOption("SetWeatherDensity", "SetWeatherDensityBtn", false)	-- Set weather density
@@ -658,7 +654,6 @@
 		or	(LeaPlusLC["ManageWidgetTop"]		~= LeaPlusDB["ManageWidgetTop"])		-- Manage widget top
 		or	(LeaPlusLC["ManageControl"]			~= LeaPlusDB["ManageControl"])			-- Manage control
 		or	(LeaPlusLC["ManageTimer"]			~= LeaPlusDB["ManageTimer"])			-- Manage timer
-		or	(LeaPlusLC["ManageDurability"]		~= LeaPlusDB["ManageDurability"])		-- Manage durability
 		or	(LeaPlusLC["ManageVehicle"]			~= LeaPlusDB["ManageVehicle"])			-- Manage vehicle
 		or	(LeaPlusLC["ClassColFrames"]		~= LeaPlusDB["ClassColFrames"])			-- Class colored frames
 
@@ -2997,33 +2992,26 @@
 			LeaPlusLC:MakeTx(SellJunkFrame, "Settings", 16, -72)
 			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellShowSummary", "Show vendor summary in chat", 16, -92, false, "If checked, a vendor summary will be shown in chat when junk is automatically sold.")
 			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellNoKeeperTahult", "Exclude Keeper Ta'hult's pet items", 16, -112, false, L["If checked, the following junk items required to purchase pets from Keeper Ta'hult in Oribos will not be sold automatically."] .. L["|cff889D9D|n"] .. L["|n- A Frayed Knot|n- Dark Iron Baby Booties|n- Ground Gear|n- Large Slimy Bone|n- Rabbits Foot|n- Robbles Wobbly Staff|n- Rotting Bear Carcass|n- The Stoppable Force|n- Very Unlucky Rock"] .. "|r")
-			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellNoGreyGear", "Exclude all grey gear", 16, -132, false, L["If checked, grey gear will not be sold.|n|nUse this setting if you plan to sell grey gear in the auction house."])
+			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellNoGreyGear", "Exclude all unbound grey gear", 16, -132, false, L["If checked, grey gear that is not soulbound to your character will not be sold.|n|nUse this setting if you plan to sell grey gear in the auction house."])
 
 			LeaPlusLC:MakeTx(SellJunkFrame, "Transmog", 16, -172)
 			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellExcludeMyChar", "Exclude gear designed for my character", 16, -192, false, L["If checked, uncollected grey gear that is designed for your character will not be sold.|n|nUse this setting if you plan to collect transmog appearances from grey gear that is designed for your character."])
-			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellExcludeMyAlts", "Exclude gear designed for my alts", 16, -212, false, L["If checked, uncollected grey gear that is designed for your alts will not be sold.|n|nUse this setting if you plan to collect transmog appearances from grey gear that is designed for your alts."])
+			LeaPlusLC:MakeCB(SellJunkFrame, "AutoSellExcludeMyAlts", "Exclude gear designed for my alts", 16, -212, false, L["If checked, uncollected grey gear that is designed for your alts and is not soulbound to your character will not be sold.|n|nUse this setting if you plan to collect transmog appearances from grey gear that is designed for your alts."])
 
 			-- Exclude all grey gear checkbox lock
 			local NoGreyTransmogTipText = LeaPlusCB["AutoSellExcludeMyChar"].tiptext
 			local NoGreyTransmogCharTipText = LeaPlusCB["AutoSellExcludeMyAlts"].tiptext
 			local function SetTransmogLockFunc()
-				if not LeaPlusLC.NewPatch then
+				if LeaPlusLC["AutoSellNoGreyGear"] == "On" then
 					LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyChar"], true)
-					LeaPlusCB["AutoSellExcludeMyChar"].tiptext = NoGreyTransmogTipText .. "|n|n|cff00AAFF" .. L["This is for game patch 10.0.5.|n|nIn 10.0.5, you will be able to transmogrify grey armor and weapons so this setting could be very useful."]
+					LeaPlusCB["AutoSellExcludeMyChar"].tiptext = NoGreyTransmogTipText .. "|n|n|cff00AAFF" .. L["You have excluded all grey armor and weapons from being sold so this setting is ignored."]
 					LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyAlts"], true)
-					LeaPlusCB["AutoSellExcludeMyAlts"].tiptext = NoGreyTransmogCharTipText .. "|n|n|cff00AAFF" .. L["This is for game patch 10.0.5.|n|nIn 10.0.5, you will be able to transmogrify grey armor and weapons so this setting could be very useful."]
+					LeaPlusCB["AutoSellExcludeMyAlts"].tiptext = NoGreyTransmogCharTipText .. "|n|n|cff00AAFF" .. L["You have excluded all grey armor and weapons from being sold so this setting is ignored."]
 				else
-					if LeaPlusLC["AutoSellNoGreyGear"] == "On" then
-						LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyChar"], true)
-						LeaPlusCB["AutoSellExcludeMyChar"].tiptext = NoGreyTransmogTipText .. "|n|n|cff00AAFF" .. L["You have excluded all grey armor and weapons from being sold so this setting is ignored."]
-						LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyAlts"], true)
-						LeaPlusCB["AutoSellExcludeMyAlts"].tiptext = NoGreyTransmogCharTipText .. "|n|n|cff00AAFF" .. L["You have excluded all grey armor and weapons from being sold so this setting is ignored."]
-					else
-						LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyChar"], false)
-						LeaPlusCB["AutoSellExcludeMyChar"].tiptext = NoGreyTransmogTipText
-						LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyAlts"], false)
-						LeaPlusCB["AutoSellExcludeMyAlts"].tiptext = NoGreyTransmogCharTipText
-					end
+					LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyChar"], false)
+					LeaPlusCB["AutoSellExcludeMyChar"].tiptext = NoGreyTransmogTipText
+					LeaPlusLC:LockItem(LeaPlusCB["AutoSellExcludeMyAlts"], false)
+					LeaPlusCB["AutoSellExcludeMyAlts"].tiptext = NoGreyTransmogCharTipText
 				end
 			end
 			LeaPlusCB["AutoSellNoGreyGear"]:HookScript("OnClick", SetTransmogLockFunc)
@@ -3351,13 +3339,15 @@
 							end
 							-- Exclude grey gear
 							if Rarity == 0 and classID and (classID == itemTypeWeapon or classID == itemTypeArmor) then -- Weapon or armor
-								if LeaPlusLC["AutoSellNoGreyGear"] == "On" then
-									-- Exclude all grey gear is checked so do not sell
-									Rarity = 20
-									ItemPrice = 0
-								else
-									-- Exclude uncollected grey gear (exclude all grey gear is off)
-									if LeaPlusLC.NewPatch then -- remove LeaPlusLC.NewPatch in 10.0.5
+								local isSoulBound = C_Item.IsBound(ItemLocation:CreateFromBagAndSlot(BagID, BagSlot))
+								if not isSoulBound then
+									-- Item is not soulbound (soulbound gear cannot be sold to others and will not have a learnable appearance)
+									if LeaPlusLC["AutoSellNoGreyGear"] == "On" then
+										-- Exclude all grey gear is checked so do not sell
+										Rarity = 20
+										ItemPrice = 0
+									else
+										-- Exclude uncollected grey gear (exclude all grey gear is off)
 										if LeaPlusLC["AutoSellExcludeMyChar"] == "On" or LeaPlusLC["AutoSellExcludeMyAlts"] == "On" then
 											local appearanceID, sourceID = C_TransmogCollection.GetItemInfo(itemID)
 											if sourceID then
@@ -5296,27 +5286,29 @@
 								local buttonName = strlower(buttons[i])
 								if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
 									local button = LibDBIconStub:GetMinimapButton(buttons[i])
-									if buttonName == "armory" then button.db.hide = false end -- Armory addon sets hidden to true
-									if not button.db.hide then
-										button:SetParent(bFrame)
-										button:ClearAllPoints()
-										if side == "Left" then
-											-- Minimap is on left side of screen
-											button:SetPoint("TOPLEFT", bFrame, "TOPLEFT", x, y)
-											col = col + 1; if col >= buttonsPerRow then col = 0; row = row + 1; x = 0; y = y - 30 else x = x + 30 end
-										else
-											-- Minimap is on right side of screen
-											button:SetPoint("TOPRIGHT", bFrame, "TOPRIGHT", x, y)
-											col = col + 1; if col >= buttonsPerRow then col = 0; row = row + 1; x = 0; y = y - 30 else x = x - 30 end
+									if button.db then
+										if buttonName == "armory" then button.db.hide = false end -- Armory addon sets hidden to true
+										if not button.db.hide then
+											button:SetParent(bFrame)
+											button:ClearAllPoints()
+											if side == "Left" then
+												-- Minimap is on left side of screen
+												button:SetPoint("TOPLEFT", bFrame, "TOPLEFT", x, y)
+												col = col + 1; if col >= buttonsPerRow then col = 0; row = row + 1; x = 0; y = y - 30 else x = x + 30 end
+											else
+												-- Minimap is on right side of screen
+												button:SetPoint("TOPRIGHT", bFrame, "TOPRIGHT", x, y)
+												col = col + 1; if col >= buttonsPerRow then col = 0; row = row + 1; x = 0; y = y - 30 else x = x - 30 end
+											end
+											if totalButtons <= buttonsPerRow then
+												bFrame:SetWidth(totalButtons * 30)
+											else
+												bFrame:SetWidth(buttonsPerRow * 30)
+											end
+											local void, void, void, void, e = button:GetPoint()
+											bFrame:SetHeight(0 - e + 30)
+											LibDBIconStub:Show(buttons[i])
 										end
-										if totalButtons <= buttonsPerRow then
-											bFrame:SetWidth(totalButtons * 30)
-										else
-											bFrame:SetWidth(buttonsPerRow * 30)
-										end
-										local void, void, void, void, e = button:GetPoint()
-										bFrame:SetHeight(0 - e + 30)
-										LibDBIconStub:Show(buttons[i])
 									end
 								end
 							end
@@ -5665,7 +5657,7 @@
 					--C_Timer.After(0.1, function() -- Removed for now
 						local buttonName = strlower(name)
 						if not strfind(strlower(LeaPlusDB["MiniExcludeList"]), buttonName) then
-							if not button.db.hide then
+							if button.db and not button.db.hide then
 								button:Hide()
 								button:SetScript("OnShow", function() if not LeaPlusLC.bFrame:IsShown() then button:Hide() end end)
 							end
@@ -5698,201 +5690,6 @@
 				end
 
 			end)
-
-		end
-
-		----------------------------------------------------------------------
-		-- Manage durability
-		----------------------------------------------------------------------
-
-		if LeaPlusLC["ManageDurability"] == "On" and not LeaLockList["ManageDurability"] then
-
-			-- Create and manage container for DurabilityFrame
-			local durabilityHolder = CreateFrame("Frame", nil, UIParent)
-			durabilityHolder:SetPoint("TOP", UIParent, "TOP", 0, -15)
-			durabilityHolder:SetSize(92, 75)
-
-			local durabilityContainer = _G.DurabilityFrame
-			durabilityContainer:ClearAllPoints()
-			durabilityContainer:SetPoint('CENTER', durabilityHolder)
-			durabilityContainer:SetIgnoreParentScale(true) -- Needed to keep drag frame position when scaled
-
-			hooksecurefunc(durabilityContainer, 'SetPoint', function(self, void, b)
-				if b and (b ~= durabilityHolder) then
-					-- Reset parent if it changes from durabilityHolder
-					self:ClearAllPoints()
-					self:SetPoint('TOPRIGHT', durabilityHolder) -- Has to be TOPRIGHT (drag frame while moving between subzones)
-					self:SetParent(durabilityHolder)
-				end
-			end)
-
-			-- Allow durability frame to be moved
-			durabilityHolder:SetMovable(true)
-			durabilityHolder:SetUserPlaced(true)
-			durabilityHolder:SetDontSavePosition(true)
-			durabilityHolder:SetClampedToScreen(false)
-
-			-- Set durability frame position at startup
-			durabilityHolder:ClearAllPoints()
-			durabilityHolder:SetPoint(LeaPlusLC["DurabilityA"], UIParent, LeaPlusLC["DurabilityR"], LeaPlusLC["DurabilityX"], LeaPlusLC["DurabilityY"])
-			durabilityHolder:SetScale(LeaPlusLC["DurabilityScale"])
-			DurabilityFrame:SetScale(LeaPlusLC["DurabilityScale"])
-
-			-- Create drag frame
-			local dragframe = CreateFrame("FRAME", nil, nil, "BackdropTemplate")
-			dragframe:SetPoint("CENTER", durabilityHolder, "CENTER", 0, 1)
-			dragframe:SetBackdropColor(0.0, 0.5, 1.0)
-			dragframe:SetBackdrop({edgeFile = "Interface/Tooltips/UI-Tooltip-Border", tile = false, tileSize = 0, edgeSize = 16, insets = { left = 0, right = 0, top = 0, bottom = 0}})
-			dragframe:SetToplevel(true)
-			dragframe:Hide()
-			dragframe:SetScale(LeaPlusLC["DurabilityScale"])
-
-			dragframe.t = dragframe:CreateTexture()
-			dragframe.t:SetAllPoints()
-			dragframe.t:SetColorTexture(0.0, 1.0, 0.0, 0.5)
-			dragframe.t:SetAlpha(0.5)
-
-			dragframe.f = dragframe:CreateFontString(nil, 'ARTWORK', 'GameFontNormalLarge')
-			dragframe.f:SetPoint('CENTER', 0, 0)
-			dragframe.f:SetText(L["Durability"])
-
-			-- Click handler
-			dragframe:SetScript("OnMouseDown", function(self, btn)
-				-- Start dragging if left clicked
-				if btn == "LeftButton" then
-					durabilityHolder:StartMoving()
-				end
-			end)
-
-			dragframe:SetScript("OnMouseUp", function()
-				-- Save frame position
-				durabilityHolder:StopMovingOrSizing()
-				LeaPlusLC["DurabilityA"], void, LeaPlusLC["DurabilityR"], LeaPlusLC["DurabilityX"], LeaPlusLC["DurabilityY"] = durabilityHolder:GetPoint()
-				durabilityHolder:SetMovable(true)
-				durabilityHolder:ClearAllPoints()
-				durabilityHolder:SetPoint(LeaPlusLC["DurabilityA"], UIParent, LeaPlusLC["DurabilityR"], LeaPlusLC["DurabilityX"], LeaPlusLC["DurabilityY"])
-			end)
-
-			-- Snap-to-grid
-			do
-				local frame, grid = dragframe, 10
-				local w, h = 65, 75
-				local xpos, ypos, scale, uiscale
-				frame:RegisterForDrag("RightButton")
-				frame:HookScript("OnDragStart", function()
-					frame:SetScript("OnUpdate", function()
-						scale, uiscale = frame:GetScale(), UIParent:GetScale()
-						xpos, ypos = GetCursorPosition()
-						xpos = floor((xpos / scale / uiscale) / grid) * grid - w / 2
-						ypos = ceil((ypos / scale / uiscale) / grid) * grid + h / 2
-						durabilityHolder:ClearAllPoints()
-						durabilityHolder:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", xpos, ypos)
-					end)
-				end)
-				frame:HookScript("OnDragStop", function()
-					frame:SetScript("OnUpdate", nil)
-					frame:GetScript("OnMouseUp")()
-				end)
-			end
-
-			-- Create configuration panel
-			local DurabilityPanel = LeaPlusLC:CreatePanel("Manage durability", "DurabilityPanel")
-
-			LeaPlusLC:MakeTx(DurabilityPanel, "Scale", 16, -72)
-			LeaPlusLC:MakeSL(DurabilityPanel, "DurabilityScale", "Drag to set the durability frame scale.", 0.5, 2, 0.05, 16, -92, "%.2f")
-
-			-- Set scale when slider is changed
-			LeaPlusCB["DurabilityScale"]:HookScript("OnValueChanged", function()
-				durabilityHolder:SetScale(LeaPlusLC["DurabilityScale"])
-				DurabilityFrame:SetScale(LeaPlusLC["DurabilityScale"])
-				dragframe:SetScale(LeaPlusLC["DurabilityScale"])
-				-- Show formatted slider value
-				LeaPlusCB["DurabilityScale"].f:SetFormattedText("%.0f%%", LeaPlusLC["DurabilityScale"] * 100)
-			end)
-
-			-- Hide frame alignment grid with panel
-			DurabilityPanel:HookScript("OnHide", function()
-				LeaPlusLC.grid:Hide()
-			end)
-
-			-- Toggle grid button
-			local DurabilityToggleGridButton = LeaPlusLC:CreateButton("DurabilityToggleGridButton", DurabilityPanel, "Toggle Grid", "TOPLEFT", 16, -72, 0, 25, true, "Click to toggle the frame alignment grid.")
-			LeaPlusCB["DurabilityToggleGridButton"]:ClearAllPoints()
-			LeaPlusCB["DurabilityToggleGridButton"]:SetPoint("LEFT", DurabilityPanel.h, "RIGHT", 10, 0)
-			LeaPlusCB["DurabilityToggleGridButton"]:SetScript("OnClick", function()
-				if LeaPlusLC.grid:IsShown() then LeaPlusLC.grid:Hide() else LeaPlusLC.grid:Show() end
-			end)
-			DurabilityPanel:HookScript("OnHide", function()
-				if LeaPlusLC.grid then LeaPlusLC.grid:Hide() end
-			end)
-
-			-- Help button tooltip
-			DurabilityPanel.h.tiptext = L["Drag the frame overlay with the left button to position it freely or with the right button to position it using snap-to-grid."]
-
-			-- Back button handler
-			DurabilityPanel.b:SetScript("OnClick", function()
-				DurabilityPanel:Hide(); LeaPlusLC["PageF"]:Show(); LeaPlusLC["Page6"]:Show()
-				return
-			end)
-
-			-- Reset button handler
-			DurabilityPanel.r:SetScript("OnClick", function()
-
-				-- Reset position and scale
-				LeaPlusLC["DurabilityA"] = "TOPRIGHT"
-				LeaPlusLC["DurabilityR"] = "TOPRIGHT"
-				LeaPlusLC["DurabilityX"] = 0
-				LeaPlusLC["DurabilityY"] = -192
-				LeaPlusLC["DurabilityScale"] = 1
-				durabilityHolder:ClearAllPoints()
-				durabilityHolder:SetPoint(LeaPlusLC["DurabilityA"], UIParent, LeaPlusLC["DurabilityR"], LeaPlusLC["DurabilityX"], LeaPlusLC["DurabilityY"])
-
-				-- Refresh configuration panel
-				DurabilityPanel:Hide(); DurabilityPanel:Show()
-				dragframe:Show()
-
-				-- Show frame alignment grid
-				LeaPlusLC.grid:Show()
-
-			end)
-
-			-- Show configuration panel when options panel button is clicked
-			LeaPlusCB["ManageDurabilityButton"]:SetScript("OnClick", function()
-				if IsShiftKeyDown() and IsControlKeyDown() then
-					-- Preset profile
-					LeaPlusLC["DurabilityA"] = "TOPRIGHT"
-					LeaPlusLC["DurabilityR"] = "TOPRIGHT"
-					LeaPlusLC["DurabilityX"] = 0
-					LeaPlusLC["DurabilityY"] = -192
-					LeaPlusLC["DurabilityScale"] = 1
-					durabilityHolder:ClearAllPoints()
-					durabilityHolder:SetPoint(LeaPlusLC["DurabilityA"], UIParent, LeaPlusLC["DurabilityR"], LeaPlusLC["DurabilityX"], LeaPlusLC["DurabilityY"])
-					durabilityHolder:SetScale(LeaPlusLC["DurabilityScale"])
-					DurabilityFrame:SetScale(LeaPlusLC["DurabilityScale"])
-				else
-					-- Find out if the UI has a non-standard scale
-					if GetCVar("useuiscale") == "1" then
-						LeaPlusLC["gscale"] = GetCVar("uiscale")
-					else
-						LeaPlusLC["gscale"] = 1
-					end
-
-					-- Set drag frame size according to UI scale
-					dragframe:SetWidth(92 * LeaPlusLC["gscale"])
-					dragframe:SetHeight(75 * LeaPlusLC["gscale"])
-
-					-- Show configuration panel
-					DurabilityPanel:Show()
-					LeaPlusLC:HideFrames()
-					dragframe:Show()
-
-					-- Show frame alignment grid
-					LeaPlusLC.grid:Show()
-				end
-			end)
-
-			-- Hide drag frame when configuration panel is closed
-			DurabilityPanel:HookScript("OnHide", function() dragframe:Hide() end)
 
 		end
 
@@ -9789,7 +9586,7 @@
 		-- Show first run message
 		if not LeaPlusDB["FirstRunMessageSeen"] then
 			C_Timer.After(1, function()
-				LeaPlusLC:Print(L["Enter"] .. " |cff00ff00" .. "/run leaplus()" .. "|r " .. L["or click the minimap button to open Leatrix Plus."])
+				LeaPlusLC:Print(L["Enter"] .. " |cff00ff00" .. "/ltp" .. "|r " .. L["or click the minimap button to open Leatrix Plus."])
 				LeaPlusDB["FirstRunMessageSeen"] = true
 			end)
 		end
@@ -10730,7 +10527,7 @@
 			subTitle:ClearAllPoints()
 			subTitle:SetPoint("BOTTOM", 0, 72)
 
-			local slashTitle = LeaPlusLC:MakeTx(interPanel, "/run leaplus()", 0, 0)
+			local slashTitle = LeaPlusLC:MakeTx(interPanel, "/ltp", 0, 0)
 			slashTitle:SetFont(slashTitle:GetFont(), 72)
 			slashTitle:ClearAllPoints()
 			slashTitle:SetPoint("BOTTOM", subTitle, "TOP", 0, 40)
@@ -11147,13 +10944,6 @@
 				LeaPlusLC:LoadVarNum("TimerY", -96, -5000, 5000)			-- Manage timer position Y
 				LeaPlusLC:LoadVarNum("TimerScale", 1, 0.5, 2)				-- Manage timer scale
 
-				LeaPlusLC:LoadVarChk("ManageDurability", "Off")				-- Manage durability
-				LeaPlusLC:LoadVarAnc("DurabilityA", "TOPRIGHT")				-- Manage durability anchor
-				LeaPlusLC:LoadVarAnc("DurabilityR", "TOPRIGHT")				-- Manage durability relative
-				LeaPlusLC:LoadVarNum("DurabilityX", 0, -5000, 5000)			-- Manage durability position X
-				LeaPlusLC:LoadVarNum("DurabilityY", -192, -5000, 5000)		-- Manage durability position Y
-				LeaPlusLC:LoadVarNum("DurabilityScale", 1, 0.5, 2)			-- Manage durability scale
-
 				LeaPlusLC:LoadVarChk("ManageVehicle", "Off")				-- Manage vehicle
 				LeaPlusLC:LoadVarAnc("VehicleA", "TOPRIGHT")				-- Manage vehicle anchor
 				LeaPlusLC:LoadVarAnc("VehicleR", "TOPRIGHT")				-- Manage vehicle relative
@@ -11314,18 +11104,12 @@
 								Lock("ManageWidgetTop", reason) -- Manage widget top
 								Lock("ManageControl", reason) -- Manage control
 								Lock("ManageTimer", reason) -- Manage timer
-								Lock("ManageDurability", reason) -- Manage durability
 								Lock("ManageVehicle", reason) -- Manage vehicle
 							end
 
 						end
 
 						EnableAddOn("Leatrix_Plus")
-					end
-
-					-- Disable items that conflict with game patch 10.0.5
-					if LeaPlusLC.NewPatch then
-						Lock("ManageDurability", L["You can move this frame with Edit Mode."]) -- Manage durability
 					end
 
 				end
@@ -11524,13 +11308,6 @@
 			LeaPlusDB["TimerX"]					= LeaPlusLC["TimerX"]
 			LeaPlusDB["TimerY"]					= LeaPlusLC["TimerY"]
 			LeaPlusDB["TimerScale"]				= LeaPlusLC["TimerScale"]
-
-			LeaPlusDB["ManageDurability"]		= LeaPlusLC["ManageDurability"]
-			LeaPlusDB["DurabilityA"]			= LeaPlusLC["DurabilityA"]
-			LeaPlusDB["DurabilityR"]			= LeaPlusLC["DurabilityR"]
-			LeaPlusDB["DurabilityX"]			= LeaPlusLC["DurabilityX"]
-			LeaPlusDB["DurabilityY"]			= LeaPlusLC["DurabilityY"]
-			LeaPlusDB["DurabilityScale"]		= LeaPlusLC["DurabilityScale"]
 
 			LeaPlusDB["ManageVehicle"]			= LeaPlusLC["ManageVehicle"]
 			LeaPlusDB["VehicleA"]				= LeaPlusLC["VehicleA"]
@@ -14204,13 +13981,6 @@
 				LeaPlusDB["TimerY"] = -120						-- Manage timer position Y
 				LeaPlusDB["TimerScale"] = 1.00					-- Manage timer scale
 
-				LeaPlusDB["ManageDurability"] = "On"			-- Manage durability
-				LeaPlusDB["DurabilityA"] = "TOPRIGHT"			-- Manage durability anchor
-				LeaPlusDB["DurabilityR"] = "TOPRIGHT"			-- Manage durability relative
-				LeaPlusDB["DurabilityX"] = 0					-- Manage durability position X
-				LeaPlusDB["DurabilityY"] = -192					-- Manage durability position Y
-				LeaPlusDB["DurabilityScale"] = 1.00				-- Manage durability scale
-
 				LeaPlusDB["ManageVehicle"] = "On"				-- Manage vehicle
 				LeaPlusDB["VehicleA"] = "TOPRIGHT"				-- Manage vehicle anchor
 				LeaPlusDB["VehicleR"] = "TOPRIGHT"				-- Manage vehicle relative
@@ -14370,10 +14140,8 @@
 	end
 
 	-- Slash command for global function
-	--_G.SLASH_Leatrix_Plus1 = "/ltp"
-	--_G.SLASH_Leatrix_Plus2 = "/leaplus"
-
-	_G.SLASH_Leatrix_Plus1 = "/ztp" -- temp
+	_G.SLASH_Leatrix_Plus1 = "/ltp"
+	_G.SLASH_Leatrix_Plus2 = "/leaplus"
 
 	SlashCmdList["Leatrix_Plus"] = function(self)
 		-- Run slash command function
@@ -14384,11 +14152,6 @@
 	_G.SLASH_LEATRIX_PLUS_RL1 = "/rl"
 	SlashCmdList["LEATRIX_PLUS_RL"] = function()
 		ReloadUI()
-	end
-
-	-- Replacement for broken slash command system
-	function leaplus(self)
-		LeaPlusLC:SlashFunc(self)
 	end
 
 ----------------------------------------------------------------------
@@ -14643,9 +14406,8 @@
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageWidgetTop"			,	"Manage widget top"				, 	146, -92, 	true,	"If checked, you will be able to change the position and scale of the widget top frame.|n|nThe widget top frame is commonly used for showing PvP scores and tracking objectives.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageControl"				,	"Manage control"				, 	146, -112, 	true,	"If checked, you will be able to change the position and scale of the loss of control frame.")
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageTimer"				,	"Manage timer"					, 	146, -132, 	true,	"If checked, you will be able to change the position and scale of the timer bar.|n|nThe timer bar is used for showing remaining breath when underwater as well as other things.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageDurability"			,	"Manage durability"				, 	146, -152, 	true,	"If checked, you will be able to change the position and scale of the armored man durability frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageVehicle"				,	"Manage vehicle"				, 	146, -172, 	true,	"If checked, you will be able to change the position and scale of the vehicle seat indicator frame.")
-	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ClassColFrames"			, 	"Class colored frames"			,	146, -192, 	true,	"If checked, class coloring will be used in the player frame, target frame and focus frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ManageVehicle"				,	"Manage vehicle"				, 	146, -152, 	true,	"If checked, you will be able to change the position and scale of the vehicle seat indicator frame.")
+	LeaPlusLC:MakeCB(LeaPlusLC[pg], "ClassColFrames"			, 	"Class colored frames"			,	146, -172, 	true,	"If checked, class coloring will be used in the player frame, target frame and focus frame.")
 
 	LeaPlusLC:MakeTx(LeaPlusLC[pg], "Visibility"				, 	340, -72)
 	LeaPlusLC:MakeCB(LeaPlusLC[pg], "NoAlerts"					,	"Hide alerts"					, 	340, -92, 	true,	"If checked, alert frames will not be shown.")
@@ -14661,7 +14423,6 @@
 	LeaPlusLC:CfgBtn("ManageWidgetTopButton", LeaPlusCB["ManageWidgetTop"])
 	LeaPlusLC:CfgBtn("ManageControlButton", LeaPlusCB["ManageControl"])
 	LeaPlusLC:CfgBtn("ManageTimerButton", LeaPlusCB["ManageTimer"])
-	LeaPlusLC:CfgBtn("ManageDurabilityButton", LeaPlusCB["ManageDurability"])
 	LeaPlusLC:CfgBtn("ManageVehicleButton", LeaPlusCB["ManageVehicle"])
 	LeaPlusLC:CfgBtn("ClassColFramesBtn", LeaPlusCB["ClassColFrames"])
 

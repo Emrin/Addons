@@ -46,14 +46,6 @@ DeathGraphsDBDeaths = {
 				["overall"] = {
 				},
 			},
-			["Elch-Nathrezim"] = {
-				["deaths"] = {
-				},
-				["class"] = "WARRIOR",
-				["name"] = "Elch-Nathrezim",
-				["overall"] = {
-				},
-			},
 			["Daamien"] = {
 				["deaths"] = {
 				},
@@ -67,6 +59,14 @@ DeathGraphsDBDeaths = {
 				},
 				["class"] = "HUNTER",
 				["name"] = "Yerxo-Drak'thul",
+				["overall"] = {
+				},
+			},
+			["Elch-Nathrezim"] = {
+				["deaths"] = {
+				},
+				["class"] = "WARRIOR",
+				["name"] = "Elch-Nathrezim",
 				["overall"] = {
 				},
 			},

@@ -9,7 +9,7 @@ SGTCoreDB = {
 		},
 		["Unchill - Draenor"] = {
 			["minimap"] = {
-				["minimapPos"] = 276.1760287561843,
+				["minimapPos"] = 271.5984683762821,
 			},
 		},
 	},

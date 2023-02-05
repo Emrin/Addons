@@ -455,6 +455,15 @@ local GetAnchor = {
             return frame, frame, true
         end
     end,
+    PitBull = function(anchor)
+        local frame = _G[anchor]
+        if not frame then return end
+        if frame.Portrait and frame.Portrait:IsShown() then
+            return frame.Portrait, frame
+        else
+            return frame, frame, true
+        end
+    end,
     Cell = function(anchor)
         local anchors, unit = BigDebuffs.anchors
 
@@ -708,6 +717,19 @@ local anchors = {
             arena3 = "sArenaEnemyFrame3",
             arena4 = "sArenaEnemyFrame4",
             arena5 = "sArenaEnemyFrame5",
+        },
+    },
+    ["Pitbull"] = {
+        func = GetAnchor.PitBull,
+        units = {
+            player = "PitBull4_Frames_Player",
+            pet = "PitBull4_Frames_Player's pet",
+            target = "PitBull4_Frames_Target",
+            focus = "PitBull4_Frames_Focus",
+            party1 = "PitBull4_Groups_PartyUnitButton1",
+            party2 = "PitBull4_Groups_PartyUnitButton2",
+            party3 = "PitBull4_Groups_PartyUnitButton3",
+            party4 = "PitBull4_Groups_PartyUnitButton4",
         },
     },
     ["Cell"] = {
@@ -1315,16 +1337,6 @@ function BigDebuffs:AddBigDebuffs(frame)
 end
 
 local pending = {}
-local function checkFrame(frame)
-    if not issecurevariable(frame, "action") and not InCombatLockdown() then
-        frame.action = nil
-        frame:SetAttribute("action");
-    end
-end
-
-for _, frame in ipairs(ActionBarButtonEventsFrame.frames) do
-    if frame.UpdateAction then hooksecurefunc(frame, "UpdateAction", checkFrame) end
-end
 
 hooksecurefunc("CompactUnitFrame_UpdateAll", function(frame)
 	if not BigDebuffs.db.profile then return end

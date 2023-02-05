@@ -16,11 +16,52 @@ function CraftSim.NEWS:GET_NEWS()
     local s = "\n" .. CraftSim.UTIL:GetQualityIconAsText(2, 15, 15) .. " "
     local P = "\n" .. CraftSim.UTIL:GetQualityIconAsText(3, 15, 15) .. " "
     local a = "\n     "
-    local function newP(v) return c("\n\n\n                                   --- Version " .. v .. " ---\n\n", l) end
+    local function newP(v) return c("\n\n                                   --- Version " .. v .. " ---\n", l) end
 
     return 
         c("                   Hello and thank you for using CraftSim!\n", bb) .. 
         "             ( Show this window any time with " .. c("/craftsim news", g) .. " )" ..
+        newP("5.5.2") ..
+        p .. "Hotfix for RecipeScan" ..
+        newP("5.5.1") ..
+        p .. "Added an " .. c("Export Recipe Results", g) .. " Button to Crafting Results" ..
+        newP("5.5") ..
+        s .. "Added a small workaround to make" .. 
+        a .. "the CraftSim Modules appear after a" ..
+        a .. "fresh login and first time clicking on a profession" ..
+        s .. "New " .. c("Statistics Panel", g) .. " in the " .. c("Average Profit Module", g) .. 
+        a .. "showing the probability table of the craft and the" .. 
+        a .. "confidence to have a positive profit after a certain" .. 
+        a .. "number of crafts" ..
+        s .. "Switched to a statistics based expected profit calculation" ..
+        p .. "Fixed Resourcefulness proc being counted multiple times" .. 
+        a .. "for prospecting due to a bug on blizzard's side" ..
+        p .. "The Crafted Items List in the " .. 
+        a .. c("Craft Results Module", bb) .. " is now sorted by quality" ..
+        p .. c("Jewelcrafting Experimental Data:", bb) .. 
+        a .. "Primalist Gems are now affected by Faceting and " .. 
+        a .. "their respective elemental node" ..
+        p .. c("Recipe Scan: ", bb) .. " list is now sorted by profit" ..
+        newP("5.4") ..
+        p .. c("TSM Price Expressions", bb) .. " can now be reset to the" .. 
+        a .. "default 'first(DBRecent, DBMinbuyout)'" ..
+        p .. "Bonus Inspiration from Incense is now considered" .. 
+        a .. "when switching to Simulation Mode" ..
+        p .. "Added Option to not be reminded to use a price source" ..
+        newP("5.3") ..
+        P .. "Added an option to automatically simulate Top Gear" ..
+        s .. "The " .. c("Craft Results Module", g) .. " now buffers" .. 
+        a .. "multiple craft results and assigns them to one craft" ..
+        newP("5.2") ..
+        p .. "Resourcefulness now uses a simpler calculation method" ..
+        newP("5.1") ..
+        P .. c("Craft Results Module", g) .. " redesigned" ..
+        a .. "Now with more statistics!" ..
+        p .. "The " .. c("Price Override Module", g) .. " now supports decimals" ..
+        p .. "Fixed Jewelcrafting Experimental Data" .. 
+        a .. "not showing the first spec" ..
+        p .. "Fixed Alchemy Experimental Data not considering" .. 
+        a .. "Chemical Synthesis for some Reagents" ..
         newP("5.0") ..
         P .. "New Module: " .. c("Craft Results", g) ..
         a .. "Logs your crafting outputs and shows you the total" .. 
@@ -63,47 +104,5 @@ function CraftSim.NEWS:GET_NEWS()
         a .. "(See Data/SpecNodeData/Leatherworking.lua)" ..
         a .. "in Debug Mode (E.g: CURING_AND_TANNING_1)" ..
         s .. "Added discord invite to the patch notes!" .. 
-        a .. c("Feel free to join :D", g) ..
-        newP("3.2") ..
-        p .. "Added missing data for optional reagent " .. c("Armor Spikes", bb) .. 
-        p .. "Reimplemented the result item fetch for" .. 
-        a .. "non gear recipes to use the ingame api" ..
-        a .. "This now prevents any wrong sorting of qualities for" ..
-        a .. "cost overview and profit calculation" ..
-        newP("3.0/3.1") ..
-        P .. "New " .. c("Price Override Module", g) ..
-        a .. "Override prices of " .. c("any materials", bb) .. ", " .. 
-        a .. c("optional and finishing reagents, ", bb) ..
-        a .. "and for " .. c("crafted results", bb) .. " per recipe or for all recipes!" ..
-        s .. "Added " .. c("Close Buttons", bb) .. " to all modules" ..
-        newP("2.2") ..
-        p .. "Fixed an error with Top Gear stat extraction" .. 
-        a .. "from items with no stats" ..
-        newP("2.1") ..
-        p .. "Updated the multicraft extra items formula to " ..
-        a .. c("(1+2.5y*bonus) / 2", bb) .. 
-        a .. "instead of " ..
-        a .. c("((1+2.5y) / 2)*bonus", bb) .. 
-        a .. "which leads to slightly less but more" .. 
-        a .. "accurate value from multicraft" ..
-        p .. "Fixed an error during prospecting and" .. 
-        a .. "other salvage recipes" .. 
-        p .. "Fixed a bug causing the Simulate Top Gear button" ..
-        a .. "to not update" .. 
-        p .. "Fixed racial skill boni being applied two times" .. 
-        a .. "when using experimental spec data" .. 
-        p .. "Fixed Chemical Synthesis not being considered in" .. 
-        a .. "Alchemy experimental spec data" ..
-        newP("2.0") ..
-        P .. "Implemented most modules for " .. c("Work Orders", g) ..
-        a .. "Simulation Mode for work orders will follow" .. 
-        a .. "in a future update." .. 
-        a .. "Behaviour of the Work Order Modules during recrafting" .. 
-        a .. "is not tested yet" .. 
-        P .. "Introducing the " .. c("CraftSim Control Panel", g) ..
-        a .. "Serving as the main module of CraftSim from now on" .. 
-        a .. "it gives easy access to all different modules" ..
-        s .. c("Removed", r) .. " the price override feature temporary" .. 
-        a .. "This will be reimplemented as a seperate module" .. 
-        a .. "in a future update"
+        a .. c("Feel free to join :D", g)
 end

@@ -173,8 +173,8 @@ function CraftSim.DATAEXPORT:exportBuffData()
 end
 
 function CraftSim.DATAEXPORT:exportSpecNodeData(recipeData)
-	local skillLineID = C_TradeSkillUI.GetProfessionChildSkillLineID()
-    local configID = C_ProfSpecs.GetConfigIDForSkillLine(skillLineID)
+	-- local skillLineID = C_TradeSkillUI.GetProfessionChildSkillLineID()
+    local configID = C_ProfSpecs.GetConfigIDForSkillLine(recipeData.professionInfo.skillLineID)
 
 	local nodes = CraftSim.SPEC_DATA:GetNodes(recipeData.professionID) or {}
 
@@ -240,7 +240,7 @@ end
 
 function CraftSim.DATAEXPORT:handlePlayerProfessionStatsV2(recipeData, exportMode)
 	--print("player stats v2")
-	local professionInfo = C_TradeSkillUI.GetChildProfessionInfo()
+	local professionInfo = recipeData.professionInfo
 	local professionGearStats = CraftSim.DATAEXPORT:GetCurrentProfessionItemStats(recipeData.professionID)
 
 	local ruleNodes = CraftSim.SPEC_DATA.RULE_NODES()[recipeData.professionID]
@@ -491,7 +491,7 @@ function CraftSim.DATAEXPORT:GetRequiredReagentItemsInfoByExportMode(currentSlot
 		local itemsInfo = {}
 		
 		for i, reagent in pairs(currentSlot.reagents) do
-			local reagentAllocation = slotAllocations:FindAllocationByReagent(reagent)
+			local reagentAllocation = (slotAllocations and slotAllocations:FindAllocationByReagent(reagent)) or nil
 			local allocations = 0
 			if reagentAllocation ~= nil then
 				allocations = reagentAllocation:GetQuantity()
@@ -594,13 +594,32 @@ function CraftSim.DATAEXPORT:exportRecipeData(recipeID, exportMode, overrideData
 	--local professionInfo = ProfessionsFrame.professionInfo
 	local professionInfo = C_TradeSkillUI.GetChildProfessionInfo()
 
+	if not professionInfo or not professionInfo.profession then
+		-- try to get from cache
+		recipeData.professionID = CraftSim.RECIPE_SCAN:GetProfessionIDByRecipeID(recipeID)
+
+		if recipeData.professionID then
+			professionInfo = CraftSim.CACHE:GetCacheEntryByVersion(CraftSimProfessionInfoCache, recipeData.professionID)
+
+			if not professionInfo then
+				return
+			end
+		end
+	else
+		-- recipeData.profession = professionInfo.parentProfessionName
+		recipeData.professionID = professionInfo.profession
+		if recipeData.professionID then
+			professionInfo.skillLineID = C_TradeSkillUI.GetProfessionChildSkillLineID()
+			CraftSim.CACHE:AddCacheEntryByVersion(CraftSimProfessionInfoCache, recipeData.professionID, professionInfo)
+		end
+	end
+
 	print("RecipeData Export:", false, true)
-	recipeData.profession = professionInfo.parentProfessionName
-	recipeData.professionID = professionInfo.profession
 	if recipeData.professionID == nil then
 		-- not ready yet
 		return
 	end
+	recipeData.professionInfo = professionInfo
 	local recipeInfo = C_TradeSkillUI.GetRecipeInfo(recipeID)
 
 	-- Can happen when manually called without recipe open
@@ -888,18 +907,20 @@ function CraftSim.DATAEXPORT:GetProfessionGearStatsByLink(itemLink)
 	-- For now there is only inspiration and resourcefulness as enchant?
 	local parsedEnchantingStats = {
 		inspiration = 0,
-		resourcefulness = 0
+		resourcefulness = 0,
+		multicraft = 0,
 	}
 	local equipMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.EQUIP_MATCH_STRING)
 	local inspirationIncreaseMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.INSPIRATIONBONUS_SKILL_ITEM_MATCH_STRING)
 	local enchantedMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.ENCHANTED_MATCH_STRING)
 	local inspirationMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.STAT_INSPIRATION)
 	local resourcefulnessMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.STAT_RESOURCEFULNESS)
+	local multicraftMatchString = CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.STAT_MULTICRAFT)
 	for lineNum, line in pairs(tooltipData.lines) do
 		for argNum, arg in pairs(line.args) do
 			if arg.stringVal and string.find(arg.stringVal, equipMatchString) then
 				-- here the stringVal looks like "Equip: +6 Blacksmithing Skill"
-				parsedSkill = tonumber(string.match(arg.stringVal, "%+(%d+)"))
+				parsedSkill = tonumber(string.match(arg.stringVal, "(%d+)"))
 			end
 			if arg.stringVal and string.find(arg.stringVal, inspirationIncreaseMatchString) then
 				parsedInspirationSkillBonusPercent = tonumber(string.match(arg.stringVal, "(%d+)%%"))
@@ -909,6 +930,8 @@ function CraftSim.DATAEXPORT:GetProfessionGearStatsByLink(itemLink)
 					parsedEnchantingStats.inspiration = tonumber(string.match(arg.stringVal, "%+(%d+)"))
 				elseif string.find(arg.stringVal, resourcefulnessMatchString) then
 					parsedEnchantingStats.resourcefulness = tonumber(string.match(arg.stringVal, "%+(%d+)"))
+				elseif string.find(arg.stringVal, multicraftMatchString) then
+					parsedEnchantingStats.multicraft = tonumber(string.match(arg.stringVal, "%+(%d+)"))
 				end
 			end
 		end

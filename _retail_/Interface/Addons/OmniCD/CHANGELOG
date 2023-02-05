@@ -1,6 +1,16 @@
 ------------------------------------------------------------------------------
 -- Dragonflight
 --
+v10.0.5.2741
+	Patch 10.0.5 updates
+
+	Fixed PvP Talent modifiers incorrectly being applied in non-PvP areas
+	Fixed Fortifying Brew (BW) spellID that caused CDR by Keg Smash, Tiger Palm, Blackout Combo to be ignored
+	Temp fix to match current bugged state:
+		Tiger Palm reduces all Brew (BM) cooldowns by 0.5 sec instead of 1.0 sec
+		Keg Smash reduces Fortifying Brew's CD by 5 sec instead of 3 sec
+	Tiger Palm and Keg Smash on enemies with Bonedust Brew active will correctly reduce all Brew cooldowns by 1 sec (was reducing Bonedust Brew only)
+
 v10.0.2.2740
 	Non-PvP talent changes made by non-synced units are now updated instantly
 	Fixed item inspection
@@ -692,10 +702,7 @@ v2.6.01-bcc
 ------------------------------------------------------------------------------
 -- classic era
 --
-v1.14.3.2740
-	version update
-
-v1.14.3.2737
+v1.14.3.2741
 	version update
 
 v1.14.3.2724

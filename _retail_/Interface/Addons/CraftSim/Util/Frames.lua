@@ -612,6 +612,12 @@ function CraftSim.FRAME:InitWarningFrame()
     frame.content.warningText:SetPoint("TOP", frame.content, "TOP", 0, -20)
     frame.content.warningText:SetText("No Warning")
 
+    frame.content.doNotShowAgainButton = CraftSim.FRAME:CreateButton("I know, do not show this again!", frame.content, frame.content, "TOP", "TOP", 0, -200, 15, 25, true,
+    function()
+            StaticPopup_Show("CRAFT_SIM_ACCEPT_NO_PRICESOURCE_WARNING")
+        end
+    )
+
     frame.content.errorBox = CreateFrame("EditBox", nil, frame.content)
     frame.content.errorBox:SetPoint("TOP", frame.content, "TOP", 0, -20)
     frame.content.errorBox:SetText("No Warning")
@@ -735,6 +741,21 @@ function CraftSim.FRAME:CreateGoldIcon(parent, anchorParent, anchorA, anchorB, a
     goldIcon:SetText(goldCoin)
 
     return goldIcon
+end
+
+function CraftSim.FRAME:CreateScrollFrame(parent, offsetTOP, offsetLEFT, offsetRIGHT, offsetBOTTOM)
+    local scrollFrame = CreateFrame("ScrollFrame", nil, parent, "UIPanelScrollFrameTemplate")
+    scrollFrame.scrollChild = CreateFrame("frame")
+    local scrollChild = scrollFrame.scrollChild
+    scrollFrame:SetSize(parent:GetWidth() , parent:GetHeight())
+    scrollFrame:SetPoint("TOP", parent, "TOP", 0, offsetTOP)
+    scrollFrame:SetPoint("LEFT", parent, "LEFT", offsetLEFT, 0)
+    scrollFrame:SetPoint("RIGHT", parent, "RIGHT", offsetRIGHT, 0)
+    scrollFrame:SetPoint("BOTTOM", parent, "BOTTOM", 0, offsetBOTTOM)
+    scrollFrame:SetScrollChild(scrollFrame.scrollChild)
+    scrollChild:SetWidth(scrollFrame:GetWidth())
+    scrollChild:SetHeight(1)
+    return scrollFrame, scrollChild
 end
 
 function CraftSim.FRAME:CreateGoldInput(name, parent, anchorParent, anchorA, anchorB, offsetX, offsetY, sizeX, sizeY, initialValue, onTextChangedCallback)

@@ -112,6 +112,10 @@ function CraftSim.OPTIONS:Init()
         end
     end)
 
+    CraftSim.FRAME:CreateButton("Reset Default", TSMTab.content, tsmMaterialsPriceExpression, "RIGHT", "LEFT", -10, 1, 15, 20, true, function()
+        tsmMaterialsPriceExpression:SetText(CraftSim.CONST.TSM_DEFAULT_PRICE_EXPRESSION)
+    end)
+
     local tsmExpressionTitleMaterials = TSMTab.content:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
     tsmExpressionTitleMaterials:SetPoint("BOTTOMLEFT", tsmMaterialsPriceExpression, "TOPLEFT",  0, 10)
     tsmExpressionTitleMaterials:SetText("TSM Crafting Materials Price Expression")
@@ -140,6 +144,10 @@ function CraftSim.OPTIONS:Init()
         end
     end)
 
+    CraftSim.FRAME:CreateButton("Reset Default", TSMTab.content, tsmItemsPriceExpression, "RIGHT", "LEFT", -10, 1, 15, 20, true, function()
+        tsmItemsPriceExpression:SetText(CraftSim.CONST.TSM_DEFAULT_PRICE_EXPRESSION)
+    end)
+
     local tsmExpressionTitleItems = TSMTab.content:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')
     tsmExpressionTitleItems:SetPoint("BOTTOMLEFT", tsmItemsPriceExpression, "TOPLEFT",  0, 10)
     tsmExpressionTitleItems:SetText("TSM Crafted Items Price Expression")
@@ -147,10 +155,6 @@ function CraftSim.OPTIONS:Init()
     local validationInfoItems = TSMTab.content:CreateFontString('CraftSimTSMStringValidationInfoItems', 'OVERLAY', 'GameFontNormal')
     validationInfoItems:SetPoint("TOPLEFT", tsmItemsPriceExpression, "TOPRIGHT",  5, 0)
     validationInfoItems:SetText(CraftSim.UTIL:ColorizeText("Expression Valid", CraftSim.CONST.COLORS.GREEN))
-
-
-
-    
 
     CraftSim.FRAME:InitTabSystem({generalTab, tooltipTab, TSMTab, AccountSyncTab, ModulesTab, ProfitCalculationTab, ExperimentalTab})
 
@@ -247,18 +251,6 @@ function CraftSim.OPTIONS:Init()
      "TOP", 
      "TOP", 
      -90, 
-     -20)
-
-     local profitCalcConsiderSub1MaterialsInRes = CraftSim.FRAME:CreateCheckbox(" Resourcefulness: Consider Minimum of 1 Material Saved", 
-     "Resourcefulness saves 30% of a materials quantity on average. However if a material has a required quantity of 1, this value would be below 1.\n" .. 
-     "Some argue that this means the average of such a material is a minimum of 1.\n\nCheck this box if you want to consider that, otherwise those materials will also have an\n" .. 
-     "average of 30% savedCosts",
-     "profitCalcConsiderSub1MaterialsInRes", 
-     ProfitCalculationTab.content, 
-     skillBreakpointsCheckbox, 
-     "TOP", 
-     "TOP", 
-     0, 
      -20)
 
     local precentProfitCheckbox = CraftSim.FRAME:CreateCheckbox(" Show Profit Percentage", 

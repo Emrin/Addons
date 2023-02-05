@@ -93,7 +93,7 @@ WorldQuestTracker: enabled
 SilverDragon_RangeExtender: enabled
 SilverDragon_Overlay: enabled
 SilverDragon: disabled
-Plater: disabled
+Plater: enabled
 NPCScan: enabled
 MogIt_Leather: disabled
 GatherMate2_Data: enabled
@@ -196,3 +196,8 @@ LibCooldownTracker-1.0: enabled
 LibFunctional-1.0: enabled
 LibCustomGlow-1.0: enabled
 LibDispellable-1.0: enabled
+LittleWigs_MistsOfPandaria: enabled
+LittleWigs_Legion: enabled
+LittleWigs_WarlordsOfDraenor: enabled
+ElvUI_SecondsToBuff: disabled
+BigWigs_DragonIsles: enabled

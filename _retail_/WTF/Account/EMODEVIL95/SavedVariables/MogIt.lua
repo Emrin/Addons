@@ -155,7 +155,7 @@ MogItWishlist = {
 		["Vanilia - Outland"] = "Vanilia - Outland",
 	},
 	["global"] = {
-		["version"] = 100002,
+		["version"] = 100005,
 	},
 	["profiles"] = {
 		["Crystalol - Outland"] = {

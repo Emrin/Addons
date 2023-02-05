@@ -1,24 +1,43 @@
 
 TomCats_Account = {
 	["errorLog"] = {
-		["version"] = "2.4.47",
+		["version"] = "2.4.51",
 	},
 	["hallowsend"] = {
 	},
 	["lastExpirationWarning"] = 0,
 	["discoveriesResetCount"] = 0,
 	["lunarfestival"] = {
+		["iconsEnabled"] = true,
+		["discovered"] = true,
+		["preferences"] = {
+		},
 	},
 	["loveisintheair"] = {
+		["characters"] = {
+			["Player-1403-0A4C933E"] = {
+				["bracelets"] = 0,
+				["class"] = "EVOKER",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["level"] = 70,
+				["tokens"] = 0,
+				["name"] = "Unchill",
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["timestamp"] = 1675543204,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
+		},
+		["discovered"] = true,
+		["preferences"] = {
+		},
 	},
 	["discoveriesVersion"] = "2.4.35",
-	["lastVersionSeen"] = "2.4.47",
+	["lastVersionSeen"] = "2.4.51",
 	["preferences"] = {
 		["dragonGlyphsTipShown"] = true,
-		["TomCats-LunarFestivalMinimapButton"] = {
-			["hidden"] = false,
-			["position"] = -2.514,
-		},
 		["TomCats-MinimapButton"] = {
 			["hidden"] = true,
 			["position"] = 3.049746576198334,
@@ -28,15 +47,19 @@ TomCats_Account = {
 			["iconScale"] = 1,
 			["iconAnimationEnabled"] = true,
 		},
+		["TomCats-LoveIsInTheAirMinimapButton2023"] = {
+			["hidden"] = false,
+			["position"] = -0.4763649783323299,
+		},
 		["dragonGlyphsEnabled"] = true,
 		["TomCats-HallowsEndMinimapButton"] = {
 			["hidden"] = false,
 			["position"] = -2.514,
 		},
 		["betaEnabled"] = false,
-		["TomCats-LoveIsInTheAirMinimapButton"] = {
+		["TomCats-LunarFestivalMinimapButton2023"] = {
 			["hidden"] = false,
-			["position"] = -3.262,
+			["position"] = -3.089210127917359,
 		},
 	},
 	["dragonflyingglyphs"] = {

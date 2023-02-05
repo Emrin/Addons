@@ -18,11 +18,11 @@ AdiBagsDB = {
 		},
 		["MoneyFrame"] = {
 		},
+		["DataSource"] = {
+		},
 		["ItemSets"] = {
 		},
 		["CurrencyFrame"] = {
-		},
-		["DataSource"] = {
 		},
 		["Junk"] = {
 		},
@@ -39,12 +39,12 @@ AdiBagsDB = {
 			["scale"] = 1.3,
 			["positions"] = {
 				["Bank"] = {
-					["xOffset"] = 779.6729877591861,
-					["yOffset"] = -104.0719243337517,
+					["xOffset"] = 646.8417792524997,
+					["yOffset"] = -324.4501633206382,
 				},
 				["Backpack"] = {
-					["xOffset"] = -16.90644152695313,
-					["yOffset"] = 173.8364514484238,
+					["xOffset"] = -247.349365203263,
+					["yOffset"] = 214.2907575207209,
 				},
 			},
 		},

@@ -19,6 +19,7 @@ CraftSimOptions = CraftSimOptions or {
 	syncTarget = nil,
 	openLastRecipe = true,
 	materialSuggestionInspirationThreshold = false,
+	topGearAutoUpdate = false,
 
 	-- modules
 	modulesMaterials = true,
@@ -28,7 +29,7 @@ CraftSimOptions = CraftSimOptions or {
 	modulesSpecInfo = true,
 	modulesPriceOverride = false,
 	modulesRecipeScan = false,
-	modulesCraftResults = true,
+	modulesCraftResults = false,
 
 	transparencyMaterials = 1,
 	transparencyStatWeights = 1,
@@ -49,7 +50,6 @@ CraftSimOptions = CraftSimOptions or {
 	recipeScanOptimizeProfessionTools = false,
 
 	-- profit calc
-	profitCalcConsiderSub1MaterialsInRes = false,
 }
 
 CraftSimCollapsedFrames = CraftSimCollapsedFrames or {}
@@ -87,8 +87,8 @@ end
 function CraftSim.MAIN:handleCraftSimOptionsUpdates()
 	if CraftSimOptions then
 		CraftSimOptions.tsmPriceKey = nil
-		CraftSimOptions.tsmPriceKeyMaterials = CraftSimOptions.tsmPriceKeyMaterials or "DBRecent"
-		CraftSimOptions.tsmPriceKeyItems = CraftSimOptions.tsmPriceKeyItems or "DBMinbuyout"
+		CraftSimOptions.tsmPriceKeyMaterials = CraftSimOptions.tsmPriceKeyMaterials or CraftSim.CONST.TSM_DEFAULT_PRICE_EXPRESSION
+		CraftSimOptions.tsmPriceKeyItems = CraftSimOptions.tsmPriceKeyItems or CraftSim.CONST.TSM_DEFAULT_PRICE_EXPRESSION
 		CraftSimOptions.topGearMode = CraftSimOptions.topGearMode or "Top Profit"
 		CraftSimOptions.breakPointOffset = CraftSimOptions.breakPointOffset or false
 		CraftSimOptions.autoAssignVellum = CraftSimOptions.autoAssignVellum or false
@@ -120,15 +120,22 @@ function CraftSim.MAIN:handleCraftSimOptionsUpdates()
 		if CraftSimOptions.modulesSpecInfo == nil then
 			CraftSimOptions.modulesSpecInfo = true
 		end
-		if CraftSimOptions.modulesCraftResults == nil then
-			CraftSimOptions.modulesCraftResults = true
-		end
 	end
 end
 
 local hookedEvent = false
 
+local freshLoginRecall = true
 function CraftSim.MAIN:TriggerModulesErrorSafe(isInit)
+
+	if freshLoginRecall and isInit then
+		freshLoginRecall = false
+		-- hack to make frames appear after fresh login, when some info has not loaded yet although should have after blizzards' Init call
+		C_Timer.After(0.1, function() 
+			CraftSim.MAIN:TriggerModulesErrorSafe(true)
+		end)
+	end
+
 	-- local success, errorMsg = pcall(CraftSim.MAIN.TriggerModulesByRecipeType, self, isInit)
 
 	-- if not success then
@@ -170,6 +177,17 @@ function CraftSim.MAIN:HookToEvent()
 			print("Init: " .. tostring(recipeInfo.recipeID))
 			CraftSim.MAIN.currentRecipeID = recipeInfo.recipeID
 			CraftSim.MAIN:TriggerModulesErrorSafe(true)
+
+			local professionInfo = C_TradeSkillUI.GetChildProfessionInfo()
+			local professionRecipeIDs = CraftSim.CACHE:GetCacheEntryByVersion(CraftSimRecipeIDs, professionInfo.profession)
+			if not professionRecipeIDs then
+				-- TODO: put somewhere other than main
+				local recipeIDs = C_TradeSkillUI.GetAllRecipeIDs()
+				-- filter out non dragonflight professions???
+				if professionInfo.profession then
+					CraftSim.CACHE:AddCacheEntryByVersion(CraftSimRecipeIDs, professionInfo.profession, recipeIDs)
+				end
+			end
 		else
 			--print("loading recipeInfo..")
 		end
@@ -191,7 +209,36 @@ function CraftSim.MAIN:HookToEvent()
 
 	recipeTab:HookScript("OnClick", Update)
 	craftingOrderTab:HookScript("OnClick", Update)
-	--ProfessionsFrame.OrdersPage.OrderView.OrderDetails:HookScript("OnShow", Update)
+	
+end
+
+function CraftSim.MAIN:InitStaticPopups()
+	StaticPopupDialogs["CRAFT_SIM_ACCEPT_TOOLTIP_SYNC"] = {
+        text = "Incoming Craft Sim Account Sync: Do you accept?",
+        button1 = "Yes",
+        button2 = "No",
+        OnAccept = function(self, data1, data2)
+            CraftSim.ACCOUNTSYNC:HandleIncomingSync(data1, data2)
+        end,
+        timeout = 0,
+        whileDead = true,
+        hideOnEscape = true,
+        preferredIndex = 3,  -- avoid some UI taint, see http://www.wowace.com/announcements/how-to-avoid-some-ui-taint/
+      }
+
+	StaticPopupDialogs["CRAFT_SIM_ACCEPT_NO_PRICESOURCE_WARNING"] = {
+	text = "Are you sure you do not want to be reminded to get a price source?",
+	button1 = "Yes",
+	button2 = "No",
+	OnAccept = function(self, data1, data2)
+		CraftSimOptions.doNotRemindPriceSource = true
+		CraftSim.FRAME:GetFrame(CraftSim.CONST.FRAMES.WARNING):Hide()
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+	preferredIndex = 3,  -- avoid some UI taint, see http://www.wowace.com/announcements/how-to-avoid-some-ui-taint/
+	}
 end
 
 local priceApiLoaded = false
@@ -213,6 +260,7 @@ function CraftSim.MAIN:ADDON_LOADED(addon_name)
 		CraftSim.PRICE_OVERRIDE.FRAMES:Init()
 		CraftSim.RECIPE_SCAN.FRAMES:Init()
 		CraftSim.CRAFT_RESULTS.FRAMES:Init()
+		CraftSim.STATISTICS.FRAMES:Init()
 
 		CraftSim.TOOLTIP:Init()
 		CraftSim.MAIN:HookToEvent()
@@ -223,6 +271,9 @@ function CraftSim.MAIN:ADDON_LOADED(addon_name)
 		CraftSim.ACCOUNTSYNC:Init()
 
 		CraftSim.CONTROL_PANEL.FRAMES:Init()
+		CraftSim.MAIN:InitStaticPopups()
+
+		CraftSim.CUSTOMER_SERVICE:HookToHyperlinks()
 	end
 end
 
@@ -461,7 +512,7 @@ function CraftSim.MAIN:TriggerModulesByRecipeType(isInit)
 	CraftSim.FRAME:ToggleFrame(CraftSim.FRAME:GetFrame(CraftSim.CONST.FRAMES.CRAFT_RESULTS), showCraftResults)
 
 	if recipeData and showCraftResults then
-		CraftSim.FRAME:GetFrame(CraftSim.CONST.FRAMES.CRAFT_RESULTS).content.ResetForRecipe(recipeData.recipeID)
+		CraftSim.CRAFT_RESULTS.FRAMES:UpdateRecipeData(recipeData.recipeID)
 	end
 
 	CraftSim.FRAME:ToggleFrame(CraftSim.FRAME:GetFrame(CraftSim.CONST.FRAMES.PRICE_OVERRIDE), showPriceOverride and exportMode == CraftSim.CONST.EXPORT_MODE.NON_WORK_ORDER)
@@ -474,7 +525,7 @@ function CraftSim.MAIN:TriggerModulesByRecipeType(isInit)
 		CraftSim.FRAME:UpdateStatDetailsByExtraItemFactors(recipeData)
 	end
 
-	CraftSim.FRAME:ToggleFrame(CraftSim.FRAME:GetFrame(CraftSim.CONST.FRAMES.SPEC_INFO), showSpecInfo)
+	CraftSim.FRAME:ToggleFrame(CraftSim.FRAME:GetFrame(CraftSim.CONST.FRAMES.SPEC_INFO), showSpecInfo and recipeData and recipeData.specNodeData)
 	if recipeData and showSpecInfo and recipeData.specNodeData then
 		CraftSim.SPECIALIZATION_INFO.FRAMES:UpdateInfo(recipeData)
 	end
@@ -507,17 +558,22 @@ function CraftSim.MAIN:TriggerModulesByRecipeType(isInit)
 		local statWeights = CraftSim.AVERAGEPROFIT:getProfessionStatWeightsForCurrentRecipe(recipeData, priceData, exportMode)
 		if statWeights ~= CraftSim.CONST.ERROR.NO_PRICE_DATA then
 			CraftSim.AVERAGEPROFIT.FRAMES:UpdateAverageProfitDisplay(priceData, statWeights, exportMode)
+			CraftSim.STATISTICS.FRAMES:UpdateStatistics(recipeData, priceData)
 		end
 	end
 
 	CraftSim.FRAME:ToggleFrame(CraftSimSimFrame, showTopGear and exportMode == CraftSim.CONST.EXPORT_MODE.NON_WORK_ORDER)
 	CraftSim.FRAME:ToggleFrame(CraftSimSimWOFrame, showTopGear and exportMode == CraftSim.CONST.EXPORT_MODE.WORK_ORDER)
-	if showTopGear then
-		CraftSim.UTIL:StartProfiling("Top Gear")
+	if recipeData and showTopGear then
 		CraftSim.TOPGEAR.FRAMES:UpdateModeDropdown(exportMode)
-		local isCooking = recipeData.professionID == Enum.Profession.Cooking
-		CraftSim.TOPGEAR.FRAMES:ClearTopGearDisplay(isCooking, true, exportMode)
-		CraftSim.UTIL:StopProfiling("Top Gear")
+		if CraftSimOptions.topGearAutoUpdate then
+			CraftSim.UTIL:StartProfiling("Top Gear")
+			CraftSim.TOPGEAR:SimulateBestProfessionGearCombination(recipeData, recipeData.recipeType, priceData, exportMode)
+			CraftSim.UTIL:StopProfiling("Top Gear")
+		else
+			local isCooking = recipeData.professionID == Enum.Profession.Cooking
+			CraftSim.TOPGEAR.FRAMES:ClearTopGearDisplay(isCooking, true, exportMode)
+		end
 	end
 
 	CraftSim.FRAME:ToggleFrame(CraftSimCostOverviewFrame, showCostOverview and exportMode == CraftSim.CONST.EXPORT_MODE.NON_WORK_ORDER)

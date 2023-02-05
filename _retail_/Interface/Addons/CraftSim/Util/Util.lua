@@ -233,6 +233,31 @@ function CraftSim.UTIL:Count(t, func)
     return count
 end
 
+function CraftSim.UTIL:Sort(t, compFunc)
+    local sorted = {}
+    for _, item in pairs(t) do
+        if sorted[1] == nil then
+            table.insert(sorted, item)
+        else
+            local sortedCopy = CopyTable(sorted)
+            local inserted = false
+            for sortedIndex, sortedItem in pairs(sortedCopy) do
+                if compFunc(item, sortedItem) then
+                    table.insert(sorted, sortedIndex, item)
+                    inserted = true
+                    break
+                end
+            end
+
+            if not inserted then
+                table.insert(sorted, item)
+            end
+        end
+    end
+
+    return sorted
+end
+
 function CraftSim.UTIL:ValidateNumberInput(inputBox, allowNegative)
     local inputNumber = inputBox:GetNumber()
     local inputText = inputBox:GetText()
@@ -364,7 +389,7 @@ end
 function CraftSim.UTIL:Map(t, mapFunc)
     local mapped = {}
     for k, v in pairs(t) do
-        table.insert(mapped, mapFunc(v))
+        table.insert(mapped, mapFunc(v, k))
     end
     return mapped
 end
@@ -372,11 +397,23 @@ end
 function CraftSim.UTIL:Find(t, findFunc)
     for k, v in pairs(t) do
         if findFunc(v) then
-            return v
+            return v, k
         end
     end
 
     return false
+end
+
+function CraftSim.UTIL:GetMoneyValuesFromCopper(copperValue, formatString)
+    local gold = CraftSim.UTIL:round(copperValue/10000)
+    local silver = CraftSim.UTIL:round(copperValue/100000)
+    local copper = CraftSim.UTIL:round(copperValue/10000000)
+
+    if not formatString then
+        return gold, silver, copper
+    else
+        return gold .. "g " .. silver .. "s " .. copper .. "c"
+    end
 end
 
 

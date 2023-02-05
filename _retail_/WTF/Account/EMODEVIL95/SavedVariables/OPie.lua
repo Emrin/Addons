@@ -4,7 +4,7 @@ OPie_SavedData = {
 	["CharProfiles"] = {
 		["Outland-Aclipt-3"] = "default",
 	},
-	["_GameVersion"] = "10.0.2",
+	["_GameVersion"] = "10.0.5",
 	["_OPieVersion"] = "Yuzu 5b (4.114)",
 	["ProfileStorage"] = {
 		["default"] = {

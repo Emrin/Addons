@@ -1,6 +1,68 @@
 
-BigWigs3DB = nil
-BigWigsIconDB = {
-	["minimapPos"] = 268.7370035909735,
+BigWigs3DB = {
+	["namespaces"] = {
+		["BigWigs_Plugins_Victory"] = {
+		},
+		["BigWigs_Plugins_Wipe"] = {
+		},
+		["BigWigs_Plugins_Colors"] = {
+		},
+		["BigWigs_Plugins_Raid Icons"] = {
+		},
+		["BigWigs_Plugins_BossBlock"] = {
+		},
+		["BigWigs_Plugins_Bars"] = {
+			["profiles"] = {
+				["Default"] = {
+					["BigWigsAnchor_width"] = 220.0002288818359,
+					["BigWigsEmphasizeAnchor_width"] = 320.0001220703125,
+					["BigWigsEmphasizeAnchor_height"] = 22.00005912780762,
+					["BigWigsAnchor_height"] = 15.99997901916504,
+				},
+			},
+		},
+		["LibDualSpec-1.0"] = {
+		},
+		["BigWigs_Plugins_AltPower"] = {
+		},
+		["BigWigs_Plugins_Sounds"] = {
+		},
+		["BigWigs_Plugins_Messages"] = {
+		},
+		["BigWigs_Plugins_Statistics"] = {
+		},
+		["BigWigs_Plugins_AutoReply"] = {
+		},
+		["BigWigs_Plugins_Proximity"] = {
+			["profiles"] = {
+				["Default"] = {
+					["height"] = 120.0000152587891,
+					["width"] = 139.9999847412109,
+				},
+			},
+		},
+		["BigWigs_Plugins_InfoBox"] = {
+		},
+		["BigWigs_Plugins_Pull"] = {
+		},
+		["BigWigs_Plugins_Countdown"] = {
+		},
+	},
+	["profileKeys"] = {
+		["Unchill - Draenor"] = "Default",
+	},
+	["global"] = {
+		["watchedMovies"] = {
+			[-575] = true,
+		},
+	},
+	["profiles"] = {
+		["Default"] = {
+		},
+	},
 }
-BigWigsStatsDB = nil
+BigWigsIconDB = {
+	["minimapPos"] = 267.8319667208648,
+}
+BigWigsStatsDB = {
+}
