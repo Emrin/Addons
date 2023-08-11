@@ -3,14 +3,14 @@ DetailsTimeLineDB = {
 	["max_segments"] = 4,
 	["combat_data"] = {
 		{
-			["date_end"] = "09:25:48",
 			["date_start"] = "09:25:36",
+			["date_end"] = "09:25:48",
 			["name"] = "Shade of Xavius",
 			["total_time"] = 12.86999999987893,
 		}, -- [1]
 		{
-			["date_end"] = "09:23:34",
 			["date_start"] = "09:23:28",
+			["date_end"] = "09:23:34",
 			["name"] = "Archdruid Glaidalis",
 			["total_time"] = 5.989999999990687,
 		}, -- [2]
@@ -35,6 +35,15 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
+			[200182] = {
+				{
+					3.658999999985099, -- [1]
+					"Shade of Xavius", -- [2]
+					200182, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Nolifey", -- [5]
+				}, -- [1]
+			},
 			[185854] = {
 				{
 					12.86999999987893, -- [1]
@@ -49,21 +58,24 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[200182] = {
+		}, -- [1]
+		{
+		}, -- [2]
+	},
+	["useicons"] = true,
+	["cooldowns_timeline"] = {
+		{
+			["Nolifey"] = {
 				{
-					3.658999999985099, -- [1]
-					"Shade of Xavius", -- [2]
-					200182, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Nolifey", -- [5]
+					7.632999999914318, -- [1]
+					"Nolifey", -- [2]
+					48707, -- [3]
 				}, -- [1]
 			},
 		}, -- [1]
 		{
 		}, -- [2]
 	},
-	["useicons"] = true,
-	["window_scale"] = 1,
 	["backdrop_color"] = {
 		0, -- [1]
 		0, -- [2]
@@ -92,19 +104,7 @@ DetailsTimeLineDB = {
 		{
 		}, -- [2]
 	},
-	["cooldowns_timeline"] = {
-		{
-			["Nolifey"] = {
-				{
-					7.632999999914318, -- [1]
-					"Nolifey", -- [2]
-					48707, -- [3]
-				}, -- [1]
-			},
-		}, -- [1]
-		{
-		}, -- [2]
-	},
+	["window_scale"] = 1,
 	["BossSpellCast"] = {
 		{
 			["Nightmare Rider"] = {

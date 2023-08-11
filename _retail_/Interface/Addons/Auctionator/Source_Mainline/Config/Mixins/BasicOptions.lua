@@ -9,7 +9,7 @@ function AuctionatorConfigBasicOptionsFrameMixin:OnLoad()
   self:SetupPanel()
 end
 
-function AuctionatorConfigBasicOptionsFrameMixin:OnShow()
+function AuctionatorConfigBasicOptionsFrameMixin:ShowSettings()
   self.Autoscan:SetChecked(Auctionator.Config.Get(Auctionator.Config.Options.AUTOSCAN))
   self.AutoscanInterval:SetNumber(Auctionator.Config.Get(Auctionator.Config.Options.AUTOSCAN_INTERVAL))
   self.SmallTabs:SetChecked(Auctionator.Config.Get(Auctionator.Config.Options.SMALL_TABS))
@@ -17,6 +17,7 @@ function AuctionatorConfigBasicOptionsFrameMixin:OnShow()
   self.ShowCraftingInfo:SetChecked(Auctionator.Config.Get(Auctionator.Config.Options.CRAFTING_INFO_SHOW))
   self.ShowCraftingCost:SetChecked(Auctionator.Config.Get(Auctionator.Config.Options.CRAFTING_INFO_SHOW_COST))
   self.ShowCraftingProfit:SetChecked(Auctionator.Config.Get(Auctionator.Config.Options.CRAFTING_INFO_SHOW_PROFIT))
+  self.ShowCraftingCheapestQualitiesCost:SetChecked(Auctionator.Config.Get(Auctionator.Config.Options.CRAFTING_INFO_SHOW_CHEAPEST_QUALITIES_COST))
 end
 
 function AuctionatorConfigBasicOptionsFrameMixin:Save()
@@ -29,6 +30,7 @@ function AuctionatorConfigBasicOptionsFrameMixin:Save()
   Auctionator.Config.Set(Auctionator.Config.Options.CRAFTING_INFO_SHOW, self.ShowCraftingInfo:GetChecked())
   Auctionator.Config.Set(Auctionator.Config.Options.CRAFTING_INFO_SHOW_COST, self.ShowCraftingCost:GetChecked())
   Auctionator.Config.Set(Auctionator.Config.Options.CRAFTING_INFO_SHOW_PROFIT, self.ShowCraftingProfit:GetChecked())
+  Auctionator.Config.Set(Auctionator.Config.Options.CRAFTING_INFO_SHOW_CHEAPEST_QUALITIES_COST, self.ShowCraftingCheapestQualitiesCost:GetChecked())
 end
 
 function AuctionatorConfigBasicOptionsFrameMixin:Cancel()

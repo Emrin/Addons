@@ -15,9 +15,6 @@ mod:SetRespawnTime(30)
 local L = mod:GetLocale()
 if L then
 	L.lance_ready = "Lance Ready"
-	L.west = "W"
-	L.northeast = "NE"
-	L.southeast = "SE"
 end
 
 --------------------------------------------------------------------------------
@@ -34,7 +31,7 @@ local saboteurMarker = mod:AddMarkerOption(true, "npc", 8, -25612, 8) -- Nokhud 
 function mod:GetOptions()
 	return {
 		-- Granyth
-		388283, -- Eruption
+		{388283, "CASTBAR"}, -- Eruption
 		388817, -- Shards of Stone
 		385916, -- Tectonic Stomp
 		386320, -- Summon Saboteur
@@ -61,7 +58,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Reload", 386921)
 	self:Log("SPELL_CAST_SUCCESS", "ReloadSuccess", 386921)
 	self:Log("SPELL_AURA_APPLIED", "Lanced", 387155)
-	
+
 	-- Nokhud Saboteur (Mythic-only)
 	self:Log("SPELL_CAST_START", "Dismantle", 386490)
 	self:Log("SPELL_AURA_APPLIED", "DismantleApplied", 386490)
@@ -97,6 +94,8 @@ function mod:ShardsOfStone(args)
 	self:PlaySound(args.spellId, "alert")
 	if shardsOfStoneRemaining > 0 then
 		self:CDBar(args.spellId, 13.3)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
@@ -111,11 +110,11 @@ do
 	function mod:SummonSaboteur(args)
 		local direction -- 386320 = W Lance, 386747 = NE Lance, 386748 = SE Lance
 		if args.spellId == 386320 then
-			direction = L.west
+			direction = CL.west
 		elseif args.spellId == 386747 then
-			direction = L.northeast
+			direction = CL.north_east
 		else -- 386748
-			direction = L.southeast
+			direction = CL.south_east
 		end
 		self:Message(386320, "red", CL.other:format(args.spellName, direction))
 		self:PlaySound(386320, "alert")

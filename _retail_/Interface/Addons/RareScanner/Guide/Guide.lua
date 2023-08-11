@@ -588,6 +588,89 @@ private.NPC_GUIDE = {
 		[RSConstants.DOT..7] = { x = 0.5273 , y = 0.6993, comment = AL["NOTE_191950_1"] };		
 		[RSConstants.DOT..8] = { x = 0.5376 , y = 0.6746, comment = AL["NOTE_191950_1"] };	
 	}; --Porta the Overgrown
+	["2006812151"] = { 
+		[RSConstants.ENTRANCE..1] = { x = 0.4366, y = 0.5859 };
+		[RSConstants.ENTRANCE..2] = { x = 0.4203, y = 0.5836 };
+		[RSConstants.ENTRANCE..3] = { x = 0.4134, y = 0.6052 };
+		[RSConstants.ENTRANCE..4] = { x = 0.4170, y = 0.6200 };
+	}; --Bonesifter Marwak
+	["2006102151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.3673, y = 0.3245 };
+	}; --Duzalgor <Guardian of the Noxious Brood>
+	["2005372151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.2675, y = 0.4169 };
+	}; --Gahz'raxes <Spawn of Gahz'ragon>
+	["2009602151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5190, y = 0.5982 };
+	}; --Warden Entrix <Hand of Lapisagos>
+	["2009602102"] = { 
+		[RSConstants.TRANSPORT..1] = { x = 0.4991, y = 0.5426 };
+		[RSConstants.TRANSPORT..2] = { x = 0.4697, y = 0.4737 };
+	}; --Warden Entrix <Hand of Lapisagos>
+	["2009782151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5190, y = 0.5982 };
+	}; --Pyrachniss
+	["2009782102"] = { 
+		[RSConstants.TRANSPORT] = { x = 0.6799, y = 0.4921 };
+	}; --Pyrachniss
+	["2005842151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5904, y = 0.4961 };
+	}; --Vraken the Hunter
+	["2009042151"] = { 
+		[RSConstants.ENTRANCE..1] = { x = 0.7224, y = 0.6474 };
+		[RSConstants.ENTRANCE..2] = { x = 0.7070, y = 0.6645 };
+		[RSConstants.ENTRANCE..3] = { x = 0.7092, y = 0.6879 };
+		[RSConstants.ENTRANCE..4] = { x = 0.7191, y = 0.6972 };
+	}; --Veltrax
+	["2009112151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.7448, y = 0.5460 };
+	}; --Volcanakk
+	["2006002151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.4676, y = 0.1920 };
+	}; --Reisa the Drowned
+	["2008852151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.6144, y = 0.5821 };
+	}; --Lady Shaz'ra
+	["2011812151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.6936, y = 0.4631 };
+	}; --Mad-Eye Carrey
+	["2007302151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.8069, y = 0.6087 };
+	}; --Tidesmith Zarviss
+	["2006212151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5510, y = 0.3876 };
+	}; --Manathema
+	["2007432151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.3091, y = 0.6085 };
+	}; --Amephyst
+	["2006192151"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.4289, y = 0.5098 };
+	}; --Tectonus
+	["122899407"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.6545, y = 0.6811 };
+	}; --Death Metal Knight
+	["2034802133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5479, y = 0.6590 };
+	}; --Spinmarrow
+	["2035152133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5697, y = 0.7306 };
+	}; --Alcanon
+	["2036602133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.3586, y = 0.4378 };
+	}; --Flowfy
+	["2034622133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.6455, y = 0.5538 };
+	}; --Kob'rok
+	["2035212133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5287, y = 0.1887 };
+	}; --Professor Gastrinax <Ex-Emeritus of Algeth'ar Academy>
+	["2058652025"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5936, y = 0.6967 };
+	}; --Zal'kir the Chosen <The Maw of K'Tanth>
+	["2016642025"] = { 
+		[RSConstants.STEP1] = { x = 0.5214, y = 0.8140, comment = AL["NOTE_201664_1"] };
+		[RSConstants.STEP2] = { x = 0.5220, y = 0.8160, comment = AL["NOTE_201664_2"] };
+	}; --Temporal Investi-gator
 }
 
 ---============================================================================
@@ -1143,6 +1226,106 @@ private.CONTAINER_GUIDE = {
 		[RSConstants.STEP2] = { x = 0.6703, y = 0.4372, comment = AL["NOTE_378010_2"] };
 		[RSConstants.STEP3] = { x = 0.6697, y = 0.5036, comment = AL["NOTE_378010_3"] };
 	}; --Forgotten Dragon Treasure
+	["3862142151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Frozenheart Cairn
+	["3861652151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Obsidian Coffer
+	["3861662151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Bone Pile
+	["3861672151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Irontide Stash
+	["3861682151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Farscale Cache
+	["3861722151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Morqut Provisions
+	["3861742151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Avian Trove
+	["3861792151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Spellsworn Reserves
+	["3862082151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Storm-Eater Cairn
+	["3862122151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Stonescaled Cairn
+	["3862132151"] = { 
+		[RSConstants.FLAG] = { x = 0.3420, y = 0.5980, comment = AL["NOTE_CATALOGER_DAELA"] };
+	}; --Blazing Cairn
+	["4018282133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.6248, y = 0.7321 };
+	}; --Nal ks'kol Reliquary
+	["3889112133"] = { 
+		[RSConstants.STEP1] = { x = 0.4292, y = 0.8261, comment = AL["NOTE_388911_1"] };
+		[RSConstants.STEP2] = { x = 0.4215, y = 0.8016, comment = AL["NOTE_388911_1"] };
+		[RSConstants.STEP3] = { x = 0.4170, y = 0.8145, comment = AL["NOTE_388911_1"] };
+		[RSConstants.STEP4] = { x = 0.4270, y = 0.8222, comment = AL["NOTE_388911_1"] };
+		[RSConstants.STEP5] = { x = 0.4371, y = 0.8386, comment = AL["NOTE_388911_2"] };
+	}; --Old Trunk
+	["3888962133"] = { 
+		[RSConstants.STEP1] = { x = 0.3775, y = 0.6885, comment = AL["NOTE_388896_1"] };
+		[RSConstants.STEP2] = { x = 0.3941, y = 0.7327, comment = AL["NOTE_388896_1"] };
+	}; --Crystal-encased Chest
+	["3860792133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.3041, y = 0.4145 };
+		[RSConstants.FLAG] = { x = 0.3012, y = 0.4074, comment = AL["NOTE_386079_1"] };
+	}; --Well-Chewed Chest
+	["3988142133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.4840, y = 0.1880 };
+	}; --Molten Hoard
+	["3981382133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.4840, y = 0.1880 };
+	}; --Molten Scoutbot
+	["3925912133"] = { 
+		[RSConstants.PATH_START] = { x = 0.5443, y = 0.0801 };
+		[RSConstants.DOT..1] = { x = 0.5467, y = 0.0684 };
+		[RSConstants.DOT..2] = { x = 0.5498, y = 0.0568 };
+		[RSConstants.DOT..3] = { x = 0.5513, y = 0.0466 };
+		[RSConstants.DOT..4] = { x = 0.5513, y = 0.0466 };
+		[RSConstants.DOT..5] = { x = 0.5553, y = 0.0399 };
+		[RSConstants.ENTRANCE] = { x = 0.5573, y = 0.0363 };
+	}; --Chest of the Flights
+	["3960202133"] = { 
+		[RSConstants.ENTRANCE..1] = { x = 0.6037, y = 0.3725 };
+		[RSConstants.ENTRANCE..2] = { x = 0.6152, y = 0.3895 };
+	}; --Stolen Stash
+	["3861042133"] = { 
+		[RSConstants.FLAG] = { x = 0.3645, y = 0.4822, comment = AL["NOTE_386104_1"] };
+	}; --Ancient Zaqali Chest
+	["4028922133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5281, y = 0.1885 };
+	}; --Ancient Research
+	["4012992133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.5413, y = 0.3290 };
+	}; --Broken Barter Boulder
+	["3987932133"] = { 
+		[RSConstants.ENTRANCE] = { x = 0.4840, y = 0.1880 };
+	}; --Lava-Drenched Shadow Crystal
+	["3860862133"] = { 
+		[RSConstants.DOT..1] = { x = 0.2520, y = 0.4480, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..2] = { x = 0.2670, y = 0.4700, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..3] = { x = 0.2760, y = 0.4900, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..4] = { x = 0.2800, y = 0.5130, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..4] = { x = 0.2875, y = 0.5530, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..5] = { x = 0.2995, y = 0.4797, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..7] = { x = 0.3020, y = 0.4000, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..8] = { x = 0.3120, y = 0.5200, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..10] = { x = 0.3273, y = 0.5224, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..11] = { x = 0.3441, y = 0.4571, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..12] = { x = 0.3440, y = 0.4880, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..13] = { x = 0.3630, y = 0.4410, comment = AL["NOTE_386086_1"] };
+		[RSConstants.DOT..14] = { x = 0.3760, y = 0.4668, comment = AL["NOTE_386086_1"] };
+	}; --Seething Cache
+	["3988102133"] = { 
+		[RSConstants.FLAG] = { x = 0.4357, y = 0.2302, comment = AL["NOTE_398810_1"] };
+	}; --Fealty's Reward
 }
 
 ---============================================================================

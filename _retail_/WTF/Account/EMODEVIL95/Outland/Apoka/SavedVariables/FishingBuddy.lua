@@ -6,14 +6,14 @@ FishingBuddy_Player = {
 	},
 	["Settings"] = {
 		["SpecialBobbers"] = -1,
-		["TotalTimeFishing"] = 1,
 		["OutfitManager"] = "None",
+		["TotalTimeFishing"] = 1,
 	},
 	["WasWearing"] = {
 	},
-	["Version"] = 19500,
-	["Outfit"] = {
-	},
 	["WatcherLocation"] = {
 	},
+	["Outfit"] = {
+	},
+	["Version"] = 1190400,
 }

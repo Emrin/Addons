@@ -299,7 +299,6 @@ local function FishingMenu_Toggle(self)
 	else
 		local menu = _G[name.."Menu"]
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-		menu:SetFrameLevel(self:GetFrameLevel()+15);
         FishingMenu_Update(menu);
 		self:Show();
 	end
@@ -398,7 +397,7 @@ function FSF:UpdateScrollMenu(scrollmenu, simple, complex)
     local choices, mapping = self:CreateMenuChoices(scrollmenu, simple, complex)
     holder.choices = choices
     holder.mapping = mapping
-
+    holder:SetFrameLevel(FishingBuddyFrame:GetFrameLevel()+1)
     local text = _G[name.."Text"];
     local original = text:GetText()
     local menuwidth = 0;

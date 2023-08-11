@@ -54,13 +54,13 @@ OmniCDDB = {
 				["party"] = {
 					["extraBars"] = {
 						["raidBar0"] = {
+							["enabled"] = false,
 							["manualPos"] = {
 								["raidBar0"] = {
 									["y"] = 424.2669180153753,
 									["x"] = 1266.932712370704,
 								},
 							},
-							["enabled"] = false,
 							["textColors"] = {
 								["useClassColor"] = {
 									["active"] = true,
@@ -77,15 +77,15 @@ OmniCDDB = {
 						},
 					},
 					["position"] = {
-						["attach"] = "TOPLEFT",
 						["preset"] = "TOPLEFT",
+						["attach"] = "TOPLEFT",
 						["anchor"] = "TOPRIGHT",
 					},
 				},
 				["raid"] = {
 					["position"] = {
-						["attach"] = "TOPLEFT",
 						["preset"] = "TOPLEFT",
+						["attach"] = "TOPLEFT",
 						["anchor"] = "TOPRIGHT",
 					},
 					["manualPos"] = {
@@ -114,8 +114,8 @@ OmniCDDB = {
 				},
 				["pvp"] = {
 					["position"] = {
-						["attach"] = "TOPLEFT",
 						["preset"] = "TOPLEFT",
+						["attach"] = "TOPLEFT",
 						["anchor"] = "TOPRIGHT",
 					},
 				},

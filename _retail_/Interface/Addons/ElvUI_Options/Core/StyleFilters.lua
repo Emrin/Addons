@@ -191,6 +191,8 @@ end
 function C:StyleFilterSetConfig(filter)
 	C.StyleFilterSelected = filter
 	UpdateFilterGroup()
+
+	E.Libs.AceConfigDialog:SelectGroup('ElvUI', 'nameplates', 'stylefilters', filter and 'triggers' or 'import')
 end
 
 local function validateCreateFilter(_, value) return not (strmatch(value, '^[%s%p]-$') or E.global.nameplates.filters[value]) end
@@ -334,14 +336,14 @@ StyleFilters.triggers.args.faction.args.types.args.Neutral = ACH:Toggle(L["Neutr
 
 StyleFilters.triggers.args.class = ACH:Group(L["CLASS"], nil, 12, nil, nil, nil, DisabledFilter)
 
-for index = 1, 12 do
+for index = 1, _G.MAX_CLASSES do
 	local className, classTag, classID = GetClassInfo(index)
 	if classTag then
 		local coloredName = E:ClassColor(classTag)
 		coloredName = (coloredName and coloredName.colorStr) or 'ff666666'
 		StyleFilters.triggers.args.class.args[classTag] = ACH:Toggle(format('|c%s%s|r', coloredName, className), nil, tIndexOf(sortedClasses, classTag), nil, nil, nil, function() local triggers = GetFilter(true) local tagTrigger = triggers.class[classTag] return tagTrigger and tagTrigger.enabled end, function(_, value) local triggers = GetFilter(true) local tagTrigger = triggers.class[classTag] if not tagTrigger then triggers.class[classTag] = {} end if value then triggers.class[classTag].enabled = value else triggers.class[classTag] = nil end NP:ConfigureAll() end)
 
-		local group = ACH:Group(className, nil, tIndexOf(sortedClasses, classTag) + 12, nil, nil, nil, nil, function() local triggers = GetFilter(true) local tagTrigger = triggers.class[classTag] return not tagTrigger or not tagTrigger.enabled end)
+		local group = ACH:Group(className, nil, tIndexOf(sortedClasses, classTag) + 13, nil, nil, nil, nil, function() local triggers = GetFilter(true) local tagTrigger = triggers.class[classTag] return not tagTrigger or not tagTrigger.enabled end)
 		group.inline = true
 
 		for k = 1, GetNumSpecializationsForClassID(classID) do
@@ -462,6 +464,8 @@ do
 		option.hasNoStealable = ACH:Toggle(L["Has No Stealable"], L["If enabled then the filter will only activate when the unit has no stealable buff(s)."], 7)
 		option.fromMe = ACH:Toggle(L["From Me"], nil, 8)
 		option.fromPet = ACH:Toggle(L["From Pet"], nil, 9)
+		option.onMe = ACH:Toggle(L["On Me"], nil, 10)
+		option.onPet = ACH:Toggle(L["On Pet"], nil, 11)
 
 		option.changeList = ACH:Group(L["Add / Remove"], nil, 10)
 		option.changeList.inline = true
@@ -476,8 +480,8 @@ end
 
 StyleFilters.triggers.args.buffs.args.minTimeLeft.desc = L["Apply this filter if a buff has remaining time greater than this. Set to zero to disable."]
 StyleFilters.triggers.args.buffs.args.maxTimeLeft.desc = L["Apply this filter if a buff has remaining time less than this. Set to zero to disable."]
-StyleFilters.triggers.args.debuffs.args.minTimeLeft.desc = L["Apply this filter if a debbuff has remaining time greater than this. Set to zero to disable."]
-StyleFilters.triggers.args.debuffs.args.maxTimeLeft.desc = L["Apply this filter if a debbuff has remaining time less than this. Set to zero to disable."]
+StyleFilters.triggers.args.debuffs.args.minTimeLeft.desc = L["Apply this filter if a debuff has remaining time greater than this. Set to zero to disable."]
+StyleFilters.triggers.args.debuffs.args.maxTimeLeft.desc = L["Apply this filter if a debuff has remaining time less than this. Set to zero to disable."]
 
 StyleFilters.triggers.args.cooldowns = ACH:Group(L["Cooldowns"], nil, 23, nil, nil, nil, DisabledFilter)
 StyleFilters.triggers.args.cooldowns.args.addCooldown = ACH:Input(L["Add Spell ID or Name"], nil, 1, nil, nil, nil, function(_, value) local triggers = GetFilter(true) triggers.cooldowns.names[value] = 'ONCD' UpdateFilterList('cooldowns', nil, value, true) NP:ConfigureAll() end, nil, nil, validateString)
@@ -672,6 +676,12 @@ local actionDefaults = {
 		color = { r = 0.41, g = 0.54, b = 0.85, a = 1 },
 		speed = 4
 	},
+	glow = {
+		color = { 0.09, 0.52, 0.82, 0.9 },
+		speed = 0.3,
+		lines = 8,
+		size = 1
+	}
 }
 
 local function actionHidePlate() local _, actions = GetFilter(true) return actions.hide end
@@ -734,7 +744,17 @@ StyleFilters.actions.args.flash.args.color = ACH:Color(L["COLOR"], nil, 2, true)
 StyleFilters.actions.args.flash.args.class = ACH:Toggle(L["Unit Class Color"], nil, 3)
 StyleFilters.actions.args.flash.args.speed = ACH:Range(L["SPEED"], nil, nil, { min = 1, max = 10, step = 1 })
 
-StyleFilters.actions.args.text_format = ACH:Group(L["Text Format"], nil, 40, nil, function(info) local _, actions = GetFilter(true) return actions.tags[info[#info]] end, function(info, value) local _, actions = GetFilter(true) actions.tags[info[#info]] = value NP:ConfigureAll() end)
+StyleFilters.actions.args.glow = ACH:Group(L["Custom Glow"], nil, 40, nil, actionSubGroup, actionSubGroup, actionHidePlate)
+StyleFilters.actions.args.glow.args.enable = ACH:Toggle(L["Enable"], nil, 1)
+StyleFilters.actions.args.glow.args.style = ACH:Select(L["Style"], nil, 2, function() local tbl = {} for _, name in next, E.Libs.CustomGlow.glowList do if name ~= 'Action Button Glow' then tbl[name] = name end end return tbl end)
+StyleFilters.actions.args.glow.args.color = ACH:Color(L["COLOR"], nil, 3, true, nil, function() local _, actions = GetFilter(true) local d = actionDefaults.glow.color local t = actions.glow.color return t[1], t[2], t[3], t[4], d[1], d[2], d[3], d[4] end, function(_, r, g, b, a) local _, actions = GetFilter(true) local t = actions.glow.color t[1], t[2], t[3], t[4] = r, g, b, a NP:ConfigureAll() end)
+StyleFilters.actions.args.glow.args.spacer1 = ACH:Spacer(4, 'full')
+StyleFilters.actions.args.glow.args.speed = ACH:Range(L["SPEED"], nil, 5, { min = -1, max = 1, softMin = -0.5, softMax = 0.5, step = .01, bigStep = .05 })
+StyleFilters.actions.args.glow.args.size = ACH:Range(L["Size"], nil, 6, { min = 1, max = 5, step = 1 }, nil, nil, nil, nil, function() local _, actions = GetFilter(true) return actions.glow.style ~= 'Pixel Glow' end)
+StyleFilters.actions.args.glow.args.lines = ACH:Range(function() local _, actions = GetFilter(true) return actions.glow.style == 'Pixel Glow' and L["Lines"] or L["Particles"] end, nil, 7, { min = 1, max = 20, step = 1 }, nil, nil, nil, nil, function() local _, actions = GetFilter(true) return actions.glow.style ~= 'Pixel Glow' and actions.glow.style ~= 'Autocast Shine' end)
+StyleFilters.actions.args.glow.inline = true
+
+StyleFilters.actions.args.text_format = ACH:Group(L["Text Format"], nil, 50, nil, function(info) local _, actions = GetFilter(true) return actions.tags[info[#info]] end, function(info, value) local _, actions = GetFilter(true) actions.tags[info[#info]] = value NP:ConfigureAll() end)
 StyleFilters.actions.args.text_format.inline = true
 StyleFilters.actions.args.text_format.args.info = ACH:Description(L["Controls the text displayed. Tags are available in the Available Tags section of the config."], 1, 'medium')
 StyleFilters.actions.args.text_format.args.name = ACH:Input(L["Name"], nil, 1, nil, 'full')

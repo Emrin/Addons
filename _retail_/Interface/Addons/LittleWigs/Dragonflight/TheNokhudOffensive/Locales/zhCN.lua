@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("The Nokhud Offensive Trash", "zhCN")
 if not L then return end
 if L then
+	L.teera_and_maruuk_warmup_trigger = "为什么打扰我们的安息？"
+
 	L.nokhud_plainstomper = "诺库德平原践踏着"
 	L.nokhud_hornsounder = "诺库德号角手"
 	L.nokhud_beastmaster = "诺库德兽王"
@@ -16,14 +18,13 @@ if L then
 	L.soulharvester_galtmaa = "灵魂收割者加尔特玛"
 	L.nokhud_defender = "诺库德防御者"
 	L.nokhud_thunderfist = "诺库德雷霆之拳"
+	L.balara = "巴拉拉"
+	L.batak = "巴塔克"
 end
 
 L = BigWigs:NewBossLocale("Granyth", "zhCN")
 if L then
 	L.lance_ready = "屠龙者之矛就绪"
-	L.west = "西"
-	L.northeast = "东北"
-	L.southeast = "东南"
 end
 
 L = BigWigs:NewBossLocale("The Raging Tempest", "zhCN")

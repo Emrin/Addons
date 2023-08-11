@@ -187,7 +187,7 @@ function GladiusEx.Data.DefaultClassicon()
 		[328530]			  	= 7,	-- Divine Ascension Initial
 		[5277]				  	= 7,	-- Evasion
 		[199027]			  	= 7,	-- Evasion2 post stealth
-		[GladiusEx:SafeGetSpellName(210918)]  	= 7,	-- Ethereal Form
+		[GladiusEx:SafeGetSpellName(409293)]  	= 7,	-- Burrow
 		[GladiusEx:SafeGetSpellName(118038)]  	= 7,	-- Die by the Sword
 		[GladiusEx:SafeGetSpellName(236321)]  	= 7,	-- War Banner 
 		[323524]			  	= 7.1,	-- Ultimate Form (Fleshcraft cc immune)
@@ -484,7 +484,6 @@ function GladiusEx.Data.DefaultClassicon()
 		[206432]			  	= 2,	-- Burst of Cold (buffed Cone of Cold)
 		[287504]			  	= 2,	-- Alpha Tiger (Tiger Palm burst window)
 		[GladiusEx:SafeGetSpellName(105809)]  	= 2,	-- Holy Avenger
-		[GladiusEx:SafeGetSpellName(152262)]  	= 2,	-- Seraphim
 		[GladiusEx:SafeGetSpellName(194249)]  	= 2,	-- Void Eruption
 		[GladiusEx:SafeGetSpellName(197871)]  	= 2,	-- Dark Archangel
 		[GladiusEx:SafeGetSpellName(10060)]  	= 2,	-- Power Infusion
@@ -762,6 +761,7 @@ function GladiusEx.Data.Interrupts()
     [106839] = {duration=4},  -- [Feral] Skull Bash
     [93985] = {duration=4},   -- [Feral] Skull Bash
     [97547] = {duration=5},   -- [Moonkin] Solar Beam
+    [351338] = {duration=4},  -- [Evoker] Quell
   }
 end
 

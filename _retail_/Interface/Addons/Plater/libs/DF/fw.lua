@@ -1,6 +1,6 @@
 
 
-local dversion = 413
+local dversion = 448
 local major, minor = "DetailsFramework-1.0", dversion
 local DF, oldminor = LibStub:NewLibrary(major, minor)
 
@@ -124,13 +124,14 @@ end
 
 ---return true if the player is playing in the WotLK version of wow with the retail api
 ---@return boolean
-function DF.IsWotLKWowWithRetailAPI()
+function DF.IsNonRetailWowWithRetailAPI()
     local _, _, _, buildInfo = GetBuildInfo()
-    if (buildInfo < 40000 and buildInfo >= 30401) then
+    if (buildInfo < 40000 and buildInfo >= 30401) or (buildInfo < 20000 and buildInfo >= 11404) then
         return true
     end
 	return false
 end
+DF.IsWotLKWowWithRetailAPI = DF.IsNonRetailWowWithRetailAPI -- this is still in use
 
 ---return true if the version of wow the player is playing is the shadowlands
 function DF.IsShadowlandsWow()
@@ -263,7 +264,7 @@ function DF.UnitGroupRolesAssigned(unitId)
 	end
 end
 
----return the specialization of the player it self
+---return the specializationid of the player it self
 ---@return number|nil
 function DF.GetSpecialization()
 	if (GetSpecialization) then
@@ -272,7 +273,7 @@ function DF.GetSpecialization()
 	return nil
 end
 
----return the specialization using the specId
+---return the specializationid using the specId
 ---@param specId unknown
 function DF.GetSpecializationInfoByID(specId)
 	if (GetSpecializationInfoByID) then
@@ -675,6 +676,42 @@ function DF:SplitTextInLines(text)
 	return lines
 end
 
+DF.strings = {}
+
+---receive an array and output a string with the values separated by commas
+---if bDoCompression is true, the string will be compressed using LibDeflate
+---@param t table
+---@param bDoCompression boolean|nil
+---@return string
+function DF.strings.tabletostring(t, bDoCompression)
+	local newString = ""
+	for i = 1, #t do
+		newString = newString .. t[i] .. ","
+	end
+
+	newString = newString:sub(1, -2)
+
+	if (bDoCompression) then
+		local LibDeflate = LibStub:GetLibrary("LibDeflate")
+		if (LibDeflate) then
+			newString = LibDeflate:CompressDeflate(newString, {level = 9})
+		end
+	end
+
+	return newString
+end
+
+function DF.strings.stringtotable(thisString, bDoCompression)
+	if (bDoCompression) then
+		local LibDeflate = LibStub:GetLibrary("LibDeflate")
+		if (LibDeflate) then
+			thisString = LibDeflate:DecompressDeflate(thisString)
+		end
+	end
+
+	local newTable = {strsplit(",", thisString)}
+	return newTable
+end
 
 DF.www_icons = {
 	texture = "feedback_sites",
@@ -791,35 +828,51 @@ end
 ---@param value number
 ---@return string
 function DF:IntegerToTimer(value) --~formattime
-	return "" .. floor(value/60) .. ":" .. format("%02.f", value%60)
+	return "" .. math.floor(value/60) .. ":" .. string.format("%02.f", value%60)
 end
 
 ---remove the realm name from a name
 ---@param name string
----@return string
+---@return string, number
 function DF:RemoveRealmName(name)
 	return name:gsub(("%-.*"), "")
 end
 
----remove the realm name from a name
+---remove the owner name of the pet or guardian
+---@param name string
+---@return string, number
+function DF:RemoveOwnerName(name)
+	return name:gsub((" <.*"), "")
+end
+
+---remove realm and owner names also remove brackets from spell actors
 ---@param name string
 ---@return string
+function DF:CleanUpName(name)
+	name =  DF:RemoveRealmName(name)
+	name = DF:RemoveOwnerName(name)
+	name = name:gsub("%[%*%]%s", "")
+	return name
+end
+
+---remove the realm name from a name
+---@param name string
+---@return string, number
 function DF:RemoveRealName(name)
 	return name:gsub(("%-.*"), "")
 end
 
 ---get the UIObject of type 'FontString' named fontString and set the font size to the maximum value of the arguments
----@param fontString FontString
+---@param fontString fontstring
 ---@vararg number
 function DF:SetFontSize(fontString, ...)
 	local font, _, flags = fontString:GetFont()
-	fontString:SetFont(font, max(...), flags)
+	fontString:SetFont(font, math.max(...), flags)
 end
 
 ---get the UIObject of type 'FontString' named fontString and set the font to the argument fontface
----@param fontString FontString
+---@param fontString fontstring
 ---@param fontface string
----@return nil
 function DF:SetFontFace(fontString, fontface)
 	local font = SharedMedia:Fetch("font", fontface, true)
 	if (font) then
@@ -827,30 +880,28 @@ function DF:SetFontFace(fontString, fontface)
 	end
 
 	local _, size, flags = fontString:GetFont()
-	fontString:SetFont(fontface, size, flags)
+	return fontString:SetFont(fontface, size, flags)
 end
 
 ---get the FontString passed and set the font color
----@param fontString FontString
+---@param fontString fontstring
 ---@param r any
 ---@param g number|nil
 ---@param b number|nil
 ---@param a number|nil
----@return nil
 function DF:SetFontColor(fontString, r, g, b, a)
 	r, g, b, a = DF:ParseColors(r, g, b, a)
 	fontString:SetTextColor(r, g, b, a)
 end
 
 ---get the FontString passed and set the font shadow color and offset
----@param fontString FontString
+---@param fontString fontstring
 ---@param r number
 ---@param g number
 ---@param b number
 ---@param a number
 ---@param x number
 ---@param y number
----@return nil
 function DF:SetFontShadow(fontString, r, g, b, a, x, y)
 	r, g, b, a = DF:ParseColors(r, g, b, a)
 	fontString:SetShadowColor(r, g, b, a)
@@ -863,9 +914,8 @@ function DF:SetFontShadow(fontString, r, g, b, a, x, y)
 end
 
 ---get the FontString object passed and set the rotation of the text shown
----@param fontString FontString
+---@param fontString fontstring
 ---@param degrees number
----@return nil
 function DF:SetFontRotation(fontString, degrees)
 	if (type(degrees) == "number") then
 		if (not fontString.__rotationAnimation) then
@@ -1048,7 +1098,10 @@ function DF:trim(string)
 	return from > #string and "" or string:match(".*%S", from)
 end
 
---truncated revoming at a maximum of 10 character from the string
+
+---truncate removing at a maximum of 10 character from the string
+---@param fontString table
+---@param maxWidth number
 function DF:TruncateTextSafe(fontString, maxWidth)
 	local text = fontString:GetText()
 	local numIterations = 10
@@ -1070,6 +1123,9 @@ function DF:TruncateTextSafe(fontString, maxWidth)
 	fontString:SetText(text)
 end
 
+---truncate removing characters from the string until the maxWidth is reach
+---@param fontString table
+---@param maxWidth number
 function DF:TruncateText(fontString, maxWidth)
 	local text = fontString:GetText()
 
@@ -1085,6 +1141,8 @@ function DF:TruncateText(fontString, maxWidth)
 	fontString:SetText(text)
 end
 
+---@param text string
+---@return string
 function DF:CleanTruncateUTF8String(text)
 	if type(text) == "string" and text ~= "" then
 		local b1 = (#text > 0) and strbyte(strsub(text, #text, #text)) or nil
@@ -1676,6 +1734,17 @@ end
 		return widgetObject
 	end
 
+	--get the description phrase from the language table or use the .desc or .deschraseid
+	local getDescPhraseText = function(languageTable, widgetTable)
+		local descPhraseId = languageTable and (languageTable[widgetTable.descPhraseId] or languageTable[widgetTable.desc])
+		return descPhraseId or widgetTable.descPhraseId or widgetTable.desc or widgetTable.name or "-?-"
+	end
+
+	local getNamePhraseText = function(languageTable, widgetTable, useColon)
+		local namePhrase = languageTable and (languageTable[widgetTable.namePhraseId] or languageTable[widgetTable.name])
+		return namePhrase or formatOptionNameWithColon(widgetTable.name, useColon) or widgetTable.namePhraseId or widgetTable.name or "-?-"
+	end
+
 	--volatile menu can be called several times, each time all settings are reset and a new menu is built using the same widgets
 	function DF:BuildMenuVolatile(parent, menuOptions, xOffset, yOffset, height, useColon, textTemplate, dropdownTemplate, switchTemplate, switchIsCheckbox, sliderTemplate, buttonTemplate, valueChangeHook)
 		if (not parent.widget_list) then
@@ -1753,7 +1822,8 @@ end
 						local label = getMenuWidgetVolative(parent, "label", widgetIndexes)
 						widgetCreated = label
 
-						label.text = (languageTable and languageTable[widgetTable.namePhraseId]) or (widgetTable.get and widgetTable.get() or widgetTable.text) or (widgetTable.namePhraseId) or ""
+						local namePhrase = (languageTable and (languageTable[widgetTable.namePhraseId] or languageTable[widgetTable.name])) or (widgetTable.get and widgetTable.get()) or widgetTable.text or (widgetTable.namePhraseId) or ""
+						label.text = namePhrase
 						label.color = widgetTable.color
 
 						if (widgetTable.font) then
@@ -1777,7 +1847,7 @@ end
 
 					--dropdowns
 					elseif (widgetTable.type == "select" or widgetTable.type == "dropdown") then
-						assert(widgetTable.get, "DetailsFramework:BuildMenu(): .get not found in the widget table for 'select'")
+						assert(widgetTable.get, "DetailsFramework:BuildMenu(): .get() not found in the widget table for 'select'")
 						local dropdown = getMenuWidgetVolative(parent, "dropdown", widgetIndexes)
 						widgetCreated = dropdown
 
@@ -1786,11 +1856,13 @@ end
 						dropdown:Select(widgetTable.get())
 						dropdown:SetTemplate(dropdownTemplate)
 
-						dropdown:SetTooltip((languageTable and languageTable[widgetTable.namePhraseId]) or (widgetTable.desc) or (widgetTable.namePhraseId))
+						local descPhrase = getDescPhraseText(languageTable, widgetTable)
+						dropdown:SetTooltip(descPhrase)
 						dropdown._get = widgetTable.get
 						dropdown.widget_type = "select"
 
-						dropdown.hasLabel.text = (languageTable and languageTable[widgetTable.namePhraseId]) or formatOptionNameWithColon(widgetTable.name, useColon) or widgetTable.namePhraseId or ""
+						local namePhrase = getNamePhraseText(languageTable, widgetTable, useColon)
+						dropdown.hasLabel.text = namePhrase
 
 						dropdown.hasLabel:SetTemplate(widgetTable.text_template or textTemplate)
 						dropdown:ClearAllPoints()
@@ -1828,7 +1900,8 @@ end
 						switch:SetTemplate(switchTemplate)
 						switch:SetAsCheckBox() --it's always a checkbox on volatile menu
 
-						switch:SetTooltip((languageTable and languageTable[widgetTable.namePhraseId]) or (widgetTable.desc) or (widgetTable.namePhraseId))
+						local descPhrase = getDescPhraseText(languageTable, widgetTable)
+						switch:SetTooltip(descPhrase)
 						switch._get = widgetTable.get
 						switch.widget_type = "toggle"
 						switch.OnSwitch = widgetTable.set
@@ -1851,7 +1924,8 @@ end
 							switch:SetHeight(widgetTable.height)
 						end
 
-						switch.hasLabel.text = (languageTable and languageTable[widgetTable.namePhraseId]) or formatOptionNameWithColon(widgetTable.name, useColon) or widgetTable.namePhraseId or ""
+						local namePhrase = getNamePhraseText(languageTable, widgetTable, useColon)
+						switch.hasLabel.text = namePhrase
 						switch.hasLabel:SetTemplate(widgetTable.text_template or textTemplate)
 
 						switch:ClearAllPoints()
@@ -1899,7 +1973,8 @@ end
 
 						slider:SetTemplate(sliderTemplate)
 
-						slider:SetTooltip((languageTable and languageTable[widgetTable.namePhraseId]) or (widgetTable.desc) or (widgetTable.namePhraseId))
+						local descPhrase = getDescPhraseText(languageTable, widgetTable)
+						slider:SetTooltip(descPhrase)
 						slider._get = widgetTable.get
 						slider.widget_type = "range"
 						slider:SetHook("OnValueChange", widgetTable.set)
@@ -1921,7 +1996,8 @@ end
 							end
 						end
 
-						slider.hasLabel.text = (languageTable and languageTable[widgetTable.namePhraseId]) or formatOptionNameWithColon(widgetTable.name, useColon) or widgetTable.namePhraseId or ""
+						local namePhrase = getNamePhraseText(languageTable, widgetTable, useColon)
+						slider.hasLabel.text = namePhrase
 						slider.hasLabel:SetTemplate(widgetTable.text_template or textTemplate)
 
 						slider:SetPoint("left", slider.hasLabel, "right", 2)
@@ -1945,7 +2021,8 @@ end
 						colorpick:SetTemplate(buttonTemplate)
 						colorpick:SetSize(18, 18)
 
-						colorpick:SetTooltip((languageTable and languageTable[widgetTable.namePhraseId]) or (widgetTable.desc) or (widgetTable.namePhraseId))
+						local descPhrase = getDescPhraseText(languageTable, widgetTable)
+						colorpick:SetTooltip(descPhrase)
 						colorpick._get = widgetTable.get
 						colorpick.widget_type = "color"
 
@@ -1968,7 +2045,9 @@ end
 						end
 
 						local label = colorpick.hasLabel
-						label.text = (languageTable and languageTable[widgetTable.namePhraseId]) or formatOptionNameWithColon(widgetTable.name, useColon) or widgetTable.namePhraseId or ""
+
+						local namePhrase = getNamePhraseText(languageTable, widgetTable, useColon)
+						label.text = namePhrase
 						label:SetTemplate(widgetTable.text_template or textTemplate)
 
 						label:ClearAllPoints()
@@ -2005,7 +2084,9 @@ end
 						button.textcolor = textTemplate.color
 						button.textfont = textTemplate.font
 						button.textsize = textTemplate.size
-						button.text = (languageTable and languageTable[widgetTable.namePhraseId]) or (widgetTable.name) or (widgetTable.namePhraseId) or ""
+
+						local namePhrase = getNamePhraseText(languageTable, widgetTable, useColon)
+						button.text = namePhrase
 
 						if (widgetTable.inline) then
 							if (latestInlineWidget) then
@@ -2019,7 +2100,8 @@ end
 							button:SetPoint(currentXOffset, currentYOffset)
 						end
 
-						button:SetTooltip((languageTable and languageTable[widgetTable.namePhraseId]) or (widgetTable.desc) or (widgetTable.namePhraseId))
+						local descPhrase = getDescPhraseText(languageTable, widgetTable)
+						button:SetTooltip(descPhrase)
 						button.widget_type = "execute"
 
 						--hook list
@@ -2054,14 +2136,28 @@ end
 						textentry:SetTemplate(widgetTable.template or widgetTable.button_template or buttonTemplate)
 						textentry:SetSize(widgetTable.width or 120, widgetTable.height or 18)
 
-						textentry:SetTooltip((languageTable and languageTable[widgetTable.namePhraseId]) or (widgetTable.desc) or (widgetTable.namePhraseId))
+						local descPhrase = getDescPhraseText(languageTable, widgetTable)
+						textentry:SetTooltip(descPhrase)
 						textentry.text = widgetTable.get()
 						textentry._get = widgetTable.get
 						textentry.widget_type = "textentry"
-						textentry:SetHook("OnEnterPressed", widgetTable.func or widgetTable.set)
-						textentry:SetHook("OnEditFocusLost", widgetTable.func or widgetTable.set)
+						textentry:SetHook("OnEnterPressed", function(...)
+							local upFunc = widgetTable.func or widgetTable.set
+							upFunc(...)
+							if (valueChangeHook) then
+								valueChangeHook()
+							end
+						end)
+						textentry:SetHook("OnEditFocusLost", function(...)
+							local upFunc = widgetTable.func or widgetTable.set
+							upFunc(...)
+							if (valueChangeHook) then
+								valueChangeHook()
+							end
+						end)
 
-						textentry.hasLabel.text = (languageTable and languageTable[widgetTable.namePhraseId]) or formatOptionNameWithColon(widgetTable.name, useColon) or widgetTable.namePhraseId or ""
+						local namePhrase = getNamePhraseText(languageTable, widgetTable, useColon)
+						textentry.hasLabel.text = namePhrase
 						textentry.hasLabel:SetTemplate(widgetTable.text_template or textTemplate)
 						textentry:SetPoint("left", textentry.hasLabel, "right", 2)
 						textentry.hasLabel:SetPoint(currentXOffset, currentYOffset)
@@ -2114,6 +2210,52 @@ end
 		end
 
 		DF.RefreshUnsafeOptionsWidgets()
+	end
+
+	local getDescripttionPhraseID = function(widgetTable, languageAddonId, languageTable)
+		if (widgetTable.descPhraseId) then
+			return widgetTable.descPhraseId
+		end
+
+		if (not languageTable) then
+			return
+		end
+
+		local hasValue = DF.Language.DoesPhraseIDExistsInDefaultLanguage(languageAddonId, widgetTable.desc)
+		if (not hasValue) then
+			return
+		end
+
+		return widgetTable.desc
+	end
+
+	local getNamePhraseID = function(widgetTable, languageAddonId, languageTable)
+		if (widgetTable.namePhraseId) then
+			return widgetTable.namePhraseId
+		end
+
+		if (not languageTable) then
+			return
+		end
+
+		local keyName = widgetTable.name
+
+		if (widgetTable.type == "label" and widgetTable.get) then
+			local key = widgetTable.get()
+			if (key and type(key) == "string") then
+				keyName = key
+			end
+		end
+
+		--embed key is when the phraseId is inside a string surounded by @
+    	local embedPhraseId = keyName:match("@(.-)@")
+
+		local hasValue = DF.Language.DoesPhraseIDExistsInDefaultLanguage(languageAddonId, embedPhraseId or keyName)
+		if (not hasValue) then
+			return
+		end
+
+		return keyName
 	end
 
 	function DF:BuildMenu(parent, menuOptions, xOffset, yOffset, height, useColon, textTemplate, dropdownTemplate, switchTemplate, switchIsCheckbox, sliderTemplate, buttonTemplate, valueChangeHook)
@@ -2182,8 +2324,10 @@ end
 					label.widget_type = "label"
 					label:SetPoint(currentXOffset, currentYOffset)
 
-					if (widgetTable.namePhraseId) then
-						DetailsFramework.Language.RegisterFontString(languageAddonId, label.widget, widgetTable.namePhraseId)
+					local namePhraseId = getNamePhraseID(widgetTable, languageAddonId, languageTable)
+					if (namePhraseId) then
+						DetailsFramework.Language.RegisterObject(languageAddonId, label.widget, namePhraseId)
+						label.languageAddonId = languageAddonId
 					else
 						local textToSet = (widgetTable.get and widgetTable.get()) or widgetTable.text or ""
 						label:SetText(textToSet)
@@ -2203,13 +2347,21 @@ end
 					assert(widgetTable.get, "DetailsFramework:BuildMenu(): .get not found in the widget table for 'select'")
 					local dropdown = DF:NewDropDown(parent, nil, "$parentWidget" .. index, nil, 140, 18, widgetTable.values, widgetTable.get(), dropdownTemplate)
 
-					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, dropdown, "have_tooltip", widgetTable.descPhraseId, widgetTable.desc)
+					local descPhraseId = getDescripttionPhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, dropdown, "have_tooltip", descPhraseId, widgetTable.desc)
 
 					dropdown._get = widgetTable.get
 					dropdown.widget_type = "select"
 
 					local label = DF:NewLabel(parent, nil, "$parentLabel" .. index, nil, "", "GameFontNormal", widgetTable.text_template or textTemplate or 12)
-					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, widgetTable.namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
+					local namePhraseId = getNamePhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
+
+					dropdown.addonId = languageAddonId
+					if (languageAddonId) then
+						DF.Language.RegisterCallback(languageAddonId, function(addonId, languageId, ...) dropdown:Select(dropdown:GetValue()) end)
+						C_Timer.After(0.1, function() dropdown:Select(dropdown:GetValue()) end)
+					end
 
 					dropdown:SetPoint("left", label, "right", 2)
 					label:SetPoint(currentXOffset, currentYOffset)
@@ -2246,7 +2398,8 @@ end
 				elseif (widgetTable.type == "toggle") then
 					local switch = DF:NewSwitch(parent, nil, "$parentWidget" .. index, nil, 60, 20, nil, nil, widgetTable.get(), nil, nil, nil, nil, switchTemplate)
 
-					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, switch, "have_tooltip", widgetTable.descPhraseId, widgetTable.desc)
+					local descPhraseId = getDescripttionPhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, switch, "have_tooltip", descPhraseId, widgetTable.desc)
 
 					switch._get = widgetTable.get
 					switch.widget_type = "toggle"
@@ -2275,7 +2428,9 @@ end
 					end
 
 					local label = DF:NewLabel(parent, nil, "$parentLabel" .. index, nil, "", "GameFontNormal", widgetTable.text_template or textTemplate or 12)
-					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, widgetTable.namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
+
+					local namePhraseId = getNamePhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
 
 					if (widgetTable.boxfirst or useBoxFirstOnAllWidgets) then
 						switch:SetPoint(currentXOffset, currentYOffset)
@@ -2314,7 +2469,8 @@ end
 					local isDecimanls = widgetTable.usedecimals
 					local slider = DF:NewSlider(parent, nil, "$parentWidget" .. index, nil, 140, 20, widgetTable.min, widgetTable.max, widgetTable.step, widgetTable.get(),  isDecimanls, nil, nil, sliderTemplate)
 
-					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, slider, "have_tooltip", widgetTable.descPhraseId, widgetTable.desc)
+					local descPhraseId = getDescripttionPhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, slider, "have_tooltip", descPhraseId, widgetTable.desc)
 
 					slider._get = widgetTable.get
 					slider.widget_type = "range"
@@ -2338,7 +2494,8 @@ end
 					end
 
 					local label = DF:NewLabel(parent, nil, "$parentLabel" .. index, nil, "", "GameFontNormal", widgetTable.text_template or textTemplate or 12)
-					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, widgetTable.namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
+					local namePhraseId = getNamePhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
 
 					slider:SetPoint("left", label, "right", 2)
 					label:SetPoint(currentXOffset, currentYOffset)
@@ -2364,7 +2521,8 @@ end
 					assert(widgetTable.get, "DetailsFramework:BuildMenu(): .get not found in the widget table for 'color'")
 					local colorpick = DF:NewColorPickButton(parent, "$parentWidget" .. index, nil, widgetTable.set, nil, buttonTemplate)
 
-					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, colorpick, "have_tooltip", widgetTable.descPhraseId, widgetTable.desc)
+					local descPhraseId = getDescripttionPhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, colorpick, "have_tooltip", descPhraseId, widgetTable.desc)
 
 					colorpick._get = widgetTable.get
 					colorpick.widget_type = "color"
@@ -2385,7 +2543,8 @@ end
 					end
 
 					local label = DF:NewLabel(parent, nil, "$parentLabel" .. index, nil, "", "GameFontNormal", widgetTable.text_template or textTemplate or 12)
-					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, widgetTable.namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
+					local namePhraseId = getNamePhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
 
 					if (widgetTable.boxfirst or useBoxFirstOnAllWidgets) then
 						label:SetPoint("left", colorpick, "right", 2)
@@ -2416,7 +2575,9 @@ end
 
 				elseif (widgetTable.type == "execute") then
 					local button = DF:NewButton(parent, nil, "$parentWidget" .. index, nil, 120, 18, widgetTable.func, widgetTable.param1, widgetTable.param2, nil, "", nil, buttonTemplate, textTemplate)
-					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, button.widget, widgetTable.namePhraseId, widgetTable.name)
+
+					local namePhraseId = getNamePhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, button.widget, namePhraseId, widgetTable.name)
 
 					if (not buttonTemplate) then
 						button:InstallCustomTexture()
@@ -2434,7 +2595,8 @@ end
 						button:SetPoint(currentXOffset, currentYOffset)
 					end
 
-					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, button, "have_tooltip", widgetTable.descPhraseId, widgetTable.desc)
+					local descPhraseId = getDescripttionPhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, button, "have_tooltip", descPhraseId, widgetTable.desc)
 
 					button.widget_type = "execute"
 
@@ -2476,7 +2638,8 @@ end
 				elseif (widgetTable.type == "textentry") then
 					local textentry = DF:CreateTextEntry(parent, widgetTable.func or widgetTable.set, 120, 18, nil, "$parentWidget" .. index, nil, buttonTemplate)
 
-					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, textentry, "have_tooltip", widgetTable.descPhraseId, widgetTable.desc)
+					local descPhraseId = getDescripttionPhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterTableKeyWithDefault(languageAddonId, textentry, "have_tooltip", descPhraseId, widgetTable.desc)
 
 					textentry.text = widgetTable.get()
 					textentry._get = widgetTable.get
@@ -2485,7 +2648,9 @@ end
 					textentry:SetHook("OnEditFocusLost", widgetTable.func or widgetTable.set)
 
 					local label = DF:NewLabel(parent, nil, "$parentLabel" .. index, nil, "", "GameFontNormal", widgetTable.text_template or textTemplate or 12)
-					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, widgetTable.namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
+
+					local namePhraseId = getNamePhraseID(widgetTable, languageAddonId, languageTable)
+					DetailsFramework.Language.RegisterObjectWithDefault(languageAddonId, label.widget, namePhraseId, formatOptionNameWithColon(widgetTable.name, useColon))
 
 					textentry:SetPoint("left", label, "right", 2)
 					label:SetPoint(currentXOffset, currentYOffset)
@@ -2652,7 +2817,7 @@ end
 		for _, widget in ipairs(self.widget_list) do
 			if (widget._get) then
 				if (widget.widget_type == "label") then
-					if (widget._get()) then
+					if (widget._get() and not widget.languageAddonId) then
 						widget:SetText(widget._get())
 					end
 
@@ -2816,6 +2981,16 @@ end
 --~templates
 
 local latinLanguageIds = {"enUS", "deDE", "esES", "esMX", "frFR", "itIT", "ptBR"}
+local latinLanguageIdsMap = {
+	["enUS"] = true,
+	["deDE"] = true,
+	["esES"] = true,
+	["esMX"] = true,
+	["frFR"] = true,
+	["itIT"] = true,
+	["ptBR"] = true,
+}
+
 local alphbets = {
 	[latinLanguageIds] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"},
 	["zhCN"] = {},
@@ -2850,27 +3025,27 @@ function DF:GetClientRegion()
 end
 
 DF.registeredFontPaths = DF.registeredFontPaths or {}
-
-function DF:GetBestFontPathForLanguage(locale)
-	local fontPath = DF.registeredFontPaths[locale]
+-- ~language ~locale ~fontpath
+function DF:GetBestFontPathForLanguage(languageId)
+	local fontPath = DF.registeredFontPaths[languageId]
 	if (fontPath) then
 		return fontPath
 	end
 
 	--font paths gotten from creating a FontString with template "GameFontNormal" and getting the font returned from FontString:GetFont()
-	if (locale == "enUS" or locale == "deDE" or locale == "esES" or locale == "esMX" or locale == "frFR" or locale == "itIT" or locale == "ptBR") then
+	if (languageId == "enUS" or languageId == "deDE" or languageId == "esES" or languageId == "esMX" or languageId == "frFR" or languageId == "itIT" or languageId == "ptBR") then
 		return [[Fonts\FRIZQT__.TTF]]
 
-	elseif (locale == "ruRU") then
+	elseif (languageId == "ruRU") then
 		return [[Fonts\FRIZQT___CYR.TTF]]
 
-	elseif (locale == "zhCN") then
+	elseif (languageId == "zhCN") then
 		return [[Fonts\ARKai_T.ttf]]
 
-	elseif (locale == "zhTW") then
+	elseif (languageId == "zhTW") then
 		return [[Fonts\blei00d.TTF]]
 
-	elseif (locale == "koKR") then
+	elseif (languageId == "koKR") then
 		return [[Fonts\2002.TTF]]
 	end
 
@@ -2878,25 +3053,29 @@ function DF:GetBestFontPathForLanguage(locale)
 	return [[Fonts\FRIZQT__.TTF]]
 end
 
+function DF:IsLatinLanguage(languageId)
+	return latinLanguageIdsMap[languageId]
+end
+
 --return the best font to use for the client language
-function DF:GetBestFontForLanguage(language, western, cyrillic, china, korean, taiwan)
-	if (not language) then
-		language = DF.ClientLanguage
+function DF:GetBestFontForLanguage(languageId, western, cyrillic, china, korean, taiwan)
+	if (not languageId) then
+		languageId = DF.ClientLanguage
 	end
 
-	if (language == "enUS" or language == "deDE" or language == "esES" or language == "esMX" or language == "frFR" or language == "itIT" or language == "ptBR") then
+	if (languageId == "enUS" or languageId == "deDE" or languageId == "esES" or languageId == "esMX" or languageId == "frFR" or languageId == "itIT" or languageId == "ptBR") then
 		return western or "Friz Quadrata TT"
 
-	elseif (language == "ruRU") then
+	elseif (languageId == "ruRU") then
 		return cyrillic or "Friz Quadrata TT"
 
-	elseif (language == "zhCN") then
+	elseif (languageId == "zhCN") then
 		return china or "AR CrystalzcuheiGBK Demibold"
 
-	elseif (language == "koKR") then
+	elseif (languageId == "koKR") then
 		return korean or "2002"
 
-	elseif (language == "zhTW") then
+	elseif (languageId == "zhTW") then
 		return taiwan or "AR CrystalzcuheiGBK Demibold"
 	end
 end
@@ -3178,8 +3357,11 @@ function DF:OpenInterfaceProfile()
 end
 
 -----------------------------
---safe copy from blizz api
-function DF:Mixin(object, ...)
+---copy all members from #2 ... to #1 object
+---@param object table
+---@param ... any
+---@return any
+function DF:Mixin(object, ...) --safe copy from blizz api
 	for i = 1, select("#", ...) do
 		local mixin = select(i, ...)
 		for key, value in pairs(mixin) do
@@ -3213,7 +3395,7 @@ function DF:CreateAnimation(animation, animationType, order, duration, arg1, arg
 		anim:SetToAlpha(arg2)
 
 	elseif (animationType == "SCALE") then
-		if (DF.IsDragonflight() or DF.IsWotLKWowWithRetailAPI()) then
+		if (DF.IsDragonflight() or DF.IsNonRetailWowWithRetailAPI()) then
 			anim:SetScaleFrom(arg1, arg2)
 			anim:SetScaleTo(arg3, arg4)
 		else
@@ -3539,21 +3721,36 @@ local glow_overlay_play = function(self)
 	if (not self:IsShown()) then
 		self:Show()
 	end
-	if (self.animOut:IsPlaying()) then
-		self.animOut:Stop()
-	end
-	if (not self.animIn:IsPlaying()) then
-		self.animIn:Stop()
-		self.animIn:Play()
+	if (self.animOut) then
+		if (self.animOut:IsPlaying()) then
+			self.animOut:Stop()
+		end
+		if (not self.animIn:IsPlaying()) then
+			self.animIn:Stop()
+			self.animIn:Play()
+		end
+	elseif (self.ProcStartAnim) then
+		if (not self.ProcStartAnim:IsPlaying()) then
+			self.ProcStartAnim:Play()
+		end
+		if (not self.ProcLoop:IsPlaying()) then
+			--self.ProcLoop:Play()
+		end
 	end
 end
 
 local glow_overlay_stop = function(self)
-	if (self.animOut:IsPlaying()) then
-		self.animOut:Stop()
-	end
-	if (self.animIn:IsPlaying()) then
-		self.animIn:Stop()
+	if (self.animOut) then
+		if (self.animOut:IsPlaying()) then
+			self.animOut:Stop()
+		end
+		if (self.animIn:IsPlaying()) then
+			self.animIn:Stop()
+		end
+	elseif (self.ProcStartAnim) then
+		if (self.ProcStartAnim:IsPlaying()) then
+			self.ProcStartAnim:Stop()
+		end
 	end
 	if (self:IsShown()) then
 		self:Hide()
@@ -3563,20 +3760,27 @@ end
 local glow_overlay_setcolor = function(self, antsColor, glowColor)
 	if (antsColor) then
 		local r, g, b, a = DF:ParseColors(antsColor)
-		self.ants:SetVertexColor(r, g, b, a)
-		self.AntsColor.r = r
-		self.AntsColor.g = g
-		self.AntsColor.b = b
-		self.AntsColor.a = a
+		self.AntsColor = {r, g, b, a}
+		if (self.ants) then
+			self.ants:SetVertexColor(r, g, b, a)
+		elseif (self.ProcLoopFlipbook) then
+			self.ProcLoopFlipbook:SetVertexColor(r, g, b) --no alpha because of animation
+			local anim1 = self.ProcLoop:GetAnimations()
+			anim1:SetToAlpha(a)
+		end
 	end
 
 	if (glowColor) then
 		local r, g, b, a = DF:ParseColors(glowColor)
-		self.outerGlow:SetVertexColor(r, g, b, a)
-		self.GlowColor.r = r
-		self.GlowColor.g = g
-		self.GlowColor.b = b
-		self.GlowColor.a = a
+		self.GlowColor = {r, g, b, a}
+		if (self.outerGlow) then
+			self.outerGlow:SetVertexColor(r, g, b, a)
+		elseif (self.ProcStartFlipbook) then
+			self.ProcStartFlipbook:SetVertexColor(r, g, b) --no alpha because of animation
+			local anim1, anim2, anim3 = self.ProcStartAnim:GetAnimations()
+			anim1:SetToAlpha(a)
+			anim3:SetFromAlpha(a)
+		end
 	end
 end
 
@@ -3603,6 +3807,8 @@ function DF:CreateGlowOverlay (parent, antsColor, glowColor)
 	glowFrame.Stop = glow_overlay_stop
 	glowFrame.SetColor = glow_overlay_setcolor
 
+	glowFrame:SetColor(antsColor, glowColor)
+	
 	glowFrame:Hide()
 
 	parent.overlay = glowFrame
@@ -3615,15 +3821,17 @@ function DF:CreateGlowOverlay (parent, antsColor, glowColor)
 	parent.overlay:SetPoint("TOPLEFT", parent, "TOPLEFT", -frameWidth * 0.32, frameHeight * 0.36)
 	parent.overlay:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", frameWidth * 0.32, -frameHeight * 0.36)
 
-	local r, g, b, a = DF:ParseColors(antsColor)
-	glowFrame.ants:SetVertexColor(r, g, b, a)
-	glowFrame.AntsColor = {r, g, b, a}
-
-	local r, g, b, a = DF:ParseColors(glowColor)
-	glowFrame.outerGlow:SetVertexColor(r, g, b, a)
-	glowFrame.GlowColor = {r, g, b, a}
-
-	glowFrame.outerGlow:SetScale(1.2)
+	if (glowFrame.outerGlow) then
+		glowFrame.outerGlow:SetScale(1.2)
+	end
+	if (glowFrame.ProcStartFlipbook) then
+		glowFrame.ProcStartAnim:Stop()
+		glowFrame.ProcStartFlipbook:ClearAllPoints()
+		--glowFrame.ProcStartFlipbook:SetAllPoints()
+		--glowFrame.ProcStartFlipbook:SetSize(frameWidth * scale, frameHeight * scale)
+		glowFrame.ProcStartFlipbook:SetPoint("TOPLEFT", glowFrame, "TOPLEFT", -frameWidth * scale, frameHeight * scale)
+		glowFrame.ProcStartFlipbook:SetPoint("BOTTOMRIGHT", glowFrame, "BOTTOMRIGHT", frameWidth * scale, -frameHeight * scale)
+	end 
 	glowFrame:EnableMouse(false)
 	return glowFrame
 end
@@ -4051,6 +4259,12 @@ function DF:ReskinSlider(slider, heightOffset)
 		--up button
 		local offset = 1 --space between the scrollbox and the scrollar
 
+		local backgroundColor_Red = 0.1
+		local backgroundColor_Green = 0.1
+		local backgroundColor_Blue = 0.1
+		local backgroundColor_Alpha = 1
+		local backdrop_Alpha = 0.3
+
 		do
 			local normalTexture = slider.ScrollBar.ScrollUpButton.Normal
 			normalTexture:SetTexture([[Interface\Buttons\Arrow-Up-Up]])
@@ -4075,6 +4289,21 @@ function DF:ReskinSlider(slider, heightOffset)
 			disabledTexture:SetPoint("bottomright", slider.ScrollBar.ScrollUpButton, "bottomright", offset, 0)
 
 			slider.ScrollBar.ScrollUpButton:SetSize(16, 16)
+
+			if (not slider.ScrollBar.ScrollUpButton.BackgroundTexture) then
+				local backgroundTexture = slider.ScrollBar.ScrollUpButton:CreateTexture(nil, "border")
+				slider.ScrollBar.ScrollUpButton.BackgroundTexture = backgroundTexture
+
+				backgroundTexture:SetColorTexture(backgroundColor_Red, backgroundColor_Green, backgroundColor_Blue)
+				backgroundTexture:SetAlpha(backgroundColor_Alpha)
+
+				backgroundTexture:SetPoint("topleft", slider.ScrollBar.ScrollUpButton, "topleft", 1, 0)
+				backgroundTexture:SetPoint("bottomright", slider.ScrollBar.ScrollUpButton, "bottomright", -1, 0)
+			end
+
+			DF:Mixin(slider.ScrollBar.ScrollUpButton, BackdropTemplateMixin)
+			slider.ScrollBar.ScrollUpButton:SetBackdrop({edgeFile = [[Interface\Buttons\WHITE8X8]], edgeSize = 1})
+			slider.ScrollBar.ScrollUpButton:SetBackdropBorderColor(0, 0, 0, backdrop_Alpha)
 		end
 
 		--down button
@@ -4102,6 +4331,21 @@ function DF:ReskinSlider(slider, heightOffset)
 			disabledTexture:SetPoint("bottomright", slider.ScrollBar.ScrollDownButton, "bottomright", offset, -4)
 
 			slider.ScrollBar.ScrollDownButton:SetSize(16, 16)
+
+			if (not slider.ScrollBar.ScrollDownButton.BackgroundTexture) then
+				local backgroundTexture = slider.ScrollBar.ScrollDownButton:CreateTexture(nil, "border")
+				slider.ScrollBar.ScrollDownButton.BackgroundTexture = backgroundTexture
+
+				backgroundTexture:SetColorTexture(backgroundColor_Red, backgroundColor_Green, backgroundColor_Blue)
+				backgroundTexture:SetAlpha(backgroundColor_Alpha)
+
+				backgroundTexture:SetPoint("topleft", slider.ScrollBar.ScrollDownButton, "topleft", 1, 0)
+				backgroundTexture:SetPoint("bottomright", slider.ScrollBar.ScrollDownButton, "bottomright", -1, 0)
+			end
+
+			DF:Mixin(slider.ScrollBar.ScrollDownButton, BackdropTemplateMixin)
+			slider.ScrollBar.ScrollDownButton:SetBackdrop({edgeFile = [[Interface\Buttons\WHITE8X8]], edgeSize = 1})
+			slider.ScrollBar.ScrollDownButton:SetBackdropBorderColor(0, 0, 0, backdrop_Alpha)
 		end
 
 		--if the parent has a editbox, this is a code editor
@@ -4115,7 +4359,21 @@ function DF:ReskinSlider(slider, heightOffset)
 		end
 
 		slider.ScrollBar.ThumbTexture:SetColorTexture(.5, .5, .5, .3)
-		slider.ScrollBar.ThumbTexture:SetSize(12, 8)
+		slider.ScrollBar.ThumbTexture:SetSize(14, 8)
+
+		if (not slider.ScrollBar.SliderTexture) then
+			local alpha = 1
+			local offset = 1
+			slider.ScrollBar.SliderTexture = slider.ScrollBar:CreateTexture(nil, "background")
+			slider.ScrollBar.SliderTexture:SetColorTexture(backgroundColor_Red, backgroundColor_Green, backgroundColor_Blue)
+			slider.ScrollBar.SliderTexture:SetAlpha(backgroundColor_Alpha)
+			slider.ScrollBar.SliderTexture:SetPoint("TOPLEFT", slider.ScrollBar, "TOPLEFT", offset, -2)
+			slider.ScrollBar.SliderTexture:SetPoint("BOTTOMRIGHT", slider.ScrollBar, "BOTTOMRIGHT", -offset, 2)
+		end
+
+		DF:Mixin(slider.ScrollBar, BackdropTemplateMixin)
+		slider.ScrollBar:SetBackdrop({edgeFile = [[Interface\Buttons\WHITE8X8]], edgeSize = 1})
+		slider.ScrollBar:SetBackdropBorderColor(0, 0, 0, backdrop_Alpha)
 	end
 end
 
@@ -4146,7 +4404,7 @@ local specs_per_class = {
 	["WARLOCK"] = {265, 266, 267},
 	["PALADIN"] = {65, 66, 70},
 	["MONK"] = {268, 269, 270},
-	["EVOKER"] = {1467, 1468},
+	["EVOKER"] = {1467, 1468, 1473},
 }
 
 function DF:GetClassSpecIDs(class)
@@ -4577,6 +4835,7 @@ DF.ClassSpecs = {
 	["EVOKER"] = {
 		[1467] = true,
 		[1468] = true,
+		[1473] = true,
 	},
 }
 
@@ -4644,6 +4903,7 @@ DF.SpecListByClass = {
 	["EVOKER"] = {
 		1467,
 		1468,
+		1473,
 	},
 }
 
@@ -4915,7 +5175,7 @@ do
             if (newObject) then
 				tinsert(self.inUse, newObject)
 				if (self.onAcquire) then
-					DF:QuickDispatch(self.onAcquire, object)
+					DF:QuickDispatch(self.onAcquire, newObject)
 				end
 				return newObject, true
             end
@@ -5142,3 +5402,21 @@ end
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---receives an object and print debug info about its visibility
+---use to know why a frame is not showing
+---@param UIObject any
+function DF:DebugVisibility(UIObject)
+	local bIsShown = UIObject:IsShown()
+	print("Is Shown:", bIsShown and "|cFF00FF00true|r" or "|cFFFF0000false|r")
+
+	local bIsVisible = UIObject:IsVisible()
+	print("Is Visible:", bIsVisible and "|cFF00FF00true|r" or "|cFFFF0000false|r")
+
+	local width, height = UIObject:GetSize()
+	print("Width:", width > 0 and "|cFF00FF00" .. width .. "|r" or "|cFFFF00000|r")
+	print("Height:", height > 0 and "|cFF00FF00" .. height .. "|r" or "|cFFFF00000|r")
+
+	local numPoints = UIObject:GetNumPoints()
+	print("Num Points:", numPoints > 0 and "|cFF00FF00" .. numPoints .. "|r" or "|cFFFF00000|r")
+end

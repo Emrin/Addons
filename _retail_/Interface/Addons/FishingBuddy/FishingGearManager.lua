@@ -52,7 +52,7 @@ gearframe:SetScript("OnUpdate", function(self)
 		if ( not icon or self.force ) then
 			-- make sure we're wearing everything we think we should be
 			local wearing = 1;
-			local mslot = GetInventorySlotInfo("MainHandSlot");			
+			local mslot = GetInventorySlotInfo("MainHandSlot");
 			for invslot,info in pairs(self.outfit) do
 				local link = GetInventoryItemLink("player", invslot);
 				-- FBI.Debug("link "..link.." "..info.link);
@@ -67,7 +67,7 @@ gearframe:SetScript("OnUpdate", function(self)
 					end
 				end
 			end
-			
+
 			-- Are we wearing everything?
 			if (wearing) then
 				SaveEquipmentSet(self.name, self.maintexture);
@@ -81,7 +81,7 @@ gearframe:SetScript("OnUpdate", function(self)
 		for slot=1,17 do
 			C_EquipmentSet.IgnoreSlotForSave(slot);
 		end
-		for invslot,info in pairs(self.outfit) do
+		for invslot,_ in pairs(self.outfit) do
 			C_EquipmentSet.UnignoreSlotForSave(invslot);
 		end
 		SaveEquipmentSet(self.name, self.maintexture);
@@ -167,7 +167,7 @@ local function GuessCurrentOutfit()
 		ret[set+1] = 0;
 		local location_array = C_EquipmentSet.GetItemLocations(set);
 		if (location_array) then
-			for s,location in pairs(location_array) do
+			for _,location in pairs(location_array) do
 				local onplayer, _, bags, _, _, _ = EquipmentManager_UnpackLocation(location);
 				if onplayer and not bags then
 					ret[set+1] = ret[set+1] + 1;
@@ -228,10 +228,11 @@ local function OutfitPoints(outfit)
 		local isp = FBEnvironment.OutfitManager.ItemStylePoints;
 		local ibp = function(link) return FL:FishingBonusPoints(link); end;
 		local items = GetEquipmentSetLocations(outfit);
-		for slot,loc in pairs(items) do
-			local player, bank, bags, void, slot, bag = EquipmentManager_UnpackLocation(loc);
+		for _,loc in pairs(items) do
+			local bags, bag, slot
+			_, _, bags, _, slot, bag = EquipmentManager_UnpackLocation(loc);
 			local link;
-			if ( not bags ) then -- and (player or bank) 
+			if ( not bags ) then -- and (player or bank)
 				link = GetInventoryItemLink("player", slot);
 			else -- bags
 				link = GetContainerItemLink(bag, slot);
@@ -265,7 +266,7 @@ local function Patch_GearSetButton_OnEnter(self)
 		else
 			pstring = FBConstants.POINTS;
 		end
-		GameTooltip:AddDoubleLine(SKILL..": "..bp, "Draznar: "..sp, 1, 1, 1, 1, 1, 1);
+		GameTooltip:AddDoubleLine(SKILL..": "..bp, "Draznar: "..sp.." "..pstring, 1, 1, 1, 1, 1, 1);
 		GameTooltip:Show();
 	end
 end

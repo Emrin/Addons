@@ -22,7 +22,7 @@ plugin.defaultDB = {
 	blockGarrison = true,
 	blockGuildChallenge = true,
 	blockSpellErrors = true,
-	blockTooltipQuests = true,
+	blockTooltipQuestText = true,
 	blockObjectiveTracker = true,
 	disableSfx = false,
 	disableMusic = false,
@@ -38,6 +38,7 @@ local L = BigWigsAPI:GetLocale("BigWigs: Plugins")
 plugin.displayName = L.bossBlock
 local GetBestMapForUnit = BigWigsLoader.GetBestMapForUnit
 local GetInstanceInfo = BigWigsLoader.GetInstanceInfo
+local onTestBuild = BigWigsLoader.onTestBuild
 local GetSubZoneText = GetSubZoneText
 local TalkingHeadLineInfo = C_TalkingHead.GetCurrentLineInfo
 local IsEncounterInProgress = IsEncounterInProgress
@@ -45,6 +46,7 @@ local SetCVar = C_CVar.SetCVar
 local GetCVar = C_CVar.GetCVar
 local CheckElv = nil
 local RestoreAll
+local hideQuestTrackingTooltips = false
 
 -------------------------------------------------------------------------------
 -- Options
@@ -112,13 +114,12 @@ plugin.pluginOptions = {
 					width = "full",
 					order = 5,
 				},
-				blockTooltipQuests = {
+				blockTooltipQuestText = {
 					type = "toggle",
 					name = L.blockTooltipQuests,
 					desc = L.blockTooltipQuestsDesc,
 					width = "full",
 					order = 6,
-					hidden = function() return true end, -- XXX Do we want to hack the tooltip?
 				},
 				blockObjectiveTracker = {
 					type = "toggle",
@@ -228,6 +229,19 @@ plugin.pluginOptions = {
 --
 
 do
+	local function ShouldFilterQuestProgress(tooltip)
+		if tooltip == GameTooltip and tooltip:IsTooltipType(2) then -- Enum.TooltipDataType.Unit
+			return hideQuestTrackingTooltips
+		end
+	end
+	function plugin:OnRegister()
+		TooltipDataProcessor.AddLinePreCall(8, ShouldFilterQuestProgress) -- Enum.TooltipDataLineType.QuestObjective
+		TooltipDataProcessor.AddLinePreCall(17, ShouldFilterQuestProgress) -- Enum.TooltipDataLineType.QuestTitle
+		TooltipDataProcessor.AddLinePreCall(18, ShouldFilterQuestProgress) -- Enum.TooltipDataLineType.QuestPlayer
+	end
+end
+
+do
 	local function updateProfile()
 		local db = plugin.db.profile
 
@@ -252,8 +266,8 @@ do
 	function plugin:OnPluginEnable()
 		self:RegisterMessage("BigWigs_OnBossEngage", "OnEngage")
 		self:RegisterMessage("BigWigs_OnBossEngageMidEncounter", "OnEngage")
-		self:RegisterMessage("BigWigs_OnBossWin", "OnWinOrWipe")
-		self:RegisterMessage("BigWigs_OnBossWipe", "OnWinOrWipe")
+		self:RegisterMessage("BigWigs_OnBossDisable")
+		self:RegisterMessage("BigWigs_OnBossWipe", "BigWigs_OnBossDisable")
 		self:RegisterMessage("BigWigs_ProfileUpdate", updateProfile)
 		updateProfile()
 
@@ -266,9 +280,6 @@ do
 			end
 			SetCVar("Sound_EnableSFX", "1")
 		end
-		--if self.db.profile.blockTooltipQuests then
-		--	SetCVar("showQuestTrackingTooltips", "1")
-		--end
 		if self.db.profile.disableMusic then
 			local music = GetCVar("Sound_EnableMusic")
 			if music == "0" then
@@ -343,10 +354,10 @@ do
 	end
 
 	local restoreObjectiveTracker = nil
-	function plugin:OnEngage(event, module)
-		if not module or not module.journalId or module.worldBoss then return end
+	function plugin:OnEngage(_, module)
+		if not module or not module:GetJournalID() or module.worldBoss then return end
 
-		if self.db.profile.blockEmotes and not IsTestBuild() then -- Don't block emotes on WoW beta.
+		if self.db.profile.blockEmotes and not onTestBuild then -- Don't block emotes on WoW beta.
 			KillEvent(RaidBossEmoteFrame, "RAID_BOSS_EMOTE")
 			KillEvent(RaidBossEmoteFrame, "RAID_BOSS_WHISPER")
 		end
@@ -362,12 +373,12 @@ do
 		if self.db.profile.blockSpellErrors then
 			KillEvent(UIErrorsFrame, "UI_ERROR_MESSAGE")
 		end
+		if self.db.profile.blockTooltipQuestText then
+			hideQuestTrackingTooltips = true
+		end
 		if self.db.profile.disableSfx then
 			SetCVar("Sound_EnableSFX", "0")
 		end
-		--if self.db.profile.blockTooltipQuests then
-		--	SetCVar("showQuestTrackingTooltips", "0")
-		--end
 		if self.db.profile.disableMusic then
 			SetCVar("Sound_EnableMusic", "0")
 		end
@@ -381,7 +392,8 @@ do
 		CheckElv(self)
 		-- Never hide when tracking achievements or in Mythic+
 		local _, _, diff = GetInstanceInfo()
-		if not restoreObjectiveTracker and self.db.profile.blockObjectiveTracker and not GetTrackedAchievements() and diff ~= 8 and not trackerHider.IsProtected(ObjectiveTrackerFrame) then
+		local trackedAchievements = C_ContentTracking.GetTrackedIDs(2) -- Enum.ContentTrackingType.Achievement = 2
+		if not restoreObjectiveTracker and self.db.profile.blockObjectiveTracker and not next(trackedAchievements) and diff ~= 8 and not trackerHider.IsProtected(ObjectiveTrackerFrame) then
 			restoreObjectiveTracker = trackerHider.GetParent(ObjectiveTrackerFrame)
 			if restoreObjectiveTracker then
 				trackerHider.SetFixedFrameStrata(ObjectiveTrackerFrame, true) -- Changing parent would change the strata & level, lock it first
@@ -408,12 +420,12 @@ do
 		if self.db.profile.blockSpellErrors then
 			RestoreEvent(UIErrorsFrame, "UI_ERROR_MESSAGE")
 		end
+		if self.db.profile.blockTooltipQuestText then
+			hideQuestTrackingTooltips = false
+		end
 		if self.db.profile.disableSfx then
 			SetCVar("Sound_EnableSFX", "1")
 		end
-		--if self.db.profile.blockTooltipQuests then
-		--	SetCVar("showQuestTrackingTooltips", "1")
-		--end
 		if self.db.profile.disableMusic then
 			SetCVar("Sound_EnableMusic", "1")
 		end
@@ -431,8 +443,8 @@ do
 		end
 	end
 
-	function plugin:OnWinOrWipe(event, module)
-		if not module or not module.journalId or module.worldBoss then return end
+	function plugin:BigWigs_OnBossDisable(_, module)
+		if not module or not module:GetJournalID() or module.worldBoss then return end
 		RestoreAll(self)
 	end
 end
@@ -445,6 +457,15 @@ do
 		[70195]=true,[70196]=true,[70192]=true,[70194]=true,
 		-- Halls of Valor
 		[57160]=true,[57159]=true,[57162]=true,[68701]=true,[57161]=true,
+		-- Neltharion's Lair
+		[54610]=true,[54608]=true,[54697]=true,[54708]=true,[54709]=true,
+		[54718]=true,[54719]=true,[54720]=true,[58102]=true,[58104]=true,
+
+		-- Freehold
+		[104684]=true,[104682]=true,[104685]=true,
+		-- The Underrot
+		[112206]=true,[106857]=true,[106858]=true,[106852]=true,[106876]=true,[110728]=true,
+		[106877]=true,[106853]=true,[106855]=true,[106856]=true,[106434]=true,[110781]=true,
 
 		-- De Other Side
 		[163828]=true,[163830]=true,[163831]=true,[163822]=true,[163823]=true,[163824]=true,[163834]=true,
@@ -534,6 +555,8 @@ do
 		[957] = true, -- Jailer intro
 		[958] = true, -- Jailer defeat
 		[964] = true, -- Raszageth defeat
+		[991] = true, -- Iridikron (DotI) defeat
+		[992] = true, -- Chrono-Lord Deios (DotI) defeat
 	}
 
 	function plugin:PLAY_MOVIE(_, id)
@@ -589,6 +612,7 @@ do
 		[-2000] = true, -- Soulrender Dormazain defeat
 		[-2002] = true, -- Sylvanas stage 2
 		[-2004] = true, -- Sylvanas defeat
+		[-2170] = true, -- Sarkareth defeat
 	}
 
 	-- Cinematic skipping hack to workaround an item (Vision of Time) that creates cinematics in Siege of Orgrimmar.
@@ -666,4 +690,3 @@ do
 		end
 	end
 end
-

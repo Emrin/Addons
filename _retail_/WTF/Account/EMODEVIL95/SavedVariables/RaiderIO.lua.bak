@@ -1,11 +1,71 @@
 
 RaiderIO_Config = {
+	["profilePoint"] = {
+		["y"] = 0,
+		["x"] = -16,
+		["point"] = "TOPLEFT",
+	},
 }
 RaiderIO_LastCharacter = "eu-Unchill-draenor"
 RaiderIO_MissingCharacters = {
+	["eu-Ahrimanh-draenor"] = true,
+	["eu-Azhawa-draenor"] = true,
+	["eu-Grazybob-draenor"] = true,
+	["eu-Listedudu-draenor"] = true,
+	["eu-Keenclap-draenor"] = true,
+	["eu-Trgam-draenor"] = true,
+	["eu-Vícíous-draenor"] = true,
+	["eu-Lostacos-draenor"] = true,
+	["eu-Chooie-draenor"] = true,
+	["eu-Fakushka-draenor"] = true,
+	["eu-Mît-draenor"] = true,
+	["eu-Muwhe-draenor"] = true,
+	["eu-Ectota-draenor"] = true,
+	["eu-Lunah-draenor"] = true,
+	["eu-Veezs-draenor"] = true,
+	["eu-Trosha-draenor"] = true,
+	["eu-Itsabram-draenor"] = true,
+	["eu-Nyfea-draenor"] = true,
+	["eu-Sorumun-draenor"] = true,
+	["eu-Phantomwars-turalyon"] = true,
+	["eu-Robberbaron-draenor"] = true,
+	["eu-Shinoxsama-draenor"] = true,
+	["eu-Bâlisimo-draenor"] = true,
+	["eu-Myndmez-draenor"] = true,
+	["eu-Venkman-draenor"] = true,
+	["eu-Ritik-draenor"] = true,
+	["eu-Yenè-draenor"] = true,
+	["eu-Mügiva-silvermoon"] = true,
+	["eu-Iwillbless-draenor"] = true,
+	["eu-Desirys-voljin"] = true,
+	["eu-Phaadu-draenor"] = true,
+	["eu-Tommywizard-draenor"] = true,
+	["eu-Chenly-silvermoon"] = true,
+	["eu-Chaosforse-draenor"] = true,
+	["eu-Shahrivar-draenor"] = true,
+	["eu-Prîêst-kazzak"] = true,
+	["eu-Réana-burning-legion"] = true,
+	["eu-Rebelsham-draenor"] = true,
+	["eu-Metilen-draenor"] = true,
+	["eu-Moerskii-draenor"] = true,
+	["eu-Dìsclol-draenor"] = true,
+	["eu-Baryum-draenor"] = true,
+	["eu-Kalku-draenor"] = true,
+	["eu-Feral-draenor"] = true,
+	["eu-Motuas-draenor"] = true,
+	["eu-Daere-draenor"] = true,
+	["eu-Pínka-draenor"] = true,
+	["eu-Zanzim-draenor"] = true,
+	["eu-Lexlor-draenor"] = true,
+	["eu-Daisvene-draenor"] = true,
+	["eu-Unchill-draenor"] = true,
+	["eu-Xieraz-draenor"] = true,
+	["eu-Çehov-draenor"] = true,
 }
 RaiderIO_MissingServers = {
 }
 RaiderIO_CachedRuns = nil
 RaiderIO_RWF = {
+}
+RaiderIO_CompletedReplays = {
 }

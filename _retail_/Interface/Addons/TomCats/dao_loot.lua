@@ -46,6 +46,10 @@ function addon.getLootDisplayInfo(items)
 							collectedString = KNOWN
 						end
 					end
+				elseif(addon.drakewatcherManuscripts[itemID]) then
+					local collected = C_QuestLog.IsQuestFlaggedCompleted(addon.drakewatcherManuscripts[itemID])
+					collectedString = collected and KNOWN
+					lootType = LOOT_TYPE.DRAKEWATCHER_MANUSCRIPT
 				else
 					local _, toyName = C_ToyBox.GetToyInfo(itemID)
 					if (toyName) then
@@ -56,6 +60,13 @@ function addon.getLootDisplayInfo(items)
 						end
 					else
 						lootType = LOOT_TYPE.UNKNOWN
+						local _, itemSpell = GetItemSpell(itemID)
+						if (itemSpell) then
+							local spellDescription = GetSpellDescription(itemSpell)
+							if (spellDescription) then
+								collectedString = spellDescription
+							end
+						end
 					end
 				end
 				table.insert(loot, {

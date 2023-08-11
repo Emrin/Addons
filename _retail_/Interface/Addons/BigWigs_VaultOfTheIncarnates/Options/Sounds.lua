@@ -80,6 +80,7 @@ BigWigs:AddSounds("Kurog Grimtotem", {
 	[374321] = "info",
 	[374427] = "warning",
 	[374430] = "alarm",
+	[374554] = "underyou",
 	[374622] = "warning",
 	[374623] = {"alarm","alert"},
 	[374624] = "warning",
@@ -130,6 +131,8 @@ BigWigs:AddSounds("Broodkeeper Diurna", {
 	[388918] = "alert",
 	[392194] = "alert",
 	[396264] = "warning",
+	[396266] = {"alarm","warning"},
+	[396779] = "alert",
 })
 
 BigWigs:AddSounds("Raszageth the Storm-Eater", {

@@ -1,5 +1,32 @@
 # Changelog
 
+## Changed in v2023.6
+
+* More Zaralek Cavern data
+* Suppress alerts while a cinematic is running
+
+## Changed in v2023.5
+
+* More Zaralek Cavern data
+* Hide the mystery vignette in Loamm
+
+## Changed in v2023.4
+
+* New Zaralek Cavern rares for 10.1.0
+* Forbidden Reach's Forbidden Hoard now has loot
+
+## Changed in v2023.3
+
+* New Forbidden Reach rares for 10.0.7
+* Make the Stormed Off rares from Primal Storms work properly for alerts
+* Was missing Overseer Stonetongue
+* Assorted minor data fixes
+
+## Changed in v2023.2
+
+* New rares for 10.0.5
+* Fix Emerald Garden Explorer's Notes / Ruby Gem Cluster Map mixup in some treasure tooltips
+
 ## Changed in v2023.1
 
 * Quest ID for Liskanoth

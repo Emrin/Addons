@@ -1,4 +1,8 @@
 @cont1nuity:
-- Bring back 'Hide Blizzard Healthbars' functionality for retail.
-- Fixing a bug with wago update data in the options menu.
+- Fixing personal 'alternate power' bar anchoring/positioning (Stagger and Ebon Might).
+- Fixing 'CreateIconGlow' used in mods/scripts for 10.1.5 update.
+- Toc update for 10.1.5 update.
+
+@Terciob:
+- DetailsFramework updates.
 

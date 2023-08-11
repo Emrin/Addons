@@ -19,6 +19,7 @@ function mod:GetOptions()
 		384416, -- Meat Toss
 		384633, -- Master's Call
 		{384353, "TANK"}, -- Gut Shot
+		384577, -- Crippling Bite
 	}, nil, {
 		[385359] = CL.traps, -- Ensnaring Trap (Traps)
 		[384416] = CL.fixate, -- Meat Toss (Fixate)
@@ -34,14 +35,19 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SmellLikeMeatApplied", 384425)
 	self:Log("SPELL_CAST_START", "MastersCall", 384633)
 	self:Log("SPELL_CAST_START", "GutShot", 384353)
+	self:Log("SPELL_CAST_SUCCESS", "GutShotSuccess", 384353)
+	self:Log("SPELL_CAST_START", "CripplingBite", 384577)
+	self:Log("SPELL_AURA_APPLIED", "CripplingBiteApplied", 384575)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "CripplingBiteApplied", 384575)
 end
 
 function mod:OnEngage()
 	self:CDBar(385359, 8.4) -- Ensnaring Trap
-	self:CDBar(384353, 12.1) -- Gut Shot
-	self:CDBar(384633, 15.8) -- Master's Call
-	self:CDBar(384416, 21.8) -- Meat Toss
-	self:Bar(384827, 33.9) -- Call Hyenas
+	self:CDBar(384353, 12.0) -- Gut Shot
+	-- this will ony be cast if Hyenas are getting trapped, CD is mostly not useful
+	-- self:CDBar(384633, 15.7) -- Master's Call
+	self:CDBar(384416, 20.6) -- Meat Toss
+	self:CDBar(384827, 31.5) -- Call Hyenas
 end
 
 --------------------------------------------------------------------------------
@@ -51,15 +57,17 @@ end
 function mod:CallHyenas(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(385359, 31.6)
+	self:CDBar(args.spellId, 31.6)
 end
 
 do
 	local playerList = {}
+
 	function mod:EnsnaringTrapPrecast(args)
 		playerList = {}
-		self:CDBar(385359, 8.5)
+		self:CDBar(385359, 17.0)
 	end
+
 	function mod:EnsnaringTrapCast(args)
 		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(385359, "yellow", playerList, 2, CL.casting:format(CL.traps)) -- Casting Traps: player1, player2
@@ -94,11 +102,12 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
+			self:PersonalMessage(384416)
 			self:PlaySound(384416, "alarm")
 		else
+			self:TargetMessage(384416, "orange", player)
 			self:PlaySound(384416, "alert", nil, player)
 		end
-		self:TargetMessage(384416, "orange", player)
 	end
 
 	function mod:MeatToss(args)
@@ -112,13 +121,31 @@ function mod:SmellLikeMeatApplied(args)
 end
 
 function mod:MastersCall(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 42.5)
+	-- this will ony be cast if Hyenas are getting trapped, CD is mostly not useful
+	-- self:CDBar(args.spellId, 17.0)
 end
 
 function mod:GutShot(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 18.2)
+end
+
+function mod:GutShotSuccess(args)
+	-- she can interrupt her own cast, only goes on CD when successful
+	self:CDBar(args.spellId, 15.7) -- 18.2s CD - 2.5s cast time
+end
+
+function mod:CripplingBite(args)
+	-- cast by the Hyenas ~17.5s after summon, healing reduction + slow on closest player
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:CripplingBiteApplied(args)
+	if self:Me(args.destGUID) or self:Healer() then
+		self:StackMessage(384577, "purple", args.destName, args.amount, 1)
+		self:PlaySound(384577, "warning", nil, args.destName)
+	end
 end

@@ -36,12 +36,15 @@ Addon.COLOR_CURR = { 0.13, 1, 1 }
 Addon.COLOR_DEAD = { 0.55, 0.13, 0.13 }
 Addon.DEBUG = false
 Addon.PATTERN_INSTANCE_RESET = "^" .. INSTANCE_RESET_SUCCESS:gsub("%%s", ".+") .. "$"
+Addon.MDT_VERSION = "4.0.4.*"
 
 local toggleBtn, currentPullBtn, announceBtn
 local hideFrames, hoverFrames
 local zoomAnimGrp, fadeAnimGrp
 local fadeTicker, isFaded
 local isHidden
+local mdtVersionMismatch
+local previousSublevel
 
 -- ---------------------------------------
 --              Toggle mode
@@ -104,7 +107,6 @@ function Addon.EnableGuideMode(noZoom)
         main.toolbar.toggleButton:GetScript("OnClick")()
     end
 
-    MDT:ToggleFreeholdSelector()
     MDT:ToggleBoralusSelector()
 
     -- Adjust enemy info frame
@@ -312,10 +314,10 @@ function Addon.ZoomBy(factor)
     Addon.Zoom(scale, scrollX, scrollY)
 end
 
-function Addon.ZoomTo(minX, minY, maxX, maxY, subLevel, fromSub)
+function Addon.ZoomTo(minX, minY, maxX, maxY, subLevel)
     -- Change sublevel if required
     local currSub = MDT:GetCurrentSubLevel()
-    subLevel, fromSub = subLevel or currSub, fromSub or currSub
+    subLevel = subLevel or currSub
     if subLevel ~= currSub then
         MDT:SetCurrentSubLevel(subLevel)
         MDT:UpdateMap(true, true, true)
@@ -342,10 +344,10 @@ function Addon.ZoomTo(minX, minY, maxX, maxY, subLevel, fromSub)
     local scrollX = minX + diffX / 2 - Addon.WIDTH / s / 2
     local scrollY = -maxY + diffY / 2 - Addon.HEIGHT / s / 2
 
-    Addon.Zoom(s, scrollX * scale, scrollY * scale, subLevel == fromSub)
+    Addon.Zoom(s, scrollX * scale, scrollY * scale, subLevel == previousSublevel)
 end
 
-function Addon.ZoomToPull(n, fromSub)
+function Addon.ZoomToPull(n)
     n = n or MDT:GetCurrentPull()
 
     local pulls = Addon.GetCurrentPulls()
@@ -381,7 +383,7 @@ function Addon.ZoomToPull(n, fromSub)
     end
 
     -- Zoom to rect
-    Addon.ZoomTo(minX, minY, maxX, maxY, level, fromSub)
+    Addon.ZoomTo(minX, minY, maxX, maxY, level)
 
     -- Scroll pull list
     Addon.ScrollToPull(n)
@@ -617,10 +619,9 @@ function Addon.ZoomToCurrentPull(refresh)
     elseif Addon.IsActive() then
         local n, pull = Addon.GetCurrentPull()
         if n then
-            local fromSub = MDT:GetCurrentSubLevel()
             MDT:SetSelectionToPull(n)
             if MDT:GetCurrentSubLevel() ~= Addon.GetBestSubLevel(pull) then
-                Addon.ZoomToPull(n, fromSub)
+                Addon.ZoomToPull(n)
             end
         end
     end
@@ -675,6 +676,39 @@ function Addon.IsInRun()
     return Addon.IsActive() and Addon.IsCurrentInstance() and Addon.GetEnemyForces() and true
 end
 
+function Addon.CheckMDTVersion()
+    if mdtVersionMismatch ~= nil then return end
+
+    local cmp = 0
+
+    local a = C_AddOns.GetAddOnMetadata("MythicDungeonTools", "Version")
+
+    if not a then
+        cmp = -1
+    else
+        local b = Addon.MDT_VERSION
+        local ta, tb = { strsplit(".", a) }, { strsplit(".", b) }
+
+        for i = 1, max(#ta, #tb) do
+            if tb[i] == "*" then break end
+            local va, vb = tonumber(ta[i]) or 0, tonumber(tb[i]) or 0
+            if va < vb then cmp = -1 break end
+            if va > vb then cmp = 1 break end
+        end
+    end
+
+    mdtVersionMismatch = cmp ~= 0
+
+    if mdtVersionMismatch then
+        Addon.Error("============================================")
+        Addon.Error("Unsupported Mythic Dungeon Tools version %s detected!", a or "?")
+        Addon.Error("MDTGuide only supports MDT versions %s.", Addon.MDT_VERSION)
+        Addon.Error("Please update your %s to the newest version.", cmp < 0 and "MDT" or "MDTGuide")
+        Addon.Error("If your MDT window is broken run the following: |cffcccccc/mdt reset|r")
+        Addon.Error("============================================")
+    end
+end
+
 -- ---------------------------------------
 --              Events/Hooks
 -- ---------------------------------------
@@ -684,6 +718,7 @@ local Frame = CreateFrame("Frame")
 -- Event listeners
 local OnEvent = function(_, ev, ...)
     if not MDT or MDT:GetDB().devMode then return end
+    if mdtVersionMismatch then return end
 
     if ev == "ADDON_LOADED" then
         if ... == Name then
@@ -691,8 +726,18 @@ local OnEvent = function(_, ev, ...)
 
             Addon.MigrateOptions()
 
+            -- Check MDT version
+            Addon.CheckMDTVersion()
+
+            if mdtVersionMismatch then return end
+
             -- Hook showing interface
-            hooksecurefunc(MDT, "ShowInterface", function()
+            local initialized = false
+
+            hooksecurefunc(MDT, "UpdateBottomText", function()
+                if initialized then return end
+                initialized = true
+
                 local main = MDT.main_frame
 
                 -- Insert toggle button
@@ -789,29 +834,15 @@ local OnEvent = function(_, ev, ...)
             end)
 
             -- Hook dungeon selection
-            hooksecurefunc(MDT, "UpdateToDungeon", function()
+            hooksecurefunc(MDT, "ZoomMapToDefault", function()
                 Addon.SetCurrentDungeon()
             end)
-
-            -- Hook sublevel selection
-            local fromSub
-            local origFn = MDT.SetMapSublevel
-            MDT.SetMapSublevel = function(...)
-                fromSub = MDT:GetCurrentSubLevel()
-                origFn(...)
-            end
-            local origFn = MDT.SetCurrentSubLevel
-            MDT.SetCurrentSubLevel = function(...)
-                fromSub = MDT:GetCurrentSubLevel()
-                origFn(...)
-            end
 
             -- Hook pull selection
             hooksecurefunc(MDT, "SetSelectionToPull", function(_, pull)
                 if Addon.IsActive() and tonumber(pull) and Addon.GetLastSubLevel(pull) == MDT:GetCurrentSubLevel() then
-                    Addon.ZoomToPull(pull, fromSub)
+                    Addon.ZoomToPull(pull)
                 end
-                fromSub = nil
             end)
 
             -- Hook pull tooltip
@@ -844,9 +875,9 @@ local OnEvent = function(_, ev, ...)
             end)
 
             -- Hook hull drawing
-            local origFn = MDT.DrawHull
+            local DrawHull = MDT.DrawHull
             MDT.DrawHull = function(...)
-                if not MDTGuideDB.active then return origFn(...) end
+                if not MDTGuideDB.active then return DrawHull(...) end
 
                 local multipliers = MDT.scaleMultiplier
                 local scale = MDT:GetScale() or 1
@@ -856,7 +887,7 @@ local OnEvent = function(_, ev, ...)
 
                 for i = 1, MDT:GetNumDungeons() do multipliers[i] = (multipliers[i] or 1) * scale end
 
-                origFn(...)
+                DrawHull(...)
 
                 for i, v in pairs(multipliers) do multipliers[i] = v / scale end
             end
@@ -902,6 +933,13 @@ Frame:RegisterEvent("SCENARIO_CRITERIA_UPDATE")
 Frame:RegisterEvent("PLAYER_REGEN_ENABLED")
 Frame:RegisterEvent("PLAYER_REGEN_DISABLED")
 
+local OnUpdate = function ()
+    if not MDT then return end
+    previousSublevel = MDT:GetCurrentSubLevel()
+end
+
+Frame:SetScript("OnUpdate", OnUpdate)
+
 -- ---------------------------------------
 --                Options
 -- ---------------------------------------
@@ -909,6 +947,8 @@ Frame:RegisterEvent("PLAYER_REGEN_DISABLED")
 SLASH_MDTG1 = "/mdtg"
 
 function SlashCmdList.MDTG(args)
+    if mdtVersionMismatch then return end
+
     local cmd, arg1, arg2 = strsplit(' ', args)
 
     -- Height
@@ -970,7 +1010,7 @@ function SlashCmdList.MDTG(args)
         print("|cffcccccc/mdtg fade [on/off/<opacity>]|r: Enable/Disable fading or set opacity. (" ..
             (MDTGuideDB.options.fade or "off") .. ", 0.3)")
         print("|cffcccccc/mdtg hide [on/off]|r: Enable/Disable hiding in combat. (" ..
-            (MDTGuideDB.options.hide or "off") .. ", off)")
+            (MDTGuideDB.options.hide and "on" or "off") .. ", off)")
         print("|cffcccccc/mdtg|r: Print this help message.")
         print("Legend: <...> = number, [...] = optional, .../... = either or, (..., ...) = (current, default)")
     end

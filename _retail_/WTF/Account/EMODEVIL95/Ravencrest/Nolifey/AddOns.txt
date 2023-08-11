@@ -81,3 +81,17 @@ FishingBuddy: disabled
 Plater: disabled
 RCLootCouncil: disabled
 SimpleCombatLogger: disabled
+Blizzard_ObjectiveTracker: enabled
+Blizzard_CompactRaidFrames: enabled
+BigWigs_Core: enabled
+BigWigs_Options: enabled
+BigWigs_Plugins: enabled
+ElvUI_ChatTweaks: disabled
+ElvUI_CustomTags: disabled
+ElvUI_ExtraDataTexts: disabled
+ElvUI_UnitFramePlugin: disabled
+ElvUI_SecondsToBuff: disabled
+ElvUI_BuffHighlight: disabled
+WunderUI: disabled
+kExtraBossFrames: disabled
+Blizzard_CombatText: enabled

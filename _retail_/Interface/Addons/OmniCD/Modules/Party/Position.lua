@@ -2,7 +2,7 @@ local E = select(2, ...):unpack()
 local P = E.Party
 
 local _G = _G
-local IsInRaid, IsInGroup, UnitGUID = IsInRaid, IsInGroup, UnitGUID
+local GetNumGroupMembers, IsInRaid, UnitGUID = GetNumGroupMembers, IsInRaid, UnitGUID
 local isColdStartDC = true
 
 local COMPACT_RAID = {
@@ -42,11 +42,11 @@ function P:CompactFrameIsActive(isInRaid)
 end
 
 function P:ShouldShowCompactFrame()
-	return IsInGroup() and self:CompactFrameIsActive()
+	return GetNumGroupMembers() > 0 and self:CompactFrameIsActive()
 end
 
 function P:CompactFrameIsShown()
-	return self.isCompactFrameSetShown() and self:ShouldShowCompactFrame()
+	return self.isCompactFrameSetShown and self:ShouldShowCompactFrame()
 end
 
 function P:FindRelativeFrame(guid)
@@ -84,7 +84,7 @@ function P:FindRelativeFrame(guid)
 		local compactFrame = nil
 		if isInRaid and not self.isInArena then
 			compactFrame = self.isCompactFrameSetShown and (self.keepGroupsTogether and COMPACT_RAID_KGT or COMPACT_RAID)
-		elseif IsInGroup() then
+		elseif GetNumGroupMembers() > 0 then
 			compactFrame = self.useRaidStylePartyFrames and COMPACT_PARTY or false
 		elseif EditModeManagerFrame:AreRaidFramesForcedShown() then
 			compactFrame = self.isCompactFrameSetShown and (self.keepGroupsTogether and COMPACT_RAID_KGT or COMPACT_RAID)
@@ -147,7 +147,7 @@ function P:SetOffset(frame)
 	frame.container:SetPoint("TOPLEFT", frame, self.containerOfsX, self.containerOfsY)
 end
 
-function P:UpdatePosition()
+function P:UpdatePosition(isRefreshMembers)
 	if self.disabled then
 		return
 	end
@@ -184,8 +184,10 @@ function P:UpdatePosition()
 			end
 		end
 
-		self:SetAnchorPosition(frame)
-		self:SetOffset(frame)
+		if not isRefreshMembers then
+			self:SetAnchorPosition(frame)
+			self:SetOffset(frame)
+		end
 	end
 end
 
@@ -209,20 +211,34 @@ do
 	end
 
 	function P:HookFunc()
-		if self.enabled and not E.db.position.detached and not hookTimer then
-			hookTimer = C_Timer.NewTimer(0.5, UpdatePosition_OnTimerEnd)
-		end
-		if E.isDF and not E.db.position.detached and not E.customUF.active and self.isInTestMode and not EditModeManagerFrame:IsEditModeActive() then
-			self:Test()
-			E:ACR_NotifyChange()
+		if self.enabled and E.db.position and not E.db.position.detached then
+			if not hookTimer then
+				hookTimer = C_Timer.NewTimer(0.5, UpdatePosition_OnTimerEnd)
+			end
+			if E.isDF and self.isInTestMode and not E.customUF.active and not P.isInEditMode then
+				self:Test()
+				E:ACR_NotifyChange()
+			end
 		end
 	end
 
 	function P:CVAR_UPDATE(cvar, value)
-		if cvar == "USE_RAID_STYLE_PARTY_FRAMES" then
+		if cvar == "USE_RAID_STYLE_PARTY_FRAMES"
+			or cvar == "useCompactPartyFrames" then
 			self.useRaidStylePartyFrames = value == "1"
 			self:HookFunc()
 		end
+	end
+
+	local pauseTimer
+
+	local function ResetPause()
+		pauseTimer = nil
+	end
+
+	local function UpdatePosition_OnRefreshMembers()
+		P:UpdatePosition(true)
+		pauseTimer = C_Timer.NewTimer(6, ResetPause)
 	end
 
 	function P:SetHooks()
@@ -239,18 +255,6 @@ do
 
 		if E.isDF then
 
-			hooksecurefunc(EditModeManagerFrame, "UpdateRaidContainerFlow", function()
-				P.keepGroupsTogether = EditModeManagerFrame:ShouldRaidFrameShowSeparateGroups()
-				P:HookFunc()
-			end)
-
-
-			hooksecurefunc("UpdateRaidAndPartyFrames", function()
-				P.useRaidStylePartyFrames = EditModeManagerFrame:UseRaidStylePartyFrames()
-				P:HookFunc()
-			end)
-
-
 			hooksecurefunc("CompactRaidFrameManager_SetSetting", function(arg)
 				if arg == "IsShown" then
 					local isShown = CompactRaidFrameManager_GetSetting("IsShown")
@@ -258,6 +262,64 @@ do
 						P.isCompactFrameSetShown = isShown
 						P:HookFunc()
 					end
+				end
+			end)
+
+
+			hooksecurefunc(EditModeManagerFrame, "UpdateRaidContainerFlow", function()
+				if P.isInEditMode then
+					P.keepGroupsTogether = EditModeManagerFrame:ShouldRaidFrameShowSeparateGroups()
+					P:HookFunc()
+				end
+			end)
+
+
+			hooksecurefunc("UpdateRaidAndPartyFrames", function()
+				if P.isInEditMode then
+					P.useRaidStylePartyFrames = EditModeManagerFrame:UseRaidStylePartyFrames()
+					P:HookFunc()
+				end
+			end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			if CompactPartyFrame_RefreshMembers then
+				hooksecurefunc("CompactPartyFrame_RefreshMembers", function()
+					if not pauseTimer and not P.disabled and P.isInArena and not E.db.position.detached
+						and EditModeManagerFrame:GetSettingValue(Enum.EditModeSystem.UnitFrame, Enum.EditModeUnitFrameSystemIndices.Party, Enum.EditModeUnitFrameSetting.SortPlayersBy) ~= 1 then
+						UpdatePosition_OnRefreshMembers()
+					end
+				end)
+			else
+				hooksecurefunc(CompactPartyFrame, "RefreshMembers", function()
+					if not pauseTimer and not P.disabled and P.isInArena and not E.db.position.detached
+						and EditModeManagerFrame:GetSettingValue(Enum.EditModeSystem.UnitFrame, Enum.EditModeUnitFrameSystemIndices.Party, Enum.EditModeUnitFrameSetting.SortPlayersBy) ~= 1 then
+						UpdatePosition_OnRefreshMembers()
+					end
+				end)
+			end
+
+			EventRegistry:RegisterCallback("EditMode.Enter", function()
+				P.isInEditMode = true
+			end)
+
+			EventRegistry:RegisterCallback("EditMode.Exit", function()
+				P.isInEditMode = nil
+
+				if P.isInTestMode then
+					P:Test()
+					E:ACR_NotifyChange()
 				end
 			end)
 		else
@@ -279,12 +341,13 @@ do
 				end
 			end)
 
-			if E.isWOTLKC341 then
-				hooksecurefunc("RaidOptionsFrame_UpdatePartyFrames", function()
-					P.useRaidStylePartyFrames = GetDisplayedAllyFrames() == "raid"
-					P:HookFunc()
-				end)
-			end
+
+
+
+
+
+
+
 		end
 
 		self.hooked = true

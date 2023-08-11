@@ -15,6 +15,7 @@ mod:RegisterEnableMob(
 	104270, -- Guardian Construct
 	104278, -- Felbound Enforcer
 	104277, -- Legion Hound
+	104300, -- Shadow Mistress
 	107435, -- Gerenth the Vile & Suspicious Noble
 	104273, -- Jazshariu
 	104275, -- Imacu'tya
@@ -40,6 +41,10 @@ mod:RegisterEnableMob(
 	106108, -- Starlight Rose Brew: +HP & Mana reg
 	105340, -- Umbral Bloom: +10% Haste
 	106110, -- Waterlogged Scroll: +30% Movement speed
+	106018, -- Bazaar Goods
+	106112, -- Wounded Nightborne Civilian
+	106113, -- Lifesized Nightborne Statue
+	105215, -- Discarded Junk
 	108154  -- Arcane Keys
 )
 
@@ -47,6 +52,7 @@ mod:RegisterEnableMob(
 -- Locals
 --
 
+local knownClues, clueCount = {}, 0
 local englishSpyFound = "I found the spy!"
 local englishClueNames = {
 	"Cape",
@@ -148,6 +154,7 @@ function mod:GetOptions()
 		211464, -- Fel Detonation (Felbound Enforcer)
 		211391, -- Felblaze Puddle (Legion Hound)
 		211470, -- Bewitch (Shadow Mistress)
+		{211473, "TANK_HEALER"}, -- Shadow Slash (Shadow Mistress)
 		214692, -- Shadow Bolt Volley (Gerenth the Vile)
 		214688, -- Carrion Swarm (Gerenth the Vile)
 		214690, -- Cripple (Gerenth the Vile)
@@ -205,22 +212,32 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Subdue", 212773)
 	self:Log("SPELL_AURA_APPLIED", "SubdueApplied", 212773)
 
-	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Drain Magic, Wild Detonation, Nightfall Orb, Seal Magic, Fortification, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath, Bewitch
-	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 209485, 209477, 209410, 209404, 209033, 216110, 216096, 216000, 216006, 211470)
-	-- Quelling Strike, Fel Detonation, Searing Glare, Eye Storm, Drifting Embers, Charged Blast, Suppress, Charged Smash, Drifting Embers
-	self:Log("SPELL_CAST_START", "AlarmCasts", 209027, 211464, 211299, 212784, 211401, 212031, 209413, 209495, 224377)
+	-- Duskwatch Guard
+	self:Log("SPELL_CAST_START", "QuellingStrike", 209027)
+	self:Log("SPELL_CAST_START", "Fortification", 209033)
+	self:Log("SPELL_AURA_APPLIED", "FortificationApplied", 209033)
+
+	-- Mana Wyrm
+	self:Log("SPELL_CAST_START", "WildDetonation", 209477)
+
+	-- Charging Station, Shadow Bolt Volley, Carrion Swarm, Drain Magic, Nightfall Orb, Seal Magic, Uncontrolled Blast, Wild Magic, Mighty Stomp, Shadowflame Breath, Bewitch
+	self:Log("SPELL_CAST_START", "AlertCasts", 225100, 214692, 214688, 209485, 209410, 209404, 216110, 216096, 216000, 216006, 211470)
+	-- Fel Detonation, Searing Glare, Eye Storm, Drifting Embers, Charged Blast, Suppress, Charged Smash, Drifting Embers
+	self:Log("SPELL_CAST_START", "AlarmCasts", 211464, 211299, 212784, 211401, 212031, 209413, 209495, 224377)
 	-- Felblaze Puddle, Disrupting Energy
 	self:Log("SPELL_AURA_APPLIED", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PeriodicDamage", 211391, 209512)
 	self:Log("SPELL_PERIODIC_MISSED", "PeriodicDamage", 211391, 209512)
 	-- Dispellable stuff
-	self:Log("SPELL_AURA_APPLIED", "Fortification", 209033)
 	self:Log("SPELL_AURA_APPLIED", "SealMagic", 209404)
 	self:Log("SPELL_AURA_APPLIED", "Suppress", 209413)
 	self:Log("SPELL_AURA_APPLIED", "SingleTargetDebuffs", 214690, 211470) -- Cripple, Bewitch
 	self:Log("SPELL_AURA_REMOVED", "SingleTargetDebuffsRemoved", 209413, 214690, 211470) -- Suppress, Cripple, Bewitch
 	-- Eye Storm
 	self:Log("SPELL_CAST_SUCCESS", "EyeStorm", 212784)
+
+	-- Shadow Mistress
+	self:Log("SPELL_CAST_START", "ShadowSlash", 211473)
 
 	-- Imacu'tya
 	self:Log("SPELL_CAST_START", "WhirlingBlades", 209378)
@@ -244,7 +261,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PickingUp", 214697)
 	self:Log("SPELL_CAST_SUCCESS", "PickingUpSuccess", 214697)
 
-	self:RegisterEvent("CHALLENGE_MODE_START")
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
 	self:RegisterMessage("BigWigs_BossComm")
@@ -260,6 +276,11 @@ function mod:OnBossEnable()
 	for i = 1, #frames do
 		frames[i]:RegisterEvent("GOSSIP_SHOW")
 	end
+end
+
+function mod:OnBossDisable()
+	clueCount = 0
+	knownClues = {}
 end
 
 --------------------------------------------------------------------------------
@@ -288,21 +309,25 @@ do
 		[105157] = { -- Arcane Power Conduit: Disables Constructs
 			["name"] = 210466,
 			["professions"] = {
-				[136243] = 100, -- Engineering
+				--[136243] = 100, -- Engineering
+				[4620673] = 1, -- Engineering
 			},
 			["races"] = {
 				["Gnome"] = true,
 				["Goblin"] = true,
 			},
+			--["gossipIds"] = {45332}, -- Engineering
 		},
 		[105117] = { -- Flask of the Solemn Night: Poisons first boss
 			["name"] = 207815,
 			["professions"] = {
-				[136240] = 100, -- Alchemy
+				--[136240] = 100, -- Alchemy
+				[4620669] = 1, -- Alchemy
 			},
 			["classes"] = {
 				["ROGUE"] = true,
 			},
+			--["gossipIds"] = {45329, 45331}, -- Alchemy, Rogue
 		},
 		[105160] = { -- Fel Orb: 10% Crit
 			["name"] = 208275,
@@ -312,6 +337,7 @@ do
 				["PRIEST"] = true,
 				["PALADIN"] = true,
 			},
+			--["gossipIds"] = {45327}, -- Priest
 		},
 		[105831] = { -- Infernal Tome: -10% Dmg taken
 			["name"] = "InfernalTome",
@@ -320,6 +346,7 @@ do
 				["PRIEST"] = true,
 				["PALADIN"] = true,
 			},
+			--["gossipIds"] = {45200}, -- Priest
 		},
 		[106024] = { -- Magical Lantern: +10% Dmg dealt
 			["name"] = "MagicalLantern",
@@ -327,22 +354,27 @@ do
 				["MAGE"] = true,
 			},
 			["professions"] = {
-				[136244] = 100, -- Enchanting
+				--[136244] = 100, -- Enchanting
+				[4620672] = 1, -- Enchanting
 			},
 			["races"] = {
 				["BloodElf"] = true,
 				["NightElf"] = true,
+				["Dracthyr"] = true,
 			},
 		},
 		[105249] = { -- Nightshade Refreshments: +25% HP
 			["name"] = "NightshadeRefreshments",
 			["professions"] = {
-				[133971] = 800, -- Cooking
-				[136246] = 100, -- Herbalism
+				--[133971] = 800, -- Cooking
+				[4620671] = 1, -- Cooking
+				--[136246] = 100, -- Herbalism
+				[4620675] = 1, -- Herbalism
 			},
 			["races"] = {
 				["Pandaren"] = true,
 			},
+			--["gossipIds"] = {45168}, -- Cooking
 		},
 		[106108] = { -- Starlight Rose Brew: +HP & Mana reg
 			["name"] = "StarlightRoseBrew",
@@ -350,6 +382,7 @@ do
 				["DEATHKNIGHT"] = true,
 				["MONK"] = true,
 			},
+			--["gossipIds"] = {45217}, -- Monk
 		},
 		[105340] = { -- Umbral Bloom: +10% Haste
 			["name"] = "UmbralBloom",
@@ -357,8 +390,11 @@ do
 				["DRUID"] = true,
 			},
 			["professions"] = {
-				[136246] = 100, -- Herbalism
-			}
+				--[136246] = 100, -- Herbalism
+				[4620675] = 1, -- Herbalism
+				[4620671] = 1, -- Cooking
+			},
+			--["gossipIds"] = {45278}, -- Cooking
 		},
 		[106110] = { -- Waterlogged Scroll: +30% Movement speed
 			["name"] = "WaterloggedScroll",
@@ -366,9 +402,12 @@ do
 				["SHAMAN"] = true,
 			},
 			["professions"] = {
-				[134366] = 100, -- Skinning
-				[237171] = 100, -- Inscription
-			}
+				--[134366] = 100, -- Skinning
+				[4620680] = 1, -- Skinning
+				--[237171] = 100, -- Inscription
+				[4620676] = 1, -- Inscription
+			},
+			--["gossipIds"] = {45152}, -- Skinning
 		},
 	}
 
@@ -390,14 +429,18 @@ do
 				["WARRIOR"] = true,
 			},
 			["professions"] = {
-				[136247] = 100, -- Leatherworking
+				--[136247] = 100, -- Leatherworking
+				[4620678] = 1, -- Leatherworking
 			},
+			--["gossipIds"] = {45474}, -- Rogue
 		},
 		[106113] = { -- Lifesized Nightborne Statue
 			["name"] = "LifesizedNightborneStatue",
 			["professions"] = {
-				[134708] = 100, -- Mining
-				[134071] = 100, -- Jewelcrafting
+				--[134708] = 100, -- Mining
+				[4620679] = 1, -- Mining
+				--[134071] = 100, -- Jewelcrafting
+				[4620677] = 1, -- Jewelcrafting
 			},
 		},
 		[105215] = { -- Discarded Junk
@@ -406,7 +449,8 @@ do
 				["HUNTER"] = true,
 			},
 			["professions"] = {
-				[136241] = 100, -- Blacksmithing
+				--[136241] = 100, -- Blacksmithing
+				[4620670] = 1, -- Blacksmithing
 			},
 		},
 		[106112] = { -- Wounded Nightborne Civilian
@@ -415,8 +459,10 @@ do
 				["Healer"] = true,
 			},
 			["professions"] = {
-				[136249] = 100, -- Tailoring
+				--[136249] = 100, -- Tailoring
+				[4620681] = 1, -- Tailoring
 			},
+			--["gossipIds"] = {45155}, -- Healer
 		},
 	}
 
@@ -428,6 +474,7 @@ do
 		["BloodElf"] = "|T236439:0|t",
 		["Gnome"] = "|T236445:0|t",
 		["Goblin"] = "|T632354:0|t",
+		["Dracthyr"] = "|T4696175:0|t",
 	}
 
 	local roleIcons = {
@@ -440,19 +487,6 @@ do
 
 	local function getIconById(id)
 		return ("|T%d:0|t"):format(id)
-	end
-
-	local knownClues, clueCount = {}, 0
-
-	function mod:OnBossDisable()
-		clueCount = 0
-		knownClues = {}
-	end
-
-	function mod:CHALLENGE_MODE_START()
-		-- clear the clues when M+ starts, in case clues were found in regular mythic without leaving
-		clueCount = 0
-		knownClues = {}
 	end
 
 	local function sendChatMessage(msg, english)
@@ -699,6 +733,49 @@ function mod:SubdueApplied(args)
 	end
 end
 
+-- Duskwatch Guard
+
+do
+	local prev = 0
+	function mod:QuellingStrike(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+function mod:Fortification(args)
+	if throttleMessages(args.spellId) then return end
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:FortificationApplied(args)
+	if self:Dispeller("magic", true) and not self:Player(args.destFlags) then -- Mages can spellsteal it
+		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
+		if not throttleMessages(args.spellId) then
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+-- Mana Wyrm
+
+do
+	local prev = 0
+	function mod:WildDetonation(args)
+		local t = args.time
+		if t - prev > 1 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
 -- Generic Casts
 
 function mod:AlertCasts(args)
@@ -724,12 +801,6 @@ do
 				self:PlaySound(args.spellId, "underyou")
 			end
 		end
-	end
-end
-
-function mod:Fortification(args)
-	if self:Dispeller("magic", true) and not UnitIsPlayer(args.destName) then -- mages can spellsteal it
-		self:TargetMessageOld(args.spellId, args.destName, "orange", not throttleMessages(args.spellId) and "alert", nil, nil, true)
 	end
 end
 
@@ -764,6 +835,13 @@ end
 function mod:EyeStorm(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
+end
+
+-- Shadow Mistress
+
+function mod:ShadowSlash(args)
+	self:Message(args.spellId, "purple")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Imacu'tya

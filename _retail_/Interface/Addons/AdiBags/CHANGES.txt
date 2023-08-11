@@ -1,16 +1,10 @@
-lightweight tag c09e86e76c01e938ed6e2f0e898f6200a2697d14 v1.10.7
+lightweight tag 5d8437438768e934fe2ece74e3c0d8424ab26b29 v1.10.19
 Author:	Antonio Lobato <aj.lobato@gmail.com>
-Date:	Tue Jan 24 22:10:38 2023 -0800
+Date:	Thu Jul 27 22:08:21 2023 -0700
 
-commit c09e86e76c01e938ed6e2f0e898f6200a2697d14
+commit 5d8437438768e934fe2ece74e3c0d8424ab26b29
 Author: Antonio Lobato <aj.lobato@gmail.com>
-Date:   Tue Jan 24 22:10:38 2023 -0800
+Date:   Thu Jul 27 22:08:21 2023 -0700
 
-    Fixed TOC messages
-
-commit aa2a244bb2493a7b381f64f25b3310393d9a86b5
-Author: Antonio Lobato <aj.lobato@gmail.com>
-Date:   Tue Jan 24 22:10:05 2023 -0800
-
-    Fixed bags not updating in the newest Retail patch.
+    Updated config TOC.
 

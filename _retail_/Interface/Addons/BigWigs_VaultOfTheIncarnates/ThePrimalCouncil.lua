@@ -24,26 +24,31 @@ local slashCount = 1
 local earthenPillarCount = 1
 
 local timersTable = {
-	[14] = { -- 11:03
+	[14] = { -- Normal
 		[397134] = { 8.4, 43.7, 48.6, 43.7, 42.6, 47.4, 42.5, 43.7, 49.8, 40.1, 43.7, 46.2, 43.7, 43.7 }, -- Pillars
 		[374038] = { 42.6, 68.0, 66.9, 66.9, 66.8, 66.8, 66.8, 65.5, 66.8 }, -- Axes
 		[371624] = { 16.9, 71.7, 46.2, 45.0, 42.5, 44.9, 46.1, 43.7, 46.2, 43.7, 42.5, 44.9, 44.9 }, -- Marks
 		[373059] = { 60.6, 149.4, 132.4, 133.6 }, -- Blizzard
 	},
-	[15] = { -- 10:10
+	[15] = { -- Heroic
 		[397134] = { 7.7, 35.0, 37.9, 34.1, 37.7, 35.2, 34.1, 35.2, 37.8, 33.8, 35.5, 36.5, 36.4, 32.8, 37.7, 35.2, 34.0 }, -- Pillars
 		[374038] = { 34.5, 54.7, 53.5, 53.5, 53.5, 53.5, 53.5, 53.5, 54.3, 51.3, 53.5 }, -- Axes
 		[371624] = { 13.7, 57.2, 36.5, 36.5, 35.2, 37.7, 34.0, 36.5, 32.8, 36.5, 35.3, 35.2, 37.6, 32.8, 38.9, 35.2 }, -- Marks
 		[373059] = { 50.2, 117.9, 105.8, 107.0, 106.9, 106.9 }, -- Blizzard
 	},
-	[16] =  { -- 8:06
+	[16] =  { -- Mythic
 		[397134] = { 5.7, 25.5, 29.6, 26.3, 25.5, 28.3, 25.6, 26.7, 27.8, 25.7, 25.5, 29.2, 27.2, 23.8, 27.9, 26.7, 25.5, 29.1 }, -- Pillar
 		[374038] = { 27.7, 40.5, 40.1, 40.0, 40.1, 40.1, 40.1, 40.1, 39.7, 40.4, 40.0, 40.0 }, --  Axes
 		[371624] = { 12.1, 41.3, 27.9, 27.9, 51.0, 27.9, 25.5, 29.2, 24.3, 26.8, 28.0, 27.9, 24.2, 26.7, 26.7, 26.6, 26.7 }, -- Mark
 		[373059] = { 37.7, 89.8, 77.8, 82.7, 77.7, 81.3 }, -- Blizzard
 	},
+	[17] = { -- LFR
+		[397134] = { 8.5, 43.7, 53.5, 43.7, 42.6, 47.4, 42.5, 43.7, 49.8, 40.0, 43.7, 47.4, 42.5, 43.7 }, -- Pillars
+		[374038] = { 42.6, 72.9, 66.9, 66.8, 66.8, 66.8, 66.7, 66.8, 66.7 }, -- Axes
+		[371624] = { 18.2, 76.5, 47.4, 46.2, 40.1, 49.8, 42.5, 41.3, 47.3, 44.9, 41.3, 47.4, 46.1, 40.1, 49.8 }, -- Marks
+		[373059] = { 64.4, 144.6, 133.5, 134.7, 132.3 }, -- Blizzard
+	},
 }
-timersTable[17] = timersTable[14]
 local timers = timersTable[mod:Difficulty()]
 
 -- Skipped code
@@ -65,9 +70,6 @@ if L then
 	L.conductive_marks = "Marks" -- Conductive Marks
 	L.conductive_mark = "Mark" -- Singular
 
-	L.custom_on_stop_timers = "Always show ability bars"
-	L.custom_on_stop_timers_desc = "Abilities that will always be shown: Conductive Mark"
-
 	L.skipped_cast = "Skipped %s (%d)"
 end
 
@@ -79,9 +81,8 @@ local conductiveMarkMarker = mod:AddMarkerOption(false, "player", 3, 371624, 3)
 local meteorAxeMarker = mod:AddMarkerOption(false, "player", 1, 374043, 1, 2)
 function mod:GetOptions()
 	return {
-		"custom_on_stop_timers",
 		-- Kadros Icewrath
-		373059, -- Primal Blizzard
+		{373059, "CASTBAR"}, -- Primal Blizzard
 		386661, -- Glacial Convocation
 		-- Dathea Stormlash
 		{371624, "ME_ONLY_EMPHASIZE"}, -- Conductive Mark
@@ -98,8 +99,7 @@ function mod:GetOptions()
 		meteorAxeMarker,
 		386289, -- Burning Convocation
 	}, {
-		["custom_on_stop_timers"] = "general",
-		[391599] = -24952, -- Kadros Icewrath
+		[373059] = -24952, -- Kadros Icewrath
 		[371624] = -24958, -- Dathea Stormlash
 		[397134] = -24967, -- Opalfang
 		[374038] = -24965, -- Embar Firepath
@@ -111,8 +111,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_BarCreated", "BarCreated")
-
 	-- Kadros Icewrath
 	self:Log("SPELL_CAST_START", "PrimalBlizzard", 373059)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "PrimalBlizzardApplied", 371836)
@@ -170,29 +168,6 @@ function mod:ConductiveMarkCheck(castCount) -- Marks are rarely skipped
 		if cd then
 			mod:Bar(371624, cd - SKIP_CAST_THRESHOLD, CL.count:format(L.conductive_marks, conductiveMarkCount))
 			checkTimer = mod:ScheduleTimer("ConductiveMarkCheck", cd, conductiveMarkCount)
-		end
-	end
-end
-
-do
-	local abilitysToPause = {
-		[371624] = true, -- Conductive Marks
-	}
-
-	local castPattern = CL.cast:gsub("%%s", ".+")
-
-	local function stopAtZeroSec(bar, key, text)
-		if bar.remaining < 0.045 then -- Pause at 0.0
-			bar:SetDuration(0.01) -- Make the bar look full
-			bar:Start()
-			bar:SetTimeVisibility(false)
-			mod:PauseBar(key, text)
-		end
-	end
-
-	function mod:BarCreated(_, _, bar, _, key, text)
-		if self:GetOption("custom_on_stop_timers") and abilitysToPause[key] and not text:match(castPattern) then
-			bar:AddUpdateFunction(function() stopAtZeroSec(bar,key,text) end)
 		end
 	end
 end

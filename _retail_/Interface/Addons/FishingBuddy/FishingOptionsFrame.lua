@@ -404,21 +404,6 @@ local function UncheckHack(dropdownbutton)
     _G[dropdownbutton:GetName().."Check"]:Hide()
 end
 
-function FBI:GetDropDown(switchText, switchSetting, title, frame)
-    if (not frame) then
-        frame = FB_DropDownMenu;
-        frame.displayMode = "MENU"
-    end
-
-    frame.title = title or FBConstants.NAME;
-    frame.switchText = switchText;
-    frame.switchSetting = switchSetting;
-    frame.initialize = MakeDropDownInitialize;
-    frame.UncheckHack = UncheckHack;
-
-    return frame;
-end
-
 -- Old style drop down handling, which will add taint
 -- Everything happens at level 1
 function FBI:MakeDropDown(switchText, switchSetting)
@@ -538,7 +523,6 @@ function FBI:CreateFBMappedDropDown(holdername, setting, label, mapping, menunam
     keymenu.menu.label:SetText(label);
     keymenu.Label = label;
     keymenu.Setting = setting;
-    keymenu.Build = BuildMappedMenu
     keymenu.menu.Mapping = mapping;
     keymenu.menu.SetMappedValue = SetMappedValue;
     keymenu.InitMappedMenu = InitMappedMenu;

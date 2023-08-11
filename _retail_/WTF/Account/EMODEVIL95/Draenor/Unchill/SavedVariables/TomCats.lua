@@ -4,7 +4,7 @@ TomCats_Character = {
 		["preferences"] = {
 			["roles"] = {
 				false, -- [1]
-				true, -- [2]
+				false, -- [2]
 				true, -- [3]
 			},
 		},
@@ -17,18 +17,11 @@ TomCats_Character = {
 			},
 			["dimmedItems"] = {
 				["Unchill-Draenor"] = {
-					["AIR"] = 0,
 					["EARTH"] = 0,
-					["WATER"] = 0,
 					["FIRE"] = 0,
+					["WATER"] = 0,
+					["AIR"] = 0,
 				},
-			},
-			["WindowLocation"] = {
-				"BOTTOMRIGHT", -- [1]
-				nil, -- [2]
-				"BOTTOMRIGHT", -- [3]
-				-300.0021057128906, -- [4]
-				111.000846862793, -- [5]
 			},
 			["eligibleClasses"] = {
 				false, -- [1]
@@ -45,6 +38,17 @@ TomCats_Character = {
 				false, -- [12]
 				true, -- [13]
 			},
+			["WindowLocation"] = {
+				"BOTTOMRIGHT", -- [1]
+				nil, -- [2]
+				"BOTTOMRIGHT", -- [3]
+				-300.0021057128906, -- [4]
+				111.000846862793, -- [5]
+			},
+		},
+	},
+	["midsummer"] = {
+		["preferences"] = {
 		},
 	},
 	["hallowsend"] = {
@@ -55,18 +59,11 @@ TomCats_Character = {
 			},
 			["dimmedItems"] = {
 				["Unchill-Draenor"] = {
-					["AIR"] = 0,
 					["EARTH"] = 0,
-					["WATER"] = 0,
 					["FIRE"] = 0,
+					["WATER"] = 0,
+					["AIR"] = 0,
 				},
-			},
-			["WindowLocation"] = {
-				"BOTTOMRIGHT", -- [1]
-				nil, -- [2]
-				"BOTTOMRIGHT", -- [3]
-				-300.0021057128906, -- [4]
-				111.000846862793, -- [5]
 			},
 			["eligibleClasses"] = {
 				false, -- [1]
@@ -82,6 +79,13 @@ TomCats_Character = {
 				false, -- [11]
 				false, -- [12]
 				true, -- [13]
+			},
+			["WindowLocation"] = {
+				"BOTTOMRIGHT", -- [1]
+				nil, -- [2]
+				"BOTTOMRIGHT", -- [3]
+				-300.0021057128906, -- [4]
+				111.000846862793, -- [5]
 			},
 		},
 	},

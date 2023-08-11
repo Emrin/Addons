@@ -9,6 +9,9 @@ BigWigs:AddSounds("Strunraan, The Sky's Misery", {
 })
 
 BigWigs:AddSounds("Basrikron, The Shale Wing", {
+	[385137] = {"alarm","alert","warning"},
+	[385270] = "alarm",
+	[386259] = "long",
 })
 
 BigWigs:AddSounds("Bazual, The Dreaded Flame", {

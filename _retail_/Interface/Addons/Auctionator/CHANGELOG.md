@@ -1,7 +1,9 @@
 # Auctionator
 
-## [10.0.35](https://github.com/Auctionator/Auctionator/tree/10.0.35) (2023-01-26)
-[Full Changelog](https://github.com/Auctionator/Auctionator/compare/10.0.34...10.0.35) 
+## [10.1.16](https://github.com/Auctionator/Auctionator/tree/10.1.16) (2023-08-09)
+[Full Changelog](https://github.com/Auctionator/Auctionator/compare/10.1.15...10.1.16) 
 
-- [Fixes #1334] Crafting prices appearing wrong after using a tournament realm  
-- Shopping: Import/Export item IDs: Add failsafe for when item data is missing.  
+- [Fixes #1409] Selling bag view disappears due to config getting set wrong  
+    Fix is to prevent the config UI writing to the config until after we're  
+    sure the values have been put in correctly.  
+- Vanilla: Compatibility fixes for 1.14.4  

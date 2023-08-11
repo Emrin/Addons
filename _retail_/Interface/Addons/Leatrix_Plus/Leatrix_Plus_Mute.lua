@@ -70,6 +70,13 @@
 
 		},
 
+		-- Login
+		["MuteLogin"] = {
+
+			-- This is handled with the PLAYER_LOGOUT event
+
+		},
+
 		-- Ready (ready check) (sound/interface/)
 		["MuteReady"] = {
 
@@ -124,11 +131,9 @@
 
 		},
 
-		-- Login
-		["MuteLogin"] = {
-
-			-- This is handled with the PLAYER_LOGOUT event
-
+		-- Vigor (sound/interface/)
+		["MuteVigor"] = {
+			"ui_70_artifact_forge_trait_goldtrait.ogg#1489541",
 		},
 
 		----------------------------------------------------------------------
@@ -526,9 +531,13 @@
 
 		},
 
-		-- Shouts (sound/interface/)
-		["MuteVigor"] = {
-			"ui_70_artifact_forge_trait_goldtrait.ogg#1489541",
+		----------------------------------------------------------------------
+		-- Misc
+		----------------------------------------------------------------------
+
+		-- Ducks (sound/creature/duck/duck_greetings_)
+		["MuteDucks"] = {
+			"4618261.ogg#4618261", "4618263.ogg#4618263", "4618265.ogg#4618265", "4618267.ogg#4618267", "4618269.ogg#4618269", "4618271.ogg#4618271", "4618273.ogg#4618273", "4618275.ogg#4618275", "4618277.ogg#4618277", "4618279.ogg#4618279", "4618281.ogg#4618281", "4618283.ogg#4618283", "4618285.ogg#4618285", "4618287.ogg#4618287", "4618289.ogg#4618289", "4618291.ogg#4618291", "4741268.ogg#4741268", "4741270.ogg#4741270", "4741272.ogg#4741272", "4741274.ogg#4741274", "4741276.ogg#4741276", "4741278.ogg#4741278", "4741280.ogg#4741280", "4741282.ogg#4741282", "4741284.ogg#4741284", "4741286.ogg#4741286", "4741288.ogg#4741288", "4741290.ogg#4741290", "4741292.ogg#4741292", "4741294.ogg#4741294", "4741296.ogg#4741296", "4741298.ogg#4741298",
 		},
 
 	}
@@ -655,6 +664,9 @@
 			-- Highland Drake (sound/creature/companiondrake/)
 			"companiondrake_cast_oneshot_4633278.ogg#4633278", "companiondrake_cast_oneshot_4633280.ogg#4633280", "companiondrake_cast_oneshot_4633282.ogg#4633282", "companiondrake_cast_oneshot_4633284.ogg#4633284", "companiondrake_cast_oneshot_4633286.ogg#4633286", "companiondrake_cast_oneshot_4633288.ogg#4633288", "companiondrake_cast_oneshot_4633290.ogg#4633290", "companiondrake_cast_oneshot_4641087.ogg#4641087", "companiondrake_cast_oneshot_4641089.ogg#4641089", "companiondrake_cast_oneshot_4641091.ogg#4641091", "companiondrake_cast_oneshot_4641093.ogg#4641093", "companiondrake_cast_oneshot_4641095.ogg#4641095", "companiondrake_cast_oneshot_4641097.ogg#4641097", "companiondrake_cast_oneshot_4641099.ogg#4641099",
 			"companiondrake_flying_4633316.ogg#4633316", "companiondrake_flying_4634009.ogg#4634009", "companiondrake_flying_4634011.ogg#4634011", "companiondrake_flying_4634013.ogg#4634013", "companiondrake_flying_4634015.ogg#4634015", "companiondrake_flying_4634017.ogg#4634017", "companiondrake_flying_4634019.ogg#4634019", "companiondrake_flying_4634021.ogg#4634021",
+
+			-- Winding Slitherdrake (sound/creature/companionserpent/)
+			"companionserpent_aggro_5163128.ogg#5163128", "companionserpent_aggro_5163130.ogg#5163130", "companionserpent_aggro_5163132.ogg#5163132", "companionserpent_aggro_5163134.ogg#5163134", "companionserpent_aggro_5163136.ogg#5163136", "companionserpent_aggro_5163138.ogg#5163138", "companionserpent_aggro_5163140.ogg#5163140", 
 
 			-- Passive loops (not used because many are generic sounds used elsewhere in the game)
 

@@ -88,21 +88,27 @@ function RSNotes.GetNote(entityID, mapID)
 	-- Requires air storms in Dragon Isles
 	elseif (RSUtils.Contains(RSConstants.AIR_STORM_EVENTS_NPCS, entityID)) then
 		return AL["NOTE_AIR_STORM_EVENTS"]
-  -- Requires fire storms in Dragon Isles
-  elseif (RSUtils.Contains(RSConstants.FIRE_STORM_EVENTS_NPCS, entityID)) then
-    return AL["NOTE_FIRE_STORM_EVENTS"]
-  -- Requires earth storms in Dragon Isles
-  elseif (RSUtils.Contains(RSConstants.EARTH_STORM_EVENTS_NPCS, entityID)) then
-    return AL["NOTE_EARTH_STORM_EVENTS"]
-  -- Requires water storms in Dragon Isles
-  elseif (RSUtils.Contains(RSConstants.WATER_STORM_EVENTS_NPCS, entityID)) then
-    return AL["NOTE_WATER_STORM_EVENTS"]
+	-- Requires fire storms in Dragon Isles
+	elseif (RSUtils.Contains(RSConstants.FIRE_STORM_EVENTS_NPCS, entityID)) then
+    	return AL["NOTE_FIRE_STORM_EVENTS"]
+  	-- Requires earth storms in Dragon Isles
+  	elseif (RSUtils.Contains(RSConstants.EARTH_STORM_EVENTS_NPCS, entityID)) then
+    	return AL["NOTE_EARTH_STORM_EVENTS"]
+  	-- Requires water storms in Dragon Isles
+  	elseif (RSUtils.Contains(RSConstants.WATER_STORM_EVENTS_NPCS, entityID)) then
+    	return AL["NOTE_WATER_STORM_EVENTS"]
 	-- Grand hunting party bosses
 	elseif (RSUtils.Contains(RSConstants.HUNTING_PARTY_NPCS, entityID)) then
 		return AL["NOTE_HUNTING_PARTY_NPCS"]
-	-- Grand hunting party bosses
+	-- Omnious conchs
 	elseif (RSUtils.Contains(RSConstants.OMINOUS_CONCHS_NPCS, entityID)) then
 		return AL["NOTE_OMINOUS_CONCHS_NPCS"]
+	-- Fyrakk assaults
+	elseif (RSUtils.Contains(RSConstants.FYRAKK_ASSAULTS_NPCS, entityID)) then
+		return AL["NOTE_FYRAKK_ASSAULTS_NPCS"]
+	-- Elusive NPCs in Dragon Isles
+	elseif (RSUtils.Contains(RSConstants.ELUSIVE_NPCS, entityID)) then
+		return AL["NOTE_ELUSIVE_NPCS"]
 	end
 	
 	-- Rune of constructs Containers
@@ -144,5 +150,8 @@ function RSNotes.GetNote(entityID, mapID)
 	-- Not trackable containers
 	elseif (RSUtils.Contains(RSConstants.CONTAINERS_WITHOUT_VIGNETTE, entityID)) then
 		return AL["NOTE_CONTAINERS_WITHOUT_VIGNETTE"]
+	-- Forbidden Reach containers
+	elseif (RSUtils.Contains(RSConstants.CONTAINERS_FORBIDDEN_REACH, entityID)) then
+		return AL["NOTE_CONTAINERS_FORBIDDEN_REACH"]
 	end
 end

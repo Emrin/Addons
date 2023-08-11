@@ -5,11 +5,26 @@ addon.defaultSavedVariables = {
 	TomCats_Account = {
 		lastExpirationWarning = 0,
 		preferences = {
+			AccessoryWindow = {
+				WindowLocation = addon.constants.HINT_ALL,
+				--todo: remove deprecated 'display' property upon adding new accessory window components
+				display = addon.constants.accessoryDisplay.REMOVED,
+				elementalStorms = addon.constants.accessoryDisplay.NOINSTANCES,
+				treasureGoblin = addon.constants.accessoryDisplay.NOINSTANCES,
+				timeRifts = addon.constants.accessoryDisplay.NOINSTANCES,
+				twitchDrops = addon.constants.accessoryDisplay.NOINSTANCES,
+				primeGamingLoot = addon.constants.accessoryDisplay.NOINSTANCES,
+				snoozed = addon.constants.HINT_ALL,
+			},
 			["TomCats-MinimapButton"] = {
 				position = -2.888,
 				hidden = false
 			},
 			["TomCats-LunarFestivalMinimapButton2023"] = {
+				position = -2.514,
+				hidden = false
+			},
+			["TomCats-MidsummerMinimapButton2023"] = {
 				position = -2.514,
 				hidden = false
 			},
@@ -27,8 +42,6 @@ addon.defaultSavedVariables = {
 			},
 			betaEnabled = false,
 			defaultVignetteIcon = "default",
-			dragonGlyphsEnabled = false,
-			dragonGlyphsTipShown = false,
 		},
 		lastVersionSeen = "NONE",
 		discoveriesVersion = "0",
@@ -41,6 +54,10 @@ addon.defaultSavedVariables = {
 		errorLog = addon.constants.HINT_ALL,
 		loveisintheair = addon.constants.HINT_ALL,
 		lunarfestival = addon.constants.HINT_ALL,
+		midsummer = addon.constants.HINT_ALL,
+		noblegarden = {
+			enabled = true
+		},
 		hallowsend = addon.constants.HINT_ALL,
 		primalstorms = {
 			preferences = addon.constants.HINT_ALL,
@@ -48,6 +65,9 @@ addon.defaultSavedVariables = {
 	},
 	TomCats_Character = {
 		lunarfestival = {
+			preferences = addon.constants.HINT_ALL
+		},
+		midsummer = {
 			preferences = addon.constants.HINT_ALL
 		},
 		loveisintheair = {

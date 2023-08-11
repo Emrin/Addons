@@ -47,8 +47,7 @@ END
 VER 3 000000000000006D "_mb" "134400"
 #showtooltip
 /use [nomod] Filet of Fangs
-/use [mod:ctrl] Ambroria Dew
-/use [mod:alt] Conjured Mana Bun
+/use [mod] Conjured Mana Bun
 END
 VER 3 0000000000000093 "_pa" "INV_MISC_QUESTIONMARK"
 #showtooltip
@@ -121,6 +120,10 @@ VER 3 00000000000000B2 "bop" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus,exists,help][@mouseover,exists,nodead,help][] Blessing of Protection
 END
+VER 3 00000000000000CD "bs" "134400"
+#showtooltip
+/cast [mod,@player][@mouseover,exists,help,nodead][] Blistering Scales
+END
 VER 3 00000000000000B0 "cc" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [talent:3/1] Typhoon
@@ -171,8 +174,8 @@ VER 3 000000000000008F "disp" "INV_MISC_QUESTIONMARK"
 END
 VER 3 0000000000000090 "door" "INV_MISC_QUESTIONMARK"
 #showtooltip
-/cast [nomod,@cursor] Door of Shadows
-/cast [mod,@cursor] Ring of Frost
+/cast [nomod,@cursor] Ring of Frost
+/cast [mod,@cursor] Door of Shadows
 END
 VER 3 000000000000003D "dot" "INV_MISC_QUESTIONMARK"
 #showtooltip Outbreak
@@ -316,10 +319,6 @@ VER 3 000000000000008B "orb" "INV_MISC_QUESTIONMARK"
 /cast [mod,@player][] Frozen Orb
 /cast [@cursor][] Frozen Orb
 END
-VER 3 0000000000000028 "Orc" "INV_Misc_QuestionMark"
-1 6 1 3 = A N A L || d a p is or ok 294 = y o u lo ve me NUD E || ss = no || D E D 42 3 125 3 1 33 = LOL IL L KIL L A LL || ss ee oo d a p = me lo ve y o u || D A P EE BB = YOU LO SE || Y o u re Me an = D a p aa Ss pp
- forfeit
-END
 VER 3 0000000000000078 "pat" "INV_MISC_QUESTIONMARK"
 #showtooltip Control Undead
 /target pet
@@ -335,16 +334,20 @@ VER 3 000000000000007A "pour" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [@cursor] Downpour
 END
+VER 3 00000000000000CC "pres" "134400"
+#showtooltip
+/cast [@mouseover, exists, help][] Prescience
+END
 VER 3 0000000000000066 "pri" "3578231"
 #showtooltip
 /cast [mod:shift,@focus,exists][mod:alt,@player][@mouseover,nodead,exists][] Primordial Wave
 END
-VER 3 000000000000004A "pull" "133706"
-/pull 15
-END
 VER 3 0000000000000096 "pull" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus,exists,help][@mouseover,exists,help][] Leap of Faith
+END
+VER 3 000000000000004A "pull" "133706"
+/pull 15
 END
 VER 3 0000000000000075 "purg" "INV_MISC_QUESTIONMARK"
 #showtooltip
@@ -356,11 +359,6 @@ VER 3 0000000000000081 "PvP" "INV_MISC_QUESTIONMARK"
 #/use [mod:shift]
 #/use [mod:ctrl]
 #/use [mod:alt]
-END
-VER 3 000000000000009F "pw" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [talent:6/1,mod,@focus,exists,harm,nodead][talent:6/1,@mouseover,exists,harm,nodead][talent:6/1] Purge the Wicked
-/cast [mod,@focus,exists,harm,nodead][@mouseover,exists,harm,nodead][] Shadow Word: Pain
 END
 VER 3 00000000000000CA "pyr" "134400"
 #showtooltip
@@ -378,14 +376,14 @@ VER 3 00000000000000BC "rc" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus,exists,help][@mouseover,exists,nodead,help][] Remove Corruption
 END
+VER 3 00000000000000AC "re" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [mod,@focus,exists,help][@mouseover,exists,nodead,help][] Rejuvenation
+END
 VER 3 00000000000000AF "re" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [nomod,@mouseover,exists,nodead,help][nomod] Regrowth
 /cast [mod] Nature's Swiftness
-END
-VER 3 00000000000000AC "re" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [mod,@focus,exists,help][@mouseover,exists,nodead,help][] Rejuvenation
 END
 VER 3 000000000000005D "rea" "INV_MISC_QUESTIONMARK"
 #showtooltip Soul Reaper
@@ -421,17 +419,17 @@ VER 3 000000000000009D "rt" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@player][nomod,@mouseover,exists,help,nodead][] Rapture
 END
+VER 3 0000000000000092 "s" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [nomod,@mouseover,harm,exists][nomod] Fire Blast
+/cast [mod] Frostbolt
+END
 VER 3 000000000000004F "s" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod:shift] Necrotic Strike
 /cast [talent:1/3] Clawing Shadows
 /cast Scourge Strike
 #/cast [@pettarget] claw
-END
-VER 3 0000000000000092 "s" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [nomod,@mouseover,harm,exists][nomod] Fire Blast
-/cast [mod] Frostbolt
 END
 VER 3 00000000000000A0 "sch" "INV_MISC_QUESTIONMARK"
 #showtooltip

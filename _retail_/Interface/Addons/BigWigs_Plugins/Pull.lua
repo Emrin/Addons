@@ -311,7 +311,7 @@ function plugin:BigWigs_OnBossWin()
 end
 
 function plugin:BigWigs_OnBossEngage(_, module)
-	if module and module.journalId then
+	if module and module:GetJournalID() then
 		local soundName = self.db.profile.engageSound
 		if soundName ~= "None" then
 			local sound = media:Fetch(SOUND, soundName, true)
@@ -345,7 +345,10 @@ SlashCmdList.BIGWIGSPULL = function(input)
 		if IsInGroup() then
 			local _, _, _, _, _, _, _, id = GetInstanceInfo()
 			local instanceId = tonumber(id) or 0
-			SendAddonMessage("D4", ("PT\t%s\t%d"):format(input, instanceId), IsInGroup(2) and "INSTANCE_CHAT" or "RAID") -- DBM message
+			local name = plugin:UnitName("player")
+			local realm = GetRealmName()
+			local normalizedPlayerRealm = realm:gsub("[%s-]+", "") -- Has to mimic DBM code
+			SendAddonMessage("D5", ("%s-%s\t1\tPT\t%s\t%d"):format(name, normalizedPlayerRealm, input, instanceId), IsInGroup(2) and "INSTANCE_CHAT" or "RAID") -- DBM message
 		end
 	else
 		BigWigs:Print(L.requiresLeadOrAssist)

@@ -1,9 +1,15 @@
 
 RoutesDB = {
 	["profileKeys"] = {
+		["Pokipoki - Draenor"] = "Default",
+		["Crystalol - Draenor"] = "Default",
+		["Nolifey - Ravencrest"] = "Default",
 		["Cutetroll - Draenor"] = "Default",
-		["Leafgirl - Silvermoon"] = "Default",
 		["Unchill - Draenor"] = "Default",
+		["Lifey - Silvermoon"] = "Default",
+		["Pixiel - Draenor"] = "Default",
+		["Leafgirl - Silvermoon"] = "Default",
+		["Nolifey - Draenor"] = "Default",
 	},
 	["global"] = {
 		["routes"] = {
@@ -3152,8 +3158,8 @@ RoutesDB = {
 					},
 					["selection"] = {
 						["Elethium Deposit"] = "Elethium Deposit",
-						["Vigil's Torch"] = "Vigil's Torch",
 						["Rich Laestrite Deposit"] = "Rich Laestrite Deposit",
+						["Vigil's Torch"] = "Vigil's Torch",
 						["Nightshade"] = "Nightshade",
 						["Rich Phaedrum Deposit"] = "Rich Phaedrum Deposit",
 						["Rich Elethium Deposit"] = "Rich Elethium Deposit",

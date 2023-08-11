@@ -38,6 +38,11 @@ local IGNORED_PROFESSIONS = {
 	[193290] = true, -- Herbalism Skills
 	[278910] = true, -- Archaeology
 }
+do
+	if not IsAddOnLoaded("Blizzard_Professions") then
+		LoadAddOn("Blizzard_Professions")
+	end
+end
 
 
 
@@ -251,7 +256,7 @@ function private.FSMCreate()
 					private.defaultUISwitchBtn = UIElements.New("ActionButton", "switchBtn")
 						:SetSize(60, Environment.IsRetail() and 15 or 16)
 						:SetFont("BODY_BODY3_MEDIUM")
-						:AddAnchor("TOPRIGHT", Environment.IsRetail() and -27 or -60, Environment.IsRetail() and -4 or -16)
+						:AddAnchor("TOPRIGHT", Environment.IsRetail() and -50 or -60, Environment.IsRetail() and -4 or -16)
 						:SetRelativeLevel(Environment.IsRetail() and 600 or 3)
 						:DisableClickCooldown()
 						:SetText(L["TSM4"])
@@ -314,6 +319,9 @@ function private.FSMCreate()
 			:SetOnEnter(function(context)
 				assert(not context.frame)
 				if Environment.IsRetail() and not context.craftingPage then
+					if not IsAddOnLoaded("Blizzard_Professions") then
+						LoadAddOn("Blizzard_Professions")
+					end
 					-- Workaround to allow multi-crafting
 					local craftingPage = CreateFrame("Frame", nil, nil, "ProfessionsCraftingPageTemplate")
 					craftingPage:Hide()
@@ -335,9 +343,9 @@ function private.FSMCreate()
 				context.frame:Draw()
 				private.isVisible = true
 				for addonTag, func in pairs(private.apiCallbacks) do
-					local apiFuncStartTime = debugprofilestop()
+					local apiFuncStartTime = GetTimePreciseSec()
 					func(true, context.frame:_GetBaseFrame())
-					Log.Info("API function (%s) took %d ms", addonTag, floor(debugprofilestop() - apiFuncStartTime + 0.5))
+					Log.Info("API function (%s) took %0.5fs", addonTag, GetTimePreciseSec() - apiFuncStartTime)
 				end
 			end)
 			:SetOnExit(function(context)
@@ -349,9 +357,9 @@ function private.FSMCreate()
 					UpdateDefaultCraftButton()
 				end
 				for addonTag, func in pairs(private.apiCallbacks) do
-					local apiFuncStartTime = debugprofilestop()
+					local apiFuncStartTime = GetTimePreciseSec()
 					func(false)
-					Log.Info("API function (%s) took %d ms", addonTag, floor(debugprofilestop() - apiFuncStartTime + 0.5))
+					Log.Info("API function (%s) took %0.5fs", addonTag, GetTimePreciseSec() - apiFuncStartTime)
 				end
 			end)
 			:AddTransition("ST_CLOSED")

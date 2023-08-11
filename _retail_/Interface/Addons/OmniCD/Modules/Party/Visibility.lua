@@ -42,12 +42,12 @@ local PARTY_UNIT = {
 
 local INSTANCETYPE_EVENTS = E.preCata and {
 	arena = {
-		'PLAYER_REGEN_DISABLED',
+
 		'UPDATE_UI_WIDGET',
 	},
 	pvp = {
 		'CHAT_MSG_BG_SYSTEM_NEUTRAL',
-		'PLAYER_REGEN_DISABLED',
+
 		'UPDATE_UI_WIDGET',
 	}
 } or {
@@ -61,15 +61,18 @@ local INSTANCETYPE_EVENTS = E.preCata and {
 		'PLAYER_FLAGS_CHANGED',
 	},
 	arena = {
-		'PLAYER_REGEN_DISABLED',
+
 		'UPDATE_UI_WIDGET',
 	},
 	pvp = {
 		'CHAT_MSG_BG_SYSTEM_NEUTRAL',
 		'UPDATE_UI_WIDGET',
-		'PLAYER_REGEN_DISABLED',
+
 	}
 }
+if E.isWOTLKC then
+	INSTANCETYPE_EVENTS.raid = { 'ENCOUNTER_END' }
+end
 
 function P:UnregisterZoneEvents()
 	local registeredZoneEvents = self.currentZoneEvents
@@ -96,17 +99,18 @@ local function IsInShadowlands()
 	local mapID = C_Map and C_Map.GetBestMapForUnit("player")
 	if mapID then
 		local mapInfo = C_Map.GetMapInfo(mapID)
-		while mapInfo.mapType > 2 do
-			mapID = mapInfo.parentMapID
-			mapInfo =  C_Map.GetMapInfo(mapID)
+		while mapInfo do
+			if mapInfo.mapType == 2 then
+				return mapInfo.mapID == 1550
+			end
+			mapInfo = C_Map.GetMapInfo(mapInfo.parentMapID)
 		end
-		return mapID == 1550
 	end
 end
 
 local function AnchorFix()
 	P:UpdatePosition()
-	P.callbackTimers.anchorDelay = nil
+	P.callbackTimers.anchorBackup = nil
 end
 
 local function SendRequestSync()
@@ -114,7 +118,7 @@ local function SendRequestSync()
 	if success then
 		CM:RequestSync()
 		P.joinedNewGroup = false
-		P.callbackTimers.syncTimer = nil
+		P.callbackTimers.syncDelay = nil
 	else
 		C_Timer.After(2, SendRequestSync)
 	end
@@ -130,7 +134,7 @@ local function UpdateRosterInfo(force)
 	P.disabled = not P.isInTestMode and (P.disabledZone or size == 0
 		or (size == 1 and P.isUserDisabled)
 		or (GetNumGroupMembers(LE_PARTY_CATEGORY_HOME) == 0 and not E.profile.Party.visibility.finder)
-		or (size > E.profile.Party.visibility.size))
+		or (size > E.profile.Party.groupSize[P.zone]))
 
 	if P.disabled then
 		if oldDisabled == false then
@@ -163,6 +167,7 @@ local function UpdateRosterInfo(force)
 
 			P.groupInfo[guid] = nil
 			info.bar:Hide()
+
 
 			local capGUID = info.auras.capTotemGUID
 			if capGUID then
@@ -301,16 +306,16 @@ local function UpdateRosterInfo(force)
 	CM:EnqueueInspect()
 
 	if P.joinedNewGroup or force then
-		if P.callbackTimers.syncTimer then
-			P.callbackTimers.syncTimer:Cancel()
+		if P.callbackTimers.syncDelay then
+			P.callbackTimers.syncDelay:Cancel()
 		end
-		P.callbackTimers.syncTimer = C_Timer.NewTicker(size == 1 and 0 or MSG_INFO_REQUEST_DELAY, SendRequestSync, 1)
+		P.callbackTimers.syncDelay = C_Timer.NewTicker(size == 1 and 0 or MSG_INFO_REQUEST_DELAY, SendRequestSync, 1)
 	end
 
-	if P.callbackTimers.anchorDelay then
-		P.callbackTimers.anchorDelay:Cancel()
+	if P.callbackTimers.anchorBackup then
+		P.callbackTimers.anchorBackup:Cancel()
 	end
-	P.callbackTimers.anchorDelay = C_Timer.NewTicker(6, AnchorFix, (E.customUF.active == "VuhDo" or E.customUF.active == "HealBot") and 2 or 1)
+	P.callbackTimers.anchorBackup = C_Timer.NewTicker(6, AnchorFix, (E.customUF.active == "VuhDo" or E.customUF.active == "HealBot") and 2 or 1)
 
 	CM:ToggleCooldownSync()
 end
@@ -337,7 +342,7 @@ end
 
 
 
-function P:GROUP_JOINED(arg1,arg2)
+function P:GROUP_JOINED()
 	if self.isInTestMode then
 		self:Test()
 	end
@@ -346,7 +351,7 @@ function P:GROUP_JOINED(arg1,arg2)
 	if self.isInArena and C_PvP_IsRatedSoloShuffle() then
 		self:ResetAllIcons("joinedPvP")
 		if not self.callbackTimers.arenaTicker then
-			self:RegisterEvent('PLAYER_REGEN_DISABLED')
+
 			self.callbackTimers.arenaTicker = C_Timer.NewTicker(6, inspectAllGroupMembers, 5)
 		end
 	end
@@ -378,9 +383,9 @@ function P:PLAYER_ENTERING_WORLD(isInitialLogin, isReloadingUi, isRefresh)
 		return
 	end
 
-	local key = self.isInTestMode and self.testZone or instanceType
-	key = key == "none" and E.profile.Party.noneZoneSetting or (key == "scenario" and E.profile.Party.scenarioZoneSetting) or key
-	E.db = E.profile.Party[key]
+	local zone = self.isInTestMode and self.testZone or instanceType
+	zone = zone == "none" and E.profile.Party.noneZoneSetting or (zone == "scenario" and E.profile.Party.scenarioZoneSetting) or zone
+	E.db = E.profile.Party[zone]
 	self.db = E.db
 
 	for key, frame in pairs(self.extraBars) do
@@ -418,6 +423,7 @@ function P:PLAYER_ENTERING_WORLD(isInitialLogin, isReloadingUi, isRefresh)
 		end
 	end
 
+
 	self:GROUP_ROSTER_UPDATE(true, isRefresh)
 end
 
@@ -439,21 +445,26 @@ function P:UPDATE_UI_WIDGET(widgetInfo)
 	end
 end
 
+function P:PLAYER_REGEN_ENABLED()
+	self.inLockdown = false
+	self:UpdatePassThroughButtons()
+end
+
 function P:PLAYER_REGEN_DISABLED()
+	self.inLockdown = true
 	if self.callbackTimers.arenaTicker then
 		self.callbackTimers.arenaTicker:Cancel()
 		self.callbackTimers.arenaTicker = nil
 	end
-	self:UnregisterEvent('PLAYER_REGEN_DISABLED')
+
 end
 
 function P:PLAYER_FLAGS_CHANGED(unitTarget)
-	if unitTarget ~= "player" or InCombatLockdown() then return end
+	if unitTarget ~= "player" or self.inLockdown then return end
 	local oldpvp = self.isPvP
 	self.isPvP = C_PvP.IsWarModeDesired()
 	if oldpvp ~= self.isPvP then
-		self:UpdateBars()
-		self:UpdateExBars()
+		self:UpdateAllBars()
 		CM:EnqueueInspect(true)
 	end
 end

@@ -1,2 +1,3 @@
 
-ElitismLog = nil
+ElitismLog = {
+}

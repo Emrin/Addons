@@ -15,7 +15,7 @@ mod.respawnTime = 30
 function mod:GetOptions()
 	return {
 		"stages",
-		96435, -- Tears of Blood
+		{96435, "CASTBAR"}, -- Tears of Blood
 		96423, -- Lash of Anguish
 		96457, -- Wave of Agony
 		-2702, -- Camouflage
@@ -81,7 +81,7 @@ function mod:Camouflage()
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < 55 then
 		self:UnregisterUnitEvent(event, unit)
 		self:MessageOld("stages", "yellow", nil, CL.soon:format(CL.stage:format(2)), false)

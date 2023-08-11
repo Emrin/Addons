@@ -137,7 +137,7 @@ end
 
 local wasfishing = false;
 local OutfitterEvents = {};
-OutfitterEvents["PLAYER_REGEN_DISABLE"] = function()
+OutfitterEvents["PLAYER_REGEN_DISABLED"] = function()
 	if ( FBI:ReadyForFishing() ) then
 		local vOut,_,_ = Outfitter:FindOutfitByStatID("FISHING");
 		Outfitter:RemoveOutfit(vOut);

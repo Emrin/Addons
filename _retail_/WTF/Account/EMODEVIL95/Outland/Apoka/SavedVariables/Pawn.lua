@@ -1,6 +1,6 @@
 
 PawnOptions = {
-	["LastVersion"] = 2.0606,
+	["LastVersion"] = 2.0718,
 	["LastPlayerFullName"] = "Apoka-Outland",
 	["AutoSelectScales"] = true,
 	["ItemLevels"] = {
@@ -11,8 +11,8 @@ PawnOptions = {
 		}, -- [1]
 		{
 			["ID"] = 158075,
-			["Level"] = 109,
-			["Link"] = "|cffe6cc80|Hitem:158075::::::::50:250::11:4:6316:4932:4933:1523::::|h[Heart of Azeroth]|h|r",
+			["Level"] = 155,
+			["Link"] = "|cffe6cc80|Hitem:158075::::::::50:250::11:4:6316:4932:4933:1523::::::|h[Heart of Azeroth]|h|r",
 		}, -- [2]
 		{
 			["ID"] = 165462,
@@ -84,6 +84,11 @@ PawnOptions = {
 			["Level"] = 115,
 			["Link"] = "|cffa335ee|Hitem:165632::::::::50:250::81:3:5844:1527:4786:1:28:1401:::|h[Sentinel's Greatblade]|h|r",
 		}, -- [16]
+		{
+			["ID"] = 44802,
+			["Level"] = 1,
+			["Link"] = "|cffffffff|Hitem:44802::::::::50:250::11::1:28:390:::::|h[Borrowed Egg Basket]|h|r",
+		}, -- [17]
 	},
 	["LastKeybindingsSet"] = 1,
 }

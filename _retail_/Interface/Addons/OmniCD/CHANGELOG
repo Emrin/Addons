@@ -1,6 +1,153 @@
 ------------------------------------------------------------------------------
 -- Dragonflight
 --
+v10.1.5.2764
+	JULY 24, 2023 Hotfixes
+	- Angel's Mercy's cooldown reduction is now 25% effective in PvP Combat.
+	- Impish Instincts now reduces the cooldown of Demonic Circle by 3 seconds when triggered (was 2 seconds).
+	Fixed an issue where Bestow Weyrnstone would persist when casted on another player
+	Added Undulating Sporecloak, Well-Honed Insticts (passive procs)
+
+v10.1.5.2763
+	Symbol of Hope will correctly increase Obsidian Scales' cd recovery rate for Augmentation spec.
+
+v10.1.5.2762
+	Oppressing Roar w/ Overawe will correctly go on cooldown when used
+	Overawe will correctly reduce Oppressing Roar's cooldown for each enrage effect dispelled
+	Upheaval w/ Font of Magic will correctly go on cooldown when used
+
+v10.1.5.2761
+	Healbot fix
+
+v10.1.5.2760
+	Patch 10.1.5 updates
+
+v10.1.0.2759
+	nil err fix
+
+v10.1.0.2758
+	Fixed Rage of the Sleeper CD 90>60s
+	Fixed Improved Mass Dispel CDR 25>20s
+	Fixed Shadow Blades CD 180>120s
+
+v10.1.0.2757
+	Fixed Quick Witted CDR when interrupting Penance
+	Fixed Invigorating Shadowdust CDR
+	Fixed nil error on Flow State removal
+	Fixed Ironbark CD 60>45s (Guardian, APRIL 5, 2023 hotfixes)
+
+v10.1.0.2756
+	JUNE 5, 2023 hotfixes
+		Amplify Curse CD 30>60s
+		Teachings of the Satyr CDR 10>15s
+		Thunderlord CDR 1>1.5s
+	MAY 15, 2023 hotfixes
+		BM HUnter, Aberrus (4) Set bonus CDR 1>2s
+		Sharpen Blade CD 25>30s
+
+v10.1.0.2755
+	CDR fix/updates
+		Forbearance will no longer be affected by other CDR (e.g. Resolute Defender on Divine Shield)
+		Fixed Uther's Councel CDR for 10.1 (rank1 20% to rank2 15%/30%)
+		Fixed Inmost Light CDR for 10.1 (15% to 25%)
+		Fixed Chi Surge CDR (was incorrectly capped at 16 sec instead of 20 sec)
+		Updated Keg Smash CDR (was reducing Fortifying Brew by 5 sec instead of 3 sec. Bug fixed in 10.1)
+		Updated Tiger Palm CDR (was reducing to all Brew CD by 0.5 sec instead of 1 sec. Bug fixed in 10.1)
+	CD sync revamped
+		Fixed an issue that caused certain cooldowns to sync improperly. Recipients now check remaining time over starting time
+		Periodic sync has been removed and will now sync the followings directly like others
+			% chance to incur no cooldown
+			% chance to have its cooldown instantly reset when used
+		Messages are now compressed and will no longer communicates with older versions
+	10.1.5 compatibility updates
+		Frames created while in combat will have tooltips disabled until you leave combat
+
+v10.1.0.2753
+	Bar position will correctly update in combat when using non-Group sorting in Arena
+	Fixed Exhilaration and Trueshot CDR
+
+v10.1.0.2752
+	Max Number of Visible Icons will correctly work with Display Inactive Icons disabled
+	Healing Stream Totem will correctly add a charge if you have both talents as Restoration spec
+	Fixed Fortitude of the Bear CD
+
+v10.1.0.2751
+	Added Season 2 Obsidian PvP Trinkets
+	Added Embers of Neltharion Tier Set bonuses
+	Added option to use ElvUI's timer (in General menu)
+	Fixed spell tooltips showing a blank text if the spell hasn't been cached yet
+	Fixed option panel dropdown menu tooltip not showing
+
+v10.1.0.2750
+	Patch 10.1 updates
+	Blessing of the Bronze CDR added to non-Evoker classes
+
+v10.0.7.2748
+	Fixed CDR to Incarn: Guardian of Ursoc
+	nil error fix (nil mapInfo, nil info on sorting extraBars)
+	Added ElvUI Raid Wide Sorting
+
+v10.0.7.2747
+	Added option to limit the number of visible icons per unit
+	Added option to move icon names vertically
+	Added option to scale status bar names
+	Added option to rename Extra Bars
+	Fixed Divine Protection for Rets
+	Fixed Divine Purpose procs for Rets (HoJ CDR)
+	Fixed Fire Breath CD reduction for Preservation
+	Fixed anchor visibility not updating on zone change
+	Visibility by Group Size can be configured for each zone separately
+	Empowered spell will reset if the cast fails (simplified)
+	Lib updates - cell padding, flash button fix, dropdown fix
+
+	Hotfixes
+	MARCH 28, 2023
+	Holy Priest
+	Fixed a bug causing Symbol of Hope to reduce the cooldown of both Divine Protection and Shield of Vengeance for Retribution
+	Paladins. It will now only reduce the cooldown of Divine Protection.
+
+	10.1 PTR fixes
+
+v10.0.7.2746
+	Cloudburst Totem will correctly replace Healing Stream Totem
+	Casting Echo will correctly interact with Just in Time (Talent)
+	Tooltip frames now uses a generic frames other addons can modify
+	Removed Util\TooltipID (moved to dev ver)
+	Cleaned up OmniCC support
+	Removed ElvUI CD text support
+	CD timers will explicitly use Blizzard's CD text
+	ElvUI user can safely? enable Blizzard's CD text as WAs no longer show duplicate text
+	Fixed lib load order
+
+v10.0.7.2745
+	Patch 10.0.7 spell & modifier updates
+	Fixed Forbearance gray out effect incorrectly showing on Lay on Hands when it's used
+	Added additional sorting for the Raid Bar
+	Added UseIconAlpha for the Raid Bar
+	Interrupt spell types are no longer visible in the Raid CD tab
+	Addon will no longer sync with older versions (inspection will continue to work)
+
+	Lib updates
+	Battle Res Plugin:
+		Fixed Arclight Vital Connector (DF engineering) not consuming a brez charge instantly
+
+v10.0.5.2744
+	Fixed Celestial Alignment (Incarnation) with Orbital Strike talented
+	Fixed pixel shifting on icon frames causing malalignment
+	Fixed option panel taint error
+
+v10.0.5.2743
+	CD resets on encounter end will correctly use the unmodified base cooldown as a reference
+	Icons are now click through while Tooltips are enabled
+	Fixed Army of the Damned CDR by Epidemic
+	Fixed Blessing of Santuary CD
+	Fixed Kleptomania icon texture
+	Feb 6, 2023 Hotfixes
+
+v10.0.5.2742
+	Fixed missing talents after Patch 10.0.5
+	Avatar for Protection spec has been added as a separate spell
+
 v10.0.5.2741
 	Patch 10.0.5 updates
 
@@ -618,6 +765,44 @@ v2.5.0
 ------------------------------------------------------------------------------
 -- WOTLKC
 --
+v3.4.2.2762
+	bump toc
+
+v3.4.1.2755
+	Fixed an issue that prevented CD bars from attaching to the party frames
+	Readiness will no longer reset Roar of Sacrifice
+	Added arena season 7, 8 equip bonus items
+
+v3.4.1.2754
+	Fixed a critical error that caused all CD modifiers to be ignored. Incompatible table format after merging with retail wow
+	Fixed spells affected by Forbearance
+	Added arena season 7 set items
+
+v3.4.1.2752
+	Max Number of Visible Icons will correctly work with Display Inactive Icons disabled
+
+v3.4.1.2751
+	3.4.2 font flag fix
+	Added option to use ElvUI's timer (in General menu)
+	Fixed spell tooltips showing a blank text if the spell hasn't been cached yet
+	Fixed option panel dropdown menu tooltip not showing
+
+v3.4.1.2750
+	minor bug fixes
+
+v3.4.1.2744
+	Fixed option panel taint error
+
+v3.4.1.2743
+	Class abilities with a base cooldown of 2 minutes or more (with some exceptions, such as Reincarnation, Ritual of
+	Doom, Astral Recall, and Lay on Hands) will reset when an encounter ends
+	Added rest of WG pvp trinkets
+	Fixed nil error when Cold Snap is used while Frost Ward isn't being tracked
+	Jan 31, 2023 Hotfixes
+
+v3.4.1.2742
+	Titan-Forged Rune of Determination merged to PvP Trinket
+
 v3.4.1.2740
 	Fixed Set bonus inspection
 	Added Season 6 tier set bonuses
@@ -702,8 +887,19 @@ v2.6.01-bcc
 ------------------------------------------------------------------------------
 -- classic era
 --
-v1.14.3.2741
-	version update
+v1.14.3.2754
+	Fixed a critical error that caused all CD modifiers to be ignored. Incompatible table format after merging with retail wow
+
+v1.14.3.2752
+	Max Number of Visible Icons will correctly work with Display Inactive Icons disabled
+
+v1.14.3.2751
+	Added option to use ElvUI's timer (in General menu)
+	Fixed spell tooltips showing a blank text if the spell hasn't been cached yet
+	Fixed option panel dropdown menu tooltip not showing
+
+v1.14.3.2750
+	minor bug fixes
 
 v1.14.3.2724
 	Fixed sync for cross realm group members

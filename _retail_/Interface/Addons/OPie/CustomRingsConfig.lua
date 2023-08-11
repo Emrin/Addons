@@ -1,9 +1,9 @@
-local api, _, T = {}, ...
+local COMPAT, api, _, T = select(4,GetBuildInfo()), {}, ...
 local PC, RK, ORI, config = T.OPieCore, T.RingKeeper, OPie.UI, T.config
-local L, MODERN = T.L, select(4,GetBuildInfo()) >= 8e4
+local L, MODERN = T.L, COMPAT >= 8e4
 local AB = assert(T.ActionBook:compatible(2,23), "A compatible version of ActionBook is required")
-local gfxBase, EV = [[Interface\AddOns\OPie\gfx\]], T.Evie
-local CreateEdge = T.CreateEdge
+local EV, TS, XU, CreateEdge = T.Evie, T.TenSettings, T.exUI, T.CreateEdge
+local GameTooltip = T.NotGameTooltip or GameTooltip
 
 local FULLNAME, SHORTNAME do
 	function EV.PLAYER_LOGIN()
@@ -72,13 +72,24 @@ local function PlayCheckboxSound(self)
 	PlaySound(SOUNDKIT[self:GetChecked() and "IG_MAINMENU_OPTION_CHECKBOX_ON" or "IG_MAINMENU_OPTION_CHECKBOX_OFF"])
 end
 local function SetCursor(tex)
-	_G.SetCursor((type(tex) == "number" or tex == (gfxBase .. "opie_ring_icon")) and (MODERN and "Interface/Icons/Temp" or "Interface/Icons/INV_Crate_01") or tex)
+	tex = type(tex) == "string" and GetFileIDFromPath(tex) or tex
+	_G.SetCursor(type(tex) == "number" and tex > 0 and tex or tex and 132761)
 end
+local CallSetRing
 local function SaveRingVersion(name, liveData)
 	local key = "RKRing#" .. name
 	if not config.undo:search(key) then
-		config.undo:push(key, RK.SetRing, RK, name, liveData == true and RK:GetRingDescription(name) or liveData or false)
+		if liveData == true then
+			liveData = RK:GetRingDescription(name) or false
+		end
+		config.undo:push(key, CallSetRing, name, liveData)
 	end
+end
+function CallSetRing(msg, ...)
+	if msg == "archive-unwind" then
+		SaveRingVersion((...), true)
+	end
+	RK:SetRing(...)
 end
 local function CreateToggleButton(parent)
 	local button = CreateFrame("CheckButton", nil, parent)
@@ -107,23 +118,7 @@ local function CreateButton(parent, width)
 	btn:SetWidth(width or 150)
 	return btn
 end
-local function setIcon(self, path, ext, slice)
-	if type(slice) == "table" and slice[1] == "macrotext" and type(slice[2]) == "string" then
-		local p2 = path or "interface/icons/temp"
-		local lp = type(p2) == "string" and p2:gsub("\\", "/"):lower()
-		if lp == "interface/icons/temp" or lp == "interface/icons/inv_misc_questionmark" then
-			for sidlist in slice[2]:gmatch("{{spell:([%d/]+)}}") do
-				for sid in sidlist:gmatch("%d+") do
-					local _,_,sico = GetSpellInfo(tonumber(sid))
-					if sico then
-						path = sico
-						break
-					end
-				end
-				if path then break end
-			end
-		end
-	end
+local function setIcon(self, path, ext)
 	self:SetTexture(path or "Interface/Icons/Inv_Misc_QuestionMark")
 	self:SetTexCoord(0,1,0,1)
 	if not ext then return end
@@ -141,7 +136,7 @@ local function GetPositiveFileIDFromPath(path)
 	return id and id > 0 and id or nil
 end
 
-local ringContainer, ringDetail, sliceDetail, newSlice, newRing
+local ringContainer, ringDetail, sliceDetail, newSlice, newRing, editorHost
 local panel = config.createPanel(L"Custom Rings", "OPie")
 	panel.desc:SetText(L"Customize OPie by modifying existing rings, or creating your own.")
 local ringDropDown = CreateFrame("Frame", "RKC_RingSelectionDropDown", panel, "UIDropDownMenuTemplate")
@@ -150,6 +145,13 @@ local ringDropDown = CreateFrame("Frame", "RKC_RingSelectionDropDown", panel, "U
 local btnNewRing = CreateButton(panel)
 	btnNewRing:SetPoint("LEFT", ringDropDown, "RIGHT", -5, 3)
 	btnNewRing:SetText(L"New Ring...")
+local dragBackdrop = CreateFrame("Frame") do
+	dragBackdrop:Hide()
+	dragBackdrop:SetFrameStrata("BACKGROUND")
+	dragBackdrop:SetAllPoints()
+	dragBackdrop:EnableMouse(true)
+	dragBackdrop:SetScript("OnMouseDown", dragBackdrop.Hide)
+end
 
 newRing = CreateFrame("Frame") do
 	newRing:SetSize(400, 115)
@@ -159,7 +161,7 @@ newRing = CreateFrame("Frame") do
 	local name, snap = config.ui.lineInput(newRing, true, 240), config.ui.lineInput(newRing, true, 240)
 	local nameLabel, snapLabel = newRing:CreateFontString(nil, "OVERLAY", "GameFontHighlight"), snap:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 	local accept, cancel = CreateButton(newRing, 125), CreateButton(newRing, 125)
-	local importNested = T.TenSettings:CreateOptionsCheckButton(nil, newRing)
+	local importNested = TS:CreateOptionsCheckButton(nil, newRing)
 	local state = {selected=toggle1, buncount=0}
 	title:SetPoint("TOP", 0, -3)
 	toggle1:SetPoint("TOPLEFT", 20, -25)
@@ -223,7 +225,7 @@ newRing = CreateFrame("Frame") do
 		importNested:SetShown(hasBundledRings)
 		accept:SetEnabled(type(nameText) == "string" and nameText:match("%S") and snapOK)
 		if newRing:IsVisible() then
-			T.TenSettings:ShowFrameOverlay(panel, newRing)
+			TS:ShowFrameOverlay(panel, newRing)
 		end
 	end
 	local function toggle(self)
@@ -293,14 +295,14 @@ newRing = CreateFrame("Frame") do
 		toggle1:Click()
 		accept:Disable()
 		importNested:SetChecked(false)
-		T.TenSettings:ShowFrameOverlay(panel, newRing)
+		TS:ShowFrameOverlay(panel, newRing)
 		name:SetFocus()
 	end)
 end
 
 ringContainer = CreateFrame("Frame", nil, panel) do
 	ringContainer:SetPoint("TOP", ringDropDown, "BOTTOM", 75, 0)
-	ringContainer:SetPoint("BOTTOM", panel, 0, 10)
+	ringContainer:SetPoint("BOTTOM", panel, 0, 6)
 	ringContainer:SetPoint("LEFT", panel, 50, 0)
 	ringContainer:SetPoint("RIGHT", panel, -10, 0)
 	CreateEdge(ringContainer, {edgeFile="Interface/Tooltips/UI-Tooltip-Border", tile=true, edgeSize=14}, nil, 0x7f7f7f)
@@ -340,14 +342,23 @@ ringContainer = CreateFrame("Frame", nil, panel) do
 			if ringContainer.disableSliceDrag then return end
 			PlaySound(832)
 			self.source = api.resolveSliceOffset(self:GetID())
+			dragBackdrop:Show()
 			SetCursor(self.tex:GetTexture())
 		end
+		local function dragAbort(self)
+			local src = self.source
+			if src then
+				SetCursor(nil)
+				dragBackdrop:Hide()
+				self.source = nil
+			end
+			return src
+		end
 		local function dragStop(self)
+			local source = dragAbort(self)
 			if ringContainer.disableSliceDrag then return end
-			local source, x, y = self.source, GetCursorPosition()
-			self.source = nil
+			local x, y = GetCursorPosition()
 			PlaySound(833)
-			SetCursor(nil)
 			local scale, l, b, w, h = self:GetEffectiveScale(), self:GetRect()
 			local dy, dx = math.floor(-(y / scale - b - h-1)/(h+2)), x / scale - l
 			if dx < -2*w or dx > 2*w then return api.deleteSlice(source) end
@@ -356,12 +367,6 @@ ringContainer = CreateFrame("Frame", nil, panel) do
 			if not ringContainer.slices[dest+1] or not ringContainer.slices[dest+1]:IsShown() then return end
 			dest = api.resolveSliceOffset(dest)
 			if dest ~= source then api.moveSlice(source, dest) end
-		end
-		local function dragAbort(self)
-			if self.source then
-				SetCursor(nil)
-				self.source = nil
-			end
 		end
 		for i=0,11 do
 			local ico = createIconButton(nil, ringContainer, i)
@@ -390,7 +395,7 @@ ringContainer = CreateFrame("Frame", nil, panel) do
 			config.ui.HideTooltip(self)
 			if IsAltKeyDown() then
 				self:SetChecked(not self:GetChecked())
-				T.TenSettings:ShowPromptOverlay(panel, L"Custom slice", L"Input a slice action specification:", (L"Example: %s."):format(GREEN_FONT_COLOR_CODE .. '"item", 19019|r'), nil, api.addCustomSlice, 0.95)
+				TS:ShowPromptOverlay(panel, L"Custom slice", L"Input a slice action specification:", (L"Example: %s."):format(GREEN_FONT_COLOR_CODE .. '"item", 19019|r'), nil, api.addCustomSlice, 0.95)
 				return
 			end
 			if newSlice:IsShown() then
@@ -418,15 +423,25 @@ ringContainer = CreateFrame("Frame", nil, panel) do
 end
 ringDetail = CreateFrame("Frame", nil, ringContainer) do
 	ringDetail:SetAllPoints()
-	ringDetail:SetScript("OnKeyDown", function(self, key)
-		self:SetPropagateKeyboardInput(key ~= "ESCAPE")
-		if key == "ESCAPE" then
-			api.deselectRing()
-		end
-	end)
-	ringDetail.name = CreateFrame("EditBox", nil, ringDetail)
-	ringDetail.name:SetHeight(20) ringDetail.name:SetPoint("TOPLEFT", 7, -7) ringDetail.name:SetPoint("TOPRIGHT", -7, -7) ringDetail.name:SetFontObject(GameFontNormalLarge) ringDetail.name:SetAutoFocus(false)
-	prepEditBox(ringDetail.name, function(self) api.setRingProperty("name", self:GetText()) end)
+	TS:EscapeCallback(ringDetail, function() api.deselectRing() end)
+	ringDetail.name = CreateFrame("EditBox", nil, ringDetail) do
+		local e = ringDetail.name
+		e:SetHeight(24)
+		e:SetPoint("TOPLEFT", 5, -5)
+		e:SetPoint("TOPRIGHT", -5, -5)
+		e:SetTextInsets(2,2,2,2)
+		e:SetFontObject(GameFontNormalLarge)
+		e:SetAutoFocus(false)
+		prepEditBox(e, function(self) api.setRingProperty("name", self:GetText()) end)
+		local ht = e:CreateTexture(nil, "BACKGROUND", nil, -3)
+		ht:SetColorTexture(1,1,1,0.08)
+		ht:SetAllPoints()
+		ht:Hide()
+		local function hideHilight() ht:Hide() end
+		e:SetScript("OnEnter", function(self) if not self:HasFocus() then ht:Show() end end)
+		e:SetScript("OnLeave", hideHilight)
+		e:HookScript("OnEditFocusGained", hideHilight)
+	end
 	local tex = ringDetail.name:CreateTexture()
 	tex:SetHeight(1) tex:SetPoint("BOTTOMLEFT", 0, -2) tex:SetPoint("BOTTOMRIGHT", 0, -2)
 	tex:SetColorTexture(1,0.82,0, 0.5)
@@ -438,12 +453,12 @@ ringDetail = CreateFrame("Frame", nil, ringContainer) do
 	ringDetail.binding = config.createBindingButton(ringDetail)
 	ringDetail.bindingContainerFrame = panel
 	ringDetail.binding:SetPoint("TOPLEFT", 267, -68) ringDetail.binding:SetWidth(265)
-	function ringDetail:SetBinding(bind) return api.setRingProperty("hotkey", bind) end
+	function ringDetail:SetBinding(bind) return api.setRingProperty("hotkey", bind or nil) end
 	function ringDetail:OnBindingAltClick() self:ToggleAlternateEditor(api.getRingProperty("hotkey")) end
 	ringDetail.binding.label = ringDetail.scope:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 	ringDetail.binding.label:SetPoint("TOPLEFT", ringDetail, "TOPLEFT", 10, -73)
 	ringDetail.binding.label:SetText(L"Binding:")
-	ringDetail.bindingQuarantine = T.TenSettings:CreateOptionsCheckButton(nil, ringDetail)
+	ringDetail.bindingQuarantine = TS:CreateOptionsCheckButton(nil, ringDetail)
 	ringDetail.bindingQuarantine:SetHitRectInsets(0,0,0,0)
 	ringDetail.bindingQuarantine:SetPoint("RIGHT", ringDetail.binding, "LEFT", 0, 0)
 	ringDetail.bindingQuarantine:SetScript("OnClick", function(self) PlayCheckboxSound(self) api.setRingProperty("hotkey", api.getRingProperty("quarantineBind")) end)
@@ -451,7 +466,7 @@ ringDetail = CreateFrame("Frame", nil, ringContainer) do
 	ringDetail.bindingQuarantine:SetScript("OnLeave", config.ui.HideTooltip)
 	ringDetail.bindingQuarantine.tooltipText = L"To enable the default binding for this ring, check this box or change the binding."
 	do -- ringDetail.rotation
-		local s, sliderLeftMargin, centerLine = T.TenSettings:CreateOptionsSlider(ringDetail, nil, 250)
+		local s, sliderLeftMargin, centerLine = TS:CreateOptionsSlider(ringDetail, nil, 250)
 		s:SetPoint("TOPLEFT", 270-sliderLeftMargin, -95)
 		s:SetMinMaxValues(0, 345)
 		s:SetValueStep(15)
@@ -464,22 +479,22 @@ ringDetail = CreateFrame("Frame", nil, ringContainer) do
 		s.text:Show()
 		ringDetail.rotation, s.label = s, s.text
 	end
-	ringDetail.opportunistCA = T.TenSettings:CreateOptionsCheckButton(nil, ringDetail)
+	ringDetail.opportunistCA = TS:CreateOptionsCheckButton(nil, ringDetail)
 	ringDetail.opportunistCA:SetPoint("TOPLEFT", 266, -118)
 	ringDetail.opportunistCA:SetMotionScriptsWhileDisabled(1)
 	ringDetail.opportunistCA.Text:SetText(L"Pre-select a quick action slice")
 	ringDetail.opportunistCA:SetScript("OnEnter", config.ui.ShowControlTooltip)
 	ringDetail.opportunistCA:SetScript("OnLeave", config.ui.HideTooltip)
 	ringDetail.opportunistCA:SetScript("OnClick", function(self) PlayCheckboxSound(self) api.setRingProperty("noOpportunisticCA", (not self:GetChecked()) or nil) api.setRingProperty("noPersistentCA", (not self:GetChecked()) or nil) end)
-	ringDetail.hiddenRing = T.TenSettings:CreateOptionsCheckButton(nil, ringDetail)
+	ringDetail.hiddenRing = TS:CreateOptionsCheckButton(nil, ringDetail)
 	ringDetail.hiddenRing:SetPoint("TOPLEFT", ringDetail.opportunistCA, "BOTTOMLEFT", 0, 2)
 	ringDetail.hiddenRing.Text:SetText(L"Hide this ring")
 	ringDetail.hiddenRing:SetScript("OnClick", function(self) PlayCheckboxSound(self) api.setRingProperty("internal", self:GetChecked() and true or nil) end)
-	ringDetail.embedRing = T.TenSettings:CreateOptionsCheckButton(nil, ringDetail)
+	ringDetail.embedRing = TS:CreateOptionsCheckButton(nil, ringDetail)
 	ringDetail.embedRing:SetPoint("TOPLEFT", ringDetail.hiddenRing, "BOTTOMLEFT", 0, 2)
 	ringDetail.embedRing.Text:SetText(L"Embed into other rings by default")
 	ringDetail.embedRing:SetScript("OnClick", function(self) PlayCheckboxSound(self) api.setRingProperty("embed", self:GetChecked() and true or nil) end)
-	ringDetail.firstOnOpen = T.TenSettings:CreateOptionsCheckButton(nil, ringDetail) do
+	ringDetail.firstOnOpen = TS:CreateOptionsCheckButton(nil, ringDetail) do
 		local f = ringDetail.firstOnOpen
 		f:SetPoint("TOPLEFT", ringDetail.embedRing, "BOTTOMLEFT", 0, 2)
 		f:SetMotionScriptsWhileDisabled(1)
@@ -520,7 +535,7 @@ ringDetail = CreateFrame("Frame", nil, ringContainer) do
 	ringDetail.export:SetPoint("TOP", ringDetail.shareLabel2, "BOTTOM", 0, -4)
 	ringDetail.export:SetText(L"Share ring")
 	ringDetail.export:SetScript("OnClick", function(self) PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON) api.exportRing(self.nested:IsShown() and self.nested:GetChecked() and true) end)
-	ringDetail.export.nested = T.TenSettings:CreateOptionsCheckButton(nil, ringDetail.export) do
+	ringDetail.export.nested = TS:CreateOptionsCheckButton(nil, ringDetail.export) do
 		local f = ringDetail.export.nested
 		f:SetPoint("TOPLEFT", ringDetail.shareLabel2, "BOTTOMLEFT", -4, -1)
 		f.Text:SetText(L"Include nested rings")
@@ -568,12 +583,7 @@ sliceDetail = CreateFrame("Frame", nil, ringContainer) do
 	sliceDetail:SetAllPoints()
 	sliceDetail.desc = sliceDetail:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 	sliceDetail.desc:SetPoint("TOPLEFT", 7, -9) sliceDetail.desc:SetPoint("TOPRIGHT", -7, -7) sliceDetail.desc:SetJustifyH("LEFT")
-	sliceDetail:SetScript("OnKeyDown", function(self, key)
-		self:SetPropagateKeyboardInput(key ~= "ESCAPE")
-		if key == "ESCAPE" then
-			api.selectSlice()
-		end
-	end)
+	TS:EscapeCallback(sliceDetail, function() api.selectSlice() end)
 	local oy = 37
 	sliceDetail.skipSpecs = CreateFrame("Frame", "RKC_SkipSpecDropdown", sliceDetail, "UIDropDownMenuTemplate") do
 		local s = sliceDetail.skipSpecs
@@ -708,11 +718,10 @@ sliceDetail = CreateFrame("Frame", nil, ringContainer) do
 			end)
 			ed:SetScript("OnEscapePressed", function(self) self:SetText("") self:ClearFocus() end)
 			frame.textInput, frame.textInputHint = ed, hint
-			frame:SetScript("OnKeyDown", function(self, key)
-				self:SetPropagateKeyboardInput(key ~= "TAB" and key ~= "ESCAPE")
+			TS:EscapeCallback(frame, "TAB", function(_, key)
 				if key == "TAB" then
 					ed:SetFocus()
-				elseif key == "ESCAPE" then
+				else
 					frame:Hide()
 				end
 			end)
@@ -763,7 +772,7 @@ sliceDetail = CreateFrame("Frame", nil, ringContainer) do
 			end
 		end
 		frame:SetScript("OnShow", function(self)
-			self:SetFrameLevel(sliceDetail.icon:GetFrameLevel()+200)
+			self:SetFrameLevel(math.min(9990, sliceDetail.icon:GetFrameLevel()+200))
 			icontex = GetMacroIcons()
 			FixLooseIcons(GetLooseMacroIcons, icontex)
 			GetMacroItemIcons(icontex)
@@ -778,8 +787,8 @@ sliceDetail = CreateFrame("Frame", nil, ringContainer) do
 		frame:SetScript("OnMouseWheel", function(_, delta)
 			slider:SetValue(slider:GetValue()-delta*15)
 		end)
-		function f:SetIcon(ico, forced, ext, slice)
-			setIcon(self.icon, forced or ico, ext, slice)
+		function f:SetIcon(ico, forced, ext)
+			setIcon(self.icon, forced or ico, ext)
 			initTexture = self.icon:GetTexture()
 			self.selection = forced
 			self:SetText(forced and L"Customized icon" or L"Based on slice action")
@@ -789,7 +798,7 @@ sliceDetail = CreateFrame("Frame", nil, ringContainer) do
 			frame:Hide()
 		end
 	end
-	sliceDetail.fastClick = T.TenSettings:CreateOptionsCheckButton(nil, sliceDetail) do
+	sliceDetail.fastClick = TS:CreateOptionsCheckButton(nil, sliceDetail) do
 		local e = sliceDetail.fastClick
 		e:SetHitRectInsets(0, -200, 4, 4) e:SetMotionScriptsWhileDisabled(1)
 		e:SetPoint("TOPLEFT", 266, -oy)
@@ -871,22 +880,15 @@ sliceDetail = CreateFrame("Frame", nil, ringContainer) do
 	end
 	
 	do -- .editorContainer
-		local f = CreateFrame("Frame", nil, sliceDetail)
-		local t = f:CreateTexture()
-		t:SetColorTexture(1,0,0,0.05)
+		local f; f, editorHost = AB:CreateEditorHost(sliceDetail)
 		f:SetPoint("TOPLEFT", sliceDetail.fastClick.label, "BOTTOMLEFT", 0, -10)
 		f:SetPoint("BOTTOMRIGHT", -10, 36)
-		function f:SaveAction()
-			return api.setSliceProperty("*", self.curEditor)
+		f.optionsColumnOffset = 256
+		function f:OnActionChanged(ed)
+			return editorHost:IsCurrentEditor(ed) and api.setSliceProperty("*")
 		end
-		function f:SetEditor(editor, ...)
-			if self.curEditor then
-				self.curEditor:Release(self)
-			end
-			self.curEditor = editor
-			if editor then
-				editor:SetAction(self, ...)
-			end
+		function f:SaveAction() -- DEPRECATED [2303/Y8]
+			api.setSliceProperty("*")
 		end
 		function f:SetVerticalOffset(ofsY)
 			f:SetPoint("TOPLEFT", sliceDetail.fastClick.label, "BOTTOMLEFT", 0, -6-ofsY)
@@ -908,20 +910,20 @@ end
 newSlice = CreateFrame("Frame", nil, ringContainer) do
 	newSlice:SetAllPoints()
 	newSlice:Hide()
-	newSlice.slider = CreateFrame("Slider", "RKC_NewSliceCategorySlider", newSlice, "UIPanelScrollBarTrimTemplate") do
+	local NUM_VISIBLE_CATS, NUM_VISIBLE_ACTION_ROWS = 22, 12
+	newSlice.slider = XU:Create("ScrollBar", nil, newSlice) do
 		local s = newSlice.slider
-		s:SetPoint("TOPLEFT", 162, -19)
-		s:SetPoint("BOTTOMLEFT", 162, 17)
+		s:SetPoint("TOPLEFT", 162, -3)
+		s:SetPoint("BOTTOMLEFT", 162, 3)
 		s:SetMinMaxValues(0, 20)
 		s:SetValueStep(1)
-		s:SetObeyStepOnDrag(true)
-		s.scrollStep = 5
-		s.Up, s.Down = RKC_NewSliceCategorySliderScrollUpButton, RKC_NewSliceCategorySliderScrollDownButton
+		s:SetWindowRange(NUM_VISIBLE_CATS)
+		s:SetStepsPerPage(NUM_VISIBLE_CATS-2)
 		local cap = CreateFrame("Frame", nil, newSlice)
 		cap:SetPoint("TOPLEFT")
 		cap:SetPoint("BOTTOMRIGHT", s, "BOTTOMRIGHT")
 		cap:SetScript("OnMouseWheel", function(_, delta)
-			s:SetValue(s:GetValue()-delta)
+			s:Step(-5*delta, true)
 		end)
 	end
 	
@@ -981,9 +983,20 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 	local catbg = newSlice:CreateTexture(nil, "BACKGROUND")
 	catbg:SetPoint("TOPLEFT", 2, -2) catbg:SetPoint("RIGHT", newSlice, "RIGHT", -2, 0) catbg:SetPoint("BOTTOM", 0, 2)
 	catbg:SetColorTexture(0,0,0, 0.65)
-	local function onClick(self) PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON) selectCategory(self:GetID()) end
-	for i=1,22 do
-		local b = CreateFrame("Button", nil, newSlice)
+	local function onCatClick(self)
+		PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON)
+		selectCategory(self:GetID())
+	end
+	local catContainer = CreateFrame("Frame", nil, newSlice)
+	catContainer:SetClipsChildren(true)
+	catContainer:SetSize(159, NUM_VISIBLE_CATS*20)
+	catContainer:SetPoint("TOPLEFT", 2, -22)
+	local catOrigin = CreateFrame("Frame", nil, catContainer)
+	catOrigin:Hide()
+	catOrigin:SetSize(159, 1)
+	catOrigin:SetPoint("TOPLEFT")
+	for i=1, NUM_VISIBLE_CATS+1 do
+		local b = CreateFrame("Button", nil, catContainer)
 		b:SetSize(159, 20)
 		b:SetNormalTexture("Interface/AchievementFrame/UI-Achievement-Category-Background")
 		b:SetHighlightTexture("Interface/AchievementFrame/UI-Achievement-Category-Highlight")
@@ -994,14 +1007,13 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 		b:SetHighlightFontObject(GameFontHighlight)
 		b:SetPushedTextOffset(0,0)
 		b:SetText(" ") b:GetFontString():SetPoint("CENTER", 0, 1)
-		b:SetScript("OnClick", onClick)
+		b:SetScript("OnClick", onCatClick)
 		cats[i] = b
-		if i > 1 then cats[i]:SetPoint("TOP", cats[i-1], "BOTTOM") end
+		b:SetPoint("TOPLEFT", catOrigin, 0, 20-20*i)
 	end
-	cats[1]:SetPoint("TOPLEFT", 2, -22)
 
 	newSlice.desc = newSlice:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-	newSlice.desc:SetPoint("TOPLEFT", newSlice.slider, "TOPRIGHT", 2, 10)
+	newSlice.desc:SetPoint("TOPLEFT", newSlice.slider, "TOPRIGHT", 2, -6)
 	newSlice.desc:SetPoint("RIGHT", -24, 0)
 	newSlice.desc:SetHeight(26)
 	newSlice.desc:SetJustifyV("TOP") newSlice.desc:SetJustifyH("CENTER")
@@ -1015,12 +1027,7 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 		PlaySound(SOUNDKIT.U_CHAT_SCROLL_BUTTON)
 		api.closeActionPicker("close-picker-button")
 	end)
-	newSlice.close:SetScript("OnKeyDown", function(self, key)
-		self:SetPropagateKeyboardInput(key ~= "ESCAPE")
-		if key == "ESCAPE" then
-			api.closeActionPicker()
-		end
-	end)
+	TS:EscapeCallback(newSlice.close, function() api.closeActionPicker() end)
 
 	local b = newSlice.close:CreateTexture(nil, "BACKGROUND")
 	if MODERN then
@@ -1033,20 +1040,19 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 	b:SetPoint("TOPLEFT", 4, -5) b:SetPoint("BOTTOMRIGHT", -5, 4)
 	b:SetVertexColor(0.6,0.6,0.6)
 	
-	newSlice.slider2 = CreateFrame("Slider", "RKC_NewSliceActionSlider", newSlice, "UIPanelScrollBarTrimTemplate") do
+	newSlice.slider2 = XU:Create("ScrollBar", nil, newSlice) do
 		local s = newSlice.slider2
-		s:SetPoint("TOPRIGHT", -2, -38)
-		s:SetPoint("BOTTOMRIGHT", -2, 16)
+		s:SetPoint("TOPRIGHT", -2, COMPAT > 11403 and -26 or -22)
+		s:SetPoint("BOTTOMRIGHT", -2, 2)
 		s:SetMinMaxValues(0, 20)
 		s:SetValueStep(1)
-		s:SetObeyStepOnDrag(true)
-		s.scrollStep = 4
-		s.Up, s.Down = RKC_NewSliceActionSliderScrollUpButton, RKC_NewSliceActionSliderScrollDownButton
+		s:SetStepsPerPage(NUM_VISIBLE_ACTION_ROWS-2)
+		s:SetWindowRange(NUM_VISIBLE_ACTION_ROWS)
 		local cap = CreateFrame("Frame", nil, newSlice)
 		cap:SetPoint("TOPRIGHT")
 		cap:SetPoint("BOTTOMLEFT", newSlice.slider, "BOTTOMRIGHT")
 		cap:SetScript("OnMouseWheel", function(_, delta)
-			s:SetValue(s:GetValue()-delta)
+			s:Step(-4*delta, true)
 		end)
 	end
 
@@ -1057,12 +1063,21 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 	local function onDragStart(self)
 		if newSlice.disableDrag then return end
 		PlaySound(832)
+		dragBackdrop:Show()
 		SetCursor(self.ico:GetTexture())
+		self.dragActive = true
+	end
+	local function onDragAbort(self)
+		if self.dragActive then
+			self.dragActive = nil
+			SetCursor(nil)
+			dragBackdrop:Hide()
+		end
 	end
 	local function onDragStop(self)
+		onDragAbort(self)
 		if newSlice.disableDrag then return end
 		PlaySound(833)
-		SetCursor(nil)
 		local e, x, y = ringContainer.slices[1], GetCursorPosition()
 		if not e:GetLeft() then e = ringContainer.prev end
 		local scale, l, b, w, h = e:GetEffectiveScale(), e:GetRect()
@@ -1080,15 +1095,26 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 		end
 		GameTooltip:Show()
 	end
-	for i=1,24 do
-		local f = CreateFrame("Button", nil, newSlice)
-		f:SetSize(170, 34) f:SetPoint("TOPLEFT", newSlice.desc, "BOTTOMLEFT", 172*(1 - i % 2), -math.floor((i-1)/2)*36+8)
+	local actionsContainer = CreateFrame("Frame", nil, newSlice)
+		actionsContainer:SetClipsChildren(true)
+		actionsContainer:SetPoint("TOPLEFT", newSlice.desc, "BOTTOMLEFT", 0, 8)
+		actionsContainer:SetSize(344, 36*NUM_VISIBLE_ACTION_ROWS-1)
+	local actionsOrigin = CreateFrame("Frame", nil, actionsContainer)
+		actionsOrigin:SetSize(1,1)
+		actionsOrigin:SetPoint("TOPLEFT")
+		actionsOrigin:Hide()
+
+	for i=1,NUM_VISIBLE_ACTION_ROWS*2+2 do
+		local f = CreateFrame("Button", nil, actionsContainer)
+		f:SetSize(170, 34)
+		f:SetPoint("TOPLEFT", actionsOrigin, "TOPLEFT", 172*(1 - i % 2), -math.floor((i-1)/2)*36)
 		f:RegisterForDrag("LeftButton")
 		actions[i] = f
 		f:SetScript("OnDragStart", onDragStart)
 		f:SetScript("OnDragStop", onDragStop)
 		f:SetScript("OnDoubleClick", onClick)
 		f:SetScript("OnEnter", onEnter)
+		f:SetScript("OnHide", onDragAbort)
 		f:SetScript("OnLeave", config.ui.HideTooltip)
 		f.ico = f:CreateTexture(nil, "ARTWORK")
 		f.ico:SetSize(32,32) f.ico:SetPoint("LEFT", 1, 0)
@@ -1107,14 +1133,13 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 	end
 
 	local function syncActions()
-		local slider = newSlice.slider2
-		local base, _, maxV = math.floor(slider:GetValue())*2, slider:GetMinMaxValues()
-		slider.Up:SetEnabled(base > 0)
-		slider.Down:SetEnabled(base < maxV*2)
+		local sv = newSlice.slider2:GetValue()
+		local base = math.floor(sv)*2
+		actionsOrigin:SetPoint("TOPLEFT", 0, 36*(sv%1))
 		for i=1,#actions do
 			local e, id = actions[i], i + base
 			if id <= #selectedCategory then
-				local stype, sname, sicon, extico, tipfunc, tiparg = AB:GetActionDescription(selectedCategory(id))
+				local stype, sname, sicon, extico, tipfunc, tiparg = AB:GetActionListDescription(selectedCategory(id))
 				pcall(setIcon, e.ico, sicon, extico)
 				e.tipFunc, e.tipFuncArg = tipfunc, tiparg
 				e.name:SetText(sname)
@@ -1126,9 +1151,10 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 			end
 		end
 	end
-	local function syncCats(self, base)
-		self.Up:SetEnabled(base > 0)
-		self.Down:SetEnabled(base < select(2, self:GetMinMaxValues()))
+	local function syncCats(_, base)
+		local fr = base % 1
+		base = base - fr
+		catOrigin:SetPoint("TOPLEFT", 0, fr*20)
 		for i=1,#cats do
 			local e, category, id = cats[i], AB:GetCategoryInfo(i+base), i+base
 			e:SetShown(not not category)
@@ -1149,7 +1175,8 @@ newSlice = CreateFrame("Frame", nil, ringContainer) do
 			newSlice.search.label:Show()
 		end
 		syncCats(newSlice.slider, newSlice.slider:GetValue())
-		newSlice.slider2:SetMinMaxValues(0, math.max(0, math.ceil((#selectedCategory - #actions)/2)))
+		local xv = math.max(0, math.ceil((#selectedCategory - #actions + 2)/2))
+		newSlice.slider2:SetMinMaxValues(0, xv)
 		newSlice.slider2:SetValue(0)
 		syncActions()
 		newSlice.search:ClearFocus()
@@ -1167,7 +1194,7 @@ local PLAYER_CLASS, PLAYER_CLASS_UC = UnitClass("player")
 local PLAYER_CLASS_COLOR_HEX = RAID_CLASS_COLORS[PLAYER_CLASS_UC].colorStr:sub(3)
 
 local function getSliceInfo(slice)
-	return securecall(AB.GetActionDescription, AB, RK:UnpackABAction(slice))
+	return securecall(AB.GetActionDescription, AB, slice)
 end
 local function getSliceColor(slice, sicon)
 	local c, r,g,b = true, (type(slice.c) == "string" and slice.c or ""):match("(%x%x)(%x%x)(%x%x)")
@@ -1177,37 +1204,6 @@ local function getSliceColor(slice, sicon)
 		r,g,b = tonumber(r,16)/255, tonumber(g,16)/255, tonumber(b,16)/255
 	end
 	return r,g,b, c
-end
-local function copyKeys(src, dst, n, k, ...)
-	if n == 0 then
-		return dst
-	end
-	if k ~= nil then
-		dst[k] = src and src[k]
-	end
-	return copyKeys(src, dst, n-1, ...)
-end
-local function countAndReturn(...)
-	return select("#", ...), ...
-end
-local function shallowCopyArrayAndKeys(src, dst, ...)
-	for k in pairs(dst) do
-		if type(k) == "number" then
-			dst[k] = nil
-		end
-	end
-	if type(src) == "table" then
-		for k,v in pairs(src) do
-			if type(k) == "number" then
-				dst[k] = v
-			end
-		end
-	end
-	copyKeys(src, dst, countAndReturn(...))
-	return dst
-end
-local function pmethodcall(f, s, ...)
-	return true, f[s](f, ...)
 end
 local function isCollectionSlice(...)
 	local actType = select(7, AB:GetActionDescription(...))
@@ -1330,30 +1326,20 @@ function ringDropDown:initialize(level, nameList)
 			btnNewRing:Click()
 			return
 		end
-	elseif nameList == "overflow-main" then
-		config.ui.scrollingDropdown:Display(2, ringNames, ringDropDown_EntryFormat, api.selectRing, 16)
-		return
 	elseif nameList then
-		config.ui.scrollingDropdown:Display(2, nameList, ringDropDown_EntryFormat, api.selectRing)
+		XU:Create("ScrollableDropDownList", 2, nameList, ringDropDown_EntryFormat, api.selectRing)
 		return
 	end
-	local stopAt = #ringNames > 20 and 16 or #ringNames
-	for i=1,stopAt do
-		local k = ringNames[i]
-		info.arg1, info.text, info.checked = k, ringDropDown_EntryFormat(k)
-		UIDropDownMenu_AddButton(info, level)
-	end
+	local hasHidden = ringNames.hidden and #ringNames.hidden > 0
+	local hasOther = ringNames.other and #ringNames.other > 0
+	XU:Create("ScrollableDropDownList", 1, ringNames, ringDropDown_EntryFormat, api.selectRing, hasHidden or hasOther)
 	info.hasArrow, info.notCheckable, info.padding, info.fontObject = 1, 1, 32, GameFontNormalSmall
 	info.text, info.func, info.checked = nil
-	if stopAt < #ringNames then
-		info.menuList, info.text = "overflow-main", L"More active rings"
-		UIDropDownMenu_AddButton(info, level)
-	end
-	if ringNames.hidden and #ringNames.hidden > 0 then
+	if hasHidden then
 		info.menuList, info.text = ringNames.hidden, L"Hidden rings"
 		UIDropDownMenu_AddButton(info, level)
 	end
-	if ringNames.other and #ringNames.other > 0 then
+	if hasOther then
 		info.menuList, info.text = ringNames.other, L"Inactive rings"
 		UIDropDownMenu_AddButton(info, level)
 	end
@@ -1361,7 +1347,7 @@ end
 function api.createRing(name, data, bundle, importNested)
 	local name = name:match("^%s*(.-)%s*$")
 	if name == "" then return false end
-	local iname = RK.pub:GenFreeRingName(name)
+	local iname = RK:GenFreeRingName(name)
 	local mapRings, reservedINames, usedNames, nr = {}, importNested and {[iname]=1}, {[name]=true}, 2
 	if bundle then
 		for k,v in pairs(bundle) do
@@ -1369,7 +1355,7 @@ function api.createRing(name, data, bundle, importNested)
 				mapRings[k] = iname
 			elseif type(v) == "table" and importNested then
 				setImportedRingProps(genBundledRingName(name, data.name, v.name, usedNames, nr), v)
-				local n = RK.pub:GenFreeRingName(v.name, reservedINames)
+				local n = RK:GenFreeRingName(v.name, reservedINames)
 				mapRings[k], reservedINames[n], nr = n, nr, nr + 1
 			end
 		end
@@ -1393,7 +1379,7 @@ end
 function api.selectRing(_, name)
 	CloseDropDownMenus()
 	ringDetail:Hide()
-	sliceDetail:Hide()
+	api.hideSliceDetail()
 	newSlice:Hide()
 	ringContainer.newSlice:SetChecked(nil)
 	local desc = RK:GetRingDescription(name)
@@ -1413,6 +1399,10 @@ function api.selectRing(_, name)
 	api.updateRingLine(true)
 	ringContainer:Show()
 end
+function api.hideSliceDetail()
+	sliceDetail:Hide()
+	editorHost:Clear()
+end
 function api.updateRingLine(scanForNestedRings)
 	ringContainer.prev:SetEnabled(sliceBaseIndex > 1)
 	ringContainer.next:Disable()
@@ -1421,7 +1411,7 @@ function api.updateRingLine(scanForNestedRings)
 		local e = ringContainer.slices[i-sliceBaseIndex+1]
 		if not e then ringContainer.next:Enable() break end
 		local _, _, sicon, icoext = getSliceInfo(currentRing[i])
-		pcall(setIcon, e.tex, currentRing[i].icon or sicon, icoext, currentRing[i])
+		pcall(setIcon, e.tex, currentRing[i].icon or sicon, icoext)
 		e.check:SetShown(RK:IsRingSliceActive(currentRingName, i))
 		e.auto:SetShown(onOpen == i)
 		e:SetChecked(currentSliceIndex == i)
@@ -1522,7 +1512,7 @@ function ringDetail.scope:text()
 end
 function api.getRingProperty(key)
 	if key == "hotkey" then
-		if OPie:GetRingInfo(currentRingName) then
+		if PC:GetRingInfo(currentRingName) then
 			local skey, _, over = PC:GetRingBinding(currentRingName)
 			if over then return skey end
 		end
@@ -1544,7 +1534,7 @@ function api.setRingProperty(name, value)
 		currentRing.quarantineBind = nil
 		ringDetail.bindingQuarantine:Hide()
 		ringDetail.binding:SetBindingText(value)
-		if OPie:GetRingInfo(currentRingName) then
+		if PC:GetRingInfo(currentRingName) then
 			config.undo:saveActiveProfile()
 			PC:SetRingBinding(currentRingName, value)
 		end
@@ -1567,16 +1557,7 @@ function api.setSliceProperty(prop, ...)
 		local r, g, b = ...
 		slice.c = r and ("%02x%02x%02x"):format(r*255, g*255, b*255) or nil
 	elseif prop == "*" then
-		local edOutput = {}
-		(...):GetAction(edOutput)
-		if type(edOutput[1]) == "string" then
-			if edOutput[1] == "macrotext" and type(edOutput[2]) == "string" then
-				edOutput[2] = RK:QuantizeMacro(edOutput[2])
-			end
-			if edOutput[1] ~= slice[1] then
-				copyKeys(nil, slice, countAndReturn(AB:GetActionOptions(slice[1])))
-			end
-			shallowCopyArrayAndKeys(edOutput, slice, AB:GetActionOptions(edOutput[1]))
+		if editorHost:GetAction(slice) then
 			api.updateSliceDisplay(currentSliceIndex, slice)
 		end
 	elseif prop == "skipSpecs" or prop == "show" then
@@ -1597,13 +1578,13 @@ function api.setSliceProperty(prop, ...)
 	api.saveRing(currentRingName, currentRing)
 	if prop == "icon" or prop == "color" then
 		local _, _, ico, icoext = getSliceInfo(currentRing[currentSliceIndex])
-		if prop ~= "color" then sliceDetail.icon:SetIcon(ico, slice.icon, icoext, currentRing[currentSliceIndex]) end
+		if prop ~= "color" then sliceDetail.icon:SetIcon(ico, slice.icon, icoext) end
 		sliceDetail.color:SetColor(getSliceColor(slice, ico))
 	end
 	api.updateRingLine()
 end
 function api.updateSliceOptions(slice)
-	local extraY, isCollection = 0, securecall(isCollectionSlice, RK:UnpackABAction(slice))
+	local extraY, isCollection = 0, securecall(isCollectionSlice, slice)
 	local fc, cd = sliceDetail.fastClick, sliceDetail.collectionDrop
 	fc:SetChecked(not not slice.fastClick)
 	if PC:GetOption("CenterAction", currentRingName) or PC:GetOption("MotionAction", currentRingName) then
@@ -1630,7 +1611,7 @@ function api.selectSlice(offset, select)
 	if not select then
 		-- This can trigger save-on-hide logic, which in turn forces a
 		-- (redundant) sliceDetail update.
-		sliceDetail:Hide()
+		api.hideSliceDetail()
 		newSlice:Hide()
 		api.endSliceRepick()
 		currentSliceIndex = nil
@@ -1640,13 +1621,15 @@ function api.selectSlice(offset, select)
 	end
 	ringDetail:Hide()
 	newSlice:Hide()
-	sliceDetail:Hide()
+	api.hideSliceDetail()
 	ringContainer.newSlice:SetChecked(nil)
 	local old, id = ringContainer.slices[(currentSliceIndex or 0) + 1 - sliceBaseIndex], sliceBaseIndex + offset
 	local desc = currentRing[id]
 	if old then old:SetChecked(nil) end
 	currentSliceIndex = nil
-	if not desc then return ringDetail:Show() end
+	if not desc then
+		return ringDetail:Show()
+	end
 	api.updateSliceDisplay(id, desc)
 	api.endSliceRepick()
 	sliceDetail:Show()
@@ -1661,16 +1644,12 @@ function api.updateSliceDisplay(_id, desc)
 	end
 	local skipSpecs, showConditional = (desc.show or ""):match("^%[spec:([%d/]+)%] hide;(.*)")
 	sliceDetail.icon:HidePanel()
-	sliceDetail.icon:SetIcon(sicon, desc.icon, icoext, desc)
+	sliceDetail.icon:SetIcon(sicon, desc.icon, icoext)
 	sliceDetail.color:SetColor(getSliceColor(desc, sicon))
 	sliceDetail.skipSpecs:SetValue(skipSpecs)
 	sliceDetail.showConditional:SetText(showConditional or desc.show or "")
 	api.updateSliceOptions(desc)
-	local ep = AB:GetEditorPanel(desc[1])
-	local desc2 = ep and shallowCopyArrayAndKeys(desc, {}, AB:GetActionOptions(desc[1])) or nil
-	if not securecall(pmethodcall, sliceDetail.editorContainer, "SetEditor", ep, desc2) then
-		securecall(pmethodcall, sliceDetail.editorContainer, "SetEditor", nil)
-	end
+	editorHost:SetAction(desc)
 end
 function api.moveSlice(source, dest)
 	if not (currentRing and currentRing[source] and currentRing[dest]) then return end
@@ -1683,7 +1662,7 @@ function api.deleteSlice(id)
 	if id == nil then id = currentSliceIndex end
 	if id and currentRing and currentRing[id] then
 		if id == currentSliceIndex then
-			sliceDetail:Hide()
+			api.hideSliceDetail()
 			currentSliceIndex = nil
 			ringDetail:Show()
 		end
@@ -1702,7 +1681,7 @@ function api.deleteSlice(id)
 end
 function api.beginSliceRepick()
 	repickSlice = currentRing[currentSliceIndex]
-	sliceDetail:Hide()
+	api.hideSliceDetail()
 	ringContainer.disableSliceDrag, newSlice.disableDrag = true, true
 	newSlice:Show()
 end
@@ -1759,8 +1738,8 @@ function api.addSlice(pos, ...)
 		wasRepick = true
 	else
 		pos = math.max(1, math.min(#currentRing+1, pos and (pos + sliceBaseIndex) or (#currentRing+1)))
-		table.insert(currentRing, pos, {...})
-		if pos < sliceBaseIndex then sliceBaseIndex = pos end
+		table.insert(currentRing, pos, {sliceToken=AB:CreateToken(), ...})
+		sliceBaseIndex = math.min(pos, math.max(1 + pos - #ringContainer.slices, sliceBaseIndex))
 	end
 	api.saveRing(currentRingName, currentRing)
 	api.updateRingLine(true)
@@ -1849,15 +1828,31 @@ ringDetail:SetScript("OnShow", function()
 end)
 
 function panel:refresh()
-	UIDropDownMenu_SetText(ringDropDown, L"Select a ring to modify")
+	local oRingName, oBaseIndex, oSliceIndex = currentRingName, sliceBaseIndex, currentSliceIndex
+	local oSliceToken = currentRing and currentRing[currentSliceIndex] and currentRing[currentSliceIndex].sliceToken
 	currentRingName, currentRing, currentSliceIndex, ringNames = nil
 	ringContainer:Hide()
 	ringDetail:Hide()
-	sliceDetail:Hide()
+	api.hideSliceDetail()
 	newSlice:Hide()
-end
-function panel:okay()
-	ringContainer:Hide()
+	if oRingName and RK:GetRingInfo(oRingName) then
+		api.selectRing(nil, oRingName)
+		for i=1, oSliceToken and type(currentRing) == "table" and #currentRing or 0 do
+			local s = currentRing[i]
+			if s and s.sliceToken == oSliceToken then
+				api.selectSlice(i-sliceBaseIndex, true)
+				break
+			end
+		end
+		local cbi = currentSliceIndex and (currentSliceIndex - oSliceIndex + oBaseIndex) or oBaseIndex
+		if currentRing and cbi > 0 and cbi < #currentRing and cbi ~= sliceBaseIndex then
+			sliceBaseIndex = cbi
+			api.updateRingLine()
+		end
+	end
+	if not currentRing then
+		UIDropDownMenu_SetText(ringDropDown, L"Select a ring to modify")
+	end
 end
 function panel:default()
 	for key in RK:GetManagedRings() do
@@ -1872,10 +1867,11 @@ function panel:default()
 	RK:RestoreDefaults()
 	panel:refresh()
 end
-local function prot(f)
-	return function() return securecall(f) end
+local function resetView()
+	currentRingName, currentRing, currentSliceIndex, ringNames = nil
+	ringContainer:Hide()
 end
-panel.okay, panel.default, panel.refresh = prot(panel.okay), prot(panel.default), prot(panel.refresh)
+panel.okay, panel.cancel = resetView, resetView
 panel:SetScript("OnShow", config.checkSVState)
 
 SLASH_OPIE_CUSTOM_RINGS1 = "/rk"

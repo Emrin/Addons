@@ -144,10 +144,10 @@ local function validateCommandVerb(commandtext, parameters)
         for k, v in pairs(MT.commands) do
             if k == commandtext then
                 if v[3] then cc = format("|c%s", MT.db.profile.emotecolour) end
-                if v[2] == 5 then
+                if v[2] == MT.COMMAND_REMOVED then
                     msg = format("%s: %s%s%s", L["Command removed"], MT.slash, cc, commandtext)
                     p = true
-                elseif v[2] == 1 then
+                elseif v[2] == MT.COMMAND_PARAM_REQUIRED then
                     if not param then
                         msg = format("%s: %s%s%s", L["Required parameter missing"], MT.slash, cc, commandtext)
                         p = true
@@ -335,7 +335,7 @@ local function validateCondition(condition, optionArguments, parameters)
         local k = condition
         local v = MT.conditions[k] or nil
         if v then
-            if v > 0 and k ~= "group" and k ~= "mod" and k ~= "modifier" and k~= "pet" and (not no) then
+            if v ~= MT.CONDITION_TYPE_NONE and not MT.optionalConditions[k] and (not no) then
                 if #optionArguments == 0 then
                     msg = format("%s: %s%s", L["Argument not optional"], conditionColor, condition)
                     noa = true
@@ -343,39 +343,41 @@ local function validateCondition(condition, optionArguments, parameters)
                 end
             end
             if #optionArguments > 0 then
-                if v == 0 then
+                if v == MT.CONDITION_TYPE_NONE then
                     msg = format("%s: %s%s", L["Invalid argument"], conditionColor, condition)
                     isCondition = false
-                elseif v == 1 then --validate numeric
+                elseif v == MT.CONDITION_TYPE_NUMERIC then
                     valid, arg1 = isNumeric(optionArguments)
                     if not valid then
                         msg = format("%s: %s%s|r - %s", L["Arguments must be numeric"], conditionColor, condition, arg1)
                         isCondition = false
                     else msg = nil end
-                elseif v == 2 then --validate text
+                elseif v == MT.CONDITION_TYPE_TEXTUAL then
                     if isNumeric(optionArguments) then
                         msg = format("%s: %s%s", L["Arguments must not be numeric"], conditionColor, condition)
                         isCondition = false
                     else msg = nil end
-                elseif v == 3 then --validate alphanumeric
+                elseif v == MT.CONDITION_TYPE_ALPHANUMERIC then
                     valid, arg1 = isAlphaNumeric(optionArguments)
                     if not valid then
                         msg = format("%s: %s%s|r - %s", L["Arguments must be alphanumeric"], conditionColor, condition, arg1)
                         isCondition = false
                     else msg = nil end
-                elseif v > 3 and v < 7 then --validate group
+                elseif v == MT.CONDITION_TYPE_PARTY_RAID
+                        or v == MT.CONDITION_TYPE_MOD_KEYS
+                        or v == MT.CONDITION_TYPE_MOUSEBUTTONS then
                     valid, arg1 = isValid(optionArguments, v)
                     if not valid then
                         msg = format("%s: %s%s|r - %s", L["Invalid argument"], conditionColor, condition, arg1)
                         isCondition = false
                     else msg = nil end
-                elseif v == 7 then
+                elseif v == MT.CONDITION_TYPE_NUMERIC_WITH_SLASH then
                     valid, arg1 = isNumeric(optionArguments, true)
                     if not valid then
                         msg = format("%s: %s%s|r - %s", L["Arguments must be numeric"], conditionColor, condition, arg1)
                         isCondition = false
                     else msg = nil end
-                elseif v == 8 then --validate alphanumeric + spaces
+                elseif v == MT.CONDITION_TYPE_ALPHANUMERIC_WITH_SPACES then
                     valid, arg1 = isAlphaNumeric(optionArguments, "[%w ]+")
                     if not valid then
                         msg = format("%s: %s%s|r - %s", L["Arguments must be alphanumeric"], conditionColor, condition, arg1)
@@ -395,8 +397,9 @@ local function validateCondition(condition, optionArguments, parameters)
             elseif name:lower() ~= parameters:lower() and optionArguments[1]:lower() ~= parameters:lower() then
                 local spellID = select(7, GetSpellInfo(parameters))
                 msg = format(
-                    "Known spell mismatch: [%s%s|r:%s (%s)]\n       %s%s",
+                    "Known spell mismatch: [%s%s%s|r:%s (%s)]\n       %s%s",
                     conditionColor,
+                    no and "no" or "",
                     condition,
                     optionArguments[1],
                     name,
@@ -680,7 +683,24 @@ function MT:ParseMacro(macrotext)
     local command_object, condition, condition_phrase, condition_string
     local option_arguments, parsed_text, errors = {}, {}, {}
     local parameters, option_word, option_argument, target, pp
-    local spos, schar, ss, se, pt, err, color, pos, mout, vv, epos, lpos
+    local spos, firstCharacter, ss, se, pt, err, color, pos, mout, vv, epos, lpos
+
+    local ignoredRanges = {}
+    local function ignoreRange(start, finish)
+        for i = start, finish do
+            ignoredRanges[i] = true
+        end
+    end
+    local function isIgnored(index)
+        return ignoredRanges[index] == true
+    end
+    -- add hyperlinks to ignored ranges
+    local hyperlinkStart, hyperlinkFinish = string.find(macrotext, "|H.-|h.-|h")
+    while hyperlinkStart do
+        ignoreRange(hyperlinkStart, hyperlinkFinish)
+        hyperlinkStart, hyperlinkFinish = string.find(macrotext, "|H.-|h.-|h", hyperlinkFinish + 1)
+    end
+
 
     -- ticket 139 - handle comments at the start of a line
     if string.sub(macrotext, 1, 2) == format("%s%s", MT.slash, MT.slash) then
@@ -688,12 +708,13 @@ function MT:ParseMacro(macrotext)
         color = format("|c%s", MT.db.profile.comcolour)
         table.insert(parsed_text, { t = comment, c = color, s = 3})
     else
-        schar = string.sub(macrotext, 1, 1)
-        if schar == "#" or schar == MT.slash then
+        firstCharacter = string.sub(macrotext, 1, 1)
+        if firstCharacter == "#" or firstCharacter == MT.slash then
             local matchbrackets = matchedBrackets(macrotext)
             if matchbrackets ~= "" then table.insert(errors, format("%s: %s", L["Unmatched"], matchbrackets)) end
             spos = string.find(macrotext, " ")
-            if spos then command_verb = string.sub(macrotext, 2, spos - 1)
+            if spos then
+                command_verb = string.sub(macrotext, 2, spos - 1)
             else
                 command_verb = string.sub(macrotext, 2)
                 color, err = validateCommandVerb(command_verb)
@@ -779,23 +800,29 @@ function MT:ParseMacro(macrotext)
                     end
                     for _, c in ipairs(conditions) do
                         local cps = {strsplit(",", c.c)}
-                        for _, condition_phrase in ipairs(cps) do
-                            spos = string.find(condition_phrase, ":")
-                            wipe(option_arguments)
-                            if spos then
-                                option_arguments = {strsplit("/", string.sub(condition_phrase, spos + 1))}
-                                condition = string.sub(condition_phrase, 1, spos - 1)
-                            else condition = condition_phrase end
-                            local colorArguments
-                            color, err, colorArguments = validateCondition(condition, option_arguments, parameters)
-                            if err then table.insert(errors, err) end
-                            pos = string.find(macrotext, escape(condition), c.p)
-                            table.insert(parsed_text, { t = condition, c = color, s = pos})
-                            if colorArguments then
-                                for _, argument in ipairs(option_arguments) do
-                                    pos = string.find(macrotext, escape(argument), pos)
-                                    table.insert(parsed_text, { t = argument, c = colorArguments, s = pos})
+                        local offset = c.p;
+                        if not isIgnored(offset) then
+                            for _, condition_phrase in ipairs(cps) do
+                                spos = string.find(condition_phrase, ":")
+                                wipe(option_arguments)
+                                if spos then
+                                    option_arguments = {strsplit("/", string.sub(condition_phrase, spos + 1))}
+                                    condition = string.sub(condition_phrase, 1, spos - 1)
+                                else
+                                    condition = condition_phrase
                                 end
+                                local colorArguments
+                                color, err, colorArguments = validateCondition(condition, option_arguments, parameters)
+                                if err then table.insert(errors, err) end
+                                pos = string.find(macrotext, escape(condition), offset)
+                                table.insert(parsed_text, { t = condition, c = color, s = pos})
+                                if colorArguments then
+                                    for _, argument in ipairs(option_arguments) do
+                                        pos = string.find(macrotext, escape(argument), pos)
+                                        table.insert(parsed_text, { t = argument, c = colorArguments, s = pos})
+                                    end
+                                end
+                                offset = offset + string.len(condition_phrase) + 1 -- +1 for the comma
                             end
                         end
                     end
@@ -810,10 +837,20 @@ function MT:ParseMacro(macrotext)
     local offset = 0
     local lbefore, lafter
     for _, term in ipairs(parsed_text) do
-        lbefore = string.len(mout)
-        mout = replace(mout, term.t, format("%s%s%s", term.c, term.t, term.c == "" and "" or "|r"), term.s + offset)
-        lafter = string.len(mout)
-        offset = offset + (lafter - lbefore)
+        if not isIgnored(term.s) then
+            lbefore = string.len(mout)
+            mout = replace(mout, term.t, format("%s%s%s", term.c, term.t, term.c == "" and "" or "|r"), term.s + offset)
+            lafter = string.len(mout)
+            offset = offset + (lafter - lbefore)
+        end
+    end
+    if MT.debugging and ViragDevTool_AddData then
+        ViragDevTool_AddData({
+            mout = mout,
+            rawMout = mout:gsub("|", "||"),
+            rawOriginal = macrotext:gsub("|", "||"),
+            parsed_text = parsed_text,
+        }, "formatted macro text")
     end
     return mout, errors, command_verb, pp
 end

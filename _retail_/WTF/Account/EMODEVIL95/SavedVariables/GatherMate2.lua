@@ -5,6 +5,7 @@ GatherMate2DB = {
 	},
 	["profileKeys"] = {
 		["Taizai - Draenor"] = "Default",
+		["Nolifey - Ravencrest"] = "Default",
 		["Trax - Stormscale"] = "Default",
 		["Unchill - Draenor"] = "Default",
 		["Lifey - Silvermoon"] = "Default",
@@ -12,6 +13,7 @@ GatherMate2DB = {
 		["Leafgirl - Silvermoon"] = "Default",
 		["Apokalol - Outland"] = "Default",
 		["Ravegirl - Draenor"] = "Default",
+		["Pokipoki - Draenor"] = "Default",
 		["Nolifey - Draenor"] = "Default",
 		["Apoka - Outland"] = "Default",
 		["Nolifey - Moonglade"] = "Default",
@@ -84,10 +86,10 @@ GatherMate2MineDB = {
 	},
 	[2025] = {
 		[4633617600] = 1203,
-		[5091509200] = 1201,
+		[5781651700] = 1201,
 		[5506629200] = 1201,
 		[5078543000] = 1213,
-		[5781651700] = 1201,
+		[5091509200] = 1201,
 		[5136516000] = 1201,
 		[5106457700] = 1201,
 		[5495361400] = 1202,
@@ -96,10 +98,38 @@ GatherMate2MineDB = {
 	},
 }
 GatherMate2FishDB = {
+	[2151] = {
+		[4389541900] = 1109,
+	},
 }
 GatherMate2GasDB = {
 }
 GatherMate2TreasureDB = {
+	{
+		[5199417500] = 533,
+		[5440431600] = 533,
+		[5283410500] = 533,
+		[5521422500] = 533,
+		[5158436000] = 533,
+		[5323434500] = 533,
+		[5384416800] = 533,
+		[5303422400] = 533,
+		[5186402800] = 533,
+		[5389432300] = 533,
+		[5306429500] = 533,
+		[5159425200] = 533,
+		[5502427000] = 533,
+		[5451419800] = 533,
+		[5473416900] = 533,
+		[5437413200] = 533,
+		[5202430800] = 533,
+		[5342429700] = 533,
+		[5350417100] = 533,
+	}, -- [1]
+	[37] = {
+		[4302660800] = 533,
+		[4324652700] = 533,
+	},
 }
 GatherMate2ArchaeologyDB = {
 }

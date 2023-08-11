@@ -32,7 +32,7 @@ function FBEnvironment:ManageFrame(target, tabname, tooltip, toggle)
 end
 
 local function Group_OnClick(tabframe, tabname)
-    for idx,group in ipairs(tabframe.target.groups) do
+    for _,group in ipairs(tabframe.target.groups) do
         if group.name == tabname then
             group.frame:Show()
         else
@@ -87,7 +87,7 @@ function FBI:CreateManagedFrameGroup(tabname, tooltip, toggle, groups, optiontab
         target:SetScript("OnShow", ShowFrameGroup);
         target:SetScript("OnHide", HideFrameGroup);
         target.groups = groups
-        for idx,group in ipairs(groups) do
+        for _,group in ipairs(groups) do
             local tabframe = target:CreateTab(group.name, group.icon, Group_OnClick, group.tooltip or group.name);
             group.frame, _ = target:GetFrameInfo(group.frame)
             group.frame.tabframe = tabframe;
@@ -97,7 +97,7 @@ function FBI:CreateManagedFrameGroup(tabname, tooltip, toggle, groups, optiontab
         end
     else
         -- Add new groups to the target.
-        for idx,group in ipairs(groups) do
+        for _,group in ipairs(groups) do
             local tabframe = target:CreateTab(group.name, group.icon, Group_OnClick, group.tooltip or group.name);
             group.frame, _ = target:GetFrameInfo(group.frame)
             group.frame:Hide()
@@ -115,14 +115,17 @@ function FBI:CreateManagedFrameGroup(tabname, tooltip, toggle, groups, optiontab
     return target
 end
 
-function ToggleFishingBuddyFrame(target)
+
+function FBI:ToggleFishingBuddyFrame(target)
     FishingBuddyFrame:ToggleTab(target);
 end
-FBEnvironment.ToggleFishingBuddyFrame = ToggleFishingBuddyFrame;
+FBEnvironment.ToggleFishingBuddyFrame = function(target)
+    FBI:ToggleFishingBuddyFrame(target);
+end;
 
 local function OnVariablesLoaded(self, _, ...)
     -- set up mappings
-    for idx,info in pairs(FBFRAMES) do
+    for _,info in pairs(FBFRAMES) do
         local tf = FishingBuddyFrame:MakeFrameTab(info.frame, info.name, info.tooltip, info.toggle);
         if ( info.first) then
             FishingBuddyFrame:MakePrimary(info.frame);

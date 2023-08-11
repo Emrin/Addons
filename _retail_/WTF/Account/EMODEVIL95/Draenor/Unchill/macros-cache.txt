@@ -56,7 +56,8 @@ VER 3 0100000000000014 "sb" "134400"
 END
 VER 3 0100000000000016 "som" "134400"
 #showtooltip
-/cast [@mouseover,exists,help,nodead][] Source of Magic
+/cast [nomod,@mouseover,exists,help,nodead][nomod] Source of Magic
+/cast [mod,@mouseover,exists,help,nodead][mod] Timelessness
 END
 VER 3 010000000000000B "sw" "134400"
 #showtooltip

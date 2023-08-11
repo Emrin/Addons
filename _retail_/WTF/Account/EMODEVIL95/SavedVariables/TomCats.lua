@@ -1,12 +1,15 @@
 
 TomCats_Account = {
 	["errorLog"] = {
-		["version"] = "2.4.51",
+		["version"] = "2.4.56",
 	},
 	["hallowsend"] = {
 	},
-	["lastExpirationWarning"] = 0,
+	["lastExpirationWarning"] = 1691765204,
 	["discoveriesResetCount"] = 0,
+	["noblegarden"] = {
+		["enabled"] = true,
+	},
 	["lunarfestival"] = {
 		["iconsEnabled"] = true,
 		["discovered"] = true,
@@ -15,17 +18,31 @@ TomCats_Account = {
 	},
 	["loveisintheair"] = {
 		["characters"] = {
+			["Player-1403-082BD33D"] = {
+				["bracelets"] = 0,
+				["class"] = "DEATHKNIGHT",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["tokens"] = 0,
+				["level"] = 60,
+				["name"] = "Nolifey",
+				["faction"] = "Horde",
+				["completedDungeon"] = false,
+				["timestamp"] = 1676214822,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
 			["Player-1403-0A4C933E"] = {
 				["bracelets"] = 0,
 				["class"] = "EVOKER",
 				["boxes"] = 0,
 				["charms"] = 0,
+				["tokens"] = 9,
 				["level"] = 70,
-				["tokens"] = 0,
 				["name"] = "Unchill",
 				["faction"] = "Horde",
-				["completedDungeon"] = true,
-				["timestamp"] = 1675543204,
+				["completedDungeon"] = false,
+				["timestamp"] = 1676742070,
 				["canLootMount"] = true,
 				["realm"] = "Draenor",
 			},
@@ -35,9 +52,12 @@ TomCats_Account = {
 		},
 	},
 	["discoveriesVersion"] = "2.4.35",
-	["lastVersionSeen"] = "2.4.51",
+	["lastVersionSeen"] = "2.4.92",
 	["preferences"] = {
-		["dragonGlyphsTipShown"] = true,
+		["TomCats-HallowsEndMinimapButton"] = {
+			["hidden"] = false,
+			["position"] = -2.514,
+		},
 		["TomCats-MinimapButton"] = {
 			["hidden"] = true,
 			["position"] = 3.049746576198334,
@@ -49,12 +69,28 @@ TomCats_Account = {
 		},
 		["TomCats-LoveIsInTheAirMinimapButton2023"] = {
 			["hidden"] = false,
-			["position"] = -0.4763649783323299,
+			["position"] = -3.114694780012823,
 		},
-		["dragonGlyphsEnabled"] = true,
-		["TomCats-HallowsEndMinimapButton"] = {
+		["TomCats-MidsummerMinimapButton2023"] = {
 			["hidden"] = false,
 			["position"] = -2.514,
+		},
+		["AccessoryWindow"] = {
+			["primeGamingLoot"] = 3,
+			["elementalStorms"] = 2,
+			["treasureGoblin"] = 3,
+			["WindowLocation"] = {
+				"LEFT", -- [1]
+				nil, -- [2]
+				"LEFT", -- [3]
+				17.92447280883789, -- [4]
+				-335.4364624023438, -- [5]
+			},
+			["display"] = 100,
+			["twitchDrops"] = 3,
+			["timeRifts"] = 3,
+			["snoozed"] = {
+			},
 		},
 		["betaEnabled"] = false,
 		["TomCats-LunarFestivalMinimapButton2023"] = {
@@ -78,10 +114,10 @@ TomCats_Account = {
 			},
 			["dimmedItems"] = {
 				["Unchill-Draenor"] = {
-					["FIRE"] = 1,
 					["EARTH"] = 1,
-					["AIR"] = 0,
+					["FIRE"] = 1,
 					["WATER"] = 1,
+					["AIR"] = 0,
 				},
 			},
 			["eligibleClasses"] = {
@@ -107,6 +143,8 @@ TomCats_Account = {
 				-261.3823852539063, -- [5]
 			},
 		},
+	},
+	["midsummer"] = {
 	},
 	["discoveries"] = {
 		["version"] = "0",

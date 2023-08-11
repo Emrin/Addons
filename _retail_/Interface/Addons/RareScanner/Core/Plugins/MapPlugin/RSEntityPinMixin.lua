@@ -25,8 +25,11 @@ local RSEntityStateHandler = private.ImportLib("RareScannerEntityStateHandler")
 
 -- RareScanner general libraries
 local RSUtils = private.ImportLib("RareScannerUtils")
+local RSConstants = private.ImportLib("RareScannerConstants")
 
 RSEntityPinMixin = CreateFromMixins(MapCanvasPinMixin);
+
+RSEntityPinMixin.SetPassThroughButtons = function() end
 
 function RSEntityPinMixin:OnLoad()
 	self:SetScalingLimits(1, 0.75, 1.0);
@@ -38,8 +41,11 @@ function RSEntityPinMixin:OnAcquired(POI, dataProvider)
 	self.dataProvider = dataProvider
 	self.Texture:SetTexture(POI.Texture)
 	self.Texture:SetScale(RSConfigDB.GetIconsWorldMapScale())
+	self.IconTexture:SetAtlas(POI.iconAtlas)
 	self:SetPosition(RSUtils.FixCoord(POI.x), RSUtils.FixCoord(POI.y));
-	self:SetPassThroughButtons("MiddleButton");
+	if (self.SetPassThroughButtons) then
+		self:SetPassThroughButtons("MiddleButton");
+	end
 	MapPinHighlight_CheckHighlightPin(self:GetHighlightType(), self, self.Texture, AREAPOI_HIGHLIGHT_PARAMS);
 end
 
@@ -58,13 +64,25 @@ function RSEntityPinMixin:OnMouseDown(button)
 		--Toggle state
 		if (IsShiftKeyDown() and IsAltKeyDown()) then
 			if (self.POI.isNpc) then
-				RSConfigDB.SetNpcFiltered(self.POI.entityID)
+				if (RSConfigDB.GetDefaultNpcFilter() == RSConstants.ENTITY_FILTER_ALERTS) then
+					RSConfigDB.SetNpcFiltered(self.POI.entityID, RSConstants.ENTITY_FILTER_ALL)
+				else
+					RSConfigDB.SetNpcFiltered(self.POI.entityID)
+				end
 				self:Hide();
 			elseif (self.POI.isContainer) then
-				RSConfigDB.SetContainerFiltered(self.POI.entityID)
+				if (RSConfigDB.GetDefaultContainerFilter() == RSConstants.ENTITY_FILTER_ALERTS) then
+					RSConfigDB.SetContainerFiltered(self.POI.entityID, RSConstants.ENTITY_FILTER_ALL)
+				else
+					RSConfigDB.SetContainerFiltered(self.POI.entityID)
+				end
 				self:Hide();
 			elseif (self.POI.isEvent) then
-				RSConfigDB.SetEventFiltered(self.POI.entityID, false)
+				if (RSConfigDB.GetDefaultEventFilter() == RSConstants.ENTITY_FILTER_ALERTS) then
+					RSConfigDB.SetEventFiltered(self.POI.entityID, RSConstants.ENTITY_FILTER_ALL)
+				else
+					RSConfigDB.SetEventFiltered(self.POI.entityID)
+				end
 				self:Hide();
 			end
 			self:GetMap():RefreshAllDataProviders();
@@ -183,13 +201,7 @@ function RSEntityPinMixin:ShowGuide(mapID)
 			if (not info.questID or not C_QuestLog.IsQuestFlaggedCompleted(info.questID)) then
 				local POI = RSGuidePOI.GetGuidePOI(self.POI.entityID, pinType, info)
 				local pin = self:GetMap():AcquirePin("RSGuideTemplate", POI, self);
-				if (POI.loopAnimation) then
-					pin.ShowPingAnim:SetLooping("REPEAT")
-					pin.ShowPingAnim:Play()
-				else
-					pin.ShowPingAnim:SetLooping("NONE")
-					pin.ShowPingAnim:Play()
-				end
+				pin.ShowPingAnim:Play()
 			end
 		end
 		RSGeneralDB.SetGuideActive(self.POI.entityID)
@@ -202,11 +214,13 @@ function RSEntityPinMixin:OnReleased()
 	self.tooltip = nil
 end
 
-function RSEntityPinMixin:GetHighlightType() -- override
-	local _, bountyFactionID, bountyFrameType = self.dataProvider:GetBountyInfo();
-	if (bountyFrameType == BountyFrameType.ActivityTracker) then
-		if (self.POI.factionID and RSUtils.Contains(self.POI.factionID, bountyFactionID)) then
-			return MapPinHighlightType.SupertrackedHighlight;
+function RSEntityPinMixin:GetHighlightType()
+	if (RSConfigDB.IsHighlightingReputation()) then
+		local _, bountyFactionID, bountyFrameType = self.dataProvider:GetBountyInfo();
+		if (bountyFrameType == BountyFrameType.ActivityTracker) then
+			if (self.POI.factionID and RSUtils.Contains(self.POI.factionID, bountyFactionID)) then
+				return MapPinHighlightType.SupertrackedHighlight;
+			end
 		end
 	end
 

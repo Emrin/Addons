@@ -13,7 +13,7 @@ local getAll = OptionsPrivate.commonOptions.CreateGetAll("action")
 local setAll = OptionsPrivate.commonOptions.CreateSetAll("action", getAll)
 
 local RestrictedChannelCheck
-if WeakAuras.IsClassic() then
+if WeakAuras.IsClassicEra() then
   RestrictedChannelCheck = function()
     return false
   end
@@ -178,7 +178,7 @@ function OptionsPrivate.GetActionOptions(data)
         name = L["Voice"],
         order = 3.2,
         disabled = function() return not data.actions.start.do_message end,
-        hidden = function() return (WeakAuras.IsClassic()) or data.actions.start.message_type ~= "TTS" end,
+        hidden = function() return (WeakAuras.IsClassicEra()) or data.actions.start.message_type ~= "TTS" end,
         values = OptionsPrivate.Private.tts_voices,
         desc = L["Available Voices are system specific"]
       },
@@ -384,6 +384,7 @@ function OptionsPrivate.GetActionOptions(data)
           or data.actions.start.glow_action ~= "show"
           or not data.actions.start.glow_type
           or data.actions.start.glow_type == "buttonOverlay"
+          or data.actions.start.glow_type == "Proc"
           or data.actions.start.glow_frame_type == nil
         end,
       },
@@ -404,6 +405,7 @@ function OptionsPrivate.GetActionOptions(data)
           or data.actions.start.glow_action ~= "show"
           or not data.actions.start.glow_type
           or data.actions.start.glow_type == "buttonOverlay"
+          or data.actions.start.glow_type == "Proc"
           or data.actions.start.glow_frame_type == nil
         end,
       },
@@ -459,6 +461,7 @@ function OptionsPrivate.GetActionOptions(data)
           or data.actions.start.glow_action ~= "show"
           or not data.actions.start.glow_type
           or data.actions.start.glow_type == "buttonOverlay"
+          or data.actions.start.glow_type == "Proc"
           or data.actions.start.glow_frame_type == nil
         end,
       },
@@ -476,6 +479,7 @@ function OptionsPrivate.GetActionOptions(data)
           or data.actions.start.glow_action ~= "show"
           or not data.actions.start.glow_type
           or data.actions.start.glow_type == "buttonOverlay"
+          or data.actions.start.glow_type == "Proc"
           or data.actions.start.glow_frame_type == nil
         end,
       },
@@ -598,7 +602,7 @@ function OptionsPrivate.GetActionOptions(data)
         name = L["Voice"],
         order = 23.2,
         disabled = function() return not data.actions.finish.do_message end,
-        hidden = function() return (WeakAuras.IsClassic()) or data.actions.finish.message_type ~= "TTS" end,
+        hidden = function() return (WeakAuras.IsClassicEra()) or data.actions.finish.message_type ~= "TTS" end,
         values = OptionsPrivate.Private.tts_voices,
         desc = L["Available Voices are system specific"]
       },
@@ -785,6 +789,7 @@ function OptionsPrivate.GetActionOptions(data)
           or data.actions.finish.glow_action ~= "show"
           or not data.actions.finish.glow_type
           or data.actions.finish.glow_type == "buttonOverlay"
+          or data.actions.start.glow_type == "Proc"
           or data.actions.finish.glow_frame_type == nil
         end,
       },
@@ -805,6 +810,7 @@ function OptionsPrivate.GetActionOptions(data)
           or data.actions.finish.glow_action ~= "show"
           or not data.actions.finish.glow_type
           or data.actions.finish.glow_type == "buttonOverlay"
+          or data.actions.start.glow_type == "Proc"
           or data.actions.finish.glow_frame_type == nil
         end,
       },
@@ -860,6 +866,7 @@ function OptionsPrivate.GetActionOptions(data)
           or data.actions.finish.glow_action ~= "show"
           or not data.actions.finish.glow_type
           or data.actions.finish.glow_type == "buttonOverlay"
+          or data.actions.start.glow_type == "Proc"
           or data.actions.finish.glow_frame_type == nil
         end,
       },
@@ -877,6 +884,7 @@ function OptionsPrivate.GetActionOptions(data)
           or data.actions.finish.glow_action ~= "show"
           or not data.actions.finish.glow_type
           or data.actions.finish.glow_type == "buttonOverlay"
+          or data.actions.start.glow_type == "Proc"
           or data.actions.finish.glow_frame_type == nil
         end,
       },

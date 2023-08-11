@@ -62,4 +62,24 @@ private.DRAGON_GLYPHS = {
 	[16062] = { zoneID = 2023, artID = { 1705 }, x = 8647, y = 3944 }; --Dragon Glyphs: Rusza'thar Reach
 	[16058] = { zoneID = 2023, artID = { 1705 }, x = 4460, y = 6480 }; --Dragon Glyphs: Szar Skeleth
 	[16671] = { zoneID = 2023, artID = { 1705 }, x = 7831, y = 2131 }; --Dragon Glyphs: Mirewood Fen
+	
+	-- Forbidden Reach
+	[17398] = { zoneID = 2151, artID = { 1781 }, x = 1838, y = 1320, parent = 17411 }; --Dragon Glyphs: Winglord's Perch
+	[17400] = { zoneID = 2151, artID = { 1781 }, x = 6254, y = 3238, parent = 17411 }; --Dragon Glyphs: Froststone Peak
+	[17402] = { zoneID = 2151, artID = { 1781 }, x = 7729, y = 5510, parent = 17411 }; --Dragon Glyphs: Stormsunder Mountain
+	[17404] = { zoneID = 2151, artID = { 1781 }, x = 5905, y = 6508, parent = 17411 }; --Dragon Glyphs: Talonlords' Perch
+	[17399] = { zoneID = 2151, artID = { 1781 }, x = 2056, y = 9140, parent = 17411 }; --Dragon Glyphs: Talon's Watch
+	[17401] = { zoneID = 2151, artID = { 1781 }, x = 7946, y = 3261, parent = 17411 }; --Dragon Glyphs: Dragonskull Island
+	[17403] = { zoneID = 2151, artID = { 1781 }, x = 4851, y = 6897, parent = 17411 }; --Dragon Glyphs: The Frosted Spine
+	[17405] = { zoneID = 2151, artID = { 1781 }, x = 3769, y = 3069, parent = 17411 }; --Dragon Glyphs: Caldera of the Menders
+	
+	-- Zaralek Cavern
+	[17510] = { zoneID = 2133, artID = { 1775 }, x = 4169, y = 8036, parent = 18150 }; --Dragon Glyphs: Glimmerogg
+	[17512] = { zoneID = 2133, artID = { 1775 }, x = 5471, y = 5484, parent = 18150 }; --Dragon Glyphs: Loamm
+	[17514] = { zoneID = 2133, artID = { 1775 }, x = 5526, y = 2787, parent = 18150 }; --Dragon Glyphs: Slitherdrake Roost
+	[17516] = { zoneID = 2133, artID = { 1775 }, x = 4738, y = 3676, parent = 18150 }; --Dragon Glyphs: Acidbite Ravin
+	[17511] = { zoneID = 2133, artID = { 1775 }, x = 6269, y = 7033, parent = 18150 }; --Dragon Glyphs: Nal ks'kol
+	[17513] = { zoneID = 2133, artID = { 1775 }, x = 3046, y = 4529, parent = 18150 }; --Dragon Glyphs: Zaqali Caldera
+	[17515] = { zoneID = 2133, artID = { 1775 }, x = 7207, y = 4843, parent = 18150 }; --Dragon Glyphs: The Throughway
+	[17517] = { zoneID = 2133, artID = { 1775 }, x = 4810, y = 0432, parent = 18150 }; --Dragon Glyphs: Aberrus Approach
 }

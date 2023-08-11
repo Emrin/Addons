@@ -119,11 +119,6 @@ local function GetMapDragonGlyphsPOIs(mapID)
 end
 
 local function GetMapNotDiscoveredPOIs(mapID, questTitles, vignetteGUIDs, onWorldMap, onMiniMap)
-	-- Skip if not showing 'not discovered' icons
-	if (not RSConfigDB.IsShowingNotDiscoveredMapIcons()) then
-		return
-	end
-
 	-- Skip if not showing 'not discovered' icons in old expansions
 	if (not RSConfigDB.IsShowingOldNotDiscoveredMapIcons() and not RSMapDB.IsMapInCurrentExpansion(mapID)) then
 		return
@@ -155,7 +150,7 @@ function RSMap.GetMapPOIs(mapID, onWorldMap, onMiniMap)
 	MapPOIs = {}
 
 	-- Skip if zone filtered
-	if (RSConfigDB.IsZoneFiltered(mapID)) then
+	if (RSConfigDB.IsZoneFiltered(mapID) or RSConfigDB.IsZoneFilteredOnlyWorldmap(mapID)) then
 		return
 	end
 
@@ -250,12 +245,12 @@ function RSMap.GetMapPOIs(mapID, onWorldMap, onMiniMap)
 	return MapPOIs
 end
 
-function RSMap.GetWorldMapPOI(objectGUID, vignetteType, atlasName, mapID)
+function RSMap.GetWorldMapPOI(objectGUID, vignetteInfo, mapID)
 	if (not objectGUID or not mapID) then
 		return nil
 	end
 	
-	if (vignetteType == Enum.VignetteType.Treasure or RSConstants.IsContainerAtlas(atlasName)) then
+	if (vignetteInfo.type == Enum.VignetteType.Treasure or RSConstants.IsContainerAtlas(vignetteInfo.atlasName)) then
 		local _, _, _, _, _, vignetteObjectID = strsplit("-", objectGUID)
 		local containerID = tonumber(vignetteObjectID)
 		local containerInfo = RSContainerDB.GetInternalContainerInfo(containerID)
@@ -264,14 +259,30 @@ function RSMap.GetWorldMapPOI(objectGUID, vignetteType, atlasName, mapID)
 		if (containerInfo or alreadyFoundInfo) then
 			return RSContainerPOI.GetContainerPOI(containerID, mapID, containerInfo, alreadyFoundInfo)
 		end
-	elseif (vignetteType == Enum.VignetteType.Torghast or RSConstants.IsNpcAtlas(atlasName)) then
+	elseif (vignetteInfo.type == Enum.VignetteType.Torghast or RSConstants.IsNpcAtlas(vignetteInfo.atlasName)) then
 		local _, _, _, _, _, vignetteObjectID = strsplit("-", objectGUID)
 		local npcID = tonumber(vignetteObjectID)
+		
+		-- If Ancestral Spirit in Forbidden Reach or Loam Scoat in Zaralek Cavern, locate real NPC
+		if ((npcID == RSConstants.FORBIDDEN_REACH_ANCESTRAL_SPIRIT or npcID == RSConstants.ZARALEK_CAVERN_LOAM_SCOUT) and RSNpcDB.GetNpcId(vignetteInfo.name, mapID)) then
+			npcID = RSNpcDB.GetNpcId(vignetteInfo.name, mapID)
+		end
+		
 		local npcInfo = RSNpcDB.GetInternalNpcInfo(npcID)
 		local alreadyFoundInfo = RSGeneralDB.GetAlreadyFoundEntity(npcID)
 		
 		if (npcInfo or alreadyFoundInfo) then
 			return RSNpcPOI.GetNpcPOI(npcID, mapID, npcInfo, alreadyFoundInfo)
+		end
+	elseif (RSConstants.IsEventAtlas(vignetteInfo.atlasName)) then
+		local _, _, _, _, _, vignetteObjectID = strsplit("-", objectGUID)
+		local eventID = tonumber(vignetteObjectID)
+		
+		local eventInfo = RSEventDB.GetInternalEventInfo(eventID)
+		local alreadyFoundInfo = RSGeneralDB.GetAlreadyFoundEntity(eventID)
+	
+		if (eventInfo or alreadyFoundInfo) then
+			return RSEventPOI.GetEventPOI(eventID, mapID, eventInfo, alreadyFoundInfo)
 		end
 	end
 	

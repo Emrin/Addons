@@ -67,8 +67,8 @@ VER 3 010000000000000C "ve" "134400"
 /cast [mod,@player][@mouseover,exists,help,nodead][] Verdant Embrace
 END
 VER 3 0100000000000001 "VuhDoDCShieldData" "Ability_Repair"
-R1PM1WM1HM1HM1EM2SM2WM2IH2RM2SR3DH3OM3DH3RM3MR4HM4DH4DH4WM4DH5WM5RM5EM5HR5WM6HM6LR[x]6HM6MR7VR7DR7HM7WM7PH[x][x][x][x][x]6VH[x][x]0__0__[x][x][x][x][x][x][x][x][x][x][x]0__[x][x][x][x][x][x]0__0__[x]0__[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1VH[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
 END
 VER 3 0100000000000002 "VuhDoDCShieldNames" "Ability_Repair"
-NRykXqwOrkTheFroMakRaiDeaStôCanSmîLørTerOrdMagTesÖstKopKroTroBeaTurIceRaxVarBonLau[x]SasDayValLorTriRaoWes[x][x][x][x][x]Unc[x][x]ManCha[x][x][x][x][x][x][x][x][x][x][x]Fel[x][x][x][x][x][x]BluBlo[x]Ech[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Unc[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
 END

@@ -24,24 +24,27 @@ local function ReskinQualityContainer(container)
 end
 
 local function ReskinSlotButton(button)
-	if button and not button.isSkinned then
-		local texture = button.Icon:GetTexture()
-		button:StripTextures()
-		button:SetNormalTexture(E.ClearTexture)
-		button:SetPushedTexture(E.ClearTexture)
+	local icon = button and button.Icon
+	if not icon then return end
 
-		S:HandleIcon(button.Icon, true)
-		S:HandleIconBorder(button.IconBorder, button.Icon.backdrop)
-		button.Icon:SetOutside(button)
-		button.Icon:SetTexture(texture)
+	if button.CropFrame then button.CropFrame:SetAlpha(0) end
+	if button.NormalTexture then button.NormalTexture:SetAlpha(0) end
+	if button.SlotBackground then button.SlotBackground:SetAlpha(0) end
+	if button.HighlightTexture then button.HighlightTexture:SetAlpha(0) end
 
-		local hl = button:GetHighlightTexture()
-		hl:SetColorTexture(1, 1, 1, .25)
-		hl:SetOutside(button)
+	local hl = button:GetHighlightTexture()
+	hl:SetColorTexture(1, 1, 1, .25)
+	hl:SetOutside(button)
 
-		if button.SlotBackground then
-			button.SlotBackground:Hide()
-		end
+	local ps = button:GetPushedTexture()
+	ps:SetColorTexture(0.9, 0.8, 0.1, 0.3)
+	ps:SetBlendMode('ADD')
+	ps:SetOutside(button)
+
+	if not button.isSkinned then
+		S:HandleIcon(icon, true)
+		S:HandleIconBorder(button.IconBorder, icon.backdrop)
+		icon:SetOutside(button)
 
 		button.isSkinned = true
 	end
@@ -100,7 +103,7 @@ local function ReskinOutputLog(outputlog)
 	outputlog:SetTemplate('Transparent')
 
 	S:HandleCloseButton(outputlog.ClosePanelButton)
-	S:HandleTrimScrollBar(outputlog.ScrollBar, true)
+	S:HandleTrimScrollBar(outputlog.ScrollBar)
 
 	hooksecurefunc(outputlog.ScrollBox, 'Update', HandleOutputButtons)
 end
@@ -115,6 +118,7 @@ function S:Blizzard_Professions()
 	S:HandleButton(CraftingPage.CreateButton)
 	S:HandleButton(CraftingPage.CreateAllButton)
 	S:HandleButton(CraftingPage.ViewGuildCraftersButton)
+	S:HandleEditBox(CraftingPage.MinimizedSearchBox)
 	HandleInputBox(CraftingPage.CreateMultipleInputBox)
 
 	if E.global.general.disableTutorialButtons then
@@ -142,9 +146,14 @@ function S:Blizzard_Professions()
 	GuildFrame.Container:StripTextures()
 	GuildFrame.Container:CreateBackdrop('Transparent')
 
+	S:HandleMaxMinFrame(ProfessionsFrame.MaximizeMinimize)
+
 	for _, tab in next, { ProfessionsFrame.TabSystem:GetChildren() } do
 		S:HandleTab(tab)
 	end
+
+	ProfessionsFrame.TabSystem:ClearAllPoints()
+	ProfessionsFrame.TabSystem:Point('TOPLEFT', ProfessionsFrame, 'BOTTOMLEFT', -3, 0)
 
 	for _, name in pairs({'Prof0ToolSlot', 'Prof0Gear0Slot', 'Prof0Gear1Slot', 'Prof1ToolSlot', 'Prof1Gear0Slot', 'Prof1Gear1Slot', 'CookingToolSlot', 'CookingGear0Slot', 'FishingToolSlot', 'FishingGear0Slot', 'FishingGear1Slot'}) do
 		local button = CraftingPage[name]
@@ -159,7 +168,7 @@ function S:Blizzard_Professions()
 
 	local CraftList = CraftingPage.RecipeList
 	CraftList:StripTextures()
-	S:HandleTrimScrollBar(CraftList.ScrollBar, true)
+	S:HandleTrimScrollBar(CraftList.ScrollBar)
 
 	if CraftList.BackgroundNineSlice then
 		if E.private.skins.parchmentRemoverEnable then
@@ -180,8 +189,10 @@ function S:Blizzard_Professions()
 
 	if E.private.skins.parchmentRemoverEnable then
 		SchematicForm.Background:SetAlpha(0)
+		SchematicForm.MinimalBackground:SetAlpha(0)
 	else
 		SchematicForm.Background:SetAlpha(.25)
+		SchematicForm.MinimalBackground:SetAlpha(.25)
 	end
 	SchematicForm:CreateBackdrop('Transparent')
 	SchematicForm.backdrop:SetInside()
@@ -218,6 +229,11 @@ function S:Blizzard_Professions()
 	if QualityDialog then
 		QualityDialog:StripTextures()
 		QualityDialog:CreateBackdrop('Transparent')
+
+		if QualityDialog.Bg then
+			QualityDialog.Bg:SetAlpha(0)
+		end
+
 		S:HandleCloseButton(QualityDialog.ClosePanelButton)
 		S:HandleButton(QualityDialog.AcceptButton)
 		S:HandleButton(QualityDialog.CancelButton)
@@ -236,8 +252,12 @@ function S:Blizzard_Professions()
 	end
 
 	local SpecPage = ProfessionsFrame.SpecPage
+	S:HandleButton(SpecPage.ViewTreeButton)
 	S:HandleButton(SpecPage.UnlockTabButton)
 	S:HandleButton(SpecPage.ApplyButton)
+	S:HandleButton(SpecPage.ViewPreviewButton)
+	S:HandleButton(SpecPage.BackToFullTreeButton)
+	S:HandleButton(SpecPage.BackToPreviewButton)
 	SpecPage.TreeView:StripTextures()
 	SpecPage.TreeView.Background:Hide()
 	SpecPage.TreeView:CreateBackdrop('Transparent')
@@ -275,18 +295,33 @@ function S:Blizzard_Professions()
 	S:HandleButton(BrowseFrame.FavoritesSearchButton)
 	BrowseFrame.FavoritesSearchButton:Size(22)
 
+	do
+		S:HandleNextPrevButton(BrowseFrame.BackButton, 'left', nil, true)
+		S:HandleBlizzardRegions(BrowseFrame.BackButton)
+		BrowseFrame.BackButton:SetTemplate()
+	end
+
 	local BrowseList = Orders.BrowseFrame.RecipeList
 	BrowseList:StripTextures()
-	S:HandleTrimScrollBar(BrowseList.ScrollBar, true)
+	S:HandleTrimScrollBar(BrowseList.ScrollBar)
 	S:HandleEditBox(BrowseList.SearchBox)
 	S:HandleButton(BrowseList.FilterButton)
 	BrowseList.BackgroundNineSlice:SetTemplate('Transparent')
 
 	local OrderList = Orders.BrowseFrame.OrderList
 	OrderList:StripTextures()
-	S:HandleTrimScrollBar(OrderList.ScrollBar, true)
+	S:HandleTrimScrollBar(OrderList.ScrollBar)
 
 	local OrderView = Orders.OrderView
+
+	local DeclineOrderDialog = OrderView.DeclineOrderDialog
+	DeclineOrderDialog:StripTextures()
+	DeclineOrderDialog:CreateBackdrop('Transparent')
+	DeclineOrderDialog.NoteEditBox:StripTextures()
+	S:HandleEditBox(DeclineOrderDialog.NoteEditBox.ScrollingEditBox)
+	S:HandleButton(DeclineOrderDialog.ConfirmButton)
+	S:HandleButton(DeclineOrderDialog.CancelButton)
+
 	local OrderRankBar = OrderView.RankBar
 	OrderRankBar.Border:Hide()
 	OrderRankBar.Background:Hide()
@@ -303,10 +338,11 @@ function S:Blizzard_Professions()
 	OrderInfo:StripTextures()
 	OrderInfo:CreateBackdrop('Transparent')
 	S:HandleButton(OrderInfo.BackButton)
-	S:HandleButton(OrderInfo.IgnoreButton)
+	--S:HandleButton(OrderInfo.IgnoreButton) -- plx check that
 	S:HandleButton(OrderInfo.StartOrderButton)
 	S:HandleButton(OrderInfo.DeclineOrderButton)
 	S:HandleButton(OrderInfo.ReleaseOrderButton)
+	S:HandleNextPrevButton(OrderInfo.SocialDropdownButton)
 	S:HandleEditBox(OrderInfo.NoteBox)
 	if OrderInfo.NoteBox.backdrop then
 		OrderInfo.NoteBox.backdrop:SetTemplate('Transparent')

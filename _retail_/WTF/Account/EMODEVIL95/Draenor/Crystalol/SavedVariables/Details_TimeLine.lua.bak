@@ -106,13 +106,21 @@ DetailsTimeLineDB = {
 			},
 		}, -- [1]
 		{
-			[329340] = {
+			[323538] = {
 				{
-					22.26500000001397, -- [1]
+					7.204000000027008, -- [1]
 					"High Adjudicator Aleez", -- [2]
-					329340, -- [3]
+					323538, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Rævemor-Kazzak", -- [5]
 				}, -- [1]
+				{
+					35.50800000003073, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323538, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Rævemor-Kazzak", -- [5]
+				}, -- [2]
 			},
 			[338012] = {
 				{
@@ -146,6 +154,14 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
+			[329340] = {
+				{
+					22.26500000001397, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					329340, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[346866] = {
 				{
 					14.5899999999674, -- [1]
@@ -158,22 +174,6 @@ DetailsTimeLineDB = {
 					"Loyal Stoneborn", -- [2]
 					346866, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-			[323538] = {
-				{
-					7.204000000027008, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323538, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Rævemor-Kazzak", -- [5]
-				}, -- [1]
-				{
-					35.50800000003073, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323538, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Rævemor-Kazzak", -- [5]
 				}, -- [2]
 			},
 		}, -- [2]
@@ -1004,6 +1004,22 @@ DetailsTimeLineDB = {
 			},
 		}, -- [10]
 		{
+			[193460] = {
+				{
+					24.71900000004098, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193460, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[193977] = {
+				{
+					18.15400000009686, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193977, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[193364] = {
 				{
 					10.17399999999907, -- [1]
@@ -1017,14 +1033,6 @@ DetailsTimeLineDB = {
 					193364, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
-			},
-			[193977] = {
-				{
-					18.15400000009686, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193977, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
 			},
 			[193211] = {
 				{
@@ -1048,14 +1056,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Holyviolet", -- [5]
 				}, -- [3]
-			},
-			[193460] = {
-				{
-					24.71900000004098, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193460, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
 			},
 		}, -- [11]
 		{
@@ -1398,13 +1398,21 @@ DetailsTimeLineDB = {
 					"Bloodfel-Outland", -- [5]
 				}, -- [3]
 			},
-			[197974] = {
+			[197687] = {
 				{
-					63.49800000002142, -- [1]
-					"Soul-torn Vanguard", -- [2]
-					197974, -- [3]
+					48.64299999992363, -- [1]
+					"Eye Beams", -- [2]
+					197687, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Onera-Zul'jin", -- [5]
 				}, -- [1]
+				{
+					62.12099999992643, -- [1]
+					"Eye Beams", -- [2]
+					197687, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Crystalol", -- [5]
+				}, -- [2]
 			},
 			[197546] = {
 				{
@@ -1429,6 +1437,22 @@ DetailsTimeLineDB = {
 					"Crystalol", -- [5]
 				}, -- [3]
 			},
+			[197974] = {
+				{
+					63.49800000002142, -- [1]
+					"Soul-torn Vanguard", -- [2]
+					197974, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[197478] = {
+				{
+					11.25300000002608, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197478, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[197484] = {
 				{
 					17.3859999999404, -- [1]
@@ -1441,30 +1465,6 @@ DetailsTimeLineDB = {
 					"Illysanna Ravencrest", -- [2]
 					197484, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-			[197478] = {
-				{
-					11.25300000002608, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197478, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[197687] = {
-				{
-					48.64299999992363, -- [1]
-					"Eye Beams", -- [2]
-					197687, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Onera-Zul'jin", -- [5]
-				}, -- [1]
-				{
-					62.12099999992643, -- [1]
-					"Eye Beams", -- [2]
-					197687, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Crystalol", -- [5]
 				}, -- [2]
 			},
 		}, -- [14]

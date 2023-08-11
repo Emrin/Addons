@@ -10,6 +10,7 @@ DCP_Saved = {
 	["fadeOutTime"] = 0.699999988079071,
 	["maxAlpha"] = 0.699999988079071,
 	["x"] = 495.4666748046875,
+	["remainingCooldownWhenNotified"] = 0,
 	["iconSize"] = 75,
 	["y"] = 486.9334411621094,
 	["animScale"] = 1.5,

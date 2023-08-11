@@ -22,6 +22,8 @@ local RSUtils = private.ImportLib("RareScannerUtils")
 
 RSGroupPinMixin = CreateFromMixins(MapCanvasPinMixin);
 
+RSGroupPinMixin.SetPassThroughButtons = function() end
+
 function RSGroupPinMixin:OnLoad()
 	self:SetScalingLimits(1, 1, 1.0);
 end
@@ -51,8 +53,12 @@ function RSGroupPinMixin:OnAcquired(POI, dataProvider)
 	else
 		self.RightTexture:SetTexture(nil)
 	end
+	self.IconTexture:SetAtlas(POI.iconAtlas)
 	self:SetPosition(POI.x, POI.y);
-	self:SetPassThroughButtons("MiddleButton");
+	
+	if (self.SetPassThroughButtons) then
+		self:SetPassThroughButtons("MiddleButton");
+	end
 end
 
 function RSGroupPinMixin:OnMouseEnter()
@@ -116,11 +122,13 @@ end
 
 
 function RSGroupPinMixin:GetHighlightType() -- override
-	local _, bountyFactionID, bountyFrameType = self.dataProvider:GetBountyInfo();
-	if (bountyFrameType == BountyFrameType.ActivityTracker) then
-		for _, childPOI in pairs (self.POI.POIs) do
-			if (childPOI.factionID and RSUtils.Contains(childPOI.factionID, bountyFactionID)) then
-				return MapPinHighlightType.SupertrackedHighlight;
+	if (RSConfigDB.IsHighlightingReputation()) then
+		local _, bountyFactionID, bountyFrameType = self.dataProvider:GetBountyInfo();
+		if (bountyFrameType == BountyFrameType.ActivityTracker) then
+			for _, childPOI in pairs (self.POI.POIs) do
+				if (childPOI.factionID and RSUtils.Contains(childPOI.factionID, bountyFactionID)) then
+					return MapPinHighlightType.SupertrackedHighlight;
+				end
 			end
 		end
 	end

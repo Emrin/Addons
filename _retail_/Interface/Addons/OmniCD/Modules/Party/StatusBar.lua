@@ -167,6 +167,7 @@ function P:GetStatusBar(icon, key)
 	statusBar:SetParent(icon)
 	statusBar:ClearAllPoints()
 	statusBar:SetPoint("TOPLEFT", icon, "TOPRIGHT")
+	statusBar:SetPoint("BOTTOMLEFT", icon, "BOTTOMRIGHT")
 	statusBar:Show()
 	statusBar.BG:Show()
 	statusBar.Text:Show()
@@ -195,7 +196,7 @@ local function CastingBarFrame_FinishSpell(self)
 	end
 	self.flash = true;
 	]]
-	if self.statusBar.key ~= "raidBar0" or not P.extraBars.raidBar0.shouldRearrangeInterrupts then
+	if not P.extraBars[self.statusBar.key].shouldRearrangeInterrupts then
 		self.fadeOut = true;
 	end
 	self.casting = nil;
@@ -278,8 +279,7 @@ local function OmniCDCastingBarFrame_OnHide(self)
 
 	local icon = statusBar.icon
 	if icon.tooltipID then
-		local iconTexture = GetSpellTexture(self.spellID)
-		statusBar.icon.icon:SetTexture(iconTexture)
+		statusBar.icon.icon:SetTexture(icon.iconTexture)
 		icon.tooltipID = nil
 		if not E.db.icons.showTooltip then
 			icon:EnableMouse(false)

@@ -1,3 +1,32 @@
+Version 1.22
+
+- Updated for MDT 4.0.4.*
+
+Version 1.21
+
+- Fix hull drawing when changing maps
+- Remove blacklist skipping again as it's no longer necessary
+
+Version 1.20
+
+- Updated ToC version for patch 10.1
+- Add MDT version check to prevent breaking it
+- Skip blacklisting (hopefully this is temporary)
+
+Version 1.19
+
+- Fix missing guide mode toggle button
+
+Version 1.18
+
+- Add missing start locations for dragonflight S1 dungeons
+- Switch to enemy forces mode for dungeons with no known start locations
+- Fix not fading some frames when fade is enabled
+- Make fading progress smoothly between values
+- Add option to hide window completely while in combat
+- Remember current route when reloading/relogging or leaving the dungeon
+- Ignore mobs summoned during combat in route estimation
+
 Version 1.17
 
 - Fix more errors caused by missing dungeon POIs

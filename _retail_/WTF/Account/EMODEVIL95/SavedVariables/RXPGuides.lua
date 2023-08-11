@@ -5,9 +5,15 @@ RXPData = {
 }
 RXPDB = {
 	["profileKeys"] = {
+		["Pokipoki - Draenor"] = "global",
+		["Crystalol - Draenor"] = "global",
+		["Nolifey - Ravencrest"] = "global",
 		["Cutetroll - Draenor"] = "global",
-		["Pixiel - Draenor"] = "global",
 		["Unchill - Draenor"] = "global",
+		["Lifey - Silvermoon"] = "global",
+		["Pixiel - Draenor"] = "global",
+		["Apoka - Outland"] = "global",
+		["Nolifey - Draenor"] = "global",
 	},
 	["profiles"] = {
 		["global"] = {

@@ -1,10 +1,13 @@
-tag 00e0c2e27e7a941bfb6014fbcb050fae3be433f3 v1.0.8
+tag c57a80dd30a8f0bd7a787205d1742a91e95e0682 v1.0.9
 Author:	Stroeckx <stijnstroeckx@hotmail.com>
-Date:	Fri Dec 23 14:57:14 2022 +0100
+Date:	Sun Apr 2 20:28:21 2023 +0100
 
-commit 439bbb9a6f1abaa176e616572dd13cc71c9f7a02
+commit ab4178e9da85b5ac6eafdad599e8537abf6bd6af
 Author: Stroeckx <stijnstroeckx@hotmail.com>
-Date:   Fri Dec 23 14:57:03 2022 +0100
+Date:   Sun Apr 2 20:28:04 2023 +0100
 
-    Added support for enchants
+    Updated for 10.0.7
+    
+    - Updated positioning of the frame to move below optional reagents if present.
+    - Hid the pricing frame for crafting orders until a better version has been implemented.
 

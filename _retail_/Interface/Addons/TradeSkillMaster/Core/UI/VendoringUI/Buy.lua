@@ -179,7 +179,7 @@ end
 
 function private.GetItemText(row)
 	local itemString, numAvailable = row:GetFields("itemString", "numAvailable")
-	local itemName = UIUtils.GetColoredItemName(itemString) or "?"
+	local itemName = UIUtils.GetDisplayItemName(itemString) or "?"
 	if numAvailable == -1 then
 		return itemName
 	elseif numAvailable > 0 then
@@ -276,7 +276,7 @@ function private.RowOnClick(scrollingTable, row, mouseButton)
 			:AddAnchor("CENTER")
 			:SetContext(row)
 			:SetMouseEnabled(true)
-			:SetBackgroundColor("FRAME_BG", true)
+			:SetRoundedBackgroundColor("FRAME_BG")
 			:AddChild(UIElements.New("Frame", "header")
 				:SetLayout("HORIZONTAL")
 				:SetHeight(24)
@@ -299,7 +299,7 @@ function private.RowOnClick(scrollingTable, row, mouseButton)
 				:SetLayout("HORIZONTAL")
 				:SetPadding(6)
 				:SetMargin(0, 0, 0, 16)
-				:SetBackgroundColor("PRIMARY_BG_ALT", true)
+				:SetRoundedBackgroundColor("PRIMARY_BG_ALT")
 				:AddChild(UIElements.New("Button", "icon")
 					:SetSize(36, 36)
 					:SetMargin(0, 8, 0, 0)
@@ -309,7 +309,7 @@ function private.RowOnClick(scrollingTable, row, mouseButton)
 				:AddChild(UIElements.New("Text", "name")
 					:SetHeight(36)
 					:SetFont("ITEM_BODY1")
-					:SetText(UIUtils.GetColoredItemName(itemString))
+					:SetText(UIUtils.GetDisplayItemName(itemString))
 				)
 			)
 			:AddChild(UIElements.New("Frame", "qty")

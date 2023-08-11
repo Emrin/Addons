@@ -23,7 +23,7 @@ function mod:GetOptions()
 	return {
 		200898, -- Teleport
 		202455, -- Void Shield
-		212564, -- Inquisitive Stare
+		{212564, "CASTBAR"}, -- Inquisitive Stare
 		{200904, "FLASH"}, -- Sapped Soul
 		196208, -- Seed of Corruption
 		201488, -- Frightening Shout
@@ -114,7 +114,7 @@ do
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextTeleportSoonWarning then
 		self:MessageOld(200898, "yellow", nil, CL.soon:format(self:SpellName(200898)))
 		nextTeleportSoonWarning = nextTeleportSoonWarning - 30 -- Teleport at 40%

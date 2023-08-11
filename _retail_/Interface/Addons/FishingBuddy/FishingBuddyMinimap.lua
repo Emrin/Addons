@@ -14,11 +14,11 @@ local GSB = function(...) return FBI:GetSettingBool(...); end;
 
 local function Minimap_OnClick(self, button, down)
 	if ( button == "RightButton" ) then
-		ToggleFishingBuddyFrame("FishingOptionsFrame");
+		FBI:ToggleFishingBuddyFrame("FishingOptionsFrame");
 	elseif ( FBI:IsSwitchClick("MinimapClickToSwitch") ) then
 		FBI:Command(FBConstants.SWITCH);
 	else
-		ToggleFishingBuddyFrame("FishingLocationsFrame");
+		FBI:ToggleFishingBuddyFrame("FishingLocationsFrame");
 	end
 end
 
@@ -68,7 +68,7 @@ end
 
 MinimapEvents["VARIABLES_LOADED"] = function()
 	local _, info;
-	
+
 	if ( not FishingBuddy_Player["MinimapData"] ) then
 		FishingBuddy_Player["MinimapData"] = { hide=false };
 	end
@@ -83,7 +83,7 @@ MinimapEvents["VARIABLES_LOADED"] = function()
 				icon = "Interface\\Icons\\Trade_Fishing",
 				OnClick = Minimap_OnClick,
 			};
-		
+
 		icon:Register(FBConstants.NAME, data, FishingBuddy_Player["MinimapData"]);
 	end
 end

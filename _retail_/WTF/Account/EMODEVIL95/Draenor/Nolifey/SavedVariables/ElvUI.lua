@@ -2,28 +2,6 @@
 ElvCharacterDB = {
 	["ChatHistoryLog"] = {
 		{
-			"who the fk is talking about dick", -- [1]
-			"Xesca-Draenor", -- [2]
-			"", -- [3]
-			"3. LookingForGroup", -- [4]
-			"Xesca-Draenor", -- [5]
-			"", -- [6]
-			26, -- [7]
-			3, -- [8]
-			"LookingForGroup", -- [9]
-			0, -- [10]
-			257, -- [11]
-			"Player-1403-0536B8C1", -- [12]
-			0, -- [13]
-			false, -- [14]
-			false, -- [15]
-			false, -- [16]
-			false, -- [17]
-			[52] = "|cfff48cbaXesca|r",
-			[51] = 1667855869,
-			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [1]
-		{
 			"ok you choose the topic this time bendjay", -- [1]
 			"Stormbrain-Draenor", -- [2]
 			"", -- [3]
@@ -44,7 +22,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667855873,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [2]
+		}, -- [1]
 		{
 			"im talking about cars", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -66,7 +44,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667855874,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [3]
+		}, -- [2]
 		{
 			"I dont give a single fuck about ur dick homie", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -88,7 +66,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667855874,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [4]
+		}, -- [3]
 		{
 			"\"sIzE dOeS nOt mAtTeR, iTs hOw YoU uSe iT\"", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -110,7 +88,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667855878,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [5]
+		}, -- [4]
 		{
 			"golmash", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -132,7 +110,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667855824,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [6]
+		}, -- [5]
 		{
 			"thats bullshit :D", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -154,7 +132,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667855827,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [7]
+		}, -- [6]
 		{
 			"Lets talk about cars", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -176,7 +154,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667855828,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [8]
+		}, -- [7]
 		{
 			"is that what she told you", -- [1]
 			"Xyllian-Draenor", -- [2]
@@ -198,7 +176,7 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Xyllian|r",
 			[51] = 1667855828,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [9]
+		}, -- [8]
 		{
 			"cars", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -220,7 +198,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667855902,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [10]
+		}, -- [9]
 		{
 			"my car has 2 wheels", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -242,7 +220,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667855908,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [11]
+		}, -- [10]
 		{
 			"i dont know much about cars so ill leave it to more well-versed peeps", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -264,7 +242,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667855914,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [12]
+		}, -- [11]
 		{
 			"mcjagger", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -286,7 +264,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667855923,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [13]
+		}, -- [12]
 		{
 			"Ok, lets get back to wow", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -308,7 +286,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667855925,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [14]
+		}, -- [13]
 		{
 			"Is prot pala going to be playable in DF?", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -330,7 +308,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667855932,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [15]
+		}, -- [14]
 		{
 			"oh yes, cars, the penis enlarger..", -- [1]
 			"Diropa-Draenor", -- [2]
@@ -352,7 +330,7 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Diropa|r",
 			[51] = 1667855933,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [16]
+		}, -- [15]
 		{
 			"no no ", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -374,7 +352,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667855884,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [17]
+		}, -- [16]
 		{
 			"Jimmy carr", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -396,7 +374,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667855886,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [18]
+		}, -- [17]
 		{
 			"so how is everyone today anyway", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -418,7 +396,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667855890,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [19]
+		}, -- [18]
 		{
 			"bad as usual", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -440,7 +418,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667855955,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [20]
+		}, -- [19]
 		{
 			"I am about to play League of legends with my girlfriend", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -462,7 +440,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667855964,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [21]
+		}, -- [20]
 		{
 			"doesnt league make people rage?", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -484,7 +462,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667855974,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [22]
+		}, -- [21]
 		{
 			"it does", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -506,7 +484,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667855980,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [23]
+		}, -- [22]
 		{
 			"Bendjay want divorce it seems", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -528,7 +506,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667855983,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [24]
+		}, -- [23]
 		{
 			"thats why ill be back here in 30o", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -550,7 +528,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667855983,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [25]
+		}, -- [24]
 		{
 			"league is the only game i know that has a way more toxic community than wow :D", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -572,7 +550,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667855994,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [26]
+		}, -- [25]
 		{
 			"i got toyota hilux 2020 ", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -594,7 +572,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667855940,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [27]
+		}, -- [26]
 		{
 			"if we had this chat", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -616,7 +594,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667855946,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [28]
+		}, -- [27]
 		{
 			"it will out live the univers", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -638,7 +616,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667855946,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [29]
+		}, -- [28]
 		{
 			"on League", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -660,7 +638,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667855950,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [30]
+		}, -- [29]
 		{
 			"our accs would be ban", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -682,7 +660,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856014,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [31]
+		}, -- [30]
 		{
 			"lol", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -704,7 +682,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856017,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [32]
+		}, -- [31]
 		{
 			"you saying the league community would implode?", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -726,7 +704,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856030,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [33]
+		}, -- [32]
 		{
 			"i hate league comunity", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -748,7 +726,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856039,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [34]
+		}, -- [33]
 		{
 			"well they are making an mmo", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -770,7 +748,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856046,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [35]
+		}, -- [34]
 		{
 			"so that chat may become a reality", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -792,7 +770,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856053,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [36]
+		}, -- [35]
 		{
 			"The league community is not as open minded as us", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -814,7 +792,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667856006,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [37]
+		}, -- [36]
 		{
 			"the opposite of league is warframe", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -836,7 +814,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856080,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [38]
+		}, -- [37]
 		{
 			"i got s63 amg", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -858,7 +836,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667856080,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [39]
+		}, -- [38]
 		{
 			"ofc not we are all 30+ years old", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -880,7 +858,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856081,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [40]
+		}, -- [39]
 		{
 			"it's their ban system that makes ppl rage", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -902,7 +880,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856084,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [41]
+		}, -- [40]
 		{
 			"those are todlers", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -924,7 +902,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856085,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [42]
+		}, -- [41]
 		{
 			"their community is friendly as fuck", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -946,7 +924,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856089,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [43]
+		}, -- [42]
 		{
 			"u can be the best player", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -968,7 +946,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856107,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [44]
+		}, -- [43]
 		{
 			"but if they all decide to mass report you", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -990,7 +968,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856115,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [45]
+		}, -- [44]
 		{
 			"u getin the bans", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -1012,7 +990,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856060,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [46]
+		}, -- [45]
 		{
 			"warframe also has an amazing F2P model", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1034,7 +1012,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856061,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [47]
+		}, -- [46]
 		{
 			"wish it was the standard", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1056,7 +1034,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856066,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [48]
+		}, -- [47]
 		{
 			"Anyways Im off to play a real game", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -1078,7 +1056,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856149,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [49]
+		}, -- [48]
 		{
 			"havent even entered the game", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -1100,7 +1078,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667856149,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [50]
+		}, -- [49]
 		{
 			"anything they put in the store can be earned in game and you can get it very quickly", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1122,7 +1100,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856151,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [51]
+		}, -- [50]
 		{
 			"and i am about to get banned", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -1144,7 +1122,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667856156,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [52]
+		}, -- [51]
 		{
 			"golmmash", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -1166,7 +1144,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856157,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [53]
+		}, -- [52]
 		{
 			"wish me luck", -- [1]
 			"Bendjay-Draenor", -- [2]
@@ -1188,7 +1166,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBendjay|r",
 			[51] = 1667856160,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [54]
+		}, -- [53]
 		{
 			"all the store is \"go slightly faster\"", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1210,7 +1188,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856165,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [55]
+		}, -- [54]
 		{
 			"but calisto protocol comes out on 10th of december", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -1232,7 +1210,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856169,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [56]
+		}, -- [55]
 		{
 			"you cant play a real game yet", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -1254,7 +1232,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856174,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [57]
+		}, -- [56]
 		{
 			"Bro...", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -1276,7 +1254,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856122,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [58]
+		}, -- [57]
 		{
 			"Half Life...", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -1298,7 +1276,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856126,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [59]
+		}, -- [58]
 		{
 			"3", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1320,7 +1298,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856193,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [60]
+		}, -- [59]
 		{
 			"no game is beter than that", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -1342,7 +1320,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856196,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [61]
+		}, -- [60]
 		{
 			"wow is", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -1364,7 +1342,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856200,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [62]
+		}, -- [61]
 		{
 			"Half Life tops everything", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -1386,7 +1364,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856219,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [63]
+		}, -- [62]
 		{
 			"it is good ", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -1408,7 +1386,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856229,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [64]
+		}, -- [63]
 		{
 			"it is supreme", -- [1]
 			"Golmmash-Draenor", -- [2]
@@ -1430,7 +1408,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dGolmmash|r",
 			[51] = 1667856237,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [65]
+		}, -- [64]
 		{
 			"This game just turned to shit ", -- [1]
 			"Hotuup-Draenor", -- [2]
@@ -1452,7 +1430,7 @@ ElvCharacterDB = {
 			[52] = "|cffff7c0aHotuup|r",
 			[51] = 1667856184,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [66]
+		}, -- [65]
 		{
 			"so sad", -- [1]
 			"Hotuup-Draenor", -- [2]
@@ -1474,7 +1452,7 @@ ElvCharacterDB = {
 			[52] = "|cffff7c0aHotuup|r",
 			[51] = 1667856186,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [67]
+		}, -- [66]
 		{
 			"hotuup you been out a while huh", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1496,7 +1474,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856258,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [68]
+		}, -- [67]
 		{
 			"why do you say that?", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -1518,7 +1496,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856260,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [69]
+		}, -- [68]
 		{
 			"all i want is a decent deus ex game again...human revolution and mankind divided were amazing", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1540,7 +1518,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856285,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [70]
+		}, -- [69]
 		{
 			"game play is nice its the content that killed the theme", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -1562,7 +1540,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1667856286,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [71]
+		}, -- [70]
 		{
 			"or the actual sequal to vampire:bloodlines to come out", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1584,7 +1562,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856352,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [72]
+		}, -- [71]
 		{
 			"sadly its in development hell", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1606,7 +1584,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856374,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [73]
+		}, -- [72]
 		{
 			"what?", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -1628,7 +1606,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667856398,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [74]
+		}, -- [73]
 		{
 			"im with Darlanis ", -- [1]
 			"Argarok-Draenor", -- [2]
@@ -1650,7 +1628,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dArgarok|r",
 			[51] = 1667856398,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [75]
+		}, -- [74]
 		{
 			"Calisto ProtocoL!!!!!", -- [1]
 			"Argarok-Draenor", -- [2]
@@ -1672,7 +1650,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dArgarok|r",
 			[51] = 1667856405,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [76]
+		}, -- [75]
 		{
 			"are we still talking about pepe ? ", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -1694,7 +1672,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667856408,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [77]
+		}, -- [76]
 		{
 			"no", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1716,7 +1694,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856412,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [78]
+		}, -- [77]
 		{
 			"its literaly made from the creator of dead space 1", -- [1]
 			"Argarok-Draenor", -- [2]
@@ -1738,7 +1716,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dArgarok|r",
 			[51] = 1667856418,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [79]
+		}, -- [78]
 		{
 			"that was 10 mins ago", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1760,7 +1738,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856419,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [80]
+		}, -- [79]
 		{
 			"now ?", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -1782,7 +1760,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667856437,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [81]
+		}, -- [80]
 		{
 			"Real Madrid is goin to lose becuz of refree", -- [1]
 			"Xesca-Draenor", -- [2]
@@ -1804,7 +1782,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaXesca|r",
 			[51] = 1667856506,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [82]
+		}, -- [81]
 		{
 			"Fun fact: In Vietnam you can buy GPUs by the Kilo", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1826,7 +1804,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856509,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [83]
+		}, -- [82]
 		{
 			"but they are all worn out", -- [1]
 			"Argarok-Draenor", -- [2]
@@ -1848,7 +1826,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dArgarok|r",
 			[51] = 1667856523,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [84]
+		}, -- [83]
 		{
 			"just wait for 28th", -- [1]
 			"Argarok-Draenor", -- [2]
@@ -1870,7 +1848,7 @@ ElvCharacterDB = {
 			[52] = "|cffc69b6dArgarok|r",
 			[51] = 1667856488,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [85]
+		}, -- [84]
 		{
 			"intel next year will launch their xeon cpus with built in DLC :P", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1892,7 +1870,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856544,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [86]
+		}, -- [85]
 		{
 			"you can pay to unlock features that intel locks off", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1914,7 +1892,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856618,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [87]
+		}, -- [86]
 		{
 			"how to reset game interface this sucks :/", -- [1]
 			"Greenlamia-Draenor", -- [2]
@@ -1936,7 +1914,7 @@ ElvCharacterDB = {
 			[52] = "|cffa330c9Greenlamia|r",
 			[51] = 1667856673,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [88]
+		}, -- [87]
 		{
 			"I want to reset my face", -- [1]
 			"Zippi-Draenor", -- [2]
@@ -1958,7 +1936,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeZippi|r",
 			[51] = 1667856688,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [89]
+		}, -- [88]
 		{
 			"delete your interface/wtf folder", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -1980,7 +1958,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856689,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [90]
+		}, -- [89]
 		{
 			"you will lose all settings/addons etc", -- [1]
 			"Stormbrain-Draenor", -- [2]
@@ -2002,7 +1980,7 @@ ElvCharacterDB = {
 			[52] = "|cff0070ddStormbrain|r",
 			[51] = 1667856703,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [91]
+		}, -- [90]
 		{
 			"How can he read lips if he's blind", -- [1]
 			"Hynoss-Draenor", -- [2]
@@ -2024,7 +2002,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeHynoss|r",
 			[51] = 1669326084,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [92]
+		}, -- [91]
 		{
 			"is it even posible to be a doctor and be blind?", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -2046,7 +2024,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1669326084,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [93]
+		}, -- [92]
 		{
 			"you need your eyes 100% ", -- [1]
 			"Darlanis-Draenor", -- [2]
@@ -2068,7 +2046,7 @@ ElvCharacterDB = {
 			[52] = "|cff8788eeDarlanis|r",
 			[51] = 1669326161,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [94]
+		}, -- [93]
 		{
 			"i just lost braincells reading this", -- [1]
 			"Flowkit-Draenor", -- [2]
@@ -2090,7 +2068,7 @@ ElvCharacterDB = {
 			[52] = "|cfffff468Flowkit|r",
 			[51] = 1669326162,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [95]
+		}, -- [94]
 		{
 			"that for your imagination", -- [1]
 			"Bloodycarry-Draenor", -- [2]
@@ -2112,7 +2090,7 @@ ElvCharacterDB = {
 			[52] = "|cffc41e3aBloodycarry|r",
 			[51] = 1669326166,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [96]
+		}, -- [95]
 		{
 			"xD", -- [1]
 			"Startïts-Draenor", -- [2]
@@ -2134,7 +2112,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaStartïts|r",
 			[51] = 1669326167,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [97]
+		}, -- [96]
 		{
 			"he pu55y spots are braille?", -- [1]
 			"Baxorn-Draenor", -- [2]
@@ -2156,7 +2134,7 @@ ElvCharacterDB = {
 			[52] = "|cfff48cbaBaxorn|r",
 			[51] = 1669326170,
 			[50] = "CHAT_MSG_CHANNEL",
-		}, -- [98]
+		}, -- [97]
 		{
 			"i think i could see if a vagina isnt looking as it should do tbh", -- [1]
 			"Diropa-Draenor", -- [2]
@@ -2178,6 +2156,28 @@ ElvCharacterDB = {
 			[52] = "|cffaad372Diropa|r",
 			[51] = 1669326173,
 			[50] = "CHAT_MSG_CHANNEL",
+		}, -- [98]
+		{
+			"%s has earned the achievement |cffffff00|Hachievement:16736:Player-1403-082BD33D:1:2:12:23:4294967295:4294967295:4294967295:4294967295|h[Grand Theft Mammoth]|h|r!", -- [1]
+			"Nolifey-Draenor", -- [2]
+			"", -- [3]
+			"", -- [4]
+			"Nolifey-Draenor", -- [5]
+			"", -- [6]
+			0, -- [7]
+			0, -- [8]
+			"", -- [9]
+			0, -- [10]
+			17117, -- [11]
+			"Player-1403-082BD33D", -- [12]
+			0, -- [13]
+			false, -- [14]
+			false, -- [15]
+			false, -- [16]
+			false, -- [17]
+			[52] = "|cffc41e3aNolifey|r",
+			[51] = 1676214526,
+			[50] = "CHAT_MSG_GUILD_ACHIEVEMENT",
 		}, -- [99]
 	},
 	["ChatEditHistory"] = {

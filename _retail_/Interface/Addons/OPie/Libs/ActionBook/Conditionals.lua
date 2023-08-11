@@ -1,12 +1,13 @@
-local _, T = ...
+local COMPAT, _, T = select(4, GetBuildInfo()), ...
 if T.SkipLocalActionBook then return end
 
-local MODERN = select(4,GetBuildInfo()) >= 10e4
-local CF_WRATH = not MODERN and select(4,GetBuildInfo()) >= 3e4
+local MODERN, CF_WRATH = COMPAT >= 10e4, COMPAT < 10e4 and COMPAT >= 3e4
+local MODERN_CONTAINERS = MODERN or C_Container and C_Container.GetContainerNumSlots
 local EV = T.Evie
-local AB = assert(T.ActionBook:compatible(2, 31), "Incompatible ActionBook")
-local KR = assert(T.ActionBook:compatible("Kindred", 1,17), "Incompatible ActionBook/Kindred")
-local RW = assert(T.ActionBook:compatible("Rewire", 1,24), "Incompatible ActionBook/Rewire")
+local AB = T.ActionBook:compatible(2, 31)
+local KR = T.ActionBook:compatible("Kindred", 1,17)
+local RW = T.ActionBook:compatible("Rewire", 1,24)
+assert(EV and AB and KR and RW and 1, "Incompatible library bundle")
 local playerClassLocal, playerClass = UnitClass("player")
 
 local safequote do
@@ -152,7 +153,7 @@ do -- instance:arena/bg/ratedbg/lfr/raid/scenario + outland/northrend/...
 		[2453]="world/torghast", -- lobby
 		[2162]="torghast", -- towers
 		[2444]="world/dragon isles/df",
-		[2516]="party/dragon isles/nokhud",
+		[2454]="world/zaralek/df",
 		
 		garrison="world/draenor/garrison",
 		[1158]="garrison", [1331]="garrison", [1159]="garrison",
@@ -241,13 +242,15 @@ end
 do -- horde/alliance
 	local function syncFactionGroup(e, u)
 		if e ~= "UNIT_FACTION" or u == "player" then
-			local fg = UnitFactionGroup("player", true)
+			local fg = UnitFactionGroup("player")
 			KR:SetStateConditionalValue("horde", fg == "Horde" and "*" or "")
 			KR:SetStateConditionalValue("alliance", fg == "Alliance" and "*" or "")
+			KR:SetStateConditionalValue("merc", MODERN and UnitIsMercenary("player") and "*" or "")
 		end
 	end
 	syncFactionGroup()
 	EV.PLAYER_ENTERING_WORLD, EV.UNIT_FACTION = syncFactionGroup, syncFactionGroup
+	KR:SetAliasConditional("mercenary", "merc")
 end
 do -- moving
 	KR:SetNonSecureConditional("moving", function()
@@ -291,7 +294,7 @@ do -- ready:spell name/spell id/item name/item id
 				local _, iid = GetItemInfo(rc)
 				iid = tonumber((iid or rc):match("item:(%d+)"))
 				if iid then
-					cdS, cdL, _cdA = GetItemCooldown(iid)
+					cdS, cdL, _cdA = (MODERN_CONTAINERS and C_Container.GetItemCooldown or GetItemCooldown)(iid)
 				end
 			end
 			if cdL == 0 or (cdS and cdL and (cdS + cdL) <= gcE) then
@@ -382,13 +385,52 @@ do -- combo:count
 	end
 	EV.PLAYER_SPECIALIZATION_CHANGED, EV.PLAYER_ENTERING_WORLD = syncComboPower, syncComboPower
 end
+do -- near:oid/cid
+	local argCache, nearValue, nearGroup = {}
+	local typePrefix, groups = {GameObject="o", Creature="c"}, {}
+	for k, v in pairs({
+		["herb-overload"] = "o375245/o381199/o381213/o356536/o381202/o381210/o381196/o381205/o375242/o375244/o381214/o381201/o381200/o381212/o375246/o381198/o381203/o381197/o381211/o375243/o381204/o390141/o390140/o390142/o390139/o398761/o398760/o398759/o398762/o398767/o398764/o398765/o398766",
+		["mine-overload"] = "o381516/o375235/o375234/o381515/o381517/o375238/o375239/o381518/o381519/o375240/o390137/o390138",
+	}) do
+		for e in v:gmatch("[^/]+") do
+			groups[e] = k
+		end
+	end
+	KR:SetNonSecureConditional("near", function(_name, args)
+		if args == nil then
+			return nearValue ~= nil
+		end
+		local ca = argCache[args]
+		if ca == nil then
+			ca = {}
+			for v in args:gmatch("[^%s/][^/]*") do
+				ca[v:match("^(.-)%s*$")] = 1
+			end
+			argCache[args] = ca
+		end
+		return (ca[nearValue] or ca[nearGroup]) ~= nil
+	end)
+	function EV:PLAYER_SOFT_INTERACT_CHANGED(_, guid)
+		local ct, oid
+		if guid and not InCombatLockdown() then
+			ct, oid = guid:match("^(%a+)%-[-%d]+%-(%d+)%-[^-]+$")
+			ct = typePrefix[ct]
+			oid = ct and ct .. oid or nil
+		end
+		if oid ~= nearValue then
+			nearValue, nearGroup = oid, groups[oid]
+			KR:PokeConditional("near")
+		end
+	end
+end
 do -- race:token
 	local map, _, raceToken = {
-		Scourge="Scourage/Undead/Forsaken",
+		Scourge="Scourge/Undead/Forsaken",
 		LightforgedDraenei="LightforgedDraenei/Lightforged",
 		HighmountainTauren="HighmountainTauren/Highmountain",
 		MagharOrc="MagharOrc/Maghar",
 		ZandalariTroll="ZandalariTroll/Zandalari",
+		DarkIronDwarf="DarkIronDwarf/DarkIron",
 	}, UnitRace("player")
 	KR:SetStateConditionalValue("race", map[raceToken] or raceToken)
 end
@@ -830,7 +872,7 @@ do -- Flags
 	RW:SetCommandHint("/setflag", 9e9, flagCommandHint)
 	RW:SetCommandHint("/cycleflag", 9e9, flagCommandHint)
 	RW:SetCommandHint("/randflag", 9e9, flagCommandHint)
-	AB:_RegisterModule("FlagMast", {
+	AB:RegisterModule("FlagMast", {
 		compatible=function(self, maj)
 			if maj == 1 then
 				return self

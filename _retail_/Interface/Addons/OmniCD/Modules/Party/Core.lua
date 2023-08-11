@@ -11,13 +11,15 @@ function P:Enable()
 		return
 	end
 
-	if not E.isDF and not E.isWOTLKC341 then
+	if not E.isDF then
 		self:RegisterEvent('CVAR_UPDATE')
 	end
 	self:RegisterEvent('UI_SCALE_CHANGED')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('GROUP_ROSTER_UPDATE')
 	self:RegisterEvent('GROUP_JOINED')
+	self:RegisterEvent('PLAYER_REGEN_ENABLED')
+	self:RegisterEvent('PLAYER_REGEN_DISABLED')
 	self:SetScript("OnEvent", function(self, event, ...)
 		self[event](self, ...)
 	end)
@@ -25,6 +27,9 @@ function P:Enable()
 	self.enabled = true
 
 	self.zone = select(2, IsInInstance())
+	if InCombatLockdown() then
+		self:PLAYER_REGEN_DISABLED()
+	end
 	CM:InspectUser()
 
 	self:SetHooks()
@@ -78,9 +83,9 @@ function P:Refresh(full)
 		return
 	end
 
-	local key = self.isInTestMode and self.testZone or self.zone
-	key = key == "none" and E.profile.Party.noneZoneSetting or (key == "scenario" and E.profile.Party.scenarioZoneSetting) or key
-	E.db = E.profile.Party[key]
+	local zone = self.isInTestMode and self.testZone or self.zone
+	zone = zone == "none" and E.profile.Party.noneZoneSetting or (zone == "scenario" and E.profile.Party.scenarioZoneSetting) or zone
+	E.db = E.profile.Party[zone]
 	self.db = E.db
 
 	for key, frame in pairs(self.extraBars) do
@@ -95,9 +100,8 @@ function P:Refresh(full)
 		E:SetActiveUnitFrameData()
 		self:UpdatePositionValues()
 		self:UpdateExBarPositionValues()
-		self:UpdateBars()
+		self:UpdateAllBars()
 		self:UpdatePosition()
-		self:UpdateExBars()
 	end
 end
 
@@ -128,8 +132,8 @@ function P:IsEnabledSpell(id, spellType, key)
 	end
 	if db.raidCDS[id] or spellType == "interrupt" then
 		for _, frame in pairs(self.extraBars) do
-			local db = frame.db
-			if db.spellType[spellType] then
+			local framedb = frame.db
+			if framedb.spellType[spellType] then
 				return frame.index
 			end
 		end
@@ -172,12 +176,13 @@ function P:UpdatePositionValues()
 	self.breakPoint = E.db.priority[db.breakPoint]
 	self.breakPoint2 = E.db.priority[db.breakPoint2]
 	self.displayInactive = db.displayInactive
+	self.maxNumIcons = db.maxNumIcons == 0 and 100 or db.maxNumIcons
 
 	local growRowsUpward = db.growUpward
 	local growY = growRowsUpward and 1 or -1
 	if db.layout == "horizontal" or db.layout == "doubleRow" or db.layout == "tripleRow" then
 		self.ofsX = 0
-		self.ofsY = growY * (E.BASE_ICON_SIZE + db.paddingY * pixel)
+		self.ofsY = growY * (E.baseIconHeight + db.paddingY * pixel)
 		if growLeft then
 			self.point2 = "TOPRIGHT"
 			self.relativePoint2 = "TOPLEFT"
@@ -190,7 +195,7 @@ function P:UpdatePositionValues()
 			self.ofsY2 = 0
 		end
 	else
-		self.ofsX = growX * (E.BASE_ICON_SIZE + db.paddingX  * pixel)
+		self.ofsX = growX * (E.baseIconHeight + db.paddingX  * pixel)
 		self.ofsY = 0
 		if growRowsUpward then
 			self.point2 = "BOTTOMRIGHT"
@@ -210,7 +215,7 @@ end
 
 
 P.GetBuffDuration = E.isClassic and function(P, unit, spellID)
-	for i = 1, 40 do
+	for i = 1, 50 do
 		local _,_,_,_,_,_,_,_,_, id = UnitBuff(unit, i)
 		if not id then return end
 		id = E.spell_merged[id] or id
@@ -220,17 +225,17 @@ P.GetBuffDuration = E.isClassic and function(P, unit, spellID)
 	end
 
 end or function(P, unit, spellID)
-	for i = 1, 40 do
-		local _,_,_,_, duration, expTime,_,_,_, id = UnitBuff(unit, i)
+	for i = 1, 50 do
+		local _,_,_,_, duration, expTime, source, _,_, id = UnitBuff(unit, i)
 		if not id then return end
 		if id == spellID then
-			return duration > 0 and expTime - GetTime()
+			return duration > 0 and expTime - GetTime(), source
 		end
 	end
 end
 
 function P:IsDebuffActive(unit, spellID)
-	for i = 1, 40 do
+	for i = 1, 50 do
 		local _,_,_,_,_,_,_,_,_, id = UnitDebuff(unit, i)
 		if not id then return end
 		if id == spellID then
@@ -240,7 +245,7 @@ function P:IsDebuffActive(unit, spellID)
 end
 
 function P:GetDebuffDuration(unit, spellID)
-	for i = 1, 40 do
+	for i = 1, 50 do
 		local _,_,_,_, duration, expTime,_,_,_, id = UnitDebuff(unit, i)
 		if not id then return end
 		if id == spellID then
@@ -281,6 +286,7 @@ end
 
 
 local specIDs = { [71]=true,[72]=true,[73]=true,[65]=true,[66]=true,[70]=true,[253]=true,[254]=true,[255]=true,[259]=true,[260]=true,[261]=true,[256]=true,[257]=true,[258]=true,[250]=true,[251]=true,[252]=true,[262]=true,[263]=true,[264]=true,[62]=true,[63]=true,[64]=true,[265]=true,[266]=true,[267]=true,[268]=true,[269]=true,[270]=true,[102]=true,[103]=true,[104]=true,[105]=true,[577]=true,[581]=true,[1467]=true,[1468]=true, }
+local covenantIDs = { [321076]=true,[321079]=true,[321077]=true,[321078]=true, }
 
 
 function P:IsSpecAndTalentForPvpStatus(talentID, info)
@@ -298,6 +304,9 @@ function P:IsSpecAndTalentForPvpStatus(talentID, info)
 	else
 		if specIDs[talentID] then
 			return info.spec == talentID
+		end
+		if covenantIDs[talentID] and not self.isInShadowlands then
+			return
 		end
 		local talent = info.talentData[talentID]
 		if talent == "PVP" then
@@ -320,6 +329,9 @@ function P:IsSpecOrTalentForPvpStatus(talentID, info, isLearnedLevel)
 		if specIDs[talentID] then
 			return isLearnedLevel and info.spec == talentID
 		end
+		if covenantIDs[talentID] and not self.isInShadowlands then
+			return
+		end
 		local talent = info.talentData[talentID]
 		if talent == "PVP" then
 			return self.isPvP and 1
@@ -328,15 +340,11 @@ function P:IsSpecOrTalentForPvpStatus(talentID, info, isLearnedLevel)
 	end
 end
 
-function P:IsEquipped(item, guid, item2)
+function P:IsEquipped(info, item, item2)
 	if not item then
 		return true
 	end
-	local itemData = self.groupInfo[guid].itemData
-	if itemData[item] then
-		return true
-	end
-	return itemData[item2]
+	return info.itemData[item] or info.itemData[item2]
 end
 
 function P:UI_SCALE_CHANGED()

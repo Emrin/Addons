@@ -4,4 +4,12 @@ TomCats_Character = {
 		["preferences"] = {
 		},
 	},
+	["lunarfestival"] = {
+		["preferences"] = {
+		},
+	},
+	["hallowsend"] = {
+		["preferences"] = {
+		},
+	},
 }

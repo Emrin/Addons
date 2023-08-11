@@ -1,14 +1,10 @@
-tag 5a3a1fe924836065880ab2f5d06d89265443af5b v1.0.5
+tag 175b6efb1215874cd1d2451ea780703dd3ca1657 v1.0.6
 Author:	Stroeckx <stijnstroeckx@hotmail.com>
-Date:	Wed Dec 21 21:50:11 2022 +0100
+Date:	Sun Apr 2 20:33:28 2023 +0100
 
-commit fa8f51da9da885791c0acc88810ecce8d568d64a
+commit fb5c5a1493ea3b54a88fc5ad993e40425f7a239a
 Author: Stroeckx <stijnstroeckx@hotmail.com>
-Date:   Wed Dec 21 21:50:00 2022 +0100
+Date:   Sun Apr 2 20:33:16 2023 +0100
 
-    Added Button creator
-    
-    - Added Button creator
-    - Added wrapper in slider creator to handle spacing around extra text elements
-    - Potentially fixed an issue causing SGT core to be seen as "modified" by the curseforge client
+    Updated TOC for 10.0.7
 

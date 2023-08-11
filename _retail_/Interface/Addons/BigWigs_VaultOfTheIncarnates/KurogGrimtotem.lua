@@ -190,6 +190,7 @@ function mod:GetOptions()
 		{382563, "SAY", "SAY_COUNTDOWN"}, -- Magma Burst
 		373329, -- Molten Rupture
 		{374023, "SAY_COUNTDOWN"}, -- Searing Carnage
+		374554, -- Magma Pool
 		-- Frost Altar
 		373678, -- Biting Chill
 		391019, -- Frigid Torrent
@@ -285,6 +286,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SearingCarnage", 374022, 392192) -- Other, Mythic
 	self:Log("SPELL_AURA_APPLIED", "SearingCarnageApplied", 374023)
 	self:Log("SPELL_AURA_REMOVED", "SearingCarnageRemoved", 374023)
+	self:Log("SPELL_AURA_APPLIED", "MagmaPoolDamage", 374554)
+	self:Log("SPELL_PERIODIC_DAMAGE", "MagmaPoolDamage", 374554)
+	self:Log("SPELL_PERIODIC_MISSED", "MagmaPoolDamage", 374554)
 	-- Frost
 	self:Log("SPELL_CAST_START", "BitingChill", 373678)
 	self:Log("SPELL_CAST_START", "FrigidTorrent", 391019) -- (also Mythic add cast)
@@ -352,11 +356,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	-- Cooldowns of the spells to re-create bars
-	avoidCD = 46
-	damageCD = 20.7
-	ultimateCD = 46
-
 	self:SetStage(1)
 	currentAltar = "?"
 	barrierRemovedCount = 0
@@ -366,7 +365,12 @@ function mod:OnEngage()
 	addCount = {}
 	strikeCount = 1
 
-	local avoidPullCD = self:Easy() and 14.5 or 23
+	-- Cooldowns of the spells to re-create bars
+	avoidCD = 46
+	damageCD = 20.7
+	ultimateCD = 46
+
+	local avoidPullCD = 23
 	local damagePullCD = 14.5
 	local ultimatePullCD = 46
 
@@ -374,10 +378,13 @@ function mod:OnEngage()
 	nextDamageSpell = damagePullCD + GetTime()
 	nextUltimateSpell = ultimatePullCD + GetTime()
 
-	self:Bar(372158, 10.2) -- Sundering Strike
-	self:Bar("avoid", avoidPullCD, CL.count:format(L.avoid_bartext:format(currentAltar), avoidCount), L.avoid_icon)
+	if not self:Easy() then
+		self:Bar("avoid", avoidPullCD, CL.count:format(L.avoid_bartext:format(currentAltar), avoidCount), L.avoid_icon)
+	end
 	self:Bar("damage", damagePullCD, CL.count:format(L.damage_bartext:format(currentAltar), damageCount), L.damage_icon)
 	self:Bar("ultimate", ultimatePullCD, CL.count:format(L.ultimate_bartext:format(currentAltar), ultimateCount), L.ultimate_icon)
+
+	self:Bar(372158, 10.2) -- Sundering Strike
 	self:Bar("stages", 125, CL.stage:format(2), 374779) -- Primal Barrier
 
 	if self:Mythic() then
@@ -412,6 +419,34 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		nextUltimateSpell = ultimateCD + GetTime()
 		self:CDBar(alterSpellIdMap[currentAltar]["ultimate"], ultimateCD, CL.count:format(L.ultimate_bartext:format(alterSpellNameMap[currentAltar]["ultimate"]), ultimateCount)) -- SetOption:374023,372458,374691,374215:::
 	end
+end
+
+function mod:EasySpellSelection()
+	local key, text, cd
+	if currentAltar == "Earth" or currentAltar == "Storm" then
+		key = alterSpellIdMap[currentAltar]["avoid"]
+		text = L.avoid_bartext:format(alterSpellNameMap[currentAltar]["avoid"])
+	elseif currentAltar == "Fire" or currentAltar == "Frost" then
+		key = alterSpellIdMap[currentAltar]["damage"]
+		text = L.damage_bartext:format(alterSpellNameMap[currentAltar]["damage"])
+	end
+
+	self:StopBar(CL.count:format(text, avoidCount))
+
+	avoidCount = avoidCount + 1
+	if currentAltar == "Earth" then
+		cd = avoidCount % 2 == 0 and 25.5 or 28
+	else
+		cd = avoidCount % 3 == 1 and 20.7 or avoidCount % 3 == 2 and 8.5 or 17.0
+	end
+	nextAvoidSpell = cd + GetTime()
+
+	local icon = currentAltar == "Fire" and L.magma_burst_icon or key -- changed for heroic/mythic, keep it consistent
+	self:Bar(key, cd, CL.count:format(text, avoidCount), icon) -- SetOption:373329,391019,395893,390920:::
+
+	-- shared cd
+	damageCount = avoidCount
+	nextDamageSpell = nextAvoidSpell
 end
 
 do
@@ -453,10 +488,10 @@ do
 		local damageRemainingCD = nextDamageSpell - t
 		local ultimateRemainingCD = nextUltimateSpell - t
 
-		if not self:Easy() or currentAltar == "Earth" or currentAltar == "Storm" then
+		if avoidRemainingCD > 0 and (not self:Easy() or currentAltar == "Earth" or currentAltar == "Storm") then
 			self:Bar(alterSpellIdMap[currentAltar]["avoid"], {avoidRemainingCD, avoidCD}, CL.count:format(L.avoid_bartext:format(alterSpellNameMap[currentAltar]["avoid"]), avoidCount)) -- SetOption:373329,391019,395893,390920:::
 		end
-		if not self:Easy() or currentAltar == "Fire" or currentAltar == "Frost" then
+		if damageRemainingCD > 0 and (not self:Easy() or currentAltar == "Fire" or currentAltar == "Frost") then
 			local icon = alterSpellIdMap[currentAltar]["damage"] == 382563 and L.magma_burst_icon or alterSpellIdMap[currentAltar]["damage"] -- 2 Spell Icons are the same
 			self:Bar(alterSpellIdMap[currentAltar]["damage"], {damageRemainingCD, damageCD}, CL.count:format(L.damage_bartext:format(alterSpellNameMap[currentAltar]["damage"]), damageCount), icon) -- SetOption:382563,373678,391056,373487:::
 		end
@@ -493,7 +528,7 @@ function mod:PrimalBarrierRemoved()
 	ultimateCount = 1
 	strikeCount = 1
 
-	local avoidIntermissionCD = self:Easy() and 14.5 or 22.5
+	local avoidIntermissionCD = 22.5
 	local damageIntermissionCD = 14.5
 	local ultimateIntermissionCD = 45.5
 
@@ -502,7 +537,9 @@ function mod:PrimalBarrierRemoved()
 	nextDamageSpell = damageIntermissionCD + t
 	nextUltimateSpell = ultimateIntermissionCD + t
 
-	self:Bar("avoid", avoidIntermissionCD, CL.count:format(L.avoid_bartext:format(currentAltar), avoidCount), L.avoid_icon)
+	if not self:Easy() then
+		self:Bar("avoid", avoidIntermissionCD, CL.count:format(L.avoid_bartext:format(currentAltar), avoidCount), L.avoid_icon)
+	end
 	self:Bar("damage", damageIntermissionCD, CL.count:format(L.damage_bartext:format(currentAltar), damageCount), L.damage_icon)
 	self:Bar("ultimate", ultimateIntermissionCD, CL.count:format(L.ultimate_bartext:format(currentAltar), ultimateCount), L.ultimate_icon)
 
@@ -540,14 +577,7 @@ function mod:MagmaBurst(args)
 	self:Message(args.spellId, "yellow", CL.count:format(L.damage_bartext:format(L.magma_burst), damageCount))
 	self:PlaySound(args.spellId, "info")
 	if self:Easy() then
-		self:StopBar(CL.count:format(L.damage_bartext:format(L.magma_burst), damageCount))
-		damageCount = damageCount + 1
-		local cd = damageCount % 3 == 1 and 20.7 or damageCount % 3 == 2 and 8.5 or 17.0
-		nextDamageSpell = cd + GetTime()
-		self:Bar(args.spellId, cd, CL.count:format(L.damage_bartext:format(L.magma_burst), damageCount))
-		-- shared cd
-		avoidCount = damageCount
-		nextAvoidSpell = nextDamageSpell
+		self:EasySpellSelection()
 	end
 end
 
@@ -584,19 +614,23 @@ function mod:SearingCarnageRemoved(args)
 	end
 end
 
+do
+	local prev = 0
+	function mod:MagmaPoolDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
+end
+
 -- Frost Altar
 function mod:BitingChill(args)
 	self:Message(args.spellId, "yellow", CL.count:format(L.damage_bartext:format(L.biting_chill), damageCount))
 	self:PlaySound(args.spellId, "info")
 	if self:Easy() then
-		self:StopBar(CL.count:format(L.damage_bartext:format(L.biting_chill), damageCount))
-		damageCount = damageCount + 1
-		local cd = damageCount % 3 == 1 and 20.7 or damageCount % 3 == 2 and 8.5 or 17.0
-		nextDamageSpell = cd + GetTime()
-		self:Bar(args.spellId, cd, CL.count:format(L.damage_bartext:format(L.biting_chill), damageCount))
-		-- shared cd
-		avoidCount = damageCount
-		nextAvoidSpell = nextDamageSpell
+		self:EasySpellSelection()
 	end
 end
 
@@ -720,14 +754,12 @@ function mod:EruptingBedrock(args)
 	if self:MobId(args.sourceGUID) == 184986 then -- Kurog
 		self:Message(args.spellId, "orange", CL.count:format(L.avoid_bartext:format(L.erupting_bedrock), avoidCount))
 		if self:Easy() then
-			self:StopBar(CL.count:format(L.avoid_bartext:format(L.erupting_bedrock), avoidCount))
-			avoidCount = avoidCount + 1
-			local cd = avoidCount % 3 == 1 and 20.7 or avoidCount % 3 == 2 and 8.5 or 17.0
-			nextAvoidSpell = cd + GetTime()
-			self:Bar(args.spellId, cd, CL.count:format(L.avoid_bartext:format(L.erupting_bedrock), avoidCount))
-			-- shared cd
-			damageCount = avoidCount
-			nextDamageSpell = nextAvoidSpell
+			self:EasySpellSelection()
+			if math.abs(nextUltimateSpell - nextAvoidSpell) < 13 then
+				-- lower prio than ult and won't overlap it.
+				-- only seems to happen when switching to earth for the fifth normal cast?
+				self:Bar(395893, 37, CL.count:format(L.avoid_bartext:format(L.erupting_bedrock), avoidCount))
+			end
 		end
 	else --if self:MobId(args.sourceGUID) == 197595 then -- Earthwrought Smasher (Mythic altar add)
 		local count = addCount[args.spellId] or 1
@@ -789,14 +821,7 @@ do
 		self:PlaySound(390920, "info")
 		playerList = {}
 		if self:Easy() then
-			self:StopBar(CL.count:format(L.avoid_bartext:format(CL.bombs), avoidCount))
-			avoidCount = avoidCount + 1
-			local cd = avoidCount % 3 == 1 and 20.7 or avoidCount % 3 == 2 and 8.5 or 17.0
-			nextAvoidSpell = cd + GetTime()
-			self:Bar(390920, avoidCD, CL.count:format(L.avoid_bartext:format(CL.bombs), avoidCount))
-			-- shared cd
-			damageCount = avoidCount
-			nextDamageSpell = nextAvoidSpell
+			self:EasySpellSelection()
 		end
 	end
 

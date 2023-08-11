@@ -82,6 +82,7 @@ BigWigs:AddColors("Kurog Grimtotem", {
 	[374321] = {"blue","purple"},
 	[374427] = "blue",
 	[374430] = "orange",
+	[374554] = "blue",
 	[374622] = {"blue","yellow"},
 	[374623] = {"blue","yellow"},
 	[374624] = "red",
@@ -133,6 +134,8 @@ BigWigs:AddColors("Broodkeeper Diurna", {
 	[388918] = "yellow",
 	[392194] = "yellow",
 	[396264] = {"blue","purple"},
+	[396266] = {"blue","purple"},
+	[396779] = "yellow",
 })
 
 BigWigs:AddColors("Raszageth the Storm-Eater", {

@@ -106,20 +106,18 @@ DetailsTimeLineDB = {
 			},
 		}, -- [1]
 		{
-			[323538] = {
+			[346866] = {
 				{
-					7.204000000027008, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323538, -- [3]
+					14.5899999999674, -- [1]
+					"Loyal Stoneborn", -- [2]
+					346866, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Rævemor-Kazzak", -- [5]
 				}, -- [1]
 				{
-					35.50800000003073, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323538, -- [3]
+					32.78700000001118, -- [1]
+					"Loyal Stoneborn", -- [2]
+					346866, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Rævemor-Kazzak", -- [5]
 				}, -- [2]
 			},
 			[338012] = {
@@ -154,6 +152,22 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
+			[323538] = {
+				{
+					7.204000000027008, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323538, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Rævemor-Kazzak", -- [5]
+				}, -- [1]
+				{
+					35.50800000003073, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323538, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Rævemor-Kazzak", -- [5]
+				}, -- [2]
+			},
 			[329340] = {
 				{
 					22.26500000001397, -- [1]
@@ -161,20 +175,6 @@ DetailsTimeLineDB = {
 					329340, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
-			},
-			[346866] = {
-				{
-					14.5899999999674, -- [1]
-					"Loyal Stoneborn", -- [2]
-					346866, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					32.78700000001118, -- [1]
-					"Loyal Stoneborn", -- [2]
-					346866, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
 			},
 		}, -- [2]
 		{
@@ -1004,36 +1004,6 @@ DetailsTimeLineDB = {
 			},
 		}, -- [10]
 		{
-			[193460] = {
-				{
-					24.71900000004098, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193460, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[193977] = {
-				{
-					18.15400000009686, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193977, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[193364] = {
-				{
-					10.17399999999907, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193364, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					40.50900000007823, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193364, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 			[193211] = {
 				{
 					5.027000000001863, -- [1]
@@ -1056,6 +1026,36 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Holyviolet", -- [5]
 				}, -- [3]
+			},
+			[193977] = {
+				{
+					18.15400000009686, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193977, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[193460] = {
+				{
+					24.71900000004098, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193460, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[193364] = {
+				{
+					10.17399999999907, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193364, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					40.50900000007823, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193364, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
 			},
 		}, -- [11]
 		{
@@ -1398,20 +1398,18 @@ DetailsTimeLineDB = {
 					"Bloodfel-Outland", -- [5]
 				}, -- [3]
 			},
-			[197687] = {
+			[197484] = {
 				{
-					48.64299999992363, -- [1]
-					"Eye Beams", -- [2]
-					197687, -- [3]
+					17.3859999999404, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197484, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Onera-Zul'jin", -- [5]
 				}, -- [1]
 				{
-					62.12099999992643, -- [1]
-					"Eye Beams", -- [2]
-					197687, -- [3]
+					17.95799999998417, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197484, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Crystalol", -- [5]
 				}, -- [2]
 			},
 			[197546] = {
@@ -1437,13 +1435,21 @@ DetailsTimeLineDB = {
 					"Crystalol", -- [5]
 				}, -- [3]
 			},
-			[197974] = {
+			[197687] = {
 				{
-					63.49800000002142, -- [1]
-					"Soul-torn Vanguard", -- [2]
-					197974, -- [3]
+					48.64299999992363, -- [1]
+					"Eye Beams", -- [2]
+					197687, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Onera-Zul'jin", -- [5]
 				}, -- [1]
+				{
+					62.12099999992643, -- [1]
+					"Eye Beams", -- [2]
+					197687, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Crystalol", -- [5]
+				}, -- [2]
 			},
 			[197478] = {
 				{
@@ -1453,19 +1459,13 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[197484] = {
+			[197974] = {
 				{
-					17.3859999999404, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197484, -- [3]
+					63.49800000002142, -- [1]
+					"Soul-torn Vanguard", -- [2]
+					197974, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
-				{
-					17.95799999998417, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197484, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
 			},
 		}, -- [14]
 		{

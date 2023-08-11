@@ -1,4 +1,5 @@
 -- ~disabled
+local addonId, wqtInternal = ...
 
 --world quest tracker object
 local WorldQuestTracker = WorldQuestTrackerAddon
@@ -14,10 +15,7 @@ if (not DF) then
 end
 
 --localization
-local L = LibStub ("AceLocale-3.0"):GetLocale ("WorldQuestTrackerAddon", true)
-if (not L) then
-	return
-end
+local L = DF.Language.GetLanguageTable(addonId)
 
 local ff = WorldQuestTrackerFinderFrame
 local rf = WorldQuestTrackerRareFrame
@@ -910,6 +908,7 @@ local playerEnteredWorldQuestZone = function(questID, npcID, npcName)
 			ff.QuestIcon.AnchorFrame:SetParent(ff)
 			ff.QuestIcon.AnchorFrame:SetPoint("left", ff.TitleBar, "left", 2, 0)
 			ff.QuestIcon.flagText:SetText("")
+			ff.QuestIcon.flagTextShadow:SetText("")
 			ff.QuestIcon.bgFlag:Hide()
 			ff.QuestIcon.blackGradient:Hide()
 
@@ -921,6 +920,7 @@ local playerEnteredWorldQuestZone = function(questID, npcID, npcName)
 		ff.QuestIcon.AnchorFrame:SetParent(ff)
 		ff.QuestIcon.AnchorFrame:SetPoint("left", ff.TitleBar, "left", 2, 0)
 		ff.QuestIcon.flagText:SetText("")
+		ff.QuestIcon.flagTextShadow:SetText("")
 		ff.QuestIcon.bgFlag:Hide()
 		ff.QuestIcon.blackGradient:Hide()
 
@@ -1553,7 +1553,6 @@ function ff.WorldQuestFinished (questID, fromCustomSeearch)
 	ff.GroupDone()
 end
 
-
 --options
 	ff.SetEnabledFunc = function(_, _, value)
 		WorldQuestTracker.db.profile.groupfinder.enabled = value
@@ -1850,8 +1849,8 @@ options_button_template.backdropbordercolor = {0, 0, 0, 1}
 configButton:SetTemplate(options_button_template)
 configButton:Hide()
 
-if (UsePFGButton) then
-	configButton:SetPoint("right", UsePFGButton, "left", -8, 0)
+if (UsePGFButton) then
+	configButton:SetPoint("right", UsePGFButton, "left", -8, 0)
 else
 	configButton:SetPoint("right", LFGListFrame.SearchPanel.RefreshButton, "left", -5, 0)
 end

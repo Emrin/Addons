@@ -175,7 +175,6 @@ local function IsTime(activate)
 	end
 	for idx=1,numDayEvents  do
 		-- Can't use eventTitle as it is localized, but eventTexture does not appear to be localized.
-		local eventTexture;
 		local eventTitle, eh, _, calendarType, _, eventType, eventTexture, _, inviteStatus = CalendarGetDayEvent(currentMonthOffset, currentDay, idx);
 		eventHour = eh;
 		if eventTexture == "Calendar_FishingExtravaganza" then
@@ -183,13 +182,13 @@ local function IsTime(activate)
 			startHour = tonumber(eventHour)
 		elseif eventType == CALENDAR_EVENTTYPE_OTHER and string.find(eventTitle, "FISHING") then
 			local invited = true;
-			
+
 			if (calendarType == "GUILD") then
 				invited = (inviteStatus == CALENDAR_INVITESTATUS_ACCEPTED or
 							inviteStatus == CALENDAR_INVITESTATUS_CONFIRMED or
 							inviteStatus == CALENDAR_INVITESTATUS_SIGNEDUP);
 			end
-			
+
 			if (invited) then
 				fishingEvent = 1;
 				startHour = tonumber(eventHour)
@@ -197,7 +196,7 @@ local function IsTime(activate)
 		end
 	end -- for CalendarGetNumDayEvents loop
 
-	checkedDay = currentDay;	
+	checkedDay = currentDay;
 
 	-- Let's go fishing!
 	if fishingEvent then -- no fishingEvent, fall through
@@ -212,7 +211,7 @@ local function IsTime(activate)
 					-- Its time to go fishing!
 					CurrentContest = c;
 					FishingExtravaganzaFrame:Show();
-						
+
 					-- Additional user preference checks
 					if ( GetSettingBool("STVPoolsOnly") ) then
 						if ( IsContestZone() ) then
@@ -339,7 +338,7 @@ FBEnvironment.Extravaganza_OnEvent = function(self, event, ...)
 				contest.fishname = n;
 			end
 		end
-		
+
 		IsTime(true);
 		self:UnregisterEvent("VARIABLES_LOADED");
 	end

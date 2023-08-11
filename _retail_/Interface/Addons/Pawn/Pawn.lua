@@ -7,13 +7,14 @@
 -- Main non-UI code
 ------------------------------------------------------------
 
-PawnVersion = 2.0715
+PawnVersion = 2.0803
 
 -- Pawn requires this version of VgerCore:
 local PawnVgerCoreVersionRequired = 1.17
 
 -- Floating point math
 local PawnEpsilon = 0.0000000001
+local PawnInfinity = 1.79769313E308
 
 -- Set to true once initialization completes
 local PawnIsInitialized
@@ -263,8 +264,8 @@ function PawnInitialize()
 	if GameTooltip.SetWeeklyReward then
 		hooksecurefunc(GameTooltip, "SetWeeklyReward", function(self, ...) PawnUpdateTooltip("GameTooltip", "SetWeeklyReward", ...) end)
 	end
-	if C_ItemInteraction and C_ItemInteraction.SetItemConversionOutputTooltip then
-		hooksecurefunc(C_ItemInteraction, "SetItemConversionOutputTooltip", function(self, ...) PawnUpdateTooltip("GameTooltip", "__ItemInteraction_SetItemConversionOutputTooltip_ignored", ...) end)
+	if GameTooltip.SetItemInteractionItem then
+		hooksecurefunc(GameTooltip, "SetItemInteractionItem", function(self, ...) PawnUpdateTooltip("GameTooltip", "SetItemInteractionItem", ...) end)
 	end
 	hooksecurefunc(GameTooltip, "Hide",
 		function(self, ...)
@@ -322,7 +323,11 @@ function PawnInitialize()
 	GroupLootFrame4:HookScript("OnShow", PawnUI_GroupLootFrame_OnShow)
 
 	-- The loot history window
-	hooksecurefunc("LootHistoryFrame_UpdateItemFrame", PawnUI_LootHistoryFrame_UpdateItemFrame)
+	-- (This was reimplemented as GroupLootHistoryFrame + LootHistoryElementMixin in 10.1.0. It's more challenging to
+	-- override than it was before, and given that I haven't even used the loot history window in like a decade... probably nbd.)
+	if LootHistoryFrame then
+		hooksecurefunc("LootHistoryFrame_UpdateItemFrame", PawnUI_LootHistoryFrame_UpdateItemFrame)
+	end
 
 	-- The loot won window
 	hooksecurefunc("LootWonAlertFrame_SetUp", PawnUI_LootWonAlertFrame_SetUp)
@@ -355,6 +360,13 @@ function PawnInitialize()
 
 	-- Dragonflight replaces SetCompareItem with ProcessInfo. (ProcessInfo is now used internally by lots of
 	-- methods, but only in Dragonflight.)
+	
+	-- Dragonflight 10.1.0 has a bug (fixed in 10.1.5) where the underlying tooltip data for the "currently equipped" tooltips gets "stuck" on
+	-- past items that were shown in that tooltip and stops updating as new items are displayed. When running on those builds, disable annotating
+	-- comparison tooltips.
+	local PawnIsDragonflightWithBrokenCompareTooltips = VgerCore.IsDragonflight and select(4, GetBuildInfo()) < 100105
+	if not PawnIsDragonflightWithBrokenCompareTooltips then
+
 	if ShoppingTooltip1.ProcessInfo then
 		hooksecurefunc(ShoppingTooltip1, "ProcessInfo", function(self)
 			local _, ItemLink = TooltipUtil.GetDisplayedItem(ShoppingTooltip1)
@@ -365,6 +377,8 @@ function PawnInitialize()
 			if ItemLink then PawnUpdateTooltip("ShoppingTooltip2", "SetHyperlink", ItemLink) end
 		end)
 	end
+
+	end -- end of PawnIsDragonflightWithBrokenCompareTooltips hack
 
 	-- MultiTips compatibility
 	if MultiTips then
@@ -3052,7 +3066,7 @@ local SpecNameToIDMap =
 	[10] = { BREWMASTER = 1, MISTWEAVER = 2, WINDWALKER = 3 },
 	[11] = { BALANCE = 1, FERAL = 2, GUARDIAN = 3, RESTORATION = 4 },
 	[12] = { HAVOC = 1, VENGEANCE = 2 },
-	[13] = { DEVASTATION = 1, PRESERVATION = 2}
+	[13] = { DEVASTATION = 1, PRESERVATION = 2, AUGMENTATION = 3 },
 }
 local ClassIDToEnglishNameMap =
 {
@@ -3072,7 +3086,7 @@ local SpecIDToEnglishNameMap =
 	[10] = { [1] = "Brewmaster", [2] = "Mistweaver", [3] = "Windwalker" },
 	[11] = { [1] = "Balance", [2] = "Feral", [3] = "Guardian", [4] = "Restoration" },
 	[12] = { [1] = "Havoc", [2] = "Vengeance" },
-	[13] = { [1] = "Devastation", [2] = "Preservation" },
+	[13] = { [1] = "Devastation", [2] = "Preservation", [3] = "Augmentation" },
 }
 
 -- Returns a class ID number (1-12) from the string passed in, or nil if the string isn't a class name.
@@ -3585,8 +3599,20 @@ function PawnIsItemAnUpgrade(Item, DoNotRescan)
 							if Item1 then Value1 = Item1.Level end
 							if Item2 then Value2 = Item2.Level end
 						else
-							if Item1 then _, Value1 = PawnGetSingleValueFromItem(Item1, ScaleName) end
-							if Item2 then _, Value2 = PawnGetSingleValueFromItem(Item2, ScaleName) end
+							if Item1 then
+								if PawnNeverShowUpgradesFor[Item1.ID] then
+									Value1 = PawnInfinity
+								else
+									_, Value1 = PawnGetSingleValueFromItem(Item1, ScaleName)
+								end
+							end
+							if Item2 then
+								if PawnNeverShowUpgradesFor[Item2.ID] then
+									Value2 = PawnInfinity
+								else
+									_, Value2 = PawnGetSingleValueFromItem(Item2, ScaleName)
+								end
+							end
 						end
 
 						if Value1 and Value2 then
@@ -3807,6 +3833,7 @@ function PawnFindBestItems(ScaleName, InventoryOnly)
 		if not InvType or InvType == "" or InvType == "INVTYPE_TRINKET" or InvType == "INVTYPE_BAG" or InvType == "INVTYPE_QUIVER" or InvType == "INVTYPE_TABARD" or InvType == "INVTYPE_BODY" then return end
 		local _, Value = PawnGetSingleValueFromItem(Item, ScaleName)
 		if Value <= 0 then return end
+		if PawnNeverShowUpgradesFor[Item.ID] then return end
 		local UnenchantedItemLink = PawnUnenchantItemLink(Item.Link, true)
 		VgerCore.Assert(UnenchantedItemLink ~= nil, "PawnFindBestItems's CheckItem lambda failed to get an item link for item " .. tostring(Item.ID))
 

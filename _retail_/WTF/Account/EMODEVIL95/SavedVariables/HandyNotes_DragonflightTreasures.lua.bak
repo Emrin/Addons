@@ -1,16 +1,34 @@
 
 HandyNotes_DragonflightTreasuresDB = {
 	["profileKeys"] = {
+		["Pokipoki - Draenor"] = "Pokipoki - Draenor",
+		["Nolifey - Draenor"] = "Nolifey - Draenor",
+		["Nolifey - Ravencrest"] = "Nolifey - Ravencrest",
 		["Cutetroll - Draenor"] = "Cutetroll - Draenor",
-		["Pixiel - Draenor"] = "Pixiel - Draenor",
 		["Unchill - Draenor"] = "Unchill - Draenor",
+		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
+		["Pixiel - Draenor"] = "Pixiel - Draenor",
+		["Apoka - Outland"] = "Apoka - Outland",
+		["Crystalol - Draenor"] = "Crystalol - Draenor",
 	},
 	["profiles"] = {
+		["Pokipoki - Draenor"] = {
+		},
+		["Nolifey - Draenor"] = {
+		},
+		["Nolifey - Ravencrest"] = {
+		},
 		["Cutetroll - Draenor"] = {
+		},
+		["Unchill - Draenor"] = {
+		},
+		["Lifey - Silvermoon"] = {
 		},
 		["Pixiel - Draenor"] = {
 		},
-		["Unchill - Draenor"] = {
+		["Apoka - Outland"] = {
+		},
+		["Crystalol - Draenor"] = {
 		},
 	},
 }

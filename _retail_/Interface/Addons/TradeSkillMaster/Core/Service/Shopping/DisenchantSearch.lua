@@ -40,7 +40,7 @@ end
 -- ============================================================================
 
 function private.ScanThread(auctionScan)
-	if (TSM.AuctionDB.GetAppDataUpdateTimes() or 0) < time() - 60 * 60 * 12 then
+	if TSM.AuctionDB.GetAppDataUpdateTimes() < time() - 60 * 60 * 12 then
 		Log.PrintUser(L["No recent AuctionDB scan data found."])
 		return false
 	end
@@ -95,10 +95,10 @@ function private.QueryFilter(_, row)
 end
 
 function private.IsItemBuyoutTooHigh(itemString, itemBuyout)
-	local disenchantValue = CustomPrice.GetItemPrice(itemString, "Destroy")
+	local disenchantValue = CustomPrice.GetSourcePrice(itemString, "Destroy")
 	return not disenchantValue or itemBuyout > TSM.db.global.shoppingOptions.maxDeSearchPercent / 100 * disenchantValue
 end
 
 function private.MarketValueFunction(row)
-	return CustomPrice.GetItemPrice(row:GetItemString() or row:GetBaseItemString(), "Destroy")
+	return CustomPrice.GetSourcePrice(row:GetItemString() or row:GetBaseItemString(), "Destroy")
 end

@@ -160,3 +160,12 @@ RaiderIO_DB_TW_R: disabled
 RaiderIO_DB_TW_M: disabled
 RaiderIO_DB_KR_R: disabled
 RaiderIO_DB_KR_M: disabled
+Blizzard_ObjectiveTracker: enabled
+Blizzard_CompactRaidFrames: enabled
+ElvUI_ChatTweaks: disabled
+ElvUI_ExtraDataTexts: disabled
+ElvUI_UnitFramePlugin: disabled
+ElvUI_SecondsToBuff: disabled
+ElvUI_BuffHighlight: disabled
+WunderUI: disabled
+Blizzard_CombatText: enabled

@@ -1,6 +1,7 @@
-# <DBM> PvP
+# <DBM Mod> PvP
 
-## [r141](https://github.com/DeadlyBossMods/DBM-PvP/tree/r141) (2023-01-24)
-[Full Changelog](https://github.com/DeadlyBossMods/DBM-PvP/compare/r140...r141) [Previous Releases](https://github.com/DeadlyBossMods/DBM-PvP/releases)
+## [r149](https://github.com/DeadlyBossMods/DBM-PvP/tree/r149) (2023-07-25)
+[Full Changelog](https://github.com/DeadlyBossMods/DBM-PvP/compare/r148...r149) [Previous Releases](https://github.com/DeadlyBossMods/DBM-PvP/releases)
 
-- bump toc  
+- module -- > Mod due to bad truncating  
+- classify and color  

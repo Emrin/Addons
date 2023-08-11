@@ -140,7 +140,6 @@ local function FishingBuddy_InitLocationButton(self, button, elementData)
     local info = FishingLocations:GetVisible(elementData.index);
     local IsQuestFish = function(...) return FBI:IsQuestFish(...); end;
     local totals = {}
-    local lastlevel = 0
     local fh = FishingBuddy_Info["FishingHoles"];
     local bf = FBI.ByFishie;
     local ft = FishingBuddy_Info["FishTotals"];
@@ -302,7 +301,6 @@ local function FishingBuddy_InitLocationButton(self, button, elementData)
                 button.name = nil;
                 texture = nil;
             end
-            local leveloffset = (level - lastlevel)*16;
             if ( percent ) then
                 percent = math.floor(percent*100);
                 append = " ("..percent.."%)";
@@ -317,7 +315,6 @@ local function FishingBuddy_InitLocationButton(self, button, elementData)
             end
             FL:EllipsizeText(fishName, text, fishName:GetWidth(), append)
             button:Show();
-            lastlevel = level;
         end
     else
         button:Hide()
@@ -337,10 +334,11 @@ function FBEnvironment.Locations_OnLoad(self)
     FBI:EmbeddedOptions(FishingLocationsFrame);
     FBI.OptionsFrame.HandleOptions(nil, nil, LocOptions);
 
-    EventRegistry:RegisterCallback(FBConstants.RESET_FISHDATA_EVT, function()
+    local function UpdateLocations()
         FishingLocationsFrame.valid = false;
         EventRegistry:TriggerEvent("FishingLocatons.Update")
-    end)
+	end
+    EventRegistry:RegisterCallback(FBConstants.RESET_FISHDATA_EVT, UpdateLocations, self)
     FBI:RegisterHandlers(LocationsEvents)
 
     FishingLocationsFrame:SetScript("OnHide", function(self) FishingBuddyOptionSLZ:Hide(); end)

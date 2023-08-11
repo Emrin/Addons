@@ -10,7 +10,7 @@ Licensed under a Creative Commons "Attribution Non-Commercial Share Alike" Licen
 local _
 
 local MAJOR_VERSION = "LibFishing-1.0"
-local MINOR_VERSION = 101104
+local MINOR_VERSION = 101108
 
 if not LibStub then error(MAJOR_VERSION .. " requires LibStub") end
 
@@ -49,7 +49,7 @@ local function IsVanilla()
 end
 
 local function IsCrusade()
-    return IsClassic() and WOW.interface >= 20500 and WOW.interface < 30000 
+    return IsClassic() and WOW.interface >= 20500 and WOW.interface < 30000
 end
 
 local function IsWrath()
@@ -148,7 +148,7 @@ FishLib.ITEM_EQUIPLOC = 9
 FishLib.ITEM_ICON = 10
 
 function FishLib:GetFishingProfession()
-    local Fishing
+    local fishing;
     if self:IsClassic() then
         fishing, _ = self:GetFishingSpellInfo();
     else
@@ -771,6 +771,8 @@ function FishLib:FindNextLure(b, state)
     -- return nil;
 end
 
+FishLib.LastUsed = nil;
+
 function FishLib:FindBestLure(b, state, usedrinks, forcemax)
     local level = self:GetCurrentFishingLevel();
     if ( level and level > 1 ) then
@@ -785,10 +787,11 @@ function FishLib:FindBestLure(b, state, usedrinks, forcemax)
             self:UpdateLureInventory();
             -- if drinking will work, then we're done
             if ( usedrinks and #useinventory > 0 ) then
-                if ( not LastUsed or not self:HasBuff(LastUsed.n) ) then
+                if ( not self.LastUsed or not self:HasBuff(self.LastUsed.n) ) then
                     local id = useinventory[1].id;
                     if ( not self:HasBuff(useinventory[1].n) ) then
                         if ( level <= (skill + useinventory[1].b) ) then
+                            self.LastUsed = useinventory[1];
                             return nil, useinventory[1];
                         end
                     end
@@ -798,7 +801,7 @@ function FishLib:FindBestLure(b, state, usedrinks, forcemax)
             state = state or 0;
             local checklure;
             local useit;
-            local b = 0;
+            b = 0;
 
             -- Look for lures we're wearing, first
             for s=state+1,#lureinventory,1 do
@@ -1166,7 +1169,7 @@ end
 -- count tables that don't have monotonic integer indexes
 function FishLib:tablecount(tab)
     local n = 0;
-    for k,v in pairs(tab) do
+    for _,_ in pairs(tab) do
         n = n + 1;
     end
     return n;
@@ -1217,7 +1220,7 @@ function FishLib:printable(val)
         return val and "true" or "false";
     elseif (type(val) == "table") then
         local tab = nil;
-        for key,value in self:spairs(val) do
+        for _,value in self:spairs(val) do
             if tab then
                 tab = tab..", "
             else
@@ -1352,8 +1355,8 @@ function FishLib:GetItemInfo(link)
 end
 
 function FishLib:IsLinkableItem(link)
-    local name, link = self:GetItemInfoFields(link, self.ITEM_NAME, self.ITEM_LINK);
-    return ( n and l );
+    local name, _link = self:GetItemInfoFields(link, self.ITEM_NAME, self.ITEM_LINK);
+    return ( name and _link );
 end
 
 function FishLib:ChatLink(item, name, color)
@@ -1431,7 +1434,7 @@ function FishLib:IsHyperCompressedOcean(text)
 end
 
 function FishLib:AddSchoolName(name)
-    tinsert(self.SCHOOLS, { name = name, kind = SCHOOL_FISH });
+    tinsert(self.SCHOOLS, { name = name, kind = self.SCHOOL_FISH });
 end
 
 function FishLib:GetWornItem(get_id, slot)
@@ -1460,7 +1463,8 @@ function FishLib:IsFishingPole(itemLink)
         itemLink = self:GetMainHandItem();
     end
     if ( itemLink ) then
-        local itemLink,itemtype,subtype,itemTexture = self:GetItemInfoFields(itemLink, self.ITEM_LINK, self.ITEM_TYPE, self.ITEM_SUBTYPE, self.ITEM_ICON);
+        local itemtype,subtype,itemTexture;
+        itemLink,itemtype,subtype,itemTexture = self:GetItemInfoFields(itemLink, self.ITEM_LINK, self.ITEM_TYPE, self.ITEM_SUBTYPE, self.ITEM_ICON);
         local _, id, _ = self:SplitLink(itemLink, true);
 
         self:GetPoleType();
@@ -1707,6 +1711,7 @@ local special_maps = {
 -- Dragon Isles, 12, 1978
 function FishLib:GetMapContinent(mapId, debug)
     if HBD.mapData[mapId] and mapId then
+        local lastMapId;
         local cMapId = mapId;
         local parent = HBD.mapData[cMapId].parent;
         while (parent ~= 946 and parent ~= 947 and HBD.mapData[parent]) do
@@ -1943,11 +1948,7 @@ end
 
 -- we should have some way to believe
 function FishLib:SetCaughtSoFar(value)
-    if ( FishingBuddy and FishingBuddy.GetSetting ) then
-        self.caughtSoFar = FishingBuddy.GetSetting("CaughtSoFar") or 0;
-    else
-        self.caughtSoFar = value or 0;
-    end
+    self.caughtSoFar = value or 0;
 end
 
 function FishLib:GetCaughtSoFar()
@@ -2052,7 +2053,7 @@ end
 function FishLib:FindChatWindow(name)
     local frame;
     for i = 1, NUM_CHAT_WINDOWS do
-        local frame = _G["ChatFrame" .. i];
+        frame = _G["ChatFrame" .. i];
         if (frame.name == name) then
             return frame, _G["ChatFrame" .. i .. "Tab"];
         end
@@ -2074,7 +2075,7 @@ function FishLib:GetChatWindow(name)
             end
             return frame, frametab;
         else
-            local frame = FCF_OpenNewWindow(name, true);
+            frame = FCF_OpenNewWindow(name, true);
 			FCF_CopyChatSettings(frame, DEFAULT_CHAT_FRAME);
             return self:FindChatWindow(name);
         end
@@ -2242,7 +2243,6 @@ function FishLib:SetOverrideBindingClick()
     if ( btn ) then
         local buttonkey = self:GetSAMouseKey();
         SetOverrideBindingClick(btn, true, buttonkey, SABUTTONNAME);
-        self.clear_bindings = true
     end
 end
 
@@ -2270,6 +2270,7 @@ function FishLib:InvokeLuring(id, itemtype)
         return;
     end
     if ( id ) then
+        local targetslot;
         id = self:ValidLink(id)
         if itemtype == "toy" then
             btn:SetAttribute("type", "toy");
@@ -2389,11 +2390,12 @@ function FishLib:GetPoleBonus()
         local total = self:FishingBonusPoints(INVSLOT_MAINHAND, true);
         local hmhe,_,_,_,_,_ = GetWeaponEnchantInfo();
         if ( hmhe ) then
+            local id;
             -- IsFishingPole has set mainhand for us
             if IsRetail() then
-                local id = self:GetFishingToolItem(true);
+                id = self:GetFishingToolItem(true);
             else
-                local id = self:GetMainHandItem(true);
+                id = self:GetMainHandItem(true);
             end
             -- get the raw value of the pole without any temp enchants
             local pole = self:FishingBonusPoints(id);
@@ -2441,7 +2443,6 @@ function FishLib:GetBestFishingItem(slotid, ignore)
 
     -- this only gets items in bags, hence the check above for slots
     local itemtable = {};
-    local item = nil;
     itemtable = GetInventoryItemsForSlot(slotid, itemtable);
     for location,id in pairs(itemtable) do
         if (not ignore or not ignore[id]) then
@@ -2506,9 +2507,9 @@ end
 -- look for the item anywhere we can find it, skipping if we're looking
 -- for more than one
 function FishLib:FindThisItem(id, skipcount)
-    local skipcount = skipcount or 0;
+    skipcount = skipcount or 0;
     -- force id to be a number
-    local _, id, name, _ = self:SplitLink(id, true)
+    _, id, _, _ = self:SplitLink(id, true)
     if ( not id ) then
         return nil,nil;
     end
@@ -2637,13 +2638,14 @@ local function GetThresholdPercentage(quality, ...)
         return 0.5
     end
 
+    local last
     if worst <= best then
         if quality <= worst then
             return 0
         elseif quality >= best then
             return 1
         end
-        local last = worst
+        last = worst
         for i = 2, n-1 do
             local value = select(i, ...)
             if quality <= value then
@@ -2651,16 +2653,13 @@ local function GetThresholdPercentage(quality, ...)
             end
             last = value
         end
-
-        local value = select(n, ...)
-        return ((n-2) + (quality - last) / (value - last)) / (n-1)
     else
         if quality >= worst then
             return 0
         elseif quality <= best then
             return 1
         end
-        local last = worst
+        last = best
         for i = 2, n-1 do
             local value = select(i, ...)
             if quality >= value then
@@ -2669,9 +2668,9 @@ local function GetThresholdPercentage(quality, ...)
             last = value
         end
 
-        local value = select(n, ...)
-        return ((n-2) + (quality - last) / (value - last)) / (n-1)
     end
+    local value = select(n, ...)
+    return ((n-2) + (quality - last) / (value - last)) / (n-1)
 end
 
 function FishLib:GetThresholdColor(quality, ...)
@@ -2768,7 +2767,7 @@ local function FixupStrings(target)
 end
 
 local function FixupBindings(target)
-    for tag,str in pairs(target) do
+    for tag,_ in pairs(target) do
         if ( string.find(tag, "^BINDING") ) then
             setglobal(tag, target[tag]);
             target[tag] = nil;
@@ -2793,17 +2792,22 @@ end
 
 function FishLib:Translate(addon, source, target, forced)
     local locale = forced or GetLocale();
-    target.VERSION = GetAddOnMetadata(addon, "Version");
-    LoadTranslation(source, locale, target);
-    if ( locale ~= "enUS" ) then
-        LoadTranslation(source, "enUS", target, forced);
-    end
-    LoadTranslation(source, "Inject", target);
-    visited = {}
-    FixupStrings(target);
-    FixupBindings(target);
-    if (forced) then
-        return missing;
+	local addonCount = GetNumAddOns();
+	for addonIndex = 1, addonCount do
+		local name, title, notes, loadable, reason, security = GetAddOnInfo(addonIndex);
+        if name == addon then
+            target.VERSION = C_AddOns.GetAddOnMetadata(addonIndex, "Version");
+        end
+        LoadTranslation(source, locale, target);
+        if ( locale ~= "enUS" ) then
+            LoadTranslation(source, "enUS", target, forced);
+        end
+        LoadTranslation(source, "Inject", target);
+        FixupStrings(target);
+        FixupBindings(target);
+        if (forced) then
+            return missing;
+        end
     end
 end
 

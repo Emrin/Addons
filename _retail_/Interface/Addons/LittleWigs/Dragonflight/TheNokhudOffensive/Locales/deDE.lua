@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("The Nokhud Offensive Trash", "deDE")
 if not L then return end
 if L then
+	L.teera_and_maruuk_warmup_trigger = "Warum wurde unsere Ruhe gestört?"
+
 	L.nokhud_plainstomper = "Ebenenstampfer der Nokhud"
 	L.nokhud_hornsounder = "Horntöner der Nokhud"
 	L.nokhud_beastmaster = "Bestienmeister der Nokhud"
@@ -16,14 +18,13 @@ if L then
 	L.soulharvester_galtmaa = "Seelenernterin Galtmaa"
 	L.nokhud_defender = "Verteidiger der Nokhud"
 	L.nokhud_thunderfist = "Donnerfaust der Nokhud"
+	L.balara = "Balara"
+	L.batak = "Batak"
 end
 
 L = BigWigs:NewBossLocale("Granyth", "deDE")
 if L then
 	L.lance_ready = "Lanze bereit"
-	L.west = "W"
-	L.northeast = "NO"
-	L.southeast = "SO"
 end
 
 L = BigWigs:NewBossLocale("The Raging Tempest", "deDE")

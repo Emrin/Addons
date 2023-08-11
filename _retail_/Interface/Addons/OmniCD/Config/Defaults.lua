@@ -4,6 +4,7 @@ G.loginMessage = false
 G.notifyNew = false
 G.optionPanelScale = 1
 
+C.tooltipID = false
 C.Party = {
 	["visibility"] = {
 		["arena"] = true,
@@ -14,6 +15,14 @@ C.Party = {
 		["none"] = false,
 		["finder"] = true,
 		["size"] = 5,
+	},
+	["groupSize"] = {
+		["arena"] = 5,
+		["pvp"] = 40,
+		["party"] = 10,
+		["raid"] = 40,
+		["scenario"] = 40,
+		["none"] = 40,
 	},
 	["noneZoneSetting"] = "arena",
 	["scenarioZoneSetting"] = "arena",
@@ -27,6 +36,7 @@ C.Party.arena = {
 		["showPlayerEx"] = true,
 		["showTooltip"] = false,
 		["showRange"] = false,
+		--["zoneSelected"] = false,
 	},
 	["position"] = {
 		["uf"] = "auto",
@@ -43,6 +53,7 @@ C.Party.arena = {
 		["breakPoint2"] = "other",
 		["displayInactive"] = true,
 		["growUpward"] = false,
+		["maxNumIcons"] = 0,
 		["detached"] = false,
 	},
 	["icons"] = {
@@ -127,6 +138,7 @@ for i = 0, 8 do
 		["paddingX"] = -1,
 		["paddingY"] = -1,
 		["showName"] = true,
+		["nameOfsY"] = 0,
 		["truncateIconName"] = 6,
 		["growUpward"] = false,
 		["growLeft"] = false,
@@ -163,11 +175,13 @@ for i = 0, 8 do
 			},
 		},
 		["reverseFill"] = true,
+		["useIconAlpha"] = false,
 		["hideSpark"] = false,
 		["hideBorder"] = false,
 		["showInterruptedSpell"] = true,
 		["showRaidTargetMark"] = false,
 		["statusBarWidth"] = 205,
+		["textScale"] = 1.0,
 		["textOfsX"] = 3,
 		["textOfsY"] = 0,
 		["truncateStatusBarName"] = 0,

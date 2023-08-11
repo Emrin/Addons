@@ -1,3 +1,74 @@
+10.1.13 - 26th July 2023
+- For 'Sell junk automatically' ('Automation'), increased the exclusion list limit to 2000 characters (was 600).
+
+10.1.12 - 18th July 2023
+- For 'Enhance tooltip' ('Interface'), player class and specialisation are now shown below level and race (matching changes in the default UI).
+- For 'Mute mount sounds', added a few Winding Slitherdrake sounds to 'Dragonriding'.
+
+10.1.10 -  12th July 2023
+- Updated for game version 10.1.5.
+- Added new cinematics 'Dawn of the Infinite (Interlude)', 'Dawn of the Infinite (Finale)' and 'A Matter of Time' (watch in 'Movies' or listen in 'Various > Cinematics').
+- The 'Resize mail text' and 'Resize quest text' options ('Text') now have a maximum font size of 30 (reduced from 36).
+- Fixed an issue with 'Block shared quests' ('Social') which caused a few quests to be incorrectly declined.
+- If you previously used 'Manage timer' or 'Manage frames' ('Frames'), you can now move both with Edit Mode.
+
+10.1.09 - 5th July 2023
+- PTR (10.1.5): Update.
+
+10.1.08 - 28th June 2023
+- Updated LibDBIcon.
+
+10.1.07 - 19th June 2023
+- PTR (10.1.5): The 'Manage vehicle' option ('Frames') has been removed as you can now move the vehicle seat indicator with Edit Mode.
+
+10.1.06 - 11th June 2023
+- PTR (10.1.5): The 'Manage timer' option ('Frames') has been removed as you can now move the timer bar with Edit Mode.
+- PTR (10.1.5): The 'Sell junk automatically' option ('Automation') will now hide the new sell all junk items button (added in 10.1.5) as clicking it would ignore all of your chosen settings (such as excluding special items and transmog gear).  Toggling the 'Sell junk automatically' option now requires a UI reload.
+
+10.1.05 - 4th June 2023
+- Added Dragonflight cinematic 'A Symbol of Hope' (watch in Movies and listen in Various > Cinematics).
+
+10.1.04 - 27th May 2023
+- For 'Sell junk automatically' ('Automation'), Leatrix Plus will stop attempting to sell items if your character is at the gold cap.
+
+10.1.01 - 20th May 2023
+- Added Dragonflight cinematics 'Opening The Way' and 'Fyrakk Incinerates Loamm' (watch in Movies and listen in Various > Cinematics).
+- Fixed an issue with 'Recent chat window' ('Chat') which caused a Lua error when opening the recent chat window.
+
+10.1.00 - 3rd May 2023
+- Updated for game version 10.1.
+- Added an icon for the in-game addon listing.
+- For 'Easy item destroy' ('System'), fixed an issue which caused a Lua error when clicking outside of the destroy confirmation.
+
+10.0.59 - 22nd April 2023
+- Fixed an issue with 'Automate gossip' ('Automation') which caused some gossip options to not be automated due to an issue with the game code.
+
+10.0.52 - 23rd March 2023
+- Updated for game version 10.0.7.
+- Added movie 'Secrets of the Reach'.  Watch it in 'Movies' and listen to it in 'Various > Cinematics'.
+
+10.0.39 - 10th February 2023
+- For 'Remove transforms' ('System'), fixed an issue with 'All profession transforms' which sometimes caused the Fishing For Attention buff to not be removed automatically.
+
+10.0.38 - 8th February 2023
+- For 'Remove transforms' ('System'), the transform settings are now shown in a categorised, scrolling list.  Added Aqir Egg Cluster and Detoxified Blight Grenade transforms.
+
+10.0.37 - 6th February 2023
+- For 'Remove transforms' ('System'), the 'Professions' setting now includes fishing.
+
+10.0.36 - 5th February 2023
+- For 'Sell junk automatically' ('Automation'), fixed a bug which prevented items in the reagent bag from being sold.
+- For 'Enhance tooltip' ('Interface'), the tooltip scale setting will now apply to the trading post item tooltip.
+
+10.0.35 - 4th February 2023
+- The 'Show character addons' ('System') option has returned.  If checked, the game addon list will show character addons by default.
+- For 'Enhance dressup' ('Interface'), there are new options for the transmogrify character preview.  You can make the character preview wider, increase the maximum zoom out distance and show a character model animation slider.  The weapon slots are now shown in the right-side column to give a better view of your character.
+
+10.0.34 - 1st February 2023
+- For 'Mute game sounds' ('System'), you can now mute duck greetings.  Use this if you would like to do your Valdrakken banking in peace.
+- Updated 'Recent chat window' ('Chat') and close button code.
+- Updated LibDBIcon.
+
 10.0.33 - 25th January 2023
 - Updated for game patch 10.0.5.
 - For 'Sell junk automatically', there are now two settings available in the configuration panel so that you can exclude uncollected grey gear that is designed for your character, your alts or both.  Soulbound grey gear will now always be sold because you cannot give it to other players and it will not have a learnable appearance.

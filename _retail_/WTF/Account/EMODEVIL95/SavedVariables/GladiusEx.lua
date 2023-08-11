@@ -19,10 +19,15 @@ GladiusExDB = {
 		},
 		["DRTracker"] = {
 			["profiles"] = {
-				["Unchill - Draenor"] = {
+				["Default"] = {
 					["drFontSize"] = 14,
 					["drTrackerCooldownReverse"] = true,
 					["drTrackerSize"] = 40,
+				},
+				["Unchill - Draenor"] = {
+					["drFontSize"] = 14,
+					["drTrackerSize"] = 40,
+					["drTrackerCooldownReverse"] = true,
 				},
 			},
 		},
@@ -34,17 +39,31 @@ GladiusExDB = {
 		},
 		["Cooldowns"] = {
 			["profiles"] = {
+				["Default"] = {
+					["groups"] = {
+						["group_1"] = {
+							["cooldownsPaddingY"] = 0,
+							["cooldownsAttachTo"] = "CastBar",
+							["cooldownsAnchorY"] = 551.9332490143715,
+							["cooldownsAnchorX"] = 838.199807047582,
+							["cooldownsBorderSize"] = 1,
+							["cooldownsOffsetY"] = 0,
+							["cooldownsSize"] = 25,
+							["cooldownsSpacingX"] = 0,
+						},
+					},
+				},
 				["Unchill - Draenor"] = {
 					["groups"] = {
 						["group_1"] = {
 							["cooldownsOffsetY"] = 0,
 							["cooldownsBorderSize"] = 1,
 							["cooldownsAnchorY"] = 551.9332490143715,
-							["cooldownsPaddingY"] = 0,
+							["cooldownsAttachTo"] = "CastBar",
 							["cooldownsSize"] = 25,
 							["cooldownsSpacingX"] = 0,
 							["cooldownsAnchorX"] = 838.199807047582,
-							["cooldownsAttachTo"] = "CastBar",
+							["cooldownsPaddingY"] = 0,
 						},
 					},
 				},
@@ -52,6 +71,34 @@ GladiusExDB = {
 		},
 		["arena"] = {
 			["profiles"] = {
+				["Default"] = {
+					["backdropColor"] = {
+						["a"] = 1,
+					},
+					["x"] = {
+						["arena2"] = 826.6345244687691,
+						["arena1"] = 826.6345244687691,
+						["anchor_arena"] = 826.6345244687691,
+						["arena3"] = 826.6345244687691,
+						["arena5"] = 826.6345244687691,
+						["arena4"] = 826.6345244687691,
+					},
+					["growDirection"] = "UP",
+					["backgroundPadding"] = 0,
+					["modules"] = {
+						["PowerBar"] = false,
+						["SkillHistory"] = false,
+					},
+					["y"] = {
+						["arena2"] = 406.7933520640945,
+						["arena1"] = 356.9733871020871,
+						["anchor_arena"] = 309.8033572997665,
+						["arena3"] = 456.6133493747329,
+						["arena5"] = 556.2533439960098,
+						["arena4"] = 506.4333790340024,
+					},
+					["barWidth"] = 200,
+				},
 				["Unchill - Draenor"] = {
 					["backdropColor"] = {
 						["a"] = 1,
@@ -63,19 +110,19 @@ GladiusExDB = {
 					["growDirection"] = "UP",
 					["y"] = {
 						["arena2"] = 406.7933520640945,
-						["arena1"] = 356.9733871020871,
-						["anchor_arena"] = 309.8033572997665,
-						["arena3"] = 456.6133493747329,
-						["arena5"] = 556.2533439960098,
 						["arena4"] = 506.4333790340024,
+						["anchor_arena"] = 309.8033572997665,
+						["arena5"] = 556.2533439960098,
+						["arena3"] = 456.6133493747329,
+						["arena1"] = 356.9733871020871,
 					},
 					["x"] = {
 						["arena2"] = 826.6345244687691,
-						["arena1"] = 826.6345244687691,
-						["anchor_arena"] = 826.6345244687691,
-						["arena3"] = 826.6345244687691,
-						["arena5"] = 826.6345244687691,
 						["arena4"] = 826.6345244687691,
+						["anchor_arena"] = 826.6345244687691,
+						["arena5"] = 826.6345244687691,
+						["arena3"] = 826.6345244687691,
+						["arena1"] = 826.6345244687691,
 					},
 					["backgroundPadding"] = 0,
 					["barWidth"] = 200,
@@ -86,7 +133,7 @@ GladiusExDB = {
 		},
 		["CastBar"] = {
 			["profiles"] = {
-				["Unchill - Draenor"] = {
+				["Default"] = {
 					["castBarWidth"] = 170,
 					["castBarAttachMode"] = "InFrame",
 					["castBarPosition"] = "BOTTOM",
@@ -103,27 +150,63 @@ GladiusExDB = {
 					},
 					["castIconOffsetX"] = 0,
 				},
+				["Unchill - Draenor"] = {
+					["castBarWidth"] = 170,
+					["castBarAttachMode"] = "InFrame",
+					["castBarPosition"] = "BOTTOM",
+					["castBarOffsetY"] = 0,
+					["castBarOffsetX"] = 0,
+					["castTextOffsetX"] = 0,
+					["castIconOffsetX"] = 0,
+					["castTimeText"] = false,
+					["castBarBackgroundColor"] = {
+						["a"] = 1,
+						["b"] = 0.1294117718935013,
+						["g"] = 0.1294117718935013,
+						["r"] = 0.1294117718935013,
+					},
+					["castBarHeight"] = 25,
+				},
 			},
 		},
 		["party"] = {
 			["profiles"] = {
+				["Default"] = {
+					["y"] = {
+						["player"] = 486.0521240306989,
+						["party1"] = 533.2221861816506,
+						["anchor_party"] = 441.5320940853271,
+						["party2"] = 580.3921512867091,
+						["party3"] = 627.5622134376608,
+						["party4"] = 674.7322755886125,
+					},
+					["x"] = {
+						["player"] = 58.22043943834615,
+						["party1"] = 58.22043943834615,
+						["anchor_party"] = 13.70044386339487,
+						["party2"] = 58.22043943834615,
+						["party3"] = 58.22043943834615,
+						["party4"] = 58.22043943834615,
+					},
+					["growDirection"] = "UP",
+				},
 				["Unchill - Draenor"] = {
 					["growDirection"] = "UP",
 					["y"] = {
 						["player"] = 486.0521240306989,
-						["party4"] = 674.7322755886125,
-						["anchor_party"] = 441.5320940853271,
-						["party1"] = 533.2221861816506,
-						["party3"] = 627.5622134376608,
 						["party2"] = 580.3921512867091,
+						["anchor_party"] = 441.5320940853271,
+						["party4"] = 674.7322755886125,
+						["party3"] = 627.5622134376608,
+						["party1"] = 533.2221861816506,
 					},
 					["x"] = {
 						["player"] = 58.22043943834615,
-						["party4"] = 58.22043943834615,
-						["anchor_party"] = 13.70044386339487,
-						["party1"] = 58.22043943834615,
-						["party3"] = 58.22043943834615,
 						["party2"] = 58.22043943834615,
+						["anchor_party"] = 13.70044386339487,
+						["party4"] = 58.22043943834615,
+						["party3"] = 58.22043943834615,
+						["party1"] = 58.22043943834615,
 					},
 				},
 			},
@@ -138,7 +221,7 @@ GladiusExDB = {
 		},
 		["HealthBar"] = {
 			["profiles"] = {
-				["Unchill - Draenor"] = {
+				["Default"] = {
 					["healthBarHeight"] = 25,
 					["healthBarBackgroundColor"] = {
 						["a"] = 1,
@@ -147,12 +230,53 @@ GladiusExDB = {
 						["b"] = 0,
 					},
 				},
+				["Unchill - Draenor"] = {
+					["healthBarHeight"] = 25,
+					["healthBarBackgroundColor"] = {
+						["a"] = 1,
+						["b"] = 0,
+						["g"] = 0,
+						["r"] = 0,
+					},
+				},
 			},
 		},
-		["Clicks"] = {
+		["party_PetBar"] = {
+		},
+		["PetBar"] = {
+		},
+		["party_Cooldowns"] = {
+		},
+		["party_Clicks"] = {
+		},
+		["party_Interrupts"] = {
+		},
+		["Announcements"] = {
+		},
+		["Alerts"] = {
+		},
+		["TargetBar"] = {
+		},
+		["party_Tags"] = {
+		},
+		["party_Auras"] = {
 		},
 		["Tags"] = {
 			["profiles"] = {
+				["Default"] = {
+					["tagsTexts"] = {
+						["HealthBar Right Text"] = {
+							["text"] = " [health:short]",
+							["globalFontSize"] = false,
+							["position"] = "BOTTOMRIGHT",
+						},
+						["HealthBar Left Text"] = {
+							["text"] = "[spec]-[name:status]",
+							["globalFontSize"] = false,
+							["position"] = "TOPLEFT",
+						},
+					},
+				},
 				["Unchill - Draenor"] = {
 					["tagsTexts"] = {
 						["HealthBar Right Text"] = {
@@ -169,28 +293,14 @@ GladiusExDB = {
 				},
 			},
 		},
-		["party_Cooldowns"] = {
-		},
-		["party_Clicks"] = {
-		},
-		["party_Auras"] = {
-		},
-		["party_Interrupts"] = {
-		},
-		["party_Tags"] = {
-		},
-		["TargetBar"] = {
-		},
-		["Alerts"] = {
-		},
-		["Announcements"] = {
-		},
-		["PetBar"] = {
-		},
-		["party_PetBar"] = {
+		["Clicks"] = {
 		},
 		["ClassIcon"] = {
 			["profiles"] = {
+				["Default"] = {
+					["classIconSideView"] = false,
+					["classIconSideViewOffsetY"] = -30,
+				},
 				["Unchill - Draenor"] = {
 					["classIconSideViewOffsetY"] = -30,
 					["classIconSideView"] = false,
@@ -199,9 +309,25 @@ GladiusExDB = {
 		},
 	},
 	["profileKeys"] = {
+		["Pokipoki - Draenor"] = "Default",
+		["Crystalol - Draenor"] = "Default",
+		["Nolifey - Ravencrest"] = "Nolifey - Ravencrest",
+		["Cutetroll - Draenor"] = "Cutetroll - Draenor",
 		["Unchill - Draenor"] = "Unchill - Draenor",
+		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
+		["Pixiel - Draenor"] = "Pixiel - Draenor",
+		["Nolifey - Draenor"] = "Unchill - Draenor",
+		["Apoka - Outland"] = "Apoka - Outland",
 	},
 	["profiles"] = {
+		["Pokipoki - Draenor"] = {
+		},
+		["Nolifey - Draenor"] = {
+		},
+		["Nolifey - Ravencrest"] = {
+		},
+		["Cutetroll - Draenor"] = {
+		},
 		["Unchill - Draenor"] = {
 			["globalFont"] = "Expressway",
 			["globalBarTexture"] = "Smooth v2",
@@ -210,6 +336,25 @@ GladiusExDB = {
 			["locked"] = true,
 			["advancedOptions"] = true,
 			["hideSelf"] = true,
+		},
+		["Lifey - Silvermoon"] = {
+		},
+		["Pixiel - Draenor"] = {
+		},
+		["Draenor"] = {
+		},
+		["Default"] = {
+			["hideSelf"] = true,
+			["globalFontSize"] = 14,
+			["globalFont"] = "Expressway",
+			["locked"] = true,
+			["advancedOptions"] = true,
+			["globalBarTexture"] = "Smooth v2",
+			["showParty"] = false,
+		},
+		["Crystalol - Draenor"] = {
+		},
+		["Apoka - Outland"] = {
 		},
 	},
 }

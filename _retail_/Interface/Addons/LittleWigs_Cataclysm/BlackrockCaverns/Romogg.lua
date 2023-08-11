@@ -20,7 +20,7 @@ local nextChainsWarning = 71
 
 function mod:GetOptions()
 	return {
-		75543, -- The Skullcracker
+		{75543, "CASTBAR"}, -- The Skullcracker
 		75272, -- Quake
 		75539, -- Chains of Woe
 	}
@@ -63,7 +63,7 @@ do
 end
 
 function mod:UNIT_HEALTH(event, unit)
-	local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
+	local hp = self:GetHealth(unit)
 	if hp < nextChainsWarning then
 		self:MessageOld(75539, "yellow", nil, CL.soon:format(self:SpellName(75539))) -- Chains of Woe
 		nextChainsWarning = nextChainsWarning - 33

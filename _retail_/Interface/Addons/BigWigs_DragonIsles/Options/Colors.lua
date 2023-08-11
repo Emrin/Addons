@@ -9,6 +9,10 @@ BigWigs:AddColors("Strunraan, The Sky's Misery", {
 })
 
 BigWigs:AddColors("Basrikron, The Shale Wing", {
+	[385137] = {"blue","purple"},
+	[385270] = "orange",
+	[386059] = "yellow",
+	[386259] = "red",
 })
 
 BigWigs:AddColors("Bazual, The Dreaded Flame", {

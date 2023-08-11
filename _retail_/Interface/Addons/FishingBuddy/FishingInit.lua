@@ -119,8 +119,8 @@ FishingInit.CheckRealm = function()
 			if ( old ) then
 				if ( not FishingBuddy_Info[realmName] ) then
 					FishingBuddy_Info[realmName] = { };
-					for _,tab in pairs(tabs) do
-						FishingBuddy_Info[realmName][tab] = { };
+					for _,subtab in pairs(tabs) do
+						FishingBuddy_Info[realmName][subtab] = { };
 					end
 				end
 

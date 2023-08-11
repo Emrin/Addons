@@ -1,2 +1,0 @@
-OPie_Classic: disabled
-BigWigs: disabled

@@ -14,6 +14,7 @@ local RSNpcDB = private.ImportLib("RareScannerNpcDB")
 local RSDragonGlyphDB = private.ImportLib("RareScannerDragonGlyphDB")
 local RSContainerDB = private.ImportLib("RareScannerContainerDB")
 local RSCollectionsDB = private.ImportLib("RareScannerCollectionsDB")
+local RSAchievementDB = private.ImportLib("RareScannerAchievementDB")
 
 -- RareScanner services
 local RSMinimap = private.ImportLib("RareScannerMinimap")
@@ -40,7 +41,7 @@ local function HandleEntityWithoutVignette(rareScannerButton, unitID)
 	end
 	
 	local unitType, _, _, _, _, entityID = strsplit("-", unitGuid)
-	if (unitType == "Creature") then
+	if (unitType == "Creature" or unitType == "Vehicle") then
 		local npcID = entityID and tonumber(entityID) or nil
 	
 		-- If player in a zone with vignettes ignore it
@@ -49,21 +50,12 @@ local function HandleEntityWithoutVignette(rareScannerButton, unitID)
 			return
 		end
 	
-		if (not RSMapDB.IsZoneWithoutVignette(mapID)) then
+		--if (not RSMapDB.IsZoneWithoutVignette(mapID)) then
 			-- Continue if its an NPC that doesnt have vignette in a newer zone
-			if (not RSNpcDB.GetInternalNpcInfo(npcID) or not RSNpcDB.GetInternalNpcInfo(npcID).nameplate) then
-				return
-			end
-		end
-		
-		-- If it has a questID and its completed ignore it
-		if (RSNpcDB.GetInternalNpcInfo(npcID) and RSNpcDB.GetInternalNpcInfo(npcID).questID) then
-			for _, questID in ipairs(RSNpcDB.GetInternalNpcInfo(npcID).questID) do
-				if (C_QuestLog.IsQuestFlaggedCompleted(questID)) then
-					return
-				end
-			end
-		end
+		--	if (not RSNpcDB.GetInternalNpcInfo(npcID) or not RSNpcDB.GetInternalNpcInfo(npcID).nameplate) then
+		--		return
+		--	end
+		--end
 		
 		-- If its a supported NPC and its not killed
 		if ((RSGeneralDB.GetAlreadyFoundEntity(npcID) or RSNpcDB.GetInternalNpcInfo(npcID)) and not UnitIsDead(unitID)) then
@@ -119,9 +111,6 @@ local function OnVignettesUpdated(rareScannerButton)
 		if (vignetteInfo and vignetteInfo.onWorldMap) then
 			vignetteInfo.id = vignetteGUID
 			rareScannerButton:DetectedNewVignette(rareScannerButton, vignetteInfo)
-		elseif (vignetteInfo and vignetteInfo.onMinimap and vignetteInfo.objectGUID) then
-			local _, _, _, _, _, vignetteEntityID, _ = strsplit("-", vignetteInfo.objectGUID);
-			RSMinimap.HideIcon(vignetteEntityID)
 		end
 	end
 end
@@ -209,23 +198,34 @@ local function OnPlayerTargetChanged()
 		local unitClassification = UnitClassification("target")
 		local npcID = id and tonumber(id) or nil
 		local playerMapID = C_Map.GetBestMapForUnit("player")
+		local npcInfo = RSNpcDB.GetInternalNpcInfo(npcID)
+		
+		-- If not known ignore it
+		if (not npcInfo) then
+			return
+		end
 
 		-- Check if we have the NPC in our database but the addon didnt detect it
 		-- This will happend in the case where the NPC is a rare, but it doesnt have a vignette
-		if (not RSGeneralDB.GetAlreadyFoundEntity(npcID) and RSNpcDB.GetInternalNpcInfo(npcID)) then
+		if (not RSGeneralDB.GetAlreadyFoundEntity(npcID)) then
 			RSGeneralDB.AddAlreadyFoundNpcWithoutVignette(npcID)
 		end
 
 		-- check if killed
-		if (RSGeneralDB.GetAlreadyFoundEntity(npcID) and not RSNpcDB.IsNpcKilled(npcID)) then
-			-- Update coordinates (if zone doesnt use vignettes)
-			if (RSMapDB.IsZoneWithoutVignette(playerMapID)) then
+		if (not RSNpcDB.IsNpcKilled(npcID)) then
+			-- Update coordinates (if zone doesnt use vignettes or it is detected with nameplates)
+			if ((RSMapDB.IsZoneWithoutVignette(playerMapID) or npcInfo.nameplate) and CheckInteractDistance("unit", 4)) then
 				RSGeneralDB.UpdateAlreadyFoundEntityPlayerPosition(npcID)
+			end
+			
+			-- If it's a custom NPC that's all
+			local customNpcInfo = RSNpcDB.GetCustomNpcInfo(npcID)
+			if (customNpcInfo) then
+				return
 			end
 
 			-- Check the questID asociated to see if its completed
-			local npcInfo = RSNpcDB.GetInternalNpcInfo(npcID)
-			if (npcInfo and npcInfo.questID) then
+			if (npcInfo.questID) then
 				local completed = false
 				for i, questID in ipairs (npcInfo.questID) do
 					if (C_QuestLog.IsQuestFlaggedCompleted(questID)) then
@@ -235,14 +235,14 @@ local function OnPlayerTargetChanged()
 				end
 
 				if (completed) then
-					RSLogger:PrintDebugMessage(string.format("Target NPC [%s] con mision completada, se marca como muerto.", npcID))
+					--RSLogger:PrintDebugMessage(string.format("Target NPC [%s] con mision completada, se marca como muerto.", npcID))
 					RSEntityStateHandler.SetDeadNpc(npcID)
 				else
-					RSLogger:PrintDebugMessage(string.format("Target NPC [%s] con mision SIN completar.", npcID))
+					--RSLogger:PrintDebugMessage(string.format("Target NPC [%s] con mision SIN completar.", npcID))
 					RSGeneralDB.UpdateAlreadyFoundEntityTime(npcID)
 				end
 			elseif (unitClassification ~= "rare" and unitClassification ~= "rareelite") then
-				RSLogger:PrintDebugMessage(string.format("Target NPC [%s] sin dragon plateado, se marca como muerto.", npcID))
+				--RSLogger:PrintDebugMessage(string.format("Target NPC [%s] sin dragon plateado, se marca como muerto.", npcID))
 				RSEntityStateHandler.SetDeadNpc(npcID)
 			end
 		end
@@ -269,13 +269,13 @@ local function OnLootOpened()
 			-- If the loot comes from a container that we support
 			if (unitType == "GameObject") then
 				local containerID = id and tonumber(id) or nil
+				--RSLogger:PrintDebugMessage(string.format("Abierto [%s].", containerID or ""))
 
 				-- We support all the containers with vignette plus those ones that are part of achievements (without vignette)
 				if (RSGeneralDB.GetAlreadyFoundEntity(containerID) or RSContainerDB.GetInternalContainerInfo(containerID)) then
 					-- Sets the container as opened
 					-- We are looping through all the items looted, we dont want to call this method with every item
 					if (not looted) then
-						RSLogger:PrintDebugMessage(string.format("Abierto [%s].", containerID or ""))
 				
 						-- Check if we have the Container in our database but the addon didnt detect it
 						-- This will happend in the case where the container doesnt have a vignette
@@ -304,7 +304,7 @@ local function OnLootOpened()
 				local npcID = id and tonumber(id) or nil
 				
 				-- If its a supported NPC
-				if (RSGeneralDB.GetAlreadyFoundEntity(npcID)) then
+				if (RSGeneralDB.GetAlreadyFoundEntity(npcID) or RSNpcDB.GetInternalNpcInfo(npcID)) then
 					local itemLink = GetLootSlotLink(i)
 					if (itemLink) then
 						local _, _, _, lootType, id, _, _, _, _, _, _, _, _, _, name = string.find(itemLink, "|?c?f?f?(%x*)|?H?([^:]*):?(%d+):?(%d*):?(%d*):?(%d*):?(%d*):?(%d*):?(%-?%d*):?(%-?%d*):?(%d*):?(%d*)|?h?%[?([^%[%]]*)%]?|?h?|?r?")
@@ -508,8 +508,45 @@ end
 
 local function OnAchievementEarned(achievementID)
 	if (achievementID and RSDragonGlyphDB.GetInternalDragonGlyphInfo(achievementID)) then
+		RSLogger:PrintDebugMessage(string.format("Logro de glifo [%s]. Completado.", achievementID))
 		RSDragonGlyphDB.SetDragonGlyphCollected(achievementID)
-		RSMinimap.RefreshAllData(true)
+		RSMinimap.HideIcon(achievementID)
+	end
+end
+
+---============================================================================
+-- Event: CRITERIA_EARNED
+-- Fired when a part of an achievement is earned
+---============================================================================
+
+local function OnCriteriaEarned(parentAchievementID, description)
+	if (parentAchievementID) then
+		-- Update drakewatcher progress
+		RSLogger:PrintDebugMessage(string.format("Criteria del logro [%s][%s]. Completado.", parentAchievementID, description))
+		local achievementID = RSDragonGlyphDB.GetChildDragonGlyphID(parentAchievementID, description)
+		if (achievementID) then
+			RSLogger:PrintDebugMessage(string.format("Logro de glifo [%s]. Completado.", achievementID))
+			RSDragonGlyphDB.SetDragonGlyphCollected(achievementID)
+			RSMinimap.HideIcon(achievementID)
+		end
+		
+		-- Update achievements cache
+		RSAchievementDB.RefreshAchievementCache(parentAchievementID)
+	end
+end
+
+---============================================================================
+-- Event: UNIT_SPELLCAST_SUCCEEDED
+-- Fired when a part of an achievement is earned
+---============================================================================
+
+local function OnUnitSpellcastSucceeded(unitTarget, castGUID, spellID)
+	if (spellID) then
+		--RSLogger:PrintDebugMessage(string.format("Hechizo [%s]. Completado.", spellID))
+		
+		RSCollectionsDB.RemoveNotCollectedDrakewatcher(spellID, function()
+			RSExplorerFrame:Refresh()
+		end)
 	end
 end
 
@@ -529,25 +566,6 @@ local function OnPlayerLogin(rareScannerButton)
 end
 
 ---============================================================================
--- Event: PLAYER_ENTERING_WORLD
--- Fired when the player logs in the game and the UI is ready
----============================================================================
-
-local function OnPlayerEnteringWorld(rareScannerButton)
-	-- Fires the first scan
-	local vignetteGUIDs = C_VignetteInfo.GetVignettes();
-	for _, vignetteGUID in ipairs(vignetteGUIDs) do
-		local vignetteInfo = C_VignetteInfo.GetVignetteInfo(vignetteGUID);
-		if (vignetteInfo) then
-			vignetteInfo.id = vignetteGUID
-			rareScannerButton:DetectedNewVignette(rareScannerButton, vignetteInfo)
-		end
-	end
-	
-	rareScannerButton:UnregisterEvent("PLAYER_ENTERING_WORLD")
-end
-
----============================================================================
 -- Event handler
 ---============================================================================
 
@@ -555,8 +573,6 @@ local vignetteUpdatedDelay
 local function HandleEvent(rareScannerButton, event, ...) 
 	if (event == "PLAYER_LOGIN") then
 		OnPlayerLogin(rareScannerButton)
-	elseif (event == "PLAYER_ENTERING_WORLD") then
-		OnPlayerEnteringWorld(rareScannerButton)
 	elseif (event == "VIGNETTE_MINIMAP_UPDATED") then
 		OnVignetteMinimapUpdated(rareScannerButton, ...)
 	elseif (event == "VIGNETTES_UPDATED") then
@@ -596,13 +612,16 @@ local function HandleEvent(rareScannerButton, event, ...)
 		OnTransmogCollectionUpdated()
 	elseif (event == "ACHIEVEMENT_EARNED") then
 		OnAchievementEarned(...)
+	elseif (event == "CRITERIA_EARNED") then
+		OnCriteriaEarned(...)
+	elseif (event == "UNIT_SPELLCAST_SUCCEEDED") then
+		OnUnitSpellcastSucceeded(...)
 	end
 end
 
 function RSEventHandler.RegisterEvents(rareScannerButton, addon)
 	RareScanner = addon
 	rareScannerButton:RegisterEvent("PLAYER_LOGIN")
-	rareScannerButton:RegisterEvent("PLAYER_ENTERING_WORLD")
 	rareScannerButton:RegisterEvent("VIGNETTE_MINIMAP_UPDATED")
 	rareScannerButton:RegisterEvent("VIGNETTES_UPDATED")
 	rareScannerButton:RegisterEvent("NAME_PLATE_UNIT_ADDED")
@@ -621,27 +640,11 @@ function RSEventHandler.RegisterEvents(rareScannerButton, addon)
 	rareScannerButton:RegisterEvent("NEW_TOY_ADDED")
 	rareScannerButton:RegisterEvent("TRANSMOG_COLLECTION_UPDATED")
 	rareScannerButton:RegisterEvent("ACHIEVEMENT_EARNED")
+	rareScannerButton:RegisterEvent("CRITERIA_EARNED")
+	rareScannerButton:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 
 	-- Captures all events
 	rareScannerButton:SetScript("OnEvent", function(self, event, ...)
 		HandleEvent(self, event, ...) 
 	end)
-	
-	-- In DL VIGNETTES_UPDATED seems buggy, so keep checking every 10 seconds
-	-- In DL VIGNETTE_MINIMAP_UPDATED doesn't fire if the container appears where the player stands
---	local ticker = C_Timer.NewTicker(10, function() 
---		local vignetteGUIDs = C_VignetteInfo.GetVignettes();
---		for _, vignetteGUID in ipairs(vignetteGUIDs) do
---			local vignetteInfo = C_VignetteInfo.GetVignetteInfo(vignetteGUID);
---			if (vignetteInfo) then
---				if (vignetteInfo.onWorldMap and RSConfigDB.IsScanningWorldMapVignettes()) then
---					vignetteInfo.id = vignetteGUID
---					rareScannerButton:DetectedNewVignette(rareScannerButton, vignetteInfo)	
---				elseif (vignetteInfo.onMinimap) then
---					vignetteInfo.id = vignetteGUID
---					rareScannerButton:DetectedNewVignette(rareScannerButton, vignetteInfo)
---				end
---			end
---		end
---	end);
 end

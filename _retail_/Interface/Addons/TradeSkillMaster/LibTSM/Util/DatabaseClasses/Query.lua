@@ -537,7 +537,7 @@ end
 ---Results iterator.
 ---
 ---Note that the iterator must run to completion (don't use `break` or `return` to escape it early).
----@param canAbort boolean Allow the iterator to be aborted if the underlying data is updated which must
+---@param canAbort? boolean Allow the iterator to be aborted if the underlying data is updated which must
 ---be handled by the caller by calling `IsIteratorAborted()` at the end of each iteration loop
 ---@return fun(): number, DatabaseRow @An iterator with fields: `index`, row
 function DatabaseQuery:Iterator(canAbort)
@@ -608,12 +608,7 @@ function DatabaseQuery:UUIDDiffPrepare(oldUUIDs)
 		while #context.remove > 0 and context.remove[#context.remove] == startIndex - 1 do
 			startIndex = tremove(context.remove)
 		end
-		tinsert(context.result, "REMOVE")
-		tinsert(context.result, startIndex)
-		tinsert(context.result, endIndex - startIndex + 1)
-		for i = startIndex, endIndex do
-			tinsert(context.result, oldUUIDs[i])
-		end
+		Table.InsertMultiple(context.result, "REMOVE", startIndex, endIndex - startIndex + 1, unpack(oldUUIDs, startIndex, endIndex))
 	end
 
 	-- Add the insert actions
@@ -628,12 +623,7 @@ function DatabaseQuery:UUIDDiffPrepare(oldUUIDs)
 				break
 			end
 		end
-		tinsert(context.result, "INSERT")
-		tinsert(context.result, startIndex)
-		tinsert(context.result, endIndex - startIndex + 1)
-		for j = startIndex, endIndex do
-			tinsert(context.result, self._result[j])
-		end
+		Table.InsertMultiple(context.result, "INSERT", startIndex, endIndex - startIndex + 1, unpack(self._result, startIndex, endIndex))
 		i = i + endIndex - startIndex + 1
 	end
 	wipe(context.insert)
@@ -1400,8 +1390,8 @@ function DatabaseQuery:_GetQueryIndexInfo()
 	-- try to find the index with the least result rows
 	local indexField, indexFirstIndex, indexLastIndex, indexIsStrict = nil, nil, nil, false
 	local bestIndexDiff = math.huge
-	for _, field in ipairs(self._db:_GetIndexAndUniqueList()) do
-		local valueMin, valueMax = self:_IndexValueHelper(field)
+	for _, field in self._db:_IndexOrUniqueFieldIterator() do
+		local valueMin, valueMax = self._rootClause:_GetIndexValue(field)
 		if valueMin == nil and valueMax == nil then
 			-- continue
 		elseif self._db:_IsUnique(field) and valueMin == valueMax then
@@ -1410,8 +1400,17 @@ function DatabaseQuery:_GetQueryIndexInfo()
 		elseif self._db:_IsIndex(field) then
 			-- check how many rows this index results in
 			local indexList = self._db:_GetAllRowsByIndex(field)
-			local firstIndex = valueMin and self._db:_IndexListBinarySearch(field, valueMin, true) or min(1, #indexList)
-			local lastIndex = valueMax and self._db:_IndexListBinarySearch(field, valueMax, false) or #indexList
+			local firstIndex, lastIndex = nil, nil
+			if valueMin and valueMax and valueMin == valueMax then
+				firstIndex, lastIndex = self._db:_GetIndexListMatchingIndexRange(field, valueMin)
+				if not firstIndex then
+					-- there are no results within this index, so this is as good as it gets
+					return "EMPTY", field
+				end
+			else
+				firstIndex = valueMin and self._db:_IndexListBinarySearch(field, valueMin, true) or min(1, #indexList)
+				lastIndex = valueMax and self._db:_IndexListBinarySearch(field, valueMax, false) or #indexList
+			end
 			local indexDiff = lastIndex - firstIndex
 			if indexDiff < 0 then
 				-- there are no results within this index, so this is as good as it gets
@@ -1517,30 +1516,6 @@ function DatabaseQuery:_CreateResultRow(uuid)
 	row:_SetUUID(uuid)
 	self._resultRowLookup[uuid] = row
 	return row
-end
-
-function DatabaseQuery:_IndexValueHelper(...)
-	local num = select("#", ...)
-	local valueMin, valueMax = nil, nil
-	for i = 1, num do
-		local fieldPart = select(i, ...)
-		local partValueMin, partValueMax = self._rootClause:_GetIndexValue(fieldPart)
-		if partValueMin == nil and partValueMax == nil then
-			return
-		end
-		if num > 1 and (partValueMin == nil or partValueMax == nil) then
-			-- only use multi-field indexes if there's both a min and max value
-			return
-		end
-		if i > 1 then
-			valueMin = valueMin .. Constants.DB_INDEX_VALUE_SEP .. partValueMin
-			valueMax = valueMax .. Constants.DB_INDEX_VALUE_SEP .. partValueMax
-		else
-			valueMin = partValueMin
-			valueMax = partValueMax
-		end
-	end
-	return valueMin, valueMax
 end
 
 function DatabaseQuery:_PassThroughReleaseHelper(...)
@@ -1811,8 +1786,6 @@ function private.UUIDDiffIterator(context, index)
 	index = index + 3
 	assert(action == "INSERT" or action == "REMOVE")
 	assert(startIndex > 0 and num > 0 and num <= #context.result - index + 1)
-	for i = index, index + num - 1 do
-		tinsert(context.uuids, context.result[i])
-	end
+	Table.InsertMultiple(context.uuids, unpack(context.result, index, index + num - 1))
 	return index + num, action, startIndex, context.uuids
 end

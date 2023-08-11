@@ -45,7 +45,7 @@ Grid2Options: disabled
 Grid2RaidDebuffs: disabled
 Grid2LDB: disabled
 Grid2RaidDebuffsOptions: disabled
-MDTGuide: enabled
+MDTGuide: disabled
 MikScrollingBattleText: disabled
 MogIt_Cloth: disabled
 MogIt_Mail: enabled
@@ -56,7 +56,7 @@ MogIt_Ranged: disabled
 MSBTOptions: disabled
 Omen: disabled
 MythicPlusTimer: disabled
-MythicDungeonTools: enabled
+MythicDungeonTools: disabled
 ExRT: enabled
 RareScanner: enabled
 Simulationcraft: disabled
@@ -92,12 +92,12 @@ NPCTime: disabled
 WorldQuestTracker: enabled
 SilverDragon_RangeExtender: enabled
 SilverDragon_Overlay: enabled
-SilverDragon: disabled
+SilverDragon: enabled
 Plater: enabled
 NPCScan: enabled
 MogIt_Leather: disabled
 GatherMate2_Data: enabled
-GatherMate2: disabled
+GatherMate2: enabled
 FishingBuddy: disabled
 AAP-Shadowlands: disabled
 AAP-EasternKingdoms: disabled
@@ -145,7 +145,7 @@ LibWindow-1.1: enabled
 BigWigs_Core: enabled
 BigWigs_Options: enabled
 BigWigs_Plugins: enabled
-Auctionator: enabled
+Auctionator: disabled
 ArkInventory: enabled
 Auc-Advanced: enabled
 LibAHTab: enabled
@@ -157,7 +157,7 @@ TradeSkillMaster_AppHelper: enabled
 LittleWigs: enabled
 HandyNotes: enabled
 BigWigs: enabled
-CraftSim: enabled
+CraftSim: disabled
 DBM-Core: enabled
 LibCandyBar-3.0: enabled
 LibDDI-1.0: enabled
@@ -201,3 +201,14 @@ LittleWigs_Legion: enabled
 LittleWigs_WarlordsOfDraenor: enabled
 ElvUI_SecondsToBuff: disabled
 BigWigs_DragonIsles: enabled
+LittleWigs_Classic: enabled
+ElvUI_BuffHighlight: disabled
+BigWigs_VaultOfTheIncarnates: enabled
+ElvUI_ChatTweaks: disabled
+WunderUI: disabled
+Routes: disabled
+Cartographer: enabled
+Cartographer_Notes: enabled
+GatherMate: enabled
+Gatherer: enabled
+RoutesImportExport: disabled

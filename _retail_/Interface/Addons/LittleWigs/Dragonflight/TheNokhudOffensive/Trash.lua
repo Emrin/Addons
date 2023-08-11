@@ -30,6 +30,7 @@ mod:RegisterEnableMob(
 	195930, -- Soulharvester Mandakh
 	199717, -- Nokhud Defender
 	193373, -- Nokhud Thunderfist
+	193457, -- Balara
 	193462  -- Batak
 )
 
@@ -39,6 +40,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?"
+
 	L.nokhud_plainstomper = "Nokhud Plainstomper"
 	L.nokhud_hornsounder = "Nokhud Hornsounder"
 	L.nokhud_beastmaster = "Nokhud Beastmaster"
@@ -54,6 +57,8 @@ if L then
 	L.soulharvester_galtmaa = "Soulharvester Galtmaa"
 	L.nokhud_defender = "Nokhud Defender"
 	L.nokhud_thunderfist = "Nokhud Thunderfist"
+	L.balara = "Balara"
+	L.batak = "Batak"
 end
 
 --------------------------------------------------------------------------------
@@ -97,6 +102,11 @@ function mod:GetOptions()
 		373395, -- Bloodcurdling Shout
 		-- Nokhud Thunderfist
 		397394, -- Deadly Thunder
+		-- Balara
+		382277, -- Vehement Charge
+		372147, -- Ravaging Spear
+		-- Batak
+		382233, -- Broad Stomp
 	}, {
 		[384365] = L.nokhud_plainstomper,
 		[383823] = L.nokhud_hornsounder,
@@ -113,12 +123,17 @@ function mod:GetOptions()
 		[395035] = L.soulharvester_galtmaa,
 		[373395] = L.nokhud_defender,
 		[397394] = L.nokhud_thunderfist,
+		[382277] = L.balara,
+		[382233] = L.batak,
 	}, {
 		[334610] = CL.fixate,
 	}
 end
 
 function mod:OnBossEnable()
+	-- General
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
 	-- Nokhud Plainstomper
 	self:Log("SPELL_CAST_START", "DisruptiveShout", 384365)
 	self:Log("SPELL_CAST_START", "WarStomp", 384336)
@@ -168,11 +183,32 @@ function mod:OnBossEnable()
 
 	-- Nokhud Thunderfist
 	self:Log("SPELL_CAST_START", "DeadlyThunder", 397394)
+
+	-- Balara
+	self:Log("SPELL_CAST_START", "VehementCharge", 382277)
+	self:Log("SPELL_CAST_START", "RavagingSpear", 372147)
+
+	-- Batak
+	self:Log("SPELL_CAST_START", "BroadStomp", 382233)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- General
+
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.teera_and_maruuk_warmup_trigger then
+		-- Teera and Maruuk warmup
+		local teeraAndMaruukModule = BigWigs:GetBossModule("Teera and Maruuk", true)
+		if teeraAndMaruukModule then
+			teeraAndMaruukModule:Enable()
+			teeraAndMaruukModule:Warmup()
+			self:UnregisterEvent(event)
+		end
+	end
+end
 
 -- Nokhud Plainstomper
 
@@ -225,6 +261,9 @@ end
 -- Primalist Stormspeaker
 
 function mod:Tempest(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -279,6 +318,9 @@ end
 do
 	local prev = 0
 	function mod:RottingWind(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
@@ -298,6 +340,9 @@ end
 -- Risen Mystic
 
 function mod:SwiftWind(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -305,6 +350,9 @@ end
 -- Ukhel Beastcaller
 
 function mod:DesecratingRoar(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 end
@@ -337,10 +385,32 @@ end
 -- Nokhud Thunderfist
 
 function mod:DeadlyThunder(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+		return
+	end
 	self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
 	if self:Interrupter() then
 		self:PlaySound(args.spellId, "warning")
 	else
 		self:PlaySound(args.spellId, "alert")
 	end
+end
+
+-- Balara
+
+function mod:VehementCharge(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Batak
+
+function mod:RavagingSpear(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BroadStomp(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end

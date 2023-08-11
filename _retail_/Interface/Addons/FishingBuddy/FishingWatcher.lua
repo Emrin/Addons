@@ -614,8 +614,7 @@ end
 
 local function StartWatching()
     ShowWatcher()
-    -- because we're us, this will just use the setting of "CaughtSoFar"
-    FL:SetCaughtSoFar();
+    FL:SetCaughtSoFar(FBI:GetSetting("CaughtSoFar"));
     TotalTimeFishing = FBI:GetSetting("TotalTimeFishing");
     ZoneFishingTime = 0;
     FBI:WatchUpdate();

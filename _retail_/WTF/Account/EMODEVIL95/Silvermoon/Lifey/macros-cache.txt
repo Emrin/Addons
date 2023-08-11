@@ -47,7 +47,7 @@ VER 3 010000000000000C "pur" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod:shift,@focus,exists,help,nodead][@mouseover,exists,help,nodead][] Purify
 END
-VER 3 0100000000000011 "silence" "INV_MISC_QUESTIONMARK"
+VER 3 0100000000000011 "sil" "458230"
 #showtooltip Silence
 /cast [@mouseover, exists][] Silence
 END

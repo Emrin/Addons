@@ -1,6 +1,10 @@
 
 local _
 local addonName, platerInternal = ...
+local tinsert = tinsert
+local tremove = tremove
+local Plater = Plater
+local wipe = wipe
 
 platerInternal.Scripts.DefaultCastScripts = {
 	"Cast - Small Alert [Plater]",
@@ -27,6 +31,18 @@ do
 
 --new scripts v10.0.2
 
+--Cast - On Going Cast [P] backup
+--nF12UnUnq0)f)KmqSHS89a0h8MGS1TnxaK7Iw0uTIwIYwn0Kcuu760h03ENHKYroro2zZUanowMsCUCoZqodvqVGfb(ImvQGNddVrF)IhZO4q)FL(yGFSqDHGjKb(FIWkOgPW)90x7RVoi4QXdDh2BYu3r9gpz8Obtds6mCqGkW)gYgAG)LcvEzO1sZJeC4kxrLjKi69ZIJVLNF)Dmc8K7t3qwrZV3aRphzu5sAE0(wrHqyhC9c8VMSfaJ7(Y(hLH3MKKtbGCDkp4MoOaxjjrOXdwwXQBC3hO1u7TawEXMLuPnYT1AbfgLokq)ZMaADivtGNWS2rp(EGATyHctK7a6Ok3FRwHYWbVWXgtn4T54Lmc)HkUJ(CydbNQ5Nf)pf5QYW1IVwgMqWHQ10YWLSu(dP8vLHIOOczUnO521ZcT8mkn(ja3DqnM(HVTiLjA8b0ZLH(A7RWW0HrpGPYqYgrbhWTibWUKWZZiskp6X6mPmmIaIUM8fAftS8ytkFglBnPES)7kr0y04cGnJFn2q2(oytDqVlRm85GbDHLVFZ772q2UJpt2RG2E(6qv1UA4OH9goEKNR30jdhm2dRKnrxPZf3GasPSEsZ23BnnT(2a6(lTv0TQcjnalH4RerFHkZXiiu7a(dIDK4y0PgFe4RHVVczRFEKmnduRVLA9Na)nsx12ZD6OXJqBcsFHEpvhO2cKX(Oq7xZZ(R7(7a)HaJD7pPNle9WAdGsJbGNQiXczNz)RKWqea1kwOXoj6HvsyfsCncXHOEgcrl3GAzKYqjfKjYW9uECAerzinQsKgbPGKlP6NMbrvHCdnUBz4VNttkyGKIDAIQSMW5uMwAyZpJbkhB4tmbJ(aIGaOkDdTleQG6bjf8itLnNCkl5SYWcEQAESDaSGDdfgt5FzbzjdhAcQ67Ax(lLH2p7gHMP7TF8IpRxITWK(o)cgLiNXy3bOrL70(yY7tvArDAPezmAIQ1zgrHFQ)ix87BWAlfkLyJmD169S4ZE8ZT6tJyIictN4arwjPu(zygTaIS)uzOzr453rK5u9s6CNAHRUWUJK0vDFAhZPa8pb5l6wT4oV0TVgi1(rxJwdUgqIUbXXtIZ4WwxCvs35Cesxwi1368KhAFCDVTqDCLFbjGA)g7GvZoepQAq8sTjBpbTT1kF7bIRKInAvD2dMTpv9xiSAxhMNEOSM733aNmnSgAhooaloQHqJ8BcrguQXPLKMrjQwhNhNd7xE0Pr)uvWPlC07DY3R2MSUOUxwBYQ6xEN1ysU6i8npR9yQnpP9OLTpg66A7vnNNimBTUUGPsZyPuPg5UD7FYC17)1C17OCTxDMs5WXq7bnRlNxoVElN97Lmh)0PtkphQ5HngJHYQRPsA1CMFbRHdc8NcNvd6jdNlPh0mFk8UxdHU596)JVTwTf(qZOMxcBZDOanL7AEnu7Vp2XR9ZTIoja3cFGqK3pIquNorsQ(CiqP2egjF9UJVvg(11PrW9pqPz1pEh8ygD)d8aiAL5mla4E9(JMk6npdEMkCQZVqdk7ZD4PmSHpEmiytvRtPdSEVuL(9aT1FpfnnvvDps0stEsvQd7VlkGGucYGMpn8rxw2qGP2COHThvXeC2n3pxS0Pr2amUAbdSA)qmgEdvCwyL2jj)pNgtTY3(T18914NE6dtrNdOgUQGG5Rw2mm8Mz6R9Fw2(K6Q(Qaup)7eHE7qObREnu54q7(799B3)bQw3OBDnV2yW)9
+
+--for abilities that channel and while channeling throws something at players or do damage over time
+PlaterScriptLibrary ["Cast - On Going Cast [P]"] = {
+	Revision = 2,
+	ScriptType = "script",
+	String = "nFvBVnkoq4)l5tePgeqETv6(q2w1DZDxFrICRUvxpwCatcxDSrgt307d8B)g)cjql5LUDxPRPHyWZm(5zg7zgcCdMh4ZYePmAom8w19ZFodlh6)B4Nd8JzIlzegpW)ZisbwlL8Fp11(QRdcUE8qNHUto3zK74jJhn48GKEdheic8VfTgh4FftKxgAS0SigfUsfyEckc)W0447O5pCpbbp5H01OL48h0W6RrAvUcNh10kcje2cxVa)BqBaW40u2)Sm8UKKCmaKBsPb32tkW1CuK04blQy1Tog6UPs63cgPfRxG5nP6Ufwi9shfOFPnGw3G1eyhMRZKVheR48Z7a6GDaDu1YFNsLYWbVYzPn2G32sVGGOpwXD5AoSfNt18tJ)NICrz4k23kdtqYHIv4YWfKu6JP0LLHSOOcEUXP5y7zGwEgghVdW2dQyZhKAwg6RN)7XNT1N)bj6hDa0dyQmeTMvqbCZsaSZr08mehtJEUotkdJqGORqpHRyIHhRtPtjzRq199niIAnmI8(zZ4dXg0M3bBQTo7IkdRyjAZ7Gcn9hsuQngWNjnsO1qW9Lv76HJg6oC8iphVZNmCW4(Ymztuz6CKhqaPegyRy77nNMsFJdT5wBbEJOGJdKNm9fSONW8CPheYDa)b(ouCSCr1RrGVc((cjB9ZJ4PzGA9nuR)e4VrQS2EoNpA8iPnbPVuDMQhKBbIyFKPwx9Z(R7)7a)HaJD6pX1b8EYCdGsJbGNkqXmEVP)lhrKiaYvmxHDu0Jl5WoK4AeIcE9mjenCdYLHkd5yqMin3tPXPriHM0svIuiifKCbw90mWRY4RXX2LH)rooPGasY2QPuLvikftusdh(jeq5ynFIrsVpGiWbksxJTbxfKpiPGgPZSzLJjjNvgwqtfZIndGnSRXWym9P5Ofe5qTtvDx3YFTm08z7iPzSV7Jx(v1wS56W3fxsWi(uc5EanICRUhtEFSqjQvhblJGteDotlk8t9h5i)(gS2cMqWwZtxUQHfFXJFPv3nIWIqevGdezjhJPNjJOfGN9xkd1BcV4EephR2sNBvZDzdNossxAV7eZPa8pdXl8gL4wVEzpeivRJkhVcCTGevbIJheNsHJUYDj2ZOsiDvbxDR1UvO7X19UcXXv(vKaY9RTJmB2(4rvbIxRnAZjOTjX7B3rCnNTwPQvdy29u1FoZODDyE6UYAlFtdCY0WyOT4ypS4OgsAKFNXYGunwD44mms05484c48YZwTUovjCSHwV3kVBTdz2sDVQ2Kv5V8oR1GCvl8TpRPJ32N00Ay3JHoBtTQz0eM(O1nferAgjfZvi3XU)jZvV)xZvVJYv36mftH2mDHI1LZkNvVKtZAjZKF61lLMd58KfgJH0QRWCC1C6FbRjhe4Fo0Rw)aFOVexOy(5od96dvZD7)ZVSwTn(qXO23cBIDsbAl21(EOU)ySJx3xAfvqaUf(aUiVFgUOE9I4yvFiqQ2eckF1223kd)2Q0i4(hX4S6T3bpMGB2WdGOL6EwaWD46J6m6TpJSNk5uxCPcuMNBrtjYc(Y2GGdvDoLkWQZsv67cAR(EkAQZQ6CeVLI8OQqNS(oRaCsjsg0E3WhDBzloMAZjnSPvfTZz7CFQyHvRSbyC1ggy3((ym8gQYzHDANK8FkngBKV7BR47H4NA69trR9OMCxbsgV6yIWWBMPU2)fr7tQQ6bbOA(3jc92Iqnw9AjZX(o97(J70)EYw36Y6OFTXG)7d",
+	Enabled = true,
+	OverrideTriggers = "merge",
+}
+
 --place a red background texture around the PlateFrame when the unit is casting a spell and has a Buff or Debuff up
 --this is useful in cases where the buff the unit has avoid the spell cast to be interrupted
 PlaterScriptLibrary ["Aura While Casting [P]"] = {
@@ -46,9 +62,9 @@ PlaterScriptLibrary ["Add - Explode on Die [P]"] = {
 }
 
 PlaterScriptLibrary ["Add - Health Markers [P]"] = {
-	Revision = 1,
+	Revision = 2,
 	ScriptType = "script",
-	String = "nJ16Ujoou43L(lyuHfOaDPsZknxu3s3PuKc7S)OTPXKyaRXyh5yM2URM8SVhBNRqcnHHUABAZfBFU99D8X21UR9mBlUVKWzbWRt0Fp7fFS9Kb2wtqRX2w3Q7o0PRT1xr0nqlFWZl0zns8nSii0HWK8qh5kCOZkmIkxf6mhjGwGwf41egm4x4BcDqZ5BKqN8Ga1hekrsWQxHgPKfG8(yHlMjBBB9h4xIDmWUJD5m4otIflqU47bh4wwW9tPiOL7jRrlXb3Bg9Ju0Cm126Z4axBlBP9KEPX0W4yAofX(MYQmCCunPtKvRN50AkR5ol1CDJn3xXcjXfrdD(cyXqNpXPCrSH1WU63E67NPV3xDxg5raecsl5Ii5QJ)5AeX4FJJvuOJU92khUFQd3Z26g0ZAhFhbqu)viGzUHWaSQnmKlfixLnS)ykg2(8rLf0FqPG658SnRNJfBJcgfjvPOzz2iYlLnlGQ)Py2H5ywT5wqO0QtMgh6sqMKuGdMknAjLfpFpSOzS5jWmbqeXKqH9YtThcHLnsJPlaaKC3Vd1mukEs3oWpGPqEEk9BuNTLg0SKQaXkWvq8bXutPGh9IQ80k05QOcn3exe6UPpyBn4vDttbQhtsLST6BOmRUJoF4OZ1G3Grd63xzWZbdIPyHcKBnJlwUcfanpu7TUqknkUm4(RcgzoORNwHzrJAdJa19EYqJRqSLQ6FGbGh65NGPadaJMS2NlKig8zGpMsbkSBFG52WCnfMBeGPlo1OXXErVam4Am8oM99zO5u1Rg4u)vZWRdDmxTArybWuvvYKN27f40EJfV9F67brqeE3iXcGIWqb(RvxGFniVFDagmN(gbuZzal8RWZHdhDw)oJgcF29SJx4twaAirI2gUZeMn1mflJVfDv8WV4kIhUrZxF43cZbOOx2z86apj6Jq0EhVqTawvTS7uZIUHoVp05Fu0JNaTKZwqjlxj3nAUZmt5bZ4h05hNQK5sk4el3qP4IerpJAljMPMemH75ryldDMrwcZI2rY0w(rrXr6BPyusS9jbojJnxcB1OtT3UDxFejUWO3z4NLBe4gmcfcNt4go9KkR(lSWs9AaXkQlOg9F1sfwK)2iArE6VJLxHvSyJMn3h2(kjQVzir8eHFgOiJooaSWmBRkztLx)BBpKY1B6jA)XAP1iyrt6UlPXhN47o(ZpSR60fOYQSsllTLdO8XVS187uZzwbnPVFbq7oDkxNluRjronzl6Qf1G)8rean2Y784LRN4l)moLFvDIDQzNl8(Ten9QiuHkKXLLntR2kCNcTvUyu5AYRgMVYJSSklR4p1OgExuk3tep1gFEFPtb)l1aQJIlVY3uoSLRgNqXlKNu8CEv1O4U1E27IYpGV708TanJGHOsGQ6rAWicwExrzTTYK1EWOsMIGgeoJhCCu7RG2gArb4cvnw1q68MHYLNtOoYj(z9AjnmB8)IPiraw3sq29J2gouZcYY25pADZJsMP(ap71y6r8Fc2KHcRp4KC62MhNKOsbMKtH(MGjcmSRIku8EVLyvDc7Av)qTy4113V2ZrnuN0ZR0CQXbQ6Xm1oxQ46q18ekh6jwQecMRXKZ4KhX25co5t3)NEg3oM)Bo2)l",
+	String = "nJvBpnooq4)l8P2vqV2sFHI0EsllId4wkiLE79bGqCtCBTW1jYXDb2tB(TFZy7K00MaT8YPtPTjX2ZmpZZ4zSDDB5oY1jmsXcfXWJd1Vp6PiQ7WUUo)j9P0EB568DcFb115lbbjEZjY7PY4epMqfM4PMrt8MrjC1SeVXej0c0QKoNjGb)u4IepY4WfkOZW4y8fgNPyu8rOroBciFev6tfQgUodjZbdDP2WjEGPpZpua)kuu5eIp9gadxkIV5kobA5g2CYuA8ngGEhNmMYDDoMg7764QCh2o3N6z9PuNzyZuJnMte3Jirq3oZPfCzZTFU5AznhWcmFIku(1qEOm14A6g)0w)7(6F7G)Qsr13PsfijpX7BaWs8SYVn4Z3iIbFNLcKepD7nqa3jhWTDDUG8Og4RjaHhnJabNlycG3A0Qkm(fCC5eCJ(dwLfSJyB8cXI5JPGBCIK4Jn4EeI8UfISLeiZJY2W(BkY2RqK1yUtyCEwCzdIRACmbe6Tgkngopk2)zIIMXwmawGlZJwTl6yVHqvMNA0Hc9EvO)pGYgOrh2Qzt4JRdjiavUrxUoAgZrHoItSVKfbIHPuWT22Ip7L4DQTwZfP1HU(QBDD6(Iy0uJ6USPIUoDmXlNwd63BqFn51Dq3oD0WO1b9A3Upg9Gh70SDtDzXbaU7IaQpaikNkXGWEJcLtNrIHM7P9gFixGKwP85luAHd01dZOc7OwiyqPXhmH5zeXuSejya4Mo)fmfyay0S5rHsfraVghr5Cie3ca8KfcFtb0AXu(KDnA8Sa7dq0FofEMk(XiYyo(OHU1Vvp58epZ1E7XeXqooozlqJEjnV3uXB8xrbGhyJh1YSaOikSgW54fGRUfX1RWGf03ai01bO7dG79oy)UdGWfg22)9Z9ztanKjrdtSZ4M11rkXsyZEv(Wp8uwaTw9xE4xc5iCYtRnETJN59wgT97NRwsufxz(kZ6YjEFoX7FWWtGKmnumHZMotTU3CTjt6wZ4728x7IYCchaX0fCoTmr0zCRiXimjyyyqatmnXBeBkKfvIX0zOwrBBf9cy3mkz4cOUWXuFYtLkhMoBLRJvoOUYc(9A7DemlMQZCxxwD()kMCirsEKeNp6FvgVM)uEmlJR)QKMLbvibAZMEPXZQDDerEOrVJOpQwiP1emoa4DcnZX2zJv)HouLEnRuf1cuJ(7wPch2pnIwgs)dQ6ukoRQw9su6gN48HXePjMVfQyjD8k4ct2)MmBQ66XRIqEOE3B2T0RLwZGLve46SgVByK)zhF76QtxWCzLvzzYvaaIXVTs9MCZzwXpRVFdy7MnRwNtW1iz7MDQcCrw4BeHbSXkOliSA9KEfTeOI2uqS2AifCVFpttVidvQcfHQQY02AfUwH)nUyu1Akylm)gpYQQSml8HABb6St5EGfGBe7ZvMc(34a2gfxDLVRcHTawBhoDIANYZ5XQrPDRr2NSZpG3Bw)JGnT0GTeiwpstgwA5tLnRDVLM1(QzLLkcAy4LqW7JAFb22ewqcxI1yXH08dJLREobE2z6J61sQzoOYHxrGnEOBjE59h3aob2e20gf)ReQ)UmZuFaTN1y6r8Fc3SuiC7jNSZvx)9zsuLet2XA)q4ejf2vXgu8(zlXIDc7lvFdxm88ThxpZrFWtEgu5CQZIX6XcCNlB46qB5jMETNGAJyWcnMDMRIm2AxWjXA9)0ZC308xp5(Vp",
 	Enabled = true,
 	OverrideTriggers = "merge",
 }
@@ -950,7 +966,119 @@ do
 		end
 	})
 
-	--/run Plater.db.profile.patch_version = 22
+
+	--#25 script trigger updates
+	tinsert (PlaterPatchLibrary, {
+		Notes = {
+			"- Patching scripts triggers for season of Dragonflight Mythic+."
+		},
+		Func = function()
+			Plater.AddTriggerToScript(388923, "cast", "Cast - Ultra Important [P]") --Burst Forth
+			Plater.AddTriggerToScript(377912, "cast", "Cast - Circle AoE [P]") --Expel Intruders
+			Plater.AddTriggerToScript(377912, "cast", "Cast - On Going Cast [P]") --Arcane Rain
+			Plater.AddTriggerToScript(209495, "cast", "Cast - Frontal Cone [Plater]") --Charged Smash
+			Plater.AddTriggerToScript(209033, "cast", "Cast - Quick Flash [P]") --Fortification
+			Plater.AddTriggerToScript(209413, "cast", "Cast - Big Alert [Plater]") --Suppress
+			Plater.AddTriggerToScript(207980, "cast", "Cast - Big Alert [Plater]") --Disintegration Beam
+		end,
+		NotEssential = false,
+	})
+
+
+	--#26 test for the non-essential patches
+	tinsert (PlaterPatchLibrary, {
+		NotEssential = true,
+
+		Notes = {
+			"- test patch."
+		},
+		Func = function()
+		end,
+	})
+
+	--#27 triggers for 10.1 season 2 dragonflight m+ dungeons
+	tinsert (PlaterPatchLibrary, {
+		NotEssential = true,
+
+		Notes = {
+			"- Added support for season 2 mythic dungeons."
+		},
+		Func = function()
+			local addTriggers = {
+				["Add - Explode on Die [P]"] = {189299, 131402, npc = true},
+				["Add - Important [P]"] = {190381, 92538, 192464, npc = true},
+				["Add - Warning [P]"] = {129758, 190426, 186696, 101075, 100818, 98081, 52019, npc = true},
+				["Aura - Buff Alert [Plater]"] = {377738, 378149},
+				["Cast - Big Alert [Plater]"] = {257397, 257736, 382787, 374699, 377402, 369602, 369465, 369400, 381593, 265091, 265433, 382791, 376780},
+				["Cast - Circle AoE [P]"] = {258672, 258777, 257756, 257784, 256405, 256589, 393793, 388046, 375079, 390290, 369811, 369703, 226287, 410999, 372561},
+				["Cast - Frontal Cone [Plater]"] = {257426, 255952, 257870, 413147, 383107, 377559, 388060, 376170, 384524, 375351, 390111, 369791, 369573, 369563, 369335, 369061, 375727, 265016, 265019, 260793, 260292, 272457, 272609, 269843, 183465, 226296, 188169, 183088, 410873, 411012, 88308, 382708, 375251, 375439, 372311, 373742, 372201, 374533, 377204},
+				["Cast - Glowing [P]"] = {384353, 265376, 193941, 411002},
+				["Cast - Quick Flash [P]"] = {385029, 374563, 377341, 369675, 369365, 369411, 278961, 202108, 88186},
+				["Cast - Small Alert [Plater]"] = {281420, 274383, 259092, 367521, 374544, 385039, 382474, 369823, 377500, 260879, 186269, 378818, 371875, 372225},
+				["Cast - Ultra Important [P]"] = {376934, 384899, 373960, 374724, 385551, 259732, 373424, 373084, 87618},
+				["Cast - Very Important [Plater]"] = {257732, 256060, 257899, 384633, 374339, 395694, 391634, 372701, 369328, 265487, 413044, 183526, 88194, 87762, 413385, 411001, 378282, 384161},
+			}
+
+			for scriptName, triggerList in pairs(addTriggers) do
+				if (triggerList.npc) then
+					for _, npcId in ipairs(triggerList) do
+						Plater.AddTriggerToScript(npcId, "npc", scriptName)
+					end
+				else
+					for _, spellId in ipairs(triggerList) do
+						Plater.AddTriggerToScript(spellId, "cast", scriptName)
+					end
+				end
+			end
+		end,
+	})
+
+	--#28 modify the castbar color option of "Cast - Ultra Important [P]" from red to yellow
+	tinsert(PlaterPatchLibrary, {
+		Notes = {
+			"- Modifying the default cast bar color of 'Cast - Ultra Important [P]' to yellow."
+		},
+		Func = function()
+			local scriptData = Plater.db.profile.script_data
+			for i = 1, #scriptData do
+				local script = scriptData[i]
+				if (script.Name == "Cast - Ultra Important [P]") then
+					for _, scriptOptions in ipairs(script.Options) do
+						if (scriptOptions.Key == "castBarColor") then
+							local color = scriptOptions.Value
+							if (type(color) == "boolean") then
+								scriptOptions.Value = {}
+								color = scriptOptions.Value
+							end
+							color[1] = 1 --red
+							color[2] = 0.431372 --green
+							color[3] = 0 --blue
+							color[4] = 1 --alpha
+						end
+					end
+					break
+				end
+			end
+		end
+	})
+	
+	--#29 ensure auto-function for "hide blizzard healthbars" is setup properly
+	tinsert (PlaterPatchLibrary, {
+		NotEssential = false,
+
+		Notes = {
+			"- Setup auto-toggle for 'Hide Blizzard Healthbars'."
+		},
+		Func = function()
+			if GetCVarBool ("nameplateShowOnlyNames") or Plater.db.profile.saved_cvars.nameplateShowOnlyNames == "1" then
+				Plater.db.profile.auto_toggle_combat.blizz_healthbar_ic = true
+				Plater.db.profile.auto_toggle_combat.blizz_healthbar_ooc = true
+			end
+		end,
+	})
+
+	--to tag an update as non-essential, add "NotEssential = true," to the table
+	--/run Plater.db.profile.patch_version = 27
 end --end of patch library
 
 local listOfTriggersToDeprecateOnExpansion = {

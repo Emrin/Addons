@@ -3,6 +3,7 @@ AddonName, CraftSim = ...
 CraftSim.LOCAL_RU = {}
 
 function CraftSim.LOCAL_RU:GetData()
+    local f = CraftSim.UTIL:GetFormatter()
     return {
         -- REQUIRED:
         [CraftSim.CONST.TEXT.STAT_INSPIRATION] = "Вдохновение",
@@ -11,7 +12,6 @@ function CraftSim.LOCAL_RU:GetData()
         [CraftSim.CONST.TEXT.STAT_CRAFTINGSPEED] = "Скорость изготовления",
         [CraftSim.CONST.TEXT.EQUIP_MATCH_STRING] = "Если на персонаже:",
         [CraftSim.CONST.TEXT.ENCHANTED_MATCH_STRING] = "Чары:",
-        [CraftSim.CONST.TEXT.INSPIRATIONBONUS_SKILL_ITEM_MATCH_STRING] = "Под действием вдохновения повышает навык на",
 
         -- OPTIONAL:
     }

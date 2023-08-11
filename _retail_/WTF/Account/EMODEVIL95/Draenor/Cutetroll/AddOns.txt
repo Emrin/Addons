@@ -128,3 +128,8 @@ DungeonTools: enabled
 BigWigs_Core: enabled
 BigWigs_Options: enabled
 BigWigs_Plugins: enabled
+ElvUI_ExtraDataTexts: disabled
+ElvUI_SecondsToBuff: disabled
+ElvUI_BuffHighlight: disabled
+ElvUI_ChatTweaks: disabled
+WunderUI: disabled

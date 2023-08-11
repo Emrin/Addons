@@ -1,7 +1,7 @@
 
 MogItDB = {
 	["global"] = {
-		["version"] = "v3.9.12",
+		["version"] = "v3.10.0",
 	},
 	["profileKeys"] = {
 		["Crystalol - Outland"] = "Default",
@@ -155,7 +155,7 @@ MogItWishlist = {
 		["Vanilia - Outland"] = "Vanilia - Outland",
 	},
 	["global"] = {
-		["version"] = 100005,
+		["version"] = 100105,
 	},
 	["profiles"] = {
 		["Crystalol - Outland"] = {

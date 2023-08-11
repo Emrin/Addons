@@ -341,11 +341,6 @@ function FBI:AddFishie(color, id, name, mapId, subzone, texture, quantity, quali
 		end
 	end
 
-	-- Play a sound on Nat Pagle rep
-	if ( PagleFish[id] and GSB("DingQuestFish") ) then
-		PlaySound(SOUNDKIT.IG_QUEST_LIST_COMPLETE, "master");
-	end
-
 	if ( not subzone ) then
 		_, subzone = self:GetCurrentMapIdInfo();
 	end
@@ -408,6 +403,7 @@ function FBI:AddFishie(color, id, name, mapId, subzone, texture, quantity, quali
 	if ( not skillcheck ) then
 		skillcheck = skill + mods;
 	end
+
 	if ( skillcheck > 0 ) then
 		if ( not fs[idx] or skillcheck < fs[idx] ) then
 			fs[idx] = skillcheck;
@@ -436,8 +432,8 @@ local function ProcessFishLoot()
 	local mapId, subzone = FBI:GetCurrentMapIdInfo();
 	while (table.getn(lootcache) > 0) do
 		local info = table.remove(lootcache)
-		local texture, fishie, quantity, quality, link = info.texture, info.fishie, info.quantity, info.quality, info.link;
-		local nm,link,it,st,el,il = FL:GetItemInfoFields(link, FL.ITEM_NAME, FL.ITEM_LINK, FL.ITEM_TYPE, FL.ITEM_SUBTYPE, FL.ITEM_EQUIPLOC, FL.ITEM_LEVEL);
+		local texture, fishie, quantity, quality = info.texture, info.fishie, info.quantity, info.quality;
+		local nm,link,it,st,el,il = FL:GetItemInfoFields(info.link, FL.ITEM_NAME, FL.ITEM_LINK, FL.ITEM_TYPE, FL.ITEM_SUBTYPE, FL.ITEM_EQUIPLOC, FL.ITEM_LEVEL);
 		local color, id, name = FL:SplitLink(link, true);
 
 		-- handle things we can't actually count that might be in our fish (e.g. Garrison Resources)
@@ -471,8 +467,8 @@ FBI.Commands[FBConstants.UPDATEDB].func =
 		if ( what and what == FBConstants.FORCE ) then
 			forced = true;
 		end
-		FBITooltip:SetOwner(FishingBuddyFrame, "ANCHOR_RIGHT");
-		FBITooltip:Show();
+		FishingBuddyTooltip:SetOwner(FishingBuddyFrame, "ANCHOR_RIGHT");
+		FishingBuddyTooltip:Show();
 		local count = 0;
 		for id,info in pairs(ff) do
 			local item = id..":0:0:0";
@@ -480,7 +476,7 @@ FBI.Commands[FBConstants.UPDATEDB].func =
 				if ( not IsRareFish(id, forced) ) then
 					local link = "item:"..item;
 					-- fetch the data (may disconnect)
-					FBITooltip:SetHyperlink(link);
+					FishingBuddyTooltip:SetHyperlink(link);
 					-- now that we have it in our cache, get the name
 					local nm, it, st = FL:GetItemInfoFields(link, FL.ITEM_NAME, FL.ITEM_TYPE, FL.ITEM_SUBTYPE);
 					if ( nm ) then

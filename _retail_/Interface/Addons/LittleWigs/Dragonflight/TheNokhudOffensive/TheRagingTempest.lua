@@ -26,7 +26,7 @@ function mod:GetOptions()
 	return {
 		382628, -- Surge of Power (player version)
 		394875, -- Surge of Power (boss version)
-		384620, -- Electrical Storm
+		{384620, "CASTBAR"}, -- Electrical Storm
 		384316, -- Lightning Strike
 		{384686, "DISPEL"}, -- Energy Surge
 	}, {
@@ -65,7 +65,7 @@ function mod:SurgeOfPowerAppliedToPlayer(args)
 	if self:Me(args.destGUID) then
 		self:StackMessage(args.spellId, "blue", args.destName, 1, 1)
 		self:PlaySound(args.spellId, "info")
-		self:TargetBar(args.spellId, 18, args.destName)
+		self:TargetBar(args.spellId, 20, args.destName)
 	end
 end
 
@@ -79,7 +79,7 @@ end
 function mod:SurgeOfPowerRefreshOnPlayer(args)
 	-- stack maximum is 10, then APPLIED_DOSE doesn't fire anymore but REFRESH does
 	if self:Me(args.destGUID) then
-		self:TargetBar(args.spellId, 15, args.destName)
+		self:TargetBar(args.spellId, 20, args.destName)
 	end
 end
 

@@ -1,6 +1,6 @@
 --[[
 Name: LibTourist-3.0
-Revision: $Rev: 284 $
+Revision: $Rev: 294 $
 Author(s): Odica (owner), originally created by ckknight and Arrowmaster
 Documentation: https://www.wowace.com/projects/libtourist-3-0/pages/api-reference
 SVN: svn://svn.wowace.com/wow/libtourist-3-0/mainline/trunk
@@ -9,7 +9,7 @@ License: MIT
 ]]
 
 local MAJOR_VERSION = "LibTourist-3.0"
-local MINOR_VERSION = 90000 + tonumber(("$Revision: 284 $"):match("(%d+)"))
+local MINOR_VERSION = 90000 + tonumber(("$Revision: 294 $"):match("(%d+)"))
 
 if not LibStub then error(MAJOR_VERSION .. " requires LibStub") end
 local C_Map = C_Map
@@ -1835,6 +1835,7 @@ local MapIdLookupTable = {
 	[2081] = "Neltharus",          -- "Neltharus_B"
 	[2082] = "Halls Of Infusion",  -- "HallsOfInfusion_A"
 	[2083] = "Halls Of Infusion",  -- "HallsOfInfusion_B"
+	[2084] = "The Emerald Dreamway",
 	[2085] = "Primalist Tomorrow",
 	[2088] = "Pandaren Revolution",
 	[2089] = "The Black Empire",
@@ -1872,9 +1873,29 @@ local MapIdLookupTable = {
 	[2130] = "Thaldraszus",
 	[2131] = "The Forbidden Reach",
 	[2132] = "The Azure Span",
+    [2133] = "Zaralek Cavern",
 	[2134] = "Valdrakken",
 	[2135] = "Valdrakken",	
+    [2146] = "The Eastern Glades",
 	[2149] = "Ohn'ahran Plains",
+	[2150] = "Dragonskull Island",
+	[2151] = "The Forbidden Reach",
+	[2154] = "Froststone Vault",
+	[2162] = "Alterac Valley",
+	[2165] = "The Throughway",
+	[2166] = "Aberrus, the Shadowed Crucible",
+	[2167] = "Aberrus, the Shadowed Crucible",
+	[2168] = "Aberrus, the Shadowed Crucible",
+	[2169] = "Aberrus, the Shadowed Crucible",
+	[2170] = "Aberrus, the Shadowed Crucible",
+	[2171] = "Aberrus, the Shadowed Crucible",
+	[2172] = "Aberrus, the Shadowed Crucible",
+	[2173] = "Aberrus, the Shadowed Crucible",
+	[2174] = "Aberrus, the Shadowed Crucible",
+	[2175] = "Zaralek Cavern",
+	[2176] = "The Maelstrom",
+	[2183] = "The Azure Vault",
+	[2184] = "Zaralek Cavern",
 }
 
 
@@ -2529,6 +2550,162 @@ end
 
 
 
+-- ---- Profession Skill API initialization -------
+
+local function ProfessionSkillLevelIsMissing(index)
+	if not index then return false end -- Not learned
+	local name, icon, skillLevel, maxSkillLevel, numAbilities, spelloffset, skillLineID = GetProfessionInfo(index)
+	local professionInfo = C_TradeSkillUI.GetProfessionInfoBySkillLineID(skillLineID)
+	return (skillLevel > 0 and professionInfo.skillLevel == 0) or not professionInfo
+ end
+
+local function ProfessionPanelShouldBeOpened()
+ 	local prof1, prof2, archaeology, fishing, cooking = GetProfessions()
+	local openPanel = true
+	local useProfessionButton
+	
+	trace("p1 = "..tostring(prof1)..", p2 = "..tostring(prof2)..", co = "..tostring(cooking)..", fi = "..tostring(fishing)..", ar = "..tostring(archaeology))
+	
+	-- Look for proof of missing skill levels
+	if ProfessionSkillLevelIsMissing(prof1) == false then
+		if ProfessionSkillLevelIsMissing(prof2) == false then
+			if ProfessionSkillLevelIsMissing(cooking) == false then
+				if ProfessionSkillLevelIsMissing(fishing) == false then
+					if ProfessionSkillLevelIsMissing(archaeology) == false then
+						-- All OK -or- no professions learned
+						openPanel = false
+					end
+				end
+			end
+		end
+	end
+	
+	local buttonName
+	-- Always test for button name. Button name being nil means no professions were found,
+	-- which can be one of two reasons for openPanel to be false.
+	if prof1 then
+		buttonName = "PrimaryProfession1SpellButtonBottom"
+	elseif prof2 then
+		buttonName = "PrimaryProfession2SpellButtonBottom"
+	elseif archaeology then
+		buttonName = "SecondaryProfession3SpellButtonRight"
+	elseif fishing then
+		buttonName = "SecondaryProfession2SpellButtonRight"
+	elseif cooking then
+		buttonName = "SecondaryProfession1SpellButtonRight"
+	else
+		buttonName = nil
+	end
+
+	return openPanel, buttonName
+end 
+
+-- parameters
+local psiInterval = .15
+local psiDelay = 10  -- cycles
+local psiMaxCycles = psiDelay + 20
+local psiRetryMax = 3
+-- variables
+local psiTicker
+local psiPhase = 0
+local psiElapsed = 0
+local psiCycle = 0
+local psiButtonName
+local psiRetryCount = 0
+local function ProfessionSkillInit()
+	-- Thanks to billtopia for his contribution
+	psiElapsed = psiElapsed + psiInterval
+	psiCycle = psiCycle + 1
+	if psiCycle < psiDelay then 
+		-- Wait...
+		return
+	end
+	if psiCycle == psiMaxCycles - 1	then 
+		 -- Timeout -> go to 5
+		trace(tostring(psiElapsed).." sec: ProfessionSkillInit TIMEOUT at phase "..tostring(psiPhase))
+		psiPhase = 5
+	else
+		trace(tostring(psiElapsed).." sec: ProfessionSkillInit Phase "..tostring(psiPhase))
+	end
+	
+	if psiPhase == 0 then
+		-- Check if the panel should be opened
+		local openPanel, buttonName = ProfessionPanelShouldBeOpened()
+		if openPanel == true then
+			-- Reason found to open the panel -> continue
+			psiButtonName = buttonName
+			psiPhase = 1
+		else
+			if buttonName then
+				-- At least one profession found, data present -> exit
+				psiPhase = 6
+			else
+				-- No professions or no data returned by GetProfessionInfo? -> try again to be sure
+				psiRetryCount = psiRetryCount + 1
+				if psiRetryCount > psiRetryMax then
+					-- Probably no professions -> exit
+					psiPhase = 6
+				end
+			end
+		end
+		trace("openPanel = "..tostring(openPanel)..", button = "..tostring(buttonName))
+	elseif psiPhase == 1 then
+		-- Mute sounds
+		MuteSoundFile(567440) -- sound/interface/iabilitiesopena.ogg
+		MuteSoundFile(567496) -- sound/interface/iabilitiesclosea.ogg
+		MuteSoundFile(567507) -- sound/interface/ucharactersheetopen.ogg
+		MuteSoundFile(567433) -- sound/interface/ucharactersheetclose.ogg
+		psiPhase = 2
+	elseif psiPhase == 2 then
+		-- Open Spellbook
+		ToggleSpellBook("professions")
+		psiPhase = 3
+	elseif psiPhase == 3 then
+		-- Open a profession panel, use button selected in phase 0
+		local professionButton = _G[psiButtonName]
+		if professionButton then
+			professionButton:Click()
+		end
+		SpellBookFrameCloseButton:Click()
+		psiPhase = 4
+	elseif psiPhase == 4 then
+		-- Close profession panel or spellbook
+		if SkilletFrameCloseButton then
+			SkilletFrameCloseButton:Click()
+			psiPhase = 5
+		elseif ProfessionsFrame then
+			ProfessionsFrame.CloseButton:Click()
+			psiPhase = 5
+		end
+	elseif psiPhase == 5 then
+		-- Unmute sounds
+		UnmuteSoundFile(567440)
+		UnmuteSoundFile(567496)
+		UnmuteSoundFile(567507)
+		UnmuteSoundFile(567433)
+		psiPhase = 6
+	elseif psiPhase == 6 then
+		-- Exit
+		psiTicker:Cancel()
+		-- Reset
+		psiPhase = 0	-- This allows restarting this procedure. Change to -1 if restarting should be prohibited.
+		psiRetryCount = 0
+		psiElapsed = 0
+		psiCycle = 0
+		psiButtonName = nil
+	end
+end
+
+local function InitializeProfessionSkills()
+	psiTicker = C_Timer.NewTicker(psiInterval, ProfessionSkillInit, psiMaxCycles)
+end
+ 
+function Tourist:InitializeProfessionSkills()
+	trace("Initializing profession skills...")
+	InitializeProfessionSkills()
+end
+
+
 -- =========================================================================
 
 local function CreateLocalizedZoneNameLookups()
@@ -2542,30 +2719,41 @@ local function CreateLocalizedZoneNameLookups()
 		localizedErrata = mapInfoLocalizedNameErrata["enUS"]
 	end
 
+	local skip = {
+		[2026] = true, -- The Forbidden Reach Deprecated
+	}
+
 	-- 8.0: Use the C_Map API
 	-- Note: the loop below is not very sexy but makes sure missing entries in MapIdLookupTable are reported.
 	-- It is executed only once, upon initialization.
 	for uiMapID = 1, 10000, 1 do
-		mapInfo = C_Map.GetMapInfo(uiMapID)	
-		if mapInfo then
-			localizedZoneName = mapInfo.name
-			if localizedErrata[localizedZoneName] then
-				localizedZoneName = localizedErrata[localizedZoneName]
-			end
-
-			englishZoneName = MapIdLookupTable[uiMapID]
-			if englishZoneName then 		
-				-- Add combination of English and localized name to lookup tables
-				if not BZ[englishZoneName] then
-					BZ[englishZoneName] = localizedZoneName
+		if not skip[uiMapID] then
+			mapInfo = C_Map.GetMapInfo(uiMapID)	
+			if mapInfo then
+				localizedZoneName = mapInfo.name
+				if uiMapID == 2026 or uiMapID == 2107 or uiMapID == 2118 or uiMapID == 2131 or uiMapID == 2151 then
+					trace(tostring(uiMapID).." = '"..tostring(localizedZoneName).."'")
 				end
-				if not BZR[localizedZoneName] then
-					BZR[localizedZoneName] = englishZoneName
-				end	
-			else
-				-- Not in lookup
-				trace("|r|cffff4422! -- Tourist:|r English name not found in lookup for uiMapID "..tostring(uiMapID).." ("..tostring(localizedZoneName)..")" )				
+				if localizedErrata[localizedZoneName] then
+					localizedZoneName = localizedErrata[localizedZoneName]
+				end
+
+				englishZoneName = MapIdLookupTable[uiMapID]
+				if englishZoneName then 		
+					-- Add combination of English and localized name to lookup tables
+					if not BZ[englishZoneName] then
+						BZ[englishZoneName] = localizedZoneName
+					end
+					if not BZR[localizedZoneName] then
+						BZR[localizedZoneName] = englishZoneName
+					end	
+				else
+					-- Not in lookup
+					trace("|r|cffff4422! -- Tourist:|r English name not found in lookup for uiMapID "..tostring(uiMapID).." ("..tostring(localizedZoneName)..")" )				
+				end
 			end
+		else
+			trace("CreateLocalizedZoneNameLookups skipped uiMapID "..tostring(uiMapID))
 		end
 	end
 
@@ -2649,6 +2837,7 @@ local flightNodeIgnoreList = {
 	[2731] = "Domination's Grasp",
 	[2715] = "Ephemeral Plains Alpha",
 	[2716] = "Ephemeral Plains Omega",
+	[2860] = "Aberrus Upper Platform"  -- 10.1 UG - Campaign - Ch6 - Aberrus Upper Platform (SMART) (Neutral)
 }
 
 local function GatherFlightnodeData()
@@ -10252,6 +10441,7 @@ do
 			[2808] = true,   -- Obsidian Bulwark, The Waking Shores (N)
 			[2809] = true,   -- Dragonscale Basecamp, The Waking Shores (N)
 			[2817] = true,   -- Skytop Observatory, The Waking Shores (N)
+			[2842] = true,   -- Rubyscale Outpost, The Waking Shores (N)
 		},
 		continent = Dragon_Isles,
 		expansion = DragonFlight,
@@ -10269,6 +10459,7 @@ do
 			[BZ["The Waking Shores"]] = true,
 			[BZ["The Azure Span"]] = true,
 			[BZ["The Nokhud Offensive"]] = true,
+			[BZ["Zaralek Cavern"]] = true,
 		},
 		flightnodes = {
 			[2790] = true,   -- Timberstep Outpost, Ohn'ahran Plains (N)
@@ -10281,6 +10472,7 @@ do
 			[2798] = true,   -- Pinewood Post, Ohn'ahran Plains (N)
 			[2799] = true,   -- Rusza'thar Reach, Ohn'ahran Plains (N)
 			[2825] = true,   -- Ohn'iri Springs, Ohn'ahran Plains (N)
+			[2839] = true,   -- Rusza'thar Reach, Ohn'ahran Plains (N)
 		},
 		continent = Dragon_Isles,
 		expansion = DragonFlight,
@@ -10300,6 +10492,7 @@ do
 			[BZ["Thaldraszus"]] = true,
 			[BZ["The Azure Vault"]] = true,
 			[BZ["Brackenhide Hollow"]] = true,
+			[BZ["Zaralek Cavern"]] = true,
 		},
 		flightnodes = {
 			[2773] = true,   -- Azure Archives, Azure Span (N)
@@ -10310,6 +10503,7 @@ do
 			[2787] = true,   -- Cobalt Assembly, Azure Span (N)
 			[2788] = true,   -- Theron's Watch, Azure Span (N)
 			[2789] = true,   -- Three-Falls Lookout, Azure Span (N)
+			[2838] = true,	 -- Cobalt Assembly, Azure Span (N)
 		},
 		continent = Dragon_Isles,
 		expansion = DragonFlight,
@@ -10340,21 +10534,46 @@ do
 			[2815] = true,   -- Garden Shrine, Thaldraszus (N)
 			[2816] = true,   -- Shifting Sands, Thaldraszus (N)
 			[2818] = true,   -- Vault of the Incarnates, Thaldraszus (N)
+			[2836] = true,   -- Algeth'era, Thaldraszus (Neutral)
 		},
 		continent = Dragon_Isles,
 		expansion = DragonFlight,
 	}
 
-
-	-- Dracthyr Evokers starting zone
+	-- 10.0.7
+	-- Previously: Dracthyr Evokers starting zone (UIMapID 2026)
 	zones[BZ["The Forbidden Reach"]] = {
-		low = 58,
-		high = 59,
+		low = 70,
+		high = 70,
+		flightnodes = {
+			[2855] = true,   -- Morqut Village, The Forbidden Reach (N)
+			[2862] = true,   -- Morqut Islet, Forbidden Reach (Neutral)
+		},
 		continent = Dragon_Isles,
 		expansion = DragonFlight,
 	}
 
-
+	-- 10.1.0
+	-- 14022
+	zones[BZ["Zaralek Cavern"]] = {
+		low = 70,
+		high = 70,
+		instances = {
+			[BZ["Aberrus, the Shadowed Crucible"]] = true,
+		},
+		paths = {
+			[BZ["Ohn'ahran Plains"]] = true,
+			[BZ["The Azure Span"]] = true,
+			[BZ["Aberrus, the Shadowed Crucible"]] = true,
+		},
+		flightnodes = {
+			[2864] = true,   -- Obsidian Rest, Zaralek Cavern (Neutral)
+			[2865] = true,   -- Dragonscale Camp, Zaralek Cavern (Neutral)
+			[2863] = true,   -- Loamm, Zaralek Cavern (Neutral)
+		},
+		continent = Dragon_Isles,
+		expansion = DragonFlight,
+	}
 
 
 
@@ -12520,7 +12739,20 @@ do
 		entrancePortal = { BZ["Thaldraszus"], 73.14, 55.60 },
 	}	
 	
-	
+	-- 14663
+	zones[BZ["Aberrus, the Shadowed Crucible"]] = {
+		low = 70,
+		high = 70,
+		continent = Dragon_Isles,
+		expansion = DragonFlight,
+		paths = BZ["Zaralek Cavern"],
+		groupMinSize = 10,
+		groupMaxSize = 30,
+		type = "Instance",
+		--entrancePortal = { BZ["Zaralek Cavern"], 73.14, 55.60 }, -- todo
+	}	
+
+
 	
 	-- ==============BATTLEGROUNDS================
 
@@ -13043,7 +13275,7 @@ do
 						zones[uniqueZoneName].yards = zWidth
 					end
 				else
-					trace("|r|cffff4422! -- Tourist:|r TODO: Add zone "..tostring(zoneName).." (to "..tostring(continentName)..")" )			
+					trace("|r|cffff4422! -- Tourist:|r TODO: Add zone "..tostring(zoneName).." (to "..tostring(continentName)..")" )
 				end
 				
 				doneZones[continentName.."."..zoneName] = true

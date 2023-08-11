@@ -34,7 +34,7 @@ function FBAPI:GetKey()
 		-- generate a random key to identify this instance of the plugin
 		local n = 16 + random(4) + random(4);
 		key = "";
-		for idx=1,n do
+		for _=1,n do
 			key = key .. string.char(64+math.random(26));
 		end
 		FishingBuddy_Info["FishingBuddyKey"] = key;
@@ -59,11 +59,11 @@ end
 
 function FBAPI:ResetKey()
 	FishingBuddy_Info["FishingBuddyKey"] = nil;
-	local key = GetKey();
+	local key = self:GetKey();
 	if (FB_MergeDatabase) then
 		FB_MergeDatabase.key = key;
 	end
-	FishingBuddy:Message("Key reset.");
+	FBI:Message("Key reset.");
 	return key;
 end
 

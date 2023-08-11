@@ -1,6 +1,6 @@
 
 PawnOptions = {
-	["LastVersion"] = 2.0606,
+	["LastVersion"] = 2.0717,
 	["LastPlayerFullName"] = "Lifey-Silvermoon",
 	["AutoSelectScales"] = true,
 	["ItemLevels"] = {

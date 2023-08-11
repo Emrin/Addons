@@ -18,6 +18,8 @@ local RSUtils = private.ImportLib("RareScannerUtils")
 
 RSOverlayMixin = CreateFromMixins(MapCanvasPinMixin);
 
+RSOverlayMixin.SetPassThroughButtons = function() end
+
 function RSOverlayMixin:OnLoad()
 	self:SetScalingLimits(1, 1.4, 2.5);
 end
@@ -30,12 +32,14 @@ function RSOverlayMixin:OnAcquired(x, y, r, g, b, pin)
 	self.Texture:SetTexture(RSConstants.OVERLAY_SPOT_TEXTURE)
 	self.Texture:SetVertexColor(r, g, b, 0.9)
 	self:SetPosition(RSUtils.FixCoord(x), RSUtils.FixCoord(y));
-	self:SetPassThroughButtons("MiddleButton");
+	if (self.SetPassThroughButtons) then
+		self:SetPassThroughButtons("MiddleButton");
+	end
 end
 
 function RSOverlayMixin:OnMouseEnter()
-	if (self.pin.ShowAnim and not self.pin.ShowAnim:IsPlaying()) then
-		self.pin.ShowAnim:Play();
+	if (self.pin.ShowPingAnim and not self.pin.ShowPingAnim:IsPlaying()) then
+		self.pin.ShowPingAnim:Play();
 	end
 
 	GameTooltip:SetOwner(self, "ANCHOR_CURSOR")
@@ -49,8 +53,8 @@ function RSOverlayMixin:OnMouseEnter()
 end
 
 function RSOverlayMixin:OnMouseLeave()
-	if (self.pin.ShowAnim and self.pin.ShowAnim:IsPlaying()) then
-		self.pin.ShowAnim:Stop();
+	if (self.pin.ShowPingAnim and self.pin.ShowPingAnim:IsPlaying()) then
+		self.pin.ShowPingAnim:Stop();
 	end
 
 	GameTooltip:Hide()

@@ -839,6 +839,20 @@ DetailsTimeLineDB = {
 					"Lifey", -- [5]
 				}, -- [1]
 			},
+			[323552] = {
+				{
+					13.43900000000031, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323552, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					29.2510000000002, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323552, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
 			[338012] = {
 				{
 					22.55799999999908, -- [1]
@@ -901,20 +915,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [10]
 			},
-			[323552] = {
-				{
-					13.43900000000031, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323552, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					29.2510000000002, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323552, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 			[325701] = {
 				{
 					2.010000000000218, -- [1]
@@ -959,22 +959,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[319941] = {
-				{
-					28.27599999999984, -- [1]
-					"Echelon", -- [2]
-					319941, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[328206] = {
-				{
-					21.77000000000044, -- [1]
-					"Echelon", -- [2]
-					328206, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[328124] = {
 				{
 					13.27499999999964, -- [1]
@@ -994,6 +978,22 @@ DetailsTimeLineDB = {
 					328124, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
+			},
+			[328206] = {
+				{
+					21.77000000000044, -- [1]
+					"Echelon", -- [2]
+					328206, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[319941] = {
+				{
+					28.27599999999984, -- [1]
+					"Echelon", -- [2]
+					319941, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
 			},
 			[319733] = {
 				{
@@ -2463,6 +2463,22 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
+			[319941] = {
+				{
+					28.51600000006147, -- [1]
+					"Echelon", -- [2]
+					319941, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[319733] = {
+				{
+					13.50600000005215, -- [1]
+					"Echelon", -- [2]
+					319733, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[328124] = {
 				{
 					13.50600000005215, -- [1]
@@ -2482,22 +2498,6 @@ DetailsTimeLineDB = {
 					328124, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
-			},
-			[319733] = {
-				{
-					13.50600000005215, -- [1]
-					"Echelon", -- [2]
-					319733, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[319941] = {
-				{
-					28.51600000006147, -- [1]
-					"Echelon", -- [2]
-					319941, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
 			},
 		}, -- [19]
 		{
@@ -3647,6 +3647,34 @@ DetailsTimeLineDB = {
 			},
 		}, -- [21]
 		{
+			[321471] = {
+				{
+					12.56500000006054, -- [1]
+					"Mistcaller", -- [2]
+					321471, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					27.13699999998789, -- [1]
+					"Mistcaller", -- [2]
+					321471, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[321834] = {
+				{
+					8.432000000029802, -- [1]
+					"Mistcaller", -- [2]
+					321834, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					44.84499999997206, -- [1]
+					"Mistcaller", -- [2]
+					321834, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
 			[321669] = {
 				{
 					15.5679999999702, -- [1]
@@ -3745,34 +3773,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [16]
 			},
-			[321471] = {
-				{
-					12.56500000006054, -- [1]
-					"Mistcaller", -- [2]
-					321471, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					27.13699999998789, -- [1]
-					"Mistcaller", -- [2]
-					321471, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-			[321834] = {
-				{
-					8.432000000029802, -- [1]
-					"Mistcaller", -- [2]
-					321834, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					44.84499999997206, -- [1]
-					"Mistcaller", -- [2]
-					321834, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 		}, -- [22]
 		{
 			[322938] = {
@@ -3790,6 +3790,35 @@ DetailsTimeLineDB = {
 					323137, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
+			},
+			[322557] = {
+				{
+					9.329000000027008, -- [1]
+					"Drust Soulcleaver", -- [2]
+					322557, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Lifey", -- [5]
+				}, -- [1]
+			},
+			[324923] = {
+				{
+					3.765999999945052, -- [1]
+					"Drust Boughbreaker", -- [2]
+					324923, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					18.00500000000466, -- [1]
+					"Drust Boughbreaker", -- [2]
+					324923, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					40.1589999999851, -- [1]
+					"Drust Boughbreaker", -- [2]
+					324923, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
 			},
 			[322767] = {
 				{
@@ -3849,35 +3878,6 @@ DetailsTimeLineDB = {
 					"Lifey", -- [5]
 				}, -- [8]
 			},
-			[324923] = {
-				{
-					3.765999999945052, -- [1]
-					"Drust Boughbreaker", -- [2]
-					324923, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					18.00500000000466, -- [1]
-					"Drust Boughbreaker", -- [2]
-					324923, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-				{
-					40.1589999999851, -- [1]
-					"Drust Boughbreaker", -- [2]
-					324923, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-			},
-			[322557] = {
-				{
-					9.329000000027008, -- [1]
-					"Drust Soulcleaver", -- [2]
-					322557, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Lifey", -- [5]
-				}, -- [1]
-			},
 			[323138] = {
 				{
 					18.51000000000931, -- [1]
@@ -3895,11 +3895,11 @@ DetailsTimeLineDB = {
 					"Droman Oulfarran", -- [5]
 				}, -- [1]
 			},
-			[322569] = {
+			[324909] = {
 				{
-					19.75399999995716, -- [1]
-					"Drust Soulcleaver", -- [2]
-					322569, -- [3]
+					32.4089999999851, -- [1]
+					"Drust Boughbreaker", -- [2]
+					324909, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
@@ -3927,11 +3927,11 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[324909] = {
+			[322569] = {
 				{
-					32.4089999999851, -- [1]
-					"Drust Boughbreaker", -- [2]
-					324909, -- [3]
+					19.75399999995716, -- [1]
+					"Drust Soulcleaver", -- [2]
+					322569, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
@@ -4229,20 +4229,6 @@ DetailsTimeLineDB = {
 			},
 		}, -- [25]
 		{
-			[197484] = {
-				{
-					17.74399999994785, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197484, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					18.06599999999162, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197484, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 			[197418] = {
 				{
 					10.98300000000745, -- [1]
@@ -4258,6 +4244,14 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Matsifer-Ravencrest", -- [5]
 				}, -- [2]
+			},
+			[197478] = {
+				{
+					11.65500000002794, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197478, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
 			},
 			[197546] = {
 				{
@@ -4275,13 +4269,19 @@ DetailsTimeLineDB = {
 					"Lifey", -- [5]
 				}, -- [2]
 			},
-			[197478] = {
+			[197484] = {
 				{
-					11.65500000002794, -- [1]
+					17.74399999994785, -- [1]
 					"Illysanna Ravencrest", -- [2]
-					197478, -- [3]
+					197484, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
+				{
+					18.06599999999162, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197484, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
 			},
 		}, -- [26]
 		{
@@ -4687,20 +4687,6 @@ DetailsTimeLineDB = {
 					"Loyal Stoneborn", -- [5]
 				}, -- [2]
 			},
-			[323552] = {
-				{
-					14.00900000007823, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323552, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					29.81599999999162, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323552, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 			[338012] = {
 				{
 					23.12300000002142, -- [1]
@@ -4762,6 +4748,20 @@ DetailsTimeLineDB = {
 					338012, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [10]
+			},
+			[323552] = {
+				{
+					14.00900000007823, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323552, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					29.81599999999162, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323552, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
 			},
 			[325701] = {
 				{
@@ -4861,6 +4861,22 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [12]
 			},
+			[319941] = {
+				{
+					28.2170000000624, -- [1]
+					"Echelon", -- [2]
+					319941, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[328206] = {
+				{
+					21.68799999996554, -- [1]
+					"Echelon", -- [2]
+					328206, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[328124] = {
 				{
 					13.20799999998417, -- [1]
@@ -4880,22 +4896,6 @@ DetailsTimeLineDB = {
 					328124, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
-			},
-			[328206] = {
-				{
-					21.68799999996554, -- [1]
-					"Echelon", -- [2]
-					328206, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[319941] = {
-				{
-					28.2170000000624, -- [1]
-					"Echelon", -- [2]
-					319941, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
 			},
 			[319733] = {
 				{
@@ -5542,19 +5542,31 @@ DetailsTimeLineDB = {
 			},
 		}, -- [34]
 		{
-			[199915] = {
+			[200905] = {
 				{
-					70.45600000000559, -- [1]
-					"Faceless Voidcaster", -- [2]
-					199915, -- [3]
+					24.03899999998976, -- [1]
+					"Inquisitor Tormentorum", -- [2]
+					200905, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
-					83.77799999993294, -- [1]
-					"Faceless Voidcaster", -- [2]
-					199915, -- [3]
+					54.38300000003073, -- [1]
+					"Inquisitor Tormentorum", -- [2]
+					200905, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
+				{
+					74.82999999995809, -- [1]
+					"Inquisitor Tormentorum", -- [2]
+					200905, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					98.04899999999907, -- [1]
+					"Inquisitor Tormentorum", -- [2]
+					200905, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
 			},
 			[202661] = {
 				{
@@ -5718,61 +5730,27 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [7]
 			},
-			[196508] = {
+			[201488] = {
 				{
-					57.80299999995623, -- [1]
+					80.4309999999823, -- [1]
 					"Deranged Mindflayer", -- [2]
-					196508, -- [3]
+					201488, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Kirorik-DunModr", -- [5]
 				}, -- [1]
-				{
-					68.55799999996088, -- [1]
-					"Deranged Mindflayer", -- [2]
-					196508, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Lifey", -- [5]
-				}, -- [2]
-				{
-					82.06099999998696, -- [1]
-					"Deranged Mindflayer", -- [2]
-					196508, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Arrioch-DunModr", -- [5]
-				}, -- [3]
-				{
-					92.95999999996275, -- [1]
-					"Deranged Mindflayer", -- [2]
-					196508, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Yarg-Dentarg", -- [5]
-				}, -- [4]
 			},
-			[200905] = {
+			[199915] = {
 				{
-					24.03899999998976, -- [1]
-					"Inquisitor Tormentorum", -- [2]
-					200905, -- [3]
+					70.45600000000559, -- [1]
+					"Faceless Voidcaster", -- [2]
+					199915, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
-					54.38300000003073, -- [1]
-					"Inquisitor Tormentorum", -- [2]
-					200905, -- [3]
+					83.77799999993294, -- [1]
+					"Faceless Voidcaster", -- [2]
+					199915, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
-				{
-					74.82999999995809, -- [1]
-					"Inquisitor Tormentorum", -- [2]
-					200905, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-				{
-					98.04899999999907, -- [1]
-					"Inquisitor Tormentorum", -- [2]
-					200905, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [4]
 			},
 			[40504] = {
 				{
@@ -5858,13 +5836,35 @@ DetailsTimeLineDB = {
 					"Kirorik-DunModr", -- [5]
 				}, -- [1]
 			},
-			[201488] = {
+			[196508] = {
 				{
-					80.4309999999823, -- [1]
+					57.80299999995623, -- [1]
 					"Deranged Mindflayer", -- [2]
-					201488, -- [3]
+					196508, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Kirorik-DunModr", -- [5]
 				}, -- [1]
+				{
+					68.55799999996088, -- [1]
+					"Deranged Mindflayer", -- [2]
+					196508, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Lifey", -- [5]
+				}, -- [2]
+				{
+					82.06099999998696, -- [1]
+					"Deranged Mindflayer", -- [2]
+					196508, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Arrioch-DunModr", -- [5]
+				}, -- [3]
+				{
+					92.95999999996275, -- [1]
+					"Deranged Mindflayer", -- [2]
+					196508, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Yarg-Dentarg", -- [5]
+				}, -- [4]
 			},
 		}, -- [35]
 		{
@@ -6006,19 +6006,43 @@ DetailsTimeLineDB = {
 			},
 		}, -- [38]
 		{
-			[204574] = {
+			[199051] = {
 				{
 					13.64599999994971, -- [1]
 					"Oakheart", -- [2]
-					204574, -- [3]
+					199051, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
-					39.1589999999851, -- [1]
+					13.64599999994971, -- [1]
 					"Oakheart", -- [2]
-					204574, -- [3]
+					199051, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
+				{
+					13.64599999994971, -- [1]
+					"Oakheart", -- [2]
+					199051, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					39.14499999990221, -- [1]
+					"Oakheart", -- [2]
+					199051, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
+				{
+					39.1589999999851, -- [1]
+					"Oakheart", -- [2]
+					199051, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [5]
+				{
+					39.1589999999851, -- [1]
+					"Oakheart", -- [2]
+					199051, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [6]
 			},
 			[204667] = {
 				{
@@ -6072,43 +6096,19 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [6]
 			},
-			[199051] = {
+			[204574] = {
 				{
 					13.64599999994971, -- [1]
 					"Oakheart", -- [2]
-					199051, -- [3]
+					204574, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
-					13.64599999994971, -- [1]
+					39.1589999999851, -- [1]
 					"Oakheart", -- [2]
-					199051, -- [3]
+					204574, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
-				{
-					13.64599999994971, -- [1]
-					"Oakheart", -- [2]
-					199051, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-				{
-					39.14499999990221, -- [1]
-					"Oakheart", -- [2]
-					199051, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [4]
-				{
-					39.1589999999851, -- [1]
-					"Oakheart", -- [2]
-					199051, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [5]
-				{
-					39.1589999999851, -- [1]
-					"Oakheart", -- [2]
-					199051, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [6]
 			},
 			[204666] = {
 				{
@@ -6124,15 +6124,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[204611] = {
-				{
-					30.56299999996554, -- [1]
-					"Oakheart", -- [2]
-					204611, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Kirorik-DunModr", -- [5]
-				}, -- [1]
-			},
 			[204646] = {
 				{
 					35.77599999995437, -- [1]
@@ -6140,6 +6131,15 @@ DetailsTimeLineDB = {
 					204646, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Deivintír-DunModr", -- [5]
+				}, -- [1]
+			},
+			[204611] = {
+				{
+					30.56299999996554, -- [1]
+					"Oakheart", -- [2]
+					204611, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Kirorik-DunModr", -- [5]
 				}, -- [1]
 			},
 		}, -- [39]
@@ -6766,13 +6766,25 @@ DetailsTimeLineDB = {
 					"Shando-LosErrantes", -- [5]
 				}, -- [1]
 			},
-			[325872] = {
+			[325797] = {
 				{
-					11.87699999997858, -- [1]
-					"Depraved Obliterator", -- [2]
-					325872, -- [3]
+					7.010000000009313, -- [1]
+					"Depraved Houndmaster", -- [2]
+					325797, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
+				{
+					10.61900000000605, -- [1]
+					"Depraved Houndmaster", -- [2]
+					325797, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					22.67300000000978, -- [1]
+					"Depraved Houndmaster", -- [2]
+					325797, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
 			},
 			[329321] = {
 				{
@@ -6835,41 +6847,39 @@ DetailsTimeLineDB = {
 					"Loyal Stoneborn", -- [5]
 				}, -- [1]
 			},
-			[338003] = {
+			[325523] = {
 				{
-					6.603000000002794, -- [1]
-					"Depraved Obliterator", -- [2]
-					338003, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Shando-LosErrantes", -- [5]
-				}, -- [1]
-				{
-					9.027999999991152, -- [1]
-					"Depraved Obliterator", -- [2]
-					338003, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Shando-LosErrantes", -- [5]
-				}, -- [2]
-			},
-			[325797] = {
-				{
-					7.010000000009313, -- [1]
-					"Depraved Houndmaster", -- [2]
-					325797, -- [3]
+					0.1, -- [1]
+					"Depraved Darkblade", -- [2]
+					325523, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
-					10.61900000000605, -- [1]
-					"Depraved Houndmaster", -- [2]
-					325797, -- [3]
+					7.319000000017695, -- [1]
+					"Depraved Darkblade", -- [2]
+					325523, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 				{
-					22.67300000000978, -- [1]
-					"Depraved Houndmaster", -- [2]
-					325797, -- [3]
+					9.747999999963213, -- [1]
+					"Depraved Darkblade", -- [2]
+					325523, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
+				{
+					17.44599999999628, -- [1]
+					"Depraved Darkblade", -- [2]
+					325523, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
+			},
+			[325872] = {
+				{
+					11.87699999997858, -- [1]
+					"Depraved Obliterator", -- [2]
+					325872, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
 			},
 			[325876] = {
 				{
@@ -6955,31 +6965,21 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[325523] = {
+			[338003] = {
 				{
-					0.1, -- [1]
-					"Depraved Darkblade", -- [2]
-					325523, -- [3]
+					6.603000000002794, -- [1]
+					"Depraved Obliterator", -- [2]
+					338003, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Shando-LosErrantes", -- [5]
 				}, -- [1]
 				{
-					7.319000000017695, -- [1]
-					"Depraved Darkblade", -- [2]
-					325523, -- [3]
+					9.027999999991152, -- [1]
+					"Depraved Obliterator", -- [2]
+					338003, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Shando-LosErrantes", -- [5]
 				}, -- [2]
-				{
-					9.747999999963213, -- [1]
-					"Depraved Darkblade", -- [2]
-					325523, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-				{
-					17.44599999999628, -- [1]
-					"Depraved Darkblade", -- [2]
-					325523, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [4]
 			},
 		}, -- [47]
 		{
@@ -6988,22 +6988,6 @@ DetailsTimeLineDB = {
 					8.103999999992084, -- [1]
 					"Echelon", -- [2]
 					326389, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[319941] = {
-				{
-					27.97299999999814, -- [1]
-					"Echelon", -- [2]
-					319941, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[328206] = {
-				{
-					21.46700000000419, -- [1]
-					"Echelon", -- [2]
-					328206, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
@@ -7026,6 +7010,22 @@ DetailsTimeLineDB = {
 					328124, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
+			},
+			[328206] = {
+				{
+					21.46700000000419, -- [1]
+					"Echelon", -- [2]
+					328206, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[319941] = {
+				{
+					27.97299999999814, -- [1]
+					"Echelon", -- [2]
+					319941, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
 			},
 			[319733] = {
 				{
@@ -7313,64 +7313,6 @@ DetailsTimeLineDB = {
 			},
 		}, -- [50]
 		{
-			[325245] = {
-				{
-					12.18300000001909, -- [1]
-					"Domina Venomblade", -- [2]
-					325245, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					35.28100000001723, -- [1]
-					"Domina Venomblade", -- [2]
-					325245, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-			[332313] = {
-				{
-					19.0690000000177, -- [1]
-					"Domina Venomblade", -- [2]
-					332313, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[325552] = {
-				{
-					7.099999999976717, -- [1]
-					"Domina Venomblade", -- [2]
-					325552, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Dimadin-Nagrand", -- [5]
-				}, -- [1]
-				{
-					30.22200000000885, -- [1]
-					"Domina Venomblade", -- [2]
-					325552, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Dimadin-Nagrand", -- [5]
-				}, -- [2]
-			},
-			[336451] = {
-				{
-					8.315999999991618, -- [1]
-					"Defender of Many Eyes", -- [2]
-					336451, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					27.80400000000373, -- [1]
-					"Defender of Many Eyes", -- [2]
-					336451, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-				{
-					28.20799999998417, -- [1]
-					"Defender of Many Eyes", -- [2]
-					336451, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-			},
 			[328365] = {
 				{
 					25.84700000000885, -- [1]
@@ -7400,6 +7342,56 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Xnally-Sylvanas", -- [5]
 				}, -- [4]
+			},
+			[332313] = {
+				{
+					19.0690000000177, -- [1]
+					"Domina Venomblade", -- [2]
+					332313, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[340357] = {
+				{
+					36.53499999997439, -- [1]
+					"Pestilence Slime", -- [2]
+					340357, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[336451] = {
+				{
+					8.315999999991618, -- [1]
+					"Defender of Many Eyes", -- [2]
+					336451, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					27.80400000000373, -- [1]
+					"Defender of Many Eyes", -- [2]
+					336451, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					28.20799999998417, -- [1]
+					"Defender of Many Eyes", -- [2]
+					336451, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+			},
+			[325245] = {
+				{
+					12.18300000001909, -- [1]
+					"Domina Venomblade", -- [2]
+					325245, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					35.28100000001723, -- [1]
+					"Domina Venomblade", -- [2]
+					325245, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
 			},
 			[332314] = {
 				{
@@ -7647,13 +7639,21 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[340357] = {
+			[325552] = {
 				{
-					36.53499999997439, -- [1]
-					"Pestilence Slime", -- [2]
-					340357, -- [3]
+					7.099999999976717, -- [1]
+					"Domina Venomblade", -- [2]
+					325552, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Dimadin-Nagrand", -- [5]
 				}, -- [1]
+				{
+					30.22200000000885, -- [1]
+					"Domina Venomblade", -- [2]
+					325552, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Dimadin-Nagrand", -- [5]
+				}, -- [2]
 			},
 		}, -- [51]
 		{
@@ -7982,22 +7982,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [10]
 			},
-			[322450] = {
-				{
-					10.87800000002608, -- [1]
-					"Tred'ova", -- [2]
-					322450, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Cocoon of Lakali", -- [5]
-				}, -- [1]
-				{
-					20.57600000000093, -- [1]
-					"Tred'ova", -- [2]
-					322450, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Cocoon of Lakali", -- [5]
-				}, -- [2]
-			},
 			[322709] = {
 				{
 					28.64100000000326, -- [1]
@@ -8029,6 +8013,22 @@ DetailsTimeLineDB = {
 					322709, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
+			},
+			[322450] = {
+				{
+					10.87800000002608, -- [1]
+					"Tred'ova", -- [2]
+					322450, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Cocoon of Lakali", -- [5]
+				}, -- [1]
+				{
+					20.57600000000093, -- [1]
+					"Tred'ova", -- [2]
+					322450, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Cocoon of Lakali", -- [5]
+				}, -- [2]
 			},
 			[328029] = {
 				{
@@ -8174,6 +8174,34 @@ DetailsTimeLineDB = {
 			},
 		}, -- [54]
 		{
+			[321471] = {
+				{
+					14.84899999998743, -- [1]
+					"Mistcaller", -- [2]
+					321471, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					33.05899999995017, -- [1]
+					"Mistcaller", -- [2]
+					321471, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[321834] = {
+				{
+					9.508999999961816, -- [1]
+					"Mistcaller", -- [2]
+					321834, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					51.96099999995204, -- [1]
+					"Mistcaller", -- [2]
+					321834, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
 			[321669] = {
 				{
 					17.86199999996461, -- [1]
@@ -8272,34 +8300,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [16]
 			},
-			[321471] = {
-				{
-					14.84899999998743, -- [1]
-					"Mistcaller", -- [2]
-					321471, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					33.05899999995017, -- [1]
-					"Mistcaller", -- [2]
-					321471, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-			[321834] = {
-				{
-					9.508999999961816, -- [1]
-					"Mistcaller", -- [2]
-					321834, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					51.96099999995204, -- [1]
-					"Mistcaller", -- [2]
-					321834, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 		}, -- [55]
 		{
 			[321772] = {
@@ -8327,19 +8327,25 @@ DetailsTimeLineDB = {
 					"Sukar-Outland", -- [5]
 				}, -- [1]
 			},
-			[322569] = {
+			[331718] = {
 				{
 					32.09700000000885, -- [1]
-					"Drust Soulcleaver", -- [2]
-					322569, -- [3]
+					"Mistveil Defender", -- [2]
+					331718, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
 					32.09700000000885, -- [1]
-					"Drust Soulcleaver", -- [2]
-					322569, -- [3]
+					"Mistveil Defender", -- [2]
+					331718, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
+				{
+					32.09700000000885, -- [1]
+					"Mistveil Defender", -- [2]
+					331718, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
 			},
 			[322557] = {
 				{
@@ -8388,25 +8394,19 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[331718] = {
+			[322569] = {
 				{
 					32.09700000000885, -- [1]
-					"Mistveil Defender", -- [2]
-					331718, -- [3]
+					"Drust Soulcleaver", -- [2]
+					322569, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
 					32.09700000000885, -- [1]
-					"Mistveil Defender", -- [2]
-					331718, -- [3]
+					"Drust Soulcleaver", -- [2]
+					322569, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
-				{
-					32.09700000000885, -- [1]
-					"Mistveil Defender", -- [2]
-					331718, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
 			},
 		}, -- [56]
 		{
@@ -8665,22 +8665,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[319941] = {
-				{
-					28.29900000005728, -- [1]
-					"Echelon", -- [2]
-					319941, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[319733] = {
-				{
-					13.29200000001583, -- [1]
-					"Echelon", -- [2]
-					319733, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[328124] = {
 				{
 					13.29200000001583, -- [1]
@@ -8700,6 +8684,22 @@ DetailsTimeLineDB = {
 					328124, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
+			},
+			[319733] = {
+				{
+					13.29200000001583, -- [1]
+					"Echelon", -- [2]
+					319733, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[319941] = {
+				{
+					28.29900000005728, -- [1]
+					"Echelon", -- [2]
+					319941, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
 			},
 		}, -- [59]
 		{
@@ -8725,6 +8725,14 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
+			[325872] = {
+				{
+					8.466000000014901, -- [1]
+					"Depraved Obliterator", -- [2]
+					325872, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[338003] = {
 				{
 					5.627999999967869, -- [1]
@@ -8747,14 +8755,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Darsha-Pozzodell'Eternità", -- [5]
 				}, -- [3]
-			},
-			[325872] = {
-				{
-					8.466000000014901, -- [1]
-					"Depraved Obliterator", -- [2]
-					325872, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
 			},
 			[322943] = {
 				{
@@ -9301,13 +9301,13 @@ DetailsTimeLineDB = {
 		}, -- [64]
 	},
 	["useicons"] = true,
-	["window_scale"] = 1,
 	["backdrop_color"] = {
 		0, -- [1]
 		0, -- [2]
 		0, -- [3]
 		0.4, -- [4]
 	},
+	["window_scale"] = 1,
 	["deaths_data"] = {
 		{
 		}, -- [1]
@@ -9320,18 +9320,6 @@ DetailsTimeLineDB = {
 	},
 	["debuff_timeline"] = {
 		{
-			["Madriamia-Auchindoun"] = {
-				[320784] = {
-					21.98099999999977, -- [1]
-					29.4719999999943, -- [2]
-					49.96299999998882, -- [3]
-					50.43600000000151, -- [4]
-					["stacks"] = {
-					},
-					["source"] = "Nalthor the Rimebinder",
-					["active"] = false,
-				},
-			},
 			["Nindza-Outland"] = {
 				[323198] = {
 					32.45799999999872, -- [1]
@@ -9344,6 +9332,16 @@ DetailsTimeLineDB = {
 				[321956] = {
 					42.07299999998941, -- [1]
 					47.06899999998859, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Nalthor the Rimebinder",
+					["active"] = false,
+				},
+			},
+			["Lifey"] = {
+				[320788] = {
+					9.24299999998766, -- [1]
+					12.85499999999593, -- [2]
 					["stacks"] = {
 					},
 					["source"] = "Nalthor the Rimebinder",
@@ -9368,10 +9366,12 @@ DetailsTimeLineDB = {
 					["active"] = false,
 				},
 			},
-			["Lifey"] = {
-				[320788] = {
-					9.24299999998766, -- [1]
-					12.85499999999593, -- [2]
+			["Madriamia-Auchindoun"] = {
+				[320784] = {
+					21.98099999999977, -- [1]
+					29.4719999999943, -- [2]
+					49.96299999998882, -- [3]
+					50.43600000000151, -- [4]
 					["stacks"] = {
 					},
 					["source"] = "Nalthor the Rimebinder",

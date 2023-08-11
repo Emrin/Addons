@@ -165,3 +165,5 @@ MacroToolkit: disabled
 MacroToolkitIcons: disabled
 MRT: disabled
 Paste: disabled
+ElvUI_ExtraDataTexts: disabled
+ElvUI_SecondsToBuff: disabled

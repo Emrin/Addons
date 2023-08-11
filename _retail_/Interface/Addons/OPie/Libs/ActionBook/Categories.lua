@@ -1,15 +1,16 @@
-local _, T = ...
+local COMPAT, _, T = select(4,GetBuildInfo()), ...
 if T.SkipLocalActionBook then return end
-local MODERN = select(4,GetBuildInfo()) >= 8e4
-local MODERN_CONTAINERS = MODERN or C_Container and C_Container.GetContainerNumSlots
-local CF_WRATH = not MODERN and select(4,GetBuildInfo()) >= 3e4
-local AB = assert(T.ActionBook:compatible(2, 21), "A compatible version of ActionBook is required")
-local RW = assert(T.ActionBook:compatible("Rewire", 1, 10), "A compatible version of Rewire is required")
-local L = AB:locale()
+local MODERN = COMPAT >= 8e4
+local MODERN_CONTAINERS = MODERN or C_Container and C_Container.GetContainerNumSlots and true
+local CF_WRATH = not MODERN and COMPAT >= 3e4
+local AB = T.ActionBook:compatible(2,21)
+local RW = T.ActionBook:compatible("Rewire", 1,27)
+assert(AB and RW and 1, "Incompatible library bundle")
+local L = T.ActionBook.L
 local mark = {}
 
 local function icmp(a,b)
-	return strcmputf8i(a,b) < 1
+	return strcmputf8i(a,b) < 0
 end
 
 do -- spellbook
@@ -158,6 +159,13 @@ if MODERN then -- Battle pets
 	local running, sourceFilters, typeFilters, flagFilters, search = false, {}, {}, {[LE_PET_JOURNAL_FILTER_COLLECTED]=1, [LE_PET_JOURNAL_FILTER_NOT_COLLECTED]=1}, ""
 	hooksecurefunc(C_PetJournal, "SetSearchFilter", function(filter) search = filter end)
 	hooksecurefunc(C_PetJournal, "ClearSearchFilter", function() if not running then search = "" end end)
+	local function FilterPetInfo(...)
+		local petID, spID = ...
+		if spID and not select(15, ...) then -- can't battle
+			return petID, spID
+		end
+		return petID
+	end
 	AB:AugmentCategory(L"Battle pets", function(_, add)
 		assert(not running, "Battle pets enumerator is not reentrant")
 		running = true
@@ -184,7 +192,7 @@ if MODERN then -- Battle pets
 		
 		add("battlepet", "fave")
 		for i=1,C_PetJournal.GetNumPets() do
-			add("battlepet", (C_PetJournal.GetPetInfoByIndex(i)))
+			add("battlepet", FilterPetInfo(C_PetJournal.GetPetInfoByIndex(i)))
 		end
 		
 		for k, v in pairs(flagFilters) do
@@ -217,14 +225,11 @@ if MODERN then -- Mounts
 		for i=1, #idm do
 			local mid = idm[i]
 			local name, sid, _3, _4, _5, _6, _7, factionLocked, factionId, hide, have = C_MountJournal.GetMountInfoByID(mid)
-			if have and not hide
-			   and (not factionLocked or factionId == myFactionId)
-			   and RW:IsSpellCastable(sid)
-			   then
+			if have and not hide and (not factionLocked or factionId == myFactionId) and RW:IsSpellCastable(sid, 2) then
 				i2[#i2+1], i2n[mid] = mid, name
 			end
 		end
-		table.sort(i2, function(a,b) return i2n[a] < i2n[b] end)
+		table.sort(i2, function(a,b) return icmp(i2n[a], i2n[b]) end)
 		for i=1,#i2 do
 			add("mount", i2[i])
 		end
@@ -238,7 +243,7 @@ elseif CF_WRATH then
 	end)
 end
 AB:AugmentCategory(L"Macros", function(_, add)
-	add("macrotext", "")
+	add("imptext", "")
 	local n, ni = {}, 1
 	for name in RW:GetNamedMacros() do
 		n[ni], ni = name, ni + 1
@@ -248,7 +253,7 @@ AB:AugmentCategory(L"Macros", function(_, add)
 		add("macro", n[i])
 	end
 end)
-if MODERN then -- equipmentset
+if COMPAT >= 3e4 then -- equipmentset
 	AB:AugmentCategory(L"Equipment sets", function(_, add)
 		for _,id in pairs(C_EquipmentSet.GetEquipmentSetIDs()) do
 			add("equipmentset", (C_EquipmentSet.GetEquipmentSetInfo(id)))
@@ -309,7 +314,7 @@ do -- misc
 	if MODERN then
 		AB:AddActionToCategory(L"Miscellaneous", "extrabutton", 1)
 	end
-	AB:AddActionToCategory(L"Miscellaneous", "macrotext", "")
+	AB:AddActionToCategory(L"Miscellaneous", "imptext", "")
 end
 do -- aliases
 	AB:AddCategoryAlias("Miscellaneous", L"Miscellaneous")

@@ -35,6 +35,11 @@ local private = {
 		pending = {},
 	},
 	cancelAuctionId = nil,
+	pendingPost = {
+		itemLink = nil,
+		quantity = nil,
+		unitPrice = nil,
+	},
 	lastScanNum = nil,
 	ignoreUpdateEvent = nil,
 	lastPurchase = {},
@@ -82,6 +87,7 @@ AuctionTracking:OnSettingsLoad(function()
 	if Environment.HasFeature(Environment.FEATURES.C_AUCTION_HOUSE) then
 		Event.Register("OWNED_AUCTIONS_UPDATED", private.AuctionOwnedListUpdateHandler)
 		Event.Register("AUCTION_CANCELED", private.AuctionCanceledHandler)
+		Event.Register("AUCTION_HOUSE_AUCTION_CREATED", private.AuctionCreatedHandler)
 	else
 		Event.Register("AUCTION_OWNED_LIST_UPDATE", private.AuctionOwnedListUpdateHandler)
 	end
@@ -125,11 +131,13 @@ AuctionTracking:OnSettingsLoad(function()
 	end
 
 	if Environment.HasFeature(Environment.FEATURES.C_AUCTION_HOUSE) then
-		hooksecurefunc(C_AuctionHouse, "PostCommodity", function(_, duration)
-			private.PostAuctionHookHandler(duration)
+		hooksecurefunc(C_AuctionHouse, "PostCommodity", function(item, duration, quantity, unitPrice)
+			local itemLink = C_Item.GetItemLink(item)
+			private.PostAuctionHookHandler(duration, itemLink, quantity, unitPrice)
 		end)
-		hooksecurefunc(C_AuctionHouse, "PostItem", function(_, duration)
-			private.PostAuctionHookHandler(duration)
+		hooksecurefunc(C_AuctionHouse, "PostItem", function(item, duration, quantity, bid, buyout)
+			local itemLink = C_Item.GetItemLink(item)
+			private.PostAuctionHookHandler(duration, itemLink, quantity, buyout)
 		end)
 		hooksecurefunc(C_AuctionHouse, "CancelAuction", function(auctionId)
 			private.cancelAuctionId = auctionId
@@ -391,6 +399,14 @@ function private.AuctionCanceledHandler(_, auctionId)
 	row:Release()
 end
 
+function private.AuctionCreatedHandler()
+	if private.pendingPost.itemLink then
+		local hintInfo = strjoin(SALE_HINT_SEP, ItemInfo.GetName(private.pendingPost.itemLink), ItemString.Get(private.pendingPost.itemLink), private.pendingPost.quantity, private.pendingPost.unitPrice)
+		private.settings.auctionSaleHints[hintInfo] = time()
+		private.pendingPost.itemLink = nil
+	end
+end
+
 function private.AuctionOwnedListUpdateDelayed()
 	if not DefaultUI.IsAuctionHouseVisible() then
 		return
@@ -570,7 +586,7 @@ function private.OnCallbackQueryUpdated()
 	private.auctionPriceMessagesThrottleTimer:RunForTime(0.5)
 end
 
-function private.PostAuctionHookHandler(duration)
+function private.PostAuctionHookHandler(duration, itemLink, quantity, unitPrice)
 	local days = nil
 	if duration == 1 then
 		days = 0.5
@@ -578,6 +594,14 @@ function private.PostAuctionHookHandler(duration)
 		days = 1
 	elseif duration == 3 then
 		days = 2
+	end
+
+	if itemLink then
+		private.pendingPost.itemLink = itemLink
+		private.pendingPost.quantity = quantity
+		private.pendingPost.unitPrice = unitPrice
+	else
+		private.pendingPost.itemLink = nil
 	end
 
 	local expiration = time() + (days * 24 * 60 * 60)
@@ -646,7 +670,7 @@ function private.FilterSystemMsg(_, _, msg, ...)
 		local link = private.settings.auctionMessages and private.settings.auctionMessages[msg]
 		if private.lastPurchase.name and (msg == format(ERR_AUCTION_WON_S, private.lastPurchase.name) or (Environment.IsRetail() and msg == format(ERR_AUCTION_COMMODITY_WON_S, private.lastPurchase.name, private.lastPurchase.stackSize))) then
 			-- we just bought an auction
-			private.prevLineResult = format(L["You won an auction for %sx%d for %s"], private.lastPurchase.link, private.lastPurchase.stackSize, Money.ToString(private.lastPurchase.buyout, "|cffffffff"))
+			private.prevLineResult = format(L["You won an auction for %sx%d for %s"], private.lastPurchase.link, private.lastPurchase.stackSize, Money.ToString(private.lastPurchase.buyout, "|cffffffff", "OPT_83_NO_COPPER"))
 			return nil, private.prevLineResult, ...
 		elseif link then
 			-- we may have just sold an auction
@@ -661,7 +685,7 @@ function private.FilterSystemMsg(_, _, msg, ...)
 			if numAuctions == 0 then -- this was the last auction
 				private.settings.auctionMessages[msg] = nil
 			end
-			private.prevLineResult = format(L["Your auction of %s has sold for %s!"], link, Money.ToString(price, "|cffffffff"))
+			private.prevLineResult = format(L["Your auction of %s has sold for %s!"], link, Money.ToString(price, "|cffffffff", "OPT_83_NO_COPPER"))
 			Sound.PlaySound(private.settings.auctionSaleSound)
 			return nil, private.prevLineResult, ...
 		end
@@ -685,7 +709,7 @@ function private.FilterAuctionMsg(_, msg, item)
 			if numAuctions == 0 then -- this was the last auction
 				private.settings.auctionMessages[item] = nil
 			end
-			Log.PrintUserRaw(Theme.GetColor("BLIZZARD_YELLOW"):ColorText(format(L["Your auction of %s has sold for %s!"], link, Money.ToString(price, "|cffffffff"))))
+			Log.PrintUserRaw(Theme.GetColor("BLIZZARD_YELLOW"):ColorText(format(L["Your auction of %s has sold for %s!"], link, Money.ToString(price, "|cffffffff", "OPT_83_NO_COPPER"))))
 			Sound.PlaySound(private.settings.auctionSaleSound)
 		else
 			Log.PrintUserRaw(Theme.GetColor("BLIZZARD_YELLOW"):ColorText(format(L["Your auction of %s has sold!"], item)))
@@ -702,7 +726,7 @@ end
 
 function private.FilterCommodityAuctionMsg(_, msg, qty)
 	if private.lastPurchase.name then
-		Log.PrintUserRaw(Theme.GetColor("BLIZZARD_YELLOW"):ColorText(format(L["You won an auction for %sx%d for %s"], private.lastPurchase.link, qty, Money.ToString(private.lastPurchase.buyout, "|cffffffff"))))
+		Log.PrintUserRaw(Theme.GetColor("BLIZZARD_YELLOW"):ColorText(format(L["You won an auction for %sx%d for %s"], private.lastPurchase.link, qty, Money.ToString(private.lastPurchase.buyout, "|cffffffff", "OPT_83_NO_COPPER"))))
 	end
 end
 

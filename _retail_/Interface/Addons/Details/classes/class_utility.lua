@@ -8,7 +8,7 @@ local min = math.min
 local unpack = unpack
 local type = type
 --api locals
-local _GetSpellInfo = _detalhes.getspellinfo
+local _GetSpellInfo = Details.getspellinfo
 local GameTooltip = GameTooltip
 local IsInRaid = IsInRaid
 local IsInGroup = IsInGroup
@@ -20,9 +20,9 @@ local format = _G.format
 
 local UnitIsUnit = UnitIsUnit
 
-local _string_replace = _detalhes.string.replace --details api
+local _string_replace = Details.string.replace --details api
 
-local _detalhes = 		_G._detalhes
+local _detalhes = 		_G.Details
 local Details = 		_detalhes
 local AceLocale = LibStub("AceLocale-3.0")
 local Loc = AceLocale:GetLocale ( "Details" )
@@ -47,7 +47,7 @@ local UsingCustomRightText = false
 
 local TooltipMaximizedMethod = 1
 
-local info = _detalhes.playerDetailWindow
+local breakdownWindowFrame = Details.BreakdownWindowFrame
 local keyName
 
 local headerColor = "yellow"
@@ -135,38 +135,9 @@ end
 ---attempt to get the amount of casts of a spell
 ---@param combat table the combat object
 ---@param actorName string name of the actor
----@param spellId number spell id
-function Details:GetSpellCastAmount(combat, actorName, spellId) --[[exported]]
-	local actorUtilityObject = combat:GetActor(4, actorName)
-	if (actorUtilityObject) then
-		local castAmountTable = actorUtilityObject.spell_cast
-		if (castAmountTable) then
-			local castAmount = castAmountTable[spellId]
-			if (castAmount) then
-				return castAmount
-
-			elseif (not castAmount) then
-				--if the amount of casts is not found, attempt to find a spell with the same name and get the amount of casts of that spell instead
-				local spellName = GetSpellInfo(spellId)
-				for thisSpellId, thisCastAmount in pairs(castAmountTable) do
-					local thisSpellName = GetSpellInfo(thisSpellId)
-					if (thisSpellName == spellName and thisCastAmount and thisCastAmount > 0) then
-						return thisCastAmount
-					end
-				end
-			end
-		end
-	end
-
-	return 0
-end
-
---[[exported]] function Details:GetSpellTableFromContainer(spellContainerName, spellId)
-	local spellContainer = self[spellContainerName]
-	if (spellContainer) then
-		local spellTable = spellContainer._ActorTable[spellId]
-		return spellTable
-	end
+---@param spellName string
+function Details:GetSpellCastAmount(combat, actorName, spellName) --[[exported]]
+	return combat:GetSpellCastAmount(actorName, spellName)
 end
 
 function atributo_misc:NovaTabela(serial, nome, link)
@@ -378,11 +349,6 @@ function Details.ShowDeathTooltip(instance, lineFrame, combatObject, deathTable)
 	--progress bar texture
 	gameCooltip:SetOption("StatusBarTexture", statusbarTexture)
 
-	--for i = 1, 20 do
-	--	gameCooltip:AddLine("What Info Could Go Here?", "Oh!", 2, "white")
-	--	gameCooltip:AddIcon("Interface\\Glues\\CharacterSelect\\Glues-AddOn-Icons", 2, 1, 16, 16, .75, 1, 0, 1)
-	--end
-
 	return true
 end
 
@@ -407,7 +373,7 @@ function Details:ToolTipDead(instance, deathTable, barFrame)
 end
 
 local function RefreshBarraMorte (morte, barra, instancia)
-	atributo_misc:DeadAtualizarBarra (morte, morte.minha_barra, barra.colocacao, instancia)
+	atributo_misc:UpdateDeathRow (morte, morte.minha_barra, barra.colocacao, instancia)
 end
 
 --object death:
@@ -451,7 +417,7 @@ function atributo_misc:ReportSingleDeadLine (morte, instancia)
 	end
 	local default_len = _detalhes.fontstring_len:GetStringWidth()
 
-	wipe (report_table)
+	Details:Destroy(report_table)
 	local report_array = report_table
 	report_array[1] = {"Details! " .. Loc ["STRING_REPORT_SINGLE_DEATH"] .. " " .. morte [3] .. " " .. Loc ["STRING_ACTORFRAME_REPORTAT"] .. " " .. morte [6], "", "", ""}
 
@@ -606,186 +572,212 @@ function atributo_misc:ReportSingleDebuffUptimeLine (misc_actor, instance)
 	return _detalhes:Reportar (report_table, {_no_current = true, _no_inverse = true, _custom = true})
 end
 
-function atributo_misc:DeadAtualizarBarra (morte, whichRowLine, colocacao, instancia)
+---update a row in an instance (window) showing death logs
+---@param morte table
+---@param whichRowLine number
+---@param rankPosition number
+---@param instance table
+function atributo_misc:UpdateDeathRow(morte, whichRowLine, rankPosition, instance) --todo: change this function name
+	morte["dead"] = true
+	local thisRow = instance.barras[whichRowLine]
 
-	morte ["dead"] = true --marca que esta tabela � uma tabela de mortes, usado no controla na hora de montar o tooltip
-	local esta_barra = instancia.barras[whichRowLine] --pega a refer�ncia da barra na janela
-
-	if (not esta_barra) then
-		print("DEBUG: problema com <instancia.esta_barra> "..whichRowLine.." "..lugar)
+	if (not thisRow) then
+		print("DEBUG: problema com <instancia.esta_barra> "..whichRowLine.." "..rankPosition)
 		return
 	end
 
-	local tabela_anterior = esta_barra.minha_tabela
+	thisRow.minha_tabela = morte
 
-	esta_barra.minha_tabela = morte
-
-	morte.nome = morte [3] --evita dar erro ao redimencionar a janela
+	morte.nome = morte[3] --void an issue while resizing the window
 	morte.minha_barra = whichRowLine
-	esta_barra.colocacao = colocacao
+	thisRow.colocacao = rankPosition
 
 	if (not getmetatable(morte)) then
 		setmetatable(morte, {__call = RefreshBarraMorte})
 		morte._custom = true
 	end
 
-	esta_barra.lineText1:SetText(colocacao .. ". " .. morte [3]:gsub(("%-.*"), ""))
-	esta_barra.lineText2:SetText("")
-	esta_barra.lineText3:SetText("")
-	esta_barra.lineText4:SetText(morte [6])
+	thisRow.lineText1:SetText(rankPosition .. ". " .. morte[3]:gsub(("%-.*"), ""))
+	thisRow.lineText2:SetText("")
+	thisRow.lineText3:SetText("")
+	thisRow.lineText4:SetText(morte[6])
 
-	esta_barra:SetValue(100)
-	if (esta_barra.hidden or esta_barra.fading_in or esta_barra.faded) then
-		Details.FadeHandler.Fader(esta_barra, "out")
+	thisRow:SetValue(100)
+	if (thisRow.hidden or thisRow.fading_in or thisRow.faded) then
+		Details.FadeHandler.Fader(thisRow, "out")
 	end
 
 	--seta a cor da barra e a cor do texto caso eles esteja mostrando com a cor da classe
-	local r, g, b, a = unpack(_detalhes.class_colors [morte[4]])
-	_detalhes:SetBarColors(esta_barra, instancia, r, g, b, a)
+	local r, g, b, a = unpack(_detalhes.class_colors[morte[4]])
+	_detalhes:SetBarColors(thisRow, instance, r, g, b, a)
 
-	if (instancia.row_info.use_spec_icons) then
+	if (instance.row_info.use_spec_icons) then
 		local nome = morte[3]
-		local spec = instancia.showing (1, nome) and instancia.showing (1, nome).spec or (instancia.showing (2, nome) and instancia.showing (2, nome).spec)
+		local spec = instance.showing (1, nome) and instance.showing (1, nome).spec or (instance.showing (2, nome) and instance.showing (2, nome).spec)
 		if (spec and spec ~= 0) then
-			esta_barra.icone_classe:SetTexture(instancia.row_info.spec_file)
-			esta_barra.icone_classe:SetTexCoord(unpack(_detalhes.class_specs_coords[spec]))
+			thisRow.icone_classe:SetTexture(instance.row_info.spec_file)
+			thisRow.icone_classe:SetTexCoord(unpack(_detalhes.class_specs_coords[spec]))
 		else
 			if (CLASS_ICON_TCOORDS [morte[4]]) then
-				esta_barra.icone_classe:SetTexture(instancia.row_info.icon_file)
-				esta_barra.icone_classe:SetTexCoord(unpack(CLASS_ICON_TCOORDS [morte[4]]))
+				thisRow.icone_classe:SetTexture(instance.row_info.icon_file)
+				thisRow.icone_classe:SetTexCoord(unpack(CLASS_ICON_TCOORDS [morte[4]]))
 			else
 				local texture, l, r, t, b = Details:GetUnknownClassIcon()
-				esta_barra.icone_classe:SetTexture(texture)
-				esta_barra.icone_classe:SetTexCoord(l, r, t, b)
+				thisRow.icone_classe:SetTexture(texture)
+				thisRow.icone_classe:SetTexCoord(l, r, t, b)
 			end
 		end
 	else
 		if (CLASS_ICON_TCOORDS [morte[4]]) then
-			esta_barra.icone_classe:SetTexture(instancia.row_info.icon_file)
-			esta_barra.icone_classe:SetTexCoord(unpack(CLASS_ICON_TCOORDS [morte[4]]))
+			thisRow.icone_classe:SetTexture(instance.row_info.icon_file)
+			thisRow.icone_classe:SetTexCoord(unpack(CLASS_ICON_TCOORDS [morte[4]]))
 		else
 			local texture, l, r, t, b = Details:GetUnknownClassIcon()
-			esta_barra.icone_classe:SetTexture(texture)
-			esta_barra.icone_classe:SetTexCoord(l, r, t, b)
+			thisRow.icone_classe:SetTexture(texture)
+			thisRow.icone_classe:SetTexCoord(l, r, t, b)
 		end
 	end
 
-	esta_barra.icone_classe:SetVertexColor(1, 1, 1)
+	thisRow.icone_classe:SetVertexColor(1, 1, 1)
 
-	if (esta_barra.mouse_over and not instancia.baseframe.isMoving) then --precisa atualizar o tooltip
-		gump:UpdateTooltip (whichRowLine, esta_barra, instancia)
+	if (thisRow.mouse_over and not instance.baseframe.isMoving) then --precisa atualizar o tooltip
+		gump:UpdateTooltip (whichRowLine, thisRow, instance)
 	end
 
-	esta_barra.lineText1:SetSize(esta_barra:GetWidth() - esta_barra.lineText4:GetStringWidth() - 20, 15)
-
+	thisRow.lineText1:SetSize(thisRow:GetWidth() - thisRow.lineText4:GetStringWidth() - 20, 15)
 end
 
-function atributo_misc:RefreshWindow (instancia, tabela_do_combate, forcar, exportar, refresh_needed)
+function atributo_misc:RefreshWindow(instance, combatObject, bIsForceRefresh, bIsExport)
+	---@type actorcontainer
+	local utilityActorContainer = combatObject[class_type]
 
-	local showing = tabela_do_combate [class_type] --o que esta sendo mostrado -> [1] - dano [2] - cura --pega o container com ._NameIndexTable ._ActorTable
-
-	if (#showing._ActorTable < 1) then --n�o h� barras para mostrar
-		return _detalhes:EsconderBarrasNaoUsadas (instancia, showing), "", 0, 0
+	if (#utilityActorContainer._ActorTable < 1) then --n�o h� barras para mostrar
+		return _detalhes:HideBarsNotInUse(instance, utilityActorContainer), "", 0, 0
 	end
 
 	local total = 0
-	instancia.top = 0
+	instance.top = 0
 
-	local sub_atributo = instancia.sub_atributo --o que esta sendo mostrado nesta inst�ncia
-	local conteudo = showing._ActorTable
+	--the main attribute is utility, the sub attribute is the type of utility (cc break, ress, etc)
+	local subAttribute = instance.sub_atributo
+	local conteudo = utilityActorContainer._ActorTable
 	local amount = #conteudo
-	local modo = instancia.modo
+	local modo = instance.modo
 
-	if (exportar) then
-		if (type(exportar) == "boolean") then
-			if (sub_atributo == 1) then --CC BREAKS
+	if (bIsExport) then
+		if (type(bIsExport) == "boolean") then
+			if (subAttribute == 1) then --CC BREAKS
 				keyName = "cc_break"
-			elseif (sub_atributo == 2) then --RESS
+			elseif (subAttribute == 2) then --RESS
 				keyName = "ress"
-			elseif (sub_atributo == 3) then --INTERRUPT
+			elseif (subAttribute == 3) then --INTERRUPT
 				keyName = "interrupt"
-			elseif (sub_atributo == 4) then --DISPELLS
+			elseif (subAttribute == 4) then --DISPELLS
 				keyName = "dispell"
-			elseif (sub_atributo == 5) then --DEATHS
+			elseif (subAttribute == 5) then --DEATHS
 				keyName = "dead"
-			elseif (sub_atributo == 6) then --DEFENSIVE COOLDOWNS
+			elseif (subAttribute == 6) then --DEFENSIVE COOLDOWNS
 				keyName = "cooldowns_defensive"
-			elseif (sub_atributo == 7) then --BUFF UPTIME
+			elseif (subAttribute == 7) then --BUFF UPTIME
 				keyName = "buff_uptime"
-			elseif (sub_atributo == 8) then --DEBUFF UPTIME
+			elseif (subAttribute == 8) then --DEBUFF UPTIME
 				keyName = "debuff_uptime"
 			end
 		else
-			keyName = exportar.key
-			modo = exportar.modo
+			keyName = bIsExport.key
+			modo = bIsExport.modo
 		end
 
-	elseif (instancia.atributo == 5) then --custom
+	elseif (instance.atributo == 5) then --custom
 		keyName = "custom"
-		total = tabela_do_combate.totals [instancia.customName]
+		total = combatObject.totals [instance.customName]
 
 	else
 
 		--pega qual a sub key que ser� usada
-		if (sub_atributo == 1) then --CC BREAKS
+		if (subAttribute == 1) then --CC BREAKS
 			keyName = "cc_break"
-		elseif (sub_atributo == 2) then --RESS
+		elseif (subAttribute == 2) then --RESS
 			keyName = "ress"
-		elseif (sub_atributo == 3) then --INTERRUPT
+		elseif (subAttribute == 3) then --INTERRUPT
 			keyName = "interrupt"
-		elseif (sub_atributo == 4) then --DISPELLS
+		elseif (subAttribute == 4) then --DISPELLS
 			keyName = "dispell"
-		elseif (sub_atributo == 5) then --DEATHS
+		elseif (subAttribute == 5) then --DEATHS
 			keyName = "dead"
-		elseif (sub_atributo == 6) then --DEFENSIVE COOLDOWNS
+		elseif (subAttribute == 6) then --DEFENSIVE COOLDOWNS
 			keyName = "cooldowns_defensive"
-		elseif (sub_atributo == 7) then --BUFF UPTIME
+		elseif (subAttribute == 7) then --BUFF UPTIME
 			keyName = "buff_uptime"
-		elseif (sub_atributo == 8) then --DEBUFF UPTIME
+		elseif (subAttribute == 8) then --DEBUFF UPTIME
 			keyName = "debuff_uptime"
 		end
-
 	end
 
 	if (keyName == "dead") then
-		local mortes = tabela_do_combate.last_events_tables
-		instancia.top = 1
-		total = #mortes
+		local allDeathsInTheCombat = combatObject.last_events_tables
+		instance.top = 1
+		total = #allDeathsInTheCombat
 
-		if (exportar) then
-			return mortes
+		if (bIsExport) then
+			return allDeathsInTheCombat
 		end
 
 		if (total < 1) then
-			instancia:EsconderScrollBar()
-			return _detalhes:EndRefresh (instancia, total, tabela_do_combate, showing) --retorna a tabela que precisa ganhar o refresh
+			instance:EsconderScrollBar()
+			return _detalhes:EndRefresh(instance, total, combatObject, utilityActorContainer)
 		end
 
-		--estra mostrando ALL ent�o posso seguir o padr�o correto? primeiro, atualiza a scroll bar...
-		instancia:RefreshScrollBar (total)
+		instance:RefreshScrollBar(total)
 
-		--depois faz a atualiza��o normal dele atrav�s dos_ iterators
 		local whichRowLine = 1
-		local barras_container = instancia.barras
-		local percentage_type = instancia.row_info.percent_type
 
-		for i = instancia.barraS[1], instancia.barraS[2], 1 do --vai atualizar s� o range que esta sendo mostrado
-			if (mortes[i]) then --corre��o para um raro e desconhecido problema onde mortes[i] � nil
-				atributo_misc:DeadAtualizarBarra (mortes[i], whichRowLine, i, instancia)
-				whichRowLine = whichRowLine+1
+		local bIsRaidCombat = combatObject:GetCombatType() == DETAILS_SEGMENTTYPE_RAID_BOSS
+		local bIsMythicDungeonOverall = combatObject:IsMythicDungeonOverall()
+		local bIsOverallData = instance:GetSegmentId() == DETAILS_SEGMENTID_OVERALL
+
+		local bReverseDeathLog = false
+		if (bIsRaidCombat and Details.combat_log.inverse_deathlog_raid) then
+			bReverseDeathLog = true
+
+		elseif (bIsMythicDungeonOverall and Details.combat_log.inverse_deathlog_mplus) then
+			bReverseDeathLog = true
+
+		elseif (bIsOverallData and Details.combat_log.inverse_deathlog_overalldata) then
+			bReverseDeathLog = true
+		end
+
+		if (bReverseDeathLog) then
+			--reverse the table
+			local tempTable = {}
+			for i = #allDeathsInTheCombat, 1, -1 do
+				tempTable[#tempTable+1] = allDeathsInTheCombat[i]
+			end
+
+			--update only the lines shown
+			for i = instance.barraS[1], instance.barraS[2], 1 do
+				if (tempTable[i]) then
+					atributo_misc:UpdateDeathRow(tempTable[i], whichRowLine, i, instance)
+					whichRowLine = whichRowLine+1
+				end
+			end
+		else
+			--update only the lines shown
+			for i = instance.barraS[1], instance.barraS[2], 1 do
+				if (allDeathsInTheCombat[i]) then
+					atributo_misc:UpdateDeathRow(allDeathsInTheCombat[i], whichRowLine, i, instance)
+					whichRowLine = whichRowLine+1
+				end
 			end
 		end
 
-		return _detalhes:EndRefresh (instancia, total, tabela_do_combate, showing) --retorna a tabela que precisa ganhar o refresh
-
+		return _detalhes:EndRefresh(instance, total, combatObject, utilityActorContainer)
 	else
+		if (instance.atributo == 5) then --custom
+			table.sort(conteudo, Details.SortIfHaveKey)
 
-		if (instancia.atributo == 5) then --custom
-			--faz o sort da categoria e retorna o amount corrigido
-			table.sort (conteudo, _detalhes.SortIfHaveKey)
-
-			--n�o mostrar resultados com zero
-			for i = amount, 1, -1 do --de tr�s pra frente
+			--strip results with zero
+			for i = amount, 1, -1 do
 				if (not conteudo[i][keyName] or conteudo[i][keyName] < 1) then
 					amount = amount - 1
 				else
@@ -793,18 +785,15 @@ function atributo_misc:RefreshWindow (instancia, tabela_do_combate, forcar, expo
 				end
 			end
 
-			--pega o total ja aplicado na tabela do combate
-			total = tabela_do_combate.totals [class_type] [keyName]
-
-			--grava o total
-			instancia.top = conteudo[1][keyName]
+			--get the total done from the combat total data
+			total = combatObject.totals[class_type][keyName]
+			instance.top = conteudo[1][keyName]
 
 		elseif (modo == modo_ALL) then --mostrando ALL
+			table.sort(conteudo, Details.SortIfHaveKey)
 
-			table.sort (conteudo, _detalhes.SortIfHaveKey)
-
-			--n�o mostrar resultados com zero
-			for i = amount, 1, -1 do --de tr�s pra frente
+			--strip results with zero
+			for i = amount, 1, -1 do
 				if (not conteudo[i][keyName] or conteudo[i][keyName] < 1) then
 					amount = amount - 1
 				else
@@ -812,24 +801,21 @@ function atributo_misc:RefreshWindow (instancia, tabela_do_combate, forcar, expo
 				end
 			end
 
-			--pega o total ja aplicado na tabela do combate
-			total = tabela_do_combate.totals [class_type] [keyName]
+			--get the total done from the combat total data
+			total = combatObject.totals[class_type][keyName]
+			instance.top = conteudo[1][keyName]
 
-			--grava o total
-			instancia.top = conteudo[1][keyName]
+		elseif (modo == modo_GROUP) then
+			table.sort(conteudo, Details.SortGroupIfHaveKey)
 
-		elseif (modo == modo_GROUP) then --mostrando GROUP
-
-			--if (refresh_needed) then
-				table.sort (conteudo, _detalhes.SortGroupIfHaveKey)
-			--end
 			for index, player in ipairs(conteudo) do
-				if (player.grupo) then --� um player e esta em grupo
-					if (not player[keyName] or player[keyName] < 1) then --dano menor que 1, interromper o loop
+				if (player.grupo) then --is a player and is in the player group
+					--stop when the amount is zero
+					if (not player[keyName] or player[keyName] < 1) then
 						amount = index - 1
 						break
 					elseif (index == 1) then --esse IF aqui, precisa mesmo ser aqui? n�o daria pra pega-lo com uma chave [1] nad grupo == true?
-						instancia.top = conteudo[1][keyName]
+						instance.top = conteudo[1][keyName]
 					end
 
 					total = total + player[keyName]
@@ -842,58 +828,57 @@ function atributo_misc:RefreshWindow (instancia, tabela_do_combate, forcar, expo
 		end
 	end
 
-	--refaz o mapa do container
-	showing:remapear()
+	--refresh the container map
+	utilityActorContainer:remapear()
 
-	if (exportar) then
-		return total, keyName, instancia.top, amount
+	if (bIsExport) then
+		return total, keyName, instance.top, amount
 	end
 
-	if (amount < 1) then --n�o h� barras para mostrar
-		instancia:EsconderScrollBar() --precisaria esconder a scroll bar
-		return _detalhes:EndRefresh (instancia, total, tabela_do_combate, showing) --retorna a tabela que precisa ganhar o refresh
+	--check if there's nothing to show
+	if (amount < 1) then
+		instance:EsconderScrollBar() --precisaria esconder a scroll bar
+		return Details:EndRefresh(instance, total, combatObject, utilityActorContainer)
 	end
 
-	--estra mostrando ALL ent�o posso seguir o padr�o correto? primeiro, atualiza a scroll bar...
-	instancia:RefreshScrollBar (amount)
+	instance:RefreshScrollBar(amount)
 
-	--depois faz a atualiza��o normal dele atrav�s dos_ iterators
 	local whichRowLine = 1
-	local barras_container = instancia.barras
-	local percentage_type = instancia.row_info.percent_type
-	local bars_show_data = instancia.row_info.textR_show_data
-	local bars_brackets = instancia:GetBarBracket()
-	local bars_separator = instancia:GetBarSeparator()
-	local use_animations = _detalhes.is_using_row_animations and (not instancia.baseframe.isStretching and not forcar)
+	local barras_container = instance.barras
+	local percentage_type = instance.row_info.percent_type
+	local bars_show_data = instance.row_info.textR_show_data
+	local bars_brackets = instance:GetBarBracket()
+	local bars_separator = instance:GetBarSeparator()
+	local bUseAnimations = _detalhes.is_using_row_animations and (not instance.baseframe.isStretching and not bIsForceRefresh)
 
 	if (total == 0) then
 		total = 0.00000001
 	end
 
-	UsingCustomLeftText = instancia.row_info.textL_enable_custom_text
-	UsingCustomRightText = instancia.row_info.textR_enable_custom_text
+	UsingCustomLeftText = instance.row_info.textL_enable_custom_text
+	UsingCustomRightText = instance.row_info.textR_enable_custom_text
 
-	if (instancia.bars_sort_direction == 1) then --top to bottom
-		for i = instancia.barraS[1], instancia.barraS[2], 1 do --vai atualizar s� o range que esta sendo mostrado
-			conteudo[i]:RefreshLine(instancia, barras_container, whichRowLine, i, total, sub_atributo, forcar, keyName, nil, percentage_type, use_animations, bars_show_data, bars_brackets, bars_separator)
+	if (instance.bars_sort_direction == 1) then --top to bottom
+		for i = instance.barraS[1], instance.barraS[2], 1 do --vai atualizar s� o range que esta sendo mostrado
+			conteudo[i]:RefreshLine(instance, barras_container, whichRowLine, i, total, subAttribute, bIsForceRefresh, keyName, nil, percentage_type, bUseAnimations, bars_show_data, bars_brackets, bars_separator)
 			whichRowLine = whichRowLine+1
 		end
 
-	elseif (instancia.bars_sort_direction == 2) then --bottom to top
-		for i = instancia.barraS[2], instancia.barraS[1], -1 do --vai atualizar s� o range que esta sendo mostrado
+	elseif (instance.bars_sort_direction == 2) then --bottom to top
+		for i = instance.barraS[2], instance.barraS[1], -1 do --vai atualizar s� o range que esta sendo mostrado
 			if (conteudo[i]) then
-				conteudo[i]:RefreshLine(instancia, barras_container, whichRowLine, i, total, sub_atributo, forcar, keyName, nil, percentage_type, use_animations, bars_show_data, bars_brackets, bars_separator)
+				conteudo[i]:RefreshLine(instance, barras_container, whichRowLine, i, total, subAttribute, bIsForceRefresh, keyName, nil, percentage_type, bUseAnimations, bars_show_data, bars_brackets, bars_separator)
 				whichRowLine = whichRowLine+1
 			end
 		end
 
 	end
 
-	if (use_animations) then
-		instancia:PerformAnimations (whichRowLine-1)
+	if (bUseAnimations) then
+		instance:PerformAnimations(whichRowLine-1)
 	end
 
-	if (instancia.atributo == 5) then --custom
+	if (instance.atributo == 5) then --custom
 		--zerar o .custom dos_ Actors
 		for index, player in ipairs(conteudo) do
 			if (player.custom > 0) then
@@ -905,15 +890,15 @@ function atributo_misc:RefreshWindow (instancia, tabela_do_combate, forcar, expo
 	end
 
 	--beta, hidar barras n�o usadas durante um refresh for�ado
-	if (forcar) then
-		if (instancia.modo == 2) then --group
-			for i = whichRowLine, instancia.rows_fit_in_window  do
-				Details.FadeHandler.Fader(instancia.barras [i], "in", Details.fade_speed)
+	if (bIsForceRefresh) then
+		if (instance.modo == 2) then --group
+			for i = whichRowLine, instance.rows_fit_in_window  do
+				Details.FadeHandler.Fader(instance.barras [i], "in", Details.fade_speed)
 			end
 		end
 	end
 
-	return _detalhes:EndRefresh (instancia, total, tabela_do_combate, showing) --retorna a tabela que precisa ganhar o refresh
+	return _detalhes:EndRefresh (instance, total, combatObject, utilityActorContainer) --retorna a tabela que precisa ganhar o refresh
 
 end
 
@@ -1057,6 +1042,13 @@ function atributo_misc:RefreshBarra(esta_barra, instancia, from_resize)
 
 	--icon
 	self:SetClassIcon (esta_barra.icone_classe, instancia, class)
+
+	if(esta_barra.mouse_over) then
+		local classIcon = esta_barra:GetClassIcon()
+		esta_barra.iconHighlight:SetTexture(classIcon:GetTexture())
+		esta_barra.iconHighlight:SetTexCoord(classIcon:GetTexCoord())
+		esta_barra.iconHighlight:SetVertexColor(classIcon:GetVertexColor())
+	end
 	--texture color
 	self:SetBarColors(esta_barra, instancia, actor_class_color_r, actor_class_color_g, actor_class_color_b)
 	--left text
@@ -1164,41 +1156,42 @@ function atributo_misc:ToolTipCC (instancia, numero, barra)
 	return true
 end
 
-function atributo_misc:ToolTipDispell (instancia, numero, barra)
-
+function atributo_misc:ToolTipDispell(instancia, numero, barra)
 	local owner = self.owner
 	if (owner and owner.classe) then
-		r, g, b = unpack(_detalhes.class_colors [owner.classe])
+		r, g, b = unpack(_detalhes.class_colors[owner.classe])
 	else
-		r, g, b = unpack(_detalhes.class_colors [self.classe])
+		r, g, b = unpack(_detalhes.class_colors[self.classe])
 	end
 
-	local meu_total = _math_floor(self ["dispell"])
+	local totalDispels = math.floor(self["dispell"])
 	local habilidades = self.dispell_spells._ActorTable
 
---habilidade usada para dispelar
-	local meus_dispells = {}
-	for _spellid, _tabela in pairs(habilidades) do
-		if (_tabela.dispell) then
-			meus_dispells [#meus_dispells+1] = {_spellid, _math_floor(_tabela.dispell)} --_math_floor valor é nil, uma magia na tabela de dispel, sem dispel?
+	--habilidade usada para dispelar
+	local spellsUsedToDispel = {}
+	for spellId, spellTable in pairs(habilidades) do
+		if (spellTable.dispell) then
+			spellsUsedToDispel[#spellsUsedToDispel+1] = {spellId, math.floor(spellTable.dispell)}
 		else
-			Details:Msg("D! table.dispell is invalid. spellId:", _spellid)
+			Details:Msg("D! table.dispell is invalid. spellId:", spellId)
 		end
 	end
-	table.sort (meus_dispells, _detalhes.Sort2)
+	table.sort (spellsUsedToDispel, _detalhes.Sort2)
 
-	_detalhes:AddTooltipSpellHeaderText (Loc ["STRING_SPELLS"], headerColor, #meus_dispells, [[Interface\ICONS\Spell_Arcane_ArcaneTorrent]], 0.078125, 0.9375, 0.078125, 0.953125)
-	_detalhes:AddTooltipHeaderStatusbar (r, g, b, barAlha)
+	_detalhes:AddTooltipSpellHeaderText(Loc ["STRING_SPELLS"], headerColor, #spellsUsedToDispel, [[Interface\ICONS\Spell_Arcane_ArcaneTorrent]], 0.078125, 0.9375, 0.078125, 0.953125)
+	_detalhes:AddTooltipHeaderStatusbar(r, g, b, barAlha)
 
 	local icon_size = _detalhes.tooltip.icon_size
 	local icon_border = _detalhes.tooltip.icon_border_texcoord
 
-	if (#meus_dispells > 0) then
-		for i = 1, min (25, #meus_dispells) do
-			local esta_habilidade = meus_dispells[i]
-			local nome_magia, _, icone_magia = _GetSpellInfo(esta_habilidade[1])
-			GameCooltip:AddLine(nome_magia, esta_habilidade[2].." (".._cstr("%.1f", esta_habilidade[2]/meu_total*100).."%)")
-			GameCooltip:AddIcon (icone_magia, nil, nil, icon_size.W, icon_size.H, icon_border.L, icon_border.R, icon_border.T, icon_border.B)
+	if (#spellsUsedToDispel > 0) then
+		for i = 1, math.min(25, #spellsUsedToDispel) do
+			local spellInfo = spellsUsedToDispel[i]
+			local spellId = spellInfo[1]
+			local amountDispels = spellInfo[2]
+			local spellName, _, spellicon = _GetSpellInfo(spellId)
+			GameCooltip:AddLine(spellName, amountDispels .. " (" .. string.format("%.1f", amountDispels / totalDispels * 100) .. "%)")
+			GameCooltip:AddIcon(spellicon, nil, nil, icon_size.W, icon_size.H, icon_border.L, icon_border.R, icon_border.T, icon_border.B)
 			_detalhes:AddTooltipBackgroundStatusbar()
 		end
 	else
@@ -1206,21 +1199,23 @@ function atributo_misc:ToolTipDispell (instancia, numero, barra)
 	end
 
 --quais habilidades foram dispaladas
-	local buffs_dispelados = {}
-	for _spellid, amt in pairs(self.dispell_oque) do
-		buffs_dispelados [#buffs_dispelados+1] = {_spellid, amt}
+	local dispelledSpells = {}
+	for spellId, amount in pairs(self.dispell_oque) do
+		dispelledSpells[#dispelledSpells+1] = {spellId, amount}
 	end
-	table.sort (buffs_dispelados, _detalhes.Sort2)
+	table.sort(dispelledSpells, _detalhes.Sort2)
 
-	_detalhes:AddTooltipSpellHeaderText (Loc ["STRING_DISPELLED"], headerColor, #buffs_dispelados, [[Interface\ICONS\Spell_Arcane_ManaTap]], 0.078125, 0.9375, 0.078125, 0.953125)
-	_detalhes:AddTooltipHeaderStatusbar (r, g, b, barAlha)
+	_detalhes:AddTooltipSpellHeaderText(Loc ["STRING_DISPELLED"], headerColor, #dispelledSpells, [[Interface\ICONS\Spell_Arcane_ManaTap]], 0.078125, 0.9375, 0.078125, 0.953125)
+	_detalhes:AddTooltipHeaderStatusbar(r, g, b, barAlha)
 
-	if (#buffs_dispelados > 0) then
-		for i = 1, min (25, #buffs_dispelados) do
-			local esta_habilidade = buffs_dispelados[i]
-			local nome_magia, _, icone_magia = _GetSpellInfo(esta_habilidade[1])
-			GameCooltip:AddLine(nome_magia, esta_habilidade[2].." (".._cstr("%.1f", esta_habilidade[2]/meu_total*100).."%)")
-			GameCooltip:AddIcon (icone_magia, nil, nil, icon_size.W, icon_size.H, icon_border.L, icon_border.R, icon_border.T, icon_border.B)
+	if (#dispelledSpells > 0) then
+		for i = 1, math.min(25, #dispelledSpells) do
+			local spellInfo = dispelledSpells[i]
+			local spellId = spellInfo[1]
+			local amountDispels = spellInfo[2]
+			local spellName, _, spellIcon = _GetSpellInfo(spellId)
+			GameCooltip:AddLine(spellName, amountDispels .. " (" .. string.format("%.1f", amountDispels / totalDispels * 100) .. "%)")
+			GameCooltip:AddIcon (spellIcon, nil, nil, icon_size.W, icon_size.H, icon_border.L, icon_border.R, icon_border.T, icon_border.B)
 			_detalhes:AddTooltipBackgroundStatusbar()
 		end
 	end
@@ -1229,7 +1224,7 @@ function atributo_misc:ToolTipDispell (instancia, numero, barra)
 
 	local alvos_dispelados = {}
 	for target_name, amount in pairs(self.dispell_targets) do
-		alvos_dispelados [#alvos_dispelados + 1] = {target_name, _math_floor(amount), amount / meu_total * 100}
+		alvos_dispelados [#alvos_dispelados + 1] = {target_name, _math_floor(amount), amount / totalDispels * 100}
 	end
 	table.sort (alvos_dispelados, _detalhes.Sort2)
 
@@ -1341,7 +1336,7 @@ function _detalhes:CatchRaidDebuffUptime (in_or_out) -- "DEBUFF_UPTIME_IN"
 
 	if (in_or_out == "DEBUFF_UPTIME_OUT") then
 		local combat = _detalhes.tabela_vigente
-		local misc_container = combat [4]._ActorTable
+		local misc_container = combat [4]._ActorTable --error attempt to index a new value
 
 		for _, actor in ipairs(misc_container) do
 			if (actor.debuff_uptime) then
@@ -2050,14 +2045,14 @@ end
 
 ---------DETALHES BIFURCA��O
 function atributo_misc:MontaInfo()
-	if (info.sub_atributo == 3) then --interrupt
+	if (breakdownWindowFrame.sub_atributo == 3) then --interrupt
 		return self:MontaInfoInterrupt()
 	end
 end
 
 ---------DETALHES bloco da direita BIFURCA��O
 function atributo_misc:MontaDetalhes (spellid, barra)
-	if (info.sub_atributo == 3) then --interrupt
+	if (breakdownWindowFrame.sub_atributo == 3) then --interrupt
 		return self:MontaDetalhesInterrupt (spellid, barra)
 	end
 end
@@ -2073,8 +2068,8 @@ function atributo_misc:MontaInfoInterrupt()
 
 	local minha_tabela = self.interrupt_spells._ActorTable
 
-	local barras = info.barras1
-	local instancia = info.instancia
+	local barras = breakdownWindowFrame.barras1
+	local instancia = breakdownWindowFrame.instancia
 
 	local meus_interrupts = {}
 
@@ -2118,13 +2113,13 @@ function atributo_misc:MontaInfoInterrupt()
 
 		--isso aqui � tudo da sele��o e descele��o das barras
 
-		if (not info.mostrando_mouse_over) then
+		if (not breakdownWindowFrame.mostrando_mouse_over) then
 			if (tabela[1] == self.detalhes) then --tabela [1] = spellid = spellid que esta na caixa da direita
 				if (not barra.on_focus) then --se a barra n�o tiver no foco
 					barra.textura:SetStatusBarColor(129/255, 125/255, 69/255, 1)
 					barra.on_focus = true
-					if (not info.mostrando) then
-						info.mostrando = barra
+					if (not breakdownWindowFrame.mostrando) then
+						breakdownWindowFrame.mostrando = barra
 					end
 				end
 			else
@@ -2174,7 +2169,7 @@ function atributo_misc:MontaInfoInterrupt()
 	local barra
 	for index, tabela in ipairs(meus_alvos) do
 
-		barra = info.barras2 [index]
+		barra = breakdownWindowFrame.barras2 [index]
 
 		if (not barra) then
 			barra = gump:CriaNovaBarraInfo2 (instancia, index)
@@ -2213,10 +2208,6 @@ end
 ------ Detalhe Info Interrupt
 function atributo_misc:MontaDetalhesInterrupt (spellid, barra)
 
-	for _, barra in ipairs(info.barras3) do
-		barra:Hide()
-	end
-
 	local esta_magia = self.interrupt_spells._ActorTable [spellid]
 	if (not esta_magia) then
 		return
@@ -2226,7 +2217,7 @@ function atributo_misc:MontaDetalhesInterrupt (spellid, barra)
 	local nome, _, icone = _GetSpellInfo(spellid)
 	local infospell = {nome, nil, icone}
 
-	_detalhes.playerDetailWindow.spell_icone:SetTexture(infospell[3])
+	Details.BreakdownWindowFrame.spell_icone:SetTexture(infospell[3])
 
 	local total = self.interrupt
 	local meu_total = esta_magia.counter
@@ -2235,8 +2226,8 @@ function atributo_misc:MontaDetalhesInterrupt (spellid, barra)
 
 	local data = {}
 
-	local barras = info.barras3
-	local instancia = info.instancia
+	local barras = breakdownWindowFrame.barras3
+	local instancia = breakdownWindowFrame.instancia
 
 	local habilidades_alvos = {}
 	for spellid, amt in pairs(esta_magia.interrompeu_oque) do
@@ -2245,14 +2236,18 @@ function atributo_misc:MontaDetalhesInterrupt (spellid, barra)
 	table.sort (habilidades_alvos, _detalhes.Sort2)
 	local max_ = habilidades_alvos[1][2]
 
+	local lastIndex = 1
 	local barra
 	for index, tabela in ipairs(habilidades_alvos) do
+		lastIndex = index
 		barra = barras [index]
 
 		if (not barra) then --se a barra n�o existir, criar ela ent�o
 			barra = gump:CriaNovaBarraInfo3 (instancia, index)
 			barra.textura:SetStatusBarColor(1, 1, 1, 1) --isso aqui � a parte da sele��o e descele��o
 		end
+
+		barra.show = tabela[1]
 
 		if (index == 1) then
 			barra.textura:SetValue(100)
@@ -2274,6 +2269,10 @@ function atributo_misc:MontaDetalhesInterrupt (spellid, barra)
 		end
 	end
 
+	for i = lastIndex+1, #barras do
+		barras[i]:Hide()
+	end
+
 end
 
 
@@ -2282,7 +2281,7 @@ function atributo_misc:MontaTooltipAlvos (esta_barra, index)
 	local inimigo = esta_barra.nome_inimigo
 
 	local container
-	if (info.instancia.sub_atributo == 3) then --interrupt
+	if (breakdownWindowFrame.instancia.sub_atributo == 3) then --interrupt
 		container = self.interrupt_spells._ActorTable
 	end
 
@@ -2320,7 +2319,7 @@ function atributo_misc:MontaTooltipAlvos (esta_barra, index)
 end
 
 --controla se o dps do jogador esta travado ou destravado
-function atributo_misc:Iniciar (iniciar)
+function atributo_misc:GetOrChangeActivityStatus (iniciar)
 	return false --retorna se o dps esta aberto ou fechado para este jogador
 end
 
@@ -2396,16 +2395,6 @@ function atributo_misc:r_onlyrefresh_shadow (actor)
 	end
 
 	_detalhes.refresh:r_atributo_misc (actor, shadow)
-
-	--spell cast
-	if (actor.spell_cast) then
-		if (not shadow.spell_cast) then
-			shadow.spell_cast = {}
-		end
-		for spellid, _ in pairs(actor.spell_cast) do
-			shadow.spell_cast [spellid] = shadow.spell_cast [spellid] or 0
-		end
-	end
 
 	--cc done
 		if (actor.cc_done) then
@@ -2532,16 +2521,6 @@ function atributo_misc:r_connect_shadow (actor, no_refresh, combat_object)
 	--pets (add unique pet names)
 	for _, petName in ipairs(actor.pets) do
 		DetailsFramework.table.addunique (shadow.pets, petName)
-	end
-
-	if (actor.spell_cast) then
-		if (not shadow.spell_cast) then
-			shadow.spell_cast = {}
-		end
-
-		for spellid, amount in pairs(actor.spell_cast) do
-			shadow.spell_cast [spellid] = (shadow.spell_cast [spellid] or 0) + amount
-		end
 	end
 
 	if (actor.cc_done) then
@@ -2738,22 +2717,11 @@ function atributo_misc:r_connect_shadow (actor, no_refresh, combat_object)
 
 end
 
-function atributo_misc:ColetarLixo (lastevent)
-	return _detalhes:ColetarLixo (class_type, lastevent)
-end
-
 function _detalhes.refresh:r_atributo_misc(thisActor, shadow)
 	setmetatable(thisActor, _detalhes.atributo_misc)
 	detailsFramework:Mixin(thisActor, Details222.Mixins.ActorMixin)
 
 	thisActor.__index = _detalhes.atributo_misc
-
-	--refresh spell cast
-	if (thisActor.spell_cast) then
-		if (shadow and not shadow.spell_cast) then
-			shadow.spell_cast = {}
-		end
-	end
 
 	--refresh cc done
 	if (thisActor.cc_done) then
@@ -2849,9 +2817,7 @@ function _detalhes.refresh:r_atributo_misc(thisActor, shadow)
 end
 
 function _detalhes.clear:c_atributo_misc (este_jogador)
-
 	este_jogador.__index = nil
-	este_jogador.shadow = nil
 	este_jogador.links = nil
 	este_jogador.minha_barra = nil
 
@@ -2890,13 +2856,6 @@ function _detalhes.clear:c_atributo_misc (este_jogador)
 end
 
 atributo_misc.__add = function(tabela1, tabela2)
-
-	if (tabela2.spell_cast) then
-		for spellid, amount in pairs(tabela2.spell_cast) do
-			tabela1.spell_cast [spellid] = (tabela1.spell_cast [spellid] or 0) + amount
-		end
-	end
-
 	if (tabela2.cc_done) then
 		tabela1.cc_done = tabela1.cc_done + tabela2.cc_done
 
@@ -3156,13 +3115,6 @@ local subtrair_keys = function(habilidade, habilidade_tabela1)
 end
 
 atributo_misc.__sub = function(tabela1, tabela2)
-
-	if (tabela2.spell_cast) then
-		for spellid, amount in pairs(tabela2.spell_cast) do
-			tabela1.spell_cast [spellid] = (tabela1.spell_cast [spellid] or 0) - amount
-		end
-	end
-
 	if (tabela2.cc_done) then
 		tabela1.cc_done = tabela1.cc_done - tabela2.cc_done
 
