@@ -79,7 +79,7 @@ MogIt_Leather: enabled
 MogIt_OneHanded: disabled
 Paste: disabled
 Pawn: disabled
-Plater: enabled
+Plater: disabled
 RaiderIO: enabled
 TomTom: enabled
 DejaCharacterStats: enabled
@@ -120,3 +120,12 @@ Routes: disabled
 RoutesImportExport: disabled
 RXPGuides: disabled
 SilverDragon: disabled
+LittleWigs: enabled
+BigWigs_VaultOfTheIncarnates: enabled
+BigWigs_Amirdrassil: enabled
+LittleWigs_WarlordsOfDraenor: enabled
+LittleWigs_Legion: enabled
+LittleWigs_BattleForAzeroth: enabled
+LittleWigs_Cataclysm: enabled
+BigWigs_DragonIsles: enabled
+LittleWigs_Classic: enabled

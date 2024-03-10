@@ -9,6 +9,7 @@ RoutesDB = {
 		["Lifey - Silvermoon"] = "Default",
 		["Pixiel - Draenor"] = "Default",
 		["Leafgirl - Silvermoon"] = "Default",
+		["Apoka - Outland"] = "Default",
 		["Nolifey - Draenor"] = "Default",
 	},
 	["global"] = {
@@ -3158,8 +3159,8 @@ RoutesDB = {
 					},
 					["selection"] = {
 						["Elethium Deposit"] = "Elethium Deposit",
-						["Rich Laestrite Deposit"] = "Rich Laestrite Deposit",
 						["Vigil's Torch"] = "Vigil's Torch",
+						["Rich Laestrite Deposit"] = "Rich Laestrite Deposit",
 						["Nightshade"] = "Nightshade",
 						["Rich Phaedrum Deposit"] = "Rich Phaedrum Deposit",
 						["Rich Elethium Deposit"] = "Rich Elethium Deposit",

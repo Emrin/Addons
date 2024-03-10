@@ -16,10 +16,12 @@ OmniCDDB = {
 		["Yubiyubi - Draenor"] = "Default",
 		["Yeetalot - Draenor"] = "Default",
 		["Holiloli - Silvermoon"] = "Default",
+		["Divinefurry - Draenor"] = "Default",
 		["Taizai - Draenor"] = "Default",
 		["Nolifey - Silvermoon"] = "Default",
 		["Raingirl - Silvermoon"] = "Default",
 		["Cutetroll - Draenor"] = "Default",
+		["Redangel - Draenor"] = "Default",
 		["Unchill - Draenor"] = "Default",
 		["Hentaihero - Draenor"] = "Default",
 		["Venetha - Draenor"] = "Default",
@@ -35,6 +37,7 @@ OmniCDDB = {
 		["Apoki - Silvermoon"] = "Default",
 		["Wasdasdasd - Draenor"] = "Default",
 		["Crystalol - Draenor"] = "Default",
+		["Kungfugoblin - Draenor"] = "Default",
 	},
 	["global"] = {
 		["oodVer"] = 2719,
@@ -83,9 +86,20 @@ OmniCDDB = {
 					},
 				},
 				["raid"] = {
+					["extraBars"] = {
+						["raidBar1"] = {
+							["manualPos"] = {
+								["raidBar1"] = {
+									["y"] = 426.9318952885078,
+									["x"] = 919.2025907608622,
+								},
+							},
+						},
+					},
 					["position"] = {
-						["preset"] = "TOPLEFT",
+						["offsetX"] = -4,
 						["attach"] = "TOPLEFT",
+						["preset"] = "TOPLEFT",
 						["anchor"] = "TOPRIGHT",
 					},
 					["manualPos"] = {

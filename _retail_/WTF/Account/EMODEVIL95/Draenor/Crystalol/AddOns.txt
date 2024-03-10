@@ -145,7 +145,7 @@ ActionBarProfiles: disabled
 FishingBuddy: disabled
 MRT: disabled
 Paste: disabled
-Plater: enabled
+Plater: disabled
 Blizzard_ObjectiveTracker: enabled
 Blizzard_CompactRaidFrames: enabled
 ElvUI_ChatTweaks: disabled
@@ -188,3 +188,11 @@ LittleWigs: enabled
 BigWigs_Core: enabled
 BigWigs_Options: enabled
 BigWigs_Plugins: enabled
+BigWigs_VaultOfTheIncarnates: enabled
+BigWigs_Amirdrassil: enabled
+LittleWigs_WarlordsOfDraenor: enabled
+LittleWigs_Legion: enabled
+LittleWigs_BattleForAzeroth: enabled
+LittleWigs_Cataclysm: enabled
+BigWigs_DragonIsles: enabled
+LittleWigs_Classic: enabled

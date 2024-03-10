@@ -3,26 +3,26 @@ DetailsTimeLineDB = {
 	["max_segments"] = 4,
 	["combat_data"] = {
 		{
-			["date_end"] = "20:55:13",
 			["date_start"] = "20:54:20",
+			["date_end"] = "20:55:13",
 			["name"] = "Lord Chamberlain",
 			["total_time"] = 52.52099999994971,
 		}, -- [1]
 		{
-			["date_end"] = "20:53:31",
 			["date_start"] = "20:52:51",
+			["date_end"] = "20:53:31",
 			["name"] = "High Adjudicator Aleez",
 			["total_time"] = 40.74300000001676,
 		}, -- [2]
 		{
-			["date_end"] = "20:51:14",
 			["date_start"] = "20:50:29",
+			["date_end"] = "20:51:14",
 			["name"] = "Echelon",
 			["total_time"] = 45.03599999996368,
 		}, -- [3]
 		{
-			["date_end"] = "20:48:54",
 			["date_start"] = "20:48:11",
+			["date_end"] = "20:48:54",
 			["name"] = "Halkias, the Sin-Stained Goliath",
 			["total_time"] = 43.26599999994505,
 		}, -- [4]
@@ -140,13 +140,12 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[323393] = {
+			[323209] = {
 				{
-					29.6239999999525, -- [1]
-					"Lord Chamberlain", -- [2]
-					323393, -- [3]
+					7.215999999898486, -- [1]
+					"Sinstone Statue", -- [2]
+					323209, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Sinstone Statue", -- [5]
 				}, -- [1]
 			},
 			[323392] = {
@@ -163,12 +162,13 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[323209] = {
+			[323393] = {
 				{
-					7.215999999898486, -- [1]
-					"Sinstone Statue", -- [2]
-					323209, -- [3]
+					29.6239999999525, -- [1]
+					"Lord Chamberlain", -- [2]
+					323393, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Sinstone Statue", -- [5]
 				}, -- [1]
 			},
 		}, -- [1]
@@ -237,50 +237,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[319941] = {
-				{
-					28.23699999996461, -- [1]
-					"Echelon", -- [2]
-					319941, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[328206] = {
-				{
-					21.72999999998137, -- [1]
-					"Echelon", -- [2]
-					328206, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[328124] = {
-				{
-					13.2510000000475, -- [1]
-					"Unknown", -- [2]
-					328124, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					13.2510000000475, -- [1]
-					"Unknown", -- [2]
-					328124, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-				{
-					13.2510000000475, -- [1]
-					"Unknown", -- [2]
-					328124, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-			},
-			[319733] = {
-				{
-					13.2510000000475, -- [1]
-					"Echelon", -- [2]
-					319733, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[328125] = {
 				{
 					24.10400000005029, -- [1]
@@ -318,6 +274,50 @@ DetailsTimeLineDB = {
 					328125, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [6]
+			},
+			[328206] = {
+				{
+					21.72999999998137, -- [1]
+					"Echelon", -- [2]
+					328206, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[319941] = {
+				{
+					28.23699999996461, -- [1]
+					"Echelon", -- [2]
+					319941, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[319733] = {
+				{
+					13.2510000000475, -- [1]
+					"Echelon", -- [2]
+					319733, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[328124] = {
+				{
+					13.2510000000475, -- [1]
+					"Unknown", -- [2]
+					328124, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					13.2510000000475, -- [1]
+					"Unknown", -- [2]
+					328124, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					13.2510000000475, -- [1]
+					"Unknown", -- [2]
+					328124, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
 			},
 		}, -- [3]
 		{
@@ -529,20 +529,11 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[334488] = {
+			[326629] = {
 				{
-					25.17500000004657, -- [1]
+					1.523000000044704, -- [1]
 					"Surgeon Stitchflesh", -- [2]
-					334488, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Tremqt", -- [5]
-				}, -- [1]
-			},
-			[334476] = {
-				{
-					30.0580000000773, -- [1]
-					"Surgeon Stitchflesh", -- [2]
-					334476, -- [3]
+					326629, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
@@ -562,12 +553,21 @@ DetailsTimeLineDB = {
 					"Tremqt", -- [5]
 				}, -- [2]
 			},
-			[326629] = {
+			[334476] = {
 				{
-					1.523000000044704, -- [1]
+					30.0580000000773, -- [1]
 					"Surgeon Stitchflesh", -- [2]
-					326629, -- [3]
+					334476, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[334488] = {
+				{
+					25.17500000004657, -- [1]
+					"Surgeon Stitchflesh", -- [2]
+					334488, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tremqt", -- [5]
 				}, -- [1]
 			},
 		}, -- [6]
@@ -778,26 +778,6 @@ DetailsTimeLineDB = {
 					"Tremqt", -- [5]
 				}, -- [6]
 			},
-			[321575] = {
-				{
-					41.96100000001025, -- [1]
-					"Zolramus Necromancer", -- [2]
-					321575, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					41.96100000001025, -- [1]
-					"Zolramus Necromancer", -- [2]
-					321575, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-				{
-					41.96100000001025, -- [1]
-					"Zolramus Necromancer", -- [2]
-					321575, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-			},
 			[320655] = {
 				{
 					7.216000000014901, -- [1]
@@ -819,6 +799,26 @@ DetailsTimeLineDB = {
 					320655, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Tremqt", -- [5]
+				}, -- [3]
+			},
+			[321575] = {
+				{
+					41.96100000001025, -- [1]
+					"Zolramus Necromancer", -- [2]
+					321575, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					41.96100000001025, -- [1]
+					"Zolramus Necromancer", -- [2]
+					321575, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					41.96100000001025, -- [1]
+					"Zolramus Necromancer", -- [2]
+					321575, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
 			},
 		}, -- [8]
@@ -991,36 +991,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [7]
 			},
-			[322563] = {
-				{
-					42.38400000007823, -- [1]
-					"Tred'ova", -- [2]
-					322563, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Cellia-Magtheridon", -- [5]
-				}, -- [1]
-				{
-					72.75600000005215, -- [1]
-					"Tred'ova", -- [2]
-					322563, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Holiloli", -- [5]
-				}, -- [2]
-			},
-			[322550] = {
-				{
-					40.91400000010617, -- [1]
-					"Tred'ova", -- [2]
-					322550, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					71.252000000095, -- [1]
-					"Tred'ova", -- [2]
-					322550, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 			[322709] = {
 				{
 					29.9680000001099, -- [1]
@@ -1113,8 +1083,52 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [15]
 			},
+			[322550] = {
+				{
+					40.91400000010617, -- [1]
+					"Tred'ova", -- [2]
+					322550, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					71.252000000095, -- [1]
+					"Tred'ova", -- [2]
+					322550, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[322563] = {
+				{
+					42.38400000007823, -- [1]
+					"Tred'ova", -- [2]
+					322563, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Cellia-Magtheridon", -- [5]
+				}, -- [1]
+				{
+					72.75600000005215, -- [1]
+					"Tred'ova", -- [2]
+					322563, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Holiloli", -- [5]
+				}, -- [2]
+			},
 		}, -- [9]
 		{
+			[321471] = {
+				{
+					21.01300000003539, -- [1]
+					"Mistcaller", -- [2]
+					321471, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					44.07799999997951, -- [1]
+					"Mistcaller", -- [2]
+					321471, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
 			[321834] = {
 				{
 					9.616999999969266, -- [1]
@@ -1275,20 +1289,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [24]
 			},
-			[321471] = {
-				{
-					21.01300000003539, -- [1]
-					"Mistcaller", -- [2]
-					321471, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					44.07799999997951, -- [1]
-					"Mistcaller", -- [2]
-					321471, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 		}, -- [10]
 		{
 			[321772] = {
@@ -1299,21 +1299,13 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[322557] = {
+			[323137] = {
 				{
-					34.57000000006519, -- [1]
-					"Drust Soulcleaver", -- [2]
-					322557, -- [3]
+					9.78000000002794, -- [1]
+					"Droman Oulfarran", -- [2]
+					323137, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Drust Soulcleaver", -- [5]
 				}, -- [1]
-				{
-					34.57000000006519, -- [1]
-					"Drust Soulcleaver", -- [2]
-					322557, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Drust Soulcleaver", -- [5]
-				}, -- [2]
 			},
 			[323057] = {
 				{
@@ -1359,13 +1351,21 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[323138] = {
+			[322557] = {
 				{
-					15.94799999997485, -- [1]
-					"Ingra Maloch", -- [2]
-					323138, -- [3]
+					34.57000000006519, -- [1]
+					"Drust Soulcleaver", -- [2]
+					322557, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Drust Soulcleaver", -- [5]
 				}, -- [1]
+				{
+					34.57000000006519, -- [1]
+					"Drust Soulcleaver", -- [2]
+					322557, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Drust Soulcleaver", -- [5]
+				}, -- [2]
 			},
 			[325163] = {
 				{
@@ -1397,11 +1397,11 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[323137] = {
+			[323138] = {
 				{
-					9.78000000002794, -- [1]
-					"Droman Oulfarran", -- [2]
-					323137, -- [3]
+					15.94799999997485, -- [1]
+					"Ingra Maloch", -- [2]
+					323138, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
@@ -1483,13 +1483,12 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[323393] = {
+			[323209] = {
 				{
-					28.50500000000466, -- [1]
-					"Lord Chamberlain", -- [2]
-					323393, -- [3]
+					10.92500000004657, -- [1]
+					"Sinstone Statue", -- [2]
+					323209, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Sinstone Statue", -- [5]
 				}, -- [1]
 			},
 			[323392] = {
@@ -1500,40 +1499,17 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[323209] = {
+			[323393] = {
 				{
-					10.92500000004657, -- [1]
-					"Sinstone Statue", -- [2]
-					323209, -- [3]
+					28.50500000000466, -- [1]
+					"Lord Chamberlain", -- [2]
+					323393, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Sinstone Statue", -- [5]
 				}, -- [1]
 			},
 		}, -- [12]
 		{
-			[326771] = {
-				{
-					29.71299999998882, -- [1]
-					"Stoneborn Slasher", -- [2]
-					326771, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[323552] = {
-				{
-					13.18400000000838, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323552, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[329340] = {
-				{
-					24.59299999999348, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					329340, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[338012] = {
 				{
 					25.90500000002794, -- [1]
@@ -1566,8 +1542,40 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
+			[326771] = {
+				{
+					29.71299999998882, -- [1]
+					"Stoneborn Slasher", -- [2]
+					326771, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[329340] = {
+				{
+					24.59299999999348, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					329340, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[323552] = {
+				{
+					13.18400000000838, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323552, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 		}, -- [13]
 		{
+			[326771] = {
+				{
+					0.1, -- [1]
+					"Stoneborn Slasher", -- [2]
+					326771, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[328125] = {
 				{
 					27.50300000002608, -- [1]
@@ -1594,36 +1602,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [4]
 			},
-			[326389] = {
-				{
-					7.639000000082888, -- [1]
-					"Echelon", -- [2]
-					326389, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					31.5, -- [1]
-					"Echelon", -- [2]
-					326389, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-			[319941] = {
-				{
-					28.28700000001118, -- [1]
-					"Echelon", -- [2]
-					319941, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[328206] = {
-				{
-					21.77000000001863, -- [1]
-					"Echelon", -- [2]
-					328206, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[328124] = {
 				{
 					12.51900000008754, -- [1]
@@ -1644,6 +1622,22 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
 			},
+			[328206] = {
+				{
+					21.77000000001863, -- [1]
+					"Echelon", -- [2]
+					328206, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[319941] = {
+				{
+					28.28700000001118, -- [1]
+					"Echelon", -- [2]
+					319941, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[319733] = {
 				{
 					12.51900000008754, -- [1]
@@ -1652,13 +1646,19 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[326771] = {
+			[326389] = {
 				{
-					0.1, -- [1]
-					"Stoneborn Slasher", -- [2]
-					326771, -- [3]
+					7.639000000082888, -- [1]
+					"Echelon", -- [2]
+					326389, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
+				{
+					31.5, -- [1]
+					"Echelon", -- [2]
+					326389, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
 			},
 		}, -- [14]
 		{
@@ -1700,21 +1700,13 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[319628] = {
+			[322232] = {
 				{
-					86.35899999993853, -- [1]
-					"Larion Sire", -- [2]
-					319628, -- [3]
+					83.01800000004005, -- [1]
+					"Margrave Stradama", -- [2]
+					322232, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Missløve", -- [5]
 				}, -- [1]
-				{
-					86.35899999993853, -- [1]
-					"Larion Sire", -- [2]
-					319628, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Missløve", -- [5]
-				}, -- [2]
 			},
 			[322475] = {
 				{
@@ -1934,19 +1926,27 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [36]
 			},
+			[319628] = {
+				{
+					86.35899999993853, -- [1]
+					"Larion Sire", -- [2]
+					319628, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Missløve", -- [5]
+				}, -- [1]
+				{
+					86.35899999993853, -- [1]
+					"Larion Sire", -- [2]
+					319628, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Missløve", -- [5]
+				}, -- [2]
+			},
 			[328084] = {
 				{
 					86.35899999993853, -- [1]
 					"Gorgebeak", -- [2]
 					328084, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[322232] = {
-				{
-					83.01800000004005, -- [1]
-					"Margrave Stradama", -- [2]
-					322232, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
@@ -1961,13 +1961,31 @@ DetailsTimeLineDB = {
 					"Monkmaan-Outland", -- [5]
 				}, -- [1]
 			},
-			[325245] = {
+			[332314] = {
 				{
-					11.1820000000298, -- [1]
-					"Domina Venomblade", -- [2]
-					325245, -- [3]
+					19.27500000002328, -- [1]
+					"Assassin Stalker", -- [2]
+					332314, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
+				{
+					19.31599999999162, -- [1]
+					"Assassin Stalker", -- [2]
+					332314, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					19.31599999999162, -- [1]
+					"Assassin Stalker", -- [2]
+					332314, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					19.31599999999162, -- [1]
+					"Assassin Stalker", -- [2]
+					332314, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
 			},
 			[325395] = {
 				{
@@ -2015,19 +2033,21 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[327233] = {
+			[325245] = {
 				{
-					1.657000000006519, -- [1]
-					"Plaguebelcher", -- [2]
-					327233, -- [3]
+					11.1820000000298, -- [1]
+					"Domina Venomblade", -- [2]
+					325245, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
+			},
+			[332313] = {
 				{
-					16.20500000007451, -- [1]
-					"Plaguebelcher", -- [2]
-					327233, -- [3]
+					19.26199999998789, -- [1]
+					"Domina Venomblade", -- [2]
+					332313, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
+				}, -- [1]
 			},
 			[336451] = {
 				{
@@ -2043,39 +2063,19 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[332313] = {
+			[327233] = {
 				{
-					19.26199999998789, -- [1]
-					"Domina Venomblade", -- [2]
-					332313, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[332314] = {
-				{
-					19.27500000002328, -- [1]
-					"Assassin Stalker", -- [2]
-					332314, -- [3]
+					1.657000000006519, -- [1]
+					"Plaguebelcher", -- [2]
+					327233, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
-					19.31599999999162, -- [1]
-					"Assassin Stalker", -- [2]
-					332314, -- [3]
+					16.20500000007451, -- [1]
+					"Plaguebelcher", -- [2]
+					327233, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
-				{
-					19.31599999999162, -- [1]
-					"Assassin Stalker", -- [2]
-					332314, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-				{
-					19.31599999999162, -- [1]
-					"Assassin Stalker", -- [2]
-					332314, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [4]
 			},
 		}, -- [17]
 		{
@@ -2148,6 +2148,15 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
+			[329110] = {
+				{
+					10.64700000011362, -- [1]
+					"Doctor Ickus", -- [2]
+					329110, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Monkmaan-Outland", -- [5]
+				}, -- [1]
+			},
 			[321999] = {
 				{
 					25.00600000005215, -- [1]
@@ -2192,20 +2201,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [7]
 			},
-			[348159] = {
-				{
-					23.70700000005309, -- [1]
-					"Doctor Ickus", -- [2]
-					348159, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					39.78700000001118, -- [1]
-					"Doctor Ickus", -- [2]
-					348159, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 			[341443] = {
 				{
 					12.33400000003167, -- [1]
@@ -2236,14 +2231,19 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[329110] = {
+			[348159] = {
 				{
-					10.64700000011362, -- [1]
+					23.70700000005309, -- [1]
 					"Doctor Ickus", -- [2]
-					329110, -- [3]
+					348159, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Monkmaan-Outland", -- [5]
 				}, -- [1]
+				{
+					39.78700000001118, -- [1]
+					"Doctor Ickus", -- [2]
+					348159, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
 			},
 		}, -- [18]
 		{
@@ -2688,14 +2688,91 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[59166] = {
+			[59085] = {
 				{
-					127.4919999999693, -- [1]
-					"Stormforged Tactician", -- [2]
-					59166, -- [3]
+					5.867999999958556, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [1]
+				{
+					9.669999999983702, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Holiloli", -- [5]
+				}, -- [2]
+				{
+					23.05499999999302, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [3]
+				{
+					29.12699999997858, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tatterveil", -- [5]
+				}, -- [4]
+				{
+					40.03699999995297, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tatterveil", -- [5]
+				}, -- [5]
+				{
+					46.10599999997066, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [6]
+				{
+					56.79899999999907, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Accenderita-Ragnaros", -- [5]
+				}, -- [7]
+				{
+					63.14899999997579, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Cantalf", -- [5]
-				}, -- [1]
+				}, -- [8]
+				{
+					75.27799999999115, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Accenderita-Ragnaros", -- [5]
+				}, -- [9]
+				{
+					78.92900000000373, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tatterveil", -- [5]
+				}, -- [10]
+				{
+					94.71299999998882, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Accenderita-Ragnaros", -- [5]
+				}, -- [11]
+				{
+					114.1229999999632, -- [1]
+					"Stormforged Lieutenant", -- [2]
+					59085, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tatterveil", -- [5]
+				}, -- [12]
 			},
 			[58769] = {
 				{
@@ -2770,6 +2847,210 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Greater Earth Elemental", -- [5]
 				}, -- [8]
+			},
+			[61515] = {
+				{
+					6.024999999965075, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					61515, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [1]
+				{
+					20.625, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					61515, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [2]
+				{
+					49.76999999996042, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					61515, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [3]
+				{
+					56.79899999999907, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					61515, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Holiloli", -- [5]
+				}, -- [4]
+				{
+					78.34599999996135, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					61515, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [5]
+				{
+					99.55799999996088, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					61515, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [6]
+			},
+			[41105] = {
+				{
+					25.4890000000014, -- [1]
+					"General Bjarngrim", -- [2]
+					41105, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					101.9989999999525, -- [1]
+					"General Bjarngrim", -- [2]
+					41105, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[52773] = {
+				{
+					7.242999999958556, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [1]
+				{
+					15.74699999997392, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [2]
+				{
+					23.05499999999302, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [3]
+				{
+					41.23999999999069, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [4]
+				{
+					49.76999999996042, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [5]
+				{
+					58.28699999995297, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Holiloli", -- [5]
+				}, -- [6]
+				{
+					65.57299999997485, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Greater Earth Elemental", -- [5]
+				}, -- [7]
+				{
+					75.27799999999115, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [8]
+				{
+					82.55400000000373, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [9]
+				{
+					89.8409999999567, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [10]
+				{
+					98.34399999998277, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [11]
+				{
+					105.6279999999679, -- [1]
+					"Stormforged Mender", -- [2]
+					52773, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [12]
+			},
+			[12555] = {
+				{
+					91.04899999999907, -- [1]
+					"General Bjarngrim", -- [2]
+					12555, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Cantalf", -- [5]
+				}, -- [1]
+			},
+			[59147] = {
+				{
+					13.31500000000233, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					59147, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Water Elemental", -- [5]
+				}, -- [1]
+				{
+					27.90599999995902, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					59147, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [2]
+				{
+					42.45799999998417, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					59147, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [3]
+				{
+					71.64299999998184, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					59147, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Greater Earth Elemental", -- [5]
+				}, -- [4]
+				{
+					92.26799999998184, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					59147, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Water Elemental", -- [5]
+				}, -- [5]
+				{
+					106.8479999999981, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					59147, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [6]
+				{
+					122.6199999999953, -- [1]
+					"Hardened Steel Skycaller", -- [2]
+					59147, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Water Elemental", -- [5]
+				}, -- [7]
 			},
 			[59148] = {
 				{
@@ -2899,179 +3180,6 @@ DetailsTimeLineDB = {
 					"Baleida-BurningSteppes", -- [5]
 				}, -- [18]
 			},
-			[42724] = {
-				{
-					1.675999999977648, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [1]
-				{
-					8.818999999959487, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [2]
-				{
-					8.818999999959487, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [3]
-				{
-					17.75899999996182, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [4]
-				{
-					22.28299999999581, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [5]
-				{
-					25.40499999996973, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [6]
-				{
-					39.59999999997672, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [7]
-				{
-					47.61999999999534, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [8]
-				{
-					56.21299999998882, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [9]
-				{
-					67.58100000000559, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [10]
-				{
-					78.23300000000745, -- [1]
-					"Hardened Steel Reaver", -- [2]
-					42724, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [11]
-			},
-			[52029] = {
-				{
-					31.54300000000512, -- [1]
-					"General Bjarngrim", -- [2]
-					52029, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					43.67900000000373, -- [1]
-					"General Bjarngrim", -- [2]
-					52029, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-				{
-					108.0480000000098, -- [1]
-					"General Bjarngrim", -- [2]
-					52029, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-				{
-					118.9890000000014, -- [1]
-					"General Bjarngrim", -- [2]
-					52029, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [4]
-			},
-			[12555] = {
-				{
-					91.04899999999907, -- [1]
-					"General Bjarngrim", -- [2]
-					12555, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Cantalf", -- [5]
-				}, -- [1]
-			},
-			[59147] = {
-				{
-					13.31500000000233, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					59147, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Water Elemental", -- [5]
-				}, -- [1]
-				{
-					27.90599999995902, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					59147, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [2]
-				{
-					42.45799999998417, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					59147, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [3]
-				{
-					71.64299999998184, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					59147, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Greater Earth Elemental", -- [5]
-				}, -- [4]
-				{
-					92.26799999998184, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					59147, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Water Elemental", -- [5]
-				}, -- [5]
-				{
-					106.8479999999981, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					59147, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [6]
-				{
-					122.6199999999953, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					59147, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Water Elemental", -- [5]
-				}, -- [7]
-			},
-			[41106] = {
-				{
-					76.49299999995856, -- [1]
-					"General Bjarngrim", -- [2]
-					41106, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[41107] = {
 				{
 					50.98699999996461, -- [1]
@@ -3154,13 +3262,84 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[53791] = {
+			[42724] = {
 				{
-					50.98699999996461, -- [1]
-					"General Bjarngrim", -- [2]
-					53791, -- [3]
+					1.675999999977648, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
 				}, -- [1]
+				{
+					8.818999999959487, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [2]
+				{
+					8.818999999959487, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [3]
+				{
+					17.75899999996182, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [4]
+				{
+					22.28299999999581, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [5]
+				{
+					25.40499999996973, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [6]
+				{
+					39.59999999997672, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [7]
+				{
+					47.61999999999534, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [8]
+				{
+					56.21299999998882, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [9]
+				{
+					67.58100000000559, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [10]
+				{
+					78.23300000000745, -- [1]
+					"Hardened Steel Reaver", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Baleida-BurningSteppes", -- [5]
+				}, -- [11]
 			},
 			[53792] = {
 				{
@@ -3256,91 +3435,31 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [8]
 			},
-			[52773] = {
+			[52029] = {
 				{
-					7.242999999958556, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
+					31.54300000000512, -- [1]
+					"General Bjarngrim", -- [2]
+					52029, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
 				}, -- [1]
 				{
-					15.74699999997392, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
+					43.67900000000373, -- [1]
+					"General Bjarngrim", -- [2]
+					52029, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
 				}, -- [2]
 				{
-					23.05499999999302, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
+					108.0480000000098, -- [1]
+					"General Bjarngrim", -- [2]
+					52029, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
 				}, -- [3]
 				{
-					41.23999999999069, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
+					118.9890000000014, -- [1]
+					"General Bjarngrim", -- [2]
+					52029, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
 				}, -- [4]
-				{
-					49.76999999996042, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [5]
-				{
-					58.28699999995297, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Holiloli", -- [5]
-				}, -- [6]
-				{
-					65.57299999997485, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Greater Earth Elemental", -- [5]
-				}, -- [7]
-				{
-					75.27799999999115, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [8]
-				{
-					82.55400000000373, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [9]
-				{
-					89.8409999999567, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [10]
-				{
-					98.34399999998277, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [11]
-				{
-					105.6279999999679, -- [1]
-					"Stormforged Mender", -- [2]
-					52773, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [12]
 			},
 			[36096] = {
 				{
@@ -3419,165 +3538,47 @@ DetailsTimeLineDB = {
 					"Baleida-BurningSteppes", -- [5]
 				}, -- [3]
 			},
-			[41105] = {
+			[53791] = {
 				{
-					25.4890000000014, -- [1]
+					50.98699999996461, -- [1]
 					"General Bjarngrim", -- [2]
-					41105, -- [3]
+					53791, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
+			},
+			[41106] = {
 				{
-					101.9989999999525, -- [1]
+					76.49299999995856, -- [1]
 					"General Bjarngrim", -- [2]
-					41105, -- [3]
+					41106, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-			[61515] = {
-				{
-					6.024999999965075, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					61515, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
 				}, -- [1]
-				{
-					20.625, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					61515, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [2]
-				{
-					49.76999999996042, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					61515, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [3]
-				{
-					56.79899999999907, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					61515, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Holiloli", -- [5]
-				}, -- [4]
-				{
-					78.34599999996135, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					61515, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [5]
-				{
-					99.55799999996088, -- [1]
-					"Hardened Steel Skycaller", -- [2]
-					61515, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [6]
 			},
-			[59085] = {
+			[59166] = {
 				{
-					5.867999999958556, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [1]
-				{
-					9.669999999983702, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Holiloli", -- [5]
-				}, -- [2]
-				{
-					23.05499999999302, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [3]
-				{
-					29.12699999997858, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Tatterveil", -- [5]
-				}, -- [4]
-				{
-					40.03699999995297, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Tatterveil", -- [5]
-				}, -- [5]
-				{
-					46.10599999997066, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Baleida-BurningSteppes", -- [5]
-				}, -- [6]
-				{
-					56.79899999999907, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Accenderita-Ragnaros", -- [5]
-				}, -- [7]
-				{
-					63.14899999997579, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
+					127.4919999999693, -- [1]
+					"Stormforged Tactician", -- [2]
+					59166, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Cantalf", -- [5]
-				}, -- [8]
-				{
-					75.27799999999115, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Accenderita-Ragnaros", -- [5]
-				}, -- [9]
-				{
-					78.92900000000373, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Tatterveil", -- [5]
-				}, -- [10]
-				{
-					94.71299999998882, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Accenderita-Ragnaros", -- [5]
-				}, -- [11]
-				{
-					114.1229999999632, -- [1]
-					"Stormforged Lieutenant", -- [2]
-					59085, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Tatterveil", -- [5]
-				}, -- [12]
+				}, -- [1]
 			},
 		}, -- [23]
 		{
+			[42724] = {
+				{
+					6.931000000040513, -- [1]
+					"Ingvar the Plunderer", -- [2]
+					42724, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Jadesoul-KulTiras", -- [5]
+				}, -- [1]
+			},
 			[59734] = {
 				{
 					43.3640000000014, -- [1]
 					"Ingvar the Plunderer", -- [2]
 					59734, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[59707] = {
-				{
-					9.767000000050757, -- [1]
-					"Ingvar the Plunderer", -- [2]
-					59707, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
@@ -3589,13 +3590,12 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[42724] = {
+			[59707] = {
 				{
-					6.931000000040513, -- [1]
+					9.767000000050757, -- [1]
 					"Ingvar the Plunderer", -- [2]
-					42724, -- [3]
+					59707, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Jadesoul-KulTiras", -- [5]
 				}, -- [1]
 			},
 		}, -- [24]
@@ -3633,11 +3633,11 @@ DetailsTimeLineDB = {
 					"Dignam", -- [5]
 				}, -- [1]
 			},
-			[59575] = {
+			[43651] = {
 				{
-					4.738000000012107, -- [1]
-					"Dalronn the Controller", -- [2]
-					59575, -- [3]
+					13.35700000001816, -- [1]
+					"Skarvald the Constructor", -- [2]
+					43651, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Hunmlia", -- [5]
 				}, -- [1]
@@ -3650,11 +3650,11 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[43651] = {
+			[59575] = {
 				{
-					13.35700000001816, -- [1]
-					"Skarvald the Constructor", -- [2]
-					43651, -- [3]
+					4.738000000012107, -- [1]
+					"Dalronn the Controller", -- [2]
+					59575, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Hunmlia", -- [5]
 				}, -- [1]
@@ -3842,6 +3842,20 @@ DetailsTimeLineDB = {
 			},
 		}, -- [28]
 		{
+			[267905] = {
+				{
+					28.75300000002608, -- [1]
+					"Brother Ironhull", -- [2]
+					267905, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					57.91599999996834, -- [1]
+					"Brother Ironhull", -- [2]
+					267905, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
 			[267899] = {
 				{
 					7.334000000031665, -- [1]
@@ -3873,6 +3887,26 @@ DetailsTimeLineDB = {
 					267899, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
+			},
+			[267891] = {
+				{
+					15.35700000007637, -- [1]
+					"Galecaller Faye", -- [2]
+					267891, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					45.75, -- [1]
+					"Galecaller Faye", -- [2]
+					267891, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					74.92200000002049, -- [1]
+					"Galecaller Faye", -- [2]
+					267891, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
 			},
 			[267818] = {
 				{
@@ -3924,42 +3958,22 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [8]
 			},
-			[267891] = {
-				{
-					15.35700000007637, -- [1]
-					"Galecaller Faye", -- [2]
-					267891, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					45.75, -- [1]
-					"Galecaller Faye", -- [2]
-					267891, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-				{
-					74.92200000002049, -- [1]
-					"Galecaller Faye", -- [2]
-					267891, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-			},
-			[267905] = {
-				{
-					28.75300000002608, -- [1]
-					"Brother Ironhull", -- [2]
-					267905, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					57.91599999996834, -- [1]
-					"Brother Ironhull", -- [2]
-					267905, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 		}, -- [29]
 		{
+			[264101] = {
+				{
+					19.22399999992922, -- [1]
+					"Aqu'sirr", -- [2]
+					264101, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					54.44399999990128, -- [1]
+					"Aqualing", -- [2]
+					264101, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
 			[264560] = {
 				{
 					11.1569999998901, -- [1]
@@ -3990,14 +4004,6 @@ DetailsTimeLineDB = {
 					"Mishayla-Saurfang", -- [5]
 				}, -- [4]
 			},
-			[241680] = {
-				{
-					5.47399999992922, -- [1]
-					"Lord Stormsong", -- [2]
-					241680, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[264903] = {
 				{
 					33.03099999995902, -- [1]
@@ -4006,19 +4012,13 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[264101] = {
+			[241680] = {
 				{
-					19.22399999992922, -- [1]
-					"Aqu'sirr", -- [2]
-					264101, -- [3]
+					5.47399999992922, -- [1]
+					"Lord Stormsong", -- [2]
+					241680, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
-				{
-					54.44399999990128, -- [1]
-					"Aqualing", -- [2]
-					264101, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
 			},
 		}, -- [30]
 		{
@@ -4410,34 +4410,6 @@ DetailsTimeLineDB = {
 			},
 		}, -- [33]
 		{
-			[264603] = {
-				{
-					17.52799999993295, -- [1]
-					"Elder Leaxa", -- [2]
-					264603, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[260894] = {
-				{
-					13.66999999992549, -- [1]
-					"Elder Leaxa", -- [2]
-					260894, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					27.04700000002049, -- [1]
-					"Blood Effigy", -- [2]
-					260894, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-				{
-					29.48699999996461, -- [1]
-					"Elder Leaxa", -- [2]
-					260894, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
-			},
 			[260879] = {
 				{
 					9.047000000020489, -- [1]
@@ -4510,78 +4482,38 @@ DetailsTimeLineDB = {
 					"Holiloli", -- [5]
 				}, -- [10]
 			},
+			[264603] = {
+				{
+					17.52799999993295, -- [1]
+					"Elder Leaxa", -- [2]
+					264603, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[260894] = {
+				{
+					13.66999999992549, -- [1]
+					"Elder Leaxa", -- [2]
+					260894, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					27.04700000002049, -- [1]
+					"Blood Effigy", -- [2]
+					260894, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					29.48699999996461, -- [1]
+					"Elder Leaxa", -- [2]
+					260894, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+			},
 		}, -- [34]
 	},
 	["useicons"] = true,
-	["cooldowns_timeline"] = {
-		{
-			["Tremqt"] = {
-				{
-					3.679000000003725, -- [1]
-					"Tremqt", -- [2]
-					187827, -- [3]
-				}, -- [1]
-				{
-					41.90200000000186, -- [1]
-					"Lord Chamberlain", -- [2]
-					204021, -- [3]
-				}, -- [2]
-			},
-			["Holiloli"] = {
-				{
-					32.22800000000279, -- [1]
-					"Holiloli", -- [2]
-					498, -- [3]
-				}, -- [1]
-			},
-		}, -- [1]
-		{
-			["Tremqt"] = {
-				{
-					11.24199999996927, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					204021, -- [3]
-				}, -- [1]
-			},
-			["Meidk"] = {
-				{
-					24.52599999995437, -- [1]
-					"Meidk", -- [2]
-					48707, -- [3]
-				}, -- [1]
-			},
-		}, -- [2]
-		{
-			["Tremqt"] = {
-				{
-					20.8070000000298, -- [1]
-					"Tremqt", -- [2]
-					187827, -- [3]
-				}, -- [1]
-			},
-			["Meidk"] = {
-				{
-					25.61199999996461, -- [1]
-					"Meidk", -- [2]
-					48707, -- [3]
-				}, -- [1]
-				{
-					26.97900000005029, -- [1]
-					"Meidk", -- [2]
-					48792, -- [3]
-				}, -- [2]
-			},
-		}, -- [3]
-		{
-			["Tremqt"] = {
-				{
-					20.57999999995809, -- [1]
-					"Halkias", -- [2]
-					204021, -- [3]
-				}, -- [1]
-			},
-		}, -- [4]
-	},
+	["window_scale"] = 1,
 	["backdrop_color"] = {
 		0, -- [1]
 		0, -- [2]
@@ -4637,13 +4569,21 @@ DetailsTimeLineDB = {
 					["active"] = false,
 				},
 			},
-			["Veskker"] = {
-				[57724] = {
+			["Razarach"] = {
+				[290512] = {
 					52.52099999994971, -- [1]
 					52.52099999994971, -- [2]
 					["stacks"] = {
 					},
-					["source"] = "Veskker",
+					["source"] = "Sárooman-Ravencrest",
+					["active"] = false,
+				},
+				[352939] = {
+					52.52099999994971, -- [1]
+					52.52099999994971, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Maknurak-Blackmoore",
 					["active"] = false,
 				},
 			},
@@ -4717,21 +4657,13 @@ DetailsTimeLineDB = {
 					["active"] = false,
 				},
 			},
-			["Razarach"] = {
-				[290512] = {
+			["Veskker"] = {
+				[57724] = {
 					52.52099999994971, -- [1]
 					52.52099999994971, -- [2]
 					["stacks"] = {
 					},
-					["source"] = "Sárooman-Ravencrest",
-					["active"] = false,
-				},
-				[352939] = {
-					52.52099999994971, -- [1]
-					52.52099999994971, -- [2]
-					["stacks"] = {
-					},
-					["source"] = "Maknurak-Blackmoore",
+					["source"] = "Veskker",
 					["active"] = false,
 				},
 			},
@@ -4839,7 +4771,75 @@ DetailsTimeLineDB = {
 			},
 		}, -- [4]
 	},
-	["window_scale"] = 1,
+	["cooldowns_timeline"] = {
+		{
+			["Tremqt"] = {
+				{
+					3.679000000003725, -- [1]
+					"Tremqt", -- [2]
+					187827, -- [3]
+				}, -- [1]
+				{
+					41.90200000000186, -- [1]
+					"Lord Chamberlain", -- [2]
+					204021, -- [3]
+				}, -- [2]
+			},
+			["Holiloli"] = {
+				{
+					32.22800000000279, -- [1]
+					"Holiloli", -- [2]
+					498, -- [3]
+				}, -- [1]
+			},
+		}, -- [1]
+		{
+			["Tremqt"] = {
+				{
+					11.24199999996927, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					204021, -- [3]
+				}, -- [1]
+			},
+			["Meidk"] = {
+				{
+					24.52599999995437, -- [1]
+					"Meidk", -- [2]
+					48707, -- [3]
+				}, -- [1]
+			},
+		}, -- [2]
+		{
+			["Tremqt"] = {
+				{
+					20.8070000000298, -- [1]
+					"Tremqt", -- [2]
+					187827, -- [3]
+				}, -- [1]
+			},
+			["Meidk"] = {
+				{
+					25.61199999996461, -- [1]
+					"Meidk", -- [2]
+					48707, -- [3]
+				}, -- [1]
+				{
+					26.97900000005029, -- [1]
+					"Meidk", -- [2]
+					48792, -- [3]
+				}, -- [2]
+			},
+		}, -- [3]
+		{
+			["Tremqt"] = {
+				{
+					20.57999999995809, -- [1]
+					"Halkias", -- [2]
+					204021, -- [3]
+				}, -- [1]
+			},
+		}, -- [4]
+	},
 	["BossSpellCast"] = {
 		{
 			["Lord Chamberlain"] = {
@@ -5047,6 +5047,26 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
+			["Unknown"] = {
+				{
+					13.2510000000475, -- [1]
+					"Unknown", -- [2]
+					328124, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					13.2510000000475, -- [1]
+					"Unknown", -- [2]
+					328124, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					13.2510000000475, -- [1]
+					"Unknown", -- [2]
+					328124, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+			},
 			["Undying Stonefiend"] = {
 				{
 					24.10400000005029, -- [1]
@@ -5084,26 +5104,6 @@ DetailsTimeLineDB = {
 					328125, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [6]
-			},
-			["Unknown"] = {
-				{
-					13.2510000000475, -- [1]
-					"Unknown", -- [2]
-					328124, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					13.2510000000475, -- [1]
-					"Unknown", -- [2]
-					328124, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-				{
-					13.2510000000475, -- [1]
-					"Unknown", -- [2]
-					328124, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [3]
 			},
 		}, -- [3]
 		{

@@ -1,6 +1,7 @@
 # Macro Toolkit
 
-## [v2.1.2](https://github.com/NumyAddon/MacroToolkit/tree/v2.1.2) (2023-07-11)
-[Full Changelog](https://github.com/NumyAddon/MacroToolkit/compare/v2.1.1...v2.1.2) [Previous Releases](https://github.com/NumyAddon/MacroToolkit/releases)
+## [v2.2.8](https://github.com/NumyAddon/MacroToolkit/tree/v2.2.8) (2024-03-03)
+[Full Changelog](https://github.com/NumyAddon/MacroToolkit/compare/v2.2.7...v2.2.8) [Previous Releases](https://github.com/NumyAddon/MacroToolkit/releases)
 
-- TOC bump  
+- fix loading errors on classic era/wrath  
+- Minor cleanup  

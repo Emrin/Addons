@@ -7,7 +7,7 @@ GladiusEx.IS_CLASSIC = GladiusEx.IS_TBCC or GladiusEx.IS_WOTLKC
 
 local LGIST = GladiusEx.IS_RETAIL and LibStub:GetLibrary("LibGroupInSpecT-1.1")
 local L = LibStub("AceLocale-3.0"):GetLocale("GladiusEx")
-local RC = LibStub("LibRangeCheck-2.0")
+local RC = LibStub("LibRangeCheck-3.0")
 local LSM = LibStub("LibSharedMedia-3.0")
 local fn = LibStub("LibFunctional-1.0")
 
@@ -390,6 +390,7 @@ function GladiusEx:CheckFirstRun()
 		self:Print(L["Valid slash commands are:"])
 		self:Print("/gex ui")
 		self:Print("/gex test 2-5")
+		self:Print("/gex show")
 		self:Print("/gex hide")
 		self:Print("/gex reset")
 		self:Print(L["** If this is not your first run please lock or move the frame to prevent this from happening **"])
@@ -684,6 +685,9 @@ function GladiusEx:PLAYER_ENTERING_WORLD()
 end
 
 function GladiusEx:ARENA_PREP_OPPONENT_SPECIALIZATIONS()
+    if InCombatLockdown() then
+        return -- Combat doesnt end immediately when solo shuffle round ends so this would trigger a lua error if ran on the first events.
+    end
     self:CheckArenaSize()
     self:ShowFrames()
 

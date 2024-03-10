@@ -33,12 +33,8 @@ local timers = {
 local L = mod:GetLocale()
 if L then
 	L.doom_flames = "Small Soaks"
-	L.shadowlave_blast = "Frontal Cone"
 	L.charged_smash = "Big Soak"
 	L.energy_gained = "Energy Gained: %d"
-
-	-- Mythic
-	L.shadowflame_energy = "Heal Absorb"
 end
 
 --------------------------------------------------------------------------------
@@ -69,11 +65,11 @@ function mod:GetOptions()
 		[410070] = "mythic",
 	}, {
 		[410070] = CL.orbs, -- Unleash Shadowflame (Orbs)
-		[410075] = L.shadowflame_energy, -- Shadowflame Energy (Heal Absorb)
+		[410075] = CL.heal_absorb, -- Shadowflame Energy (Heal Absorb)
 		[405316] = CL.full_energy, -- Ancient Fury (Full Energy)
 		[405821] = CL.leap, -- Searing Slam (Leap)
 		[406851] = L.doom_flames, -- Doom Flames (Small Soaks)
-		[406333] = L.shadowlave_blast, -- Shadowlava Blast (Frontal Cone)
+		[406333] = CL.frontal_cone, -- Shadowlava Blast (Frontal Cone)
 		[400777] = L.charged_smash, -- Charged Smash (Big Soak)
 		[407641] = CL.tank_combo, -- Wrath of Djaruun (Tank Combo)
 	}
@@ -90,6 +86,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FlamingSlash", 407544)
 	self:Log("SPELL_CAST_START", "EarthenCrush", 407596)
 	self:Log("SPELL_AURA_APPLIED", "TankComboApplied", 407547, 407597) -- Flaming Slash, Earthen Crush
+	self:Log("SPELL_AURA_REMOVED", "TankComboRemoved", 407547, 407597)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "TankComboFailed", 407547, 407597)
 
 	self:Log("SPELL_AURA_APPLIED", "EldersConduitApplied", 401419)
 	self:Log("SPELL_AURA_REMOVED", "EldersConduitRemoved", 401419)
@@ -105,18 +103,18 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:SetStage(1)
 	searingSlamCount = 1
 	chargedSmashCount = 1
 	wrathOfDjaruunCount = 1
 	siphonEnergyCount = 1
 	unleashShadowflameCount = 1
+	self:SetStage(1)
 
 	self:Bar(405821, 9, CL.count:format(CL.leap, searingSlamCount)) -- Searing Slam
 	self:Bar(400777, 21, CL.count:format(L.charged_smash, chargedSmashCount)) -- Charged Smash
 	self:Bar(407641, 29, CL.count:format(CL.tank_combo, wrathOfDjaruunCount)) -- Wrath of Djaruun
 	self:Bar(406851, 39, L.doom_flames) -- Doom Flames
-	self:Bar(406333, 95.6, L.shadowlave_blast) -- Shadowlava Blast
+	self:Bar(406333, 95.6, CL.frontal_cone) -- Shadowlava Blast
 	self:Bar(405316, 113, CL.count:format(CL.full_energy, siphonEnergyCount)) -- Ancient Fury
 	if self:Mythic() then
 		self:Bar(410070, 4, CL.count:format(CL.orbs, unleashShadowflameCount)) -- Unleash Shadowflame
@@ -150,7 +148,7 @@ function mod:SearingSlamApplied(args)
 	self:TargetMessage(405821, "yellow", args.destName, msg)
 	if self:Me(args.destGUID) then
 		self:PlaySound(405821, "warning")
-		self:Say(405821, CL.leap)
+		self:Say(405821, CL.leap, nil, "Leap")
 		self:SayCountdown(405821, 4.9)
 	end
 	searingSlamCount = searingSlamCount + 1
@@ -171,8 +169,8 @@ function mod:DoomFlames(args)
 end
 
 function mod:ShadowlavaBlast(args)
-	self:StopBar(L.shadowlave_blast)
-	self:Message(args.spellId, "yellow", L.shadowlave_blast)
+	self:StopBar(CL.frontal_cone)
+	self:Message(args.spellId, "yellow", CL.frontal_cone)
 	self:PlaySound(args.spellId, "alert") -- frontal
 	-- 1 per rotation
 end
@@ -186,32 +184,62 @@ function mod:ChargedSmash(args)
 	self:Bar(args.spellId, timers[args.spellId][chargedSmashCount], CL.count:format(L.charged_smash, chargedSmashCount))
 end
 
-function mod:WrathOfDjaruun(args)
-	self:StopBar(CL.count:format(CL.tank_combo, wrathOfDjaruunCount))
-	wrathOfDjaruunCount = wrathOfDjaruunCount + 1
-	self:Bar(args.spellId, timers[args.spellId][wrathOfDjaruunCount], CL.count:format(CL.tank_combo, wrathOfDjaruunCount))
-end
+do
+	local flamingSlashCount, earthenCrushCount = 1, 1
+	local myStacks = {}
 
-function mod:FlamingSlash(args)
-	self:Message(407547, "purple", CL.casting:format(args.spellName))
-	local bossUnit = self:UnitTokenFromGUID(args.sourceGUID)
-	if bossUnit and self:Tank() and not self:Tanking(bossUnit) and not self:UnitDebuff("player", 407547) then -- Flaming Slash
-		self:PlaySound(407547, "warning") -- tauntswap
+	function mod:WrathOfDjaruun(args)
+		flamingSlashCount, earthenCrushCount = 1, 1
+		myStacks = {}
+		self:StopBar(CL.count:format(CL.tank_combo, wrathOfDjaruunCount))
+		wrathOfDjaruunCount = wrathOfDjaruunCount + 1
+		self:Bar(args.spellId, timers[args.spellId][wrathOfDjaruunCount], CL.count:format(CL.tank_combo, wrathOfDjaruunCount))
 	end
-end
 
-function mod:EarthenCrush(args)
-	self:Message(407597, "purple", CL.casting:format(args.spellName))
-	local bossUnit = self:UnitTokenFromGUID(args.sourceGUID)
-	if bossUnit and self:Tank() and not self:Tanking(bossUnit) and not self:UnitDebuff("player", 407597) then -- Earthen Crush
-		self:PlaySound(407597, "warning") -- tauntswap
+	function mod:FlamingSlash(args)
+		self:Message(407547, "purple", CL.count:format(args.spellName, flamingSlashCount))
+		if flamingSlashCount > 1 then
+			if self:Tank() and not myStacks[407547] then
+				self:PlaySound(407547, "warning") -- tauntswap
+			end
+		elseif self:Tank() then
+			local bossUnit = self:UnitTokenFromGUID(args.sourceGUID)
+			if bossUnit and self:Tanking(bossUnit) then
+				self:PlaySound(407547, "alarm") -- defensive
+			end
+		end
+		flamingSlashCount = flamingSlashCount + 1
 	end
-end
 
-function mod:TankComboApplied(args)
-	self:TargetMessage(args.spellId, "purple", args.destName)
-	if self:Me(args.destGUID) then
-		self:PlaySound(args.spellId, "alarm")
+	function mod:EarthenCrush(args)
+		self:Message(407597, "purple", CL.count:format(args.spellName, earthenCrushCount))
+		if earthenCrushCount > 1 then
+			if self:Tank() and not myStacks[407597] then
+				self:PlaySound(407597, "warning") -- tauntswap
+			end
+		elseif self:Tank() then
+			local bossUnit = self:UnitTokenFromGUID(args.sourceGUID)
+			if bossUnit and self:Tanking(bossUnit) then
+				self:PlaySound(407597, "alarm") -- defensive
+			end
+		end
+		earthenCrushCount = earthenCrushCount + 1
+	end
+
+	function mod:TankComboApplied(args)
+		if self:Me(args.destGUID) then
+			myStacks[args.spellId] = true
+		end
+	end
+
+	function mod:TankComboRemoved(args)
+		if self:Me(args.destGUID) then
+			myStacks[args.spellId] = nil
+		end
+	end
+
+	function mod:TankComboFailed(args)
+		self:StackMessage(407641, "purple", args.destName, args.amount, 1) -- Wrath of Djaruun option key
 	end
 end
 
@@ -231,7 +259,7 @@ function mod:EldersConduitApplied(args)
 	self:StopBar(CL.count:format(CL.full_energy, siphonEnergyCount)) -- Ancient Fury
 	self:StopBar(CL.count:format(CL.leap, searingSlamCount)) -- Searing Slam
 	self:StopBar(L.doom_flames) -- Doom Flames
-	self:StopBar(L.shadowlave_blast) -- Shadowlava Blast
+	self:StopBar(CL.frontal_cone) -- Shadowlava Blast
 	self:StopBar(CL.count:format(L.charged_smash, chargedSmashCount)) -- Charged Smash
 	self:StopBar(CL.count:format(CL.tank_combo, wrathOfDjaruunCount)) -- Wrath of Djaruun
 	self:StopBar(CL.count:format(CL.orbs, unleashShadowflameCount)) -- Unleash Shadowflame
@@ -264,7 +292,7 @@ function mod:EldersConduitRemoved(args)
 	self:Bar(400777, timers[400777][chargedSmashCount], CL.count:format(L.charged_smash, chargedSmashCount)) -- Charged Smash
 	self:Bar(407641, timers[407641][wrathOfDjaruunCount], CL.count:format(CL.tank_combo, wrathOfDjaruunCount)) -- Wrath of Djaruun
 	self:Bar(406851, 41, L.doom_flames) -- Doom Flames
-	self:Bar(406333, 97.8, L.shadowlave_blast) -- Shadowlava Blast
+	self:Bar(406333, 97.8, CL.frontal_cone) -- Shadowlava Blast
 	self:Bar(405316, 113, CL.count:format(CL.full_energy, siphonEnergyCount)) -- Ancient Fury
 	if self:Mythic() then
 		self:Bar(410070, timers[410070][unleashShadowflameCount], CL.count:format(CL.orbs, unleashShadowflameCount)) -- Unleash Shadowflame
@@ -292,5 +320,5 @@ function mod:UnleashShadowflame(args)
 	unleashShadowflameCount = unleashShadowflameCount + 1
 	self:Bar(args.spellId, timers[args.spellId][unleashShadowflameCount], CL.count:format(CL.orbs, unleashShadowflameCount))
 
-	self:Bar(410075, 18.5, L.shadowflame_energy) -- Shadowflame Energy
+	self:Bar(410075, 18.5, CL.heal_absorb) -- Shadowflame Energy
 end

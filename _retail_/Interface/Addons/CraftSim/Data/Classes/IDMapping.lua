@@ -1,4 +1,5 @@
-_, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 
 local print = CraftSim.UTIL:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.SPECDATA)
@@ -18,21 +19,6 @@ function CraftSim.IDMapping:new(recipeData, idMappingData, exceptionRecipeIDs)
     for categoryID, subtypeIDs in pairs(idMappingData or {}) do
         table.insert(self.categories, CraftSim.IDCategory(categoryID, subtypeIDs))
     end
-end
-
----@param idMapping CraftSim.IDMapping
-function CraftSim.IDMapping:Merge(idMapping)
-
-    for _, idCategory in pairs(idMapping.categories or {}) do
-        local myIDCategory = CraftSim.GUTIL:Find(self.categories, function(idC) return idC.categoryID == idCategory.categoryID end)
-        if not myIDCategory then
-            table.insert(self.categories, CraftSim.IDCategory(idCategory.categoryID, idCategory.subtypeIDs))
-        else
-            myIDCategory:Merge(idCategory)
-        end
-    end
-
-    self.exceptionRecipeIDs = CraftSim.GUTIL:ToSet(CraftSim.GUTIL:Concat({self.exceptionRecipeIDs, idMapping.exceptionRecipeIDs}))
 end
 
 function CraftSim.IDMapping:Debug()
@@ -70,7 +56,7 @@ function CraftSim.IDMapping:AffectsRecipe()
     if CraftSim.GUTIL:Find(self.categories, function(c) return c.categoryID == CraftSim.CONST.RECIPE_CATEGORIES.ALL end) then
         return true
     end
-    
+
     -- for all categories check if its subtypes contain the recipesubtype or all
     -- if the specific categoryID to subtypeIDs combination matches it matches
     for _, idCategory in pairs(self.categories) do

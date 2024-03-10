@@ -108,7 +108,7 @@ LCT_SpellData[96231] = {
 -- Divine Protection
 LCT_SpellData[498] = {
 	class = "PALADIN",
-	specID = { SPEC_PALADIN_PROTECTION, SPEC_PALADIN_HOLY },
+	talent = true,
 	defensive = true,
 	duration = 8,
 	cooldown = 60,
@@ -319,15 +319,6 @@ LCT_SpellData[207028] = {
 	cooldown = 20,
 	replaces = 62124, -- Hand of Reckoning
 }
--- Seraphim
-LCT_SpellData[152262] = {
-	class = "PALADIN",
-	talent = true,
-	cooldown = 45,
-	duration = 15,
-	offensive = true
-	-- TODO consumes charges of Shield of the Righteous
-}
 -- Blessing of Spellwarding
 LCT_SpellData[204018] = {
 	class = "PALADIN",
@@ -448,7 +439,6 @@ LCT_SpellData[343721] = {
 -- Divine Toll
 LCT_SpellData[304971] = {
 	class = "PALADIN",
-  	covenant = "KYRIAN",
 	offensive = true,
 	cooldown = 60
 }
@@ -456,7 +446,6 @@ LCT_SpellData[304971] = {
 -- Ashen Hollow
 LCT_SpellData[316958] = {
 	class = "PALADIN",
-	covenant = "VENTHYR",
 	offensive = true,
 	duration = 30,
 	cooldown = 240
@@ -465,7 +454,6 @@ LCT_SpellData[316958] = {
 -- Vanquishers Hammer
 LCT_SpellData[328204] = {
 	class = "PALADIN",
-	covenant = "NECROLORD",
 	offensive = true,
 	cooldown = 30
 }
@@ -473,7 +461,6 @@ LCT_SpellData[328204] = {
 -- Blessing of the Seasons
 LCT_SpellData[328278] = {
 	class = "PALADIN",
-	covenant = "NIGHTFAE",
 	offensive = true,
 	duration = 30,
 	cooldown = 45

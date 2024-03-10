@@ -77,8 +77,9 @@ BigWigs:AddColors("Rashok, the Elder", {
 	[405821] = {"blue","yellow"},
 	[406333] = "yellow",
 	[406851] = "orange",
-	[407547] = {"blue","purple"},
-	[407597] = {"blue","purple"},
+	[407547] = "purple",
+	[407597] = "purple",
+	[407641] = {"blue","purple"},
 	[410070] = "orange",
 })
 
@@ -133,6 +134,7 @@ BigWigs:AddColors("Scalecommander Sarkareth", {
 	[401810] = "red",
 	[401951] = "blue",
 	[402050] = "red",
+	[402746] = "blue",
 	[403520] = {"blue","yellow"},
 	[403625] = "red",
 	[403741] = "red",
@@ -145,7 +147,6 @@ BigWigs:AddColors("Scalecommander Sarkareth", {
 	[404754] = "orange",
 	[404769] = "blue",
 	[405486] = {"blue","yellow"},
-	[406428] = "blue",
 	[406989] = "blue",
 	[407576] = "blue",
 	[408429] = {"blue","purple"},

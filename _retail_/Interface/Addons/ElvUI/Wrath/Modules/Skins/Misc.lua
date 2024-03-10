@@ -14,31 +14,9 @@ local function ClearSetTexture(texture, tex)
 	end
 end
 
-local function SkinNavBarButtons(self)
-	local parentName = self:GetParent():GetName()
-	if (parentName == 'EncounterJournal' and not E.private.skins.blizzard.encounterjournal)
-	or (parentName == 'WorldMapFrame' and not E.private.skins.blizzard.worldmap)
-	or (parentName == 'HelpFrameKnowledgebase' and not E.private.skins.blizzard.help) then
-		return
-	end
-
-	local navButton = self.navList[#self.navList]
-	if navButton and not navButton.isSkinned then
-		S:HandleButton(navButton, true)
-		navButton:GetFontString():SetTextColor(1, 1, 1)
-
-		if navButton.MenuArrowButton then
-			navButton.MenuArrowButton:StripTextures()
-
-			if navButton.MenuArrowButton.Art then
-				navButton.MenuArrowButton.Art:SetTexture(E.Media.Textures.ArrowUp)
-				navButton.MenuArrowButton.Art:SetTexCoord(0, 1, 0, 1)
-				navButton.MenuArrowButton.Art:SetRotation(3.14)
-			end
-		end
-
-		navButton.xoffset = 1
-		navButton.isSkinned = true
+local function FixReadyCheckFrame(frame)
+	if frame.initiator and UnitIsUnit('player', frame.initiator) then
+		frame:Hide() -- bug fix, don't show it if player is initiator
 	end
 end
 
@@ -46,7 +24,7 @@ function S:BlizzardMiscFrames()
 	if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.misc) then return end
 
 	-- Blizzard frame we want to reskin
-	for _, frame in next, { _G.AutoCompleteBox, _G.ReadyCheckFrame } do
+	for _, frame in next, { _G.AutoCompleteBox, _G.QueueStatusFrame, _G.ReadyCheckFrame } do
 		frame:StripTextures()
 		frame:SetTemplate('Transparent')
 	end
@@ -66,14 +44,10 @@ function S:BlizzardMiscFrames()
 	_G.ReadyCheckFrameText:SetParent(ReadyCheckFrame)
 	_G.ReadyCheckFrameText:ClearAllPoints()
 	_G.ReadyCheckFrameText:Point('TOP', 0, -15)
+	_G.ReadyCheckFrameText:Width(300)
 
 	_G.ReadyCheckListenerFrame:SetAlpha(0)
-	ReadyCheckFrame:HookScript('OnShow', function(frame)
-		-- Bug fix, don't show it if player is initiator
-		if frame.initiator and UnitIsUnit('player', frame.initiator) then
-			frame:Hide()
-		end
-	end)
+	ReadyCheckFrame:HookScript('OnShow', FixReadyCheckFrame)
 
 	S:HandleButton(_G.StaticPopup1ExtraButton)
 
@@ -126,7 +100,7 @@ function S:BlizzardMiscFrames()
 		end
 	end)
 
-	for _, frame in next, { _G.ChatMenu, _G.EmoteMenu, _G.LanguageMenu, _G.VoiceMacroMenu } do
+	for _, frame in next, { _G.ChatMenu.NineSlice, _G.EmoteMenu.NineSlice, _G.LanguageMenu.NineSlice, _G.VoiceMacroMenu.NineSlice } do
 		if frame == _G.ChatMenu then
 			frame:HookScript('OnShow', function(menu) menu:SetTemplate('Transparent', true) menu:SetBackdropColor(unpack(E.media.backdropfadecolor)) menu:ClearAllPoints() menu:Point('BOTTOMLEFT', _G.ChatFrame1, 'TOPLEFT', 0, 30) end)
 		else
@@ -134,8 +108,20 @@ function S:BlizzardMiscFrames()
 		end
 	end
 
-	-- Emotes NineSlice
-	_G.ChatMenu.NineSlice:SetTemplate()
+	-- LFD Role Picker frame
+	_G.LFDRoleCheckPopup:StripTextures()
+	_G.LFDRoleCheckPopup:SetTemplate('Transparent')
+	S:HandleButton(_G.LFDRoleCheckPopupAcceptButton)
+	S:HandleButton(_G.LFDRoleCheckPopupDeclineButton)
+
+	for _, roleButton in next, {
+		_G.LFDRoleCheckPopupRoleButtonTank,
+		_G.LFDRoleCheckPopupRoleButtonDPS,
+		_G.LFDRoleCheckPopupRoleButtonHealer
+	} do
+		S:HandleCheckBox(roleButton.checkButton or roleButton.CheckButton, nil, nil, true)
+		roleButton:DisableDrawLayer('OVERLAY')
+	end
 
 	-- Reskin popup buttons
 	for i = 1, 4 do
@@ -201,7 +187,7 @@ function S:BlizzardMiscFrames()
 			expandArrow:SetNormalTexture(E.Media.Textures.ArrowUp)
 			normTex:SetVertexColor(unpack(E.media.rgbvaluecolor))
 			normTex:SetRotation(S.ArrowRotation.right)
-			expandArrow:Size(12, 12)
+			expandArrow:Size(12)
 		end
 
 		local Backdrop = _G[listFrameName..'Backdrop']
@@ -237,6 +223,7 @@ function S:BlizzardMiscFrames()
 			local check = _G['DropDownList'..level..'Button'..i..'Check']
 			local uncheck = _G['DropDownList'..level..'Button'..i..'UnCheck']
 			local highlight = _G['DropDownList'..level..'Button'..i..'Highlight']
+			local text = _G['DropDownList'..level..'Button'..i..'NormalText']
 
 			highlight:SetTexture(E.Media.Textures.Highlight)
 			highlight:SetBlendMode('BLEND')
@@ -248,28 +235,28 @@ function S:BlizzardMiscFrames()
 			end
 
 			if not button.notCheckable then
+				S:HandlePointXY(text, 5)
 				uncheck:SetTexture()
 
-				local _, co = check:GetTexCoord()
-				if co == 0 then
-					check:SetTexture([[Interface\Buttons\UI-CheckBox-Check]])
-					check:SetVertexColor(r, g, b, 1)
-					check:Size(20, 20)
-					check:SetDesaturated(true)
-					button.backdrop:SetInside(check, 4, 4)
-				else
+				if E.private.skins.checkBoxSkin then
 					check:SetTexture(E.media.normTex)
 					check:SetVertexColor(r, g, b, 1)
-					check:Size(10, 10)
+					check:Size(10)
 					check:SetDesaturated(false)
 					button.backdrop:SetOutside(check)
+				else
+					check:SetTexture([[Interface\Buttons\UI-CheckBox-Check]])
+					check:SetVertexColor(r, g, b, 1)
+					check:Size(20)
+					check:SetDesaturated(true)
+					button.backdrop:SetInside(check, 4, 4)
 				end
 
 				button.backdrop:Show()
 				check:SetTexCoord(0, 1, 0, 1)
 			else
 				button.backdrop:Hide()
-				check:Size(16, 16)
+				check:Size(16)
 			end
 		end
 	end)
@@ -313,8 +300,8 @@ function S:BlizzardMiscFrames()
 		end
 	end
 
-	--NavBar Buttons (Used in WorldMapFrame, EncounterJournal and HelpFrame)
-	hooksecurefunc('NavBar_AddButton', SkinNavBarButtons)
+	-- NavBar Buttons (Used in WorldMapFrame, EncounterJournal and HelpFrame)
+	hooksecurefunc('NavBar_AddButton', S.HandleNavBarButtons)
 end
 
 S:AddCallback('BlizzardMiscFrames')

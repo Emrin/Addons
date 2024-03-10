@@ -218,6 +218,12 @@ local exportGroup = {
 
         return serialize(data)
     end,
+    set = function(info, value)
+        local result, imported = pcall(importRoute, value)
+        if not (result and imported) then
+            print("|cFFFF0808Incorrect import string")
+        end
+    end,
     order = 999,
 }
 
@@ -235,12 +241,21 @@ local importGroup = {
     order = 999,
 }
 
+local function fixPlugins()
+    Routes.InitFixedGatherMate2Plugin()
+    Routes.InitFixedGathererPlugin()
+    Routes.InitFixedGatherLitePlugin()
+    Routes.InitFixedHandyNotesPlugin()
+end
+
 local function init(self, event, name)
     if (name ~= "RoutesImportExport") then return end
 
     Routes:GetAceOptRouteTable().args.info_group.args.rename = renameGroup
     Routes:GetAceOptRouteTable().args.info_group.args.export = exportGroup
     Routes.options.args.routes_group.args.import = importGroup
+
+    fixPlugins()
 end
 
 local frame = CreateFrame("Frame")

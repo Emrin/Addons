@@ -1,5 +1,7 @@
 
 EncounterDetailsDB = {
+	["chartData"] = {
+	},
 	["encounter_spells"] = {
 		[250372] = {
 			["school"] = 8,

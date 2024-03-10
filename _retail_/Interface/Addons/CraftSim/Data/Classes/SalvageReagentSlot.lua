@@ -1,4 +1,5 @@
-_, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 ---@class CraftSim.SalvageReagentSlot
 CraftSim.SalvageReagentSlot = CraftSim.Object:extend()
@@ -17,7 +18,6 @@ end
 
 ---@param itemID number
 function CraftSim.SalvageReagentSlot:SetItem(itemID)
-    
     local item = CraftSim.GUTIL:Find(self.possibleItems, function(item) return item:GetItemID() == itemID end)
 
     if not item then
@@ -45,7 +45,7 @@ function CraftSim.SalvageReagentSlot:GetJSON(indent)
     local jb = CraftSim.JSONBuilder(indent)
     jb:Begin()
     local itemList = {}
-    table.foreach(self.possibleItems, function (_, item)
+    table.foreach(self.possibleItems, function(_, item)
         table.insert(itemList, {
             itemID = item:GetItemID(),
             itemLink = item:GetItemLink()

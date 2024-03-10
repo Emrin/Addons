@@ -15,2191 +15,2191 @@ ElvCharacterDB = {
 		"/i fuck you all", -- [11]
 		"/i tunnel", -- [12]
 		"/reload", -- [13]
-		"/m", -- [14]
-		"/i MT", -- [15]
-		"/i myt a lot", -- [16]
-		"/i BET", -- [17]
-		"/i safe", -- [18]
-		"/i BET 2", -- [19]
-		"/i safwe", -- [20]
+		"/i MT", -- [14]
+		"/i myt a lot", -- [15]
+		"/i BET", -- [16]
+		"/i safe", -- [17]
+		"/i BET 2", -- [18]
+		"/i safwe", -- [19]
+		"/m", -- [20]
 	},
 	["ChatHistoryLog"] = {
 		{
-			"Offering boosts,Fated SoD HC 10/10 only <300k> Mythic+: m15 <140k> 4x m15 <490k>, KSM, KSH, also Sylvanas (1,8mln) and Jailer (3,8mln) mythic mounts, 50-60 Aswell.  /w me for more info! Gold only!", -- [1]
-			"Vxtr-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Lofog-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Vxtr-Draenor", -- [5]
+			"Lofog-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			252, -- [11]
-			"Player-1403-0A394A4F", -- [12]
+			2767, -- [11]
+			"Player-1403-0A9EEF8B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Vxtr|r",
-			[51] = 1664010385,
+			[52] = "|cffc41e3aLofog|r",
+			[51] = 1707682218,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [1]
 		{
-			"WTS Arena Boost for Gold! 0-2100 in 2v2, 0-2100 in 3v3! mgladiator player help! /w", -- [1]
-			"Gotspeed-Draenor", -- [2]
+			"Privet GP |cffffff00|Hachievement:19331:Player-3691-0A15A307:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|rmythic 9/9<35m>Heroic 9/9<150k> lootshare<250k>VIP<790k>Last 2 BossHeroic<90k>|cff66bbff|Hjournal:1:2519:14|h[Fyrakk the Blazing]|h|r<M+15-28> M+15=90k || M+16=100k||M+18=120k|| M+20=150k 4x20=650 8x20+armorstack=1100 <LVLup> /W Me", -- [1]
+			"Leviloper-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Gotspeed-Draenor", -- [5]
-			"DND", -- [6]
+			"Leviloper-Draenor", -- [5]
+			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			253, -- [11]
-			"Player-1403-0A3ED9A1", -- [12]
+			2768, -- [11]
+			"Player-1403-0A9A3F98", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffef367Gotspeed|r",
-			[51] = 1664010389,
+			[52] = "|cffc41e3aLeviloper|r",
+			[51] = 1707682218,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [2]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"hello! <|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|rHM 9/9 130k, Hm Unsave 210k, HM Vip 700k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r<80k, Last 2 90k><M+ 0-30><M+16 80k, M+17 90k, M+18 100k, M+20 150k,M+25 380k. M+26 550k><4xM24-25, 8xM16, 8xM17, 4xM20, 8xM20> /W M", -- [1]
+			"Diilara-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Diilara-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			254, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			2769, -- [11]
+			"Player-1403-0A97653B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010392,
+			[52] = "|cffc41e3aDiilara|r",
+			[51] = 1707682219,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [3]
 		{
-			"guild Group WTS  mythic 0 to +24 you can choose the key and also selling |cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r  fated   ((full hc 350k))) Team ready to go Only for gold more info whisper traders available", -- [1]
-			"Meddisa-Draenor", -- [2]
+			"Haiii ! |cffffff00|Hachievement:19331:Player-3391-0CC49652:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r HC 150k LS 230k Vip 800k |cffffff00|Hachievement:19350:Player-1621-0B3C9D43:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last 2 95k || M15-25 || M18=120k || 4m18=420k || M20=160k || 4M20= 590k ||M23=350k || M24=450k || 4m24=1600k || RBG 0-1800 = 4500k /w for info", -- [1]
+			"Regginä-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Meddisa-Draenor", -- [5]
+			"Regginä-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			259, -- [11]
-			"Player-1403-0A1A354D", -- [12]
+			2800, -- [11]
+			"Player-1403-0AA10B94", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaMeddisa|r",
-			[51] = 1664010401,
+			[52] = "|cffc41e3aRegginä|r",
+			[51] = 1707682262,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [4]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"Hey! HM FULL|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Yerally-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Yerally-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			266, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			2808, -- [11]
+			"Player-1403-0AA07C7A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664010479,
+			[52] = "|cfffff468Yerally|r",
+			[51] = 1707682277,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [5]
 		{
-			"<M+15 160k> <4x M+15 540k> <8x M+15 1000k> FREE ARMORSTACK / Fated HC/Mythic |cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Full Clear Limited traders available / KT&Sylvanas per 30 min / Mythic Jailer, Sylvanas with mount! /w for info", -- [1]
-			"Pixiemonk-Draenor", -- [2]
+			"Hey!  HM FULL |cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <75k> <M+ Keys >< Leveling 1-70>", -- [1]
+			"Swiftraids-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Pixiemonk-Draenor", -- [5]
+			"Swiftraids-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			272, -- [11]
-			"Player-1403-0A38095C", -- [12]
+			2809, -- [11]
+			"Player-1403-0A9F4832", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Pixiemonk|r",
-			[51] = 1664010430,
+			[52] = "|cff3fc7ebSwiftraids|r",
+			[51] = 1707682277,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [6]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Heroic or Only Curve RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Despettabear-Draenor", -- [2]
+			"Hey! HM FULL |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Swiftcurves-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Despettabear-Draenor", -- [5]
+			"Swiftcurves-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			274, -- [11]
-			"Player-1403-0A31729E", -- [12]
+			2810, -- [11]
+			"Player-1403-0AA07C77", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Despettabear|r",
-			[51] = 1664010433,
+			[52] = "|cff3fc7ebSwiftcurves|r",
+			[51] = 1707682277,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [7]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r Heroic or Only Curve  RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Whoisnial-Draenor", -- [2]
+			"huhu!! |cffffff00|Hachievement:19350:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k>Chance for|cffff8000|Hitem:206448::::::::10:1455:::::::::|h[Fyr'alath the Dreamrender]|h|r >LAST 2 95k<|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC 150k HC LS 230k VIP 800k || 4x+18=420k 4x+16=380k 4x+17=400k || +20=160k 4x+20=590k |cffffff00|Hachievement:14783:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 60]|h|r-|cffffff00|Hachievement:15805:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 120k", -- [1]
+			"Lisawowqt-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Whoisnial-Draenor", -- [5]
+			"Lisawowqt-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			277, -- [11]
-			"Player-1403-082E33EA", -- [12]
+			2811, -- [11]
+			"Player-1403-0AA07C3A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Whoisnial|r",
-			[51] = 1664010439,
+			[52] = "|cffc41e3aLisawowqt|r",
+			[51] = 1707682277,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [8]
 		{
-			"<Guild Group> selling Fated HC |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Full Clear with limited Traders! KT&Sylvanas per 30 min! Mythic Jailer, Sylvanas with mount! M+10-20 KSM/KSH with Armorstack! /w for info", -- [1]
-			"Kromâ-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::10:1455:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A937AF6:1:12:1:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beackenbauer-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Kromâ-Draenor", -- [5]
+			"Beackenbauer-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			279, -- [11]
-			"Player-1403-0A3BAFE0", -- [12]
+			2812, -- [11]
+			"Player-1403-0A937AF6", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffe7b09Kromâ|r",
-			[51] = 1664010442,
+			[52] = "|cffc41e3aBeackenbauer|r",
+			[51] = 1707682278,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [9]
 		{
-			"||Team Offering|| Weekly M+ [0-25|| [|cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rCurve! || Fated Heroic/Mythic |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r||Torghast] [PvP] ||leveling|| Sylvanas-Jailer  Mount || W/ info  <3 ", -- [1]
-			"Badbeaver-Draenor", -- [2]
+			"HEY! WTS |cffffff00|Hachievement:19350:Player-1403-0A90E12E:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC >> 75k << Every 15 mins! Guaranteed MountSkin |cffa335ee|Hitem:210537::::::::10:250:::::::::|h[Renewed Proto-Drake: Embodiment of Shadowflame]|h|r and Chance for 476+ilvl item & |cffff8000|Hitem:206448::::::::10:250:::::::::|h[Fyr'alath the Dreamrender]|h|r & |cffa335ee|Hitem:210947::::::::10:250:::::::::|h[Flame-Warped Curio]|h|r Last2HC 95k /w me", -- [1]
+			"Drpandaz-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Badbeaver-Draenor", -- [5]
+			"Drpandaz-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			280, -- [11]
-			"Player-1403-0A346460", -- [12]
+			2814, -- [11]
+			"Player-1403-0A90E12E", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Badbeaver|r",
-			[51] = 1664010444,
+			[52] = "|cffc41e3aDrpandaz|r",
+			[51] = 1707682279,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [10]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"Hi > |cffffff00|Hachievement:19331:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9HC 150K VIP 800k Unsave 220k|cffa335ee|Hitem:180653::::::::1:1450:::::::::|h[Mythic Keystone]|h|r M+20 150K 4M+18 360K 4x20 540k M+22 230k M+25 500k > 4x23 8x25 |cffffff00|Hachievement:19350:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last2 95k |cffffff00|Hachievement:6:Player-1403-0A8F8B07:1:11:15:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 249k |cffffff00|Hachievement:14783:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 60]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 99k", -- [1]
+			"Assimove-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Assimove-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			281, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			2815, -- [11]
+			"Player-1403-0A8F8B07", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010447,
+			[52] = "|cff00ff98Assimove|r",
+			[51] = 1707682280,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [11]
 		{
-			"Offering boosts,Fated SoD HC 10/10 only <300k> Mythic+: m15 <140k> 4x m15 <490k>, KSM, KSH, also Sylvanas (1,8mln) and Jailer (3,8mln) mythic mounts, 50-60 Aswell.  /w me for more info! Gold only!", -- [1]
-			"Vxtr-Draenor", -- [2]
+			"hello! <|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|rHM 9/9 130k, Hm Unsave 210k, HM Vip 700k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r<80k, Last 2 90k><M+ 0-30><M+16 80k, M+17 90k, M+18 100k, M+20 150k,M+25 380k. M+26 550k><4xM24-25, 8xM16, 8xM17, 4xM20, 8xM20> /W M", -- [1]
+			"Diilara-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Vxtr-Draenor", -- [5]
+			"Diilara-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			283, -- [11]
-			"Player-1403-0A394A4F", -- [12]
+			2816, -- [11]
+			"Player-1403-0A97653B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Vxtr|r",
-			[51] = 1664010456,
+			[52] = "|cffc41e3aDiilara|r",
+			[51] = 1707682280,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [12]
 		{
-			"<Guild Group> FATED HC Sanctum |||| Mythic SoD |||| Last 2 spam(KT+Syl) |||| M+ 10-20 timed keys! Specific key/armor stack!! We have discount for multi run |||| KSM Achivement |||| PVP-Torghast-Leveling |||||| GOLD ONLY!", -- [1]
-			"Aunov-Draenor", -- [2]
+			"Hey!  HM FULL|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <70k> <M+ Keys > < Leveling 1-70 >", -- [1]
+			"Linkstars-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Aunov-Draenor", -- [5]
+			"Linkstars-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			290, -- [11]
-			"Player-1403-0A3CDDBD", -- [12]
+			2817, -- [11]
+			"Player-1403-0A975BBC", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaAunov|r",
-			[51] = 1664010526,
+			[52] = "|cff3fc7ebLinkstars|r",
+			[51] = 1707682282,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [13]
 		{
-			"WTS Arena Boost for Gold! 0-2100 in 2v2, 0-2100 in 3v3! mgladiator player help! /w", -- [1]
-			"Gotspeed-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::1:1449:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A94ACEB:1:11:21:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beckenangó-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Gotspeed-Draenor", -- [5]
-			"DND", -- [6]
+			"Beckenangó-Draenor", -- [5]
+			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			292, -- [11]
-			"Player-1403-0A3ED9A1", -- [12]
+			2818, -- [11]
+			"Player-1403-0A94ACEB", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffef367Gotspeed|r",
-			[51] = 1664010529,
+			[52] = "|cff3fc7ebBeckenangó|r",
+			[51] = 1707682348,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [14]
 		{
-			"<Fel Army> Local Guild WTS 10/10 Fated SOD HC, NM or Sylvanas. Any Key Mythic +15-18, KSM. Grp is ready! Loot funnel available. W/me for info", -- [1]
-			"Dicaripuq-Draenor", -- [2]
+			"Privet GP |cffffff00|Hachievement:19331:Player-3691-0A15A307:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|rmythic 9/9<35m>Heroic 9/9<150k> lootshare<250k>VIP<790k>Last 2 BossHeroic<90k>|cff66bbff|Hjournal:1:2519:14|h[Fyrakk the Blazing]|h|r<M+15-28> M+15=90k || M+16=100k||M+18=120k|| M+20=150k 4x20=650 8x20+armorstack=1100 <LVLup> /W Me", -- [1]
+			"Leviloper-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Dicaripuq-Draenor", -- [5]
+			"Leviloper-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			295, -- [11]
-			"Player-1403-0A3DE0E5", -- [12]
+			2819, -- [11]
+			"Player-1403-0A9A3F98", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cDicaripuq|r",
-			[51] = 1664010533,
+			[52] = "|cffc41e3aLeviloper|r",
+			[51] = 1707682352,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [15]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Abitmonk-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Abitmonk-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			297, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			2830, -- [11]
+			"Player-1403-0A9EEF86", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664010480,
+			[52] = "|cff00ff98Abitmonk|r",
+			[51] = 1707682365,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [16]
 		{
-			"guild Group WTS  mythic 0 to +24 you can choose the key and also selling |cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r  fated   ((full hc 350k))) Team ready to go Only for gold more info whisper traders available", -- [1]
-			"Meddisa-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Lofog-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Meddisa-Draenor", -- [5]
+			"Lofog-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			298, -- [11]
-			"Player-1403-0A1A354D", -- [12]
+			2832, -- [11]
+			"Player-1403-0A9EEF8B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaMeddisa|r",
-			[51] = 1664010481,
+			[52] = "|cffc41e3aLofog|r",
+			[51] = 1707682369,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [17]
 		{
-			"<< Friendly Group with +6000 keys exp>> WTS <M+15-22><raids> <Torghast> Big Discounts For Multy Runs < KSH(8x20) >< KSM 8x15 Free armor stacks(2-3-4x) /w me Fair Pirces! Ready To Go!", -- [1]
-			"Silversting-Draenor", -- [2]
+			"LFW |cffffd000|Htrade:Player-1403-0A6FEA89:195126:197|h[Tailoring]|h|r |cffffd000|Htrade:Player-1403-0A6FEA89:7411:333|h[Enchanting]|h|r Can do |cffa335ee|Hitem:206961::::::::70:258::13:1:3524::::::|h[Enchanted Aspect's Dreaming Crest]|h|r", -- [1]
+			"Lykkemay-Draenor", -- [2]
 			"", -- [3]
-			"5. Trade (Services) - City", -- [4]
-			"Silversting-Draenor", -- [5]
+			"2. Trade - City", -- [4]
+			"Lykkemay-Draenor", -- [5]
 			"", -- [6]
-			42, -- [7]
-			5, -- [8]
-			"Trade (Services) - City", -- [9]
+			2, -- [7]
+			2, -- [8]
+			"Trade - City", -- [9]
 			0, -- [10]
-			299, -- [11]
-			"Player-1403-098557BD", -- [12]
+			2835, -- [11]
+			"Player-1403-0A6FEA89", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Silversting|r",
-			[51] = 1664010482,
+			[52] = "|cffffffffLykkemay|r",
+			[51] = 1707682373,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [18]
 		{
-			"||Guild Offer|| <<M+0/20 >> Fated Hc/Mythic[|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r  ! || Torghast || Pvp 2s-3s-Rbg ||Sylvanas / jailer Mount |||cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rcurve ! || W/ for info! xoxo  <3", -- [1]
-			"Congomongobo-Draenor", -- [2]
+			"Haiii ! |cffffff00|Hachievement:19331:Player-3391-0CC49652:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r HC 150k LS 230k Vip 800k |cffffff00|Hachievement:19350:Player-1621-0B3C9D43:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last 2 95k || M15-25 || M18=120k || 4m18=420k || M20=160k || 4M20= 590k ||M23=350k || M24=450k || 4m24=1600k || RBG 0-1800 = 4500k /w for info", -- [1]
+			"Regginä-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Congomongobo-Draenor", -- [5]
+			"Regginä-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			301, -- [11]
-			"Player-1403-0A346A35", -- [12]
+			2853, -- [11]
+			"Player-1403-0AA10B94", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cCongomongobo|r",
-			[51] = 1664010482,
+			[52] = "|cffc41e3aRegginä|r",
+			[51] = 1707682331,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [19]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"hello! <|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|rHM 9/9 130k, Hm Unsave 210k, HM Vip 700k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r<80k, Last 2 90k><M+ 0-30><M+16 80k, M+17 90k, M+18 100k, M+20 150k,M+25 380k. M+26 550k><4xM24-25, 8xM16, 8xM17, 4xM20, 8xM20> /W M", -- [1]
+			"Diilara-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Diilara-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			311, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			2858, -- [11]
+			"Player-1403-0A97653B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010507,
+			[52] = "|cffc41e3aDiilara|r",
+			[51] = 1707682340,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [20]
 		{
-			"<M+15 160k> <4x M+15 540k> <8x M+15 1000k> FREE ARMORSTACK / Fated HC/Mythic |cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Full Clear Limited traders available / KT&Sylvanas per 30 min / Mythic Jailer, Sylvanas with mount! /w for info", -- [1]
-			"Pixiemonk-Draenor", -- [2]
+			"HEY! WTS |cffffff00|Hachievement:19350:Player-1403-0A90E12E:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC >> 75k << Every 15 mins! Guaranteed MountSkin |cffa335ee|Hitem:210537::::::::10:250:::::::::|h[Renewed Proto-Drake: Embodiment of Shadowflame]|h|r and Chance for 476+ilvl item & |cffff8000|Hitem:206448::::::::10:250:::::::::|h[Fyr'alath the Dreamrender]|h|r & |cffa335ee|Hitem:210947::::::::10:250:::::::::|h[Flame-Warped Curio]|h|r Last2HC 95k /w me", -- [1]
+			"Drpandaz-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Pixiemonk-Draenor", -- [5]
+			"Drpandaz-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			314, -- [11]
-			"Player-1403-0A38095C", -- [12]
+			2861, -- [11]
+			"Player-1403-0A90E12E", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Pixiemonk|r",
-			[51] = 1664010518,
+			[52] = "|cffc41e3aDrpandaz|r",
+			[51] = 1707682406,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [21]
 		{
-			"<Fel Army> Local Guild WTS 10/10 Fated SOD HC, NM or Sylvanas. Any Key Mythic +15-18, KSM. Grp is ready! Loot funnel available. W/me for info", -- [1]
-			"Dicaripuq-Draenor", -- [2]
+			"Hi > |cffffff00|Hachievement:19331:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9HC 150K VIP 800k Unsave 220k|cffa335ee|Hitem:180653::::::::1:1450:::::::::|h[Mythic Keystone]|h|r M+20 150K 4M+18 360K 4x20 540k M+22 230k M+25 500k > 4x23 8x25 |cffffff00|Hachievement:19350:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last2 95k |cffffff00|Hachievement:6:Player-1403-0A8F8B07:1:11:15:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 249k |cffffff00|Hachievement:14783:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 60]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 99k", -- [1]
+			"Assimove-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Dicaripuq-Draenor", -- [5]
+			"Assimove-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			316, -- [11]
-			"Player-1403-0A3DE0E5", -- [12]
+			2863, -- [11]
+			"Player-1403-0A8F8B07", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cDicaripuq|r",
-			[51] = 1664010523,
+			[52] = "|cff00ff98Assimove|r",
+			[51] = 1707682407,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [22]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Heroic or Only Curve RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Despettabear-Draenor", -- [2]
+			"Hey! HM FULL|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Yerally-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Despettabear-Draenor", -- [5]
+			"Yerally-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			317, -- [11]
-			"Player-1403-0A31729E", -- [12]
+			2864, -- [11]
+			"Player-1403-0AA07C7A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Despettabear|r",
-			[51] = 1664010523,
+			[52] = "|cfffff468Yerally|r",
+			[51] = 1707682409,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [23]
 		{
-			"<Guild Group> selling Fated HC |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Full Clear with limited Traders! KT&Sylvanas per 30 min! Mythic Jailer, Sylvanas with mount! M+10-20 KSM/KSH with Armorstack! /w for info", -- [1]
-			"Kromâ-Draenor", -- [2]
+			"Hey!  HM FULL |cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <75k> <M+ Keys >< Leveling 1-70>", -- [1]
+			"Swiftraids-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Kromâ-Draenor", -- [5]
+			"Swiftraids-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			319, -- [11]
-			"Player-1403-0A3BAFE0", -- [12]
+			2865, -- [11]
+			"Player-1403-0A9F4832", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffe7b09Kromâ|r",
-			[51] = 1664010588,
+			[52] = "|cff3fc7ebSwiftraids|r",
+			[51] = 1707682409,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [24]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r Heroic or Only Curve  RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Whoisnial-Draenor", -- [2]
+			"Hey! HM FULL |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Swiftcurves-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Whoisnial-Draenor", -- [5]
+			"Swiftcurves-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			320, -- [11]
-			"Player-1403-082E33EA", -- [12]
+			2866, -- [11]
+			"Player-1403-0AA07C77", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Whoisnial|r",
-			[51] = 1664010589,
+			[52] = "|cff3fc7ebSwiftcurves|r",
+			[51] = 1707682409,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [25]
 		{
-			"<Guild Group> FATED HC Sanctum |||| Mythic SoD |||| Last 2 spam(KT+Syl) |||| M+ 10-20 timed keys! Specific key/armor stack!! We have discount for multi run |||| KSM Achivement |||| PVP-Torghast-Leveling |||||| GOLD ONLY!", -- [1]
-			"Aunov-Draenor", -- [2]
+			"Hey!  HM FULL|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <70k> <M+ Keys > < Leveling 1-70 >", -- [1]
+			"Linkstars-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Aunov-Draenor", -- [5]
+			"Linkstars-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			321, -- [11]
-			"Player-1403-0A3CDDBD", -- [12]
+			2869, -- [11]
+			"Player-1403-0A975BBC", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaAunov|r",
-			[51] = 1664010592,
+			[52] = "|cff3fc7ebLinkstars|r",
+			[51] = 1707682413,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [26]
 		{
-			"||Guild Offer|| <<M+0/20 >> Fated Hc/Mythic[|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r  ! || Torghast || Pvp 2s-3s-Rbg ||Sylvanas / jailer Mount |||cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rcurve ! || W/ for info! xoxo  <3", -- [1]
-			"Congomongobo-Draenor", -- [2]
+			"LFW |cffffd000|Htrade:Player-1403-0A4657F5:195097:164|h[Blacksmithing]|h|r Maxed out! All Weapons and Armor. 41% inspiring <Fair price> <Free Recrafts>", -- [1]
+			"Raboclap-Draenor", -- [2]
 			"", -- [3]
-			"5. Trade (Services) - City", -- [4]
-			"Congomongobo-Draenor", -- [5]
+			"2. Trade - City", -- [4]
+			"Raboclap-Draenor", -- [5]
 			"", -- [6]
-			42, -- [7]
-			5, -- [8]
-			"Trade (Services) - City", -- [9]
+			2, -- [7]
+			2, -- [8]
+			"Trade - City", -- [9]
 			0, -- [10]
-			322, -- [11]
-			"Player-1403-0A346A35", -- [12]
+			2870, -- [11]
+			"Player-1403-0A8D0209", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cCongomongobo|r",
-			[51] = 1664010592,
+			[52] = "|cffc69b6dRaboclap|r",
+			[51] = 1707682414,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [27]
 		{
-			"||Team Offering|| Weekly M+ [0-25|| [|cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rCurve! || Fated Heroic/Mythic |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r||Torghast] [PvP] ||leveling|| Sylvanas-Jailer  Mount || W/ info  <3 ", -- [1]
-			"Badbeaver-Draenor", -- [2]
+			"Privet GP |cffffff00|Hachievement:19331:Player-3691-0A15A307:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|rmythic 9/9<35m>Heroic 9/9<150k> lootshare<250k>VIP<790k>Last 2 BossHeroic<90k>|cff66bbff|Hjournal:1:2519:14|h[Fyrakk the Blazing]|h|r<M+15-28> M+15=90k || M+16=100k||M+18=120k|| M+20=150k 4x20=650 8x20+armorstack=1100 <LVLup> /W Me", -- [1]
+			"Leviloper-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Badbeaver-Draenor", -- [5]
+			"Leviloper-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			323, -- [11]
-			"Player-1403-0A346460", -- [12]
+			2875, -- [11]
+			"Player-1403-0A9A3F98", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Badbeaver|r",
-			[51] = 1664010596,
+			[52] = "|cffc41e3aLeviloper|r",
+			[51] = 1707682425,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [28]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::10:1455:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A937AF6:1:12:1:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beackenbauer-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Beackenbauer-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			324, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			2876, -- [11]
+			"Player-1403-0A937AF6", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664010597,
+			[52] = "|cffc41e3aBeackenbauer|r",
+			[51] = 1707682427,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [29]
 		{
-			"Offering boosts,Fated SoD HC 10/10 only <300k> Mythic+: m15 <140k> 4x m15 <490k>, KSM, KSH, also Sylvanas (1,8mln) and Jailer (3,8mln) mythic mounts, 50-60 Aswell.  /w me for more info! Gold only!", -- [1]
-			"Vxtr-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::1:1449:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A94ACEB:1:11:21:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beckenangó-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Vxtr-Draenor", -- [5]
+			"Beckenangó-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			325, -- [11]
-			"Player-1403-0A394A4F", -- [12]
+			2882, -- [11]
+			"Player-1403-0A94ACEB", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Vxtr|r",
-			[51] = 1664010540,
+			[52] = "|cff3fc7ebBeckenangó|r",
+			[51] = 1707682429,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [30]
 		{
-			"WTS Arena Boost for Gold! 0-2100 in 2v2, 0-2100 in 3v3! mgladiator player help! /w", -- [1]
-			"Gotspeed-Draenor", -- [2]
+			"huhu!! |cffffff00|Hachievement:19350:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k>Chance for|cffff8000|Hitem:206448::::::::10:1455:::::::::|h[Fyr'alath the Dreamrender]|h|r >LAST 2 95k<|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC 150k HC LS 230k VIP 800k || 4x+18=420k 4x+16=380k 4x+17=400k || +20=160k 4x+20=590k |cffffff00|Hachievement:14783:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 60]|h|r-|cffffff00|Hachievement:15805:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 120k", -- [1]
+			"Lisawowqt-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Gotspeed-Draenor", -- [5]
-			"DND", -- [6]
+			"Lisawowqt-Draenor", -- [5]
+			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			329, -- [11]
-			"Player-1403-0A3ED9A1", -- [12]
+			2888, -- [11]
+			"Player-1403-0AA07C3A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffef367Gotspeed|r",
-			[51] = 1664010549,
+			[52] = "|cffc41e3aLisawowqt|r",
+			[51] = 1707682383,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [31]
 		{
-			"guild Group WTS  mythic 0 to +24 you can choose the key and also selling |cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r  fated   ((full hc 350k))) Team ready to go Only for gold more info whisper traders available", -- [1]
-			"Meddisa-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Abitmonk-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Meddisa-Draenor", -- [5]
+			"Abitmonk-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			335, -- [11]
-			"Player-1403-0A1A354D", -- [12]
+			2895, -- [11]
+			"Player-1403-0A9EEF86", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaMeddisa|r",
-			[51] = 1664010561,
+			[52] = "|cff00ff98Abitmonk|r",
+			[51] = 1707682388,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [32]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"hello! <|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|rHM 9/9 130k, Hm Unsave 210k, HM Vip 700k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r<80k, Last 2 90k><M+ 0-30><M+16 80k, M+17 90k, M+18 100k, M+20 150k,M+25 380k. M+26 550k><4xM24-25, 8xM16, 8xM17, 4xM20, 8xM20> /W M", -- [1]
+			"Diilara-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Diilara-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			337, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			2902, -- [11]
+			"Player-1403-0A97653B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010566,
+			[52] = "|cffc41e3aDiilara|r",
+			[51] = 1707682401,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [33]
 		{
-			"<Fel Army> Local Guild WTS 10/10 Fated SOD HC, NM or Sylvanas. Any Key Mythic +15-18, KSM. Grp is ready! Loot funnel available. W/me for info", -- [1]
-			"Dicaripuq-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Lofog-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Dicaripuq-Draenor", -- [5]
+			"Lofog-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			342, -- [11]
-			"Player-1403-0A3DE0E5", -- [12]
+			2906, -- [11]
+			"Player-1403-0A9EEF8B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cDicaripuq|r",
-			[51] = 1664010570,
+			[52] = "|cffc41e3aLofog|r",
+			[51] = 1707682401,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [34]
 		{
-			"||Team Offering|| Weekly M+ [0-25|| [|cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rCurve! || Fated Heroic/Mythic |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r||Torghast] [PvP] ||leveling|| Sylvanas-Jailer  Mount || W/ info  <3 ", -- [1]
-			"Badbeaver-Draenor", -- [2]
+			"Haiii ! |cffffff00|Hachievement:19331:Player-3391-0CC49652:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r HC 150k LS 230k Vip 800k |cffffff00|Hachievement:19350:Player-1621-0B3C9D43:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last 2 95k || M15-25 || M18=120k || 4m18=420k || M20=160k || 4M20= 590k ||M23=350k || M24=450k || 4m24=1600k || RBG 0-1800 = 4500k /w for info", -- [1]
+			"Regginä-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Badbeaver-Draenor", -- [5]
+			"Regginä-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			350, -- [11]
-			"Player-1403-0A346460", -- [12]
+			2907, -- [11]
+			"Player-1403-0AA10B94", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Badbeaver|r",
-			[51] = 1664010585,
+			[52] = "|cffc41e3aRegginä|r",
+			[51] = 1707682402,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [35]
 		{
-			"<M+15 160k> <4x M+15 540k> <8x M+15 1000k> FREE ARMORSTACK / Fated HC/Mythic |cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Full Clear Limited traders available / KT&Sylvanas per 30 min / Mythic Jailer, Sylvanas with mount! /w for info", -- [1]
-			"Pixiemonk-Draenor", -- [2]
+			"Hi > |cffffff00|Hachievement:19331:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9HC 150K VIP 800k Unsave 220k|cffa335ee|Hitem:180653::::::::1:1450:::::::::|h[Mythic Keystone]|h|r M+20 150K 4M+18 360K 4x20 540k M+22 230k M+25 500k > 4x23 8x25 |cffffff00|Hachievement:19350:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last2 95k |cffffff00|Hachievement:6:Player-1403-0A8F8B07:1:11:15:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 249k |cffffff00|Hachievement:14783:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 60]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 99k", -- [1]
+			"Assimove-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Pixiemonk-Draenor", -- [5]
+			"Assimove-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			352, -- [11]
-			"Player-1403-0A38095C", -- [12]
+			2910, -- [11]
+			"Player-1403-0A8F8B07", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Pixiemonk|r",
-			[51] = 1664010654,
+			[52] = "|cff00ff98Assimove|r",
+			[51] = 1707682473,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [36]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"HEY! WTS |cffffff00|Hachievement:19350:Player-1403-0A90E12E:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC >> 75k << Every 15 mins! Guaranteed MountSkin |cffa335ee|Hitem:210537::::::::10:250:::::::::|h[Renewed Proto-Drake: Embodiment of Shadowflame]|h|r and Chance for 476+ilvl item & |cffff8000|Hitem:206448::::::::10:250:::::::::|h[Fyr'alath the Dreamrender]|h|r & |cffa335ee|Hitem:210947::::::::10:250:::::::::|h[Flame-Warped Curio]|h|r Last2HC 95k /w me", -- [1]
+			"Drpandaz-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Drpandaz-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			353, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			2912, -- [11]
+			"Player-1403-0A90E12E", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664010656,
+			[52] = "|cffc41e3aDrpandaz|r",
+			[51] = 1707682473,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [37]
 		{
-			"<Guild Group> FATED HC Sanctum |||| Mythic SoD |||| Last 2 spam(KT+Syl) |||| M+ 10-20 timed keys! Specific key/armor stack!! We have discount for multi run |||| KSM Achivement |||| PVP-Torghast-Leveling |||||| GOLD ONLY!", -- [1]
-			"Aunov-Draenor", -- [2]
+			"LFW |cffffd000|Htrade:Player-1403-0A6FEA89:195126:197|h[Tailoring]|h|r |cffffd000|Htrade:Player-1403-0A6FEA89:7411:333|h[Enchanting]|h|r Can do |cffa335ee|Hitem:206961::::::::70:258::13:1:3524::::::|h[Enchanted Aspect's Dreaming Crest]|h|r", -- [1]
+			"Lykkemay-Draenor", -- [2]
 			"", -- [3]
-			"5. Trade (Services) - City", -- [4]
-			"Aunov-Draenor", -- [5]
+			"2. Trade - City", -- [4]
+			"Lykkemay-Draenor", -- [5]
 			"", -- [6]
-			42, -- [7]
-			5, -- [8]
-			"Trade (Services) - City", -- [9]
+			2, -- [7]
+			2, -- [8]
+			"Trade - City", -- [9]
 			0, -- [10]
-			354, -- [11]
-			"Player-1403-0A3CDDBD", -- [12]
+			2917, -- [11]
+			"Player-1403-0A6FEA89", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaAunov|r",
-			[51] = 1664010658,
+			[52] = "|cffffffffLykkemay|r",
+			[51] = 1707682479,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [38]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Heroic or Only Curve RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Despettabear-Draenor", -- [2]
+			"Hey! HM FULL|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Yerally-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Despettabear-Draenor", -- [5]
+			"Yerally-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			359, -- [11]
-			"Player-1403-0A31729E", -- [12]
+			2918, -- [11]
+			"Player-1403-0AA07C7A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Despettabear|r",
-			[51] = 1664010614,
+			[52] = "|cfffff468Yerally|r",
+			[51] = 1707682481,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [39]
 		{
-			"<< Friendly Group with +6000 keys exp>> WTS <M+15-22><raids> <Torghast> Big Discounts For Multy Runs < KSH(8x20) >< KSM 8x15 Free armor stacks(2-3-4x) /w me Fair Pirces! Ready To Go!", -- [1]
-			"Silversting-Draenor", -- [2]
+			"Hey!  HM FULL |cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <75k> <M+ Keys >< Leveling 1-70>", -- [1]
+			"Swiftraids-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Silversting-Draenor", -- [5]
+			"Swiftraids-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			361, -- [11]
-			"Player-1403-098557BD", -- [12]
+			2919, -- [11]
+			"Player-1403-0A9F4832", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Silversting|r",
-			[51] = 1664010614,
+			[52] = "|cff3fc7ebSwiftraids|r",
+			[51] = 1707682481,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [40]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r Heroic or Only Curve  RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Whoisnial-Draenor", -- [2]
+			"Hey! HM FULL |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Swiftcurves-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Whoisnial-Draenor", -- [5]
+			"Swiftcurves-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			362, -- [11]
-			"Player-1403-082E33EA", -- [12]
+			2920, -- [11]
+			"Player-1403-0AA07C77", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Whoisnial|r",
-			[51] = 1664010620,
+			[52] = "|cff3fc7ebSwiftcurves|r",
+			[51] = 1707682481,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [41]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"Hey!  HM FULL|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <70k> <M+ Keys > < Leveling 1-70 >", -- [1]
+			"Linkstars-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Linkstars-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			363, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			2922, -- [11]
+			"Player-1403-0A975BBC", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010621,
+			[52] = "|cff3fc7ebLinkstars|r",
+			[51] = 1707682487,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [42]
 		{
-			"<Fel Army> Local Guild WTS 10/10 Fated SOD HC, NM or Sylvanas. Any Key Mythic +15-18, KSM. Grp is ready! Loot funnel available. W/me for info", -- [1]
-			"Dicaripuq-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::10:1455:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A937AF6:1:12:1:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beackenbauer-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Dicaripuq-Draenor", -- [5]
+			"Beackenbauer-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			365, -- [11]
-			"Player-1403-0A3DE0E5", -- [12]
+			2930, -- [11]
+			"Player-1403-0A937AF6", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cDicaripuq|r",
-			[51] = 1664010626,
+			[52] = "|cffc41e3aBeackenbauer|r",
+			[51] = 1707682498,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [43]
 		{
-			"||Guild Offer|| <<M+0/20 >> Fated Hc/Mythic[|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r  ! || Torghast || Pvp 2s-3s-Rbg ||Sylvanas / jailer Mount |||cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rcurve ! || W/ for info! xoxo  <3", -- [1]
-			"Congomongobo-Draenor", -- [2]
+			"Privet GP |cffffff00|Hachievement:19331:Player-3691-0A15A307:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|rmythic 9/9<35m>Heroic 9/9<150k> lootshare<250k>VIP<790k>Last 2 BossHeroic<90k>|cff66bbff|Hjournal:1:2519:14|h[Fyrakk the Blazing]|h|r<M+15-28> M+15=90k || M+16=100k||M+18=120k|| M+20=150k 4x20=650 8x20+armorstack=1100 <LVLup> /W Me", -- [1]
+			"Leviloper-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Congomongobo-Draenor", -- [5]
+			"Leviloper-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			366, -- [11]
-			"Player-1403-0A346A35", -- [12]
+			2931, -- [11]
+			"Player-1403-0A9A3F98", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cCongomongobo|r",
-			[51] = 1664010627,
+			[52] = "|cffc41e3aLeviloper|r",
+			[51] = 1707682499,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [44]
 		{
-			"WTS Arena Boost for Gold! 0-2100 in 2v2, 0-2100 in 3v3! mgladiator player help! /w", -- [1]
-			"Gotspeed-Draenor", -- [2]
+			"huhu!! |cffffff00|Hachievement:19350:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k>Chance for|cffff8000|Hitem:206448::::::::10:1455:::::::::|h[Fyr'alath the Dreamrender]|h|r >LAST 2 95k<|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC 150k HC LS 230k VIP 800k || 4x+18=420k 4x+16=380k 4x+17=400k || +20=160k 4x+20=590k |cffffff00|Hachievement:14783:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 60]|h|r-|cffffff00|Hachievement:15805:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 120k", -- [1]
+			"Lisawowqt-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Gotspeed-Draenor", -- [5]
-			"DND", -- [6]
+			"Lisawowqt-Draenor", -- [5]
+			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			368, -- [11]
-			"Player-1403-0A3ED9A1", -- [12]
+			2936, -- [11]
+			"Player-1403-0AA07C3A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffef367Gotspeed|r",
-			[51] = 1664010629,
+			[52] = "|cffc41e3aLisawowqt|r",
+			[51] = 1707682443,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [45]
 		{
-			"guild Group WTS  mythic 0 to +24 you can choose the key and also selling |cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r  fated   ((full hc 350k))) Team ready to go Only for gold more info whisper traders available", -- [1]
-			"Meddisa-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::1:1449:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A94ACEB:1:11:21:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beckenangó-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Meddisa-Draenor", -- [5]
+			"Beckenangó-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			371, -- [11]
-			"Player-1403-0A1A354D", -- [12]
+			2941, -- [11]
+			"Player-1403-0A94ACEB", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaMeddisa|r",
-			[51] = 1664010641,
+			[52] = "|cff3fc7ebBeckenangó|r",
+			[51] = 1707682453,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [46]
 		{
-			"Offering boosts,Fated SoD HC 10/10 only <300k> Mythic+: m15 <140k> 4x m15 <490k>, KSM, KSH, also Sylvanas (1,8mln) and Jailer (3,8mln) mythic mounts, 50-60 Aswell.  /w me for more info! Gold only!", -- [1]
-			"Vxtr-Draenor", -- [2]
+			"hello! <|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|rHM 9/9 130k, Hm Unsave 210k, HM Vip 700k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r<80k, Last 2 90k><M+ 0-30><M+16 80k, M+17 90k, M+18 100k, M+20 150k,M+25 380k. M+26 550k><4xM24-25, 8xM16, 8xM17, 4xM20, 8xM20> /W M", -- [1]
+			"Diilara-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Vxtr-Draenor", -- [5]
+			"Diilara-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			375, -- [11]
-			"Player-1403-0A394A4F", -- [12]
+			2949, -- [11]
+			"Player-1403-0A97653B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Vxtr|r",
-			[51] = 1664010706,
+			[52] = "|cffc41e3aDiilara|r",
+			[51] = 1707682462,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [47]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Abitmonk-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Abitmonk-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			378, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			2954, -- [11]
+			"Player-1403-0A9EEF86", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664010712,
+			[52] = "|cff00ff98Abitmonk|r",
+			[51] = 1707682526,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [48]
 		{
-			"<Guild Group> FATED HC Sanctum |||| Mythic SoD |||| Last 2 spam(KT+Syl) |||| M+ 10-20 timed keys! Specific key/armor stack!! We have discount for multi run |||| KSM Achivement |||| PVP-Torghast-Leveling |||||| GOLD ONLY!", -- [1]
-			"Aunov-Draenor", -- [2]
+			"Haiii ! |cffffff00|Hachievement:19331:Player-3391-0CC49652:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r HC 150k LS 230k Vip 800k |cffffff00|Hachievement:19350:Player-1621-0B3C9D43:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last 2 95k || M15-25 || M18=120k || 4m18=420k || M20=160k || 4M20= 590k ||M23=350k || M24=450k || 4m24=1600k || RBG 0-1800 = 4500k /w for info", -- [1]
+			"Regginä-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Aunov-Draenor", -- [5]
+			"Regginä-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			384, -- [11]
-			"Player-1403-0A3CDDBD", -- [12]
+			2955, -- [11]
+			"Player-1403-0AA10B94", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaAunov|r",
-			[51] = 1664010664,
+			[52] = "|cffc41e3aRegginä|r",
+			[51] = 1707682529,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [49]
 		{
-			"<Guild Group> selling Fated HC |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Full Clear with limited Traders! KT&Sylvanas per 30 min! Mythic Jailer, Sylvanas with mount! M+10-20 KSM/KSH with Armorstack! /w for info", -- [1]
-			"Kromâ-Draenor", -- [2]
+			"Hi > |cffffff00|Hachievement:19331:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9HC 150K VIP 800k Unsave 220k|cffa335ee|Hitem:180653::::::::1:1450:::::::::|h[Mythic Keystone]|h|r M+20 150K 4M+18 360K 4x20 540k M+22 230k M+25 500k > 4x23 8x25 |cffffff00|Hachievement:19350:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last2 95k |cffffff00|Hachievement:6:Player-1403-0A8F8B07:1:11:15:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 249k |cffffff00|Hachievement:14783:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 60]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 99k", -- [1]
+			"Assimove-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Kromâ-Draenor", -- [5]
+			"Assimove-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			386, -- [11]
-			"Player-1403-0A3BAFE0", -- [12]
+			2963, -- [11]
+			"Player-1403-0A8F8B07", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffe7b09Kromâ|r",
-			[51] = 1664010668,
+			[52] = "|cff00ff98Assimove|r",
+			[51] = 1707682541,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [50]
 		{
-			"<Fel Army> Local Guild WTS 10/10 Fated SOD HC, NM or Sylvanas. Any Key Mythic +15-18, KSM. Grp is ready! Loot funnel available. W/me for info", -- [1]
-			"Dicaripuq-Draenor", -- [2]
+			"HEY! WTS |cffffff00|Hachievement:19350:Player-1403-0A90E12E:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC >> 75k << Every 15 mins! Guaranteed MountSkin |cffa335ee|Hitem:210537::::::::10:250:::::::::|h[Renewed Proto-Drake: Embodiment of Shadowflame]|h|r and Chance for 476+ilvl item & |cffff8000|Hitem:206448::::::::10:250:::::::::|h[Fyr'alath the Dreamrender]|h|r & |cffa335ee|Hitem:210947::::::::10:250:::::::::|h[Flame-Warped Curio]|h|r Last2HC 95k /w me", -- [1]
+			"Drpandaz-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Dicaripuq-Draenor", -- [5]
+			"Drpandaz-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			389, -- [11]
-			"Player-1403-0A3DE0E5", -- [12]
+			2964, -- [11]
+			"Player-1403-0A90E12E", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cDicaripuq|r",
-			[51] = 1664010676,
+			[52] = "|cffc41e3aDrpandaz|r",
+			[51] = 1707682541,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [51]
 		{
-			"||Team Offering|| Weekly M+ [0-25|| [|cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rCurve! || Fated Heroic/Mythic |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r||Torghast] [PvP] ||leveling|| Sylvanas-Jailer  Mount || W/ info  <3 ", -- [1]
-			"Badbeaver-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Lofog-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Badbeaver-Draenor", -- [5]
+			"Lofog-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			391, -- [11]
-			"Player-1403-0A346460", -- [12]
+			2968, -- [11]
+			"Player-1403-0A9EEF8B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Badbeaver|r",
-			[51] = 1664010677,
+			[52] = "|cffc41e3aLofog|r",
+			[51] = 1707682548,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [52]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"Hey! HM FULL|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Yerally-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Yerally-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			392, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			2971, -- [11]
+			"Player-1403-0AA07C7A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010677,
+			[52] = "|cfffff468Yerally|r",
+			[51] = 1707682553,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [53]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Heroic or Only Curve RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Despettabear-Draenor", -- [2]
+			"Hey!  HM FULL |cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <75k> <M+ Keys >< Leveling 1-70>", -- [1]
+			"Swiftraids-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Despettabear-Draenor", -- [5]
+			"Swiftraids-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			404, -- [11]
-			"Player-1403-0A31729E", -- [12]
+			2972, -- [11]
+			"Player-1403-0A9F4832", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Despettabear|r",
-			[51] = 1664010704,
+			[52] = "|cff3fc7ebSwiftraids|r",
+			[51] = 1707682553,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [54]
 		{
-			"Offering boosts,Fated SoD HC 10/10 only <300k> Mythic+: m15 <140k> 4x m15 <490k>, KSM, KSH, also Sylvanas (1,8mln) and Jailer (3,8mln) mythic mounts, 50-60 Aswell.  /w me for more info! Gold only!", -- [1]
-			"Vxtr-Draenor", -- [2]
+			"Hey! HM FULL |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Swiftcurves-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Vxtr-Draenor", -- [5]
+			"Swiftcurves-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			408, -- [11]
-			"Player-1403-0A394A4F", -- [12]
+			2973, -- [11]
+			"Player-1403-0AA07C77", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Vxtr|r",
-			[51] = 1664010767,
+			[52] = "|cff3fc7ebSwiftcurves|r",
+			[51] = 1707682553,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [55]
 		{
-			"WTS Arena Boost for Gold! 0-2100 in 2v2, 0-2100 in 3v3! mgladiator player help! /w", -- [1]
-			"Gotspeed-Draenor", -- [2]
+			"Hey!  HM FULL|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <70k> <M+ Keys > < Leveling 1-70 >", -- [1]
+			"Linkstars-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Gotspeed-Draenor", -- [5]
-			"DND", -- [6]
+			"Linkstars-Draenor", -- [5]
+			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			409, -- [11]
-			"Player-1403-0A3ED9A1", -- [12]
+			2978, -- [11]
+			"Player-1403-0A975BBC", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffef367Gotspeed|r",
-			[51] = 1664010769,
+			[52] = "|cff3fc7ebLinkstars|r",
+			[51] = 1707682503,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [56]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"huhu!! |cffffff00|Hachievement:19350:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k>Chance for|cffff8000|Hitem:206448::::::::10:1455:::::::::|h[Fyr'alath the Dreamrender]|h|r >LAST 2 95k<|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC 150k HC LS 230k VIP 800k || 4x+18=420k 4x+16=380k 4x+17=400k || +20=160k 4x+20=590k |cffffff00|Hachievement:14783:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 60]|h|r-|cffffff00|Hachievement:15805:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 120k", -- [1]
+			"Lisawowqt-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Lisawowqt-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			410, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			2979, -- [11]
+			"Player-1403-0AA07C3A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664010770,
+			[52] = "|cffc41e3aLisawowqt|r",
+			[51] = 1707682504,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [57]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r Heroic or Only Curve  RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Whoisnial-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::10:1455:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A937AF6:1:12:1:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beackenbauer-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Whoisnial-Draenor", -- [5]
+			"Beackenbauer-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			411, -- [11]
-			"Player-1403-082E33EA", -- [12]
+			2986, -- [11]
+			"Player-1403-0A937AF6", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Whoisnial|r",
-			[51] = 1664010770,
+			[52] = "|cffc41e3aBeackenbauer|r",
+			[51] = 1707682510,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [58]
 		{
-			"<M+15 160k> <4x M+15 540k> <8x M+15 1000k> FREE ARMORSTACK / Fated HC/Mythic |cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Full Clear Limited traders available / KT&Sylvanas per 30 min / Mythic Jailer, Sylvanas with mount! /w for info", -- [1]
-			"Pixiemonk-Draenor", -- [2]
+			"Privet GP |cffffff00|Hachievement:19331:Player-3691-0A15A307:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|rmythic 9/9<35m>Heroic 9/9<150k> lootshare<250k>VIP<790k>Last 2 BossHeroic<90k>|cff66bbff|Hjournal:1:2519:14|h[Fyrakk the Blazing]|h|r<M+15-28> M+15=90k || M+16=100k||M+18=120k|| M+20=150k 4x20=650 8x20+armorstack=1100 <LVLup> /W Me", -- [1]
+			"Leviloper-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Pixiemonk-Draenor", -- [5]
+			"Leviloper-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			412, -- [11]
-			"Player-1403-0A38095C", -- [12]
+			2988, -- [11]
+			"Player-1403-0A9A3F98", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Pixiemonk|r",
-			[51] = 1664010770,
+			[52] = "|cffc41e3aLeviloper|r",
+			[51] = 1707682513,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [59]
 		{
-			"guild Group WTS  mythic 0 to +24 you can choose the key and also selling |cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r  fated   ((full hc 350k))) Team ready to go Only for gold more info whisper traders available", -- [1]
-			"Meddisa-Draenor", -- [2]
+			"hello! <|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|rHM 9/9 130k, Hm Unsave 210k, HM Vip 700k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r<80k, Last 2 90k><M+ 0-30><M+16 80k, M+17 90k, M+18 100k, M+20 150k,M+25 380k. M+26 550k><4xM24-25, 8xM16, 8xM17, 4xM20, 8xM20> /W M", -- [1]
+			"Diilara-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Meddisa-Draenor", -- [5]
+			"Diilara-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			421, -- [11]
-			"Player-1403-0A1A354D", -- [12]
+			2994, -- [11]
+			"Player-1403-0A97653B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaMeddisa|r",
-			[51] = 1664010721,
+			[52] = "|cffc41e3aDiilara|r",
+			[51] = 1707682522,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [60]
 		{
-			"||Team Offering|| Weekly M+ [0-25|| [|cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rCurve! || Fated Heroic/Mythic |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r||Torghast] [PvP] ||leveling|| Sylvanas-Jailer  Mount || W/ info  <3 ", -- [1]
-			"Badbeaver-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::1:1449:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A94ACEB:1:11:21:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beckenangó-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Badbeaver-Draenor", -- [5]
+			"Beckenangó-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			423, -- [11]
-			"Player-1403-0A346460", -- [12]
+			3003, -- [11]
+			"Player-1403-0A94ACEB", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Badbeaver|r",
-			[51] = 1664010724,
+			[52] = "|cff3fc7ebBeckenangó|r",
+			[51] = 1707682593,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [61]
 		{
-			"<Fel Army> Local Guild WTS 10/10 Fated SOD HC, NM or Sylvanas. Any Key Mythic +15-18, KSM. Grp is ready! Loot funnel available. W/me for info", -- [1]
-			"Dicaripuq-Draenor", -- [2]
+			"Haiii ! |cffffff00|Hachievement:19331:Player-3391-0CC49652:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r HC 150k LS 230k Vip 800k |cffffff00|Hachievement:19350:Player-1621-0B3C9D43:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last 2 95k || M15-25 || M18=120k || 4m18=420k || M20=160k || 4M20= 590k ||M23=350k || M24=450k || 4m24=1600k || RBG 0-1800 = 4500k /w for info", -- [1]
+			"Regginä-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Dicaripuq-Draenor", -- [5]
+			"Regginä-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			425, -- [11]
-			"Player-1403-0A3DE0E5", -- [12]
+			3006, -- [11]
+			"Player-1403-0AA10B94", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cDicaripuq|r",
-			[51] = 1664010727,
+			[52] = "|cffc41e3aRegginä|r",
+			[51] = 1707682598,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [62]
 		{
-			"<Guild Group> FATED HC Sanctum |||| Mythic SoD |||| Last 2 spam(KT+Syl) |||| M+ 10-20 timed keys! Specific key/armor stack!! We have discount for multi run |||| KSM Achivement |||| PVP-Torghast-Leveling |||||| GOLD ONLY!", -- [1]
-			"Aunov-Draenor", -- [2]
+			"LFW |cffffd000|Htrade:Player-1403-0A6FEA89:195126:197|h[Tailoring]|h|r |cffffd000|Htrade:Player-1403-0A6FEA89:7411:333|h[Enchanting]|h|r Can do |cffa335ee|Hitem:206961::::::::70:258::13:1:3524::::::|h[Enchanted Aspect's Dreaming Crest]|h|r", -- [1]
+			"Lykkemay-Draenor", -- [2]
 			"", -- [3]
-			"5. Trade (Services) - City", -- [4]
-			"Aunov-Draenor", -- [5]
+			"2. Trade - City", -- [4]
+			"Lykkemay-Draenor", -- [5]
 			"", -- [6]
-			42, -- [7]
-			5, -- [8]
-			"Trade (Services) - City", -- [9]
+			2, -- [7]
+			2, -- [8]
+			"Trade - City", -- [9]
 			0, -- [10]
-			427, -- [11]
-			"Player-1403-0A3CDDBD", -- [12]
+			3008, -- [11]
+			"Player-1403-0A6FEA89", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaAunov|r",
-			[51] = 1664010730,
+			[52] = "|cffffffffLykkemay|r",
+			[51] = 1707682604,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [63]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"Hi > |cffffff00|Hachievement:19331:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9HC 150K VIP 800k Unsave 220k|cffa335ee|Hitem:180653::::::::1:1450:::::::::|h[Mythic Keystone]|h|r M+20 150K 4M+18 360K 4x20 540k M+22 230k M+25 500k > 4x23 8x25 |cffffff00|Hachievement:19350:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last2 95k |cffffff00|Hachievement:6:Player-1403-0A8F8B07:1:11:15:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 249k |cffffff00|Hachievement:14783:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 60]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 99k", -- [1]
+			"Assimove-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Assimove-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			429, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			3012, -- [11]
+			"Player-1403-0A8F8B07", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010733,
+			[52] = "|cff00ff98Assimove|r",
+			[51] = 1707682607,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [64]
 		{
-			"<< Friendly Group with +6000 keys exp>> WTS <M+15-22><raids> <Torghast> Big Discounts For Multy Runs < KSH(8x20) >< KSM 8x15 Free armor stacks(2-3-4x) /w me Fair Pirces! Ready To Go!", -- [1]
-			"Silversting-Draenor", -- [2]
+			"HEY! WTS |cffffff00|Hachievement:19350:Player-1403-0A90E12E:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC >> 75k << Every 15 mins! Guaranteed MountSkin |cffa335ee|Hitem:210537::::::::10:250:::::::::|h[Renewed Proto-Drake: Embodiment of Shadowflame]|h|r and Chance for 476+ilvl item & |cffff8000|Hitem:206448::::::::10:250:::::::::|h[Fyr'alath the Dreamrender]|h|r & |cffa335ee|Hitem:210947::::::::10:250:::::::::|h[Flame-Warped Curio]|h|r Last2HC 95k /w me", -- [1]
+			"Drpandaz-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Silversting-Draenor", -- [5]
+			"Drpandaz-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			435, -- [11]
-			"Player-1403-098557BD", -- [12]
+			3013, -- [11]
+			"Player-1403-0A90E12E", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Silversting|r",
-			[51] = 1664010746,
+			[52] = "|cffc41e3aDrpandaz|r",
+			[51] = 1707682608,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [65]
 		{
-			"<Guild Group> selling Fated HC |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Full Clear with limited Traders! KT&Sylvanas per 30 min! Mythic Jailer, Sylvanas with mount! M+10-20 KSM/KSH with Armorstack! /w for info", -- [1]
-			"Kromâ-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Abitmonk-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Kromâ-Draenor", -- [5]
+			"Abitmonk-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			436, -- [11]
-			"Player-1403-0A3BAFE0", -- [12]
+			3020, -- [11]
+			"Player-1403-0A9EEF86", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffe7b09Kromâ|r",
-			[51] = 1664010752,
+			[52] = "|cff00ff98Abitmonk|r",
+			[51] = 1707682617,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [66]
 		{
-			"Premade Team Offering Heroic FATED |cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r FULL CLEAR / Personal & VIP ! / 0-20 Guarantee intime ( CHEAP PRICE ) FREE ARMOR STACK ! 1x15 2x15 4x15 / KSM /W Infoo", -- [1]
-			"Polerien-Draenor", -- [2]
+			"Hey!  HM FULL |cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <75k> <M+ Keys >< Leveling 1-70>", -- [1]
+			"Swiftraids-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Polerien-Draenor", -- [5]
+			"Swiftraids-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			441, -- [11]
-			"Player-1403-0A39B34E", -- [12]
+			3023, -- [11]
+			"Player-1403-0A9F4832", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffe7b09Polerien|r",
-			[51] = 1664010764,
+			[52] = "|cff3fc7ebSwiftraids|r",
+			[51] = 1707682562,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [67]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"Hey! HM FULL|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Yerally-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Yerally-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			443, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			3024, -- [11]
+			"Player-1403-0AA07C7A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664010826,
+			[52] = "|cfffff468Yerally|r",
+			[51] = 1707682562,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [68]
 		{
-			"<Fel Army> Local Guild WTS 10/10 Fated SOD HC, NM or Sylvanas. Any Key Mythic +15-18, KSM. Grp is ready! Loot funnel available. W/me for info", -- [1]
-			"Dicaripuq-Draenor", -- [2]
+			"Hey! HM FULL |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Swiftcurves-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Dicaripuq-Draenor", -- [5]
+			"Swiftcurves-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			449, -- [11]
-			"Player-1403-0A3DE0E5", -- [12]
+			3025, -- [11]
+			"Player-1403-0AA07C77", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cDicaripuq|r",
-			[51] = 1664010839,
+			[52] = "|cff3fc7ebSwiftcurves|r",
+			[51] = 1707682562,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [69]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"huhu!! |cffffff00|Hachievement:19350:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k>Chance for|cffff8000|Hitem:206448::::::::10:1455:::::::::|h[Fyr'alath the Dreamrender]|h|r >LAST 2 95k<|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC 150k HC LS 230k VIP 800k || 4x+18=420k 4x+16=380k 4x+17=400k || +20=160k 4x+20=590k |cffffff00|Hachievement:14783:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 60]|h|r-|cffffff00|Hachievement:15805:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 120k", -- [1]
+			"Lisawowqt-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Lisawowqt-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			452, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			3029, -- [11]
+			"Player-1403-0AA07C3A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010785,
+			[52] = "|cffc41e3aLisawowqt|r",
+			[51] = 1707682564,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [70]
 		{
-			"WTS Arena Boost for Gold! 0-2100 in 2v2, 0-2100 in 3v3! mgladiator player help! /w", -- [1]
-			"Gotspeed-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::10:1455:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A937AF6:1:12:1:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beackenbauer-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Gotspeed-Draenor", -- [5]
-			"DND", -- [6]
+			"Beackenbauer-Draenor", -- [5]
+			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			454, -- [11]
-			"Player-1403-0A3ED9A1", -- [12]
+			3034, -- [11]
+			"Player-1403-0A937AF6", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffef367Gotspeed|r",
-			[51] = 1664010789,
+			[52] = "|cffc41e3aBeackenbauer|r",
+			[51] = 1707682578,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [71]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Heroic or Only Curve RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Despettabear-Draenor", -- [2]
+			"Hey!  HM FULL|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <70k> <M+ Keys > < Leveling 1-70 >", -- [1]
+			"Linkstars-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Despettabear-Draenor", -- [5]
+			"Linkstars-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			456, -- [11]
-			"Player-1403-0A31729E", -- [12]
+			3036, -- [11]
+			"Player-1403-0A975BBC", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Despettabear|r",
-			[51] = 1664010795,
+			[52] = "|cff3fc7ebLinkstars|r",
+			[51] = 1707682580,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [72]
 		{
-			"<Guild Group> FATED HC Sanctum |||| Mythic SoD |||| Last 2 spam(KT+Syl) |||| M+ 10-20 timed keys! Specific key/armor stack!! We have discount for multi run |||| KSM Achivement |||| PVP-Torghast-Leveling |||||| GOLD ONLY!", -- [1]
-			"Aunov-Draenor", -- [2]
+			"Privet GP |cffffff00|Hachievement:19331:Player-3691-0A15A307:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|rmythic 9/9<35m>Heroic 9/9<150k> lootshare<250k>VIP<790k>Last 2 BossHeroic<90k>|cff66bbff|Hjournal:1:2519:14|h[Fyrakk the Blazing]|h|r<M+15-28> M+15=90k || M+16=100k||M+18=120k|| M+20=150k 4x20=650 8x20+armorstack=1100 <LVLup> /W Me", -- [1]
+			"Leviloper-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Aunov-Draenor", -- [5]
+			"Leviloper-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			457, -- [11]
-			"Player-1403-0A3CDDBD", -- [12]
+			3044, -- [11]
+			"Player-1403-0A9A3F98", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaAunov|r",
-			[51] = 1664010796,
+			[52] = "|cffc41e3aLeviloper|r",
+			[51] = 1707682647,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [73]
 		{
-			"<M+15 160k> <4x M+15 540k> <8x M+15 1000k> FREE ARMORSTACK / Fated HC/Mythic |cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Full Clear Limited traders available / KT&Sylvanas per 30 min / Mythic Jailer, Sylvanas with mount! /w for info", -- [1]
-			"Pixiemonk-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Lofog-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Pixiemonk-Draenor", -- [5]
+			"Lofog-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			458, -- [11]
-			"Player-1403-0A38095C", -- [12]
+			3046, -- [11]
+			"Player-1403-0A9EEF8B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Pixiemonk|r",
-			[51] = 1664010797,
+			[52] = "|cffc41e3aLofog|r",
+			[51] = 1707682647,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [74]
 		{
-			"Offering boosts,Fated SoD HC 10/10 only <300k> Mythic+: m15 <140k> 4x m15 <490k>, KSM, KSH, also Sylvanas (1,8mln) and Jailer (3,8mln) mythic mounts, 50-60 Aswell.  /w me for more info! Gold only!", -- [1]
-			"Vxtr-Draenor", -- [2]
+			"Haiii ! |cffffff00|Hachievement:19331:Player-3391-0CC49652:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r HC 150k LS 230k Vip 800k |cffffff00|Hachievement:19350:Player-1621-0B3C9D43:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last 2 95k || M15-25 || M18=120k || 4m18=420k || M20=160k || 4M20= 590k ||M23=350k || M24=450k || 4m24=1600k || RBG 0-1800 = 4500k /w for info", -- [1]
+			"Regginä-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Vxtr-Draenor", -- [5]
+			"Regginä-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			460, -- [11]
-			"Player-1403-0A394A4F", -- [12]
+			3057, -- [11]
+			"Player-1403-0AA10B94", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Vxtr|r",
-			[51] = 1664010799,
+			[52] = "|cffc41e3aRegginä|r",
+			[51] = 1707682663,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [75]
 		{
-			"Guild Group Offering <M+15/+25><KSM><KSH> Spec keys FATED|cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r Heroic or Only Curve  RUNS runs  <All Torghast Layers>. MOST CHEAPEST OFFERS For gold only /w me for info.  ", -- [1]
-			"Whoisnial-Draenor", -- [2]
+			"Hi > |cffffff00|Hachievement:19331:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9HC 150K VIP 800k Unsave 220k|cffa335ee|Hitem:180653::::::::1:1450:::::::::|h[Mythic Keystone]|h|r M+20 150K 4M+18 360K 4x20 540k M+22 230k M+25 500k > 4x23 8x25 |cffffff00|Hachievement:19350:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last2 95k |cffffff00|Hachievement:6:Player-1403-0A8F8B07:1:11:15:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 249k |cffffff00|Hachievement:14783:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 60]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 99k", -- [1]
+			"Assimove-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Whoisnial-Draenor", -- [5]
+			"Assimove-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			462, -- [11]
-			"Player-1403-082E33EA", -- [12]
+			3062, -- [11]
+			"Player-1403-0A8F8B07", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfff38bb9Whoisnial|r",
-			[51] = 1664010801,
+			[52] = "|cff00ff98Assimove|r",
+			[51] = 1707682673,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [76]
 		{
-			"guild Group WTS  mythic 0 to +24 you can choose the key and also selling |cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r  fated   ((full hc 350k))) Team ready to go Only for gold more info whisper traders available", -- [1]
-			"Meddisa-Draenor", -- [2]
+			"HEY! WTS |cffffff00|Hachievement:19350:Player-1403-0A90E12E:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC >> 75k << Every 15 mins! Guaranteed MountSkin |cffa335ee|Hitem:210537::::::::10:250:::::::::|h[Renewed Proto-Drake: Embodiment of Shadowflame]|h|r and Chance for 476+ilvl item & |cffff8000|Hitem:206448::::::::10:250:::::::::|h[Fyr'alath the Dreamrender]|h|r & |cffa335ee|Hitem:210947::::::::10:250:::::::::|h[Flame-Warped Curio]|h|r Last2HC 95k /w me", -- [1]
+			"Drpandaz-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Meddisa-Draenor", -- [5]
+			"Drpandaz-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			463, -- [11]
-			"Player-1403-0A1A354D", -- [12]
+			3068, -- [11]
+			"Player-1403-0A90E12E", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaMeddisa|r",
-			[51] = 1664010802,
+			[52] = "|cffc41e3aDrpandaz|r",
+			[51] = 1707682676,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [77]
 		{
-			"||Guild Offer|| <<M+0/20 >> Fated Hc/Mythic[|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r  ! || Torghast || Pvp 2s-3s-Rbg ||Sylvanas / jailer Mount |||cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rcurve ! || W/ for info! xoxo  <3", -- [1]
-			"Congomongobo-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::1:1449:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A94ACEB:1:11:21:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beckenangó-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Congomongobo-Draenor", -- [5]
+			"Beckenangó-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			465, -- [11]
-			"Player-1403-0A346A35", -- [12]
+			3069, -- [11]
+			"Player-1403-0A94ACEB", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cCongomongobo|r",
-			[51] = 1664010804,
+			[52] = "|cff3fc7ebBeckenangó|r",
+			[51] = 1707682677,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [78]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"huhu!! |cffffff00|Hachievement:19350:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k>Chance for|cffff8000|Hitem:206448::::::::10:1455:::::::::|h[Fyr'alath the Dreamrender]|h|r >LAST 2 95k<|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC 150k HC LS 230k VIP 800k || 4x+18=420k 4x+16=380k 4x+17=400k || +20=160k 4x+20=590k |cffffff00|Hachievement:14783:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 60]|h|r-|cffffff00|Hachievement:15805:Player-1403-0AA07C3A:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 120k", -- [1]
+			"Lisawowqt-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Lisawowqt-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			476, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			3073, -- [11]
+			"Player-1403-0AA07C3A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664010824,
+			[52] = "|cffc41e3aLisawowqt|r",
+			[51] = 1707682624,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [79]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"hello! <|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|rHM 9/9 130k, Hm Unsave 210k, HM Vip 700k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r<80k, Last 2 90k><M+ 0-30><M+16 80k, M+17 90k, M+18 100k, M+20 150k,M+25 380k. M+26 550k><4xM24-25, 8xM16, 8xM17, 4xM20, 8xM20> /W M", -- [1]
+			"Diilara-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Diilara-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			480, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			3074, -- [11]
+			"Player-1403-0A97653B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664010892,
+			[52] = "|cffc41e3aDiilara|r",
+			[51] = 1707682628,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [80]
 		{
-			"<Guild Group> selling Fated HC |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r Full Clear with limited Traders! KT&Sylvanas per 30 min! Mythic Jailer, Sylvanas with mount! M+10-20 KSM/KSH with Armorstack! /w for info", -- [1]
-			"Kromâ-Draenor", -- [2]
+			"Hey! HM FULL|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Yerally-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Kromâ-Draenor", -- [5]
+			"Yerally-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			481, -- [11]
-			"Player-1403-0A3BAFE0", -- [12]
+			3078, -- [11]
+			"Player-1403-0AA07C7A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffe7b09Kromâ|r",
-			[51] = 1664010893,
+			[52] = "|cfffff468Yerally|r",
+			[51] = 1707682635,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [81]
 		{
-			"WTS Friendly Gp* Torghast Layer (12-16) And  Dungeons  M+15+21+> ARmor Stack > Can Offer For Multi Run >100% Guarantee (KSM+KSH) only For Gold /w For more info", -- [1]
-			"Icewoman-Draenor", -- [2]
+			"Hey! HM FULL |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Swiftcurves-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Icewoman-Draenor", -- [5]
+			"Swiftcurves-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			491, -- [11]
-			"Player-1403-089762FD", -- [12]
+			3079, -- [11]
+			"Player-1403-0AA07C77", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffe7b09Icewoman|r",
-			[51] = 1664010849,
+			[52] = "|cff3fc7ebSwiftcurves|r",
+			[51] = 1707682636,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [82]
 		{
-			"||Team Offering|| Weekly M+ [0-25|| [|cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rCurve! || Fated Heroic/Mythic |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r||Torghast] [PvP] ||leveling|| Sylvanas-Jailer  Mount || W/ info  <3 ", -- [1]
-			"Badbeaver-Draenor", -- [2]
+			"Hey!  HM FULL |cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <75k> <M+ Keys >< Leveling 1-70>", -- [1]
+			"Swiftraids-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Badbeaver-Draenor", -- [5]
+			"Swiftraids-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			494, -- [11]
-			"Player-1403-0A346460", -- [12]
+			3080, -- [11]
+			"Player-1403-0A9F4832", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Badbeaver|r",
-			[51] = 1664010855,
+			[52] = "|cff3fc7ebSwiftraids|r",
+			[51] = 1707682636,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [83]
 		{
-			"Premade Team Offering Heroic FATED |cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r FULL CLEAR / Personal & VIP ! / 0-20 Guarantee intime ( CHEAP PRICE ) FREE ARMOR STACK ! 1x15 2x15 4x15 / KSM /W Infoo", -- [1]
-			"Polerien-Draenor", -- [2]
+			"LFW |cffffd000|Htrade:Player-1403-0A6FEA89:195126:197|h[Tailoring]|h|r |cffffd000|Htrade:Player-1403-0A6FEA89:7411:333|h[Enchanting]|h|r Can do |cffa335ee|Hitem:206961::::::::70:258::13:1:3524::::::|h[Enchanted Aspect's Dreaming Crest]|h|r", -- [1]
+			"Lykkemay-Draenor", -- [2]
 			"", -- [3]
-			"5. Trade (Services) - City", -- [4]
-			"Polerien-Draenor", -- [5]
+			"2. Trade - City", -- [4]
+			"Lykkemay-Draenor", -- [5]
 			"", -- [6]
-			42, -- [7]
-			5, -- [8]
-			"Trade (Services) - City", -- [9]
+			2, -- [7]
+			2, -- [8]
+			"Trade - City", -- [9]
 			0, -- [10]
-			495, -- [11]
-			"Player-1403-0A39B34E", -- [12]
+			3083, -- [11]
+			"Player-1403-0A6FEA89", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffe7b09Polerien|r",
-			[51] = 1664010856,
+			[52] = "|cffffffffLykkemay|r",
+			[51] = 1707682639,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [84]
 		{
-			"<Guild Group> FATED HC Sanctum |||| Mythic SoD |||| Last 2 spam(KT+Syl) |||| M+ 10-20 timed keys! Specific key/armor stack!! We have discount for multi run |||| KSM Achivement |||| PVP-Torghast-Leveling |||||| GOLD ONLY!", -- [1]
-			"Aunov-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Abitmonk-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Aunov-Draenor", -- [5]
+			"Abitmonk-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			499, -- [11]
-			"Player-1403-0A3CDDBD", -- [12]
+			3084, -- [11]
+			"Player-1403-0A9EEF86", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaAunov|r",
-			[51] = 1664010862,
+			[52] = "|cff00ff98Abitmonk|r",
+			[51] = 1707682640,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [85]
 		{
-			"WTS Arena Boost for Gold! 0-2100 in 2v2, 0-2100 in 3v3! mgladiator player help! /w", -- [1]
-			"Gotspeed-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::10:1455:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A937AF6:1:12:1:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beackenbauer-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Gotspeed-Draenor", -- [5]
-			"DND", -- [6]
+			"Beackenbauer-Draenor", -- [5]
+			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			502, -- [11]
-			"Player-1403-0A3ED9A1", -- [12]
+			3095, -- [11]
+			"Player-1403-0A937AF6", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffef367Gotspeed|r",
-			[51] = 1664010869,
+			[52] = "|cffc41e3aBeackenbauer|r",
+			[51] = 1707682707,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [86]
 		{
-			"Offering boosts,Fated SoD HC 10/10 only <300k> Mythic+: m15 <140k> 4x m15 <490k>, KSM, KSH, also Sylvanas (1,8mln) and Jailer (3,8mln) mythic mounts, 50-60 Aswell.  /w me for more info! Gold only!", -- [1]
-			"Vxtr-Draenor", -- [2]
+			"Hey!  HM FULL|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <70k> <M+ Keys > < Leveling 1-70 >", -- [1]
+			"Linkstars-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Vxtr-Draenor", -- [5]
+			"Linkstars-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			503, -- [11]
-			"Player-1403-0A394A4F", -- [12]
+			3097, -- [11]
+			"Player-1403-0A975BBC", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffa9d271Vxtr|r",
-			[51] = 1664010876,
+			[52] = "|cff3fc7ebLinkstars|r",
+			[51] = 1707682710,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [87]
 		{
-			"<Guild Group> WTS <M+ +10-+15-+25> [Specific Key+Armor Stack] [4x15/8x15/KSM/KSH] grp ready right now &|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r Hc/Mythic Mount sylvanas & jailer (Sylvanas evry 30 min) Gold only< /w Me for info!", -- [1]
-			"Issabbella-Draenor", -- [2]
+			"Privet GP |cffffff00|Hachievement:19331:Player-3691-0A15A307:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|rmythic 9/9<35m>Heroic 9/9<150k> lootshare<250k>VIP<790k>Last 2 BossHeroic<90k>|cff66bbff|Hjournal:1:2519:14|h[Fyrakk the Blazing]|h|r<M+15-28> M+15=90k || M+16=100k||M+18=120k|| M+20=150k 4x20=650 8x20+armorstack=1100 <LVLup> /W Me", -- [1]
+			"Leviloper-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Issabbella-Draenor", -- [5]
+			"Leviloper-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			78, -- [11]
-			"Player-1403-0A40C142", -- [12]
+			3110, -- [11]
+			"Player-1403-0A9A3F98", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcIssabbella|r",
-			[51] = 1664097314,
+			[52] = "|cffc41e3aLeviloper|r",
+			[51] = 1707682720,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [88]
 		{
-			"WTS Arena Boost for Gold! 0-2100 in 2v2, 0-2100 in 3v3! mgladiator player help! /w", -- [1]
-			"Gotspeed-Draenor", -- [2]
+			"Offering--> |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r 9/9 HC=<130k>, HC LS=<230k>, HC VIP=<800k>, HC Last2 Boss=<90k>|| M+10-->M+27, 4xM+17=<290k>, 4xM+18=<320k>, 4xM+20=<390k>, M+20=<110k>||1-70 LvL,PvP,Mounts. Just GOLD!", -- [1]
+			"Lofog-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Gotspeed-Draenor", -- [5]
-			"DND", -- [6]
+			"Lofog-Draenor", -- [5]
+			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			79, -- [11]
-			"Player-1403-0A3ED9A1", -- [12]
+			3117, -- [11]
+			"Player-1403-0A9EEF8B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cfffef367Gotspeed|r",
-			[51] = 1664097315,
+			[52] = "|cffc41e3aLofog|r",
+			[51] = 1707682728,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [89]
 		{
-			"guild Group WTS  mythic 0 to +24 you can choose the key and also selling |cff66bbff|Hjournal:0:1193:15|h[Sanctum of Domination]|h|r  fated   ((full hc 325k))) Team ready to go Only for gold more info whisper traders available", -- [1]
-			"Meddisa-Draenor", -- [2]
+			"Haiii ! |cffffff00|Hachievement:19331:Player-3391-0CC49652:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r HC 150k LS 230k Vip 800k |cffffff00|Hachievement:19350:Player-1621-0B3C9D43:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last 2 95k || M15-25 || M18=120k || 4m18=420k || M20=160k || 4M20= 590k ||M23=350k || M24=450k || 4m24=1600k || RBG 0-1800 = 4500k /w for info", -- [1]
+			"Regginä-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Meddisa-Draenor", -- [5]
+			"Regginä-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			80, -- [11]
-			"Player-1403-0A1A354D", -- [12]
+			3128, -- [11]
+			"Player-1403-0AA10B94", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaMeddisa|r",
-			[51] = 1664097318,
+			[52] = "|cffc41e3aRegginä|r",
+			[51] = 1707682732,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [90]
 		{
-			"Selling M+15-20 With Good Price >Discount for multi Run <<4x15< >Armor Stack > Specific Key < KeystoneMasterSeason4 >Also selling |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r // Sylvanas Kill every 30minute / w/m for spot", -- [1]
-			"Taysawaki-Draenor", -- [2]
+			"Hi > |cffffff00|Hachievement:19331:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9HC 150K VIP 800k Unsave 220k|cffa335ee|Hitem:180653::::::::1:1450:::::::::|h[Mythic Keystone]|h|r M+20 150K 4M+18 360K 4x20 540k M+22 230k M+25 500k > 4x23 8x25 |cffffff00|Hachievement:19350:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r 75k Last2 95k |cffffff00|Hachievement:6:Player-1403-0A8F8B07:1:11:15:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 249k |cffffff00|Hachievement:14783:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 60]|h|r>|cffffff00|Hachievement:15805:Player-1403-0A8F8B07:0:0:0:-1:0:0:0:0|h[Level 70]|h|r 99k", -- [1]
+			"Assimove-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Taysawaki-Draenor", -- [5]
+			"Assimove-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			81, -- [11]
-			"Player-1403-0A3DE915", -- [12]
+			3134, -- [11]
+			"Player-1403-0A8F8B07", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcTaysawaki|r",
-			[51] = 1664097321,
+			[52] = "|cff00ff98Assimove|r",
+			[51] = 1707682738,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [91]
 		{
-			"<Guild Group> FATED HC Sanctum |||| Mythic SoD |||| Last 2 spam(KT+Syl) |||| M+ 10-20 timed keys! Specific key/armor stack!! We have discount for multi run |||| KSM Achivement |||| PVP-Torghast-Leveling |||||| GOLD ONLY!", -- [1]
-			"Aunov-Draenor", -- [2]
+			"HEY! WTS |cffffff00|Hachievement:19350:Player-1403-0A90E12E:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC >> 75k << Every 15 mins! Guaranteed MountSkin |cffa335ee|Hitem:210537::::::::10:250:::::::::|h[Renewed Proto-Drake: Embodiment of Shadowflame]|h|r and Chance for 476+ilvl item & |cffff8000|Hitem:206448::::::::10:250:::::::::|h[Fyr'alath the Dreamrender]|h|r & |cffa335ee|Hitem:210947::::::::10:250:::::::::|h[Flame-Warped Curio]|h|r Last2HC 95k /w me", -- [1]
+			"Drpandaz-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Aunov-Draenor", -- [5]
+			"Drpandaz-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			82, -- [11]
-			"Player-1403-0A3CDDBD", -- [12]
+			3141, -- [11]
+			"Player-1403-0A90E12E", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff3ec6eaAunov|r",
-			[51] = 1664097322,
+			[52] = "|cffc41e3aDrpandaz|r",
+			[51] = 1707682685,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [92]
 		{
-			"||Team Offering|| Weekly M+ [0-25|| [|cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rCurve! || Fated Heroic/Mythic |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r||Torghast] [PvP] ||leveling|| Sylvanas-Jailer  Mount || W/ info  <3 ", -- [1]
-			"Badbeaver-Draenor", -- [2]
+			"hello! <|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|rHM 9/9 130k, Hm Unsave 210k, HM Vip 700k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r<80k, Last 2 90k><M+ 0-30><M+16 80k, M+17 90k, M+18 100k, M+20 150k,M+25 380k. M+26 550k><4xM24-25, 8xM16, 8xM17, 4xM20, 8xM20> /W M", -- [1]
+			"Diilara-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Badbeaver-Draenor", -- [5]
+			"Diilara-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			83, -- [11]
-			"Player-1403-0A346460", -- [12]
+			3144, -- [11]
+			"Player-1403-0A97653B", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Badbeaver|r",
-			[51] = 1664097323,
+			[52] = "|cffc41e3aDiilara|r",
+			[51] = 1707682689,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [93]
 		{
-			"M+ 10-31  IN TIME/WEEKLY/ARENA-RBG/ HEROIC-MYTHIC|cffffff00|Hachievement:15126:Player-1403-0A3EFF9A:0:0:0:-1:0:0:0:0|h[Sanctum of Domination]|h|r/JAILER AND SLYVANAS MYTHIC MOUNT //LVLING 50-60 ONLY FOR GOLD /W FOR INFO!", -- [1]
-			"Ymrh-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::1:1449:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A94ACEB:1:11:21:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A94ACEB:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beckenangó-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Ymrh-Draenor", -- [5]
+			"Beckenangó-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			84, -- [11]
-			"Player-1403-0A3EFF9A", -- [12]
+			3156, -- [11]
+			"Player-1403-0A94ACEB", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Ymrh|r",
-			[51] = 1664097325,
+			[52] = "|cff3fc7ebBeckenangó|r",
+			[51] = 1707682697,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [94]
 		{
-			"<Raging Scouts> Mythic Guild offers Fated 10/10 SOD HC/NM fastrun. Fast M+15-18 Any Key. Start in 20 mins. Best prices for you! Whisp me to learn more", -- [1]
-			"Dicaripuq-Draenor", -- [2]
+			"Hey! HM FULL|cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Yerally-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Dicaripuq-Draenor", -- [5]
+			"Yerally-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			85, -- [11]
-			"Player-1403-0A3DE0E5", -- [12]
+			3170, -- [11]
+			"Player-1403-0AA07C7A", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cDicaripuq|r",
-			[51] = 1664097333,
+			[52] = "|cfffff468Yerally|r",
+			[51] = 1707682768,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [95]
 		{
-			"guild group  offering -  /Mythic+ 15 [150k] --4x Mythic+ 15  [500k] SOD - Heroic mode, 10/10 PL     [350k] extra vip trader ( 165k ) 10/10 with 5 VIP traders [1100k] Kel'thuzad  [100k] Sylvanas Windrunner  [140k] Both Together  [200k]", -- [1]
-			"Khadgaari-Draenor", -- [2]
+			"Hey! HM FULL |cff66bbff|Hjournal:0:1207:14|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r <70k> <M+ Keys> <Fast Leveling 1-70>", -- [1]
+			"Swiftcurves-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Khadgaari-Draenor", -- [5]
+			"Swiftcurves-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			87, -- [11]
-			"Player-1403-0A3D3C99", -- [12]
+			3171, -- [11]
+			"Player-1403-0AA07C77", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff006fdcKhadgaari|r",
-			[51] = 1664097339,
+			[52] = "|cff3fc7ebSwiftcurves|r",
+			[51] = 1707682768,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [96]
 		{
-			"<Azeroth  Conquerors> Friendly Guild [WTS] Fated SOD 10/10 HC/NM or Sylvanas. KSM or Mythic+ up to +18 timed. Ready to go NOW! Best prices for you! W/me for details", -- [1]
-			"Yzojygamubi-Draenor", -- [2]
+			"Hey!  HM FULL |cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k>|cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <75k> <M+ Keys >< Leveling 1-70>", -- [1]
+			"Swiftraids-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Yzojygamubi-Draenor", -- [5]
+			"Swiftraids-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			88, -- [11]
-			"Player-1403-0A40F3EC", -- [12]
+			3172, -- [11]
+			"Player-1403-0A9F4832", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cYzojygamubi|r",
-			[51] = 1664097343,
+			[52] = "|cff3fc7ebSwiftraids|r",
+			[51] = 1707682768,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [97]
 		{
-			"||Guild Offer|| <<M+0/20 >> Fated Hc/Mythic[|cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r  ! || Torghast || Pvp 2s-3s-Rbg ||Sylvanas / jailer Mount |||cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rcurve ! || W/ for info! xoxo  <3", -- [1]
-			"Congomongobo-Draenor", -- [2]
+			"Hey! |cffffff00|Hachievement:19331:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Amirdrassil, the Dream's Hope]|h|r9/9 HC 150K HCLS 230K VIP HC 800K |cffffff00|Hachievement:19350:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r HC 75K >Last 2 HC 95K |||cffa335ee|Hitem:180653::::::::10:1455:::::::::|h[Mythic Keystone]|h|r M15-28 InTime || 20=150K 18=110k 4M18=400K 4M20=560K M23 250K M24 320K M25 500K |cffffff00|Hachievement:6:Player-1403-0A937AF6:1:12:1:23:4294967295:4294967295:4294967295:4294967295|h[Level 10]|h|r-|cffffff00|Hachievement:15805:Player-1403-0A937AF6:0:0:0:-1:0:0:0:0|h[Level 70]|h|r", -- [1]
+			"Beackenbauer-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Congomongobo-Draenor", -- [5]
+			"Beackenbauer-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			89, -- [11]
-			"Player-1403-0A346A35", -- [12]
+			3185, -- [11]
+			"Player-1403-0A937AF6", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cffc59a6cCongomongobo|r",
-			[51] = 1664097343,
+			[52] = "|cffc41e3aBeackenbauer|r",
+			[51] = 1707682780,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [98]
 		{
-			"||Team Offering|| Weekly M+ [0-25|| [|cff66bbff|Hjournal:1:2441:14|h[Sylvanas Windrunner]|h|rCurve! || Fated Heroic/Mythic |cff66bbff|Hjournal:0:1193:16|h[Sanctum of Domination]|h|r||Torghast] [PvP] ||leveling|| Sylvanas-Jailer  Mount || W/ info  <3 ", -- [1]
-			"Badbeaver-Draenor", -- [2]
+			"Hey!  HM FULL|cff66bbff|Hjournal:0:1207:15|h[Amirdrassil, the Dream's Hope]|h|r <140k>  Last2 <90k> |cffffff00|Hachievement:19350:Player-1305-0C888896:0:0:0:0:0:0:0:0|h[Ahead of the Curve: Fyrakk the Blazing]|h|r  <70k> <M+ Keys > < Leveling 1-70 >", -- [1]
+			"Linkstars-Draenor", -- [2]
 			"", -- [3]
 			"5. Trade (Services) - City", -- [4]
-			"Badbeaver-Draenor", -- [5]
+			"Linkstars-Draenor", -- [5]
 			"", -- [6]
 			42, -- [7]
 			5, -- [8]
 			"Trade (Services) - City", -- [9]
 			0, -- [10]
-			96, -- [11]
-			"Player-1403-0A346460", -- [12]
+			3187, -- [11]
+			"Player-1403-0A975BBC", -- [12]
 			0, -- [13]
 			false, -- [14]
 			false, -- [15]
 			false, -- [16]
 			true, -- [17]
-			[52] = "|cff00fe97Badbeaver|r",
-			[51] = 1664097373,
+			[52] = "|cff3fc7ebLinkstars|r",
+			[51] = 1707682783,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [99]
 	},

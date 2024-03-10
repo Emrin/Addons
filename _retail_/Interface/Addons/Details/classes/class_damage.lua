@@ -46,7 +46,7 @@
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --constants
 
-	local container_habilidades	= 	Details.container_habilidades
+	local spellContainerClass	= 	Details.container_habilidades
 	local damageClass	=	Details.atributo_damage
 	local atributo_misc		=	Details.atributo_misc
 	local container_damage	=	Details.container_type.CONTAINER_DAMAGE_CLASS
@@ -304,27 +304,50 @@ local void_zone_sort = function(t1, t2)
 end
 
 
-function Details.Sort1 (table1, table2) --[[exported]]
+function Details.Sort1(table1, table2) --[[exported]]
 	return table1[1] > table2[1]
 end
 
-function Details.Sort2 (table1, table2) --[[exported]]
+function Details.Sort2(table1, table2) --[[exported]]
 	return table1[2] > table2[2]
 end
 
-function Details.Sort3 (table1, table2) --[[exported]]
+function Details.Sort3(table1, table2) --[[exported]]
 	return table1[3] > table2[3]
 end
 
-function Details.Sort4 (table1, table2) --[[exported]]
+function Details.Sort4(table1, table2) --[[exported]]
 	return table1[4] > table2[4]
 end
 
-function Details.Sort4Reverse (table1, table2) --[[exported]]
+function Details.Sort4Reverse(table1, table2) --[[exported]]
 	if (not table2) then
 		return true
 	end
 	return table1[4] < table2[4]
+end
+
+function Details:GetTextColor(instanceObject, textSide)
+	local actorObject = self
+	textSide = textSide or "left"
+
+	local bUseClassColor = false
+	if (textSide == "left") then
+		bUseClassColor = instanceObject.row_info.textL_class_colors
+	elseif (textSide == "right") then
+		bUseClassColor = instanceObject.row_info.textR_class_colors
+	end
+
+	if (bUseClassColor) then
+		local actorClass = actorObject.classe or "UNKNOW"
+		if (actorClass == "UNKNOW") then
+			return unpack(instanceObject.row_info.fixed_text_color)
+		else
+			return unpack(Details.class_colors[actorClass])
+		end
+	else
+		return unpack(instanceObject.row_info.fixed_text_color)
+	end
 end
 
 function Details:GetBarColor(actor) --[[exported]]
@@ -456,7 +479,7 @@ end
 			--targets: table where key is the target name (actor name) and the value is the amount of damage done to that target
 			targets = {},
 			--spells: spell container
-			spells = container_habilidades:NovoContainer(container_damage)
+			spells = spellContainerClass:NovoContainer(container_damage)
 		}
 
 		setmetatable(newDamageActor, damageClass)
@@ -469,9 +492,6 @@ end
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --special cases
-
-	--todo: Details.use_realtimedps "realtimedps_order_bars" need to come from the sorter function.
-	--todo: "realtimedps_always_arena" need to come from the sorter function because it'll have "realtimedps_order_bars" always on.
 
 	---calculate real time dps for each actor within the passed table
 	---@param tableWithActors actor[]
@@ -2656,7 +2676,7 @@ eventListener:RegisterEvent("COMBAT_PLAYER_ENTER", function()
 	end
 end)
 
-local actor_class_color_r, actor_class_color_g, actor_class_color_b
+local classColor_Red, classColor_Green, classColor_Blue
 
 -- ~texts
 --[[exported]] function Details:SetInLineTexts(thisLine, valueText, perSecondText, percentText)
@@ -2739,43 +2759,56 @@ function damageClass:RefreshLine(instanceObject, lineContainer, whichRowLine, ra
 		percentString = format("%.1f", self[keyName] / instanceObject.top * 100)
 	end
 
-	local currentCombat = Details:GetCurrentCombat()
+	local currentCombat = instanceObject:GetCombat()
 
-	--calculate the actor dps
-	if ((Details.time_type == 2 and self.grupo) or not Details:CaptureGet("damage") or instanceObject.segmento == -1 or Details.use_realtimedps) then
-		if (Details.use_realtimedps and Details.in_combat) then
-			local currentDps = self.last_dps_realtime
-			if (currentDps) then
-				dps = currentDps
-			end
+	if (currentCombat:GetCombatType() == DETAILS_SEGMENTTYPE_MYTHICDUNGEON_OVERALL) then
+		if (Details.mythic_plus.mythicrun_time_type == 1) then
+			--total time in combat, activity time
+			combatTime = currentCombat:GetCombatTime()
+		elseif (Details.mythic_plus.mythicrun_time_type == 2) then
+			--elapsed time of the run
+			combatTime = currentCombat:GetRunTime()
 		end
 
-		if (not dps) then
-			if (instanceObject.segmento == -1 and combatTime == 0) then
-				local actor = currentCombat(1, self.nome)
-				if (actor) then
-					local combatTime = actor:Tempo()
-					dps = damageTotal / combatTime
-					self.last_dps = dps
+		dps = damageTotal / combatTime
+		self.last_dps = dps
+	else
+		--calculate the actor dps
+		if ((Details.time_type == 2 and self.grupo) or not Details:CaptureGet("damage") or instanceObject.segmento == -1 or Details.use_realtimedps) then
+			if (Details.use_realtimedps and Details.in_combat) then
+				local currentDps = self.last_dps_realtime
+				if (currentDps) then
+					dps = currentDps
+				end
+			end
+
+			if (not dps) then
+				if (instanceObject.segmento == -1 and combatTime == 0) then
+					local actor = currentCombat(1, self.nome)
+					if (actor) then
+						local combatTime = actor:Tempo()
+						dps = damageTotal / combatTime
+						self.last_dps = dps
+					else
+						dps = damageTotal / combatTime
+						self.last_dps = dps
+					end
 				else
 					dps = damageTotal / combatTime
 					self.last_dps = dps
 				end
-			else
-				dps = damageTotal / combatTime
-				self.last_dps = dps
 			end
-		end
-	else
-		if (not self.on_hold) then
-			dps = damageTotal/self:Tempo() --calcula o dps deste objeto
-			self.last_dps = dps --salva o dps dele
 		else
-			if (self.last_dps == 0) then --n�o calculou o dps dele ainda mas entrou em standby
-				dps = damageTotal/self:Tempo()
-				self.last_dps = dps
+			if (not self.on_hold) then
+				dps = damageTotal/self:Tempo() --calcula o dps deste objeto
+				self.last_dps = dps --salva o dps dele
 			else
-				dps = self.last_dps
+				if (self.last_dps == 0) then --n�o calculou o dps dele ainda mas entrou em standby
+					dps = damageTotal/self:Tempo()
+					self.last_dps = dps
+				else
+					dps = self.last_dps
+				end
 			end
 		end
 	end
@@ -2982,7 +3015,7 @@ function damageClass:RefreshLine(instanceObject, lineContainer, whichRowLine, ra
 		bForceRefresh = true
 	end
 
-	actor_class_color_r, actor_class_color_g, actor_class_color_b = self:GetBarColor()
+	classColor_Red, classColor_Green, classColor_Blue = self:GetBarColor()
 
 	return self:RefreshLineValue(thisLine, instanceObject, previousData, bForceRefresh, percentNumber, bUseAnimations, total, instanceObject.top)
 end
@@ -2994,11 +3027,11 @@ end
 ---@param totalAmount valueamount
 ---@param topAmount valueamount
 ---@param instanceObject instance
----@param onEnterFunc function|nil
----@param onLeaveFunc function|nil
+---@param onEnterFunc function?
+---@param onLeaveFunc function?
 function Details:ShowExtraStatusbar(thisLine, amount, extraAmount, totalAmount, topAmount, instanceObject, onEnterFunc, onLeaveFunc)
-	if (extraAmount and extraAmount > 0 and Details.combat_log.evoker_calc_damage) then
-		local extraStatusbar = thisLine.extraStatusbar
+	local extraStatusbar = thisLine.extraStatusbar
+	if (extraAmount and extraAmount > 0 and instanceObject.atributo == 1 and instanceObject.sub_atributo == 1) then
 		local initialOffset = 0
 		local icon_offset_x, icon_offset_y = unpack(instanceObject.row_info.icon_offset)
 
@@ -3023,15 +3056,31 @@ function Details:ShowExtraStatusbar(thisLine, amount, extraAmount, totalAmount, 
 			extraStatusbar:SetPoint("topleft", thisLine, "topleft", (statusBarWidth * percent) - fillTheGapWidth, 0)
 		end
 
-		extraStatusbar:SetWidth(extraStatusbarWidth)
+		--check if the extra bar will be bigger than the window
+		local windowWidth = instanceObject:GetSize()
+		local lineWidth = thisLine:GetWidth() * (amount/topAmount)
+		local maxExtraBarWidth = windowWidth - lineWidth - initialOffset
 
-		--extraStatusbar:SetFrameStrata("TOOLTIP")
+		if (extraStatusbarWidth > maxExtraBarWidth) then
+			extraStatusbarWidth = maxExtraBarWidth
+		end
+
+		extraStatusbar:SetWidth(extraStatusbarWidth)
 		extraStatusbar:SetFrameLevel(thisLine:GetFrameLevel() + 1)
 
 		extraStatusbar.OnEnterCallback = onEnterFunc
 		extraStatusbar.OnLeaveCallback = onLeaveFunc
 
+		if (Details.combat_log.evoker_calc_damage) then
+			extraStatusbar:SetAlpha(0.8)
+			extraStatusbar.defaultAlpha = 0.8
+		else
+			extraStatusbar:SetAlpha(0.1)
+			extraStatusbar.defaultAlpha = 0.1
+		end
 		extraStatusbar:Show()
+	else
+		extraStatusbar:Hide()
 	end
 end
 
@@ -3039,9 +3088,16 @@ end
 local handleShowExtraStatusbar = function(thisLine, self, instance, previousData, isForceRefresh, percent, bUseAnimations, totalValue, topValue)
 	if (self.spec == 1473 and self.augmentedSpellsContainer) then
 		--prepare the extra bar to show the damage prediction to augmented evoker
-		Details:ShowExtraStatusbar(thisLine, self.total, self.total_extra, totalValue, topValue, instance, damageClass.PredictedAugSpellsOnEnter, damageClass.PredictedAugSpellsOnLeave)
+		local onEnterFunc = damageClass.PredictedAugSpellsOnEnter
+		local onLeaveFunc = damageClass.PredictedAugSpellsOnLeave
+
+		Details:ShowExtraStatusbar(thisLine, self.total, self.total_extra, totalValue, topValue, instance, onEnterFunc, onLeaveFunc)
 		thisLine.extraStatusbar.augmentedSpellsContainer = self.augmentedSpellsContainer
-		thisLine.extraStatusbar.instance = instance
+
+		thisLine.extraStatusbar.actorName = self:Name()
+
+		---@cast instance instance
+		thisLine.extraStatusbar.instanceId = instance:GetId()
 	else
 		Details:ShowExtraStatusbar(thisLine, self.total, self.total_extra, totalValue, topValue, instance)
 	end
@@ -3138,9 +3194,12 @@ function Details:SetBarLeftText(bar, instance, enemy, arenaEnemy, arenaAlly, usi
 		barNumber = bar.colocacao .. ". "
 	end
 
-	--translate cyrillic alphabet to western alphabet by Vardex (https://github.com/Vardex May 22, 2019)
 	if (instance.row_info.textL_translit_text) then
-		self.displayName = Translit:Transliterate(self.displayName, "!")
+		if (not self.transliteratedName) then
+			--translate cyrillic alphabet to western alphabet by Vardex (https://github.com/Vardex May 22, 2019)
+			self.transliteratedName = Translit:Transliterate(self.displayName, "!")
+		end
+		self.displayName = self.transliteratedName or self.displayName
 	end
 
 	if (enemy) then
@@ -3216,7 +3275,12 @@ end
 function Details:SetBarColors(bar, instance, r, g, b, a) --[[exported]] --~colors
 	a = a or 1
 
-	if (instance.row_info.texture_class_colors) then
+	local bUseClassColor = instance.row_info.texture_class_colors
+
+	if (self.customColor) then
+		bar.textura:SetVertexColor(r, g, b, a)
+
+	elseif (bUseClassColor) then
 		if (self.classe == "UNGROUPPLAYER") then
 			if (self.spec) then
 				local specId, specName, specDescription, specIcon, specRole, specClass = DetailsFramework.GetSpecializationInfoByID(self.spec)
@@ -3226,6 +3290,9 @@ function Details:SetBarColors(bar, instance, r, g, b, a) --[[exported]] --~color
 			end
 		end
 		bar.textura:SetVertexColor(r, g, b, a)
+	else
+		r, g, b, a = unpack(instance.row_info.fixed_texture_color)
+		bar.textura:SetVertexColor(r, g, b, a)
 	end
 
 	if (instance.row_info.texture_background_class_color) then
@@ -3233,18 +3300,23 @@ function Details:SetBarColors(bar, instance, r, g, b, a) --[[exported]] --~color
 	end
 
 	if (instance.row_info.textL_class_colors) then
-		bar.lineText1:SetTextColor(r, g, b, a)
+		local textColor_Red, textColor_Green, textColor_Blue = self:GetTextColor(instance, "left")
+		bar.lineText1:SetTextColor(textColor_Red, textColor_Green, textColor_Blue) --the r, g, b color passed are the color used on the bar, so if the bar is not using class color, the text is painted with the fixed color for the bar
 	end
 
 	if (instance.row_info.textR_class_colors) then
-		bar.lineText2:SetTextColor(r, g, b, a)
-		bar.lineText3:SetTextColor(r, g, b, a)
-		bar.lineText4:SetTextColor(r, g, b, a)
+		local textColor_Red, textColor_Green, textColor_Blue = self:GetTextColor(instance, "right")
+		bar.lineText2:SetTextColor(textColor_Red, textColor_Green, textColor_Blue)
+		bar.lineText3:SetTextColor(textColor_Red, textColor_Green, textColor_Blue)
+		bar.lineText4:SetTextColor(textColor_Red, textColor_Green, textColor_Blue)
 	end
 
 	if (instance.row_info.backdrop.use_class_colors) then
 		--get the alpha from the border color
 		local alpha = instance.row_info.backdrop.color[4]
+		if (not bUseClassColor) then
+			r, g, b = self:GetClassColor()
+		end
 		bar.lineBorder:SetVertexColor(r, g, b, alpha)
 	end
 end
@@ -3327,8 +3399,8 @@ function Details:SetClassIcon(texture, instance, class) --[[exported]] --~icons
 	elseif (class == "PET") then
 		texture:SetTexture(instance and instance.row_info.icon_file or [[Interface\AddOns\Details\images\classes_small]])
 		texture:SetTexCoord(0.25, 0.49609375, 0.75, 1)
-		actor_class_color_r, actor_class_color_g, actor_class_color_b = DetailsFramework:ParseColors(actor_class_color_r, actor_class_color_g, actor_class_color_b)
-		texture:SetVertexColor(actor_class_color_r, actor_class_color_g, actor_class_color_b)
+		classColor_Red, classColor_Green, classColor_Blue = DetailsFramework:ParseColors(classColor_Red, classColor_Green, classColor_Blue)
+		texture:SetVertexColor(classColor_Red, classColor_Green, classColor_Blue)
 
 	else
 		if (instance and instance.row_info.use_spec_icons) then
@@ -3360,7 +3432,7 @@ function Details:RefreshBarra(thisLine, instance, fromResize) --[[exported]]
 	end
 
 	if (fromResize) then
-		actor_class_color_r, actor_class_color_g, actor_class_color_b = self:GetBarColor()
+		classColor_Red, classColor_Green, classColor_Blue = self:GetBarColor()
 	end
 
 	--icon
@@ -3374,64 +3446,352 @@ function Details:RefreshBarra(thisLine, instance, fromResize) --[[exported]]
 	end
 
 	--texture color
-	self:SetBarColors(thisLine, instance, actor_class_color_r, actor_class_color_g, actor_class_color_b)
+	self:SetBarColors(thisLine, instance, classColor_Red, classColor_Green, classColor_Blue)
 
 	--left text
 	self:SetBarLeftText(thisLine, instance, enemy, arenaEnemy, arenaAlly, UsingCustomLeftText)
 end
 
-
+---comment
+---@param self table extraStatusbar frame
 function damageClass.PredictedAugSpellsOnEnter(self)
-	if (not Details.show_aug_predicted_spell_damage) then
-		return
-	end
+	if (Details.show_aug_predicted_spell_damage) then
+		---@type spellcontainer
+		local spellContainer = self.augmentedSpellsContainer
 
-	---@type spellcontainer
-	local spellContainer = self.augmentedSpellsContainer
+		GameCooltip:Preset(2)
+		---@type instance
+		local instanceObject = Details:GetInstance(self.instanceId)
+		---@type combat
+		local combatObject = instanceObject:GetCombat()
 
-	GameCooltip:Preset(2)
-	---@type instance
-	local instance = self.instance
+		for spellId, spellTable in spellContainer:ListSpells() do
+			local spellName, _, spellTexture = GetSpellInfo(spellId)
+			if (spellName) then
+				GameCooltip:AddLine(spellName, Details:Format(spellTable.total))
+				GameCooltip:AddIcon(spellTexture, 1, 1, 14, 14)
 
-	local combatObject = instance:GetCombat()
-	for spellId, spellTable in spellContainer:ListSpells() do
-		local spellName, _, spellTexture = GetSpellInfo(spellId)
-		if (spellName) then
-			GameCooltip:AddLine(spellName, Details:Format(spellTable.total))
-			GameCooltip:AddIcon(spellTexture, 1, 1, 14, 14)
+				local spellsAugmented = {}
 
-			local spellsAugmented = {}
+				--the damage sources are added into the targets table for recycling
+				---@type table<actorname, valueamount>
+				local sources = spellTable.targets
+				for sourceName, sourceAmount in pairs(sources) do
+					spellsAugmented[#spellsAugmented+1] = {sourceName, sourceAmount}
+				end
 
-			--the damage sources are added into the targets table for recycling
-			---@type table<actorname, valueamount>
-			local sources = spellTable.targets
-			for sourceName, sourceAmount in pairs(sources) do
-				spellsAugmented[#spellsAugmented+1] = {sourceName, sourceAmount}
+				table.sort(spellsAugmented, Details.Sort2)
+
+				for i = 1, math.min(#spellsAugmented, 5) do
+					local sourceName, sourceAmount = unpack(spellsAugmented[i])
+					GameCooltip:AddLine(sourceName, Details:Format(sourceAmount), 1, "yellow", "yellow", 10)
+					local actorObject = combatObject:GetActor(1, sourceName)
+					if (actorObject) then
+						local actorIcon = Details:GetActorIcon(actorObject)
+						if (actorIcon) then
+							GameCooltip:AddIcon(actorIcon.texture, 1, 1, 14, 14, actorIcon.coords.left, actorIcon.coords.right, actorIcon.coords.top, actorIcon.coords.bottom)
+						else
+							GameCooltip:AddIcon([[Interface\COMMON\Indicator-Gray]], 1, 1, 14, 14)
+						end
+					end
+				end
+
+				GameCooltip:AddLine(" ")
+				GameCooltip:AddIcon("", 1, 1, 5, 5)
+			end
+		end
+	else
+		---@type instance
+		local instanceObject = Details:GetInstance(self.instanceId)
+		---@type combat
+		local combatObject = instanceObject:GetCombat()
+
+		local combatTime = combatObject:GetCombatTime()
+
+		---@type actorname
+		local actorName = self.actorName
+
+		---@type actorcontainer
+		local utilityContainer = combatObject:GetContainer(DETAILS_ATTRIBUTE_MISC)
+
+		---@type table<spellid, table<spellid, number, actorname, actorname, class, boolean>>
+		local buffUptimeTable = {}
+
+		local CONST_SPELLID_EBONMIGHT = 395152
+		local CONST_SPELLID_PRESCIENCE = 410089
+		local CONST_SPELLID_BLACKATTUNEMENT = 403264
+		local CONST_SPELLID_BLISTERING_SCALES = 360827
+
+		---@type actor[]
+		local augmentationEvokers = {}
+
+		--prescience and ebon might updatime on each actor
+		for _, actorObject in utilityContainer:ListActors() do
+			---@type spellcontainer
+			local receivedBuffs = actorObject.received_buffs_spells
+
+			--check if the actor is an augmentation evoker
+			if (actorObject.spec == 1473) then
+				augmentationEvokers[#augmentationEvokers+1] = actorObject
 			end
 
-			table.sort(spellsAugmented, Details.Sort2)
+			if (receivedBuffs and actorObject:IsPlayer() and actorObject:IsGroupPlayer()) then
+				for sourceNameSpellId, spellTable in receivedBuffs:ListSpells() do
+					local sourceName, spellId = strsplit("@", sourceNameSpellId)
+					if (sourceName == actorName) then
+						spellId = tonumber(spellId)
+						local spellName, _, spellIcon = Details.GetSpellInfo(spellId)
 
-			for i = 1, #spellsAugmented do
-				local sourceName, sourceAmount = unpack(spellsAugmented[i])
-				GameCooltip:AddLine(sourceName, Details:Format(sourceAmount), 1, "yellow", "yellow", 10)
-				local actorObject = combatObject:GetActor(1, sourceName)
-				if (actorObject) then
-					local actorIcon = Details:GetActorIcon(actorObject)
-					if (actorIcon) then
-						GameCooltip:AddIcon(actorIcon.texture, 1, 1, 14, 14, actorIcon.coords.left, actorIcon.coords.right, actorIcon.coords.top, actorIcon.coords.bottom)
-					else
-						GameCooltip:AddIcon([[Interface\COMMON\Indicator-Gray]], 1, 1, 14, 14)
+						if (spellName and spellId) then
+							sourceName = detailsFramework:RemoveRealmName(sourceName)
+							local targetName = actorObject:Name()
+							targetName = detailsFramework:RemoveRealmName(targetName)
+
+							local uptime = spellTable.uptime or 0
+							local bCanShowOnTooltip = true
+							buffUptimeTable[spellId] = buffUptimeTable[spellId] or {}
+							table.insert(buffUptimeTable[spellId], {spellId, uptime, sourceName, targetName, actorObject:Class(), bCanShowOnTooltip})
+						end
 					end
 				end
 			end
 		end
+
+		for spellId, buffTable in pairs(buffUptimeTable) do
+			local totalUptime = 0
+			for i = 1, #buffTable do
+				totalUptime = totalUptime + buffTable[i][2]
+			end
+			table.sort(buffTable, Details.Sort2)
+		end
+
+		Details:FormatCooltipForSpells()
+		Details:AddTooltipSpellHeaderText(Loc ["STRING_SPELLS"], headerColor, #buffUptimeTable, Details.tooltip_spell_icon.file, unpack(Details.tooltip_spell_icon.coords))
+		Details:AddTooltipHeaderStatusbar(.1, .1, .1, 0.834)
+
+		local iconSize = 22
+		local iconBorderInfo = Details.tooltip.icon_border_texcoord
+
+		--add the total combat time into the tooltip
+		local combatTimeMinutes, combatTimeSeconds = math.floor(combatTime / 60), math.floor(combatTime % 60)
+		GameCooltip:AddLine("Combat Time", combatTimeMinutes .. "m " .. combatTimeSeconds .. "s" .. " (" .. format("%.1f", 100) .. "%)")
+		GameCooltip:AddIcon([[Interface\TARGETINGFRAME\UnitFrameIcons]], nil, nil, iconSize, iconSize, iconBorderInfo.L, iconBorderInfo.R, iconBorderInfo.T, iconBorderInfo.B)
+		Details:AddTooltipBackgroundStatusbar(false, 100, true, "limegreen")
+
+		GameCooltip:AddLine("", "")
+		GameCooltip:AddIcon("", nil, nil, 1, 1)
+
+		local ebonMightTable = buffUptimeTable[CONST_SPELLID_EBONMIGHT][1]
+		if (ebonMightTable) then
+			local uptime = ebonMightTable[2]
+			local spellName, _, spellIcon = _GetSpellInfo(CONST_SPELLID_EBONMIGHT)
+			local uptimePercent = uptime / combatTime * 100
+			local sourceName = ebonMightTable[3]
+
+			if (uptime <= combatTime) then
+				local minutes, seconds = math.floor(uptime / 60), math.floor(uptime % 60)
+				if (minutes > 0) then
+					GameCooltip:AddLine(spellName, minutes .. "m " .. seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
+					Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, sourceName and "limegreen")
+				else
+					GameCooltip:AddLine(spellName, seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
+					Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, sourceName and "limegreen")
+				end
+
+				GameCooltip:AddIcon(spellIcon, nil, nil, iconSize, iconSize, iconBorderInfo.L, iconBorderInfo.R, iconBorderInfo.T, iconBorderInfo.B)
+			end
+		end
+
+		GameCooltip:AddLine("", "")
+		GameCooltip:AddIcon("", nil, nil, 1, 1)
+
+		for i = 1, #augmentationEvokers do --black attunement
+			local actorObject = augmentationEvokers[i]
+			if (actorObject:Name() == actorName) then
+				local buffUptimeSpellContainer = actorObject:GetSpellContainer("buff")
+				if (buffUptimeSpellContainer) then
+					local spellTable = buffUptimeSpellContainer:GetSpell(403264)
+					if (spellTable) then
+						local uptime = spellTable.uptime
+						local spellName, _, spellIcon = _GetSpellInfo(CONST_SPELLID_BLACKATTUNEMENT)
+						local uptimePercent = uptime / combatTime * 100
+
+						if (uptime <= combatTime) then
+							local minutes, seconds = math.floor(uptime / 60), math.floor(uptime % 60)
+							if (minutes > 0) then
+								GameCooltip:AddLine(spellName, minutes .. "m " .. seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
+								Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, "limegreen")
+							else
+								GameCooltip:AddLine(spellName, seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
+								Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, "limegreen")
+							end
+
+							GameCooltip:AddIcon(spellIcon, nil, nil, iconSize, iconSize, iconBorderInfo.L, iconBorderInfo.R, iconBorderInfo.T, iconBorderInfo.B)
+						end
+					end
+
+					local spellTable = buffUptimeSpellContainer:GetSpell(CONST_SPELLID_BLISTERING_SCALES)
+					if (spellTable) then
+						local uptime = spellTable.uptime
+						local spellName, _, spellIcon = _GetSpellInfo(CONST_SPELLID_BLISTERING_SCALES)
+						local uptimePercent = uptime / combatTime * 100
+
+						if (uptime <= combatTime) then
+							local minutes, seconds = math.floor(uptime / 60), math.floor(uptime % 60)
+							if (minutes > 0) then
+								GameCooltip:AddLine(spellName, minutes .. "m " .. seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
+								Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, "limegreen")
+							else
+								GameCooltip:AddLine(spellName, seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
+								Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, "limegreen")
+							end
+
+							GameCooltip:AddIcon(spellIcon, nil, nil, iconSize, iconSize, iconBorderInfo.L, iconBorderInfo.R, iconBorderInfo.T, iconBorderInfo.B)
+						end
+					end
+				end
+			end
+		end
+
+		GameCooltip:AddLine("", "")
+		GameCooltip:AddIcon("", nil, nil, 1, 1)
+
+		--add the buff uptime into the tooltip
+		local allPrescienceTargets = buffUptimeTable[CONST_SPELLID_PRESCIENCE]
+		if (allPrescienceTargets and #allPrescienceTargets > 0) then
+			for i = 1, math.min(30, #allPrescienceTargets) do
+				local uptimeTable = allPrescienceTargets[i]
+
+				local spellId = uptimeTable[1]
+				local uptime = uptimeTable[2]
+				local sourceName = uptimeTable[3]
+				local targetName = uptimeTable[4]
+				local targetClass = uptimeTable[5]
+				local bCanShow = uptimeTable[6]
+
+				local uptimePercent = uptime / combatTime * 100
+
+				if (uptime > 0 and uptimePercent < 99.5 and bCanShow) then
+					local spellName, _, spellIcon = _GetSpellInfo(spellId)
+
+					if (sourceName) then
+						targetName = detailsFramework:AddClassColorToText(targetName, targetClass)
+						targetName = detailsFramework:AddClassIconToText(targetName, targetName, targetClass)
+						spellName = spellName .. " [" .. targetName .. "]"
+					end
+
+					if (uptime <= combatTime) then
+						local minutes, seconds = math.floor(uptime / 60), math.floor(uptime % 60)
+						if (minutes > 0) then
+							GameCooltip:AddLine(spellName, minutes .. "m " .. seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
+							Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, sourceName and "limegreen")
+						else
+							GameCooltip:AddLine(spellName, seconds .. "s" .. " (" .. format("%.1f", uptimePercent) .. "%)")
+							Details:AddTooltipBackgroundStatusbar(false, uptimePercent, true, sourceName and "limegreen")
+						end
+
+						GameCooltip:AddIcon(spellIcon, nil, nil, iconSize, iconSize, iconBorderInfo.L, iconBorderInfo.R, iconBorderInfo.T, iconBorderInfo.B)
+					end
+				end
+			end
+		else
+			GameCooltip:AddLine(Loc ["STRING_NO_SPELL"])
+		end
+
+		local evokerObject = combatObject:GetActor(DETAILS_ATTRIBUTE_MISC, actorName)
+
+		GameCooltip:AddLine(" ")
+		GameCooltip:AddIcon(" ", 1, 1, 10, 10)
+
+		if (evokerObject) then
+			GameCooltip:AddLine("Prescience Uptime by Amount of Applications")
+			local prescienceData = evokerObject.cleu_prescience_time
+
+			if (prescienceData) then
+				prescienceData = prescienceData.stackTime
+				local totalTimeWithPrescienceUp = 0
+
+				for amountOfPrescienceApplied, time in ipairs(prescienceData) do
+					totalTimeWithPrescienceUp = totalTimeWithPrescienceUp + time
+				end
+
+				for amountOfPrescienceApplied, time in ipairs(prescienceData) do
+					if (time > 0) then
+						local uptimePercent = time / combatTime * 100
+						local timeString = detailsFramework:IntegerToTimer(time)
+						GameCooltip:AddLine("Presciece Applied: " .. amountOfPrescienceApplied, timeString .. " (" .. format("%.1f", uptimePercent) .. "%)")
+						--5199639 prescience icon
+						GameCooltip:AddIcon([[Interface\AddOns\Details\images\spells\prescience_time]], nil, nil, iconSize, iconSize)
+						Details:AddTooltipBackgroundStatusbar(false, time/totalTimeWithPrescienceUp*100, true, "green")
+					end
+				end
+			end
+		end
+
+		--iterate among all the actors and find which one are healers, then get the amount of mana the evoker restored for that healer
+		---@type actorcontainer
+		local resourcesContainer = combatObject:GetContainer(DETAILS_ATTRIBUTE_ENERGY)
+		local manaRestoredToHealers = {}
+
+		for index, actorObject in resourcesContainer:ListActors() do
+			if (actorObject.spec == 1473) then --this is an aug evoker
+				local spellContainer = actorObject:GetSpellContainer("spell")
+				--local spellContainer = actorObject.spells
+				if (spellContainer) then
+					local sourceOfMagic = spellContainer:GetSpell(372571)
+					if (sourceOfMagic) then
+						for targetName, restoredAmount in pairs(sourceOfMagic.targets) do
+							manaRestoredToHealers[#manaRestoredToHealers+1] = {targetName, restoredAmount}
+						end
+					end
+				end
+			end
+		end
+
+		if (#manaRestoredToHealers > 0) then
+			GameCooltip:AddLine(" ")
+			GameCooltip:AddIcon(" ", 1, 1, 10, 10)
+			GameCooltip:AddLine("Mana Restored to Healers:")
+
+			table.sort(manaRestoredToHealers, Details.Sort2)
+
+			for i = 1, math.min(10, #manaRestoredToHealers) do
+				local targetName, restoredAmount = unpack(manaRestoredToHealers[i])
+				local targetActorObject = combatObject(DETAILS_ATTRIBUTE_ENERGY, targetName)
+
+				if (targetActorObject) then
+					local targetClass = targetActorObject:GetActorClass()
+					local targetName = detailsFramework:AddClassColorToText(targetName, targetClass)
+					targetName = detailsFramework:AddClassIconToText(targetName, targetName, targetClass)
+
+					GameCooltip:AddLine(targetName, Details:Format(restoredAmount))
+
+					local spellIcon = GetSpellTexture(372571)
+					GameCooltip:AddIcon(spellIcon, nil, nil, iconSize, iconSize, iconBorderInfo.L, iconBorderInfo.R, iconBorderInfo.T, iconBorderInfo.B)
+					Details:AddTooltipBackgroundStatusbar(false, 100, true, "dodgerblue")
+				end
+			end
+		end
 	end
+
+	GameCooltip:AddLine("feature under test, can't disable atm")
+	GameCooltip:AddIcon([[Interface\BUTTONS\UI-GROUPLOOT-PASS-DOWN]], nil, nil, 16, 16)
+
+	--GameCooltip:SetOption("LeftBorderSize", -5)
+	--GameCooltip:SetOption("RightBorderSize", 5)
+	--GameCooltip:SetOption("RightTextMargin", 0)
+	GameCooltip:SetOption("VerticalOffset", 0)
+	--GameCooltip:SetOption("AlignAsBlizzTooltip", true)
+	GameCooltip:SetOption("AlignAsBlizzTooltipFrameHeightOffset", 0)
+	GameCooltip:SetOption("LineHeightSizeOffset", 0)
+	GameCooltip:SetOption("VerticalPadding", 0)
 
 	GameCooltip:ShowCooltip(self, "tooltip")
 end
 
 function damageClass.PredictedAugSpellsOnLeave(self)
 	GameCooltip:Hide()
+	--extraStatusbar.defaultAlpha
 end
 
 --------------------------------------------- // TOOLTIPS // ---------------------------------------------
@@ -3904,6 +4264,8 @@ function damageClass:ToolTip_Enemies (instancia, numero, barra, keydown)
 
 	local combat = instancia:GetShowingCombat()
 	local enemy_name = self:name()
+
+	Details:Destroy(tooltip_temp_table) --fix for translit bug report, 'player' is nil
 
 	--enemy damage taken
 	local i = 1
@@ -4926,6 +5288,7 @@ function damageClass:MontaInfoDamageDone() --I guess this fills the list of spel
 
 		---@type string
 		local spellName = _GetSpellInfo(spellId)
+
 		if (spellName) then
 			---@type number in which index the spell with the same name was stored
 			local index = alreadyAdded[spellName]
@@ -5639,6 +6002,9 @@ function damageClass:BuildSpellDetails(spellBar, spellBlockContainer, blockIndex
 					blockLine1.leftText:SetText("Procs: " .. trinketProc.total)
 				end
 			end
+
+		elseif (Details.GetItemSpellInfo(spellId)) then
+			blockLine1.leftText:SetText("Uses: " .. totalCasts)
 		end
 
 		blockLine1.rightText:SetText(Loc ["STRING_HITS"]..": " .. totalHits) --hits and uptime
@@ -6706,6 +7072,19 @@ end
 			end
 		end
 
+		if (actorObject.augmentedSpellsContainer) then
+			local overallAugmentedSpellsContainer = overallActor.augmentedSpellsContainer or spellContainerClass:CreateSpellContainer(Details.container_type.CONTAINER_DAMAGE_CLASS)
+			overallActor.augmentedSpellsContainer = overallAugmentedSpellsContainer
+
+			for spellId, spellTable in pairs(actorObject.augmentedSpellsContainer._ActorTable) do --same as actorObject.augmentedSpellsContainer:GetRawSpellTable()
+				local overallSpellTable = overallAugmentedSpellsContainer:GetOrCreateSpell(spellId, true)
+				overallSpellTable.total = overallSpellTable.total + spellTable.total
+				for targetName, amount in pairs(spellTable.targets) do
+					overallSpellTable.targets[targetName] = (overallSpellTable.targets[targetName] or 0) + amount
+				end
+			end
+		end
+
 		--copy the friendly fire container
 		for targetName, friendlyFireTable in pairs(actorObject.friendlyfire) do
 			--get or create the friendly fire table in the overall data
@@ -6722,7 +7101,7 @@ end
 	end
 
 --actor 1 is who will receive the sum from actor2
-function Details.SumDamageActors(actor1, actor2, actorContainer)
+function Details.SumDamageActors(actor1, actor2, actorContainer) --not called anywhere, can be deprecated
 	--general
 	actor1.total = actor1.total + actor2.total
 	actor1.damage_taken = actor1.damage_taken + actor2.damage_taken

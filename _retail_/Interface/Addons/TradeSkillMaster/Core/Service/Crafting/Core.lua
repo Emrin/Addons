@@ -20,6 +20,7 @@ local Money = TSM.Include("Util.Money")
 local Log = TSM.Include("Util.Log")
 local ItemString = TSM.Include("Util.ItemString")
 local Vararg = TSM.Include("Util.Vararg")
+local GroupPath = TSM.Include("Util.GroupPath")
 local ItemInfo = TSM.Include("Service.ItemInfo")
 local CustomPrice = TSM.Include("Service.CustomPrice")
 local Conversions = TSM.Include("Service.Conversions")
@@ -263,7 +264,7 @@ end
 function Crafting.CreateMatItemQuery()
 	return private.matItemDB:NewQuery()
 		:VirtualField("name", "string", ItemInfo.GetName, "itemString", "?")
-		:VirtualField("matCost", "number", TSM.Crafting.Cost.GetMatCost, "itemString", Math.GetNan())
+		:VirtualField("matCost", "number", private.GetMatCost, "itemString")
 		:VirtualField("totalQuantity", "number", private.GetTotalQuantity, "itemString")
 end
 
@@ -342,12 +343,11 @@ function Crafting.OptionalMatIterator(craftString)
 end
 
 function Crafting.GetOptionalMatQuantity(craftString, matItemId)
-	local query = private.matDB:NewQuery()
+	return private.matDB:NewQuery()
 		:Select("quantity")
 		:Equal("craftString", craftString)
-		:Matches("itemString", "^[qofr]:")
-		:Contains("itemString", tostring(matItemId))
-	return query:GetFirstResultAndRelease()
+		:Matches("itemString", "^[qofr]:.*"..matItemId)
+		:GetFirstResultAndRelease()
 end
 
 function Crafting.GetMatsAsTable(craftString, tbl)
@@ -821,7 +821,7 @@ function private.GetRestockHelpMessage(itemString)
 
 	-- check that there's a crafting operation applied
 	if not TSM.Operations.Crafting.HasOperation(itemString) then
-		return format(L["There is no Crafting operation applied to this item's TSM group (%s)."], TSM.Groups.Path.Format(groupPath))
+		return format(L["There is no Crafting operation applied to this item's TSM group (%s)."], GroupPath.Format(groupPath))
 	end
 
 	-- check if it's an invalid operation
@@ -881,6 +881,10 @@ end
 
 function private.GetTotalQuantity(itemString)
 	return CustomPrice.GetSourcePrice(itemString, "NumInventory") or 0
+end
+
+function private.GetMatCost(itemString)
+	return CustomPrice.GetSourcePrice(itemString, "MatPrice") or Math.GetNan()
 end
 
 function private.MatItemDBUpdateOrInsert(itemString, profession)

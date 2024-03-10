@@ -1,177 +1,61 @@
 
 EncounterDetailsDB = {
-	["emotes"] = {
-		{
-			["boss"] = "Shade of Xavius",
-		}, -- [1]
-		{
-			["boss"] = "Archdruid Glaidalis",
-		}, -- [2]
-		{
-			{
-				27.05800000000454, -- [1]
-				"Everyone, find your partners! Or die!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [1]
-			{
-				47.57500000000437, -- [1]
-				"Attention! Set formation for the dance macabre!", -- [2]
-				"Castellan Niklaus", -- [3]
-				7, -- [4]
-			}, -- [2]
-			{
-				50.77500000000146, -- [1]
-				"Take your places for the Danse Macabre!", -- [2]
-				"Dance Controller", -- [3]
-				1, -- [4]
-			}, -- [3]
-			{
-				59.49600000000646, -- [1]
-				"Boogie down!", -- [2]
-				"Castellan Niklaus", -- [3]
-				7, -- [4]
-			}, -- [4]
-			{
-				63.61300000000483, -- [1]
-				"Prance Forward!", -- [2]
-				"Castellan Niklaus", -- [3]
-				7, -- [4]
-			}, -- [5]
-			{
-				67.67400000000634, -- [1]
-				"Boogie down!", -- [2]
-				"Castellan Niklaus", -- [3]
-				7, -- [4]
-			}, -- [6]
-			{
-				71.82800000000134, -- [1]
-				"Sashay left!", -- [2]
-				"Castellan Niklaus", -- [3]
-				7, -- [4]
-			}, -- [7]
-			{
-				75.95300000000134, -- [1]
-				"Stop this nonsense! You have disgraced this gathering long enough!", -- [2]
-				"Castellan Niklaus", -- [3]
-				7, -- [4]
-			}, -- [8]
-			{
-				117.5910000000004, -- [1]
-				"Everyone, find your partners! Or die!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [9]
-			{
-				130.109000000004, -- [1]
-				"What kind... of strategy... was that...", -- [2]
-				"Castellan Niklaus", -- [3]
-				7, -- [4]
-			}, -- [10]
-			{
-				148.7139999999999, -- [1]
-				"Everyone, find your partners! Or die!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [11]
-			{
-				168.9140000000043, -- [1]
-				"Come, friends! Dance until you bleed!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [12]
-			{
-				191.0440000000017, -- [1]
-				"Everyone, take your positions! It is time for the dance macabre!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [13]
-			{
-				194.1160000000018, -- [1]
-				"Take your places for the Danse Macabre!", -- [2]
-				"Dance Controller", -- [3]
-				1, -- [4]
-			}, -- [14]
-			{
-				202.833000000006, -- [1]
-				"Boogie down!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [15]
-			{
-				206.9400000000023, -- [1]
-				"Prance Forward!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [16]
-			{
-				211.0520000000033, -- [1]
-				"Shimmy right!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [17]
-			{
-				215.1140000000014, -- [1]
-				"Prance Forward!", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [18]
-			{
-				219.2880000000005, -- [1]
-				"Your steps were simply delicious! Pity you have to die now.", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [19]
-			{
-				256.0660000000062, -- [1]
-				"But I am... the life... of the party...", -- [2]
-				"Lord Stavros", -- [3]
-				7, -- [4]
-			}, -- [20]
-			{
-				297.8730000000069, -- [1]
-				"Dear guests and vile intruders, take your places for the dance macabre!", -- [2]
-				"Baroness Frieda", -- [3]
-				7, -- [4]
-			}, -- [21]
-			{
-				300.958000000006, -- [1]
-				"Take your places for the Danse Macabre!", -- [2]
-				"Dance Controller", -- [3]
-				1, -- [4]
-			}, -- [22]
-			{
-				309.6940000000031, -- [1]
-				"Prance Forward!", -- [2]
-				"Baroness Frieda", -- [3]
-				7, -- [4]
-			}, -- [23]
-			{
-				313.7930000000051, -- [1]
-				"Sashay left!", -- [2]
-				"Baroness Frieda", -- [3]
-				7, -- [4]
-			}, -- [24]
-			{
-				317.7350000000006, -- [1]
-				"Shimmy right!", -- [2]
-				"Baroness Frieda", -- [3]
-				7, -- [4]
-			}, -- [25]
-			{
-				322.0010000000038, -- [1]
-				"Sashay left!", -- [2]
-				"Baroness Frieda", -- [3]
-				7, -- [4]
-			}, -- [26]
-			{
-				326.1400000000067, -- [1]
-				"Enough! Your gyrations sicken me.", -- [2]
-				"Baroness Frieda", -- [3]
-				7, -- [4]
-			}, -- [27]
-			["boss"] = "The Council of Blood",
-		}, -- [3]
+	["chartData"] = {
+		[10830] = {
+			["Raid Damage Done"] = {
+				3852, -- [1]
+				3462, -- [2]
+				9135, -- [3]
+				10418, -- [4]
+				0, -- [5]
+				8912, -- [6]
+				3701, -- [7]
+				4912, -- [8]
+				3861, -- [9]
+				2536, -- [10]
+				7837, -- [11]
+				4656, -- [12]
+				3540, -- [13]
+				12518, -- [14]
+				5521, -- [15]
+				0, -- [16]
+				0, -- [17]
+				4718, -- [18]
+				0, -- [19]
+				["max_value"] = 12518,
+				["__time"] = 1707655471,
+			},
+		},
+		[10829] = {
+		},
+		[10828] = {
+		},
+		[10832] = {
+			["Raid Damage Done"] = {
+				9131, -- [1]
+				14716, -- [2]
+				41360, -- [3]
+				94926, -- [4]
+				53807, -- [5]
+				224, -- [6]
+				15335, -- [7]
+				12999, -- [8]
+				75530, -- [9]
+				29935, -- [10]
+				62022, -- [11]
+				18252, -- [12]
+				-4, -- [13]
+				4054, -- [14]
+				20495, -- [15]
+				33999, -- [16]
+				67960, -- [17]
+				32777, -- [18]
+				60235, -- [19]
+				0, -- [20]
+				["max_value"] = 94926,
+				["__time"] = 1707655518,
+			},
+		},
 	},
 	["encounter_spells"] = {
 		[164815] = {
@@ -1220,6 +1104,15 @@ EncounterDetailsDB = {
 				["SPELL_AURA_APPLIED"] = true,
 			},
 			["source"] = "Tred'ova",
+		},
+		[68641] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_DAMAGE"] = true,
+			},
+			["source"] = "Apothecary Hummel",
 		},
 		[340324] = {
 			["school"] = 32,
@@ -2756,6 +2649,22 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Sire Denathrius",
 		},
+		[68799] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Apothecary Frye",
+		},
+		[68927] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+			},
+		},
 		[327139] = {
 			["school"] = 64,
 			["type"] = "BUFF",
@@ -3762,6 +3671,14 @@ EncounterDetailsDB = {
 				["SPELL_CAST_SUCCESS"] = true,
 			},
 			["source"] = "Dokigg the Brutalizer",
+		},
+		[68948] = {
+			["school"] = 8,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+			},
+			["source"] = "Apothecary Baxter",
 		},
 		[328248] = {
 			["school"] = 32,
@@ -5903,6 +5820,23 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Boozbee-Kazzak",
 		},
+		[68934] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+			},
+			["source"] = "[DND] Valentine Boss - Vial Bunny",
+		},
+		[68841] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Apothecary Frye",
+		},
 		[186263] = {
 			["school"] = 32,
 			["token"] = {
@@ -5939,6 +5873,24 @@ EncounterDetailsDB = {
 				["SPELL_DAMAGE"] = true,
 			},
 			["source"] = "Hakkar the Soulflayer",
+		},
+		[68947] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_DAMAGE"] = true,
+			},
+			["source"] = "Apothecary Baxter",
+		},
+		[68607] = {
+			["school"] = 8,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+			},
+			["source"] = "Apothecary Hummel",
 		},
 		[199179] = {
 			["school"] = 1,
@@ -8904,5 +8856,16 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Shade of Xavius",
 		},
+	},
+	["emotes"] = {
+		{
+			["boss"] = "The Crown Chemical Co.",
+		}, -- [1]
+		{
+			["boss"] = "Shade of Xavius",
+		}, -- [2]
+		{
+			["boss"] = "Archdruid Glaidalis",
+		}, -- [3]
 	},
 }

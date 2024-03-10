@@ -13,8 +13,83 @@ function advancedDeathLogs.RegisterDetailsHook()
             return
         end
 
+        local deathEvents = deathTable[1]
         local timeOfDeath = deathTable[2]
         local gameCooltip = GameCooltip
+
+        local causeOfDeath = {}
+
+        for i = 1, #deathEvents do
+            local event = deathEvents[i]
+            local evType = event[1]
+
+            --check if this death event is a debuff or if a enemy spell cast
+            if (type(evType) == "number" and (evType == 4 or evType == 6)) then
+                local spellId = event[2]
+                local source = Details:GetOnlyName(event[6] or "")
+                local amountOfDamage = event[3]
+
+                --findsubtable arguments: table, index of the sub table, any value to find on that index in the sub table
+                local alreadyExistsOnIndex = detailsFramework.table.findsubtable(causeOfDeath, 1, spellId)
+                if (alreadyExistsOnIndex) then
+                    causeOfDeath[alreadyExistsOnIndex][2] = causeOfDeath[alreadyExistsOnIndex][2] + amountOfDamage
+                else
+                    causeOfDeath[#causeOfDeath+1] = {spellId, amountOfDamage, source}
+                end
+            end
+
+            if (type(evType) == "boolean" and evType == true) then
+                --this is a damage event
+                local spellId = event[2]
+                if (spellId ~= 1) then
+                    local amountOfDamage = event[3]
+                    local source = Details:GetOnlyName(event[6] or "")
+
+                    --findsubtable arguments: table, index of the sub table, any value to find on that index in the sub table
+                    local alreadyExistsOnIndex = detailsFramework.table.findsubtable(causeOfDeath, 1, spellId)
+                    if (alreadyExistsOnIndex) then
+                        causeOfDeath[alreadyExistsOnIndex][2] = causeOfDeath[alreadyExistsOnIndex][2] + amountOfDamage
+                    else
+                        causeOfDeath[#causeOfDeath+1] = {spellId, amountOfDamage, source}
+                    end
+                end
+            end
+        end
+
+        table.sort(causeOfDeath, function(a, b)
+            return a[2] > b[2]
+        end)
+
+        gameCooltip:AddLine("Spell Description:", "", 2, "yellow", "white", 14)
+        gameCooltip:AddIcon("", 2, 1, 2, 2, .1, .9, .1, .9)
+
+        for i = 1, 5 do
+            if (causeOfDeath[i]) then
+                local spellId, amountOfDamage, source = unpack(causeOfDeath[i] or {})
+
+                local spellName, spellRank, spellIcon, castTime, minRange, maxRange = GetSpellInfo(spellId)
+                local spellDescription = GetSpellDescription(spellId)
+
+                if (spellDescription == "" and spellId ~= 149356) then
+                    spellDescription = _G.SEARCH_LOADING_TEXT
+                end
+
+                gameCooltip:AddLine(spellName, "", 2, 1, 1, 1, 1, 1, 1, 1, 1, 12)
+                gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
+
+                --two problems: 1) the spell description isn't breaking into a second line, 2) spell icon isn't showing in the second spell name line
+                --solved the problem 1) by adding a fixed width and height size to the text added with AddLine
+                --solved the problem 2) by adding an icon to each line
+
+                gameCooltip:AddLine(spellDescription, nil, 2, 1, 1, 1, 1, 1, 1, 1, 1, 10, nil, nil, 190, 90)
+                gameCooltip:AddIcon("", 2, 1, 1, 1, .1, .9, .1, .9)
+
+                gameCooltip:AddLine("", "", 2, "white")
+                gameCooltip:AddIcon("", 2, 1, 4, 4, .1, .9, .1, .9)
+            end
+        end
+
+        --[=[
         gameCooltip:AddLine("Used Before Death:", "", 2, "white")
         gameCooltip:AddIcon("", 2, 1, 2, 2, .1, .9, .1, .9)
 
@@ -29,8 +104,13 @@ function advancedDeathLogs.RegisterDetailsHook()
 
         gameCooltip:AddLine(" ", "", 2, "white")
         gameCooltip:AddIcon("", 2, 1, 2, 2, .1, .9, .1, .9)
+        --]=]
 
-        gameCooltip:AddLine("Cooldown Received:", "", 2, "white")
+        gameCooltip:AddLine("", "", 2)
+        gameCooltip:AddIcon("", 2, 1)
+        
+
+        gameCooltip:AddLine("Cooldown Received:", "", 2, "yellow", "white", 14)
         gameCooltip:AddIcon("", 2, 1, 2, 2, .1, .9, .1, .9)
         local cooldownsReceived = deathTable["cooldown_received"] or {}
 
@@ -51,25 +131,27 @@ function advancedDeathLogs.RegisterDetailsHook()
         gameCooltip:AddLine(" ", "", 2, "white")
         gameCooltip:AddIcon("", 2, 1, 2, 2, .1, .9, .1, .9)
 
-        gameCooltip:AddLine("Cooldown Status:", "", 2, "white")
+        gameCooltip:AddLine("Cooldown Status:", "", 2, "yellow", "white", 14)
         gameCooltip:AddIcon("", 2, 1, 2, 2, .1, .9, .1, .9)
 
         for spellId, cooldownInfo in pairs(deathTable.cooldown_status) do
             local spellName, _, spellIcon = Details.GetSpellInfo(spellId)
             spellName = spellName:sub(1, 24)
 
-            local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0")
-            local timeLeft, charges, timeOffset, duration, updateTime = openRaidLib.GetCooldownTimeFromCooldownInfo(cooldownInfo)
-            if (timeLeft == 0) then
-                gameCooltip:AddLine(spellName, "|cFF11FF11good|r", 2, "white")
-                gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
-            else
-                gameCooltip:AddLine(spellName, "-" .. detailsFramework:IntegerToTimer(timeLeft), 2, "white")
-                gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
+            local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true)
+            if (openRaidLib) then
+                local timeLeft, charges, timeOffset, duration, updateTime = openRaidLib.GetCooldownTimeFromCooldownInfo(cooldownInfo)
+                if (timeLeft == 0) then
+                    gameCooltip:AddLine(spellName, "|cFF11FF11good|r", 2, "white")
+                    gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
+                else
+                    gameCooltip:AddLine(spellName, "-" .. detailsFramework:IntegerToTimer(timeLeft), 2, "white")
+                    gameCooltip:AddIcon(spellIcon, 2, 1, 16, 16, .1, .9, .1, .9)
+                end
             end
         end
 
-        gameCooltip:SetOption("FixedWidthSub", 200)
+        gameCooltip:SetOption("FixedWidthSub", 210)
     end)
 
     -------------------------------------------------------------------------
@@ -84,7 +166,7 @@ function advancedDeathLogs.RegisterDetailsHook()
 
     function cdTracker.Cooldowns.RegisterCooldownUsage()
         cdTracker.Cooldowns.Usage = {} --will store [unitName] = {spellId = time, spellId = time, spellId = time}
-        local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0")
+        local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true, true)
         if (openRaidLib) then
             function cdTracker.Cooldowns.OnReceiveSingleCooldownUpdate(unitId, spellId, cooldownInfo, unitCooldows, allUnitsCooldowns)
                 local unitName = GetUnitName(unitId, true)
@@ -125,7 +207,7 @@ function advancedDeathLogs.RegisterDetailsHook()
     local onDeathEvent = function(_, token, time, sourceSerial, sourceName, sourceFlags, targetSerial, targetName, targetFlags, deathTable, lastCooldown, combatElapsedTime, maxHealth)
         local cooldownUsage = {}
 
-        local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0")
+        local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true)
         if (openRaidLib) then
             local unitCooldowns = openRaidLib.GetUnitCooldowns(targetName, "defensive-personal,defensive-raid,itemheal")
             cooldownUsage = cdTracker.Cooldowns.Usage[targetName] or {}
@@ -148,7 +230,7 @@ function advancedDeathLogs.RegisterDetailsHook()
     local onCooldownEvent = function(_, token, time, sourceSerial, sourceName, sourceFlags, targetSerial, targetName, targetFlags, spellId, spellName)
         if (sourceSerial and targetSerial) then
             if (sourceName and targetName) then
-                local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0")
+                local openRaidLib = LibStub:GetLibrary("LibOpenRaid-1.0", true)
                 if (openRaidLib) then
                     local cooldownData = LIB_OPEN_RAID_COOLDOWNS_INFO[spellId]
                     if (cooldownData and cooldownData.type == 3) then

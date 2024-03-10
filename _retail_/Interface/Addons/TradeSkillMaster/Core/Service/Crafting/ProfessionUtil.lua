@@ -8,6 +8,7 @@ local TSM = select(2, ...) ---@type TSM
 local ProfessionUtil = TSM.Crafting:NewPackage("ProfessionUtil")
 local Environment = TSM.Include("Environment")
 local CraftString = TSM.Include("Util.CraftString")
+local SlotId = TSM.Include("Util.SlotId")
 local Event = TSM.Include("Util.Event")
 local Log = TSM.Include("Util.Log")
 local Delay = TSM.Include("Util.Delay")
@@ -183,9 +184,9 @@ function ProfessionUtil.GetNumCraftableFromDBRecipeString(recipeString)
 	return num
 end
 
-function ProfessionUtil.PrepareToCraft(craftString, recipeString, quantity, level, salvageGUID)
+function ProfessionUtil.PrepareToCraft(craftString, recipeString, quantity, level, salvageSlotId)
 	local spellId = CraftString.GetSpellId(craftString)
-	if not salvageGUID then
+	if not salvageSlotId then
 		if recipeString then
 			quantity = min(quantity, ProfessionUtil.GetNumCraftableRecipeString(recipeString))
 		else
@@ -195,23 +196,21 @@ function ProfessionUtil.PrepareToCraft(craftString, recipeString, quantity, leve
 	if quantity == 0 then
 		return
 	end
-	if Profession.IsEnchant(craftString) or (recipeString and RecipeString.HasOptionalMats(recipeString)) then
+	if Profession.IsEnchant(craftString) then
 		quantity = 1
 	end
 	private.preparedSpellId = spellId
 	private.preparedTime = GetTime()
 end
 
-function ProfessionUtil.Craft(craftString, recipeId, quantity, useVellum, salvageGUID, callback)
+function ProfessionUtil.Craft(craftString, recipeId, quantity, useVellum, salvageSlotId, callback)
 	local spellId = nil
 	local level = nil
-	local hasOptionalMats = false
-	if salvageGUID then
+	if salvageSlotId then
 		spellId = RecipeString.GetSpellId(recipeId)
 	elseif type(recipeId) == "string" then
 		spellId = RecipeString.GetSpellId(recipeId)
 		level = RecipeString.GetLevel(recipeId)
-		hasOptionalMats = RecipeString.HasOptionalMats(recipeId)
 		quantity = min(quantity, ProfessionUtil.GetNumCraftableRecipeString(recipeId))
 	else
 		spellId = recipeId
@@ -228,7 +227,7 @@ function ProfessionUtil.Craft(craftString, recipeId, quantity, useVellum, salvag
 	end
 	local isEnchant = Profession.IsEnchant(craftString)
 	local vellumable = isEnchant and not Environment.IsVanillaClassic()
-	if isEnchant or hasOptionalMats then
+	if isEnchant then
 		quantity = 1
 	elseif spellId ~= private.preparedSpellId or private.preparedTime == GetTime() then
 		-- We can only craft one of this item due to a bug on Blizzard's end
@@ -265,13 +264,10 @@ function ProfessionUtil.Craft(craftString, recipeId, quantity, useVellum, salvag
 		if enchantItemLocation then
 			C_TradeSkillUI.CraftEnchant(spellId, quantity, optionalMats, enchantItemLocation)
 		else
-			if salvageGUID then
-				local salvageItemlocation = C_Item.GetItemLocation(salvageGUID)
-				if salvageItemlocation then
-					local success = pcall(C_Item.DoesItemExist, salvageItemlocation)
-					if success then
-						C_TradeSkillUI.CraftSalvage(spellId, quantity, salvageItemlocation)
-					end
+			if salvageSlotId then
+				local salvageItemLocation = ItemLocation:CreateFromBagAndSlot(SlotId.Split(salvageSlotId))
+				if salvageItemLocation and pcall(C_Item.DoesItemExist, salvageItemLocation) then
+					C_TradeSkillUI.CraftSalvage(spellId, quantity, salvageItemLocation)
 				end
 			else
 				C_TradeSkillUI.CraftRecipe(spellId, quantity, optionalMats, level)

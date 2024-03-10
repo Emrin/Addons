@@ -238,10 +238,16 @@ local instanceMixins = {
 		else
 			---@type combat
 			local combatObject = Details:GetCombat(segmentId)
-			if (combatObject.__destroyed) then
-				table.remove(Details:GetCombatSegments(), segmentId)
-				combatObject = combatClass:NovaTabela()
-				table.insert(Details:GetCombatSegments(), segmentId, combatObject)
+			if (not combatObject) then
+				instance:SetSegmentId(DETAILS_SEGMENTID_CURRENT)
+				instance:RefreshCombat()
+				return
+			else
+				if (combatObject.__destroyed) then
+					table.remove(Details:GetCombatSegments(), segmentId)
+					combatObject = combatClass:NovaTabela()
+					table.insert(Details:GetCombatSegments(), segmentId, combatObject)
+				end
 			end
 			instance.showing = combatObject
 		end
@@ -284,6 +290,7 @@ local instanceMixins = {
 			thisBar.minha_tabela = nil
 			thisBar.animacao_fim = 0
 			thisBar.animacao_fim2 = 0
+			if thisBar.extraStatusbar then thisBar.extraStatusbar:Hide() end
 		end
 
 		if (instance.rolagem) then
@@ -401,6 +408,10 @@ local instanceMixins = {
 	---@return segmentid
 	GetSegmentId = function(instance)
 		return instance.segmento
+	end,
+
+	SetSegmentId = function(instance, segmentId)
+		instance.segmento = segmentId
 	end,
 
 	---return the mais attribute id and the sub attribute
@@ -3785,15 +3796,20 @@ function Details:envia_relatorio (linhas, custom)
 	if (combatObject) then
 		local combatTime = combatObject:GetCombatTime()
 		segmentTime = Details.gump:IntegerToTimer(combatTime or 0)
+	else
+		combatObject = self:GetCombat()
+		local combatTime = combatObject:GetCombatTime()
+		segmentTime = Details.gump:IntegerToTimer(combatTime or 0)
 	end
 
 	--effective ou active time
-	if (Details.time_type == 2 or Details.use_realtimedps) then
-		linhas[1] = linhas[1] .. " [" .. segmentTime .. " EF]"
-	else
-		linhas[1] = linhas[1] .. " [" .. segmentTime .. " AC]"
+	if (not custom) then
+		if (Details.time_type == 2 or Details.use_realtimedps) then
+			linhas[1] = linhas[1] .. " [" .. segmentTime .. " EF]"
+		else
+			linhas[1] = linhas[1] .. " [" .. segmentTime .. " AC]"
+		end
 	end
-
 
 	local editbox = Details.janela_report.editbox
 	if (editbox.focus) then --n�o precionou enter antes de clicar no okey

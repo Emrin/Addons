@@ -5,6 +5,7 @@ local EVENTBUS_EVENTS = {
   Auctionator.Shopping.Tab.Events.ListSearchRequested,
   Auctionator.Shopping.Tab.Events.ShowHistoricalPrices,
   Auctionator.Shopping.Tab.Events.UpdateSearchTerm,
+  Auctionator.Shopping.Tab.Events.BuyScreenShown,
 }
 
 function AuctionatorShoppingTabFrameMixin:DoSearch(terms, options)
@@ -165,9 +166,11 @@ function AuctionatorShoppingTabFrameMixin:SetupListsContainer()
   end)
 
   self.ListsContainer:SetOnListItemDrag(function(list, oldIndex, newIndex)
-    local old = list:GetItemByIndex(oldIndex)
-    list:DeleteItem(oldIndex)
-    list:InsertItem(old, newIndex)
+    if oldIndex ~= newIndex then
+      local old = list:GetItemByIndex(oldIndex)
+      list:DeleteItem(oldIndex)
+      list:InsertItem(old, newIndex)
+    end
   end)
 end
 
@@ -252,6 +255,9 @@ function AuctionatorShoppingTabFrameMixin:ReceiveEvent(eventName, eventData)
 
   elseif eventName == Auctionator.Shopping.Tab.Events.UpdateSearchTerm then
     self.SearchOptions:SetSearchTerm(eventData)
+
+  elseif eventName == Auctionator.Shopping.Tab.Events.BuyScreenShown then
+    self:StopSearch()
   end
 end
 

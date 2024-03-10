@@ -4,7 +4,7 @@ CraftSimDebugData = {
 CraftSimOptions = {
 	["transparencyCostOverview"] = 1,
 	["customResourcefulnessConstant"] = 0.3,
-	["infoVersionID"] = 77,
+	["infoVersionID"] = 84,
 	["topGearMode"] = "Top Profit",
 	["autoAssignVellum"] = false,
 	["customerServiceAllowAutoResult"] = true,
@@ -25,19 +25,20 @@ CraftSimOptions = {
 	["transparencyTopGear"] = 1,
 	["modulesCostOverview"] = true,
 	["modulesPriceDetails"] = true,
-	["modulesSpecInfo"] = true,
 	["breakPointOffset"] = false,
-	["customerServiceRecipeWhisperFormat"] = "Highest Result: %gc\nwith Inspiration: %ic (%insp)\nCrafting Costs: %cc\n%ccd",
+	["modulesSpecInfo"] = true,
 	["tsmPriceKeyMaterials"] = "DBMinbuyout",
+	["customerServiceRecipeWhisperFormat"] = "Highest Result: %gc\nwith Inspiration: %ic (%insp)\nCrafting Costs: %cc\n%ccd",
+	["maxHistoryEntriesPerClient"] = 200,
 	["modulesStatWeights"] = true,
 	["tsmPriceKeyItems"] = "DBMinbuyout",
 	["showProfitPercentage"] = false,
 	["transparencyStatWeights"] = 1,
 	["modulesCraftResults"] = true,
 	["modulesTopGear"] = true,
-	["openLastRecipe"] = true,
 	["transparencyMaterials"] = 1,
 	["craftGarbageCollectEnabled"] = true,
+	["openLastRecipe"] = true,
 }
 CraftSimGGUIConfig = {
 	["savedPos_STAT_WEIGHTS"] = {
@@ -81,10 +82,10 @@ CraftSimProfessionInfoCache = {
 			["professionID"] = 2826,
 			["skillModifier"] = 15,
 			["parentProfessionName"] = "Fishing",
-			["parentProfessionID"] = 356,
-			["profession"] = 10,
-			["expansionName"] = "Dragon Isles",
 			["professionName"] = "Dragon Isles Fishing",
+			["profession"] = 10,
+			["parentProfessionID"] = 356,
+			["expansionName"] = "Dragon Isles",
 			["maxSkillLevel"] = 100,
 			["isPrimaryProfession"] = false,
 		},
@@ -120,4 +121,9 @@ CraftSimRecipeMap = {
 CraftSimLoadedProfessionRecipes = {
 	9, -- [1]
 	10, -- [2]
+}
+CraftSimCustomerHistory = {
+	["profileKeys"] = {
+		["Yubiyubi - Draenor"] = "Default",
+	},
 }

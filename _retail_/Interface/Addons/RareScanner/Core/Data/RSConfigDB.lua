@@ -57,6 +57,10 @@ function RSConfigDB.GetMarkerOnTarget()
 	return private.db.general.marker
 end
 
+function RSConfigDB.SetMarkerOnTarget(value)
+	private.db.general.marker = value
+end
+
 function RSConfigDB.IsLockingPosition()
 	return private.db.display.lockPosition
 end
@@ -111,23 +115,6 @@ function RSConfigDB.DeleteCustomSound(name)
 			RSConfigDB.SetSoundPlayedWithNpcs("Horn")
 		end
 	end
-end
-
-function RSConfigDB.GetSoundList()
-	local defaultList = {} 
-	
-	-- Add internal sounds
-	for name, file in pairs (RSConstants.DEFAULT_SOUNDS) do
-		defaultList[name] = file
-	end
-	
-	-- Add custom sounds
-	if (RSConfigDB.GetCustomSounds()) then
-		for name, file in pairs (RSConfigDB.GetCustomSounds()) do
-			defaultList[name] = string.format(RSConstants.EXTERNAL_SOUND_FOLDER, RSConfigDB.GetCustomSoundsFolder(), file)
-		end
-	end
-	return defaultList;
 end
 
 function RSConfigDB.IsPlayingSound()
@@ -544,20 +531,18 @@ function RSConfigDB.SetShowingProfessionRareNPCs(value)
 	private.db.map.displayProfessionRaresNpcIcons = value
 end
 
-function RSConfigDB.IsShowingHuntingPartyRareNPCs()
-	return private.db.map.displayHuntingPartyRaresNpcIcons
+function RSConfigDB.IsMinieventFiltered(minieventID)
+	if (minieventID and private.db.map.displayMinieventsNpcIcons[minieventID]) then
+		return private.db.map.displayMinieventsNpcIcons[minieventID]
+	end
+	
+	return false
 end
 
-function RSConfigDB.SetShowingHuntingPartyRareNPCs(value)
-	private.db.map.displayHuntingPartyRaresNpcIcons = value
-end
-
-function RSConfigDB.IsShowingPrimalStormRareNPCs()
-	return private.db.map.displayPrimalStormRaresNpcIcons
-end
-
-function RSConfigDB.SetShowingPrimalStormNPCs(value)
-	private.db.map.displayPrimalStormRaresNpcIcons = value
+function RSConfigDB.SetMinieventFiltered(minieventID, filtered)
+	if (minieventID) then
+		private.db.map.displayMinieventsNpcIcons[minieventID] = filtered
+	end
 end
 
 function RSConfigDB.IsShowingOtherRareNPCs()
@@ -566,6 +551,20 @@ end
 
 function RSConfigDB.SetShowingOtherRareNPCs(value)
 	private.db.map.displayOtherRaresNpcIcons = value
+end
+
+function RSConfigDB.IsCustomNpcGroupFiltered(group)
+	if (group and private.db.map.displayCustomGroupNpcIcons[group]) then
+		return private.db.map.displayCustomGroupNpcIcons[group]
+	end
+	
+	return false
+end
+
+function RSConfigDB.SetCustomNpcGroupFiltered(group, filtered)
+	if (group) then
+		private.db.map.displayCustomGroupNpcIcons[group] = filtered
+	end
 end
 
 ---============================================================================
@@ -1096,14 +1095,6 @@ end
 -- Loot filters
 ---============================================================================
 
-function RSConfigDB.IsItemFiltered(itemID)
-	if (itemID) then
-		return private.db.loot.filteredItems[itemID] == true
-	end
-
-	return false
-end
-
 function RSConfigDB.GetItemFiltered(itemID)
 	if (itemID) then
 		return private.db.loot.filteredItems[itemID]
@@ -1152,6 +1143,14 @@ end
 
 function RSConfigDB.SetFilteringLootByCompletedQuest(value)
 	private.db.loot.filterItemsCompletedQuest = value
+end
+
+function RSConfigDB.IsFilteringLootByNotEquipableItems()
+	return private.db.loot.filterNotEquipableItems
+end
+
+function RSConfigDB.SetFilteringLootByNotEquipableItems(value)
+	private.db.loot.filterNotEquipableItems = value
 end
 
 function RSConfigDB.IsFilteringLootByNotMatchingClass()

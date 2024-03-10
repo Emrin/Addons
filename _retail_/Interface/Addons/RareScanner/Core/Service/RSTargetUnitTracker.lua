@@ -56,7 +56,7 @@ local function GetMapNpcs()
 	previousMapID = mapID
 	
 	-- Gets NPCs in the map
-	RSLogger:PrintDebugMessage("TargetUnit refrescando lista")
+	RSLogger:PrintDebugMessage(string.format("TargetUnit refrescando lista para mapa [%s]", mapID))
 	if (RSMapDB.IsZoneWithoutVignette(mapID)) then
 		cachedNpcIDs = RSNpcDB.GetNpcIDsByMapID(mapID, false)
 	else
@@ -73,7 +73,7 @@ end
 
 local npcFound = false
 local function OnAddonActionForbidden(addonName, functionName)
-	if (addonName == 'RareScanner' and functionName == 'TargetUnit()') then
+	if (addonName == 'RareScanner') then
 		npcFound = true
 	end
 end
@@ -144,24 +144,25 @@ local function CheckUnits(rareScannerButton)
 
 	-- Gets NPCs in the current map
 	local npcIDs, mapID, newMap = GetMapNpcs()
+	if (not npcIDs) then
+		RSLogger:PrintDebugMessage("Desactivado TargetUnit por no haberse obtenido NPCs para este mapa")
+		return
+	end
 	
-	if (checkUnitsRoutine and checkUnitsRoutine:IsRunning()) then
+	-- Reset routine for new map
+	if (newMap) then
+		if (not checkUnitsRoutine) then
+			checkUnitsRoutine = RSRoutines.LoopIndexRoutineNew()
+		end
+		checkUnitsRoutine:Init(function() return npcIDs end, 30)
+		checkUnitsRoutine:Reset()
+	-- Keep reusing the same routine
+	elseif (checkUnitsRoutine:IsRunning()) then
 		KeepRunningRoutine(rareScannerButton, npcIDs, mapID)
 		return
 	end
 	
-	-- Gets MAPID from players position
-	if (npcIDs) then
-		-- Launches new routine
-		if (newMap) then
-			if (not checkUnitsRoutine) then
-				checkUnitsRoutine = RSRoutines.LoopIndexRoutineNew()
-			end
-			checkUnitsRoutine:Init(function() return npcIDs end, 10)
-		end
-		
-		checkUnitsRoutine:Reset()
-	end
+	checkUnitsRoutine:Reset()
 end
 
 ---============================================================================

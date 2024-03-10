@@ -1,8 +1,243 @@
 
 EncounterDetailsDB = {
-	["emotes"] = {
+	["chartData"] = {
+		[2460] = {
+		},
+		[2462] = {
+		},
+		[2464] = {
+		},
+		[2466] = {
+		},
+		[2468] = {
+		},
+		[2470] = {
+		},
+		[2472] = {
+			["Raid Damage Done"] = {
+				191110, -- [1]
+				53879, -- [2]
+				86810, -- [3]
+				["max_value"] = 191110,
+				["__time"] = 1709318133,
+			},
+		},
+		[2474] = {
+			["Raid Damage Done"] = {
+				0, -- [1]
+				0, -- [2]
+				0, -- [3]
+				0, -- [4]
+				0, -- [5]
+				0, -- [6]
+				0, -- [7]
+				0, -- [8]
+				0, -- [9]
+				0, -- [10]
+				0, -- [11]
+				0, -- [12]
+				0, -- [13]
+				0, -- [14]
+				0, -- [15]
+				0, -- [16]
+				54388, -- [17]
+				0, -- [18]
+				43855, -- [19]
+				["max_value"] = 54388,
+				["__time"] = 1709318242,
+			},
+		},
+		[2476] = {
+			["Raid Damage Done"] = {
+				40263, -- [1]
+				116365, -- [2]
+				109325, -- [3]
+				28936, -- [4]
+				82029, -- [5]
+				79940, -- [6]
+				25495, -- [7]
+				40405, -- [8]
+				96023, -- [9]
+				52208, -- [10]
+				38651, -- [11]
+				12829, -- [12]
+				20527, -- [13]
+				34388, -- [14]
+				19029, -- [15]
+				27059, -- [16]
+				24590, -- [17]
+				19972, -- [18]
+				14729, -- [19]
+				34943, -- [20]
+				8171, -- [21]
+				15887, -- [22]
+				4888, -- [23]
+				66384, -- [24]
+				40807, -- [25]
+				38349, -- [26]
+				7621, -- [27]
+				14940, -- [28]
+				28491, -- [29]
+				25735, -- [30]
+				20845, -- [31]
+				10925, -- [32]
+				24124, -- [33]
+				10857, -- [34]
+				27660, -- [35]
+				4175, -- [36]
+				14755, -- [37]
+				6422, -- [38]
+				38578, -- [39]
+				18190, -- [40]
+				21258, -- [41]
+				24887, -- [42]
+				19566, -- [43]
+				5955, -- [44]
+				22760, -- [45]
+				8839, -- [46]
+				10401, -- [47]
+				36009, -- [48]
+				14407, -- [49]
+				20511, -- [50]
+				23191, -- [51]
+				30202, -- [52]
+				16048, -- [53]
+				15952, -- [54]
+				15832, -- [55]
+				14578, -- [56]
+				18706, -- [57]
+				10712, -- [58]
+				8363, -- [59]
+				22246, -- [60]
+				13891, -- [61]
+				7692, -- [62]
+				16376, -- [63]
+				8673, -- [64]
+				["max_value"] = 116365,
+				["__time"] = 1709318928,
+			},
+		},
+		[2478] = {
+			["Raid Damage Done"] = {
+				1570, -- [1]
+				1346, -- [2]
+				12525, -- [3]
+				0, -- [4]
+				["max_value"] = 12525,
+				["__time"] = 1709318973,
+			},
+		},
+		[2453] = {
+		},
+		[2455] = {
+		},
+		[2457] = {
+		},
+		[2459] = {
+		},
+		[2461] = {
+		},
+		[2463] = {
+		},
+		[2465] = {
+		},
+		[2469] = {
+		},
+		[2471] = {
+		},
+		[2473] = {
+			["Raid Damage Done"] = {
+				105574, -- [1]
+				148115, -- [2]
+				["max_value"] = 148115,
+				["__time"] = 1709318196,
+			},
+		},
+		[2475] = {
+			["Raid Damage Done"] = {
+				10958, -- [1]
+				84573, -- [2]
+				33936, -- [3]
+				190122, -- [4]
+				169953, -- [5]
+				357879, -- [6]
+				307481, -- [7]
+				351084, -- [8]
+				338418, -- [9]
+				555946, -- [10]
+				404433, -- [11]
+				598571, -- [12]
+				430365, -- [13]
+				556029, -- [14]
+				351896, -- [15]
+				622916, -- [16]
+				273543, -- [17]
+				522533, -- [18]
+				369504, -- [19]
+				575485, -- [20]
+				392112, -- [21]
+				576440, -- [22]
+				782049, -- [23]
+				611020, -- [24]
+				813353, -- [25]
+				118707, -- [26]
+				["max_value"] = 813353,
+				["__time"] = 1709318432,
+			},
+		},
+		[2477] = {
+			["Raid Damage Done"] = {
+				13050, -- [1]
+				8335, -- [2]
+				20443, -- [3]
+				20943, -- [4]
+				17911, -- [5]
+				7013, -- [6]
+				44859, -- [7]
+				19353, -- [8]
+				13255, -- [9]
+				12338, -- [10]
+				6984, -- [11]
+				393, -- [12]
+				393, -- [13]
+				14168, -- [14]
+				452, -- [15]
+				6505, -- [16]
+				17035, -- [17]
+				7765, -- [18]
+				12398, -- [19]
+				4161, -- [20]
+				5406, -- [21]
+				1036, -- [22]
+				11821, -- [23]
+				11715, -- [24]
+				6020, -- [25]
+				1377, -- [26]
+				2164, -- [27]
+				1124, -- [28]
+				1124, -- [29]
+				1124, -- [30]
+				1124, -- [31]
+				1124, -- [32]
+				["max_value"] = 44859,
+				["__time"] = 1709318960,
+			},
+		},
+		[2454] = {
+		},
+		[2456] = {
+		},
+		[2458] = {
+		},
 	},
 	["encounter_spells"] = {
+		[216521] = {
+			["school"] = 8,
+			["token"] = {
+				["SPELL_HEAL"] = true,
+			},
+			["source"] = "Laughin-Moonglade",
+		},
 		[257608] = {
 			["school"] = 1,
 			["type"] = "BUFF",
@@ -12,6 +247,15 @@ EncounterDetailsDB = {
 				["SPELL_CAST_SUCCESS"] = true,
 			},
 			["source"] = "The Sand Queen",
+		},
+		[68641] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_DAMAGE"] = true,
+			},
+			["source"] = "Apothecary Hummel",
 		},
 		[185539] = {
 			["school"] = 1,
@@ -226,6 +470,23 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Vigilant Kaathar",
 		},
+		[68947] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_DAMAGE"] = true,
+			},
+			["source"] = "Apothecary Baxter",
+		},
+		[5697] = {
+			["school"] = 32,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+			},
+			["source"] = "Komikouz-Archimonde",
+		},
 		[194375] = {
 			["school"] = 32,
 			["token"] = {
@@ -275,6 +536,14 @@ EncounterDetailsDB = {
 				["SPELL_CAST_START"] = true,
 			},
 			["source"] = "Sinstone Statue",
+		},
+		[68948] = {
+			["school"] = 8,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+			},
+			["source"] = "Apothecary Baxter",
 		},
 		[323852] = {
 			["school"] = 1,
@@ -400,6 +669,15 @@ EncounterDetailsDB = {
 				["SPELL_AURA_APPLIED"] = true,
 			},
 			["source"] = "Sinstone Statue",
+		},
+		[68934] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+			},
+			["source"] = "[DND] Valentine Boss - Vial Bunny",
 		},
 		[338012] = {
 			["school"] = 1,
@@ -541,6 +819,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Bloodworm",
 		},
+		[227376] = {
+			["school"] = 8,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Crown Technician",
+		},
 		[322977] = {
 			["school"] = 32,
 			["type"] = "DEBUFF",
@@ -559,6 +845,14 @@ EncounterDetailsDB = {
 				["SPELL_DAMAGE"] = true,
 			},
 			["source"] = "Jes Howlis",
+		},
+		[409678] = {
+			["school"] = 64,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+			},
+			["source"] = "Aphelios-Magtheridon",
 		},
 		[256128] = {
 			["school"] = 4,
@@ -593,6 +887,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Stoneborn Slasher",
 		},
+		[131493] = {
+			["school"] = 1,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+			},
+			["source"] = "Rithalas-TarrenMill",
+		},
 		[319603] = {
 			["school"] = 8,
 			["type"] = "DEBUFF",
@@ -600,6 +902,15 @@ EncounterDetailsDB = {
 				["SPELL_AURA_APPLIED"] = true,
 			},
 			["source"] = "Echelon",
+		},
+		[415403] = {
+			["school"] = 8,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+			},
+			["source"] = "Apothecary Hummel",
 		},
 		[198245] = {
 			["school"] = 1,
@@ -612,6 +923,39 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Smashspite the Hateful",
 		},
+		[231867] = {
+			["school"] = 1,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+			},
+			["source"] = "Overspritzed Guard",
+		},
+		[108446] = {
+			["school"] = 32,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+			},
+			["source"] = "Aezneth",
+		},
+		[68841] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Apothecary Frye",
+		},
+		[335338] = {
+			["school"] = 32,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+			},
+			["source"] = "Lord Chamberlain",
+		},
 		[258075] = {
 			["school"] = 1,
 			["type"] = "DEBUFF",
@@ -622,6 +966,14 @@ EncounterDetailsDB = {
 				["SPELL_PERIODIC_DAMAGE"] = true,
 			},
 			["source"] = "Stinging Parasite",
+		},
+		[329168] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Sinstone Statue",
 		},
 		[329104] = {
 			["school"] = 32,
@@ -658,40 +1010,6 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Latosius",
 		},
-		[335338] = {
-			["school"] = 32,
-			["type"] = "DEBUFF",
-			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_PERIODIC_DAMAGE"] = true,
-			},
-			["source"] = "Lord Chamberlain",
-		},
-		[197418] = {
-			["school"] = 1,
-			["token"] = {
-				["SPELL_CAST_START"] = true,
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_DAMAGE"] = true,
-			},
-			["source"] = "Illysanna Ravencrest",
-		},
-		[329168] = {
-			["school"] = 1,
-			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_CAST_START"] = true,
-			},
-			["source"] = "Sinstone Statue",
-		},
-		[329170] = {
-			["school"] = 1,
-			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_CAST_START"] = true,
-			},
-			["source"] = "Sinstone Statue",
-		},
 		[323393] = {
 			["school"] = 1,
 			["type"] = "BUFF",
@@ -702,6 +1020,48 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Lord Chamberlain",
 		},
+		[194325] = {
+			["school"] = 32,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Harbaron",
+		},
+		[344874] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+			},
+			["source"] = "Echelon",
+		},
+		[197418] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_DAMAGE"] = true,
+			},
+			["source"] = "Illysanna Ravencrest",
+		},
+		[323650] = {
+			["school"] = 32,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+			},
+			["source"] = "Ghastly Parishioner",
+		},
+		[329170] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Sinstone Statue",
+		},
 		[194231] = {
 			["school"] = 32,
 			["token"] = {
@@ -710,13 +1070,20 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Harbaron",
 		},
-		[194325] = {
-			["school"] = 32,
+		[157001] = {
+			["school"] = 1,
 			["token"] = {
 				["SPELL_CAST_SUCCESS"] = true,
 				["SPELL_CAST_START"] = true,
 			},
-			["source"] = "Harbaron",
+			["source"] = "Teron'gor",
+		},
+		[323552] = {
+			["school"] = 32,
+			["token"] = {
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "High Adjudicator Aleez",
 		},
 		[329171] = {
 			["school"] = 1,
@@ -734,8 +1101,8 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Harbaron",
 		},
-		[344874] = {
-			["school"] = 8,
+		[319703] = {
+			["school"] = 32,
 			["type"] = "DEBUFF",
 			["token"] = {
 				["SPELL_AURA_APPLIED"] = true,
@@ -759,12 +1126,13 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Sinstone Statue",
 		},
-		[338013] = {
-			["school"] = 32,
+		[414661] = {
+			["school"] = 16,
+			["type"] = "BUFF",
 			["token"] = {
-				["SPELL_DAMAGE"] = true,
+				["SPELL_AURA_APPLIED"] = true,
 			},
-			["source"] = "Anima Fountain",
+			["source"] = "Swistaké-BurningLegion",
 		},
 		[193977] = {
 			["school"] = 16,
@@ -802,20 +1170,24 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Overseer Korgus",
 		},
-		[323650] = {
-			["school"] = 32,
-			["type"] = "DEBUFF",
-			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
-			},
-			["source"] = "Ghastly Parishioner",
-		},
-		[323552] = {
+		[193211] = {
 			["school"] = 32,
 			["token"] = {
 				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "High Adjudicator Aleez",
+			["source"] = "Ymiron, the Fallen King",
+		},
+		[193460] = {
+			["school"] = 32,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+			},
+			["source"] = "Ymiron, the Fallen King",
 		},
 		[197484] = {
 			["school"] = 1,
@@ -845,12 +1217,11 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Overseer Korgus",
 		},
-		[319703] = {
-			["school"] = 32,
-			["type"] = "DEBUFF",
+		[319941] = {
+			["school"] = 1,
 			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_PERIODIC_DAMAGE"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
 			},
 			["source"] = "Echelon",
 		},
@@ -869,15 +1240,22 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Overseer Korgus",
 		},
-		[256199] = {
-			["school"] = 1,
-			["type"] = "BUFF",
+		[156842] = {
+			["school"] = 32,
+			["type"] = "DEBUFF",
 			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_CAST_START"] = true,
 				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_AURA_APPLIED"] = true,
 			},
-			["source"] = "Overseer Korgus",
+			["source"] = "Teron'gor",
+		},
+		[68799] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Apothecary Frye",
 		},
 		[329113] = {
 			["school"] = 1,
@@ -888,16 +1266,6 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Lord Chamberlain",
 		},
-		[257793] = {
-			["school"] = 1,
-			["type"] = "DEBUFF",
-			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_CAST_START"] = true,
-				["SPELL_CAST_SUCCESS"] = true,
-			},
-			["source"] = "Jes Howlis",
-		},
 		[197262] = {
 			["school"] = 16,
 			["type"] = "DEBUFF",
@@ -907,13 +1275,15 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Helya",
 		},
-		[195254] = {
+		[256199] = {
 			["school"] = 1,
+			["type"] = "BUFF",
 			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_AURA_APPLIED"] = true,
 				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
 			},
-			["source"] = "Amalgam of Souls",
+			["source"] = "Overseer Korgus",
 		},
 		[194266] = {
 			["school"] = 32,
@@ -932,15 +1302,12 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Dantalionax",
 		},
-		[193460] = {
-			["school"] = 32,
-			["type"] = "BUFF",
+		[156746] = {
+			["school"] = 2,
 			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_CAST_START"] = true,
-				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Ymiron, the Fallen King",
+			["source"] = "Vigilant Kaathar",
 		},
 		[257092] = {
 			["school"] = 1,
@@ -957,15 +1324,6 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Healing Stream Totem",
 		},
-		[156842] = {
-			["school"] = 32,
-			["type"] = "DEBUFF",
-			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_AURA_APPLIED"] = true,
-			},
-			["source"] = "Teron'gor",
-		},
 		[198641] = {
 			["school"] = 1,
 			["token"] = {
@@ -973,15 +1331,6 @@ EncounterDetailsDB = {
 				["SPELL_CAST_START"] = true,
 			},
 			["source"] = "Kur'talos Ravencrest",
-		},
-		[197805] = {
-			["school"] = 16,
-			["token"] = {
-				["SPELL_CAST_START"] = true,
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_DAMAGE"] = true,
-			},
-			["source"] = "Helya",
 		},
 		[323001] = {
 			["school"] = 1,
@@ -992,20 +1341,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Halkias",
 		},
-		[153499] = {
-			["school"] = 1,
+		[197805] = {
+			["school"] = 16,
 			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
-			},
-			["source"] = "Azzakel",
-		},
-		[319941] = {
-			["school"] = 1,
-			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
 				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Echelon",
+			["source"] = "Helya",
 		},
 		[55078] = {
 			["school"] = 32,
@@ -1013,6 +1356,30 @@ EncounterDetailsDB = {
 				["SPELL_PERIODIC_DAMAGE"] = true,
 			},
 			["source"] = "Rune Weapon",
+		},
+		[153499] = {
+			["school"] = 1,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+			},
+			["source"] = "Azzakel",
+		},
+		[328206] = {
+			["school"] = 8,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Echelon",
+		},
+		[197478] = {
+			["school"] = 1,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_AURA_APPLIED"] = true,
+			},
+			["source"] = "Illysanna Ravencrest",
 		},
 		[256105] = {
 			["school"] = 1,
@@ -1022,14 +1389,16 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Overseer Korgus",
 		},
-		[197521] = {
-			["school"] = 4,
+		[194956] = {
+			["school"] = 32,
 			["type"] = "DEBUFF",
 			["token"] = {
 				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_PERIODIC_DAMAGE"] = true,
+				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Illysanna Ravencrest",
+			["source"] = "Amalgam of Souls",
 		},
 		[197264] = {
 			["school"] = 16,
@@ -1047,14 +1416,13 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Overseer Korgus",
 		},
-		[197478] = {
+		[319733] = {
 			["school"] = 1,
-			["type"] = "DEBUFF",
 			["token"] = {
 				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_CAST_START"] = true,
 			},
-			["source"] = "Illysanna Ravencrest",
+			["source"] = "Echelon",
 		},
 		[198635] = {
 			["school"] = 1,
@@ -1076,14 +1444,6 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Jes Howlis",
 		},
-		[319733] = {
-			["school"] = 1,
-			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_CAST_START"] = true,
-			},
-			["source"] = "Echelon",
-		},
 		[202019] = {
 			["school"] = 32,
 			["type"] = "DEBUFF",
@@ -1103,6 +1463,16 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Kur'talos Ravencrest",
 		},
+		[68607] = {
+			["school"] = 8,
+			["type"] = "BUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+			},
+			["source"] = "Apothecary Hummel",
+		},
 		[323126] = {
 			["school"] = 1,
 			["token"] = {
@@ -1110,16 +1480,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Sinstone Statue",
 		},
-		[194956] = {
-			["school"] = 32,
+		[197521] = {
+			["school"] = 4,
 			["type"] = "DEBUFF",
 			["token"] = {
 				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_CAST_START"] = true,
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_DAMAGE"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
 			},
-			["source"] = "Amalgam of Souls",
+			["source"] = "Illysanna Ravencrest",
 		},
 		[157039] = {
 			["school"] = 1,
@@ -1129,20 +1497,22 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Teron'gor",
 		},
-		[328206] = {
-			["school"] = 8,
-			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_CAST_START"] = true,
-			},
-			["source"] = "Echelon",
-		},
 		[156857] = {
 			["school"] = 4,
 			["token"] = {
 				["SPELL_CAST_START"] = true,
 			},
 			["source"] = "Teron'gor",
+		},
+		[257793] = {
+			["school"] = 1,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+			},
+			["source"] = "Jes Howlis",
 		},
 		[322936] = {
 			["school"] = 1,
@@ -1162,12 +1532,15 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Helya",
 		},
-		[156746] = {
-			["school"] = 2,
+		[257028] = {
+			["school"] = 4,
+			["type"] = "DEBUFF",
 			["token"] = {
-				["SPELL_DAMAGE"] = true,
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
 			},
-			["source"] = "Vigilant Kaathar",
+			["source"] = "Knight Captain Valyri",
 		},
 		[257956] = {
 			["school"] = 32,
@@ -1177,14 +1550,13 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Jes Howlis",
 		},
-		[319724] = {
+		[195254] = {
 			["school"] = 1,
-			["type"] = "BUFF",
 			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_PERIODIC_HEAL"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
 			},
-			["source"] = "Undying Stonefiend",
+			["source"] = "Amalgam of Souls",
 		},
 		[157040] = {
 			["school"] = 1,
@@ -1193,14 +1565,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Teron'gor",
 		},
-		[193211] = {
-			["school"] = 32,
+		[319724] = {
+			["school"] = 1,
+			["type"] = "BUFF",
 			["token"] = {
-				["SPELL_CAST_START"] = true,
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_DAMAGE"] = true,
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_PERIODIC_HEAL"] = true,
 			},
-			["source"] = "Ymiron, the Fallen King",
+			["source"] = "Undying Stonefiend",
 		},
 		[256044] = {
 			["school"] = 1,
@@ -1220,40 +1592,12 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Fel Bat",
 		},
-		[328125] = {
-			["school"] = 8,
+		[338013] = {
+			["school"] = 32,
 			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
 				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Undying Stonefiend",
-		},
-		[257028] = {
-			["school"] = 4,
-			["type"] = "DEBUFF",
-			["token"] = {
-				["SPELL_AURA_APPLIED"] = true,
-				["SPELL_CAST_START"] = true,
-				["SPELL_CAST_SUCCESS"] = true,
-			},
-			["source"] = "Knight Captain Valyri",
-		},
-		[263345] = {
-			["school"] = 4,
-			["token"] = {
-				["SPELL_CAST_START"] = true,
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_DAMAGE"] = true,
-			},
-			["source"] = "Heavy Cannon",
-		},
-		[157001] = {
-			["school"] = 1,
-			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
-				["SPELL_CAST_START"] = true,
-			},
-			["source"] = "Teron'gor",
+			["source"] = "Anima Fountain",
 		},
 		[197546] = {
 			["school"] = 1,
@@ -1266,6 +1610,14 @@ EncounterDetailsDB = {
 				["SPELL_CAST_START"] = true,
 			},
 			["source"] = "Illysanna Ravencrest",
+		},
+		[68927] = {
+			["school"] = 8,
+			["type"] = "DEBUFF",
+			["token"] = {
+				["SPELL_AURA_APPLIED"] = true,
+				["SPELL_PERIODIC_DAMAGE"] = true,
+			},
 		},
 		[153002] = {
 			["school"] = 2,
@@ -1299,13 +1651,14 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Soulbinder Nyami",
 		},
-		[259711] = {
-			["school"] = 1,
+		[263345] = {
+			["school"] = 4,
 			["token"] = {
-				["SPELL_CAST_SUCCESS"] = true,
 				["SPELL_CAST_START"] = true,
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_DAMAGE"] = true,
 			},
-			["source"] = "Block Warden",
+			["source"] = "Heavy Cannon",
 		},
 		[194216] = {
 			["school"] = 64,
@@ -1315,13 +1668,13 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Harbaron",
 		},
-		[256970] = {
-			["school"] = 4,
+		[259711] = {
+			["school"] = 1,
 			["token"] = {
 				["SPELL_CAST_SUCCESS"] = true,
 				["SPELL_CAST_START"] = true,
 			},
-			["source"] = "Knight Captain Valyri",
+			["source"] = "Block Warden",
 		},
 		[323392] = {
 			["school"] = 1,
@@ -1330,5 +1683,29 @@ EncounterDetailsDB = {
 			},
 			["source"] = "Lord Chamberlain",
 		},
+		[256970] = {
+			["school"] = 4,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_CAST_START"] = true,
+			},
+			["source"] = "Knight Captain Valyri",
+		},
+		[328125] = {
+			["school"] = 8,
+			["token"] = {
+				["SPELL_CAST_SUCCESS"] = true,
+				["SPELL_DAMAGE"] = true,
+			},
+			["source"] = "Undying Stonefiend",
+		},
+	},
+	["emotes"] = {
+		{
+			["boss"] = "The Crown Chemical Co.",
+		}, -- [1]
+		{
+			["boss"] = "The Crown Chemical Co.",
+		}, -- [2]
 	},
 }

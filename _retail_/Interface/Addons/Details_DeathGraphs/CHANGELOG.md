@@ -1,6 +1,6 @@
 # Details!: Advanced Death Logs (plugin)
 
-## [v10.1.5.114](https://github.com/Tercioo/AdvancedDeathLogs/tree/v10.1.5.114) (2023-07-22)
-[Full Changelog](https://github.com/Tercioo/AdvancedDeathLogs/compare/v10.1.5.113...v10.1.5.114) 
+## [v10.2.5.120](https://github.com/Tercioo/AdvancedDeathLogs/tree/v10.2.5.120) (2024-02-15)
+[Full Changelog](https://github.com/Tercioo/AdvancedDeathLogs/compare/v10.2.0.119...v10.2.5.120) 
 
-- Removed debug prints  
+- Added spell description for Debuffs an Enemy Spell Cast, removed description for melee hits.  

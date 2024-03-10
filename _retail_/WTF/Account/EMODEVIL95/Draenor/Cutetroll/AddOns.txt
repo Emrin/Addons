@@ -133,3 +133,13 @@ ElvUI_SecondsToBuff: disabled
 ElvUI_BuffHighlight: disabled
 ElvUI_ChatTweaks: disabled
 WunderUI: disabled
+Blizzard_CombatText: enabled
+LittleWigs: enabled
+BigWigs_VaultOfTheIncarnates: enabled
+BigWigs_Amirdrassil: enabled
+LittleWigs_WarlordsOfDraenor: enabled
+LittleWigs_Legion: enabled
+LittleWigs_BattleForAzeroth: enabled
+LittleWigs_Cataclysm: enabled
+BigWigs_DragonIsles: enabled
+LittleWigs_Classic: enabled

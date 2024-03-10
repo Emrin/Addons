@@ -1,33 +1,35 @@
-AddonName, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
+---@class CraftSim.CONTROL_PANEL
 CraftSim.CONTROL_PANEL = {}
 
+local GUTIL = CraftSim.GUTIL
+
+---@class CraftSim.CONTROL_PANEL.FRAME : GGUI.Frame
 CraftSim.CONTROL_PANEL.frame = nil
 
 local print = CraftSim.UTIL:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.CONTROL_PANEL)
 
 function CraftSim.CONTROL_PANEL:ForgeFinderExportAll()
     print("ForgeFinder Export..")
-    
-    -- get all dragon flight item producing (and quality supporting?) recipes
-    
-    -- check current recipeData to fetch the current profession id
-    local professionID
-    if CraftSim.MAIN.currentRecipeData then
-        professionID = CraftSim.MAIN.currentRecipeData.professionData.professionInfo.profession
+
+    if not C_TradeSkillUI.IsTradeSkillReady() then
+        print("Tradeskill not ready")
+        return
     end
-    
-    local professionRecipeIDs = CraftSim.CACHE:GetCacheEntryByVersion(CraftSimRecipeIDs, professionID)
-    
+
+    local professionRecipeIDs = C_TradeSkillUI.GetAllRecipeIDs()
+
     if professionRecipeIDs and #professionRecipeIDs > 0 then
-        professionRecipeIDs = CraftSim.GUTIL:Filter(professionRecipeIDs, function (recipeID)
+        professionRecipeIDs = GUTIL:Filter(professionRecipeIDs, function(recipeID)
             local recipeInfo = C_TradeSkillUI.GetRecipeInfo(recipeID)
-            
+
             -- needs to have a recipeInfo
             if not recipeInfo then
                 return false
             end
-            
+
             -- only include learned recipes
             if not recipeInfo.learned then
                 return false
@@ -53,8 +55,7 @@ function CraftSim.CONTROL_PANEL:ForgeFinderExportAll()
 
             -- finally check if its a dragon isle recipe
 
-            local recipeCategoryInfo = C_TradeSkillUI.GetCategoryInfo(recipeInfo.categoryID)
-            local isDragonIsleRecipe = tContains(CraftSim.CONST.DRAGON_ISLES_CATEGORY_IDS, recipeCategoryInfo.parentCategoryID)
+            local isDragonIsleRecipe = CraftSim.UTIL:IsDragonflightRecipe(recipeInfo.recipeID)
             if not isDragonIsleRecipe then
                 return false
             end
@@ -67,6 +68,8 @@ function CraftSim.CONTROL_PANEL:ForgeFinderExportAll()
         local currentIndex = 1
         local numRecipes = #professionRecipeIDs
         local data = {}
+
+        print("filtered recipeID: " .. tostring(numRecipes))
 
         local function finishExport()
             print("Created " .. #data .. " RecipeData")
@@ -83,7 +86,7 @@ function CraftSim.CONTROL_PANEL:ForgeFinderExportAll()
                         jb.json = jb.json .. recipeJson .. ",\n"
                     end
                 end
-                
+
                 jb.json = jb.json .. "\n]"
                 CraftSim.UTIL:KethoEditBox_Show(jb.json)
             end
@@ -91,9 +94,12 @@ function CraftSim.CONTROL_PANEL:ForgeFinderExportAll()
 
         local function mapRecipe()
             local recipeID = professionRecipeIDs[currentIndex]
+            print("map recipe: " .. tostring(currentIndex))
             if recipeID then
+                CraftSim.UTIL:StartProfiling("RecipeDataCreation")
                 ---@type CraftSim.RecipeData
                 local recipeData = CraftSim.RecipeData(recipeID)
+                CraftSim.UTIL:StopProfiling("RecipeDataCreation")
 
                 -- only for recipes that have a result which either has qualities or can multicraft
                 if recipeData.resultData.itemsByQuality and #recipeData.resultData.itemsByQuality > 1 and (recipeData.supportsQualities or recipeData.supportsMulticraft) then
@@ -101,22 +107,24 @@ function CraftSim.CONTROL_PANEL:ForgeFinderExportAll()
                     table.insert(data, recipeData)
                 end
                 currentIndex = currentIndex + 1
-                
-                -- update button
-                local currentPercent = CraftSim.GUTIL:Round(currentIndex / (numRecipes / 100))
 
-                CraftSim.CONTROL_PANEL.frame.content.exportForgeFinderButton:SetText(CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.CONTROL_PANEL_FORGEFINDER_EXPORTING) .. " " .. currentPercent.."%")
-                C_Timer.After(0.001, mapRecipe)
+                -- update button
+                local currentPercent = GUTIL:Round(currentIndex / (numRecipes / 100))
+
+                CraftSim.CONTROL_PANEL.frame.content.exportForgeFinderButton:SetText(CraftSim.LOCAL:GetText(CraftSim
+                    .CONST.TEXT.CONTROL_PANEL_FORGEFINDER_EXPORTING) .. " " .. currentPercent .. "%")
+                RunNextFrame(mapRecipe)
             else
                 -- if finished
                 finishExport()
                 CraftSim.CONTROL_PANEL.frame.content.exportForgeFinderButton:SetStatus("READY")
                 CraftSim.UTIL:StopProfiling("FORGEFINDER_EXPORT")
             end
-        end     
+        end
 
-        CraftSim.UTIL:StartProfiling("FORGEFINDER_EXPORT") 
-        CraftSim.CONTROL_PANEL.frame.content.exportForgeFinderButton:SetText(CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT.CONTROL_PANEL_FORGEFINDER_EXPORTING) .. " 0%")
+        CraftSim.UTIL:StartProfiling("FORGEFINDER_EXPORT")
+        CraftSim.CONTROL_PANEL.frame.content.exportForgeFinderButton:SetText(CraftSim.LOCAL:GetText(CraftSim.CONST.TEXT
+            .CONTROL_PANEL_FORGEFINDER_EXPORTING) .. " 0%")
         CraftSim.CONTROL_PANEL.frame.content.exportForgeFinderButton:SetEnabled(false)
         mapRecipe()
     end

@@ -1,3 +1,27 @@
+Version 1.27
+
+- Updated for MDT 4.3.2.*
+
+Version 1.26
+
+- Updated for MDT 4.3.1.*
+
+Version 1.25
+
+- Added command to disable map animations
+- Removed height setting command
+- Fix some hidden UI elements reappearing after closing and reopening MDT
+
+Version 1.24
+
+- Updated for patch 10.2
+- Updated for MDT 4.2.0.*
+- Fixed trying to scroll to pull when no pull data is available
+
+Version 1.23
+
+- Updated for patch 10.1.5
+
 Version 1.22
 
 - Updated for MDT 4.0.4.*

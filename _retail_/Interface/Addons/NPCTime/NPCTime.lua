@@ -4,6 +4,9 @@ local Settings = {}
 local timeFormat = "%H:%M, %d.%m"
 local band = bit.band
 
+local timeFormatter = CreateFromMixins(SecondsFormatterMixin);
+timeFormatter:Init(1, SecondsFormatter.Abbreviation.Truncate);
+
 -- Compat
 local function AddColoredDoubleLine(tooltip, leftT, rightT, leftC, rightC, wrap)
   leftC = leftC or NORMAL_FONT_COLOR
@@ -25,11 +28,12 @@ function NPCTime:ShowTime(self)
   local guid = UnitGUID(unit or "none")
   if not guid then return end
 
-  local unitType, _, serverID, _, layerUID, unitID = strsplit("-", guid)
+  local unitType, _, serverID, _, layerUID, unitID, uuid = strsplit("-", guid)
   local id = tonumber(strsub(guid, -6), 16)
   if id and (unitType == "Creature" or unitType == "Vehicle") then
     local serverTime = GetServerTime()
     local spawnTime  = ( serverTime - (serverTime % 2^23) ) + band(id, 0x7fffff)
+    local spawnIndex = bit.rshift(bit.band(tonumber(string.sub(uuid, 1, 5), 16), 0xffff8), 3)
 
     if Settings.ShowCurrentTime then
       AddColoredDoubleLine(self, "Current Time", date(timeFormat, serverTime))
@@ -39,7 +43,7 @@ function NPCTime:ShowTime(self)
       spawnTime = spawnTime - ((2^23) - 1)
     end
 
-    AddColoredDoubleLine(self, "Alive", SecondsToTime(serverTime-spawnTime).." ("..date(timeFormat, spawnTime)..")")
+    AddColoredDoubleLine(self, "Alive", timeFormatter:Format((serverTime-spawnTime), false, false).." ("..date(timeFormat, spawnTime)..")")
 
     if Settings.ShowLayer then
       AddColoredDoubleLine(self, "Layer", serverID.."-"..layerUID)
@@ -47,6 +51,9 @@ function NPCTime:ShowTime(self)
 
     if Settings.ShowNPCID then
       AddColoredDoubleLine(self, "ID", unitID)
+      if spawnIndex > 0 then
+        AddColoredDoubleLine(self, "Index", spawnIndex)
+      end
     end
 
     self:Show()

@@ -1,6 +1,6 @@
-local config, COMPAT, _, T = {}, select(4,GetBuildInfo()), ...
-local MODERN, CF_WRATH = COMPAT >= 10e4, COMPAT < 10e4 and COMPAT >= 3e4
-local L, EV, XU, frame = T.L, T.Evie, T.exUI, nil
+local config, COMPAT, ADDON, T = {}, select(4,GetBuildInfo()), ...
+local MODERN, CF_WRATH, CI_ERA = COMPAT >= 10e4, COMPAT < 10e4 and COMPAT >= 3e4, COMPAT < 2e4
+local L, EV, TS, XU, frame = T.L, T.Evie, T.TenSettings, T.exUI, nil
 local GameTooltip = T.NotGameTooltip or GameTooltip
 T.config = config
 
@@ -13,8 +13,8 @@ do -- /opie
 		end
 	end
 	addSuffix(function()
-		print("|cff0080ffOPie|r |cffffffff" .. GetAddOnMetadata("OPie", "Version") .. "|r")
-	end, "version")
+		print("|cff0080ffOPie|r |cffffffff" .. (C_AddOns.GetAddOnMetadata(ADDON, "Version") or "??") .. "|r")
+	end, "version", "v")
 	T.AddSlashSuffix = addSuffix
 
 	SLASH_OPIE1, SLASH_OPIE2 = "/opie", "/op"
@@ -28,8 +28,8 @@ do -- /opie
 	end
 end
 
-if T.TenSettings.Localize then
-	T.TenSettings:Localize({
+if TS and TS.Localize then
+	TS:Localize({
 		REVERT=L"Revert...",
 		REVERT_OPTION_LABEL=L"%d |4minute:minutes; ago (%s)",
 		RESET_QUESTION=L"Do you want to reset all %s settings to their defaults, or only the settings in the %s category?",
@@ -42,9 +42,6 @@ end
 local KR, PC = T.ActionBook:compatible("Kindred",1,0), T.OPieCore
 local CreateEdge = T.CreateEdge
 
-function config.createPanel(...)
-	return T.TenSettings:CreateOptionsPanel(...)
-end
 do -- config.ui
 	config.ui = {}
 	do -- multilineInput
@@ -81,9 +78,6 @@ do -- config.ui
 			input.scroll, scroller.input = scroller, input
 			return input, scroller
 		end
-	end
-	function config.ui.lineInput(parent, common, width)
-		return T.TenSettings:CreateLineInputBox(parent, common, width)
 	end
 	function config.ui.HideTooltip(self)
 		if GameTooltip:IsOwned(self) then
@@ -184,6 +178,12 @@ do -- config.bind
 			return Deactivate(self)
 		elseif unbindableKeys[bind] then
 			return
+		elseif bind and bind:match("PAD") and (
+		         bind == GetCVar("GamePadEmulateAlt") or
+		         bind == GetCVar("GamePadEmulateCtrl") or
+		         bind == GetCVar("GamePadEmulateShift")
+		       ) then
+			return
 		end
 		Deactivate(self)
 		local bind, p = bind and ((IsAltKeyDown() and "ALT-" or "") ..  (IsControlKeyDown() and "CTRL-" or "") .. (IsShiftKeyDown() and "SHIFT-" or "") .. (IsMetaKeyDown() and "META-" or "") .. bind), self:GetParent()
@@ -264,14 +264,19 @@ do -- config.bind
 		GameTooltip:Show()
 	end
 	local specialSymbolMap = {OPEN="[", CLOSE="]", SEMICOLON=";"}
-	local function bindNameLookup(key)
-		return GetBindingText(specialSymbolMap[key] or key)
-	end
 	local function SetBindingText(self, bind, pre, post, hasBinding)
 		if type(bind) == "string" and bind:match("%[.*%]") then
 			return SetBindingText(self, KR:EvaluateCmdOptions(bind), pre, post or " |cff20ff20[+]|r", true)
 		end
-		local bindText = bind and bind ~= "" and GetBindingText((bind:gsub("[^%-]+$", bindNameLookup)))
+		local bindText = bind and bind ~= "" and GetBindingText((bind:gsub("[^%-]+$", specialSymbolMap)))
+		if CI_ERA and bindText and bind:match("PAD") then
+			for ai in bindText:gmatch("|A:([^:]+)") do
+				if not C_Texture.GetAtlasInfo(ai) then -- BUG[1.14.4/2310]
+					bindText = bind:gsub("[^%-]+$", specialSymbolMap)
+					break
+				end
+			end
+		end
 		self.hasSetBinding, self.bindCoreText = not not (hasBinding or bindText), bindText
 		return self:SetText((pre or "") .. (bindText or L"Not bound") .. (post or ""))
 	end
@@ -333,7 +338,6 @@ do -- config.bind
 		return btn
 	end
 end
-config.undo = T.TenSettings:CreateUndoHandle()
 do -- config.pulseDropdown
 	local function cloneTex(tex)
 		local l, sl = tex:GetDrawLayer()
@@ -367,12 +371,13 @@ do -- config.pulseDropdown
 			drop.LeftA:SetAlpha(s)
 			drop.MiddleA:SetAlpha(s)
 			drop.RightA:SetAlpha(s)
-			C_Timer.After(0, pulse)
+			EV.After(0, pulse)
 		end
 		drop.pulseFunc = pulse
 		pulse()
 	end
 end
+config.undo = TS:CreateUndoHandle()
 
 local function CallSwitchProfile(msg, ...)
 	if msg == "archive-unwind" then
@@ -407,7 +412,7 @@ end
 
 function config.checkSVState(frame)
 	if not PC:GetSVState() then
-		T.TenSettings:ShowAlertOverlay(frame, L"Changes will not be saved", L"World of Warcraft could not load OPie's saved variables due to a lack of memory. Try disabling other addons.\n\nAny changes you make now will not be saved.", L"Understood; edit anyway")
+		TS:ShowAlertOverlay(frame, L"Changes will not be saved", L"World of Warcraft could not load OPie's saved variables due to a lack of memory. Try disabling other addons.\n\nAny changes you make now will not be saved.", L"Understood; edit anyway")
 	end
 end
 
@@ -421,7 +426,7 @@ local OPC_OptionSets = {
 		{"bool", "ClickActivation", caption=L"Activate on left click"},
 		{"bool", "NoClose", caption=L"Leave open after use", depOn="ClickActivation", depValue=true, otherwise=false},
 		{"bool", "UseDefaultBindings", caption=L"Use default ring bindings"},
-		{"drop", "PadSupportMode", {"freelook", "cursor", "none", freelook=L"Camera analog stick", cursor=L"Virtual mouse cursor", none=L"None"}, caption=L"Controller interaction mode", hideFeature="GamePad"},
+		{"drop", "PadSupportMode", {"freelook", "freelook1", "cursor", "none", freelook=L"Camera analog stick", freelook1=L"Movement analog stick", cursor=L"Virtual mouse cursor", none=L"None"}, caption=L"Controller interaction mode", hideFeature="GamePad"},
 		{"range", "IndicationOffsetX", -500, 500, 50, caption=L"Move rings right", valueFormat="%d"},
 		{"range", "IndicationOffsetY", -300, 300, 50, caption=L"Move rings down", valueFormat="%d"},
 		{"range", "MouseBucket", 5, 1, 1, caption=L"Scroll wheel sensitivity", stdLabels=true},
@@ -437,12 +442,12 @@ local OPC_OptionSets = {
 	}, { L"Animation",
 		{"bool", "XTAnimation", caption=L"Animate transitions"},
 		{"bool", "MISpinOnHide", caption=L"Outward spiral on hide", depOn="XTAnimation", depValue=true, otherwise=false},
-		{"bool", "MIScale", caption=L"Enlarge selected slice"},
 		{"bool", "XTPointerSnap", caption=L"Snap pointer to mouse cursor"},
+		{"bool", "MIScale", caption=L"Enlarge selected slice"},
 	}
 }
 
-frame = config.createPanel("OPie", nil, {forceRootVersion=true})
+frame = TS:CreateOptionsPanel("OPie", nil, {forceRootVersion=true})
 	frame.version:SetFormattedText("%s", PC:GetVersion() or "")
 	frame.desc:SetText(L"Customize OPie's appearance and behavior. Right clicking a checkbox restores it to its default state."
 		.. (MODERN and "\n" .. L"Profiles activate automatically when you switch character specializations." or ""))
@@ -470,11 +475,11 @@ do -- Widget construction
 		OPC_AlterOption(drop, dd[2], nv)
 	end
 	local function dropInitialize(self)
-		local dda = OPC_WidgetControl[self][3]
+		local dda, cv = OPC_WidgetControl[self][3], OPC_WidgetControl[self].cv
 		local info = {func=dropSelect, arg2=self, minWidth=self:GetWidth()-40}
 		for i=1,#dda do
 			local k = dda[i]
-			info.text, info.arg1, info.checked = dda[k], k, OPC_WidgetControl[self].cv == k
+			info.text, info.arg1, info.checked = dda[k], k, cv == k
 			UIDropDownMenu_AddButton(info)
 		end
 	end
@@ -490,7 +495,7 @@ do -- Widget construction
 		self:SetPoint("TOPRIGHT", r, "TOPRIGHT", 0, y)
 	end
 	function build.bool(v, ofsY, halfpoint, rowHeight, rframe)
-		local b = T.TenSettings:CreateOptionsCheckButton(nil, frame)
+		local b = TS:CreateOptionsCheckButton(nil, frame)
 		b:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 		b:SetMotionScriptsWhileDisabled(true)
 		b.id, b.text, b.desc = v[2], b.Text, v
@@ -503,7 +508,7 @@ do -- Widget construction
 		if halfpoint then
 			ofsY = ofsY - rowHeight
 		end
-		local s, leftMargin, centerLine = T.TenSettings:CreateOptionsSlider(frame, nil, 212)
+		local s, leftMargin, centerLine = TS:CreateOptionsSlider(frame, nil, 212)
 		s:SetPoint("TOPLEFT", rframe, "TOPLEFT", 319-leftMargin, ofsY-5)
 		s.text:SetPoint("LEFT", rframe, "TOPLEFT", 44, ofsY-5-centerLine)
 		s.text:Show()
@@ -562,7 +567,7 @@ do -- Widget construction
 	end
 end
 local OPC_AppearanceFactory = CreateFrame("Frame", "OPC_AppearanceDropdown", frame, "UIDropDownMenuTemplate")
-OPC_AppearanceFactory:SetPoint("LEFT", OPC_OptionSets[2].label, "LEFT", 280, -2)
+OPC_AppearanceFactory:SetPoint("LEFT", OPC_OptionSets[2].label, "LEFT", 284, -1)
 UIDropDownMenu_SetWidth(OPC_AppearanceFactory, 200)
 
 T.OPC_RingScopePrefixes = {
@@ -682,7 +687,7 @@ do -- OPC_Profile:initialize
 		return true
 	end
 	local function OPC_Profile_new(_, _, frame)
-		T.TenSettings:ShowPromptOverlay(frame, L"Create a New Profile", L"New profile name:", L"Profiles save options and ring bindings.", L"Create Profile", OPC_Profile_new_callback)
+		TS:ShowPromptOverlay(frame, L"Create a New Profile", L"New profile name:", L"Profiles save options and ring bindings.", L"Create Profile", OPC_Profile_new_callback)
 	end
 	local function OPC_Profile_delete()
 		config.undo:saveActiveProfile()
@@ -729,13 +734,15 @@ end
 function OPC_Profile:text()
 	UIDropDownMenu_SetText(self, L"Profile" .. ": " .. OPC_Profile_FormatName(PC:GetCurrentProfile()))
 end
-function OPC_AppearanceFactory:formatText(key, outOfDate, name)
+function OPC_AppearanceFactory:formatText(key, outOfDate, name, disabled)
 	name = name or T.OPieUI:GetIndicatorConstructorName(key)
 	if not name then
 		name = "|cffa0a0a0*[" .. T.OPieUI:GetIndicatorConstructorName() .. "]|r"
 	end
-	if outOfDate then
-		name = "|cffff6060" .. name .. "|r"
+	if disabled then
+		name = "|cff909090" .. name .. "|r"
+	elseif outOfDate then
+		name = "|cffef2020" .. name .. "|r"
 	end
 	if key == "mirage" then
 		name = "|cff00e800" .. name .. "|r"
@@ -745,8 +752,15 @@ function OPC_AppearanceFactory:formatText(key, outOfDate, name)
 	return name
 end
 function OPC_AppearanceFactory:text()
-	local key, own = PC:GetOption("IndicatorFactory", OR_CurrentOptionsDomain)
-	UIDropDownMenu_SetText(self, OR_CurrentOptionsDomain and own == nil and L"Use global setting" or self:formatText(key, false))
+	local key, own, text = PC:GetOption("IndicatorFactory", OR_CurrentOptionsDomain)
+	if OR_CurrentOptionsDomain and own == nil then
+		text = L"Use global setting"
+	else
+		local name, avail = T.OPieUI:GetIndicatorConstructorName(key)
+		key, name = avail and key or nil, avail and name or nil
+		text = self:formatText(key, nil, name) .. (avail and "" or "|cff909090*")
+	end
+	UIDropDownMenu_SetText(self, text)
 end
 local function OPC_AppearanceFactory_set(_, key)
 	PC:SetOption("IndicatorFactory", key, OR_CurrentOptionsDomain)
@@ -758,19 +772,21 @@ local function OPC_AppearanceFactory_set(_, key)
 	end end
 end
 function OPC_AppearanceFactory:initialize()
-	local info = {func=OPC_AppearanceFactory_set, minWidth=UIDROPDOWNMENU_OPEN_MENU:GetWidth()-40, tooltipOnButton=true}
+	local info = {func=OPC_AppearanceFactory_set, minWidth=UIDROPDOWNMENU_OPEN_MENU:GetWidth()-40, tooltipOnButton=true, tooltipWhileDisabled=true}
 	local current, own = PC:GetOption("IndicatorFactory", OR_CurrentOptionsDomain)
-	for k, name, outOfDate in T.OPieUI:EnumerateRegisteredIndicatorConstructors() do
-		name = self:formatText(k, outOfDate, name)
+	for k, name, outOfDate, err in T.OPieUI:EnumerateRegisteredIndicatorConstructors() do
 		if k == "_" then
 			UIDropDownMenu_AddSeparator()
 		end
-		if outOfDate then
+		name = self:formatText(k, outOfDate, name, err ~= nil)
+		if err then
+			info.tooltipTitle, info.tooltipText = "|cffff2020" .. L"Update required", L"Install an updated version of this appearance to select it." .. "\n\n|cff909090" .. err
+		elseif outOfDate then
 			info.tooltipTitle, info.tooltipText = "|cffff2020" .. L"Update required", L"This appearance may not support all OPie features."
 		else
 			info.tooltipTitle, info.tooltipText = nil
 		end
-		info.arg1, info.text, info.checked = k, name, k == own or (own == nil and not OR_CurrentOptionsDomain and current == k)
+		info.arg1, info.text, info.checked, info.disabled = k, name, k == own or (own == nil and not OR_CurrentOptionsDomain and current == k), err ~= nil
 		UIDropDownMenu_AddButton(info)
 	end
 	if OR_CurrentOptionsDomain then

@@ -13,6 +13,7 @@ MDTGuideDB = {
         widthSide = 200,
         zoomMin = 1,
         zoomMax = 1,
+        animate = true,
         fade = false,
         hide = false,
         route = false,
@@ -36,14 +37,12 @@ Addon.COLOR_CURR = { 0.13, 1, 1 }
 Addon.COLOR_DEAD = { 0.55, 0.13, 0.13 }
 Addon.DEBUG = false
 Addon.PATTERN_INSTANCE_RESET = "^" .. INSTANCE_RESET_SUCCESS:gsub("%%s", ".+") .. "$"
-Addon.MDT_VERSION = "4.0.4.*"
 
 local toggleBtn, currentPullBtn, announceBtn
 local hideFrames, hoverFrames
 local zoomAnimGrp, fadeAnimGrp
 local fadeTicker, isFaded
 local isHidden
-local mdtVersionMismatch
 local previousSublevel
 
 -- ---------------------------------------
@@ -57,9 +56,7 @@ function Addon.EnableGuideMode(noZoom)
     local main = MDT.main_frame
 
     -- Hide frames
-    for _, f in pairs(Addon.GetHideFrames()) do
-        (f.frame or f):Hide()
-    end
+    Addon.ToggleHideFrames()
 
     -- Resize
     main:SetResizeBounds(Addon.MIN_HEIGHT * Addon.RATIO, Addon.MIN_HEIGHT)
@@ -131,9 +128,7 @@ function Addon.DisableGuideMode()
 
     local main = MDT.main_frame
 
-    for _, f in pairs(Addon.GetHideFrames()) do
-        (f.frame or f):Show()
-    end
+    Addon.ToggleHideFrames()
 
     -- Reset top panel
     local f = main.topPanel
@@ -234,8 +229,9 @@ function Addon.AdjustEnemyInfo()
     end
 end
 
-function Addon.GetHideFrames()
+function Addon.ToggleHideFrames()
     local main = MDT.main_frame
+    local fn = MDTGuideDB.active and "Hide" or "Show"
 
     hideFrames = hideFrames or {
         main.bottomPanelString,
@@ -247,7 +243,10 @@ function Addon.GetHideFrames()
         main.DungeonSelectionGroup
     }
 
-    return hideFrames
+    for _, f in pairs(hideFrames) do
+        f = f.frame or f
+        f[fn](f)
+    end
 end
 
 -- ---------------------------------------
@@ -275,7 +274,7 @@ function Addon.Zoom(s, x, y, smooth)
         zoomAnimGrp = zoomAnimGrp:Stop()
     end
 
-    if smooth then
+    if MDTGuideDB.options.animate and smooth then
         local fromS = map:GetScale()
         local fromX = scroll:GetHorizontalScroll()
         local fromY = scroll:GetVerticalScroll()
@@ -392,14 +391,16 @@ end
 function Addon.ScrollToPull(n, center)
     local main = MDT.main_frame
     local scroll = main.sidePanel.pullButtonsScrollFrame
+
     local pull = main.sidePanel.newPullButtons[n]
+    if not pull then return end
 
     local height = scroll.scrollframe:GetHeight()
     local offset = (scroll.status or scroll.localstatus).offset
     local top = -select(5, pull.frame:GetPoint(1))
     local bottom = top + pull.frame:GetHeight()
 
-    local diff, scrollTo = scroll.content:GetHeight() - height
+    local diff, scrollTo = scroll.content:GetHeight() - height, nil
 
     if center then
         scrollTo = max(0, min(top + (bottom - top) / 2 - height / 2, diff))
@@ -409,10 +410,10 @@ function Addon.ScrollToPull(n, center)
         scrollTo = bottom - height
     end
 
-    if scrollTo then
-        scroll:SetScroll(scrollTo / diff * 1000)
-        scroll:FixScroll()
-    end
+    if not scrollTo then return end
+
+    scroll:SetScroll(scrollTo / diff * 1000)
+    scroll:FixScroll()
 end
 
 -- ---------------------------------------
@@ -676,39 +677,6 @@ function Addon.IsInRun()
     return Addon.IsActive() and Addon.IsCurrentInstance() and Addon.GetEnemyForces() and true
 end
 
-function Addon.CheckMDTVersion()
-    if mdtVersionMismatch ~= nil then return end
-
-    local cmp = 0
-
-    local a = C_AddOns.GetAddOnMetadata("MythicDungeonTools", "Version")
-
-    if not a then
-        cmp = -1
-    else
-        local b = Addon.MDT_VERSION
-        local ta, tb = { strsplit(".", a) }, { strsplit(".", b) }
-
-        for i = 1, max(#ta, #tb) do
-            if tb[i] == "*" then break end
-            local va, vb = tonumber(ta[i]) or 0, tonumber(tb[i]) or 0
-            if va < vb then cmp = -1 break end
-            if va > vb then cmp = 1 break end
-        end
-    end
-
-    mdtVersionMismatch = cmp ~= 0
-
-    if mdtVersionMismatch then
-        Addon.Error("============================================")
-        Addon.Error("Unsupported Mythic Dungeon Tools version %s detected!", a or "?")
-        Addon.Error("MDTGuide only supports MDT versions %s.", Addon.MDT_VERSION)
-        Addon.Error("Please update your %s to the newest version.", cmp < 0 and "MDT" or "MDTGuide")
-        Addon.Error("If your MDT window is broken run the following: |cffcccccc/mdt reset|r")
-        Addon.Error("============================================")
-    end
-end
-
 -- ---------------------------------------
 --              Events/Hooks
 -- ---------------------------------------
@@ -718,18 +686,12 @@ local Frame = CreateFrame("Frame")
 -- Event listeners
 local OnEvent = function(_, ev, ...)
     if not MDT or MDT:GetDB().devMode then return end
-    if mdtVersionMismatch then return end
 
     if ev == "ADDON_LOADED" then
         if ... == Name then
             Frame:UnregisterEvent("ADDON_LOADED")
 
             Addon.MigrateOptions()
-
-            -- Check MDT version
-            Addon.CheckMDTVersion()
-
-            if mdtVersionMismatch then return end
 
             -- Hook showing interface
             local initialized = false
@@ -804,6 +766,11 @@ local OnEvent = function(_, ev, ...)
 
                     announceBtn:SetPoint("RIGHT", currentPullBtn, "LEFT", -8, 0)
                 end
+
+                hooksecurefunc(main, "Show", function ()
+                    if not MDTGuideDB.active then return end
+                    Addon.ToggleHideFrames()
+                end)
 
                 if MDTGuideDB.active then
                     MDTGuideDB.active = false
@@ -947,26 +914,14 @@ Frame:SetScript("OnUpdate", OnUpdate)
 SLASH_MDTG1 = "/mdtg"
 
 function SlashCmdList.MDTG(args)
-    if mdtVersionMismatch then return end
 
+    local op = MDTGuideDB.options
     local cmd, arg1, arg2 = strsplit(' ', args)
 
-    -- Height
-    if cmd == "height" then
-        arg1 = tonumber(arg1)
-        if not arg1 then
-            return Addon.Echo(cmd, "First parameter must be a number.")
-        end
-
-        Addon.ReloadGuideMode(function()
-            MDTGuideDB.options.height = tonumber(arg1)
-        end)
-        Addon.Echo(cmd, "Height set to " .. arg1 .. ".")
-
     -- Route
-    elseif cmd == "route" then
+    if cmd == "route" then
         Addon.UseRoute(arg1 ~= "off")
-        Addon.Echo("Route estimation", MDTGuideDB.options.route and "enabled" or "disabled")
+        Addon.Echo("Route estimation", op.route and "enabled" or "disabled")
 
     -- Zoom
     elseif cmd == "zoom" then
@@ -979,45 +934,46 @@ function SlashCmdList.MDTG(args)
             return Addon.Echo(cmd, "Second parameter must be a number if set.")
         end
 
-        MDTGuideDB.options.zoomMin = arg1
-        MDTGuideDB.options.zoomMax = arg2
-        Addon.Echo("Zoom scale", "Set to " .. arg1 .. " / " .. arg2)
+        op.zoomMin = arg1
+        op.zoomMax = arg2
+        Addon.Echo("Zoom scale", "Set to %s/%s", arg1, arg2)
 
     -- Fade
     elseif cmd == "fade" then
         Addon.SetFade(tonumber(arg1) or arg1 ~= "off" and 0.3)
-        Addon.Echo("Fade", MDTGuideDB.options.fade and "enabled" or "disabled")
+        Addon.Echo("Fade", op.fade and "enabled" or "disabled")
 
-    -- Hide
+        -- Hide
     elseif cmd == "hide" then
-        MDTGuideDB.options.hide = arg1 ~= "off"
+        op.hide = arg1 ~= "off"
 
         if isHidden and not MDT.main_frame:IsShown() then
             MDT:ShowInterface()
         end
 
-        Addon.Echo("Hide", MDTGuideDB.options.hide and "enabled" or "disabled")
+        Addon.Echo("Hide", op.hide and "enabled" or "disabled")
+
+    -- Animate
+    elseif cmd == "animate" then
+        op.animate = arg1 ~= "off"
+
+        Addon.Echo("Animations", op.animate and "enabled" or "disabled")
 
     -- Help
     else
         Addon.Echo("Usage")
-        print("|cffcccccc/mdtg height <height>|r: Adjust the guide window size by setting the height. (" ..
-            math.floor(MDTGuideDB.options.height) .. ", 200)")
-        print("|cffcccccc/mdtg route [on/off]|r: Enable/Disable route estimation. (" ..
-            (MDTGuideDB.options.route and "on" or "off") .. ", off)")
-        print("|cffcccccc/mdtg zoom <min-or-both> [<max>]|r: Scale default min and max visible area size when zooming. ("
-            .. MDTGuideDB.options.zoomMin .. "/" .. MDTGuideDB.options.zoomMax .. ", 1/1)")
-        print("|cffcccccc/mdtg fade [on/off/<opacity>]|r: Enable/Disable fading or set opacity. (" ..
-            (MDTGuideDB.options.fade or "off") .. ", 0.3)")
-        print("|cffcccccc/mdtg hide [on/off]|r: Enable/Disable hiding in combat. (" ..
-            (MDTGuideDB.options.hide and "on" or "off") .. ", off)")
-        print("|cffcccccc/mdtg|r: Print this help message.")
-        print("Legend: <...> = number, [...] = optional, .../... = either or, (..., ...) = (current, default)")
+        Addon.Command("route [on/off]", "Enable/Disable route estimation. (%s, off)", op.route and "on" or "off")
+        Addon.Command("zoom <min-or-both> [<max>]", "Scale default min/max visible area size when zooming. (%s/%s, 1/1)", op.zoomMin, op.zoomMax)
+        Addon.Command("fade [on/off/<opacity>]", "Enable/Disable fading or set opacity. (%s, 0.3)", op.fade or "off")
+        Addon.Command("hide [on/off]", "Enable/Disable hiding in combat. (%s, off)", op.hide and "on" or "off")
+        Addon.Command("animate [on/off]", "Enable/Disable animations. (%s, on)", op.animate and "on" or "off")
+        Addon.Echo("|cffcccccc/mdtg|r", "Print this help message.")
+        Addon.Echo("Legend", "<...> = number, [...] = optional, .../... = either or, (..., ...) = (current, default)")
     end
 end
 
 function Addon.MigrateOptions()
-    -- TODO: Legacy globals
+    -- Legacy globals
     if MDTGuideOptions and MDTGuideOptions.version == 1 then
         MDTGuideDB.active = MDTGuideActive
         MDTGuideDB.options = MDTGuideOptions
@@ -1025,11 +981,18 @@ function Addon.MigrateOptions()
         MDTGuideOptions = nil
     end
 
-    if not MDTGuideDB.options.version then
-        MDTGuideDB.options.zoom = nil
-        MDTGuideDB.options.zoomMin = 1
-        MDTGuideDB.options.zoomMax = 1
-        MDTGuideDB.options.route = false
-        MDTGuideDB.options.version = 1
+    -- Migrate options
+    local op = MDTGuideDB.options
+
+    if not op.version then
+        op.zoom = nil
+        op.zoomMin = 1
+        op.zoomMax = 1
+        op.route = false
+        op.version = 1
+    end
+    if op.version <= 1 then
+        op.animate = true
+        op.version = 2
     end
 end

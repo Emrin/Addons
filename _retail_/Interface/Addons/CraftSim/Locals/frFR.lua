@@ -1,4 +1,5 @@
-AddonName, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 CraftSim.LOCAL_FR = {}
 
@@ -12,7 +13,7 @@ function CraftSim.LOCAL_FR:GetData()
 		[CraftSim.CONST.TEXT.STAT_CRAFTINGSPEED] = "Vitesse de fabrication",
 		[CraftSim.CONST.TEXT.EQUIP_MATCH_STRING] = "Équipé",
 		[CraftSim.CONST.TEXT.ENCHANTED_MATCH_STRING] = "Enchanté",
-		
+
 		-- OPTIONAL (Defaulting to EN if not available):
-}
+	}
 end

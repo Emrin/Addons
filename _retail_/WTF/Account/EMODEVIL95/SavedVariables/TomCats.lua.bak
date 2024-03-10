@@ -4,8 +4,15 @@ TomCats_Account = {
 		["version"] = "2.4.56",
 	},
 	["hallowsend"] = {
+		["autoEnabled"] = true,
+		["preferences"] = {
+		},
+		["iconsEnabled"] = true,
+		["discovered"] = true,
+		["iconScale"] = 0.8,
+		["arrowEnabled"] = true,
 	},
-	["lastExpirationWarning"] = 1691765204,
+	["lastExpirationWarning"] = 0,
 	["discoveriesResetCount"] = 0,
 	["noblegarden"] = {
 		["enabled"] = true,
@@ -13,6 +20,7 @@ TomCats_Account = {
 	["lunarfestival"] = {
 		["iconsEnabled"] = true,
 		["discovered"] = true,
+		["autoEnabled"] = true,
 		["preferences"] = {
 		},
 	},
@@ -23,12 +31,12 @@ TomCats_Account = {
 				["class"] = "DEATHKNIGHT",
 				["boxes"] = 0,
 				["charms"] = 0,
-				["name"] = "Nolifey",
-				["timestamp"] = 1676214822,
-				["tokens"] = 0,
-				["faction"] = "Horde",
-				["completedDungeon"] = false,
+				["tokens"] = 5,
 				["level"] = 60,
+				["name"] = "Nolifey",
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["timestamp"] = 1707655515,
 				["canLootMount"] = true,
 				["realm"] = "Draenor",
 			},
@@ -37,12 +45,124 @@ TomCats_Account = {
 				["class"] = "EVOKER",
 				["boxes"] = 0,
 				["charms"] = 0,
-				["name"] = "Unchill",
-				["timestamp"] = 1676742070,
-				["tokens"] = 9,
-				["faction"] = "Horde",
-				["completedDungeon"] = false,
+				["tokens"] = 58,
 				["level"] = 70,
+				["name"] = "Redangel",
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["timestamp"] = 1707938668,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
+			["Player-1403-082932DD"] = {
+				["bracelets"] = 0,
+				["class"] = "MONK",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["name"] = "Ravegirl",
+				["timestamp"] = 1707653403,
+				["tokens"] = 6,
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["level"] = 60,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
+			["Player-1403-09E749E5"] = {
+				["bracelets"] = 0,
+				["class"] = "MAGE",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["name"] = "Crystalol",
+				["timestamp"] = 1707638854,
+				["tokens"] = 72,
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["level"] = 60,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
+			["Player-1403-082A84BD"] = {
+				["bracelets"] = 0,
+				["class"] = "WARRIOR",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["name"] = "Yeetalot",
+				["timestamp"] = 1707656857,
+				["tokens"] = 10,
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["level"] = 60,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
+			["Player-1403-0A124698"] = {
+				["bracelets"] = 0,
+				["class"] = "WARLOCK",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["tokens"] = 10,
+				["level"] = 60,
+				["name"] = "Venetha",
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["timestamp"] = 1707652113,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
+			["Player-1403-09E47E11"] = {
+				["bracelets"] = 0,
+				["class"] = "SHAMAN",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["name"] = "Cutetroll",
+				["timestamp"] = 1707657358,
+				["tokens"] = 10,
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["level"] = 60,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
+			["Player-1403-0896F1D2"] = {
+				["bracelets"] = 0,
+				["class"] = "DEMONHUNTER",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["name"] = "Taizai",
+				["timestamp"] = 1707655316,
+				["tokens"] = 7,
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["level"] = 60,
+				["canLootMount"] = true,
+				["realm"] = "Draenor",
+			},
+			["Player-1403-0991CAD7"] = {
+				["bracelets"] = 0,
+				["class"] = "PALADIN",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["tokens"] = 0,
+				["level"] = 52,
+				["name"] = "Lifey",
+				["faction"] = "Horde",
+				["completedDungeon"] = true,
+				["timestamp"] = 1706984828,
+				["canLootMount"] = false,
+				["realm"] = "Draenor",
+			},
+			["Player-1403-0AA1C70D"] = {
+				["bracelets"] = 0,
+				["class"] = "WARLOCK",
+				["boxes"] = 0,
+				["charms"] = 0,
+				["tokens"] = 20,
+				["level"] = 60,
+				["name"] = "Venetha",
+				["faction"] = "Alliance",
+				["completedDungeon"] = true,
+				["timestamp"] = 1707679153,
 				["canLootMount"] = true,
 				["realm"] = "Draenor",
 			},
@@ -52,7 +172,7 @@ TomCats_Account = {
 		},
 	},
 	["discoveriesVersion"] = "2.4.35",
-	["lastVersionSeen"] = "2.4.92",
+	["lastVersionSeen"] = "2.5.13",
 	["preferences"] = {
 		["TomCats-HallowsEndMinimapButton"] = {
 			["hidden"] = false,
@@ -77,25 +197,27 @@ TomCats_Account = {
 		},
 		["AccessoryWindow"] = {
 			["primeGamingLoot"] = 3,
-			["elementalStorms"] = 2,
-			["treasureGoblin"] = 3,
-			["WindowLocation"] = {
-				"LEFT", -- [1]
-				nil, -- [2]
-				"LEFT", -- [3]
-				17.92447280883789, -- [4]
-				-335.4364624023438, -- [5]
-			},
-			["display"] = 100,
-			["twitchDrops"] = 3,
-			["timeRifts"] = 3,
+			["blizzardOther"] = 3,
 			["snoozed"] = {
 			},
+			["superbloom"] = 3,
+			["timeRifts"] = 3,
+			["WindowLocation"] = {
+				"TOPLEFT", -- [1]
+				nil, -- [2]
+				"TOPLEFT", -- [3]
+				0, -- [4]
+				-128.1698455810547, -- [5]
+			},
+			["display"] = 100,
+			["elementalStorms"] = 2,
+			["treasureGoblin"] = 3,
+			["twitchDrops"] = 3,
 		},
 		["betaEnabled"] = false,
 		["TomCats-LunarFestivalMinimapButton2023"] = {
 			["hidden"] = false,
-			["position"] = -3.089210127917359,
+			["position"] = 2.84927077880376,
 		},
 	},
 	["dragonflyingglyphs"] = {
@@ -114,18 +236,11 @@ TomCats_Account = {
 			},
 			["dimmedItems"] = {
 				["Unchill-Draenor"] = {
-					["WATER"] = 1,
-					["FIRE"] = 1,
-					["AIR"] = 0,
 					["EARTH"] = 1,
+					["FIRE"] = 1,
+					["WATER"] = 1,
+					["AIR"] = 0,
 				},
-			},
-			["WindowLocation"] = {
-				"RIGHT", -- [1]
-				nil, -- [2]
-				"RIGHT", -- [3]
-				-37.35859298706055, -- [4]
-				-261.3823852539063, -- [5]
 			},
 			["eligibleClasses"] = {
 				true, -- [1]
@@ -141,6 +256,13 @@ TomCats_Account = {
 				false, -- [11]
 				true, -- [12]
 				true, -- [13]
+			},
+			["WindowLocation"] = {
+				"RIGHT", -- [1]
+				nil, -- [2]
+				"RIGHT", -- [3]
+				-37.35859298706055, -- [4]
+				-261.3823852539063, -- [5]
 			},
 		},
 	},

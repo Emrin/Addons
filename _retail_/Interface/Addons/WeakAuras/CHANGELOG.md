@@ -1,35 +1,28 @@
-# [5.6.0](https://github.com/WeakAuras/WeakAuras2/tree/5.6.0) (2023-07-10)
+# [5.10.1](https://github.com/WeakAuras/WeakAuras2/tree/5.10.1) (2024-02-09)
 
-[Full Changelog](https://github.com/WeakAuras/WeakAuras2/compare/5.5.7...5.6.0)
+[Full Changelog](https://github.com/WeakAuras/WeakAuras2/compare/5.10.0...5.10.1)
 
 ## Highlights
 
- - Support new specialization and patch features
-- Fixes for DBM/BW triggers
-- Condition titles are now dynamic and pretty 
+ - Bug Fixes 
 
 ## Commits
 
-InfusOnWoW (4):
+Putro (1):
 
-- BT2: Fix GROUP_ROSTER_UPDATE handling
-- Fix Item Set equipped trigger
-- Fix delayed anchoring of dynamic groups
-- Change SpinBox to emit MouseUp/OnValueChanged
+- Localize the title in AuraWarnings
 
-Stanzilla (1):
+Stanzilla (3):
 
-- Update TOC for retail patch 10.1.5
+- Add more types to Types
+- A few type and spelling fixes
+- Add workaround for actions/checkout#290
 
-mrbuds (9):
+dependabot[bot] (1):
 
-- Add new type of glow called "Proc Glow"
-- DBM Triggers: use count from callback instead of parsing text
-- Action - Chat message: fix sending to a unit on an other server #4517
-- Fix error with bogus update data #4518
-- add Augmentation spec templates
-- Fix error in DBM Timer trigger when extending timer
-- Change WeakAurasOptions background to match PANEL_BACKGROUND_COLOR
-- Pretty condition titles
-- Give triggers titles slightly more descriptive names
+- Bump peter-evans/create-pull-request from 5 to 6
+
+emptyrivers (1):
+
+- move type checking code for WeakAurasArchive
 

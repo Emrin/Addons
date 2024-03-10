@@ -8,4 +8,12 @@ TomCats_Character = {
 		["preferences"] = {
 		},
 	},
+	["midsummer"] = {
+		["preferences"] = {
+		},
+	},
+	["hallowsend"] = {
+		["preferences"] = {
+		},
+	},
 }

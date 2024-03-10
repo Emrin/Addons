@@ -1,3 +1,7 @@
+VER 3 010000000000000E "bolt" "134400"
+#showtooltip
+/cast [mod,@focus][@mouseover,nodead,harm][] Storm Bolt
+END
 VER 3 0100000000000002 "ch" "132337"
 #showtooltip
 /cast [nomod,@mouseover,nodead,harm][nomod] Charge
@@ -7,6 +11,10 @@ VER 3 0100000000000005 "ham" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus][@mouseover,nodead,harm][] Hamstring
 END
+VER 3 010000000000000F "int" "134400"
+#showtooltip
+/cast [mod,@focus][@mouseover,nodead,help][] Intervene
+END
 VER 3 0100000000000006 "jump" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [nomod,@cursor] Heroic Leap
@@ -15,6 +23,10 @@ END
 VER 3 0100000000000001 "kick" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus][@mouseover,nodead,harm][] Pummel
+END
+VER 3 010000000000000D "rav" "134400"
+#showtooltip
+/cast [nomod,@player][mod,@cursor][] Ravager
 END
 VER 3 0100000000000003 "run2" "INV_MISC_QUESTIONMARK"
 #showtooltip

@@ -10,7 +10,7 @@ local spacing = 20
 local function Prime_OnHyperlinkClick(_, _, _, _, region, left, top, width, height)
 	TogglePopup(
 			"https://subs.twitch.tv/TomCat",
-			"Press Control-C to copy the link",
+			"Press " .. (IsMacClient() and "Cmd" or "Ctrl") .. "-C to copy the link",
 			{ "CENTER", SettingsPanel.Container.SettingsCanvas, "CENTER", 0, 0 },
 			region, { left, top, width, height }
 	)
@@ -70,7 +70,57 @@ Home:SetScript("OnShow", function(self)
 		welcome:SetPoint("RIGHT")
 		welcome:SetScript("OnHyperlinkClick", Prime_OnHyperlinkClick)
 		welcome.paragraphSpacing = 12
-		local configurationTitle = CreateOptionsTitle(contents, "Settings (Map and Floating Window)", welcome)
+
+		local contactTitle = CreateOptionsTitle(contents, "Links", welcome)
+		local contact = CreateFrame("SimpleHTML",nil, contents, "TomCats_HTML_Contact")
+		contact:SetPoint("TOPLEFT", contactTitle, "BOTTOMLEFT", 0, 0)
+		contact:SetPoint("RIGHT")
+
+		local links = {
+			{ ImagePNG.icon_www, "Visit TomCatsTours.com", "https://tomcatstours.com", 128},
+			{ ImagePNG.icon_prime, "Support for free\nusing your Amazon Prime", "https://subs.twitch.tv/TomCat",  163},
+			{ ImagePNG.icon_twitch, "Watch live at\nTwitch.tv/TomCat", "https://twitch.tv/TomCat", 110},
+			{ ImagePNG.icon_github, "Sponsor via GitHub", "https://github.com/sponsors/TomCats", 128},
+			{ ImagePNG.icon_paypal, "Contribute via PayPal", "https://www.paypal.com/donate?hosted_button_id=QDVM7VNAMAQJ2", 104},
+			{ ImagePNG.icon_patreon, "Become a Patreon", "https://www.patreon.com/join/TomCatsTours", 128},
+			{ ImagePNG.icon_discord, "Join us on Discord", "https://discord.gg/T7qXXSt", 144},
+			{ ImagePNG.icon_twitter, "Follow on Twitter", "https://twitter.com/TomCatsTours", 141},
+			{ ImagePNG.icon_wago, "Download at Wago AddOns", "https://addons.wago.io/addons/tomcats", 169},
+			{ ImagePNG.icon_curseforge, "Download at CurseForge", "https://www.curseforge.com/wow/addons/tomcats", 162},
+		}
+
+		local linksFrame = CreateFrame("Frame", nil, contents)
+		linksFrame:SetPoint("LEFT")
+		linksFrame:SetPoint("RIGHT")
+		linksFrame:SetPoint("TOP", contact, "BOTTOM", 0, -spacing)
+		linksFrame:SetHeight(32)
+
+		local linkIconTotalWidth = 0
+		for _, linkData in ipairs(links) do
+			local link = LinkButton.Create(linksFrame,
+					linkData[2],
+					linkData[3],
+					linkData[1],
+					linkData[4])
+			linkIconTotalWidth = linkIconTotalWidth + linkData[4]
+			linkData.link = link
+		end
+
+		linksFrame.IsLayoutFrame = ResizeLayoutMixin.IsLayoutFrame
+
+		function linksFrame:Layout()
+			local linkSpacing = (linksFrame:GetWidth() - (linkIconTotalWidth / 4)) / #links
+			for idx, linkData in ipairs(links) do
+				linkData.link:ClearAllPoints()
+				linkData.link:SetPoint("LEFT",
+						idx == 1 and linksFrame or links[idx - 1].link,
+						"LEFT",
+						idx == 1 and linkSpacing / 2 or (links[idx-1][4] / 4) + linkSpacing,
+						0)
+			end
+		end
+
+		local configurationTitle = CreateOptionsTitle(contents, "Settings (Map and Floating Window)", linksFrame)
 		local configurationFrame = CreateFrame("Frame", nil, contents, "ResizeLayoutFrame")
 		configurationFrame:SetPoint("LEFT")
 		configurationFrame:SetPoint("RIGHT")
@@ -260,7 +310,50 @@ Home:SetScript("OnShow", function(self)
 			}, timeRiftsConfig.Label, timeRiftsConfig.selectionPopout.Button)
 		end
 
-		if (osd.TwitchDrops) then
+		if (osd.Superbloom) then
+			local superbloom = CreateFrame("Frame", nil, configurationFrame)
+			superbloom:SetPoint("TOPLEFT", last, "BOTTOMLEFT", 0, -8)
+			last = superbloom
+			superbloom:SetPoint("RIGHT")
+			superbloom:SetHeight(30)
+			superbloom.Label = superbloom:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+			superbloom.Label:SetJustifyH("LEFT")
+			superbloom.Label:SetPoint("LEFT", 32, 0)
+			superbloom.Label:SetText("Superbloom")
+			local superbloomConfigDisplayPreference = osd.Superbloom.GetVisibilityOption()
+			local superbloomRiftsConfigDisplayConstants = addon.constants.accessoryDisplay
+			superbloom.selectionPopout = Templates.CreateSelectionPopoutWithButtons(
+					superbloom,
+					{
+						{
+							label = "Always Shown",
+							value = superbloomRiftsConfigDisplayConstants.ALWAYS,
+							selected = superbloomConfigDisplayPreference == superbloomRiftsConfigDisplayConstants.ALWAYS
+						},
+						{
+							label = "Never Shown",
+							value = superbloomRiftsConfigDisplayConstants.NEVER,
+							selected = superbloomConfigDisplayPreference == superbloomRiftsConfigDisplayConstants.NEVER
+						},
+						{
+							label = "Hide when in instances",
+							value = superbloomRiftsConfigDisplayConstants.NOINSTANCES,
+							selected = superbloomConfigDisplayPreference == superbloomRiftsConfigDisplayConstants.NOINSTANCES
+						},
+					},
+					function()
+						osd.Superbloom.SetVisibilityOption(superbloom.selectionPopout.selected.value)
+					end
+			)
+			superbloom.selectionPopout:SetPoint("LEFT", 230, 0)
+			superbloom.selectionPopout.Popout:Layout()
+			AttachTooltip({
+				"Superbloom",
+				"Set when to display the Superbloom timers within the floating window\n\n(The floating window will only be visible when you have features enabled for it)",
+			}, superbloom.Label, superbloom.selectionPopout.Button)
+		end
+
+		if (osd.Promos) then
 			local twitchDropsConfig = CreateFrame("Frame", nil, configurationFrame)
 			twitchDropsConfig:SetPoint("TOPLEFT", last, "BOTTOMLEFT", 0, -8)
 			last = twitchDropsConfig
@@ -270,7 +363,7 @@ Home:SetScript("OnShow", function(self)
 			twitchDropsConfig.Label:SetJustifyH("LEFT")
 			twitchDropsConfig.Label:SetPoint("LEFT", 32, 0)
 			twitchDropsConfig.Label:SetText("Twitch Promos")
-			local twitchDropsConfigDisplayPreference = osd.TwitchDrops.GetVisibilityOption()
+			local twitchDropsConfigDisplayPreference = osd.Promos.GetVisibilityOption("twitchDrops")
 			local twitchDropsConfigDisplayConstants = addon.constants.accessoryDisplay
 			twitchDropsConfig.selectionPopout = Templates.CreateSelectionPopoutWithButtons(
 					twitchDropsConfig,
@@ -297,7 +390,7 @@ Home:SetScript("OnShow", function(self)
 						},
 					},
 					function()
-						osd.TwitchDrops.SetVisibilityOption(twitchDropsConfig.selectionPopout.selected.value)
+						osd.Promos.SetVisibilityOption("twitchDrops", "twitch_", twitchDropsConfig.selectionPopout.selected.value)
 					end
 			)
 			twitchDropsConfig.selectionPopout:SetPoint("LEFT", 230, 0)
@@ -308,7 +401,7 @@ Home:SetScript("OnShow", function(self)
 			}, twitchDropsConfig.Label, twitchDropsConfig.selectionPopout.Button)
 		end
 
-		if (osd.PrimeGamingLoot) then
+		if (osd.Promos) then
 			local primeGamingLootConfig = CreateFrame("Frame", nil, configurationFrame)
 			primeGamingLootConfig:SetPoint("TOPLEFT", last, "BOTTOMLEFT", 0, -8)
 			last = primeGamingLootConfig
@@ -318,7 +411,7 @@ Home:SetScript("OnShow", function(self)
 			primeGamingLootConfig.Label:SetJustifyH("LEFT")
 			primeGamingLootConfig.Label:SetPoint("LEFT", 32, 0)
 			primeGamingLootConfig.Label:SetText("Prime Gaming Loot")
-			local primeGamingLootConfigDisplayPreference = osd.PrimeGamingLoot.GetVisibilityOption()
+			local primeGamingLootConfigDisplayPreference = osd.Promos.GetVisibilityOption("primeGamingLoot")
 			local primeGamingLootConfigDisplayConstants = addon.constants.accessoryDisplay
 			primeGamingLootConfig.selectionPopout = Templates.CreateSelectionPopoutWithButtons(
 					primeGamingLootConfig,
@@ -345,7 +438,7 @@ Home:SetScript("OnShow", function(self)
 						},
 					},
 					function()
-						osd.PrimeGamingLoot.SetVisibilityOption(primeGamingLootConfig.selectionPopout.selected.value)
+						osd.Promos.SetVisibilityOption("primeGamingLoot", "prime_", primeGamingLootConfig.selectionPopout.selected.value)
 					end
 			)
 			primeGamingLootConfig.selectionPopout:SetPoint("LEFT", 230, 0)
@@ -354,6 +447,54 @@ Home:SetScript("OnShow", function(self)
 				"Prime Gaming Loot",
 				"Set when to display the Prime Gaming Loot timer within the floating window\n\n|cFFFF0000PRO TIP: |r|cFFFFFFFFUse \"Snooze\" to stop displaying until the next promo begins|r\n\n(The floating window will only be visible when you have features enabled for it)",
 			}, primeGamingLootConfig.Label, primeGamingLootConfig.selectionPopout.Button)
+		end
+
+		if (osd.Promos) then
+			local blizzardOtherConfig = CreateFrame("Frame", nil, configurationFrame)
+			blizzardOtherConfig:SetPoint("TOPLEFT", last, "BOTTOMLEFT", 0, -8)
+			last = blizzardOtherConfig
+			blizzardOtherConfig:SetPoint("RIGHT")
+			blizzardOtherConfig:SetHeight(30)
+			blizzardOtherConfig.Label = blizzardOtherConfig:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+			blizzardOtherConfig.Label:SetJustifyH("LEFT")
+			blizzardOtherConfig.Label:SetPoint("LEFT", 32, 0)
+			blizzardOtherConfig.Label:SetText("Other Blizzard Promos")
+			local blizzardOtherConfigDisplayPreference = osd.Promos.GetVisibilityOption("blizzardOther")
+			local blizzardOtherConfigDisplayConstants = addon.constants.accessoryDisplay
+			blizzardOtherConfig.selectionPopout = Templates.CreateSelectionPopoutWithButtons(
+					blizzardOtherConfig,
+					{
+						{
+							label = "Snooze",
+							value = blizzardOtherConfigDisplayConstants.SNOOZED,
+							selected = blizzardOtherConfigDisplayPreference == blizzardOtherConfigDisplayConstants.SNOOZED
+						},
+						{
+							label = "Always Shown",
+							value = blizzardOtherConfigDisplayConstants.ALWAYS,
+							selected = blizzardOtherConfigDisplayPreference == blizzardOtherConfigDisplayConstants.ALWAYS
+						},
+						{
+							label = "Never Shown",
+							value = blizzardOtherConfigDisplayConstants.NEVER,
+							selected = blizzardOtherConfigDisplayPreference == blizzardOtherConfigDisplayConstants.NEVER
+						},
+						{
+							label = "Hide when in instances",
+							value = blizzardOtherConfigDisplayConstants.NOINSTANCES,
+							selected = blizzardOtherConfigDisplayPreference == blizzardOtherConfigDisplayConstants.NOINSTANCES
+						},
+					},
+					function()
+						osd.Promos.SetVisibilityOption("blizzardOther", "blizzard_", blizzardOtherConfig.selectionPopout.selected.value)
+					end
+			)
+			blizzardOtherConfig.selectionPopout:SetPoint("LEFT", 230, 0)
+			blizzardOtherConfig.selectionPopout.Popout:Layout()
+			AttachTooltip({
+				"Other Blizzard Promotions",
+				"Set when to display timers for other Blizzard promotions within the floating window\n\n|cFFFF0000PRO TIP: |r|cFFFFFFFFUse \"Snooze\" to stop displaying until the next promo begins|r\n\n(The floating window will only be visible when you have features enabled for it)",
+			}, blizzardOtherConfig.Label, blizzardOtherConfig.selectionPopout.Button)
 		end
 
 		if (osd.GreedyEmissary and osd.GreedyEmissary:IsEventActive()) then
@@ -427,7 +568,7 @@ Home:SetScript("OnShow", function(self)
 			}, midsummerConfig.Label, midsummerConfig.checkButton)
 		end
 
-		if (addon.noblegarden.IsEventActive()) then
+		if (addon.noblegarden and addon.noblegarden.IsEventActive()) then
 			local noblegardenConfig = CreateFrame("Frame", nil, configurationFrame)
 			noblegardenConfig:SetPoint("TOPLEFT", last, "BOTTOMLEFT", 0, -8)
 			last = noblegardenConfig
@@ -454,55 +595,7 @@ Home:SetScript("OnShow", function(self)
 			}, noblegardenConfig.Label, noblegardenConfig.checkButton)
 		end
 
-		local contactTitle = CreateOptionsTitle(contents, "Links", configurationFrame)
-		local contact = CreateFrame("SimpleHTML",nil, contents, "TomCats_HTML_Contact")
-		contact:SetPoint("TOPLEFT", contactTitle, "BOTTOMLEFT", 0, 0)
-		contact:SetPoint("RIGHT")
-
-		local links = {
-			{ ImagePNG.icon_www, "Visit TomCatsTours.com", "https://tomcatstours.com", 128},
-			{ ImagePNG.icon_prime, "Support for free\nusing your Amazon Prime", "https://subs.twitch.tv/TomCat",  163},
-			{ ImagePNG.icon_twitch, "Watch live at\nTwitch.tv/TomCat", "https://twitch.tv/TomCat", 110},
-			{ ImagePNG.icon_github, "Sponsor via GitHub", "https://github.com/sponsors/TomCats", 128},
-			{ ImagePNG.icon_paypal, "Contribute via PayPal", "https://www.paypal.com/donate?hosted_button_id=QDVM7VNAMAQJ2", 104},
-			{ ImagePNG.icon_patreon, "Become a Patreon", "https://www.patreon.com/join/TomCatsTours", 128},
-			{ ImagePNG.icon_discord, "Join us on Discord", "https://discord.gg/T7qXXSt", 144},
-			{ ImagePNG.icon_twitter, "Follow on Twitter", "https://twitter.com/TomCatsTours", 141},
-			{ ImagePNG.icon_wago, "Download at Wago AddOns", "https://addons.wago.io/addons/tomcats", 169},
-			{ ImagePNG.icon_curseforge, "Download at CurseForge", "https://www.curseforge.com/wow/addons/tomcats", 162},
-		}
-
-		local linksFrame = CreateFrame("Frame", nil, contents)
-		linksFrame:SetPoint("LEFT")
-		linksFrame:SetPoint("RIGHT")
-		linksFrame:SetPoint("TOP", contact, "BOTTOM", 0, -spacing)
-		linksFrame:SetHeight(32)
-
-		local linkIconTotalWidth = 0
-		for _, linkData in ipairs(links) do
-			local link = LinkButton.Create(linksFrame,
-					linkData[2],
-					linkData[3],
-					linkData[1],
-					linkData[4])
-			linkIconTotalWidth = linkIconTotalWidth + linkData[4]
-			linkData.link = link
-		end
-
-		linksFrame.IsLayoutFrame = ResizeLayoutMixin.IsLayoutFrame
-
-		function linksFrame:Layout()
-			local linkSpacing = (linksFrame:GetWidth() - (linkIconTotalWidth / 4)) / #links
-			for idx, linkData in ipairs(links) do
-				linkData.link:ClearAllPoints()
-				linkData.link:SetPoint("LEFT",
-						idx == 1 and linksFrame or links[idx - 1].link,
-						"LEFT",
-						idx == 1 and linkSpacing / 2 or (links[idx-1][4] / 4) + linkSpacing,
-						0)
-			end
-		end
-		local featuresTitle = CreateOptionsTitle(contents, "New and Upcoming Features", linksFrame)
+		local featuresTitle = CreateOptionsTitle(contents, "Recently Added and Upcoming Features", configurationFrame)
 		local features = CreateFrame("SimpleHTML",nil, contents, "TomCats_HTML_Features")
 		features:SetPoint("TOPLEFT", featuresTitle, "BOTTOMLEFT", 0, 0)
 		features:SetPoint("RIGHT")

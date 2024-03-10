@@ -195,6 +195,17 @@
 	Zn(L["Zones"], L["Dragon Isles"], "|cffffd800", {""})
 	Zn(L["Zones"], L["Dragon Isles"], "|cffffd800" .. L["Dragon Isles"], {""})
 
+	Zn(L["Zones"], L["Dragon Isles"], L["Emerald Dream"]						, {	"|cffffd800" .. L["Zones"] .. ": " .. L["Emerald Dream"], prefol,
+		"mus_102_emerald_dream_amirdrassil_239418#239418",
+		"mus_102_emerald_dream_ancient_bough_239687#239687",
+		"mus_102_emerald_dream_aw_nocturne_239483#239483",
+		"mus_102_emerald_dream_barrows_of_reverie_239419#239419",
+		"mus_102_emerald_dream_cinder_summit_239438#239438",
+		"mus_102_emerald_dream_eye_of_ysera_239410#239410",
+		"mus_102_emerald_dream_firebreach_239477#239477",
+		"mus_102_emerald_dream_fury_incarnate_239504#239504",
+	})
+
 	Zn(L["Zones"], L["Dragon Isles"], L["Ohn'aran Plains"]						, {	"|cffffd800" .. L["Zones"] .. ": " .. L["Ohn'aran Plains"], prefol,
 		"zone_100_ohnahranplains_outdoor_walk_centaur_1#217205",
 		"zone_100_ohnahranplains_outdoor_walk_centaur_2#217085",
@@ -420,6 +431,13 @@
 		"dragonflight/mus_100_valdrakken_1_a#218103",
 		"dragonflight/mus_100_thaldraszus_1_h#218035",
 	})
+	Zn(L["Dungeons"], L["Dragonflight"], L["Amirdrassil: The Dream's Hope"]	, {	"|cffffd800" .. L["Dungeons"] .. ": " .. L["Amirdrassil: The Dream's Hope"], prefol,
+		-- Amirdrassil (The Dream's Hope)
+		"dragonflight/mus_102_amirdrassil_dreams_hope_e#239487",
+		"dragonflight/mus_102_amirdrassil_fury_incarnate_a#239750",
+		"dragonflight/mus_102_amirdrassil_fury_incarnate_f#239438",
+		"dragonflight/mus_102_amirdrassil_cinder_summit_c#239508",
+	})
 	Zn(L["Dungeons"], L["Dragonflight"], L["Azure Vault"]						, {	"|cffffd800" .. L["Dungeons"] .. ": " .. L["Azure Vault"], prefol,
 		-- Azure Vault
 		"dragonflight/mus_100_azurespan_bluedragon_1#218019",
@@ -428,6 +446,12 @@
 	Zn(L["Dungeons"], L["Dragonflight"], L["Brackenhide Hollow"]				, {	"|cffffd800" .. L["Dungeons"] .. ": " .. L["Brackenhide Hollow"], prefol,
 		-- Brackenhide Hollow
 		"dragonflight/dgn_100_brackenhide_base_walk#218046",
+	})
+	Zn(L["Dungeons"], L["Dragonflight"], L["Dawn Of The Infinite"]				, {	"|cffffd800" .. L["Dungeons"] .. ": " .. L["Dawn Of The Infinite"], prefol,
+		-- Dawn Of The Infinite
+		"cataclysm/dawn_of_the_infinite_mus_43_corrupteddragonblight_uu01#76856",
+		"dragonflight/dawn_of_the_infinite_mus_1015_time_rift_invasion_b#233409",
+		"dragonflight/dawn_of_the_infinite_mus_1015_dawn_of_the_infinite_a#233414",
 	})
 	Zn(L["Dungeons"], L["Dragonflight"], L["Neltharus"]							, {	"|cffffd800" .. L["Dungeons"] .. ": " .. L["Neltharus"], prefol,
 		-- Neltharus

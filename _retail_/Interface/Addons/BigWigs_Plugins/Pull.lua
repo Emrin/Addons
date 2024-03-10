@@ -12,9 +12,10 @@ if not plugin then return end
 local L = BigWigsAPI:GetLocale("BigWigs: Plugins")
 local GetInstanceInfo = BigWigsLoader.GetInstanceInfo
 local SendAddonMessage = BigWigsLoader.SendAddonMessage
+local dbmPrefix = BigWigsLoader.dbmPrefix
 local zoneTable = BigWigsLoader.zoneTbl
 local isLogging = false
-local IsEncounterInProgress, PlaySoundFile = IsEncounterInProgress, PlaySoundFile
+local IsEncounterInProgress = IsEncounterInProgress
 local media = LibStub("LibSharedMedia-3.0")
 local SOUND = media.MediaType and media.MediaType.SOUND or "sound"
 
@@ -93,6 +94,7 @@ do
 				desc = L.countdownBegins_desc,
 				type = "range", min = 5, max = 10, step = 1,
 				order = 2,
+				width = 1.5
 			},
 			spacer1 = {
 				type = "description",
@@ -107,7 +109,7 @@ do
 				get = soundGet,
 				set = soundSet,
 				values = media:List(SOUND),
-				width = 2,
+				width = 2.5,
 				itemControl = "DDI-Sound",
 			},
 			spacer2 = {
@@ -123,7 +125,7 @@ do
 				get = soundGet,
 				set = soundSet,
 				values = media:List(SOUND),
-				width = 2,
+				width = 2.5,
 				itemControl = "DDI-Sound",
 			},
 			endPullSound = {
@@ -133,7 +135,7 @@ do
 				get = soundGet,
 				set = soundSet,
 				values = media:List(SOUND),
-				width = 2,
+				width = 2.5,
 				itemControl = "DDI-Sound",
 			},
 			voice = {
@@ -142,7 +144,7 @@ do
 				values = BigWigsAPI.GetCountdownList,
 				sorting = voiceSorting,
 				order = 8,
-				width = 2,
+				width = 2.5,
 			},
 			spacer3 = {
 				type = "description",
@@ -225,10 +227,10 @@ do
 			if soundName ~= "None" then
 				local sound = media:Fetch(SOUND, soundName, true)
 				if sound then
-					PlaySoundFile(sound, "Master")
+					self:PlaySoundFile(sound)
 				end
 			end
-		elseif timeLeft > 2 and IsEncounterInProgress() then -- Cancel the pull timer if we ninja pulled
+		elseif timeLeft > 1 and IsEncounterInProgress() then -- Cancel the pull timer if we ninja pulled
 			self:CancelTimer(timer)
 			timeLeft = 0
 			BigWigs:Print(L.pullStoppedCombat)
@@ -284,7 +286,7 @@ do
 			if soundName ~= "None" then
 				local sound = media:Fetch(SOUND, soundName, true)
 				if sound then
-					PlaySoundFile(sound, "Master")
+					self:PlaySoundFile(sound)
 				end
 			end
 		end
@@ -316,7 +318,7 @@ function plugin:BigWigs_OnBossEngage(_, module)
 		if soundName ~= "None" then
 			local sound = media:Fetch(SOUND, soundName, true)
 			if sound then
-				PlaySoundFile(sound, "Master")
+				self:PlaySoundFile(sound)
 			end
 		end
 	end
@@ -348,7 +350,7 @@ SlashCmdList.BIGWIGSPULL = function(input)
 			local name = plugin:UnitName("player")
 			local realm = GetRealmName()
 			local normalizedPlayerRealm = realm:gsub("[%s-]+", "") -- Has to mimic DBM code
-			SendAddonMessage("D5", ("%s-%s\t1\tPT\t%s\t%d"):format(name, normalizedPlayerRealm, input, instanceId), IsInGroup(2) and "INSTANCE_CHAT" or "RAID") -- DBM message
+			SendAddonMessage(dbmPrefix, ("%s-%s\t1\tPT\t%s\t%d"):format(name, normalizedPlayerRealm, input, instanceId), IsInGroup(2) and "INSTANCE_CHAT" or "RAID") -- DBM message
 		end
 	else
 		BigWigs:Print(L.requiresLeadOrAssist)

@@ -36,17 +36,11 @@ VER 3 0100000000000007 "shout" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus][@mouseover,nodead,harm][] Intimidating Shout
 END
-VER 3 0100000000000004 "taunt" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [mod,@focus][@mouseover,nodead,harm][] Taunt
-END
 VER 3 0100000000000008 "throw" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus][@mouseover,nodead,harm][] Heroic Throw
 END
-VER 3 010000000000000B "VuhDoDCShieldData" "Ability_Repair"
-P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1WM[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
-END
-VER 3 010000000000000C "VuhDoDCShieldNames" "Ability_Repair"
-N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Yee[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+VER 3 0100000000000004 "tnt" "136080"
+#showtooltip
+/cast [mod,@focus][@mouseover,nodead,harm][] Taunt
 END

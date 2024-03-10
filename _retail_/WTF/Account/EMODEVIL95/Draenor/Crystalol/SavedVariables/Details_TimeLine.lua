@@ -2,9 +2,735 @@
 DetailsTimeLineDB = {
 	["max_segments"] = 4,
 	["combat_data"] = {
+		{
+			["date_end"] = "10:23:21",
+			["date_start"] = "10:22:32",
+			["name"] = "Chrono-Lord Deios",
+			["total_time"] = 48.62100000004284,
+		}, -- [1]
+		{
+			["date_end"] = "10:18:10",
+			["date_start"] = "10:17:48",
+			["name"] = "Emberon",
+			["total_time"] = 23.6589999999851,
+		}, -- [2]
+		{
+			["date_end"] = "10:14:59",
+			["date_start"] = "10:14:26",
+			["name"] = "Sentinel Talondras",
+			["total_time"] = 32.58900000003632,
+		}, -- [3]
+		{
+			["date_end"] = "10:13:08",
+			["date_start"] = "10:12:45",
+			["name"] = "Bromach",
+			["total_time"] = 23.79299999994692,
+		}, -- [4]
 	},
 	["hide_on_combat"] = false,
 	["IndividualSpells"] = {
+		{
+			[181113] = {
+				{
+					2.967000000062399, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					3.165000000037253, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					11.65000000002328, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					12.15600000007544, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
+				{
+					18.73200000007637, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [5]
+				{
+					18.76000000000931, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [6]
+				{
+					27.53000000002794, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [7]
+				{
+					27.81300000008196, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [8]
+				{
+					37.35700000007637, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [9]
+				{
+					37.49100000003818, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [10]
+			},
+			[376292] = {
+				{
+					2.521999999997206, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					11.06300000008196, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					18.32700000004843, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					27.22800000000279, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
+				{
+					36.93400000000838, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [5]
+			},
+			[376049] = {
+				{
+					8.908000000054017, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					31.15100000007078, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[377395] = {
+				{
+					4.472000000067055, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					377395, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					25.51800000004005, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					377395, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[376208] = {
+				{
+					40.85400000005029, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376208, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[375727] = {
+				{
+					15.47700000007171, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					375727, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					35.3070000000298, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					375727, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+		}, -- [1]
+		{
+			[369061] = {
+				{
+					5.764999999897555, -- [1]
+					"Emberon", -- [2]
+					369061, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[369110] = {
+				{
+					12.06399999989662, -- [1]
+					"Emberon", -- [2]
+					369110, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[369049] = {
+				{
+					4.050999999977648, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [1]
+				{
+					4.050999999977648, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [2]
+				{
+					5.260999999940395, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [3]
+				{
+					10.05999999993946, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [4]
+				{
+					10.05999999993946, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Whaagh-Hellfire", -- [5]
+				}, -- [5]
+				{
+					11.26499999989756, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [6]
+				{
+					16.07600000000093, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [7]
+				{
+					16.07600000000093, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [8]
+				{
+					17.27099999994971, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [9]
+				{
+					22.07799999997951, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [10]
+				{
+					22.07799999997951, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [11]
+			},
+		}, -- [2]
+		{
+			[372718] = {
+				{
+					4.496999999973923, -- [1]
+					"Sentinel Talondras", -- [2]
+					372718, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [1]
+				{
+					14.21299999998882, -- [1]
+					"Sentinel Talondras", -- [2]
+					372718, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Whaagh-Hellfire", -- [5]
+				}, -- [2]
+			},
+			[372623] = {
+				{
+					1.00199999997858, -- [1]
+					"Sentinel Talondras", -- [2]
+					372623, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					27.37100000004284, -- [1]
+					"Sentinel Talondras", -- [2]
+					372623, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[372701] = {
+				{
+					10.14000000001397, -- [1]
+					"Sentinel Talondras", -- [2]
+					372701, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					22.30200000002515, -- [1]
+					"Sentinel Talondras", -- [2]
+					372701, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+		}, -- [3]
+		{
+			[369696] = {
+				{
+					13.91199999989476, -- [1]
+					"Stonevault Ambusher", -- [2]
+					369696, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					20.02299999992829, -- [1]
+					"Stonevault Ambusher", -- [2]
+					369696, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[382303] = {
+				{
+					21.45799999998417, -- [1]
+					"Bromach", -- [2]
+					382303, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[369674] = {
+				{
+					13.2149999999674, -- [1]
+					"Stonevault Geomancer", -- [2]
+					369674, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [1]
+				{
+					16.85499999998137, -- [1]
+					"Stonevault Geomancer", -- [2]
+					369674, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [2]
+				{
+					20.51599999994505, -- [1]
+					"Stonevault Geomancer", -- [2]
+					369674, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [3]
+			},
+			[369697] = {
+				{
+					13.13199999998324, -- [1]
+					"Stonevault Ambusher", -- [2]
+					369697, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					19.23199999995995, -- [1]
+					"Stonevault Ambusher", -- [2]
+					369697, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[369703] = {
+				{
+					15.41499999992084, -- [1]
+					"Bromach", -- [2]
+					369703, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[369605] = {
+				{
+					5.425999999977648, -- [1]
+					"Bromach", -- [2]
+					369605, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+		}, -- [4]
+		{
+			[369792] = {
+				{
+					8.60800000000745, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369792, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					52.16499999992084, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369792, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[369563] = {
+				{
+					10.01299999991898, -- [1]
+					"Baelog", -- [2]
+					369563, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[369677] = {
+				{
+					15.66599999996834, -- [1]
+					"Olaf", -- [2]
+					369677, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [1]
+			},
+			[369791] = {
+				{
+					8.072999999974854, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369791, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					51.79499999992549, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369791, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[375924] = {
+				{
+					26.33699999994133, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					375924, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					26.33699999994133, -- [1]
+					"Olaf", -- [2]
+					375924, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					27.54899999999907, -- [1]
+					"Baelog", -- [2]
+					375924, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					31.8859999999404, -- [1]
+					"Olaf", -- [2]
+					375924, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
+				{
+					41.60699999995995, -- [1]
+					"Baelog", -- [2]
+					375924, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [5]
+			},
+			[369781] = {
+				{
+					2.483000000007451, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Whaagh-Hellfire", -- [5]
+				}, -- [1]
+				{
+					5.144999999902211, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Whaagh-Hellfire", -- [5]
+				}, -- [2]
+				{
+					12.43699999991804, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [3]
+				{
+					14.87899999995716, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [4]
+				{
+					17.31899999990128, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Whaagh-Hellfire", -- [5]
+				}, -- [5]
+				{
+					19.74599999992643, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Whaagh-Hellfire", -- [5]
+				}, -- [6]
+				{
+					22.17499999993015, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [7]
+				{
+					44.02700000000186, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [8]
+				{
+					46.45600000000559, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [9]
+				{
+					48.875, -- [1]
+					"Eric \"The Swift\"", -- [2]
+					369781, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Crystalol", -- [5]
+				}, -- [10]
+			},
+			[369573] = {
+				{
+					23.17900000000373, -- [1]
+					"Baelog", -- [2]
+					369573, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[369602] = {
+				{
+					16.70999999996275, -- [1]
+					"Olaf", -- [2]
+					369602, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+		}, -- [5]
+		{
+			[68841] = {
+				{
+					16.31999999983236, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+				{
+					18.32700000004843, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [2]
+			},
+			[68607] = {
+				{
+					3.205999999772757, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [1]
+				{
+					8.050999999977648, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [2]
+				{
+					11.67900000000373, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [3]
+			},
+			[415403] = {
+				{
+					1.194000000134111, -- [1]
+					"Apothecary Hummel", -- [2]
+					415403, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Apothecary Hummel", -- [5]
+				}, -- [1]
+				{
+					5.63799999980256, -- [1]
+					"Apothecary Baxter", -- [2]
+					415403, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Apothecary Baxter", -- [5]
+				}, -- [2]
+			},
+			[68948] = {
+				{
+					9.26699999999255, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [1]
+				{
+					12.90700000012294, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [2]
+				{
+					16.53299999982119, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [3]
+				{
+					21.38700000010431, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [4]
+			},
+			[68799] = {
+				{
+					20.31600000010803, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+				{
+					22.32899999991059, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [2]
+				{
+					24.33999999985099, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [3]
+			},
+		}, -- [6]
+		{
+			[68607] = {
+				{
+					3.802999999839813, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [1]
+				{
+					9.878000000026077, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [2]
+			},
+			[68841] = {
+				{
+					15.25300000002608, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+			},
+			[68948] = {
+				{
+					9.878000000026077, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [1]
+				{
+					14.72899999981746, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [2]
+			},
+			[68799] = {
+				{
+					17.27000000001863, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+				{
+					19.2609999999404, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [2]
+			},
+		}, -- [7]
 		{
 			[329170] = {
 				{
@@ -104,21 +830,15 @@ DetailsTimeLineDB = {
 					"Sinstone Statue", -- [5]
 				}, -- [1]
 			},
-		}, -- [1]
+		}, -- [8]
 		{
-			[346866] = {
+			[329340] = {
 				{
-					14.5899999999674, -- [1]
-					"Loyal Stoneborn", -- [2]
-					346866, -- [3]
+					22.26500000001397, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					329340, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
-				{
-					32.78700000001118, -- [1]
-					"Loyal Stoneborn", -- [2]
-					346866, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
 			},
 			[338012] = {
 				{
@@ -152,6 +872,20 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
+			[346866] = {
+				{
+					14.5899999999674, -- [1]
+					"Loyal Stoneborn", -- [2]
+					346866, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					32.78700000001118, -- [1]
+					"Loyal Stoneborn", -- [2]
+					346866, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
 			[323538] = {
 				{
 					7.204000000027008, -- [1]
@@ -168,15 +902,7 @@ DetailsTimeLineDB = {
 					"Rævemor-Kazzak", -- [5]
 				}, -- [2]
 			},
-			[329340] = {
-				{
-					22.26500000001397, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					329340, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-		}, -- [2]
+		}, -- [9]
 		{
 			[328124] = {
 				{
@@ -348,7 +1074,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [12]
 			},
-		}, -- [3]
+		}, -- [10]
 		{
 			[322936] = {
 				{
@@ -387,7 +1113,7 @@ DetailsTimeLineDB = {
 					"Crystalol", -- [5]
 				}, -- [1]
 			},
-		}, -- [4]
+		}, -- [11]
 		{
 			[256083] = {
 				{
@@ -471,7 +1197,7 @@ DetailsTimeLineDB = {
 					"Crystalol", -- [5]
 				}, -- [1]
 			},
-		}, -- [5]
+		}, -- [12]
 		{
 			[257028] = {
 				{
@@ -517,7 +1243,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-		}, -- [6]
+		}, -- [13]
 		{
 			[257777] = {
 				{
@@ -605,7 +1331,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-		}, -- [7]
+		}, -- [14]
 		{
 			[257609] = {
 				{
@@ -759,7 +1485,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-		}, -- [8]
+		}, -- [15]
 		{
 			[196947] = {
 				{
@@ -919,7 +1645,7 @@ DetailsTimeLineDB = {
 					"Holyviolet", -- [5]
 				}, -- [2]
 			},
-		}, -- [9]
+		}, -- [16]
 		{
 			[194266] = {
 				{
@@ -1002,8 +1728,30 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
-		}, -- [10]
+		}, -- [17]
 		{
+			[193364] = {
+				{
+					10.17399999999907, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193364, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					40.50900000007823, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193364, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[193977] = {
+				{
+					18.15400000009686, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193977, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[193211] = {
 				{
 					5.027000000001863, -- [1]
@@ -1027,14 +1775,6 @@ DetailsTimeLineDB = {
 					"Holyviolet", -- [5]
 				}, -- [3]
 			},
-			[193977] = {
-				{
-					18.15400000009686, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193977, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[193460] = {
 				{
 					24.71900000004098, -- [1]
@@ -1043,21 +1783,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[193364] = {
-				{
-					10.17399999999907, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193364, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					40.50900000007823, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193364, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-		}, -- [11]
+		}, -- [18]
 		{
 			[241672] = {
 				{
@@ -1305,7 +2031,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [12]
 			},
-		}, -- [12]
+		}, -- [19]
 		{
 			[198073] = {
 				{
@@ -1357,7 +2083,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-		}, -- [13]
+		}, -- [20]
 		{
 			[197696] = {
 				{
@@ -1398,19 +2124,13 @@ DetailsTimeLineDB = {
 					"Bloodfel-Outland", -- [5]
 				}, -- [3]
 			},
-			[197484] = {
+			[197974] = {
 				{
-					17.3859999999404, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197484, -- [3]
+					63.49800000002142, -- [1]
+					"Soul-torn Vanguard", -- [2]
+					197974, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
-				{
-					17.95799999998417, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197484, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
 			},
 			[197546] = {
 				{
@@ -1435,6 +2155,28 @@ DetailsTimeLineDB = {
 					"Crystalol", -- [5]
 				}, -- [3]
 			},
+			[197484] = {
+				{
+					17.3859999999404, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197484, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					17.95799999998417, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197484, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+			[197478] = {
+				{
+					11.25300000002608, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197478, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
 			[197687] = {
 				{
 					48.64299999992363, -- [1]
@@ -1451,23 +2193,7 @@ DetailsTimeLineDB = {
 					"Crystalol", -- [5]
 				}, -- [2]
 			},
-			[197478] = {
-				{
-					11.25300000002608, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197478, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[197974] = {
-				{
-					63.49800000002142, -- [1]
-					"Soul-torn Vanguard", -- [2]
-					197974, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-		}, -- [14]
+		}, -- [21]
 		{
 			[194956] = {
 				{
@@ -1534,7 +2260,7 @@ DetailsTimeLineDB = {
 					"Onera-Zul'jin", -- [5]
 				}, -- [3]
 			},
-		}, -- [15]
+		}, -- [22]
 	},
 	["useicons"] = true,
 	["backdrop_color"] = {
@@ -1545,12 +2271,585 @@ DetailsTimeLineDB = {
 	},
 	["window_scale"] = 1,
 	["deaths_data"] = {
+		{
+		}, -- [1]
+		{
+		}, -- [2]
+		{
+		}, -- [3]
+		{
+		}, -- [4]
 	},
 	["debuff_timeline"] = {
+		{
+			["Tuor-Nagrand"] = {
+				[376325] = {
+					23.26699999999255, -- [1]
+					24.62400000006892, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[*] Eternity Zone",
+					["active"] = false,
+				},
+			},
+			["Crystalol"] = {
+				[376325] = {
+					35.88800000003539, -- [1]
+					36.17800000007264, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[*] Eternity Zone",
+					["active"] = false,
+				},
+				[376333] = {
+					44.46900000004098, -- [1]
+					45.40000000002328, -- [2]
+					46.44500000006519, -- [3]
+					48.62100000004284, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "[*] Temporal Zone",
+					["active"] = false,
+				},
+			},
+			["Whaagh-Hellfire"] = {
+				[376325] = {
+					37.29600000008941, -- [1]
+					39.88100000005215, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[*] Eternity Zone",
+					["active"] = false,
+				},
+			},
+		}, -- [1]
+		{
+			["Whaagh-Hellfire"] = {
+				[369006] = {
+					5.764999999897555, -- [1]
+					15.76899999997113, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Emberon",
+					["active"] = false,
+				},
+			},
+			["Crystalol"] = {
+				[369006] = {
+					5.764999999897555, -- [1]
+					15.76899999997113, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Emberon",
+					["active"] = false,
+				},
+			},
+			["Tuor-Nagrand"] = {
+				[369006] = {
+					5.764999999897555, -- [1]
+					15.76899999997113, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Emberon",
+					["active"] = false,
+				},
+				[369110] = {
+					12.74699999997392, -- [1]
+					16.75699999998324, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Emberon",
+					["active"] = false,
+				},
+			},
+			["Erde-Drak'thul"] = {
+				[369006] = {
+					5.764999999897555, -- [1]
+					15.76899999997113, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Emberon",
+					["active"] = false,
+				},
+			},
+			["Glenbo-EmeraldDream"] = {
+				[369006] = {
+					5.764999999897555, -- [1]
+					15.76899999997113, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Emberon",
+					["active"] = false,
+				},
+			},
+		}, -- [2]
+		{
+			["Whaagh-Hellfire"] = {
+				[382071] = {
+					1.00199999997858, -- [1]
+					6.010000000009313, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Sentinel Talondras",
+					["active"] = false,
+				},
+				[372718] = {
+					14.32900000002701, -- [1]
+					24.33600000001025, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Sentinel Talondras",
+					["active"] = false,
+				},
+			},
+			["Crystalol"] = {
+				[382071] = {
+					27.37100000004284, -- [1]
+					32.38100000005215, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Sentinel Talondras",
+					["active"] = false,
+				},
+			},
+			["Tuor-Nagrand"] = {
+				[382071] = {
+					1.00199999997858, -- [1]
+					6.010000000009313, -- [2]
+					27.37100000004284, -- [3]
+					32.38100000005215, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Sentinel Talondras",
+					["active"] = false,
+				},
+				[372718] = {
+					4.979999999981374, -- [1]
+					14.99499999999534, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Sentinel Talondras",
+					["active"] = false,
+				},
+			},
+		}, -- [3]
+		{
+		}, -- [4]
 	},
 	["cooldowns_timeline"] = {
+		{
+			["Glenbo-EmeraldDream"] = {
+				{
+					8.331000000005588, -- [1]
+					"Glenbo-EmeraldDream", -- [2]
+					203720, -- [3]
+				}, -- [1]
+				{
+					22.19300000008661, -- [1]
+					"Glenbo-EmeraldDream", -- [2]
+					212084, -- [3]
+				}, -- [2]
+			},
+		}, -- [1]
+		{
+			["Whaagh-Hellfire"] = {
+				{
+					6.139999999897555, -- [1]
+					"[*] raid wide cooldown", -- [2]
+					97462, -- [3]
+				}, -- [1]
+				{
+					6.856999999959953, -- [1]
+					"Whaagh-Hellfire", -- [2]
+					118038, -- [3]
+				}, -- [2]
+			},
+			["Glenbo-EmeraldDream"] = {
+				{
+					2.771999999997206, -- [1]
+					"Glenbo-EmeraldDream", -- [2]
+					203720, -- [3]
+				}, -- [1]
+			},
+		}, -- [2]
+		{
+			["Glenbo-EmeraldDream"] = {
+				{
+					11.41500000003725, -- [1]
+					"Glenbo-EmeraldDream", -- [2]
+					187827, -- [3]
+				}, -- [1]
+				{
+					18.85900000005495, -- [1]
+					"Glenbo-EmeraldDream", -- [2]
+					203720, -- [3]
+				}, -- [2]
+			},
+		}, -- [3]
+		{
+			["Whaagh-Hellfire"] = {
+				{
+					18.77899999998044, -- [1]
+					"[*] raid wide cooldown", -- [2]
+					97462, -- [3]
+				}, -- [1]
+			},
+			["Erde-Drak'thul"] = {
+				{
+					19.68399999989197, -- [1]
+					"[*] raid wide cooldown", -- [2]
+					197721, -- [3]
+				}, -- [1]
+			},
+		}, -- [4]
 	},
 	["BossSpellCast"] = {
+		{
+			["Chrono-Lord Deios"] = {
+				{
+					2.521999999997206, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					4.472000000067055, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					377395, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					8.908000000054017, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					11.06300000008196, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
+				{
+					15.47700000007171, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					375727, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [5]
+				{
+					18.32700000004843, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [6]
+				{
+					25.51800000004005, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					377395, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [7]
+				{
+					27.22800000000279, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [8]
+				{
+					31.15100000007078, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [9]
+				{
+					35.3070000000298, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					375727, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [10]
+				{
+					36.93400000000838, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376292, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [11]
+				{
+					40.85400000005029, -- [1]
+					"Chrono-Lord Deios", -- [2]
+					376208, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [12]
+			},
+			["Eternal Orb"] = {
+				{
+					2.967000000062399, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					3.165000000037253, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					11.65000000002328, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					12.15600000007544, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
+				{
+					18.73200000007637, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [5]
+				{
+					18.76000000000931, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [6]
+				{
+					27.53000000002794, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [7]
+				{
+					27.81300000008196, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [8]
+				{
+					37.35700000007637, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [9]
+				{
+					37.49100000003818, -- [1]
+					"Eternal Orb", -- [2]
+					181113, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [10]
+			},
+		}, -- [1]
+		{
+			["Vault Keeper"] = {
+				{
+					4.050999999977648, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [1]
+				{
+					4.050999999977648, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [2]
+				{
+					5.260999999940395, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [3]
+				{
+					10.05999999993946, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [4]
+				{
+					10.05999999993946, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Whaagh-Hellfire", -- [5]
+				}, -- [5]
+				{
+					11.26499999989756, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [6]
+				{
+					16.07600000000093, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [7]
+				{
+					16.07600000000093, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [8]
+				{
+					17.27099999994971, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [9]
+				{
+					22.07799999997951, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [10]
+				{
+					22.07799999997951, -- [1]
+					"Vault Keeper", -- [2]
+					369049, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [11]
+			},
+			["Emberon"] = {
+				{
+					5.764999999897555, -- [1]
+					"Emberon", -- [2]
+					369061, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					12.06399999989662, -- [1]
+					"Emberon", -- [2]
+					369110, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+		}, -- [2]
+		{
+			["Sentinel Talondras"] = {
+				{
+					1.00199999997858, -- [1]
+					"Sentinel Talondras", -- [2]
+					372623, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					4.496999999973923, -- [1]
+					"Sentinel Talondras", -- [2]
+					372718, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Tuor-Nagrand", -- [5]
+				}, -- [2]
+				{
+					10.14000000001397, -- [1]
+					"Sentinel Talondras", -- [2]
+					372701, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					14.21299999998882, -- [1]
+					"Sentinel Talondras", -- [2]
+					372718, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Whaagh-Hellfire", -- [5]
+				}, -- [4]
+				{
+					22.30200000002515, -- [1]
+					"Sentinel Talondras", -- [2]
+					372701, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [5]
+				{
+					27.37100000004284, -- [1]
+					"Sentinel Talondras", -- [2]
+					372623, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [6]
+			},
+		}, -- [3]
+		{
+			["Stonevault Geomancer"] = {
+				{
+					13.2149999999674, -- [1]
+					"Stonevault Geomancer", -- [2]
+					369674, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [1]
+				{
+					16.85499999998137, -- [1]
+					"Stonevault Geomancer", -- [2]
+					369674, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Glenbo-EmeraldDream", -- [5]
+				}, -- [2]
+				{
+					20.51599999994505, -- [1]
+					"Stonevault Geomancer", -- [2]
+					369674, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Erde-Drak'thul", -- [5]
+				}, -- [3]
+			},
+			["Bromach"] = {
+				{
+					5.425999999977648, -- [1]
+					"Bromach", -- [2]
+					369605, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					15.41499999992084, -- [1]
+					"Bromach", -- [2]
+					369703, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					21.45799999998417, -- [1]
+					"Bromach", -- [2]
+					382303, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+			},
+			["Stonevault Ambusher"] = {
+				{
+					13.13199999998324, -- [1]
+					"Stonevault Ambusher", -- [2]
+					369697, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					13.91199999989476, -- [1]
+					"Stonevault Ambusher", -- [2]
+					369696, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+				{
+					19.23199999995995, -- [1]
+					"Stonevault Ambusher", -- [2]
+					369697, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [3]
+				{
+					20.02299999992829, -- [1]
+					"Stonevault Ambusher", -- [2]
+					369696, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [4]
+			},
+		}, -- [4]
 		{
 			["Lord Chamberlain"] = {
 				{
@@ -1634,7 +2933,7 @@ DetailsTimeLineDB = {
 					"Lord Chamberlain", -- [5]
 				}, -- [6]
 			},
-		}, -- [1]
+		}, -- [5]
 		{
 			["Anima Fountain"] = {
 				{
@@ -1704,7 +3003,7 @@ DetailsTimeLineDB = {
 					"Rævemor-Kazzak", -- [5]
 				}, -- [3]
 			},
-		}, -- [2]
+		}, -- [6]
 		{
 			["Echelon"] = {
 				{
@@ -1870,7 +3169,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [4]
 			},
-		}, -- [3]
+		}, -- [7]
 		{
 			["Halkias"] = {
 				{
@@ -1905,6 +3204,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
-		}, -- [4]
+		}, -- [8]
 	},
 }

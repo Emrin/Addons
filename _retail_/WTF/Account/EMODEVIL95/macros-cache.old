@@ -1,18 +1,11 @@
 VER 3 0000000000000047 "-waypoint list" "134331"
-/way 53.3, 32.5 path
-/way 50.7, 33.0 7
-/way 64.3, 30.4 8
-/way 61.0, 35.3 9
-/way 38.0, 35.8 10
-/way 61.8, 58.8 11
-/way 30.3, 54.9 cave
-/way 35.0, 46.8 12
-/way 24.8, 56.2 13
-/way 55.5, 65.0 14
-/way 54.2 54.8 14
-Rift Caches 2
-/way 54.9, 42.5 1
-/way 55.1, 17
+/way Moonglade 48 33
+/way Duskwood 49 33
+/way Ashenvale 60 72 Moonwell of Cleansing 1
+/way Ashenvale 53 46 Moonwell of Cleansing 2
+/way Felwood 44 28 Whisperwind Grove
+/way Stonetalon Mountains 41.5 19 Stonetalon Peak
+/way Feralas 60 46 Dire Maul
 END
 VER 3 0000000000000057 "_assist" "524348"
 /petassist
@@ -31,7 +24,7 @@ VER 3 00000000000000C0 "_clc" "3564691"
 END
 VER 3 0000000000000072 "_cr" "INV_MISC_QUESTIONMARK"
 #showtooltip
-/use [@mouseover,exists][] Disposable Spectrophasic Reanimator
+/use [@mouseover,exists][] 9
 END
 VER 3 0000000000000073 "_foc" "1033497"
 /focus [@mouseover,exists,nodead] []
@@ -41,7 +34,7 @@ VER 3 0000000000000053 "_go" "132327"
 END
 VER 3 000000000000004D "_hp" "134400"
 #showtooltip
-/use [nomod] item:191380
+/use [nomod] item:207023
 /use [mod] Healthstone
 END
 VER 3 000000000000006D "_mb" "134400"
@@ -58,10 +51,9 @@ VER 3 0000000000000054 "_passive" "132311"
 /petpassive
 /petfollow
 END
-VER 3 000000000000004E "_pi" "INV_MISC_QUESTIONMARK"
+VER 3 000000000000004E "_pot" "967534"
 #showtooltip
-/use [nomod] Elemental Potion of Power
-/use [mod] Phial of Serenity
+/use Elemental Potion of Ultimate Power
 END
 VER 3 0000000000000070 "_ps" "INV_MISC_QUESTIONMARK"
 #showtooltip
@@ -85,11 +77,6 @@ VER 3 000000000000006F "_trink" "INV_MISC_QUESTIONMARK"
 END
 VER 3 00000000000000B8 "_uneq" "INV_MISC_QUESTIONMARK"
 /run PickupInventoryItem(7)PutItemInBackpack()
-END
-VER 3 000000000000008E "a" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [nomod] Alter Time
-/cast [mod] Temporal Shield
 END
 VER 3 00000000000000C6 "as" "134400"
 #showtooltip
@@ -165,17 +152,13 @@ VER 3 0000000000000042 "cyc" "INV_MISC_QUESTIONMARK"
 /cast [mod,@focus,exists,harm][@mouseover,exists,nodead,harm][] Cyclone
 END
 VER 3 00000000000000C5 "dis" "134400"
-#showtooltip
+#showtooltip Eruption
+/cast [nostance:1] Black Attunement
 /cast [mod,@focus,exists,harm][@mouseover,harm,exists,nodead][] Disintegrate
 END
 VER 3 000000000000008F "disp" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus,exists,help][@mouseover,help,exists][] Remove Curse
-END
-VER 3 0000000000000090 "door" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [nomod,@cursor] Ring of Frost
-/cast [mod,@cursor] Door of Shadows
 END
 VER 3 000000000000003D "dot" "INV_MISC_QUESTIONMARK"
 #showtooltip Outbreak
@@ -314,11 +297,6 @@ END
 VER 3 00000000000000A7 "nl" "INV_MISC_QUESTIONMARK"
 /cancelaura Levitate
 END
-VER 3 000000000000008B "orb" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [mod,@player][] Frozen Orb
-/cast [@cursor][] Frozen Orb
-END
 VER 3 0000000000000078 "pat" "INV_MISC_QUESTIONMARK"
 #showtooltip Control Undead
 /target pet
@@ -336,7 +314,7 @@ VER 3 000000000000007A "pour" "INV_MISC_QUESTIONMARK"
 END
 VER 3 00000000000000CC "pres" "134400"
 #showtooltip
-/cast [@mouseover, exists, help][] Prescience
+/cast [mod,@player][@mouseover, exists, help][] Prescience
 END
 VER 3 0000000000000066 "pri" "3578231"
 #showtooltip
@@ -405,11 +383,6 @@ VER 3 00000000000000C2 "rev" "134400"
 #showtooltip
 /cast [mod,@player][@mouseover,exists,help,nodead][] Reversion
 END
-VER 3 0000000000000089 "ring" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [mod,@player] Ring of Frost
-/cast [@cursor] Ring of Frost
-END
 VER 3 0000000000000079 "ROK" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [nomod] Earth Elemental
@@ -419,17 +392,17 @@ VER 3 000000000000009D "rt" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@player][nomod,@mouseover,exists,help,nodead][] Rapture
 END
-VER 3 0000000000000092 "s" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast [nomod,@mouseover,harm,exists][nomod] Fire Blast
-/cast [mod] Frostbolt
-END
 VER 3 000000000000004F "s" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod:shift] Necrotic Strike
 /cast [talent:1/3] Clawing Shadows
 /cast Scourge Strike
 #/cast [@pettarget] claw
+END
+VER 3 0000000000000092 "s" "INV_MISC_QUESTIONMARK"
+#showtooltip
+/cast [nomod,@mouseover,harm,exists][nomod] Fire Blast
+/cast [mod] Frostbolt
 END
 VER 3 00000000000000A0 "sch" "INV_MISC_QUESTIONMARK"
 #showtooltip
@@ -531,11 +504,6 @@ END
 VER 3 00000000000000AD "wg" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [mod,@focus,exists,help][@mouseover,exists,nodead,help][] Wild Growth
-END
-VER 3 000000000000005A "world" "INV_MISC_QUESTIONMARK"
-#showtooltip
-/cast Apocalypse
-/cast Leap
 END
 VER 3 00000000000000A8 "wra" "INV_MISC_QUESTIONMARK"
 #showtooltip

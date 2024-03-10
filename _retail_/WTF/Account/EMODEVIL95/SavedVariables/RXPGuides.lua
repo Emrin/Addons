@@ -12,8 +12,9 @@ RXPDB = {
 		["Unchill - Draenor"] = "global",
 		["Lifey - Silvermoon"] = "global",
 		["Pixiel - Draenor"] = "global",
-		["Apoka - Outland"] = "global",
+		["Yubiyubi - Draenor"] = "global",
 		["Nolifey - Draenor"] = "global",
+		["Apoka - Outland"] = "global",
 	},
 	["profiles"] = {
 		["global"] = {

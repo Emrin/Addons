@@ -1,4 +1,5 @@
-_, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 local print = CraftSim.UTIL:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.REAGENT_OPTIMIZATION)
 
@@ -12,29 +13,30 @@ function CraftSim.ReagentOptimizationResult:new(recipeData, knapsackResult)
         ---@type number
         self.qualityID = knapsackResult.qualityReached
         self.craftingCosts = knapsackResult.minValue + recipeData.priceData.craftingCostsFixed
-    
+
         local reagentItems = {}
         ---@type CraftSim.Reagent[]
-        self.reagents = CraftSim.GUTIL:Map(recipeData.reagentData.requiredReagents, function(reagent) 
+        self.reagents = CraftSim.GUTIL:Map(recipeData.reagentData.requiredReagents, function(reagent)
             if reagent.hasQuality then
                 local copy = reagent:Copy()
                 copy:Clear()
-        
-                table.foreach(copy.items, function (_, reagentItem)
+
+                table.foreach(copy.items, function(_, reagentItem)
                     table.insert(reagentItems, reagentItem)
                 end)
-        
+
                 return copy
             end
         end)
-    
+
         -- map knapsackResult to reagents
         for _, matAllocation in pairs(knapsackResult.allocations) do
             for _, allocation in pairs(matAllocation.allocations) do
                 local itemID = allocation.itemID
                 local quantity = allocation.allocations
-                
-                local reagentItem = CraftSim.GUTIL:Find(reagentItems, function(ri) return ri.item:GetItemID() == itemID end)
+
+                local reagentItem = CraftSim.GUTIL:Find(reagentItems,
+                    function(ri) return ri.item:GetItemID() == itemID end)
                 reagentItem.quantity = quantity
             end
         end
@@ -46,9 +48,9 @@ function CraftSim.ReagentOptimizationResult:new(recipeData, knapsackResult)
 end
 
 ---@return boolean hasItems
-function CraftSim.ReagentOptimizationResult:HasItems()
+function CraftSim.ReagentOptimizationResult:HasItems(crafterUID)
     for _, reagent in pairs(self.reagents) do
-        local hasItems = reagent:HasItems()
+        local hasItems = reagent:HasItems(1, crafterUID)
 
         if not hasItems then
             return false
@@ -63,7 +65,7 @@ function CraftSim.ReagentOptimizationResult:GetReagentItemList()
     local reagentItemList = {}
     for _, reagent in pairs(self.reagents) do
         if reagent.hasQuality then -- should here but why not check
-            reagentItemList = CraftSim.GUTIL:Concat({reagentItemList, reagent:GetReagentItemList()})
+            reagentItemList = CraftSim.GUTIL:Concat({ reagentItemList, reagent:GetReagentItemList() })
         end
     end
 
@@ -76,8 +78,8 @@ function CraftSim.ReagentOptimizationResult:Debug()
         "craftingCosts: " .. CraftSim.GUTIL:FormatMoney(self.craftingCosts),
     }
 
-    table.foreach(self.reagents, function (_, reagent)
-        debugLines = CraftSim.GUTIL:Concat({debugLines, reagent:Debug()})
+    table.foreach(self.reagents, function(_, reagent)
+        debugLines = CraftSim.GUTIL:Concat({ debugLines, reagent:Debug() })
     end)
 
     return debugLines

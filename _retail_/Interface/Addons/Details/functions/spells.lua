@@ -1992,6 +1992,7 @@ do
 
 		[1467] = "EVOKER", --Devastation Evoker
 		[1468] = "EVOKER", --Preservation Evoker
+		[1473] = "EVOKER", --Augmentation Evoker
 	}
 
 	_detalhes.ClassSpellList = {
@@ -4073,7 +4074,7 @@ local SplitLoadFunc = function(self, deltaTime)
 
     if (not container) then
         if (Details.debug) then
-            Details:Msg("(debug) finished index spells.")
+            --Details:Msg("(debug) finished index spells.")
         end
         SplitLoadFrame:SetScript("OnUpdate", nil)
         return
@@ -4095,7 +4096,7 @@ local SplitLoadFunc = function(self, deltaTime)
         if (SplitLoadFrame.NextActorContainer == 5) then
             SplitLoadFrame:SetScript("OnUpdate", nil)
             if (Details.debug) then
-                Details:Msg("(debug) finished index spells.")
+                --Details:Msg("(debug) finished index spells.")
             end
             return
         end
@@ -4186,7 +4187,7 @@ end
 
 function Details.StoreSpells()
     if (Details.debug) then
-        Details:Msg("(debug) started to index spells.")
+        --Details:Msg("(debug) started to index spells.")
     end
     SplitLoadFrame:SetScript("OnUpdate", SplitLoadFunc)
     SplitLoadFrame.NextActorContainer = 1

@@ -1,8 +1,14 @@
 # CraftSim
 
-## [8.9.2](https://github.com/derfloh205/CraftSim/tree/8.9.2) (2023-07-31)
-[Full Changelog](https://github.com/derfloh205/CraftSim/compare/8.9.1...8.9.2) [Previous Releases](https://github.com/derfloh205/CraftSim/releases)
+## [14.4.1](https://github.com/derfloh205/CraftSim/tree/14.4.1) (2024-01-30)
+[Full Changelog](https://github.com/derfloh205/CraftSim/compare/14.4.0...14.4.1) [Previous Releases](https://github.com/derfloh205/CraftSim/releases)
 
-- Statistics Expansions  
-- Button fix  
-- Supporters List / Version / News  
+- SpecInfo Update  
+- small text change  
+- Flash Taskbar Option for CraftQueue  
+- Added/Removed Localization IDs  
+- Supporterlist update  
+- Version Update  
+- Russian Localization for 14.4.0 (#222)  
+    * Russian locale for 14.3.0  
+    * Russian locale for 14.4.0  

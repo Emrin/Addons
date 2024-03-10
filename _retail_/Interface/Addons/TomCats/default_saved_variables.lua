@@ -12,8 +12,10 @@ addon.defaultSavedVariables = {
 				elementalStorms = addon.constants.accessoryDisplay.NOINSTANCES,
 				treasureGoblin = addon.constants.accessoryDisplay.NOINSTANCES,
 				timeRifts = addon.constants.accessoryDisplay.NOINSTANCES,
+				superbloom = addon.constants.accessoryDisplay.NOINSTANCES,
 				twitchDrops = addon.constants.accessoryDisplay.NOINSTANCES,
 				primeGamingLoot = addon.constants.accessoryDisplay.NOINSTANCES,
+				blizzardOther = addon.constants.accessoryDisplay.NOINSTANCES,
 				snoozed = addon.constants.HINT_ALL,
 			},
 			["TomCats-MinimapButton"] = {

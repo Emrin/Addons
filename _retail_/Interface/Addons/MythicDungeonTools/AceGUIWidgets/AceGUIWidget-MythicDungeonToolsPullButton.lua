@@ -124,8 +124,8 @@ local methods = {
   ["Initialize"] = function(self)
     self.callbacks = {}
 
-    function self.callbacks.OnClickNormal(_, mouseButton)
-      if not MouseIsOver(MDT.main_frame.sidePanel.pullButtonsScrollFrame.frame) then return end
+    function self.callbacks.OnClickNormal(_, mouseButton, force)
+      if not force and not MouseIsOver(MDT.main_frame.sidePanel.pullButtonsScrollFrame.frame) then return end
 
       if (IsControlKeyDown()) then
         if (mouseButton == "LeftButton") then
@@ -133,7 +133,9 @@ local methods = {
 
           if not MDT.U.contains(MDT:GetSelection(), self.index) then
             tinsert(MDT:GetSelection(), self.index)
+            local changed = MDT:SetMapSublevel(self.index)
             MDT:SetSelectionToPull(MDT:GetSelection())
+            if changed then MDT:UpdateMap() end
           else
             MDT.U.iremove_if(MDT:GetSelection(), function(entry)
               return entry == self.index
@@ -157,8 +159,9 @@ local methods = {
               tinsert(selection, i)
             end
           end
+          local changed = MDT:SetMapSublevel(self.index)
           MDT:SetSelectionToPull(selection)
-          --print(#selection)
+          if changed then MDT:UpdateMap() end
         elseif (mouseButton == "RightButton") then
           local maxPulls = #MDT:GetCurrentPreset().value.pulls
           if maxPulls > 1 then
@@ -171,7 +174,9 @@ local methods = {
           -- Add current pull to selection, if not already selected
           if not MDT.U.contains(MDT:GetSelection(), self.index) then
             if #MDT:GetSelection() == 1 then
+              local changed = MDT:SetMapSublevel(self.index)
               MDT:SetSelectionToPull(self.index)
+              if changed then MDT:UpdateMap() end
             else
               tinsert(MDT:GetSelection(), self.index)
               self:Pick()
@@ -189,13 +194,16 @@ local methods = {
           if #MDT:GetSelection() > 1 then
             EasyMenu(self.multiselectMenu, MDT.main_frame.sidePanel.optionsDropDown, "cursor", 0, -15, "MENU")
           else
+            local changed = MDT:SetMapSublevel(self.index)
             MDT:SetSelectionToPull(self.index)
             EasyMenu(self.menu, MDT.main_frame.sidePanel.optionsDropDown, "cursor", 0, -15, "MENU")
           end
         else
           --normal click
           MDT:GetCurrentPreset().value.selection = { self.index }
+          local changed = MDT:SetMapSublevel(self.index)
           MDT:SetSelectionToPull(self.index)
+          if changed then MDT:UpdateMap() end
         end
       end
     end
@@ -225,6 +233,7 @@ local methods = {
       MDT:Progressbar_SetValue(MDT.main_frame.sidePanel.ProgressBar, currentForces,
         teeming and MDT.dungeonTotalCount[db.currentDungeonIdx].teeming or
         MDT.dungeonTotalCount[db.currentDungeonIdx].normal)
+      MDT:PullClickAreaOnEnter(self.index)
     end
 
     function self.callbacks.OnLeave()
@@ -237,6 +246,7 @@ local methods = {
       MDT.ProgressBarResetTimer = C_Timer.NewTimer(0.35, function()
         MDT:UpdateProgressbar()
       end)
+      MDT:PullClickAreaOnLeave()
     end
 
     function self.callbacks.OnDragStart()
@@ -344,7 +354,7 @@ local methods = {
       text = L["Pull Drop Color Settings"],
       notCheckable = 1,
       func = function()
-        MDT:OpenSettingsDialog()
+        MDT:ToggleSettingsDialog()
       end
     })
     local function swatchFunc()
@@ -358,7 +368,7 @@ local methods = {
       MDT:DungeonEnemies_SetPullColor(self.index, r, g, b)
       MDT:UpdatePullButtonColor(self.index, r, g, b)
       MDT:DungeonEnemies_UpdateBlipColors(self.index, r, g, b)
-      MDT:DrawAllHulls()
+      MDT:DrawAllHulls(nil, true)
       CloseDropDownMenus()
       if MDT.liveSessionActive and MDT:GetCurrentPreset().uid == MDT.livePresetUID then
         MDT:LiveSession_QueueColorUpdate()
@@ -370,7 +380,7 @@ local methods = {
       MDT:DungeonEnemies_SetPullColor(self.index, self.color.r, self.color.g, self.color.b)
       MDT:UpdatePullButtonColor(self.index, self.color.r, self.color.g, self.color.b)
       MDT:DungeonEnemies_UpdateBlipColors(self.index, self.color.r, self.color.g, self.color.b)
-      MDT:DrawAllHulls()
+      MDT:DrawAllHulls(nil, true)
       if MDT.liveSessionActive and MDT:GetCurrentPreset().uid == MDT.livePresetUID then
         MDT:LiveSession_QueueColorUpdate()
       end
@@ -380,9 +390,9 @@ local methods = {
       text = L["Pull Drop Color"]..": ",
       notCheckable = 1,
       hasColorSwatch = true,
-      r = self.color.r,
-      g = self.color.g,
-      b = self.color.b,
+      r = self.color.r or 0,
+      g = self.color.g or 0,
+      b = self.color.b or 0,
       func = function()
         ColorPickerFrame.func = swatchFunc
         ColorPickerFrame.opacityFunc = nil
@@ -405,7 +415,7 @@ local methods = {
         MDT:DungeonEnemies_SetPullColor(self.index, r, g, b)
         MDT:UpdatePullButtonColor(self.index, r, g, b)
         MDT:DungeonEnemies_UpdateBlipColors(self.index, r, g, b)
-        MDT:DrawAllHulls()
+        MDT:DrawAllHulls(nil, true)
         if MDT.liveSessionActive and MDT:GetCurrentPreset().uid == MDT.livePresetUID then
           MDT:LiveSession_SendPulls(MDT:GetPulls())
         end
@@ -442,7 +452,6 @@ local methods = {
           if MDT.liveSessionActive and MDT:GetCurrentPreset().uid == MDT.livePresetUID then
             MDT:LiveSession_SendPulls(MDT:GetPulls())
           end
-          MDT:DrawAllHulls()
         end
       })
       tinsert(self.menu, {
@@ -539,7 +548,7 @@ local methods = {
       text = L["Pull Drop Color Settings"],
       notCheckable = 1,
       func = function()
-        MDT:OpenSettingsDialog()
+        MDT:ToggleSettingsDialog()
       end
     })
     local function swatchMultiFunc()
@@ -560,7 +569,7 @@ local methods = {
         MDT:UpdatePullButtonColor(pullIdx, r, g, b)
         MDT:DungeonEnemies_UpdateBlipColors(pullIdx, r, g, b)
       end
-      MDT:DrawAllHulls()
+      MDT:DrawAllHulls(nil, true)
 
       L_CloseDropDownMenus()
       if MDT.liveSessionActive and MDT:GetCurrentPreset().uid == MDT.livePresetUID then
@@ -593,7 +602,7 @@ local methods = {
       MDT:DungeonEnemies_SetPullColor(self.index, self.color.r, self.color.g, self.color.b)
       MDT:UpdatePullButtonColor(self.index, self.color.r, self.color.g, self.color.b)
       MDT:DungeonEnemies_UpdateBlipColors(self.index, self.color.r, self.color.g, self.color.b)
-      MDT:DrawAllHulls()
+      MDT:DrawAllHulls(nil, true)
       if MDT.liveSessionActive and MDT:GetCurrentPreset().uid == MDT.livePresetUID then
         MDT:LiveSession_QueueColorUpdate()
       end
@@ -637,7 +646,7 @@ local methods = {
           MDT:DungeonEnemies_UpdateBlipColors(pullIdx, r, g, b)
           L_CloseDropDownMenus()
         end
-        MDT:DrawAllHulls()
+        MDT:DrawAllHulls(nil, true)
         if MDT.liveSessionActive and MDT:GetCurrentPreset().uid == MDT.livePresetUID then
           MDT:LiveSession_SendPulls(MDT:GetPulls())
         end
@@ -709,7 +718,7 @@ local methods = {
             --MDT:AddPull(1) --we handle not deleting all pulls in MDT:DeletePull() instead
             MDT:SetSelectionToPull(1)
           end
-          MDT:DrawAllHulls()
+          MDT:ReloadPullButtons()
           if MDT.liveSessionActive and MDT:GetCurrentPreset().uid == MDT.livePresetUID then
             MDT:LiveSession_SendPulls(MDT:GetPulls())
           end
@@ -740,10 +749,10 @@ local methods = {
     self.frame:SetScript("OnEnter", self.callbacks.OnEnter);
     self.frame:SetScript("OnLeave", self.callbacks.OnLeave);
     self.frame:EnableKeyboard(false);
-    -- self.frame:SetMovable(true);
-    -- self.frame:RegisterForDrag("LeftButton");
-    -- self.frame:SetScript("OnDragStart", self.callbacks.OnDragStart);
-    -- self.frame:SetScript("OnDragStop", self.callbacks.OnDragStop);
+    self.frame:SetMovable(true);
+    self.frame:RegisterForDrag("LeftButton");
+    self.frame:SetScript("OnDragStart", self.callbacks.OnDragStart);
+    self.frame:SetScript("OnDragStop", self.callbacks.OnDragStop);
     self:Enable();
 
     self:InitializeScrollHover()
@@ -1133,14 +1142,23 @@ local methods = {
       self.enemyPortraits[idx].fontString:Show()
     end
   end,
-  ["ShowReapingIcon"] = function(self, show, currentPercent, oldPercent)
+  ["ShowReapingIcon"] = function(self, show, currentForces, oldForces, totalForcesMax)
+    local db = MDT:GetDB()
+    --compute percentage
+    local currentPercent = currentForces / totalForcesMax
+    local oldPercent = oldForces / totalForcesMax
     --set percentage here
     self.percentageFontString:Show()
-    local perc = string.format("%.1f%%", currentPercent * 100)
+    local progressText
+    if db.useForcesCount then
+      progressText = string.format("%3d", currentForces)
+    else
+      progressText = string.format("%.2f%%", currentPercent * 100)
+    end
     if show then
       self.reapingIcon:Show()
       self.reapingIcon.overlay:Show()
-      perc = "|cFF00FF00"..perc
+      progressText = "|cFF00FF00"..progressText
 
       local currentReaps = math.floor(currentPercent / 0.2)
       local oldReaps = math.floor(oldPercent / 0.2)
@@ -1156,23 +1174,32 @@ local methods = {
       self.reapingIcon:Hide()
       self.reapingIcon.overlay:Hide()
       self.multiReapingFontString:Hide()
-      perc = "|cFFFFFFFF"..perc
+      progressText = "|cFFFFFFFF"..progressText
     end
     local pullForces = MDT:CountForces(self.index, true)
     if pullForces > 0 then
-      self.percentageFontString:SetText(perc)
+      self.percentageFontString:SetText(progressText)
       self.percentageFontString:Show()
     else
       self.percentageFontString:Hide()
     end
   end,
-  ["ShowPridefulIcon"] = function(self, show, currentPercent, oldPercent)
+  ["ShowPridefulIcon"] = function(self, show, currentForces, oldForces, totalForcesMax)
+    local db = MDT:GetDB()
+    --compute percentage
+    local currentPercent = currentForces / totalForcesMax
+    local oldPercent = oldForces / totalForcesMax
     --set percentage here
     self.percentageFontString:Show()
-    local perc = string.format("%.1f%%", currentPercent * 100)
+    local progressText
+    if db.useForcesCount then
+      progressText = string.format("%3d", currentForces)
+    else
+      progressText = string.format("%.2f%%", currentPercent * 100)
+    end
     if show then
       self.pridefulIcon:Show()
-      perc = "|cFFFFFFFF"..perc
+      progressText = "|cFFFFFFFF"..progressText
 
       local currentPrides = math.floor(currentPercent / 0.2)
       local oldPrides = math.floor(oldPercent / 0.2)
@@ -1187,11 +1214,11 @@ local methods = {
     else
       self.pridefulIcon:Hide()
       self.multiPridefulFontString:Hide()
-      perc = "|cFFFFFFFF"..perc
+      progressText = "|cFFFFFFFF"..progressText
     end
     local pullForces = MDT:CountForces(self.index, true)
     if pullForces > 0 then
-      self.percentageFontString:SetText(perc)
+      self.percentageFontString:SetText(progressText)
       self.percentageFontString:Show()
     else
       self.percentageFontString:Hide()
@@ -1268,6 +1295,7 @@ local function Constructor()
   --["heartofazeroth-list-item-selected"] = {356, 82, 0.779297, 0.953125, 0.653809, 0.693848, false, false},
   pickedGlow:SetTexture("Interface\\AddOns\\MythicDungeonTools\\Textures\\HeartOfAzerothSelection")
   pickedGlow:SetTexCoord(0, 0.697265625, 0, 0.625)
+---@diagnostic disable-next-line: param-type-mismatch
   pickedGlow:SetAllPoints(button)
   pickedGlow:Hide()
 

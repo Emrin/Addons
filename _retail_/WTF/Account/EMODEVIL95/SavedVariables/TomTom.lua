@@ -25,30 +25,32 @@ TomTomDB = {
 		["Apoku - Draenor"] = "Default",
 		["Ariellol - Outland"] = "Default",
 		["Cutetroll - Draenor"] = "Default",
+		["Kungfugoblin - Draenor"] = "Default",
+		["Redangel - Draenor"] = "Default",
 		["Unchill - Draenor"] = "Default",
 		["Hentaihero - Draenor"] = "Default",
 		["Crystalol - Draenor"] = "Default",
-		["Nolifey - Silvermoon"] = "Default",
-		["Hentaihero - Outland"] = "Default",
+		["Raingirl - Silvermoon"] = "Default",
+		["Lifey - Silvermoon"] = "Default",
 		["Clawra - Ravencrest"] = "Default",
 		["Apoki - Silvermoon"] = "Default",
-		["Wasdasdasd - Draenor"] = "Default",
+		["Yhewrgrhn - Draenor"] = "Default",
 		["Venetha - Draenor"] = "Default",
-		["Demonphile - Draenor"] = "Default",
-		["Apoka - Stormscale"] = "Default",
+		["Apokalol - Outland"] = "Default",
+		["Missuccubus - Draenor"] = "Default",
 		["Fuwu - Silvermoon"] = "Default",
 		["Apoka - Outland"] = "Default",
 		["Nolifey - Moonglade"] = "Default",
 		["Lifey - Moonglade"] = "Default",
 		["Lifey - Draenor"] = "Default",
-		["Trapchan - Draenor"] = "Default",
-		["Missuccubus - Draenor"] = "Default",
 		["Bowbie - Ravencrest"] = "Default",
-		["Apokalol - Outland"] = "Default",
+		["Trapchan - Draenor"] = "Default",
+		["Apoka - Stormscale"] = "Default",
+		["Demonphile - Draenor"] = "Default",
 		["Lolisama - Draenor"] = "Default",
-		["Yhewrgrhn - Draenor"] = "Default",
-		["Lifey - Silvermoon"] = "Default",
-		["Raingirl - Silvermoon"] = "Default",
+		["Hentaihero - Outland"] = "Default",
+		["Wasdasdasd - Draenor"] = "Default",
+		["Nolifey - Silvermoon"] = "Default",
 		["Vanilia - Outland"] = "Default",
 	},
 	["profiles"] = {
@@ -61,8 +63,8 @@ TomTomDB = {
 					"TOP", -- [1]
 					nil, -- [2]
 					"TOP", -- [3]
-					124.0002136230469, -- [4]
-					-35.00025939941406, -- [5]
+					-4.804926872253418, -- [4]
+					-72.23298645019531, -- [5]
 				},
 			},
 			["block"] = {
@@ -105,30 +107,32 @@ TomTomWaypointsM = {
 		["Apoku - Draenor"] = "Apoku - Draenor",
 		["Ariellol - Outland"] = "Ariellol - Outland",
 		["Cutetroll - Draenor"] = "Cutetroll - Draenor",
+		["Kungfugoblin - Draenor"] = "Kungfugoblin - Draenor",
+		["Redangel - Draenor"] = "Redangel - Draenor",
 		["Unchill - Draenor"] = "Unchill - Draenor",
 		["Hentaihero - Draenor"] = "Hentaihero - Draenor",
 		["Crystalol - Draenor"] = "Crystalol - Draenor",
-		["Nolifey - Silvermoon"] = "Nolifey - Silvermoon",
-		["Hentaihero - Outland"] = "Hentaihero - Outland",
+		["Raingirl - Silvermoon"] = "Raingirl - Silvermoon",
+		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
 		["Clawra - Ravencrest"] = "Clawra - Ravencrest",
 		["Apoki - Silvermoon"] = "Apoki - Silvermoon",
-		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
+		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
 		["Venetha - Draenor"] = "Venetha - Draenor",
-		["Demonphile - Draenor"] = "Demonphile - Draenor",
-		["Apoka - Stormscale"] = "Apoka - Stormscale",
+		["Apokalol - Outland"] = "Apokalol - Outland",
+		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
 		["Fuwu - Silvermoon"] = "Fuwu - Silvermoon",
 		["Apoka - Outland"] = "Apoka - Outland",
 		["Nolifey - Moonglade"] = "Nolifey - Moonglade",
 		["Lifey - Moonglade"] = "Lifey - Moonglade",
 		["Lifey - Draenor"] = "Lifey - Draenor",
-		["Trapchan - Draenor"] = "Trapchan - Draenor",
-		["Missuccubus - Draenor"] = "Missuccubus - Draenor",
 		["Bowbie - Ravencrest"] = "Bowbie - Ravencrest",
-		["Apokalol - Outland"] = "Apokalol - Outland",
+		["Trapchan - Draenor"] = "Trapchan - Draenor",
+		["Apoka - Stormscale"] = "Apoka - Stormscale",
+		["Demonphile - Draenor"] = "Demonphile - Draenor",
 		["Lolisama - Draenor"] = "Lolisama - Draenor",
-		["Yhewrgrhn - Draenor"] = "Yhewrgrhn - Draenor",
-		["Lifey - Silvermoon"] = "Lifey - Silvermoon",
-		["Raingirl - Silvermoon"] = "Raingirl - Silvermoon",
+		["Hentaihero - Outland"] = "Hentaihero - Outland",
+		["Wasdasdasd - Draenor"] = "Wasdasdasd - Draenor",
+		["Nolifey - Silvermoon"] = "Nolifey - Silvermoon",
 		["Vanilia - Outland"] = "Vanilia - Outland",
 	},
 	["profiles"] = {
@@ -189,9 +193,9 @@ TomTomWaypointsM = {
 					["callbacks"] = {
 						["distance"] = {
 						},
-						["world"] = {
-						},
 						["minimap"] = {
+						},
+						["world"] = {
 						},
 					},
 					["minimap"] = true,
@@ -205,27 +209,31 @@ TomTomWaypointsM = {
 		},
 		["Cutetroll - Draenor"] = {
 		},
+		["Kungfugoblin - Draenor"] = {
+		},
+		["Redangel - Draenor"] = {
+		},
 		["Unchill - Draenor"] = {
 		},
 		["Hentaihero - Draenor"] = {
 		},
 		["Crystalol - Draenor"] = {
 		},
-		["Nolifey - Silvermoon"] = {
+		["Raingirl - Silvermoon"] = {
 		},
-		["Hentaihero - Outland"] = {
+		["Lifey - Silvermoon"] = {
 		},
 		["Clawra - Ravencrest"] = {
 		},
 		["Apoki - Silvermoon"] = {
 		},
-		["Wasdasdasd - Draenor"] = {
+		["Yhewrgrhn - Draenor"] = {
 		},
 		["Venetha - Draenor"] = {
 		},
-		["Demonphile - Draenor"] = {
+		["Apokalol - Outland"] = {
 		},
-		["Apoka - Stormscale"] = {
+		["Missuccubus - Draenor"] = {
 		},
 		["Fuwu - Silvermoon"] = {
 		},
@@ -237,21 +245,21 @@ TomTomWaypointsM = {
 		},
 		["Lifey - Draenor"] = {
 		},
-		["Trapchan - Draenor"] = {
-		},
-		["Missuccubus - Draenor"] = {
-		},
 		["Bowbie - Ravencrest"] = {
 		},
-		["Apokalol - Outland"] = {
+		["Trapchan - Draenor"] = {
+		},
+		["Apoka - Stormscale"] = {
+		},
+		["Demonphile - Draenor"] = {
 		},
 		["Lolisama - Draenor"] = {
 		},
-		["Yhewrgrhn - Draenor"] = {
+		["Hentaihero - Outland"] = {
 		},
-		["Lifey - Silvermoon"] = {
+		["Wasdasdasd - Draenor"] = {
 		},
-		["Raingirl - Silvermoon"] = {
+		["Nolifey - Silvermoon"] = {
 		},
 		["Vanilia - Outland"] = {
 		},

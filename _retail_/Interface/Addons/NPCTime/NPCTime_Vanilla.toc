@@ -1,8 +1,8 @@
-## Interface: 11403
+## Interface: 11501
 ## Title: |cffEEE4AENPC Time|r
 ## Notes: |cffFFC700Slash command: /npctime|r
 ## Author: Yuyuli
-## Version: 1.0.14
+## Version: 1.0.19
 ## IconTexture: 237538
 ## SavedVariables: NPCTimeDB
 

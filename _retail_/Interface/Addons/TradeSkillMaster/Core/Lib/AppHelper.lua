@@ -114,6 +114,12 @@ function AppHelper.OnInitialize()
 	if Environment.IsRetail() then
 		private.addonRegion = region
 		private.appDataRegion = region
+	elseif Environment.IsClassicHardcore() then
+		private.addonRegion = region.."-HC"
+		private.appDataRegion = "HC-"..region
+	elseif Environment.IsClassicDiscovery() then
+		private.addonRegion = region.."-SoD"
+		private.appDataRegion = "SoD-"..region
 	elseif Environment.IsVanillaClassic() then
 		private.addonRegion = region.."-Classic"
 		private.appDataRegion = "Classic-"..region

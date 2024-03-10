@@ -1,9 +1,10 @@
-_, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 ---@class CraftSim.CraftResultItem
 CraftSim.CraftResultItem = CraftSim.Object:extend()
 
----@param itemLink string   
+---@param itemLink string
 ---@param quantity number
 ---@param quantityMulticraft number
 ---@param qualityID number?
@@ -21,7 +22,7 @@ function CraftSim.CraftResultItem:Debug()
     if self.quantityMulticraft > 0 then
         table.insert(debugLines, "Multicraft: " .. self.quantityMulticraft)
     end
-    return debugLines 
+    return debugLines
 end
 
 function CraftSim.CraftResultItem:GetJSON(intent)

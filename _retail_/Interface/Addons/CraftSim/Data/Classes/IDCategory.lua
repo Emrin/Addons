@@ -1,4 +1,5 @@
-_, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 ---@class CraftSim.IDCategory
 CraftSim.IDCategory = CraftSim.Object:extend()
@@ -13,5 +14,5 @@ end
 ---@param idCategory CraftSim.IDCategory
 function CraftSim.IDCategory:Merge(idCategory)
     self.categoryID = idCategory.categoryID
-    self.subtypeIDs = CraftSim.GUTIL:ToSet(CraftSim.GUTIL:Concat({idCategory.subtypeIDs, self.subtypeIDs}))
+    self.subtypeIDs = CraftSim.GUTIL:ToSet(CraftSim.GUTIL:Concat({ idCategory.subtypeIDs, self.subtypeIDs }))
 end

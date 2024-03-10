@@ -1,8 +1,9 @@
-DBT = {
+---@class DBT
+local DBT = {
 	bars = {},
 	numBars = 0
 }
-local DBT = DBT
+_G.DBT = DBT
 
 local standardFont
 if LOCALE_koKR then
@@ -81,7 +82,7 @@ DBT.DefaultOptions = {
 	EndColorI2G = 0.5058823823928833,
 	EndColorI2B = 0,
 	--Important bars options
-	Bar7ForceLarge = false,
+	Bar7ForceLarge = true,
 	Bar7CustomInline = true,
 	-- Small bar
 	BarXOffset = 0,
@@ -98,7 +99,7 @@ DBT.DefaultOptions = {
 	Sort = "Sort",
 	DesaturateValue = 1,
 	-- Huge bar
-	EnlargeBarTime = 11,
+	EnlargeBarTime = 9.9,
 	HugeBarXOffset = 0,
 	HugeBarYOffset = 0,
 	HugeWidth = 200,
@@ -138,7 +139,23 @@ DBT.DefaultOptions = {
 	Skin = ""
 }
 
-local barPrototype, unusedBarObjects, barIsAnimating = {}, {}, false
+---@class DBTBar
+---@field frame Frame
+---@field timer number
+---@field totalTime number
+---@field moving "move"|"enlarge"|"nextEnlarge"|nil
+---@field lastUpdate number
+---@field colorType number
+---@field keep boolean?
+---@field isCooldown boolean?
+---@field huge boolean
+---@field small boolean?
+---@field fade boolean?
+---@field dummy boolean?
+---@field dummyEnlarge boolean? Hack used by GUI for large preview bars
+---@field alwaysHuge boolean?
+local barPrototype = {}
+local unusedBarObjects, barIsAnimating = {}, false
 local smallBars, largeBars = {}, {}
 
 local smallBarsAnchor, largeBarsAnchor = CreateFrame("Frame", nil, UIParent), CreateFrame("Frame", nil, UIParent)
@@ -173,7 +190,8 @@ do
 		if self.obj then
 			self.obj.curTime = GetTime()
 			self.obj.delta = self.obj.curTime - self.obj.lastUpdate
-			if barIsAnimating and self.obj.delta >= 0.01 or self.obj.delta >= 0.04 then
+			--Frequent updates when any bar is moving or large bars so they don't look janky. More efficient bars when non animating small bars
+			if (barIsAnimating or self.obj.enlarged) and self.obj.delta >= 0.01 or self.obj.delta >= 0.04 then
 				self.obj.lastUpdate = self.obj.curTime
 				self.obj:Update(self.obj.delta)
 			end
@@ -211,12 +229,15 @@ do
 	local fCounter = 1
 
 	local function createBarFrame(self)
+		---@class DBTBarFrame: Frame
 		local frame = CreateFrame("Frame", "DBT_Bar_" .. fCounter, smallBarsAnchor)
 		frame:SetSize(195, 20)
 		frame:SetScript("OnUpdate", onUpdate)
 		frame:SetScript("OnMouseDown", onMouseDown)
 		frame:SetScript("OnMouseUp", onMouseUp)
 		frame:SetScript("OnHide", onHide)
+		---@type DBTBar
+		frame.obj = nil
 		local bar = CreateFrame("StatusBar", "$parentBar", frame)
 		bar:SetPoint("CENTER", frame, "CENTER")
 		bar:SetSize(195, 20)
@@ -253,13 +274,13 @@ do
 
 	local mt = {__index = barPrototype}
 
-	function DBT:CreateBar(timer, id, icon, huge, small, color, isDummy, colorType, inlineIcon, keep, fade, countdown, countdownMax)
+	function DBT:CreateBar(timer, id, icon, huge, small, color, isDummy, colorType, inlineIcon, keep, fade, countdown, countdownMax, isCooldown)
 		if (not timer or type(timer) == "string" or timer <= 0) or (self.numBars >= 15 and not isDummy) then
 			return
 		end
 		-- Most efficient place to block it, nil colorType instead of checking option every update
-		if not self.Options.ColorByType then
-			colorType = nil
+		if not self.Options.ColorByType or not colorType then
+			colorType = 0
 		end
 		local newBar = self:GetBar(id)
 		if newBar then -- Update an existing bar
@@ -298,8 +319,11 @@ do
 				newBar.fade = fade
 				newBar.countdown = countdown
 				newBar.countdownMax = countdownMax
+				newBar.isCooldown = isCooldown
+				newBar.alwaysHuge = nil
 			else -- Duplicate code ;(
 				local newFrame = createBarFrame(self)
+				---@class DBTBar
 				newBar = setmetatable({
 					frame = newFrame,
 					id = id,
@@ -308,6 +332,7 @@ do
 					owner = self,
 					moving = nil,
 					enlarged = nil,
+					alwaysHuge = nil,
 					fadingIn = 0,
 					small = small,
 					color = color,
@@ -318,12 +343,19 @@ do
 					fade = fade,
 					countdown = countdown,
 					countdownMax = countdownMax,
-					lastUpdate = GetTime()
+					isCooldown = isCooldown,
+					lastUpdate = GetTime(),
 				}, mt)
 				newFrame.obj = newBar
 			end
 			self.numBars = self.numBars + 1
-			if ((colorType and colorType >= 7 and self.Options.Bar7ForceLarge) or (timer <= (self.Options.EnlargeBarTime or 11) or huge)) and self.Options.HugeBarsEnabled then -- Start enlarged
+			-- Bars that start huge by config (important color type or huge flag)
+			-- These are never resized to small
+			if ((colorType and colorType >= 7 and self.Options.Bar7ForceLarge) or huge) and self.Options.HugeBarsEnabled then
+				newBar.alwaysHuge = true
+			end
+			-- Bars that start huge either by config (above) or because they happen to be short timers
+			if (newBar.alwaysHuge or timer <= (self.Options.EnlargeBarTime or 11)) and self.Options.HugeBarsEnabled then
 				newBar.enlarged = true
 				newBar.huge = true
 				tinsert(largeBars, newBar)
@@ -346,8 +378,12 @@ do
 	local gsub = string.gsub
 
 	local function fixElv(optionName)
-		if DBT.Options[optionName]:lower():find("interface\\addons\\elvui\\media\\") then
-			DBT.Options[optionName] = gsub(DBT.Options[optionName], gsub("Interface\\AddOns\\ElvUI\\Media\\", "(%a)", function(v)
+		local value = DBT.Options[optionName]
+		if type(value) ~= "string" then
+			return
+		end
+		if value:lower():find("interface\\addons\\elvui\\media\\") then
+			DBT.Options[optionName] = gsub(value, gsub("Interface\\AddOns\\ElvUI\\Media\\", "(%a)", function(v)
 				return "[" .. v:upper() .. v:lower() .. "]"
 			end), "Interface\\AddOns\\ElvUI\\Core\\Media\\")
 		end
@@ -384,7 +420,7 @@ do
 
 	function DBT:CreateProfile(id)
 		if not id or id == "" or id:find(" ") then
-			self:AddMsg(DBM_CORE_L.PROFILE_CREATE_ERROR)
+			DBM:AddMsg(DBM_CORE_L.PROFILE_CREATE_ERROR)
 			return
 		end
 		local DBM_UsedProfile = DBM_UsedProfile or "Default"
@@ -542,15 +578,16 @@ do
 	local dummyBars = 0
 	local function dummyCancel(self)
 		self.timer = self.totalTime
-		self.flashing = nil
 		self:Update(0)
-		self.flashing = nil
 		_G[self.frame:GetName() .. "BarSpark"]:SetAlpha(1)
 	end
 
 	function DBT:CreateDummyBar(colorType, inlineIcon, text)
 		dummyBars = dummyBars + 1
 		local dummy = self:CreateBar(25, "dummy" .. dummyBars, 136116, nil, true, nil, true, colorType, inlineIcon) -- "Interface\\Icons\\Spell_Nature_WispSplode"
+		if not dummy then
+			error("failed to create dummy bar")
+		end
 		dummy:SetText(text or "Dummy", inlineIcon)
 		dummy:Cancel()
 		self.bars[dummy] = true
@@ -573,6 +610,7 @@ function DBT:GetBarIterator()
 	return pairs(self.bars)
 end
 
+---@return DBTBar?
 function DBT:GetBar(id)
 	for bar in self:GetBarIterator() do
 		if id == bar.id then
@@ -595,7 +633,7 @@ function DBT:UpdateBar(id, elapsed, totalTime)
 	for bar in self:GetBarIterator() do
 		if id == bar.id then
 			bar:SetTimer(totalTime or bar.totalTime)
-			bar:SetElapsed(elapsed or self.totalTime - self.timer)
+			bar:SetElapsed(elapsed or bar.totalTime - bar.timer)
 			return true
 		end
 	end
@@ -664,7 +702,7 @@ end
 function barPrototype:ResetAnimations(makeBig)
 	self:RemoveFromList()
 	self.moving = nil
-	if DBT.Options.HugeBarsEnabled and makeBig then
+	if DBT.Options.HugeBarsEnabled and (makeBig or self.alwaysHuge) then
 		self.enlarged = true
 		tinsert(largeBars, self)
 	else
@@ -785,8 +823,8 @@ function barPrototype:Update(elapsed)
 	local isEnlarged = self.enlarged and not paused
 	local fillUpBars = isEnlarged and barOptions.FillUpLargeBars or not isEnlarged and barOptions.FillUpBars
 	local ExpandUpwards = isEnlarged and barOptions.ExpandUpwardsLarge or not isEnlarged and barOptions.ExpandUpwards
+	local r, g, b
 	if barOptions.DynamicColor and not self.color then
-		local r, g, b
 		local colorVar = colorVariables[colorCount]
 		if barOptions.NoBarFade then
 			r = isEnlarged and barOptions["EndColor"..colorVar.."R"] or barOptions["StartColor"..colorVar.."R"]
@@ -804,6 +842,10 @@ function barPrototype:Update(elapsed)
 		if sparkEnabled then
 			spark:SetVertexColor(r, g, b)
 		end
+	elseif self.color then
+		r = self.color.r
+		g = self.color.g
+		b = self.color.b
 	end
 	if timerValue <= 0 and not (barOptions.KeepBars and self.keep) then
 		return self:Cancel()
@@ -823,7 +865,11 @@ function barPrototype:Update(elapsed)
 				bar:SetValue(timerValue/totaltimeValue)
 			end
 		end
-		timer:SetText(stringFromTimer(timerValue))
+		if self.isCooldown then--inprecise CD bar, signify it with ~ in timer
+			timer:SetText("~" .. stringFromTimer(timerValue))
+		else
+			timer:SetText(stringFromTimer(timerValue))
+		end
 	end
 	if isFadingIn and isFadingIn < 0.5 and currentStyle ~= "NoAnim" then
 		self.fadingIn = isFadingIn + elapsed
@@ -839,6 +885,10 @@ function barPrototype:Update(elapsed)
 	elseif self.flashing and timerValue > 7.75 then
 		self.flashing = nil
 		self.ftimer = nil
+		bar:SetStatusBarColor(r, g, b, 1)
+		if sparkEnabled then
+			spark:SetAlpha(1)
+		end
 	end
 	if sparkEnabled then
 		spark:ClearAllPoints()
@@ -848,7 +898,6 @@ function barPrototype:Update(elapsed)
 		spark:SetAlpha(0)
 	end
 	if self.flashing then
-		local r, g, b = bar:GetStatusBarColor()
 		local ftime = self.ftimer % 1.25
 		if ftime >= 0.5 then
 			bar:SetStatusBarColor(r, g, b, 1)
@@ -1030,18 +1079,20 @@ function barPrototype:MoveToNextPosition()
 	local Enlarged = self.enlarged
 	local ExpandUpwards = Enlarged and DBT.Options.ExpandUpwardsLarge or not Enlarged and DBT.Options.ExpandUpwards
 	self.frame:ClearAllPoints()
+	local xOffset = Enlarged and DBT.Options.HugeBarXOffset or DBT.Options.BarXOffset
+	local yOffset = Enlarged and DBT.Options.HugeBarYOffset or DBT.Options.BarYOffset
 	if ExpandUpwards then
 		self.movePoint = "BOTTOM"
-		self.frame:SetPoint("BOTTOM", newAnchor, "BOTTOM", DBT.Options[Enlarged and "HugeBarXOffset" or "BarXOffset"], DBT.Options[Enlarged and "HugeBarYOffset" or "BarYOffset"])
+		self.frame:SetPoint("BOTTOM", newAnchor, "BOTTOM", xOffset, yOffset)
 	else
 		self.movePoint = "TOP"
-		self.frame:SetPoint("TOP", newAnchor, "TOP", DBT.Options[Enlarged and "HugeBarXOffset" or "BarXOffset"], -DBT.Options[Enlarged and "HugeBarYOffset" or "BarYOffset"])
+		self.frame:SetPoint("TOP", newAnchor, "TOP", xOffset, -yOffset)
 	end
 	local newX = self.frame:GetRight() - self.frame:GetWidth()/2
 	local newY = self.frame:GetTop()
 	if DBT.Options.BarStyle ~= "NoAnim" then
 		self.frame:ClearAllPoints()
-		self.frame:SetPoint(self.movePoint, newAnchor, self.moveRelPoint, -(newX - oldX), -(newY - oldY))
+		self.frame:SetPoint(self.movePoint, newAnchor, self.movePoint, -(newX - oldX), -(newY - oldY))
 		self.moving = "move"
 	end
 	self.moveAnchor = newAnchor
@@ -1056,12 +1107,14 @@ function barPrototype:Enlarge()
 	local Enlarged = self.enlarged
 	local ExpandUpwards = Enlarged and DBT.Options.ExpandUpwardsLarge or not Enlarged and DBT.Options.ExpandUpwards
 	self.frame:ClearAllPoints()
+	local xOffset = Enlarged and DBT.Options.HugeBarXOffset or DBT.Options.BarXOffset
+	local yOffset = Enlarged and DBT.Options.HugeBarYOffset or DBT.Options.BarYOffset
 	if ExpandUpwards then
 		self.movePoint = "BOTTOM"
-		self.frame:SetPoint("BOTTOM", largeBarsAnchor, "BOTTOM", DBT.Options[Enlarged and "HugeBarXOffset" or "BarXOffset"], DBT.Options[Enlarged and "HugeBarYOffset" or "BarYOffset"])
+		self.frame:SetPoint("BOTTOM", largeBarsAnchor, "BOTTOM", xOffset, yOffset)
 	else
 		self.movePoint = "TOP"
-		self.frame:SetPoint("TOP", largeBarsAnchor, "TOP", DBT.Options[Enlarged and "HugeBarXOffset" or "BarXOffset"], -DBT.Options[Enlarged and "HugeBarYOffset" or "BarYOffset"])
+		self.frame:SetPoint("TOP", largeBarsAnchor, "TOP", xOffset, -yOffset)
 	end
 	local newX = self.frame:GetRight() - self.frame:GetWidth()/2
 	local newY = self.frame:GetTop()
@@ -1124,7 +1177,7 @@ do
 	end
 
 	function DBT:SetSkin(id)
-		if not skins[id] then
+		if not skins[id] and id ~= 'DBM' then
 			error("Skin '" .. id .. "' doesn't exist", 2)
 		end
 		local DBM_UsedProfile = DBM_UsedProfile or "Default"
@@ -1141,8 +1194,10 @@ do
 			end
 		end
 		self:ApplyProfile(id, true)
-		for option, value in pairs(skins[id].Options) do
-			self:SetOption(option, value, true)
+		if id ~= 'DBM' then
+			for option, value in pairs(skins[id].Options) do
+				self:SetOption(option, value, true)
+			end
 		end
 		self:SetOption("Skin", id) -- Forces an UpdateBars and ApplyStyle
 	end

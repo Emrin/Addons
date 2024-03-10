@@ -2,9 +2,190 @@
 DetailsTimeLineDB = {
 	["max_segments"] = 4,
 	["combat_data"] = {
+		{
+			["date_start"] = "09:07:05",
+			["date_end"] = "09:07:36",
+			["name"] = "The Crown Chemical Co.",
+			["total_time"] = 30.16699999989942,
+		}, -- [1]
+		{
+			["date_end"] = "14:06:52",
+			["date_start"] = "14:06:30",
+			["name"] = "The Crown Chemical Co.",
+			["total_time"] = 21.14600000018254,
+		}, -- [2]
 	},
 	["hide_on_combat"] = false,
 	["IndividualSpells"] = {
+		{
+			[68841] = {
+				{
+					16.31999999983236, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+				{
+					18.32700000004843, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [2]
+			},
+			[68607] = {
+				{
+					3.205999999772757, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [1]
+				{
+					8.050999999977648, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [2]
+				{
+					11.67900000000373, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [3]
+			},
+			[415403] = {
+				{
+					1.194000000134111, -- [1]
+					"Apothecary Hummel", -- [2]
+					415403, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Apothecary Hummel", -- [5]
+				}, -- [1]
+				{
+					5.63799999980256, -- [1]
+					"Apothecary Baxter", -- [2]
+					415403, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Apothecary Baxter", -- [5]
+				}, -- [2]
+			},
+			[68948] = {
+				{
+					9.26699999999255, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [1]
+				{
+					12.90700000012294, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [2]
+				{
+					16.53299999982119, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [3]
+				{
+					21.38700000010431, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [4]
+			},
+			[68799] = {
+				{
+					20.31600000010803, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+				{
+					22.32899999991059, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [2]
+				{
+					24.33999999985099, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [3]
+			},
+		}, -- [1]
+		{
+			[68607] = {
+				{
+					3.802999999839813, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [1]
+				{
+					9.878000000026077, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [2]
+			},
+			[68799] = {
+				{
+					17.27000000001863, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+				{
+					19.2609999999404, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [2]
+			},
+			[68948] = {
+				{
+					9.878000000026077, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [1]
+				{
+					14.72899999981746, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [2]
+			},
+			[68841] = {
+				{
+					15.25300000002608, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+			},
+		}, -- [2]
 		{
 			[329170] = {
 				{
@@ -104,22 +285,20 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-		}, -- [1]
+		}, -- [3]
 		{
-			[323538] = {
+			[346866] = {
 				{
-					7.204000000027008, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323538, -- [3]
+					14.5899999999674, -- [1]
+					"Loyal Stoneborn", -- [2]
+					346866, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Rævemor-Kazzak", -- [5]
 				}, -- [1]
 				{
-					35.50800000003073, -- [1]
-					"High Adjudicator Aleez", -- [2]
-					323538, -- [3]
+					32.78700000001118, -- [1]
+					"Loyal Stoneborn", -- [2]
+					346866, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Rævemor-Kazzak", -- [5]
 				}, -- [2]
 			},
 			[338012] = {
@@ -154,6 +333,22 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
+			[323538] = {
+				{
+					7.204000000027008, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323538, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Rævemor-Kazzak", -- [5]
+				}, -- [1]
+				{
+					35.50800000003073, -- [1]
+					"High Adjudicator Aleez", -- [2]
+					323538, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Rævemor-Kazzak", -- [5]
+				}, -- [2]
+			},
 			[329340] = {
 				{
 					22.26500000001397, -- [1]
@@ -162,21 +357,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[346866] = {
-				{
-					14.5899999999674, -- [1]
-					"Loyal Stoneborn", -- [2]
-					346866, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					32.78700000001118, -- [1]
-					"Loyal Stoneborn", -- [2]
-					346866, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-		}, -- [2]
+		}, -- [4]
 		{
 			[326389] = {
 				{
@@ -348,7 +529,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
 			},
-		}, -- [3]
+		}, -- [5]
 		{
 			[322936] = {
 				{
@@ -387,7 +568,7 @@ DetailsTimeLineDB = {
 					"Crystalol", -- [5]
 				}, -- [1]
 			},
-		}, -- [4]
+		}, -- [6]
 		{
 			[256083] = {
 				{
@@ -471,7 +652,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-		}, -- [5]
+		}, -- [7]
 		{
 			[257028] = {
 				{
@@ -517,7 +698,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-		}, -- [6]
+		}, -- [8]
 		{
 			[257777] = {
 				{
@@ -605,7 +786,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-		}, -- [7]
+		}, -- [9]
 		{
 			[257609] = {
 				{
@@ -759,7 +940,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-		}, -- [8]
+		}, -- [10]
 		{
 			[196947] = {
 				{
@@ -919,7 +1100,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-		}, -- [9]
+		}, -- [11]
 		{
 			[194266] = {
 				{
@@ -1002,38 +1183,8 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
-		}, -- [10]
+		}, -- [12]
 		{
-			[193460] = {
-				{
-					24.71900000004098, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193460, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[193977] = {
-				{
-					18.15400000009686, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193977, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[193364] = {
-				{
-					10.17399999999907, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193364, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					40.50900000007823, -- [1]
-					"Ymiron, the Fallen King", -- [2]
-					193364, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
 			[193211] = {
 				{
 					5.027000000001863, -- [1]
@@ -1057,7 +1208,37 @@ DetailsTimeLineDB = {
 					"Holyviolet", -- [5]
 				}, -- [3]
 			},
-		}, -- [11]
+			[193977] = {
+				{
+					18.15400000009686, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193977, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[193460] = {
+				{
+					24.71900000004098, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193460, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[193364] = {
+				{
+					10.17399999999907, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193364, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					40.50900000007823, -- [1]
+					"Ymiron, the Fallen King", -- [2]
+					193364, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
+			},
+		}, -- [13]
 		{
 			[241672] = {
 				{
@@ -1305,7 +1486,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [3]
 			},
-		}, -- [12]
+		}, -- [14]
 		{
 			[198073] = {
 				{
@@ -1357,7 +1538,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-		}, -- [13]
+		}, -- [15]
 		{
 			[197696] = {
 				{
@@ -1398,20 +1579,18 @@ DetailsTimeLineDB = {
 					"Bloodfel-Outland", -- [5]
 				}, -- [3]
 			},
-			[197687] = {
+			[197484] = {
 				{
-					48.64299999992363, -- [1]
-					"Eye Beams", -- [2]
-					197687, -- [3]
+					17.3859999999404, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197484, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Onera-Zul'jin", -- [5]
 				}, -- [1]
 				{
-					62.12099999992643, -- [1]
-					"Eye Beams", -- [2]
-					197687, -- [3]
+					17.95799999998417, -- [1]
+					"Illysanna Ravencrest", -- [2]
+					197484, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Crystalol", -- [5]
 				}, -- [2]
 			},
 			[197546] = {
@@ -1437,13 +1616,21 @@ DetailsTimeLineDB = {
 					"Crystalol", -- [5]
 				}, -- [3]
 			},
-			[197974] = {
+			[197687] = {
 				{
-					63.49800000002142, -- [1]
-					"Soul-torn Vanguard", -- [2]
-					197974, -- [3]
+					48.64299999992363, -- [1]
+					"Eye Beams", -- [2]
+					197687, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
+					"Onera-Zul'jin", -- [5]
 				}, -- [1]
+				{
+					62.12099999992643, -- [1]
+					"Eye Beams", -- [2]
+					197687, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Crystalol", -- [5]
+				}, -- [2]
 			},
 			[197478] = {
 				{
@@ -1453,21 +1640,15 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[197484] = {
+			[197974] = {
 				{
-					17.3859999999404, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197484, -- [3]
+					63.49800000002142, -- [1]
+					"Soul-torn Vanguard", -- [2]
+					197974, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
-				{
-					17.95799999998417, -- [1]
-					"Illysanna Ravencrest", -- [2]
-					197484, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
 			},
-		}, -- [14]
+		}, -- [16]
 		{
 			[194956] = {
 				{
@@ -1534,15 +1715,309 @@ DetailsTimeLineDB = {
 					"Onera-Zul'jin", -- [5]
 				}, -- [3]
 			},
-		}, -- [15]
+		}, -- [17]
 	},
 	["useicons"] = true,
 	["cooldowns_timeline"] = {
+		{
+			["Callahan-Sanguino"] = {
+				{
+					2.70699999993667, -- [1]
+					"Callahan-Sanguino", -- [2]
+					389539, -- [3]
+				}, -- [1]
+				{
+					6.294999999925494, -- [1]
+					"Callahan-Sanguino", -- [2]
+					31850, -- [3]
+				}, -- [2]
+				{
+					15.48100000014529, -- [1]
+					"Callahan-Sanguino", -- [2]
+					387174, -- [3]
+				}, -- [3]
+			},
+			["Maydulina-Thunderhorn"] = {
+				{
+					20.95399999991059, -- [1]
+					"Maydulina-Thunderhorn", -- [2]
+					22812, -- [3]
+				}, -- [1]
+			},
+		}, -- [1]
+		{
+			["Laughin-Moonglade"] = {
+				{
+					4.118999999947846, -- [1]
+					"Laughin-Moonglade", -- [2]
+					325153, -- [3]
+				}, -- [1]
+			},
+			["Aphelios-Magtheridon"] = {
+				{
+					10.01200000010431, -- [1]
+					"Laughin-Moonglade", -- [2]
+					360827, -- [3]
+				}, -- [1]
+			},
+		}, -- [2]
 	},
 	["window_scale"] = 1,
 	["deaths_data"] = {
+		{
+		}, -- [1]
+		{
+		}, -- [2]
 	},
 	["debuff_timeline"] = {
+		{
+			["Maydulina-Thunderhorn"] = {
+				[68934] = {
+					23.95699999993667, -- [1]
+					30.16699999989942, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[DND] Valentine Boss - Vial Bunny",
+					["active"] = false,
+				},
+				[68947] = {
+					6.067999999970198, -- [1]
+					23.57299999985844, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Baxter",
+					["active"] = false,
+				},
+				[68641] = {
+					0.1, -- [1]
+					17.07799999974668, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+			},
+			["Crystalol"] = {
+				[68641] = {
+					2.063999999780208, -- [1]
+					4.070999999996275, -- [2]
+					7.060999999754131, -- [3]
+					17.07799999974668, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68927] = {
+					24.91500000003725, -- [1]
+					25.81499999994412, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[*] Concentrated Alluring Perfume Spill",
+					["active"] = false,
+				},
+			},
+			["Sqwee-EmeraldDream"] = {
+				[68607] = {
+					11.67900000000373, -- [1]
+					14.69100000010803, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68947] = {
+					6.067999999970198, -- [1]
+					17.57299999985844, -- [2]
+					21.05899999989197, -- [3]
+					23.57299999985844, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Baxter",
+					["active"] = false,
+				},
+				[68934] = {
+					18.52699999976903, -- [1]
+					21.02000000001863, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[DND] Valentine Boss - Vial Bunny",
+					["active"] = false,
+				},
+				[68641] = {
+					0.1, -- [1]
+					17.07799999974668, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68927] = {
+					22.62300000013784, -- [1]
+					30.16699999989942, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[*] Concentrated Alluring Perfume Spill",
+					["active"] = false,
+				},
+			},
+			["Diddigos-Wildhammer"] = {
+				[68927] = {
+					28.34799999976531, -- [1]
+					30.16699999989942, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[*] Concentrated Alluring Perfume Spill",
+					["active"] = false,
+				},
+			},
+			["Callahan-Sanguino"] = {
+				[68607] = {
+					3.205999999772757, -- [1]
+					6.214000000152737, -- [2]
+					8.050999999977648, -- [3]
+					11.06199999991804, -- [4]
+					11.67900000000373, -- [5]
+					14.69100000010803, -- [6]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68641] = {
+					2.063999999780208, -- [1]
+					17.07799999974668, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68947] = {
+					6.067999999970198, -- [1]
+					18.56900000013411, -- [2]
+					21.05899999989197, -- [3]
+					23.57299999985844, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Baxter",
+					["active"] = false,
+				},
+				[68934] = {
+					18.60300000011921, -- [1]
+					30.16699999989942, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[DND] Valentine Boss - Vial Bunny",
+					["active"] = false,
+				},
+			},
+		}, -- [1]
+		{
+			["Tuki-Lightning'sBlade"] = {
+				[68641] = {
+					5.003000000026077, -- [1]
+					10.01200000010431, -- [2]
+					11.00100000016391, -- [3]
+					14.00499999988824, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68947] = {
+					6.001999999862164, -- [1]
+					9.510999999940395, -- [2]
+					15.99500000011176, -- [3]
+					20.51699999999255, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Baxter",
+					["active"] = false,
+				},
+			},
+			["Crystalol"] = {
+				[68607] = {
+					3.802999999839813, -- [1]
+					6.813000000081956, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68934] = {
+					16.92799999983981, -- [1]
+					18.23600000003353, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[DND] Valentine Boss - Vial Bunny",
+					["active"] = false,
+				},
+			},
+			["Lubsi-Emeriss"] = {
+				[68927] = {
+					18.18500000005588, -- [1]
+					21.14600000018254, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "[*] Concentrated Alluring Perfume Spill",
+					["active"] = false,
+				},
+			},
+			["Laughin-Moonglade"] = {
+				[68607] = {
+					3.802999999839813, -- [1]
+					6.813000000081956, -- [2]
+					9.878000000026077, -- [3]
+					12.875, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68641] = {
+					0.1, -- [1]
+					8.02100000018254, -- [2]
+					9.001000000163913, -- [3]
+					11.01200000010431, -- [4]
+					11.99699999997392, -- [5]
+					16.01800000015646, -- [6]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68947] = {
+					6.001999999862164, -- [1]
+					13.51299999980256, -- [2]
+					14.00499999988824, -- [3]
+					20.51699999999255, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Baxter",
+					["active"] = false,
+				},
+			},
+			["Aphelios-Magtheridon"] = {
+				[68641] = {
+					0.1, -- [1]
+					2.003000000026077, -- [2]
+					8.006000000052154, -- [3]
+					10.01200000010431, -- [4]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Hummel",
+					["active"] = false,
+				},
+				[68947] = {
+					8.006000000052154, -- [1]
+					9.510999999940395, -- [2]
+					["stacks"] = {
+					},
+					["source"] = "Apothecary Baxter",
+					["active"] = false,
+				},
+			},
+		}, -- [2]
 	},
 	["backdrop_color"] = {
 		0, -- [1]
@@ -1551,6 +2026,169 @@ DetailsTimeLineDB = {
 		0.4, -- [4]
 	},
 	["BossSpellCast"] = {
+		{
+			["Apothecary Frye"] = {
+				{
+					16.31999999983236, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+				{
+					18.32700000004843, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [2]
+				{
+					20.31600000010803, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [3]
+				{
+					22.32899999991059, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [4]
+				{
+					24.33999999985099, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [5]
+			},
+			["Apothecary Hummel"] = {
+				{
+					1.194000000134111, -- [1]
+					"Apothecary Hummel", -- [2]
+					415403, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Apothecary Hummel", -- [5]
+				}, -- [1]
+				{
+					3.205999999772757, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [2]
+				{
+					8.050999999977648, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [3]
+				{
+					11.67900000000373, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [4]
+			},
+			["Apothecary Baxter"] = {
+				{
+					5.63799999980256, -- [1]
+					"Apothecary Baxter", -- [2]
+					415403, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Apothecary Baxter", -- [5]
+				}, -- [1]
+				{
+					9.26699999999255, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [2]
+				{
+					12.90700000012294, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [3]
+				{
+					16.53299999982119, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [4]
+				{
+					21.38700000010431, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Callahan-Sanguino", -- [5]
+				}, -- [5]
+			},
+		}, -- [1]
+		{
+			["Apothecary Frye"] = {
+				{
+					15.25300000002608, -- [1]
+					"Apothecary Frye", -- [2]
+					68841, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [1]
+				{
+					17.27000000001863, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [2]
+				{
+					19.2609999999404, -- [1]
+					"Apothecary Frye", -- [2]
+					68799, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"[DND] Valentine Boss - Vial Bunny", -- [5]
+				}, -- [3]
+			},
+			["Apothecary Hummel"] = {
+				{
+					3.802999999839813, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [1]
+				{
+					9.878000000026077, -- [1]
+					"Apothecary Hummel", -- [2]
+					68607, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [2]
+			},
+			["Apothecary Baxter"] = {
+				{
+					9.878000000026077, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [1]
+				{
+					14.72899999981746, -- [1]
+					"Apothecary Baxter", -- [2]
+					68948, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Laughin-Moonglade", -- [5]
+				}, -- [2]
+			},
+		}, -- [2]
 		{
 			["Lord Chamberlain"] = {
 				{
@@ -1634,7 +2272,7 @@ DetailsTimeLineDB = {
 					"Lord Chamberlain", -- [5]
 				}, -- [6]
 			},
-		}, -- [1]
+		}, -- [3]
 		{
 			["Anima Fountain"] = {
 				{
@@ -1704,7 +2342,7 @@ DetailsTimeLineDB = {
 					"Rævemor-Kazzak", -- [5]
 				}, -- [3]
 			},
-		}, -- [2]
+		}, -- [4]
 		{
 			["Undying Stonefiend"] = {
 				{
@@ -1870,7 +2508,7 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [4]
 			},
-		}, -- [3]
+		}, -- [5]
 		{
 			["Halkias"] = {
 				{
@@ -1905,6 +2543,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [5]
 			},
-		}, -- [4]
+		}, -- [6]
 	},
 }

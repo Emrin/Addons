@@ -1,10 +1,15 @@
-tag 175b6efb1215874cd1d2451ea780703dd3ca1657 v1.0.6
-Author:	Stroeckx <stijnstroeckx@hotmail.com>
-Date:	Sun Apr 2 20:33:28 2023 +0100
+tag 6d50b05aa3f6fb79e97e283fef6a00813983b01e v1.0.7
+Author:	Stijn Stroeckx <stijnstroeckx@hotmail.com>
+Date:	Mon Aug 28 16:50:37 2023 +0100
 
-commit fb5c5a1493ea3b54a88fc5ad993e40425f7a239a
-Author: Stroeckx <stijnstroeckx@hotmail.com>
-Date:   Sun Apr 2 20:33:16 2023 +0100
+commit fec1757a5233c4067f3dd2322be44e91bf98e52d
+Author: Stijn Stroeckx <stijnstroeckx@hotmail.com>
+Date:   Mon Aug 28 16:50:18 2023 +0100
 
-    Updated TOC for 10.0.7
+    Updated for patch 1.1.5
+    
+    - Updated for patch 1.1.5
+    - Added icon in addon list
+    - Updated logo to a backgroundless version
+    - Added various table related functions
 

@@ -1,12 +1,10 @@
 
 GatherMate2DB = {
-	["global"] = {
-		["data_version"] = 6,
-	},
 	["profileKeys"] = {
 		["Taizai - Draenor"] = "Default",
 		["Nolifey - Ravencrest"] = "Default",
 		["Trax - Stormscale"] = "Default",
+		["Redangel - Draenor"] = "Default",
 		["Unchill - Draenor"] = "Default",
 		["Lifey - Silvermoon"] = "Default",
 		["Pixiel - Draenor"] = "Default",
@@ -17,12 +15,17 @@ GatherMate2DB = {
 		["Nolifey - Draenor"] = "Default",
 		["Apoka - Outland"] = "Default",
 		["Nolifey - Moonglade"] = "Default",
+		["Lifey - Draenor"] = "Default",
 		["Yubiyubi - Draenor"] = "Default",
 		["Yeetalot - Draenor"] = "Default",
-		["Venetha - Draenor"] = "Default",
-		["Cutetroll - Draenor"] = "Default",
-		["Crystalol - Draenor"] = "Default",
+		["Kungfugoblin - Draenor"] = "Default",
 		["Crystalol - Outland"] = "Default",
+		["Crystalol - Draenor"] = "Default",
+		["Cutetroll - Draenor"] = "Default",
+		["Venetha - Draenor"] = "Default",
+	},
+	["global"] = {
+		["data_version"] = 6,
 	},
 	["profiles"] = {
 		["Default"] = {
@@ -38,10 +41,10 @@ GatherMate2HerbDB = {
 		[4769621700] = 1413,
 		[5596706300] = 1429,
 		[5391631400] = 1421,
-		[5516633200] = 1412,
+		[5143452200] = 1413,
 		[5552701700] = 1413,
 		[4892538300] = 1413,
-		[5143452200] = 1413,
+		[5516633200] = 1412,
 	},
 	[2022] = {
 		[5159360600] = 1415,
@@ -86,20 +89,27 @@ GatherMate2MineDB = {
 	},
 	[2025] = {
 		[4633617600] = 1203,
-		[5781651700] = 1201,
+		[5426352300] = 1201,
 		[5506629200] = 1201,
 		[5078543000] = 1213,
-		[5091509200] = 1201,
+		[5354624800] = 1205,
 		[5136516000] = 1201,
 		[5106457700] = 1201,
 		[5495361400] = 1202,
-		[5354624800] = 1205,
-		[5426352300] = 1201,
+		[5091509200] = 1201,
+		[5781651700] = 1201,
 	},
 }
 GatherMate2FishDB = {
+	[2200] = {
+		[5675755600] = 1111,
+		[5783551200] = 1109,
+	},
 	[2151] = {
 		[4389541900] = 1109,
+	},
+	[2024] = {
+		[2744371600] = 1111,
 	},
 }
 GatherMate2GasDB = {
@@ -115,16 +125,16 @@ GatherMate2TreasureDB = {
 		[5384416800] = 533,
 		[5303422400] = 533,
 		[5186402800] = 533,
-		[5389432300] = 533,
+		[5350417100] = 533,
 		[5306429500] = 533,
 		[5159425200] = 533,
-		[5502427000] = 533,
-		[5451419800] = 533,
-		[5473416900] = 533,
-		[5437413200] = 533,
-		[5202430800] = 533,
 		[5342429700] = 533,
-		[5350417100] = 533,
+		[5202430800] = 533,
+		[5437413200] = 533,
+		[5473416900] = 533,
+		[5451419800] = 533,
+		[5502427000] = 533,
+		[5389432300] = 533,
 	}, -- [1]
 	[37] = {
 		[4302660800] = 533,

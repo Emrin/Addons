@@ -6,13 +6,14 @@ MDTGuideDB = {
 		},
 	},
 	["options"] = {
-		["zoomBorder"] = 20,
 		["route"] = false,
+		["zoomBorder"] = 20,
+		["version"] = 2,
 		["zoomMax"] = 1,
 		["widthSide"] = 200,
 		["zoomMin"] = 1,
-		["version"] = 1,
 		["height"] = 200,
+		["animate"] = true,
 	},
 	["active"] = false,
 }

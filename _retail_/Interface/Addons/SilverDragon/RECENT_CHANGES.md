@@ -1,5 +1,4 @@
-## Changed in v2023.6
+## Changed in v2024.1.1
 
-* More Zaralek Cavern data
-* Suppress alerts while a cinematic is running
+* Missed some of the separated-addon TOCs
 

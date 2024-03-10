@@ -1,5 +1,7 @@
-AddonName, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
+---@class CraftSim.COMM : AceAddon
 CraftSim.COMM = LibStub("AceAddon-3.0"):NewAddon("CraftSim.COMM", "AceComm-3.0", "AceSerializer-3.0")
 
 CraftSim.COMM.registeredPrefixes = {}
@@ -8,14 +10,14 @@ local print = CraftSim.UTIL:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.COMM)
 
 local function encodeData(data)
     local serializedData = CraftSim.COMM:Serialize(data)
-	local compressedData, compressError = LibCompress:Compress(serializedData)
-	local encodedData = LibCompress:GetAddonEncodeTable():Encode(compressedData)
-	return encodedData
+    local compressedData, compressError = CraftSim.LibCompress:Compress(serializedData)
+    local encodedData = CraftSim.LibCompress:GetAddonEncodeTable():Encode(compressedData)
+    return encodedData
 end
 
 local function decodeData(payload)
-    local decodedData = LibCompress:GetAddonEncodeTable():Decode(payload)
-    local decompressedData, error = LibCompress:Decompress(decodedData)
+    local decodedData = CraftSim.LibCompress:GetAddonEncodeTable():Decode(payload)
+    local decompressedData, error = CraftSim.LibCompress:Decompress(decodedData)
 
     if not decompressedData then
         print("CraftSim COMM Error: " .. tostring(error))

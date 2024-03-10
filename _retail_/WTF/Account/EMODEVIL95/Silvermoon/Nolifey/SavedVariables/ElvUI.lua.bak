@@ -2,10 +2,10 @@
 ElvCharacterDB = {
 	["ConvertKeybindings"] = true,
 	["ChatEditHistory"] = {
-		"/gladius test", -- [1]
-		"/reload", -- [2]
+		"/reload", -- [1]
+		"/m", -- [2]
 		"/aap", -- [3]
-		"/m", -- [4]
+		"/gladius test", -- [4]
 	},
 	["ChatHistoryLog"] = {
 		{
@@ -1328,5 +1328,71 @@ ElvCharacterDB = {
 			[51] = 1641395223,
 			[50] = "CHAT_MSG_CHANNEL",
 		}, -- [60]
+		{
+			"<NOVA> OFFERING HEROIC |cff66bbff|Hjournal:0:1193:14|h[Sanctum of Domination]|h|r 10/10 HC 230k +170k TRADER + 8/10HC 200k + SylvanasHC 50k / SoD MYTHIC / M+15 110k / 2x15+ 205k / 3x15+ 300k /M+16 160k / M+20 510k / KSM 1540k / KSH 20+s All Keys 3450k || Tzvsh-Torghasts /INSANE %OFF /w for", -- [1]
+			"Dreamymonkx-Silvermoon", -- [2]
+			"", -- [3]
+			"2. Trade - City", -- [4]
+			"Dreamymonkx-Silvermoon", -- [5]
+			"", -- [6]
+			2, -- [7]
+			2, -- [8]
+			"Trade - City", -- [9]
+			0, -- [10]
+			896, -- [11]
+			"Player-3391-0C21542E", -- [12]
+			0, -- [13]
+			false, -- [14]
+			false, -- [15]
+			false, -- [16]
+			true, -- [17]
+			[52] = "|cff00fe97Dreamymonkx|r",
+			[51] = 1642688626,
+			[50] = "CHAT_MSG_CHANNEL",
+		}, -- [61]
+		{
+			"[WТS] Sanctum of Domination Heroic & Mythic Carry! Order a Trial run to test our service with no risks! Up to 12 guild runs daily. Get 239-259 ilvl gear and AOTC. We have over 18207 Trustpilot reviews. Visit WowVendor.org for more info!", -- [1]
+			"Ycufijakywi-Silvermoon", -- [2]
+			"", -- [3]
+			"2. Trade - City", -- [4]
+			"Ycufijakywi-Silvermoon", -- [5]
+			"", -- [6]
+			2, -- [7]
+			2, -- [8]
+			"Trade - City", -- [9]
+			0, -- [10]
+			898, -- [11]
+			"Player-3391-0C22AA6A", -- [12]
+			0, -- [13]
+			false, -- [14]
+			false, -- [15]
+			false, -- [16]
+			true, -- [17]
+			[52] = "|cffc59a6cYcufijakywi|r",
+			[51] = 1642688628,
+			[50] = "CHAT_MSG_CHANNEL",
+		}, -- [62]
+		{
+			"|cffffd100|HclubFinder:ClubFinder-1-270173-3391-108381974|h[Guild: The Ordinary]|h|r zaprasza wszystkich z zapałem do gry! Rajdujemy w sob, ndz i pon godz. 19:00. Zapraszamy również osoby wracajace po przerwie jak i nowych graczy. Wiecej info /w ", -- [1]
+			"Amberka-Silvermoon", -- [2]
+			"", -- [3]
+			"2. Trade - City", -- [4]
+			"Amberka-Silvermoon", -- [5]
+			"", -- [6]
+			2, -- [7]
+			2, -- [8]
+			"Trade - City", -- [9]
+			0, -- [10]
+			900, -- [11]
+			"Player-3391-0C1F7D82", -- [12]
+			0, -- [13]
+			false, -- [14]
+			false, -- [15]
+			false, -- [16]
+			true, -- [17]
+			[52] = "|cfff38bb9Amberka|r",
+			[51] = 1642688630,
+			[50] = "CHAT_MSG_CHANNEL",
+		}, -- [63]
 	},
 }

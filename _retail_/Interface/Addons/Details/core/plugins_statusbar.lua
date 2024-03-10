@@ -1055,18 +1055,13 @@ do
 		for index, child in ipairs(Threat.childs) do
 			local instance = child.instance
 			if (child.enabled and instance:IsEnabled()) then
-				if (not DetailsFramework.IsClassicWow()) then
-					local isTanking, status, threatPercent, rawthreatpct, threatvalue = _UnitDetailedThreatSituation("player", "target")
-					if (threatPercent) then
-						child.text:SetText(math.floor(threatPercent).."%")
-						if (Threat.isTank) then
-							child.text:SetTextColor(math.abs(threatPercent - 100) * 0.01, threatPercent * 0.01, 0, 1)
-						else
-							child.text:SetTextColor(threatPercent * 0.01, math.abs(threatPercent - 100) * 0.01, 0, 1)
-						end
+				local isTanking, status, threatPercent, rawthreatpct, threatvalue = _UnitDetailedThreatSituation("player", "target")
+				if (threatPercent) then
+					child.text:SetText(math.floor(threatPercent).."%")
+					if (Threat.isTank) then
+						child.text:SetTextColor(math.abs(threatPercent - 100) * 0.01, threatPercent * 0.01, 0, 1)
 					else
-						child.text:SetText("0%")
-						child.text:SetTextColor(1, 1, 1, 1)
+						child.text:SetTextColor(threatPercent * 0.01, math.abs(threatPercent - 100) * 0.01, 0, 1)
 					end
 				else
 					child.text:SetText("0%")
@@ -1435,13 +1430,16 @@ end
 		end
 	end
 
-	local textStyle = {
-		{value = 1, label = Loc ["STRING_PLUGINOPTIONS_ABBREVIATE"] .. "(105.5K)", onclick = onSelectTextStyle},
-		{value = 2, label = Loc ["STRING_PLUGINOPTIONS_COMMA"] .. "(105.500)", onclick = onSelectTextStyle},
-		{value = 3, label = Loc ["STRING_PLUGINOPTIONS_NOFORMAT"] .. "(105500)", onclick = onSelectTextStyle}
-	}
+	local textStyleDropdownFunc = function()
+		local textStyle = {
+			{value = 1, label = Loc ["STRING_PLUGINOPTIONS_ABBREVIATE"] .. "(105.5K)", onclick = onSelectTextStyle},
+			{value = 2, label = Loc ["STRING_PLUGINOPTIONS_COMMA"] .. "(105.500)", onclick = onSelectTextStyle},
+			{value = 3, label = Loc ["STRING_PLUGINOPTIONS_NOFORMAT"] .. "(105500)", onclick = onSelectTextStyle}
+		}
+		return textStyle
+	end
 
-	detailsFramework:NewDropDown(window, _, "$parentTextStyleDropdown", "textstyleDropdown", 200, 20, function() return textStyle end, 1) --func, default
+	detailsFramework:NewDropDown(window, _, "$parentTextStyleDropdown", "textstyleDropdown", 200, 20, textStyleDropdownFunc, 1) --func, default
 	window.textstyleDropdown:SetPoint("left", window.textstyle, "right", 2)
 
 --text color

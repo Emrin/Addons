@@ -167,3 +167,15 @@ MRT: disabled
 Paste: disabled
 ElvUI_ExtraDataTexts: disabled
 ElvUI_SecondsToBuff: disabled
+ElvUI_BuffHighlight: disabled
+Blizzard_CombatText: enabled
+LittleWigs: enabled
+ElvUI_Options: enabled
+BigWigs_VaultOfTheIncarnates: enabled
+BigWigs_Amirdrassil: enabled
+LittleWigs_WarlordsOfDraenor: enabled
+LittleWigs_Legion: enabled
+LittleWigs_BattleForAzeroth: enabled
+LittleWigs_Cataclysm: enabled
+BigWigs_DragonIsles: enabled
+LittleWigs_Classic: enabled

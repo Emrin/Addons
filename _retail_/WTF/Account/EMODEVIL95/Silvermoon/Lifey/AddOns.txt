@@ -51,7 +51,7 @@ MogIt_Mail: disabled
 MogIt_Plate: disabled
 MogIt_Ranged: disabled
 MSBTOptions: disabled
-MythicDungeonTools: enabled
+MythicDungeonTools: disabled
 MythicPlusTimer: disabled
 Omen: disabled
 RareScanner: enabled
@@ -92,7 +92,7 @@ ElvUI_Options: enabled
 ActionBarProfiles: disabled
 Capping: disabled
 CraftSim: disabled
-DejaCharacterStats: enabled
+DejaCharacterStats: disabled
 GatherMate2: disabled
 GladiusEx: disabled
 MoveAnything: disabled
@@ -112,7 +112,7 @@ LibWindow-1.1: enabled
 OmniBar: disabled
 Paste: disabled
 Pawn: disabled
-Plater: enabled
+Plater: disabled
 ArkInventoryRules: enabled
 AtlasLoot: enabled
 EQCompare: enabled
@@ -127,3 +127,6 @@ RoutesImportExport: disabled
 RXPGuides: disabled
 SilverDragon: disabled
 VuhDoOptions: disabled
+BigDebuffs: disabled
+Auctionator: disabled
+LittleWigs_Classic: enabled

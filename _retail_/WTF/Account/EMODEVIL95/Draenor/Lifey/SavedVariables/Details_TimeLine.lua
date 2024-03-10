@@ -3,26 +3,26 @@ DetailsTimeLineDB = {
 	["max_segments"] = 4,
 	["combat_data"] = {
 		{
-			["date_end"] = "18:44:45",
 			["date_start"] = "18:43:49",
+			["date_end"] = "18:44:45",
 			["name"] = "Tred'ova",
 			["total_time"] = 55.94599999999628,
 		}, -- [1]
 		{
-			["date_end"] = "18:40:51",
 			["date_start"] = "18:40:03",
+			["date_end"] = "18:40:51",
 			["name"] = "Mistcaller",
 			["total_time"] = 47.35199999999895,
 		}, -- [2]
 		{
-			["date_end"] = "18:35:13",
 			["date_start"] = "18:34:42",
+			["date_end"] = "18:35:13",
 			["name"] = "Ingra Maloch",
 			["total_time"] = 30.61699999999837,
 		}, -- [3]
 		{
-			["date_start"] = "18:28:31",
 			["date_end"] = "18:29:47",
+			["date_start"] = "18:28:31",
 			["name"] = "Stradama Margrave",
 			["total_time"] = 75.42300000000978,
 		}, -- [4]
@@ -231,23 +231,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [6]
 			},
-			[322563] = {
-				{
-					54.95699999999488, -- [1]
-					"Tred'ova", -- [2]
-					322563, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-					"Chillibilly-Kazzak", -- [5]
-				}, -- [1]
-			},
-			[322550] = {
-				{
-					53.47999999999593, -- [1]
-					"Tred'ova", -- [2]
-					322550, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[322450] = {
 				{
 					12.57299999998941, -- [1]
@@ -263,6 +246,23 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 					"Cocoon of Lakali", -- [5]
 				}, -- [2]
+			},
+			[322550] = {
+				{
+					53.47999999999593, -- [1]
+					"Tred'ova", -- [2]
+					322550, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[322563] = {
+				{
+					54.95699999999488, -- [1]
+					"Tred'ova", -- [2]
+					322563, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+					"Chillibilly-Kazzak", -- [5]
+				}, -- [1]
 			},
 		}, -- [1]
 		{
@@ -396,14 +396,19 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[322557] = {
+			[331718] = {
 				{
-					21.38499999999476, -- [1]
-					"Drust Soulcleaver", -- [2]
-					322557, -- [3]
+					0.1, -- [1]
+					"Mistveil Defender", -- [2]
+					331718, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-					"Chillibilly-Kazzak", -- [5]
 				}, -- [1]
+				{
+					0.1, -- [1]
+					"Mistveil Defender", -- [2]
+					331718, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
 			},
 			[323057] = {
 				{
@@ -435,17 +440,17 @@ DetailsTimeLineDB = {
 					"Jøøzí", -- [5]
 				}, -- [4]
 			},
-			[331718] = {
+			[322569] = {
 				{
-					0.1, -- [1]
-					"Mistveil Defender", -- [2]
-					331718, -- [3]
+					9.921000000002095, -- [1]
+					"Drust Soulcleaver", -- [2]
+					322569, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 				{
-					0.1, -- [1]
-					"Mistveil Defender", -- [2]
-					331718, -- [3]
+					28.16300000000047, -- [1]
+					"Drust Soulcleaver", -- [2]
+					322569, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
@@ -521,14 +526,6 @@ DetailsTimeLineDB = {
 					"Chillibilly-Kazzak", -- [5]
 				}, -- [10]
 			},
-			[321772] = {
-				{
-					13.1710000000021, -- [1]
-					"Droman Oulfarran", -- [2]
-					321772, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[324923] = {
 				{
 					12.13899999999558, -- [1]
@@ -543,19 +540,22 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [2]
 			},
-			[322569] = {
+			[321772] = {
 				{
-					9.921000000002095, -- [1]
-					"Drust Soulcleaver", -- [2]
-					322569, -- [3]
+					13.1710000000021, -- [1]
+					"Droman Oulfarran", -- [2]
+					321772, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
+			},
+			[322557] = {
 				{
-					28.16300000000047, -- [1]
+					21.38499999999476, -- [1]
 					"Drust Soulcleaver", -- [2]
-					322569, -- [3]
+					322557, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
+					"Chillibilly-Kazzak", -- [5]
+				}, -- [1]
 			},
 		}, -- [3]
 		{
@@ -865,36 +865,6 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[336451] = {
-				{
-					15.34700000000885, -- [1]
-					"Defender of Many Eyes", -- [2]
-					336451, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-				{
-					21.02999999999884, -- [1]
-					"Defender of Many Eyes", -- [2]
-					336451, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [2]
-			},
-			[328343] = {
-				{
-					19.63700000000245, -- [1]
-					"Venomfang", -- [2]
-					328343, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
-			[325551] = {
-				{
-					1.358000000007451, -- [1]
-					"Domina Venomblade", -- [2]
-					325551, -- [3]
-					"SPELL_CAST_SUCCESS", -- [4]
-				}, -- [1]
-			},
 			[325395] = {
 				{
 					23.16700000000128, -- [1]
@@ -950,6 +920,36 @@ DetailsTimeLineDB = {
 					325395, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [9]
+			},
+			[328343] = {
+				{
+					19.63700000000245, -- [1]
+					"Venomfang", -- [2]
+					328343, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[325551] = {
+				{
+					1.358000000007451, -- [1]
+					"Domina Venomblade", -- [2]
+					325551, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+			},
+			[336451] = {
+				{
+					15.34700000000885, -- [1]
+					"Defender of Many Eyes", -- [2]
+					336451, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [1]
+				{
+					21.02999999999884, -- [1]
+					"Defender of Many Eyes", -- [2]
+					336451, -- [3]
+					"SPELL_CAST_SUCCESS", -- [4]
+				}, -- [2]
 			},
 		}, -- [5]
 		{
@@ -1043,11 +1043,11 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[324527] = {
+			[329917] = {
 				{
-					10.91999999999825, -- [1]
-					"Globgrog", -- [2]
-					324527, -- [3]
+					24.42499999998836, -- [1]
+					"Fungalmancer", -- [2]
+					329917, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
@@ -1096,22 +1096,40 @@ DetailsTimeLineDB = {
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
-			[329917] = {
+			[324527] = {
 				{
-					24.42499999998836, -- [1]
-					"Fungalmancer", -- [2]
-					329917, -- [3]
+					10.91999999999825, -- [1]
+					"Globgrog", -- [2]
+					324527, -- [3]
 					"SPELL_CAST_SUCCESS", -- [4]
 				}, -- [1]
 			},
 		}, -- [7]
 	},
 	["useicons"] = true,
-	["backdrop_color"] = {
-		0, -- [1]
-		0, -- [2]
-		0, -- [3]
-		0.4, -- [4]
+	["cooldowns_timeline"] = {
+		{
+		}, -- [1]
+		{
+		}, -- [2]
+		{
+			["Chillibilly-Kazzak"] = {
+				{
+					19.67899999998917, -- [1]
+					"Chillibilly-Kazzak", -- [2]
+					116849, -- [3]
+				}, -- [1]
+			},
+		}, -- [3]
+		{
+			["Chèrry-Stormscale"] = {
+				{
+					2.923999999999069, -- [1]
+					"Margrave Stradama", -- [2]
+					198103, -- [3]
+				}, -- [1]
+			},
+		}, -- [4]
 	},
 	["window_scale"] = 1,
 	["deaths_data"] = {
@@ -1202,29 +1220,11 @@ DetailsTimeLineDB = {
 		{
 		}, -- [4]
 	},
-	["cooldowns_timeline"] = {
-		{
-		}, -- [1]
-		{
-		}, -- [2]
-		{
-			["Chillibilly-Kazzak"] = {
-				{
-					19.67899999998917, -- [1]
-					"Chillibilly-Kazzak", -- [2]
-					116849, -- [3]
-				}, -- [1]
-			},
-		}, -- [3]
-		{
-			["Chèrry-Stormscale"] = {
-				{
-					2.923999999999069, -- [1]
-					"Margrave Stradama", -- [2]
-					198103, -- [3]
-				}, -- [1]
-			},
-		}, -- [4]
+	["backdrop_color"] = {
+		0, -- [1]
+		0, -- [2]
+		0, -- [3]
+		0.4, -- [4]
 	},
 	["BossSpellCast"] = {
 		{

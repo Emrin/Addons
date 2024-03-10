@@ -1,4 +1,5 @@
-AddonName, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 CraftSim.PRICE_DETAILS = {}
 

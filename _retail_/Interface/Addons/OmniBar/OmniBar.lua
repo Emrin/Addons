@@ -184,9 +184,14 @@ function OmniBar:OnInitialize()
 		if (not major) or (not minor) then return end
 		if major < self.version.major then return end
 		if major == self.version.major and minor <= self.version.minor then return end
+		if (not self.outdatedSender) or self.outdatedSender == sender then
+			self.outdatedSender = sender
+			return
+		end
 		if self.nextWarn and self.nextWarn > GetTime() then return end
 		self.nextWarn = GetTime() + 1800
 		self:Print(L.UPDATE_AVAILABLE)
+		self.outdatedSender = nil
 	end)
 
 	self:RegisterEvent("ZONE_CHANGED_NEW_AREA", "SendVersion")
@@ -860,6 +865,9 @@ function OmniBar:AddSpellCast(event, sourceGUID, sourceName, sourceFlags, spellI
 
 	local now = GetTime()
 
+	local charges = addon.Cooldowns[spellID].charges
+	local duration = customDuration or GetCooldownDuration(addon.Cooldowns[spellID])
+
 	-- make sure spellID is parent
 	spellID = addon.Cooldowns[spellID].parent or spellID
 
@@ -874,9 +882,6 @@ function OmniBar:AddSpellCast(event, sourceGUID, sourceName, sourceFlags, spellI
 
 	-- only track players and their pets
 	if (not ownerName) and bit_band(sourceFlags, COMBATLOG_OBJECT_TYPE_PLAYER) == 0 then return end
-
-	local duration = customDuration or GetCooldownDuration(addon.Cooldowns[spellID])
-	local charges = addon.Cooldowns[spellID].charges
 
 	-- child doesn't have custom charges, use parent
 	if (not charges) then

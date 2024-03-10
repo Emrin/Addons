@@ -1,4 +1,6 @@
-AddonName, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
+local CraftSimAddonName = select(1, ...)
 
 CraftSim.UTIL = {}
 
@@ -7,9 +9,10 @@ local multicraftFactor = 0.0009
 local resourcefulnessFactor = 0.00111
 local craftingspeedFactor = 0.002
 
+---@param debugID CraftSim.DEBUG_IDS
 function CraftSim.UTIL:SetDebugPrint(debugID)
     local function print(text, recursive, l, level)
-        if CraftSim_DEBUG and CraftSim.FRAME.GetFrame and CraftSim.GGUI:GetFrame(CraftSim.CONST.FRAMES.DEBUG) then
+        if CraftSim_DEBUG and CraftSim.GGUI.GetFrame and CraftSim.GGUI:GetFrame(CraftSim.MAIN.FRAMES, CraftSim.CONST.FRAMES.DEBUG) then
             CraftSim_DEBUG:print(text, debugID, recursive, l, level)
         else
             print(text)
@@ -23,37 +26,37 @@ function CraftSim.UTIL:SystemPrint(text)
     print(text)
 end
 
-local print = CraftSim.UTIL:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.UTIL) 
+local print = CraftSim.UTIL:SetDebugPrint(CraftSim.CONST.DEBUG_IDS.UTIL)
 
-function CraftSim.UTIL:GetInspirationStatByPercent(percent) 
-    if percent == nil then 
-        return 0 
+function CraftSim.UTIL:GetInspirationStatByPercent(percent)
+    if percent == nil then
+        return 0
     end
     return percent / inspirationFactor
 end
 
-function CraftSim.UTIL:GetCraftingSpeedStatByPercent(percent) 
-    if percent == nil then 
-        return 0 
+function CraftSim.UTIL:GetCraftingSpeedStatByPercent(percent)
+    if percent == nil then
+        return 0
     end
     return percent / craftingspeedFactor
 end
 
-function CraftSim.UTIL:GetMulticraftStatByPercent(percent) 
-    if percent == nil then 
-        return 0 
+function CraftSim.UTIL:GetMulticraftStatByPercent(percent)
+    if percent == nil then
+        return 0
     end
     return percent / multicraftFactor
 end
 
-function CraftSim.UTIL:GetResourcefulnessStatByPercent(percent) 
-    if percent == nil then 
-        return 0 
+function CraftSim.UTIL:GetResourcefulnessStatByPercent(percent)
+    if percent == nil then
+        return 0
     end
     return percent / resourcefulnessFactor
 end
 
-function CraftSim.UTIL:GetInspirationPercentByStat(stat) 
+function CraftSim.UTIL:GetInspirationPercentByStat(stat)
     return stat * inspirationFactor
 end
 
@@ -61,16 +64,16 @@ function CraftSim.UTIL:GetCraftingSpeedPercentByStat(stat)
     return stat * craftingspeedFactor
 end
 
-function CraftSim.UTIL:GetMulticraftPercentByStat(stat) 
+function CraftSim.UTIL:GetMulticraftPercentByStat(stat)
     return stat * multicraftFactor
 end
 
-function CraftSim.UTIL:GetResourcefulnessPercentByStat(stat) 
+function CraftSim.UTIL:GetResourcefulnessPercentByStat(stat)
     return stat * resourcefulnessFactor
 end
 
 function CraftSim.UTIL:IsMyVersionHigher(versionB)
-    local versionA = GetAddOnMetadata(AddonName, "Version") or ""
+    local versionA = C_AddOns.GetAddOnMetadata(CraftSimAddonName, "Version") or ""
     local subVersionsA = strsplittable(".", versionA)
     local subVersionsB = strsplittable(".", versionB)
 
@@ -132,7 +135,7 @@ function CraftSim.UTIL:KethoEditBox_Show(text)
         local f = CreateFrame("Frame", "KethoEditBox", UIParent, "DialogBoxFrame")
         f:SetPoint("CENTER")
         f:SetSize(600, 500)
-        
+
         f:SetBackdrop({
             bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
             edgeFile = "Interface\\PVPFrame\\UI-Character-PVP-Highlight", -- this one is neat
@@ -140,7 +143,7 @@ function CraftSim.UTIL:KethoEditBox_Show(text)
             insets = { left = 8, right = 6, top = 8, bottom = 8 },
         })
         f:SetBackdropBorderColor(0, .44, .87, 0.5) -- darkblue
-        
+
         -- Movable
         f:SetMovable(true)
         f:SetClampedToScreen(true)
@@ -150,14 +153,14 @@ function CraftSim.UTIL:KethoEditBox_Show(text)
             end
         end)
         f:SetScript("OnMouseUp", f.StopMovingOrSizing)
-        
+
         -- ScrollFrame
         local sf = CreateFrame("ScrollFrame", "KethoEditBoxScrollFrame", KethoEditBox, "UIPanelScrollFrameTemplate")
         sf:SetPoint("LEFT", 16, 0)
         sf:SetPoint("RIGHT", -32, 0)
         sf:SetPoint("TOP", 0, -16)
         sf:SetPoint("BOTTOM", KethoEditBoxButton, "TOP", 0, 0)
-        
+
         -- EditBox
         local eb = CreateFrame("EditBox", "KethoEditBoxEditBox", KethoEditBoxScrollFrame)
         eb:SetSize(sf:GetSize())
@@ -166,18 +169,18 @@ function CraftSim.UTIL:KethoEditBox_Show(text)
         eb:SetFontObject("ChatFontNormal")
         eb:SetScript("OnEscapePressed", function() f:Hide() end)
         sf:SetScrollChild(eb)
-        
+
         -- Resizable
         f:SetResizable(true)
-        
+
         local rb = CreateFrame("Button", "KethoEditBoxResizeButton", KethoEditBox)
         rb:SetPoint("BOTTOMRIGHT", -6, 7)
         rb:SetSize(16, 16)
-        
+
         rb:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
         rb:SetHighlightTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Highlight")
         rb:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Down")
-        
+
         rb:SetScript("OnMouseDown", function(self, button)
             if button == "LeftButton" then
                 f:StartSizing("BOTTOMRIGHT")
@@ -191,9 +194,10 @@ function CraftSim.UTIL:KethoEditBox_Show(text)
         end)
         f:Show()
     end
-    
+
     if text then
         KethoEditBoxEditBox:SetText(text)
+        KethoEditBoxEditBox:HighlightText(0, KethoEditBoxEditBox:GetNumLetters())
     end
     KethoEditBox:Show()
 end
@@ -222,7 +226,6 @@ function CraftSim.UTIL:PrintTable(t, debugID, recursive, level)
             CraftSim_DEBUG:print(levelString .. tostring(k) .. ": ", debugID, false)
             CraftSim.UTIL:PrintTable(v, debugID, recursive, level + 1)
         end
-
     end
 end
 
@@ -258,21 +261,21 @@ function CraftSim.UTIL:ValidateNumberInput(inputBox, allowNegative)
 end
 
 function CraftSim.UTIL:WrapText(text, width)
-    local char_pattern = ".[\128-\191]*"  -- for UTF-8 texts
+    local char_pattern = ".[\128-\191]*" -- for UTF-8 texts
     -- local char_pattern = "."           -- for 1-byte encodings
-    
+
     local function wrap(text, width)
-       local tail, lines = text.." ", {}
-       while tail do
-          lines[#lines + 1], tail = tail
-             :gsub("^%s+", "")
-             :gsub(char_pattern, "\0%0\0", width)
-             :gsub("%z%z", "")
-             :gsub("(%S)%z(%s)", "%1%2\0")
-             :gsub("^(%z[^\r\n%z]*)%f[%s](%Z*)%z(.*)$", "%1\0%2%3")
-             :match"^%z(%Z+)%z(.*)$"
-       end
-       return table.concat(lines, "\n")
+        local tail, lines = text .. " ", {}
+        while tail do
+            lines[#lines + 1], tail = tail
+                :gsub("^%s+", "")
+                :gsub(char_pattern, "\0%0\0", width)
+                :gsub("%z%z", "")
+                :gsub("(%S)%z(%s)", "%1%2\0")
+                :gsub("^(%z[^\r\n%z]*)%f[%s](%Z*)%z(.*)$", "%1\0%2%3")
+                :match "^%z(%Z+)%z(.*)$"
+        end
+        return table.concat(lines, "\n")
     end
 
     return wrap(text, width)
@@ -283,7 +286,8 @@ function CraftSim.UTIL:IsSpecImplemented(professionID)
 end
 
 function CraftSim.UTIL:GetExportModeByVisibility()
-    return (ProfessionsFrame.OrdersPage.OrderView.OrderDetails:IsVisible() and CraftSim.CONST.EXPORT_MODE.WORK_ORDER) or CraftSim.CONST.EXPORT_MODE.NON_WORK_ORDER
+    return (ProfessionsFrame.OrdersPage.OrderView.OrderDetails:IsVisible() and CraftSim.CONST.EXPORT_MODE.WORK_ORDER) or
+        CraftSim.CONST.EXPORT_MODE.NON_WORK_ORDER
 end
 
 function CraftSim.UTIL:IsWorkOrder()
@@ -303,23 +307,17 @@ function CraftSim.UTIL:GreyOutByCondition(text, condition)
     end
 end
 
--- from stackoverflow: 
+-- from stackoverflow:
 -- https://stackoverflow.com/questions/9079853/lua-print-integer-as-a-binary
 function CraftSim.UTIL:toBits(num, bits)
     -- returns a table of bits, most significant first.
     bits = bits or math.max(1, select(2, math.frexp(num)))
-    local t = {} -- will contain the bits        
+    local t = {} -- will contain the bits
     for b = bits, 1, -1 do
         t[b] = math.fmod(num, 2)
         num = math.floor((num - t[b]) / 2)
     end
     return t
-end
-
-function CraftSim.UTIL:HashTable(t)
-    local serializedData = CraftSim.ACCOUNTSYNC:Serialize(data)
-	local compressedData, compressError = LibCompress:Compress(serializedData)
-    return compressedData
 end
 
 local profilings = {}
@@ -329,66 +327,120 @@ function CraftSim.UTIL:StartProfiling(label)
 end
 
 function CraftSim.UTIL:StopProfiling(label)
+    local startTime = profilings[label]
+    if not startTime then
+        print("Util Profiling Label not found on Stop: " .. tostring(label))
+        return
+    end
+    local time = debugprofilestop()
+    local diff = time - startTime
+    profilings[label] = nil
+    CraftSim_DEBUG:print(label .. ": " .. CraftSim.GUTIL:Round(diff) .. " ms", CraftSim.CONST.DEBUG_IDS.PROFILING)
+end
+
+local playerCrafterDataCached = nil
+---@return CraftSim.CrafterData
+function CraftSim.UTIL:GetPlayerCrafterData()
+    -- utilize cache to speed up api calls
+    if playerCrafterDataCached then return playerCrafterDataCached end
+
+    local name, realm = UnitNameUnmodified("player")
+    realm = realm or GetNormalizedRealmName()
+    ---@type CraftSim.CrafterData
+    local crafterData = {
+        name = name,
+        realm = realm,
+        class = select(2, UnitClass("player")),
+    }
+
+    playerCrafterDataCached = crafterData
+
+    return crafterData
+end
+
+---@param crafterData CraftSim.CrafterData
+---@return string crafterUID
+function CraftSim.UTIL:GetCrafterUIDFromCrafterData(crafterData)
+    return crafterData.name .. "-" .. crafterData.realm
+end
+
+---@return string crafterUID
+function CraftSim.UTIL:GetPlayerCrafterUID()
+    return CraftSim.UTIL:GetCrafterUIDFromCrafterData(CraftSim.UTIL:GetPlayerCrafterData())
+end
+
+function CraftSim.UTIL:ProfilingUpdate(label)
     local time = debugprofilestop()
     local diff = time - profilings[label]
-    profilings[label] = nil
-    CraftSim_DEBUG:print("Elapsed Time for " .. label .. ": " .. CraftSim.GUTIL:Round(diff) .. " ms", CraftSim.CONST.DEBUG_IDS.PROFILING)
+    CraftSim_DEBUG:print(label .. ": " .. CraftSim.GUTIL:Round(diff) .. " ms (u)", CraftSim.CONST.DEBUG_IDS.PROFILING)
 end
 
 function CraftSim.UTIL:GetFormatter()
     local b = CraftSim.GUTIL.COLORS.DARK_BLUE
     local bb = CraftSim.GUTIL.COLORS.BRIGHT_BLUE
     local g = CraftSim.GUTIL.COLORS.GREEN
+    local grey = CraftSim.GUTIL.COLORS.GREY
     local r = CraftSim.GUTIL.COLORS.RED
     local l = CraftSim.GUTIL.COLORS.LEGENDARY
     local e = CraftSim.GUTIL.COLORS.EPIC
     local patreon = CraftSim.GUTIL.COLORS.PATREON
-    local c = function(text, color) 
+    local whisper = CraftSim.GUTIL.COLORS.WHISPER
+    local white = CraftSim.GUTIL.COLORS.WHITE
+    local c = function(text, color)
         return CraftSim.GUTIL:ColorizeText(text, color)
     end
-    local p = "\n" .. CraftSim.GUTIL:GetQualityIconString(1, 15, 15) .. " "
-    local s = "\n" .. CraftSim.GUTIL:GetQualityIconString(2, 15, 15) .. " "
-    local P = "\n" .. CraftSim.GUTIL:GetQualityIconString(3, 15, 15) .. " "
-    local a = "\n     "
+    local p = CraftSim.GUTIL:GetQualityIconString(1, 15, 15) .. " "
+    local s = CraftSim.GUTIL:GetQualityIconString(2, 15, 15) .. " "
+    local P = CraftSim.GUTIL:GetQualityIconString(3, 15, 15) .. " "
+    local a = "     "
 
     local formatter = {}
-    formatter.b = function (text)
+    formatter.b = function(text)
         return c(text, b)
     end
-    formatter.bb = function (text)
+    formatter.bb = function(text)
         return c(text, bb)
     end
-    formatter.g = function (text)
+    formatter.g = function(text)
         return c(text, g)
     end
-    formatter.r = function (text)
+    formatter.r = function(text)
         return c(text, r)
     end
-    formatter.l = function (text)
+    formatter.l = function(text)
         return c(text, l)
     end
-    formatter.e = function (text)
+    formatter.e = function(text)
         return c(text, e)
     end
-    formatter.patreon = function (text)
+    formatter.grey = function(text)
+        return c(text, grey)
+    end
+    formatter.patreon = function(text)
         return c(text, patreon)
+    end
+    formatter.whisper = function(text)
+        return c(text, whisper)
+    end
+    formatter.white = function(text)
+        return c(text, white)
     end
     formatter.p = p
     formatter.s = s
     formatter.P = P
     formatter.a = a
-    formatter.m = function (m)
+    formatter.m = function(m)
         return CraftSim.GUTIL:FormatMoney(m, true)
     end
-    formatter.mw = function (m)
+    formatter.mw = function(m)
         return CraftSim.GUTIL:FormatMoney(m)
     end
 
-    formatter.i = function (i, h, w)
+    formatter.i = function(i, h, w)
         return CraftSim.GUTIL:IconToText(i, h, w)
     end
 
-    formatter.cm = function(i, s) 
+    formatter.cm = function(i, s)
         return CraftSim.MEDIA:GetAsTextIcon(i, s)
     end
 
@@ -403,27 +455,54 @@ function CraftSim.UTIL:GetSchematicFormByVisibility()
     end
 end
 
-function CraftSim.UTIL:HasProfession(professionID)
-    local skilllineids = C_TradeSkillUI.GetAllProfessionTradeSkillLines()
-    local professionsChecked = 0
-    for _, id in pairs(skilllineids) do
-    
-        local info = C_TradeSkillUI.GetProfessionInfoBySkillLineID(id)
+function CraftSim.UTIL:GetDifferentQualityIDsByCraftingReagentTbl(recipeID, craftingReagentInfoTbl, allocationItemGUID)
+    local qualityIDs = {}
+    for i = 1, 3, 1 do
+        local outputItemData = C_TradeSkillUI.GetRecipeOutputItemData(recipeID, craftingReagentInfoTbl,
+            allocationItemGUID, i)
+        table.insert(qualityIDs, outputItemData.itemID)
+    end
+    return qualityIDs
+end
 
-        if info.maxSkillLevel > 0 then
-            professionsChecked = professionsChecked + 1
-            if info.profession == professionID then
-                return true
-            end
+--- without using recipeData
+---@param recipeID number
+function CraftSim.UTIL:IsDragonflightRecipe(recipeID)
+    local recipeInfo = C_TradeSkillUI.GetRecipeInfo(recipeID)
+    if recipeInfo then
+        local professionInfo = C_TradeSkillUI.GetProfessionInfoByRecipeID(recipeInfo.recipeID)
+        if not professionInfo.profession then
+            print("No Profession loaded yet?", false, true)
+            print(professionInfo, true)
+        end
 
-            -- doesnt make sense to check more than the max learned professions per character
-            if professionsChecked >= 5 then
-                return false
-            end
-        end
-        
-        if info.profession == professionID and info.maxSkillLevel > 0 then
-            return true
-        end
+        -- do not use C_TradeSkillUI.IsRecipeInSkillLine because its not using cached data..
+        local IsDragonflightRecipe = professionInfo.professionID ==
+            CraftSim.CONST.TRADESKILLLINEIDS[professionInfo.profession][CraftSim.CONST.EXPANSION_IDS.DRAGONFLIGHT]
+        return IsDragonflightRecipe
+    end
+
+    return false
+end
+
+function CraftSim.UTIL:GetDifferentQualitiesByCraftingReagentTbl(recipeID, craftingReagentInfoTbl, allocationItemGUID,
+                                                                 maxQuality)
+    local linksByQuality = {}
+    local max = 8
+    if maxQuality then
+        max = 3 + maxQuality
+    end
+    for i = 4, max, 1 do
+        local outputItemData = C_TradeSkillUI.GetRecipeOutputItemData(recipeID, craftingReagentInfoTbl, -- seems to also work if character does not have the profession!
+            allocationItemGUID, i)
+        table.insert(linksByQuality, outputItemData.hyperlink)
+    end
+    return linksByQuality
+end
+
+---@return fun(ID: CraftSim.LOCALIZATION_IDS): string
+function CraftSim.UTIL:GetLocalizer()
+    return function(ID)
+        return CraftSim.LOCAL:GetText(ID)
     end
 end

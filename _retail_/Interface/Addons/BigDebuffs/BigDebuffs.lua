@@ -168,13 +168,16 @@ local defaults = {
 
 BigDebuffs.WarningDebuffs = addon.WarningDebuffs or {}
 BigDebuffs.Spells = addon.Spells
+BigDebuffs.HiddenDebuffs = addon.HiddenDebuffs or {}
+local tContains = tContains
 
 -- create a lookup table since CombatLogGetCurrentEventInfo() returns 0 for spellId
 local spellIdByName
 if WOW_PROJECT_ID == WOW_PROJECT_CLASSIC then
     spellIdByName = {}
     for id, value in pairs(BigDebuffs.Spells) do
-        if not value.parent then spellIdByName[GetSpellInfo(id)] = id end
+        local spellName =  GetSpellInfo(id)
+        if spellName and (not value.parent) then spellIdByName[spellName] = id end
     end
 else
     defaults.profile.unitFrames.focus = {
@@ -287,6 +290,11 @@ if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
             Disease = function() return IsUsableSpell(GetSpellInfo(374251)) end,
             Curse = function() return IsUsableSpell(GetSpellInfo(374251)) end,
         },
+        [1473] = { -- Augmentation Evoker
+            Poison = true,
+            Disease = function() return IsUsableSpell(GetSpellInfo(374251)) end,
+            Curse = function() return IsUsableSpell(GetSpellInfo(374251)) end,
+        },
         [577] = {
             Magic = function() return GetSpellInfo(205604) end, -- Reverse Magic
         },
@@ -323,6 +331,7 @@ else
             Magic = function() return IsUsableSpell(GetSpellInfo(19736)) or IsUsableSpell(GetSpellInfo(19476)) end,
         },
         EVOKER = {
+            Bleed = function() return IsUsableSpell(GetSpellInfo(374251)) end,
             Poison = true,
             Disease = function() return IsUsableSpell(GetSpellInfo(374251)) end,
             Curse = function() return IsUsableSpell(GetSpellInfo(374251)) end,
@@ -1512,7 +1521,9 @@ local CompactUnitFrame_UtilSetDebuff = CompactUnitFrame_UtilSetDebuff
 
 if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
     hooksecurefunc("CompactUnitFrame_UpdateAuras", function(frame, unitAuraUpdateInfo)
-        if (not BigDebuffs.db.profile.raidFrames.enabled) then return end
+        if not BigDebuffs.db.profile then return end
+        if not BigDebuffs.db.profile.raidFrames then return end
+        if not BigDebuffs.db.profile.raidFrames.enabled then return end
         if (not frame) or frame:IsForbidden() then return end
         if (not UnitIsPlayer(frame.displayedUnit)) then return end
         BigDebuffs:ShowBigDebuffs(frame)
@@ -1829,6 +1840,7 @@ if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
         local function addDebuffs(aura)
             -- aura struct https://wowpedia.fandom.com/wiki/Struct_UnitAuraInfo
             if (not aura) then return end
+            if tContains(self.HiddenDebuffs, aura.spellId) then return end
             local reaction = aura.sourceUnit and UnitReaction("player", aura.sourceUnit) or 0
             local friendlySmokeBomb = aura.spellId == 212183 and reaction > 4
             local isDispellable = self:IsDispellable(unitId, aura.dispelName);
@@ -2053,7 +2065,7 @@ function BigDebuffs:UNIT_AURA(unit)
         -- Check debuffs
         local _, n, _, _, d, e, caster, _, _, id = UnitDebuff(unit, i)
         if id then
-            if self.Spells[id] then
+            if self.Spells[id] and (not tContains(self.HiddenDebuffs, id)) then
                 if LibClassicDurations then
                     local durationNew, expirationTimeNew = LibClassicDurations:GetAuraDurationByUnit(unit, id, caster)
                     if d == 0 and durationNew then
@@ -2184,7 +2196,7 @@ function BigDebuffs:UNIT_AURA_NAMEPLATE(unit)
         -- Check debuffs
         local _, n, _, _, d, e, caster, _, _, id = UnitDebuff(unit, i)
         if id then
-            if self.Spells[id] then
+            if self.Spells[id] and (not tContains(self.HiddenDebuffs, id)) then
                 if LibClassicDurations then
                     local durationNew, expirationTimeNew = LibClassicDurations:GetAuraDurationByUnit(unit, id, caster)
                     if d == 0 and durationNew then

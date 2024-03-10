@@ -1,4 +1,5 @@
-_, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 CraftSim.MEDIA = {}
 
@@ -12,25 +13,23 @@ function CraftSim.MEDIA:GetAsTextIcon(image, scale)
         local width = image.dimensions.x * scale
         local height = image.dimensions.y * scale
 
-        print("file: " .. tostring(image.file))
-        print("width: " .. tostring(width))
-        print("height: " .. tostring(height))
+        -- a print here causes a stack overflow... so be careful with debugging here
 
         return CraftSim.GUTIL:IconToText(CraftSim.MEDIA.BASE_PATH .. image.file, height, width)
     else
-        print("Could not find image")
         return "<ImageNotFound>"
     end
 end
 
 CraftSim.MEDIA.IMAGES = {
-    EXPECTED_VALUE = {file="expectedValue.blp",dimensions={x=128,y=32}},
-    FALSE = {file="false.blp",dimensions={x=128,y=128}},
-    TRUE = {file="true.blp",dimensions={x=128,y=128}},
-    HSV_EXAMPLE = {file="hsvVisualization.blp",dimensions={x=256,y=64}},
-    ARROW_UP = {file="upArrow.blp", dimensions={x=64,y=64}},
-    ARROW_DOWN = {file="downArrow.blp", dimensions={x=64,y=64}},
-    PIXEL_HEART = {file="pixelHeart.blp", dimensions={x=64,y=64}},
-    KOFI = {file="kofi.blp", dimensions={x=64,y=64}},
-    PAYPAL = {file="paypal.blp", dimensions={x=64,y=64}},
+    EXPECTED_VALUE = { file = "expectedValue.blp", dimensions = { x = 128, y = 32 } },
+    FALSE = { file = "false.blp", dimensions = { x = 128, y = 128 } },
+    TRUE = { file = "true.blp", dimensions = { x = 128, y = 128 } },
+    HSV_EXAMPLE = { file = "hsvVisualization.blp", dimensions = { x = 256, y = 64 } },
+    ARROW_UP = { file = "upArrow.blp", dimensions = { x = 64, y = 64 } },
+    ARROW_DOWN = { file = "downArrow.blp", dimensions = { x = 64, y = 64 } },
+    PIXEL_HEART = { file = "pixelHeart.blp", dimensions = { x = 64, y = 64 } },
+    KOFI = { file = "kofi.blp", dimensions = { x = 64, y = 64 } },
+    PAYPAL = { file = "paypal.blp", dimensions = { x = 64, y = 64 } },
+    EDIT_PEN = { file = "edit.blp", dimensions = { x = 25, y = 25 } },
 }

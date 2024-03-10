@@ -989,6 +989,8 @@ VUHDO_DEFAULT_INDICATOR_CONFIG = {
 			["invertGrowth"] = false,
 			["vertical"] = false,
 			["turnAxis"] = false,
+			["turnAxisOvershield"] = false,
+			["turnAxisHealAbsorb"] = false,
 		},
 		["SIDE_LEFT"] = {
 			["TEXTURE"] = "VuhDo - Plain White",
@@ -1099,6 +1101,7 @@ VUHDO_SANE_BOUQUET_ITEM = {
 		["radio"] = 1,
 		["bright"] = 1.0,
 		["function"] = "return true;",
+		["spellTrace"] = "",
 	},
 };
 

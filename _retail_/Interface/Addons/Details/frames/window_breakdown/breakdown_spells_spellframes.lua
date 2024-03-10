@@ -11,8 +11,10 @@ local GetSpellInfo = GetSpellInfo
 local _GetSpellInfo = Details.GetSpellInfo
 local GameTooltip = GameTooltip
 local IsShiftKeyDown = IsShiftKeyDown
-local DF = DetailsFramework
 local tinsert = table.insert
+
+---@type detailsframework
+local DF = DetailsFramework
 
 local spellsTab = DetailsSpellBreakdownTab
 
@@ -189,7 +191,7 @@ local onEnterSpellBar = function(spellBar, motion) --parei aqui: precisa por nom
 	local elapsedTime = spellBar.combatTime --this should be actorObject:Tempo()
 
 	---@type string
-	local actorName = spellsTab.GetActor():Name()
+	local actorName = spellsTab.GetActor():Name() --attempt to index a nil value
 
 	---@type spelltable
 	local spellTable = spellBar.spellTable
@@ -912,8 +914,8 @@ local updateSpellBar = function(spellBar, index, actorName, combatObject, scroll
 		---@cast spellTable spelltable
 		spellBar.spellTable = spellTable
 
-		---@type string, number, any
-		local spellName, _, spellIcon = Details.GetSpellInfo(spellId)
+		---@type string, number, any, string?, boolean?
+		local spellName, _, spellIcon, defaultName, bBreakdownCanStack = Details.GetCustomSpellInfo(spellId)
 		if (not spellName) then
 			spellName = actorName
 			---@type npcid
@@ -921,8 +923,12 @@ local updateSpellBar = function(spellBar, index, actorName, combatObject, scroll
 			spellIcon = Details.NpcIdToIcon[npcId] or bkSpellData.actorIcon or ""
 		end
 
+		--if this damage was made by an item, then get the default spellName of the damaging spell
+		--the name from GetSpellInfo are probably modified by a custom spell name
+		--amount of casts does not use custom names but always the damaging spell name from combatlog
+		local defaultSpellName = Details.GetItemSpellInfo(spellId)
 		---@type number
-		local amtCasts = combatObject:GetSpellCastAmount(actorName, spellName)
+		local amtCasts = combatObject:GetSpellCastAmount(actorName, defaultSpellName or spellName)
 		spellBar.amountCasts = amtCasts
 
 		---@type number
@@ -1178,7 +1184,7 @@ local refreshSpellsFunc = function(scrollFrame, scrollData, offset, totalLines) 
 						nameToUse = bkSpellData.actorName
 					end
 
-					---@debug both calls are equal but the traceback will be different in case of an error
+					--both calls are equal but the traceback will be different in case of an error
 					if (bIsActorHeader) then
 						updateSpellBar(spellBar, index, nameToUse, combatObject, scrollFrame, headerTable, bkSpellData, spellTableIndex, totalValue, topValue, bIsMainLine, keyToSort, spellTablesAmount)
 					else
@@ -1293,7 +1299,6 @@ function spellsTab.CreateSpellScrollContainer(tabFrame) --~scroll ~create ~spell
 	--amount of lines which will be created for the scrollframe
 	local defaultAmountOfLines = 50
 
-    --replace this with a framework scrollframe
 	---@type breakdownspellscrollframe
 	local scrollFrame = DF:CreateScrollBox(container, "$parentSpellScroll", refreshSpellsFunc, {}, width, height, defaultAmountOfLines, CONST_SPELLSCROLL_LINEHEIGHT)
 	DF:ReskinSlider(scrollFrame)

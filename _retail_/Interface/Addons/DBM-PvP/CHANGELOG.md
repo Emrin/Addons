@@ -1,7 +1,11 @@
 # <DBM Mod> PvP
 
-## [r149](https://github.com/DeadlyBossMods/DBM-PvP/tree/r149) (2023-07-25)
-[Full Changelog](https://github.com/DeadlyBossMods/DBM-PvP/compare/r148...r149) [Previous Releases](https://github.com/DeadlyBossMods/DBM-PvP/releases)
+## [r170](https://github.com/DeadlyBossMods/DBM-PvP/tree/r170) (2024-03-03)
+[Full Changelog](https://github.com/DeadlyBossMods/DBM-PvP/compare/r169...r170) [Previous Releases](https://github.com/DeadlyBossMods/DBM-PvP/releases)
 
-- module -- > Mod due to bad truncating  
-- classify and color  
+- Blood Moon: Add timer for resurrection  
+- Fix LuaLS warnings  
+    This exposed a real bug: Ashran had a typo in UnregisterShortTermEvents,  
+    this wasn't detected before because LuaLS didn't know the type of the  
+    self parameter.  
+- Add LuaLS check action  

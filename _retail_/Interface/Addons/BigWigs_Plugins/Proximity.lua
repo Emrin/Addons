@@ -46,7 +46,6 @@ local SOUND = media.MediaType and media.MediaType.SOUND or "sound"
 local mute = "Interface\\AddOns\\BigWigs\\Media\\Icons\\mute"
 local unmute = "Interface\\AddOns\\BigWigs\\Media\\Icons\\unmute"
 
-local inConfigMode = nil
 local activeRange = 0
 local activeRangeChecker = nil
 local activeSpellID = nil
@@ -65,6 +64,7 @@ local proxAnchor, proxTitle = nil, nil
 local CTimerAfter = BigWigsLoader.CTimerAfter
 local GameTooltip = CreateFrame("GameTooltip", "BigWigsProximityTooltip", UIParent, "GameTooltipTemplate")
 local UnitPosition = UnitPosition
+local IsItemInRange = BigWigsLoader.IsItemInRange
 local GetRaidTargetIndex, GetNumGroupMembers, GetTime = GetRaidTargetIndex, GetNumGroupMembers, GetTime
 local IsInRaid, IsInGroup, InCombatLockdown = IsInRaid, IsInGroup, InCombatLockdown
 local UnitIsDead, UnitIsUnit, UnitClass, UnitPhaseReason = UnitIsDead, UnitIsUnit, UnitClass, UnitPhaseReason
@@ -72,7 +72,12 @@ local format = string.format
 local tinsert, tconcat, wipe = table.insert, table.concat, table.wipe
 local next, type, tonumber = next, type, tonumber
 
+local combatText = GARRISON_LANDING_STATUS_MISSION_COMBAT or "In Combat"
+local isWrath = BigWigsLoader.isWrath
+
 local OnOptionToggled = nil -- Function invoked when the proximity option is toggled on a module.
+
+local UnitInPhase = UnitInPhase or function(unit) return not UnitPhaseReason(unit) end -- UnitPhaseReason doesn't exist on classic
 
 --------------------------------------------------------------------------------
 -- Range Checking
@@ -85,14 +90,33 @@ do
 	local function initRanges()
 		ranges = {}
 
-		local interactDistances = { [2] = 10, [4] = 30 }
+		local interactDistances = BigWigsLoader.isClassic and { [2] = 10, [3] = 9, [4] = 30 } or { [2] = 10, [4] = 30 }
 		for index, range in next, interactDistances do
 			ranges[range] = function(unit)
 				return CheckInteractDistance(unit, index)
 			end
 		end
 
-		local items = {
+		local expansion = GetServerExpansionLevel()
+		local items = BigWigsLoader.isClassic and {
+			[1] = expansion > 3 and 90175, -- Gin-Ji Knife Set (5.0)
+			[3] = expansion > 1 and 42732, -- Everfrost Razor (3.0)
+			[5] = expansion > 1 and 37727, -- Ruby Acorn (3.0)
+			[8] = 8149, -- Voodoo Charm
+			-- [9]  = CheckInteractDistance 3
+			-- [10] = CheckInteractDistance 2
+			[13] = expansion > 0 and 32321, -- Sparrowhawk Net (2.1)
+			[18] = 14530, -- Heavy Runecloth Bandage
+			[23] = 21519, -- Mistletoe
+			[28] = 13289, -- Egan's Blaster
+			-- [30] = CheckInteractDistance 4
+			[33] = 955, -- Scroll of Intellect
+			[38] = 18904, -- Zorbin's Ultra-Shrinker
+			[43] = expansion > 0 and 34471, -- Vial of the Sunwell (2.4)
+			[48] = expansion > 0 and 32698, -- Wrangling Rope (2.1)
+			[53] = expansion > 4 and 116139, -- Haunting Memento (6.0)
+			[63] = expansion > 0 and 32825, -- Soul Cannon (2.1)
+		} or {
 			[1] = 90175, -- Gin-Ji Knife Set
 			[3] = 42732, -- Everfrost Razor
 			[5] = 37727, -- Ruby Acorn
@@ -145,7 +169,7 @@ do
 	end
 
 	function isInRange(unit)
-		if activeRangeChecker then
+		if activeRangeChecker and (isWrath or not InCombatLockdown()) then
 			return activeRangeChecker(unit)
 		end
 	end
@@ -163,7 +187,6 @@ end
 -- Display Window
 --
 
-local testText
 local function onDragStart(self) self:StartMoving() end
 local function onDragStop(self)
 	self:StopMovingOrSizing()
@@ -183,9 +206,7 @@ end
 local locked = nil
 local function lockDisplay()
 	if locked then return end
-	if not inConfigMode then
-		proxAnchor:EnableMouse(false) -- Keep enabled during config mode
-	end
+	proxAnchor:EnableMouse(false)
 	proxAnchor:SetMovable(false)
 	proxAnchor:SetResizable(false)
 	proxAnchor:RegisterForDrag()
@@ -271,12 +292,6 @@ do
 		end
 	end
 
-	function testText()
-		--proxAnchor.playerDot:Hide()
-		proxAnchor.text:SetText("|cffaad372Legolasftw|r\n|cfff48cbaTirionman|r\n|cfffff468Sneakystab|r\n|cffc69b6dIamconanok|r")
-		proxAnchor.text:Show()
-	end
-
 	--------------------------------------------------------------------------------
 	-- Normal Proximity
 	--
@@ -289,7 +304,7 @@ do
 		for i = 1, maxPlayers do
 			local n = unitList[i]
 			local _, _, _, tarMapId = UnitPosition(n)
-			if mapId == tarMapId and isInRange(n) and myGUID ~= plugin:UnitGUID(n) and not UnitIsDead(n) and not UnitPhaseReason(n) then
+			if mapId == tarMapId and isInRange(n) and myGUID ~= plugin:UnitGUID(n) and not UnitIsDead(n) and UnitInPhase(n) then
 				anyoneClose = anyoneClose + 1
 				if anyoneClose < 6 then
 					local player = plugin:UnitName(n)
@@ -300,7 +315,9 @@ do
 
 		proxTitle:SetFormattedText(L_proximityTitle, activeRange, anyoneClose)
 
-		if anyoneClose == 0 then
+		if InCombatLockdown() and not isWrath then
+			proxAnchor.text:SetFormattedText("|cff777777%s\n:-(|r", combatText)
+		elseif anyoneClose == 0 then
 			proxAnchor.text:SetText("|cff777777:-)|r")
 		else
 			setText(tooClose)
@@ -321,7 +338,9 @@ do
 	function targetProximityText()
 		if functionToFire then CTimerAfter(0.05, functionToFire) else return end
 
-		if isInRange(proximityPlayer) then
+		if InCombatLockdown() and not isWrath then
+			proxAnchor.text:SetFormattedText("|cff777777%s\n:-(|r", combatText)
+		elseif isInRange(proximityPlayer) then
 			proxTitle:SetFormattedText(L_proximityTitle, activeRange, 1)
 			local player = plugin:UnitName(proximityPlayer)
 			proxAnchor.text:SetText(coloredNames[player])
@@ -356,7 +375,9 @@ do
 
 		proxTitle:SetFormattedText(L_proximityTitle, activeRange, anyoneClose)
 
-		if anyoneClose == 0 then
+		if InCombatLockdown() and not isWrath then
+			proxAnchor.text:SetFormattedText("|cff777777%s\n:-(|r", combatText)
+		elseif anyoneClose == 0 then
 			proxAnchor.text:SetText("|cff777777:-)|r")
 		else
 			setText(tooClose)
@@ -382,14 +403,16 @@ do
 		for i = 1, maxPlayers do
 			local n = unitList[i]
 			local _, _, _, tarMapId = UnitPosition(n)
-			if mapId == tarMapId and isInRange(n) and myGUID ~= plugin:UnitGUID(n) and not UnitIsDead(n) and not UnitPhaseReason(n) then
+			if mapId == tarMapId and isInRange(n) and myGUID ~= plugin:UnitGUID(n) and not UnitIsDead(n) and UnitInPhase(n) then
 				anyoneClose = anyoneClose + 1
 			end
 		end
 
 		proxTitle:SetFormattedText(L_proximityTitle, activeRange, anyoneClose)
 
-		if anyoneClose == 0 then
+		if InCombatLockdown() and not isWrath then
+			proxAnchor.text:SetFormattedText("|cff777777%s\n:-(|r", combatText)
+		elseif anyoneClose == 0 then
 			proxAnchor.text:SetText("|cffff0202> STACK <|r") -- XXX localize or remove?
 			if not db.sound then return end
 			local t = GetTime()
@@ -409,7 +432,9 @@ do
 	function reverseTargetProximityText()
 		if functionToFire then CTimerAfter(0.05, functionToFire) else return end
 
-		if isInRange(proximityPlayer) then
+		if InCombatLockdown() and not isWrath then
+			proxAnchor.text:SetFormattedText("|cff777777%s\n:-(|r", combatText)
+		elseif isInRange(proximityPlayer) then
 			proxTitle:SetFormattedText(L_proximityTitle, activeRange, 1)
 			proxAnchor.text:SetText("|cff777777:-)|r")
 		else
@@ -442,7 +467,9 @@ do
 
 		proxTitle:SetFormattedText(L_proximityTitle, activeRange, anyoneClose)
 
-		if anyoneClose == 0 then
+		if InCombatLockdown() and not isWrath then
+			proxAnchor.text:SetFormattedText("|cff777777%s\n:-(|r", combatText)
+		elseif anyoneClose == 0 then
 			tinsert(tooClose, 1, "|cffff0202> STACK <|r") -- XXX localize or remove?
 			setText(tooClose)
 			if not db.sound then return end
@@ -500,7 +527,7 @@ do
 		tooltipFrame:SetHeight(40)
 		tooltipFrame:SetPoint("BOTTOM", proxAnchor, "TOP")
 		tooltipFrame:SetScript("OnEnter", function(self)
-			if not activeSpellID and not inConfigMode then return end
+			if not activeSpellID then return end
 			GameTooltip:SetOwner(self, "ANCHOR_BOTTOM")
 			GameTooltip:SetHyperlink(format("spell:%d", activeSpellID or 44318))
 			GameTooltip:Show()
@@ -608,8 +635,6 @@ do
 		self:RegisterMessage("BigWigs_OnBossWipe", "BigWigs_OnBossDisable")
 		self:RegisterMessage("BigWigs_OnBossDisable")
 
-		self:RegisterMessage("BigWigs_StartConfigureMode")
-		self:RegisterMessage("BigWigs_StopConfigureMode")
 		self:RegisterMessage("BigWigs_ProfileUpdate", updateProfile)
 		updateProfile()
 	end
@@ -623,22 +648,6 @@ end
 -------------------------------------------------------------------------------
 -- Options
 --
-
-function plugin:BigWigs_StartConfigureMode()
-	if activeRange > 0 then
-		return -- Pointless trying to start configure mode if proximity has already been opened by a boss encounter.
-	end
-	inConfigMode = true
-	self:Test()
-end
-
-function plugin:BigWigs_StopConfigureMode()
-	inConfigMode = nil
-	if db.lock then
-		proxAnchor:EnableMouse(false) -- Mouse disabled whilst locked, but we enable it in test mode. Re-disable it.
-	end
-	self:Close(true)
-end
 
 do
 	local disabled = function() return plugin.db.profile.disabled end
@@ -960,15 +969,6 @@ do
 		self:CancelTimer(updateTimer)
 		updateTimer = self:ScheduleTimer(openProx, 0.1, self, range, module, key, player, isReverse, spellName, spellIcon)
 	end
-end
-
-function plugin:Test()
-	self:Close(true)
-	if db.lock then
-		proxAnchor:EnableMouse(true) -- Mouse disabled whilst locked, enable it in test mode
-	end
-	testText()
-	proxAnchor:Show()
 end
 
 -------------------------------------------------------------------------------

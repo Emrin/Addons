@@ -28,9 +28,9 @@ local UnitIsUnit = _G.UnitIsUnit
 local UnitGUID = _G.UnitGUID
 local GetSpellInfo = _G.GetSpellInfo
 local floor = _G.floor
-local UnitAuraSlots = _G.UnitAuraSlots
-local UnitAuraBySlot = _G.UnitAuraBySlot
-local UnitAura = _G.UnitAura
+local UnitAuraSlots = _G.UnitAuraSlots or (C_UnitAuras and C_UnitAuras.GetAuraSlots)
+local UnitAuraBySlot = _G.UnitAuraBySlot or (C_UnitAuras and (function(...) local auraData = C_UnitAuras.GetAuraDataBySlot(...); if not auraData then return nil; end; return AuraUtil.UnpackAuraData(auraData); end))
+local UnitAura = _G.UnitAura or (C_UnitAuras and (function(...) local auraData = C_UnitAuras.GetAuraDataByIndex(unitToken, index, filter); if not auraData then return nil; end; return AuraUtil.UnpackAuraData(auraData); end))
 local GetAuraDataBySlot = _G.C_UnitAuras and _G.C_UnitAuras.GetAuraDataBySlot
 local BackdropTemplateMixin = _G.BackdropTemplateMixin
 local BUFF_MAX_DISPLAY = _G.BUFF_MAX_DISPLAY
@@ -86,8 +86,6 @@ local AURA_TYPE_DISEASE = "Disease"
 local AURA_TYPE_POISON = "Poison"
 local AURA_TYPE_CURSE = "Curse"
 local AURA_TYPE_UNKNOWN = nil
-
-local MEMBER_UNITID = "namePlateUnitToken"
 
 local PLATER_REFRESH_ID = 1
 function Plater.IncreaseRefreshID_Auras()
@@ -324,11 +322,90 @@ local function CreatePlaterNamePlateAuraTooltip()
 		nineSlice:ApplyBackdrop(...)
 	end
 	
+	--This is a fallback to save tooltips in classic... can't have nice things.
+	IS_NEW_UNIT_AURA_AVAILABLE = tooltip.SetUnitBuffByAuraInstanceID and true or false
+	
 	return tooltip
 end
 
 local NamePlateTooltip = _G.NamePlateTooltip -- can be removed later
 local PlaterNamePlateAuraTooltip = CreatePlaterNamePlateAuraTooltip()
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--> Private Aura handling
+
+function Plater.HandlePrivateAuraAnchors(unitFrame, maxIndex)
+	if true then return end -- disable for now...
+	if not unitFrame then return end
+	if not C_UnitAuras or not C_UnitAuras.RemovePrivateAuraAnchor then return end
+
+	if unitFrame.privateAuraAnchors then
+		for index, anchorID in pairs(unitFrame.privateAuraAnchors) do
+			C_UnitAuras.RemovePrivateAuraAnchor(anchorID)
+		end
+		table.wipe(unitFrame.privateAuraAnchors)
+	else
+		unitFrame.privateAuraAnchors = {}
+	end
+	
+	if not unitFrame.PlaterOnScreen then return end
+	
+	--anchor building
+	local anchorSide = Plater.db.profile.aura_frame1_anchor.side
+	local rowGrowthDirectionUp = (anchorSide < 3 or anchorSide > 5)
+	local maxIndex = maxIndex or 2
+	local relIconPoint = "bottom"
+	local relIconPointTo = "top"
+	local paddingMult = 1
+	
+	-- --> left to right
+	if (DB_AURA_GROW_DIRECTION == 3) then
+		relIconPoint = rowGrowthDirectionUp and "bottomleft" or "topleft"
+		relIconPointTo = rowGrowthDirectionUp and "topleft" or "bottomleft"
+		paddingMult = 1
+		
+	-- <-- right to left
+	elseif (DB_AURA_GROW_DIRECTION == 1) then
+		relIconPoint = rowGrowthDirectionUp and "bottomright" or "topright"
+		relIconPointTo = rowGrowthDirectionUp and "topright" or "bottomright"
+		paddingMult = -1
+	end
+	
+	local unit = unitFrame.IsSelf and "player" or unitFrame[MEMBER_UNITID]
+	
+	for index = 1, maxIndex do
+		local privateAnchorArgs = {
+			unitToken = unit,
+			auraIndex = index,
+			parent = unitFrame,
+			showCountdownFrame = true,
+			showCountdownNumbers = true,
+			iconInfo = {
+				iconAnchor = {
+					point = relIconPoint,
+					relativeTo = unitFrame.BuffFrame,
+					relativePoint = relIconPointTo,
+					offsetX = ((Plater.db.profile.aura_width * (index - 1)) + DB_AURA_PADDING * (index -1)) * paddingMult, --((Plater.db.profile.aura_width * Plater.db.profile.ui_parent_scale_tune * (index - 1)) + DB_AURA_PADDING * (index -1)) * paddingMult,
+					offsetY = Plater.db.profile.aura_breakline_space,
+				},
+				iconWidth = Plater.db.profile.aura_width, -- * Plater.db.profile.ui_parent_scale_tune,
+				iconHeight = Plater.db.profile.aura_height, -- * Plater.db.profile.ui_parent_scale_tune,
+			},
+			durationAnchor = {
+				point = relIconPoint,
+				relativeTo = unitFrame.BuffFrame,
+				relativePoint = relIconPointTo,
+				offsetX = ((Plater.db.profile.aura_width * (index - 1)) + DB_AURA_PADDING * (index -1)) * paddingMult, --((Plater.db.profile.aura_width * Plater.db.profile.ui_parent_scale_tune * (index - 1)) + DB_AURA_PADDING * (index -1)) * paddingMult,
+				offsetY = Plater.db.profile.aura_breakline_space,
+			},
+		}
+		
+		unitFrame.privateAuraAnchors[index] = C_UnitAuras.AddPrivateAuraAnchor(privateAnchorArgs)
+	end
+	--anchored, so we should 'show' the buffframe as anchor point. TODO: how to handle this for name only and other stuff?... might need separate anchor frame
+	unitFrame.BuffFrame:Show()
+	unitFrame.BuffFrame:SetSize(1,1)
+end
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --> UNIT_AURA event handling
@@ -623,7 +700,7 @@ local function getUnitAuras(unit, filter)
 	repeat -- until continuationToken == nil
 		local numSlots = 0
 		local slots
-		if IS_WOW_PROJECT_MAINLINE then
+		if IS_NEW_UNIT_AURA_AVAILABLE then
 			slots = { UnitAuraSlots(unit, filter, BUFF_MAX_DISPLAY, continuationToken) }
 			continuationToken = slots[1]
 			numSlots = #slots
@@ -640,7 +717,7 @@ local function getUnitAuras(unit, filter)
 				end
 			else
 				local name, icon, applications, dispelName, duration, expirationTime, sourceUnit, isStealable, nameplateShowPersonal, spellId, canApplyAura, isBossAura, isFromPlayerOrPlayerPet, nameplateShowAll, timeMod, applications
-				if IS_WOW_PROJECT_MAINLINE then
+				if IS_NEW_UNIT_AURA_AVAILABLE then
 					local slot = slots[i]
 					name, icon, applications, dispelName, duration, expirationTime, sourceUnit, isStealable, nameplateShowPersonal, spellId, canApplyAura, isBossAura, isFromPlayerOrPlayerPet, nameplateShowAll, timeMod, applications = UnitAuraBySlot(unit, slot)
 				else
@@ -805,7 +882,6 @@ end
 		for index, iconFramesTable in pairs (aurasDuplicated) do
 			--how many auras with the same name the unit has
 			local amountOfSimilarAuras = #iconFramesTable
-			local totalStacks = iconFramesTable [1][1].Stacks > 0 and iconFramesTable [1][1].Stacks or 1
 			
 			if (amountOfSimilarAuras > 1) then
 				--sort order: the aura with the least time left is shown by default
@@ -815,12 +891,19 @@ end
 					table.sort (iconFramesTable, DF.SortOrder2)
 				end
 				
+				local totalStacks = 0
+				
 				--hide all auras except for the first occurrence of this aura
-				for i = 2, amountOfSimilarAuras do
+				for i = 1, amountOfSimilarAuras do
 					local iconFrame = iconFramesTable [i][1]
-					iconFrame.ShowAnimation:Stop()
-					iconFrame:Hide()
-					iconFrame.InUse = false
+					if i == 1 then --ensure the sorted icon is always shown
+						iconFrame:Show()
+						iconFrame.InUse = true
+					else --hide other icons
+						iconFrame.ShowAnimation:Stop()
+						iconFrame:Hide()
+						iconFrame.InUse = false
+					end
 					
 					totalStacks = totalStacks + (iconFrame.Stacks > 0 and iconFrame.Stacks or 1)
 					
@@ -857,13 +940,13 @@ end
 							local spellIcon, spellId = spellTable[1], spellTable[2]
 							local auraIconFrame = Plater.GetAuraIcon(buffFrame) -- show on debuff frame
 							auraIconFrame.InUse = true --don't play animation
-							Plater.AddAura(buffFrame, auraIconFrame, -1, spellName.."_player_ghost", spellIcon, 1, "DEBUFF", 0, 0, "player", false, false, spellId, false, false, false, false, "DEBUFF", 1)
+							Plater.AddAura(buffFrame, auraIconFrame, -1, spellName.."_player_ghost", spellIcon, 1, "DEBUFF", 0, 0, "player", false, false, -spellId, false, false, false, false, "DEBUFF", 1)
 							auraIconFrame:EnableMouse (false) --don't use tooltips, as there is no real aura
-							if IS_WOW_PROJECT_MAINLINE then
+							if auraIconFrame.EnableMouseMotion then
 								auraIconFrame:EnableMouseMotion (false) --don't use tooltips, as there is no real aura
 							end
 							auraIconFrame.IsGhostAura = true
-							Plater.Auras.GhostAuras.ApplyAppearance(auraIconFrame, spellName.."_player_ghost", spellIcon, spellId)
+							Plater.Auras.GhostAuras.ApplyAppearance(auraIconFrame, spellName.."_player_ghost", spellIcon, -spellId)
 							nameplateGhostAuraCache[spellName.."_player_ghost"] = true --this is shown as ghost aura
 						end
 					else
@@ -1129,16 +1212,12 @@ end
 				
 			end
 			
-			if (not firstIcon) then
-				return
-			end
-			
 			if curRowLength > horizontalLength then
 				horizontalLength = curRowLength
 			end
 			
 			--remove 1 icon padding value
-			horizontalLength = horizontalLength - DB_AURA_PADDING
+			horizontalLength = (horizontalLength > 1) and (horizontalLength - DB_AURA_PADDING) or 1
 			--set the size of the buff frame
 			self:SetWidth (horizontalLength)
 			self:SetHeight (verticalHeight)
@@ -1188,7 +1267,7 @@ end
 		newIcon.Cooldown:SetPoint ("center", 0, -1)
 		newIcon.Cooldown:SetAllPoints()
 		newIcon.Cooldown:EnableMouse (false)
-		if IS_WOW_PROJECT_MAINLINE then
+		if newIcon.Cooldown.EnableMouseMotion then
 			newIcon.Cooldown:EnableMouseMotion (false)
 		end
 		newIcon.Cooldown:SetHideCountdownNumbers (true)
@@ -1218,7 +1297,7 @@ end
 		newIcon.CountFrame = CreateFrame ("frame", "$parentCountFrame", newIcon, BackdropTemplateMixin and "BackdropTemplate")
 		newIcon.CountFrame:SetAllPoints()
 		newIcon.CountFrame:EnableMouse (false)
-		if IS_WOW_PROJECT_MAINLINE then
+		if newIcon.CountFrame.EnableMouseMotion then
 			newIcon.CountFrame:EnableMouseMotion (false)
 		end
 		newIcon.CountFrame.Count = newIcon.CountFrame:CreateFontString (nil, "artwork", "NumberFontNormalSmall")
@@ -1278,7 +1357,7 @@ end
 	local function AuraIconOnTick_UpdateCooldown (self, deltaTime)
 		local now = GetTime()
 		if (self.lastUpdateCooldown + 0.05) <= now then
-			self.RemainingTime = self.ExpirationTime - now
+			self.RemainingTime = (self.ExpirationTime - now) / (self.ModRate or 1)
 			if self.RemainingTime > 0 then
 				if self.formatWithDecimals then
 					self.Cooldown.Timer:SetText (Plater.FormatTimeDecimal (self.RemainingTime))
@@ -1305,7 +1384,7 @@ end
 			curBuffFrame = 2
 		end
 		
-		local i = self.NextAuraIcon
+		local i = self.NextAuraIcon or 1
 		
 		if (not self.PlaterBuffList[i]) then
 			local newFrameIcon = platerInternal.CreateAuraIcon (self, self.unitFrame:GetName() .. "Plater" .. self.Name .. "AuraIcon" .. i)
@@ -1516,8 +1595,8 @@ end
 		end
 		
 		--ensure proper state:
-		--auraIconFrame:EnableMouse (profile.aura_show_tooltip)
-		if IS_WOW_PROJECT_MAINLINE then
+		if auraIconFrame.EnableMouseMotion then
+			auraIconFrame:EnableMouse (false)
 			auraIconFrame:EnableMouseMotion (profile.aura_show_tooltip)
 		else
 			auraIconFrame:EnableMouse (profile.aura_show_tooltip)
@@ -1810,8 +1889,7 @@ end
 			iconFrame.filter = filter
 			iconFrame:SetScript ("OnEnter", Plater.OnEnterAura)
 			iconFrame:SetScript ("OnLeave", Plater.OnLeaveAura)
-			--iconFrame:EnableMouse (profile.aura_show_tooltip)
-			if IS_WOW_PROJECT_MAINLINE then
+			if iconFrame.EnableMouseMotion then
 				iconFrame:EnableMouse (false)
 				iconFrame:EnableMouseMotion (profile.aura_show_tooltip)
 			else
@@ -1821,7 +1899,7 @@ end
 			iconFrame:SetScript ("OnEnter", nil)
 			iconFrame:SetScript ("OnLeave", nil)
 			iconFrame:EnableMouse (false)
-			if IS_WOW_PROJECT_MAINLINE then
+			if iconFrame.EnableMouseMotion then
 				iconFrame:EnableMouseMotion (false)
 			end
 		end

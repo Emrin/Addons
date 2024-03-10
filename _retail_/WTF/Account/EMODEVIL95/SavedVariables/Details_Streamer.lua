@@ -25,33 +25,106 @@ Details_StreamerDB = {
 		["Apoku - Draenor"] = "Aclipt - Outland",
 		["Ariellol - Outland"] = "Aclipt - Outland",
 		["Cutetroll - Draenor"] = "Aclipt - Outland",
+		["Divinefurry - Draenor"] = "Divinefurry - Draenor",
+		["Redangel - Draenor"] = "Aclipt - Outland",
 		["Unchill - Draenor"] = "Aclipt - Outland",
 		["Hentaihero - Draenor"] = "Aclipt - Outland",
-		["Demonphile - Draenor"] = "Aclipt - Outland",
+		["Kungfugoblin - Draenor"] = "Aclipt - Outland",
 		["Raingirl - Silvermoon"] = "Aclipt - Outland",
+		["Lifey - Silvermoon"] = "Aclipt - Outland",
 		["Clawra - Ravencrest"] = "Aclipt - Outland",
 		["Apoki - Silvermoon"] = "Aclipt - Outland",
-		["Lifey - Silvermoon"] = "Aclipt - Outland",
 		["Yhewrgrhn - Draenor"] = "Aclipt - Outland",
-		["Wasdasdasd - Draenor"] = "Aclipt - Outland",
-		["Bowbie - Ravencrest"] = "Aclipt - Outland",
+		["Venetha - Draenor"] = "Aclipt - Outland",
+		["Apokalol - Outland"] = "Aclipt - Outland",
+		["Missuccubus - Draenor"] = "Aclipt - Outland",
 		["Fuwu - Silvermoon"] = "Aclipt - Outland",
 		["Apoka - Outland"] = "Aclipt - Outland",
-		["Nolifey - Moonglade"] = "Aclipt - Outland",
+		["Bowbie - Ravencrest"] = "Aclipt - Outland",
 		["Lifey - Moonglade"] = "Aclipt - Outland",
 		["Lifey - Draenor"] = "Aclipt - Outland",
-		["Apokalol - Outland"] = "Aclipt - Outland",
+		["Nolifey - Moonglade"] = "Aclipt - Outland",
 		["Trapchan - Draenor"] = "Aclipt - Outland",
-		["Missuccubus - Draenor"] = "Aclipt - Outland",
 		["Crystalol - Draenor"] = "Aclipt - Outland",
+		["Wasdasdasd - Draenor"] = "Aclipt - Outland",
 		["Lolisama - Draenor"] = "Aclipt - Outland",
-		["Venetha - Draenor"] = "Aclipt - Outland",
-		["Nolifey - Silvermoon"] = "Aclipt - Outland",
 		["Hentaihero - Outland"] = "Aclipt - Outland",
+		["Nolifey - Silvermoon"] = "Aclipt - Outland",
+		["Demonphile - Draenor"] = "Aclipt - Outland",
 		["Vanilia - Outland"] = "Aclipt - Outland",
 	},
 	["profiles"] = {
 		["Aclipt - Outland"] = {
+			["use_square_mode"] = false,
+			["is_first_run"] = false,
+			["grow_direction"] = "right",
+			["arrow_color"] = {
+				1, -- [1]
+				1, -- [2]
+				1, -- [3]
+				0.5, -- [4]
+			},
+			["scale"] = 1,
+			["arrow_anchor_y"] = 0,
+			["minimap"] = {
+				["minimapPos"] = 19.02563305941643,
+				["radius"] = 160,
+				["hide"] = false,
+			},
+			["row_height"] = 20,
+			["arrow_anchor_x"] = 0,
+			["font_color"] = {
+				1, -- [1]
+				1, -- [2]
+				1, -- [3]
+				1, -- [4]
+			},
+			["row_texture"] = "Details Serenity",
+			["square_grow_direction"] = "right",
+			["point"] = "CENTER",
+			["main_frame_strata"] = "LOW",
+			["square_amount"] = 5,
+			["enabled"] = false,
+			["arrow_size"] = 10,
+			["y"] = -4.57763671875e-05,
+			["row_spacement"] = 21,
+			["main_frame_color"] = {
+				0, -- [1]
+				0, -- [2]
+				0, -- [3]
+				0.2, -- [4]
+			},
+			["row_color"] = {
+				0.1019607843137255, -- [1]
+				0.1019607843137255, -- [2]
+				0.1019607843137255, -- [3]
+				0.4000000357627869, -- [4]
+			},
+			["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
+			["use_spark"] = true,
+			["per_second"] = {
+				["enabled"] = false,
+				["point"] = "CENTER",
+				["scale"] = 1,
+				["font_shadow"] = true,
+				["y"] = 6.103515625e-05,
+				["x"] = -6.103515625e-05,
+				["size"] = 32,
+				["update_speed"] = 0.05,
+				["attribute_type"] = 1,
+			},
+			["x"] = 0,
+			["font_face"] = "2002 Bold",
+			["square_size"] = 32,
+			["font_size"] = 10,
+			["author"] = "Details! Team",
+			["main_frame_locked"] = false,
+			["main_frame_size"] = {
+				299.9999389648438, -- [1]
+				499.9999084472656, -- [2]
+			},
+		},
+		["Divinefurry - Draenor"] = {
 			["use_square_mode"] = false,
 			["is_first_run"] = false,
 			["grow_direction"] = "right",
@@ -73,20 +146,20 @@ Details_StreamerDB = {
 			},
 			["main_frame_locked"] = false,
 			["arrow_anchor_x"] = 0,
+			["author"] = "Details! Team",
+			["row_texture"] = "Details Serenity",
+			["square_grow_direction"] = "right",
+			["font_size"] = 10,
 			["row_color"] = {
 				0.1019607843137255, -- [1]
 				0.1019607843137255, -- [2]
 				0.1019607843137255, -- [3]
 				0.4000000357627869, -- [4]
 			},
-			["row_texture"] = "Details Serenity",
-			["square_grow_direction"] = "right",
-			["use_spark"] = true,
-			["author"] = "Details! Team",
 			["square_amount"] = 5,
 			["enabled"] = false,
 			["arrow_size"] = 10,
-			["y"] = -4.57763671875e-05,
+			["use_spark"] = true,
 			["row_spacement"] = 21,
 			["main_frame_color"] = {
 				0, -- [1]
@@ -96,7 +169,6 @@ Details_StreamerDB = {
 			},
 			["main_frame_strata"] = "LOW",
 			["arrow_texture"] = "Interface\\CHATFRAME\\ChatFrameExpandArrow",
-			["font_size"] = 10,
 			["per_second"] = {
 				["enabled"] = false,
 				["point"] = "CENTER",
@@ -108,18 +180,19 @@ Details_StreamerDB = {
 				["update_speed"] = 0.05,
 				["size"] = 32,
 			},
+			["y"] = -4.57763671875e-05,
 			["x"] = 0,
 			["font_face"] = "2002 Bold",
 			["square_size"] = 32,
 			["point"] = "CENTER",
+			["scale"] = 1,
+			["row_height"] = 20,
 			["font_color"] = {
 				1, -- [1]
 				1, -- [2]
 				1, -- [3]
 				1, -- [4]
 			},
-			["row_height"] = 20,
-			["scale"] = 1,
 		},
 	},
 }

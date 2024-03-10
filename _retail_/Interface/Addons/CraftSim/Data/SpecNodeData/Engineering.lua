@@ -1,4 +1,5 @@
-AddonName, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 CraftSim.ENGINEERING_DATA = {}
 
@@ -91,53 +92,53 @@ end
 
 function CraftSim.ENGINEERING_DATA:GetData()
     return {
-        OPTIMIZED_EFFICIENCY_1 = {
-            childNodeIDs = {"PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1"},
+        OPTIMIZED_EFFICIENCY_1 = { -- all mapped
+            childNodeIDs = { "PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1" },
             nodeID = 50993,
             equalsSkill = true,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         OPTIMIZED_EFFICIENCY_2 = {
-            childNodeIDs = {"PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1"},
+            childNodeIDs = { "PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1" },
             nodeID = 50993,
             threshold = 0,
             craftingspeedBonusFactor = 0.10,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         OPTIMIZED_EFFICIENCY_3 = {
-            childNodeIDs = {"PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1"},
+            childNodeIDs = { "PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1" },
             nodeID = 50993,
             threshold = 10,
             inspiration = 5,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         OPTIMIZED_EFFICIENCY_4 = {
-            childNodeIDs = {"PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1"},
+            childNodeIDs = { "PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1" },
             nodeID = 50993,
             threshold = 20,
             multicraft = 10,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         OPTIMIZED_EFFICIENCY_5 = {
-            childNodeIDs = {"PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1"},
+            childNodeIDs = { "PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1" },
             nodeID = 50993,
             threshold = 25,
             inspiration = 25,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         OPTIMIZED_EFFICIENCY_6 = {
-            childNodeIDs = {"PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1"},
+            childNodeIDs = { "PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1" },
             nodeID = 50993,
             threshold = 35,
             inspiration = 5,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         OPTIMIZED_EFFICIENCY_7 = {
-            childNodeIDs = {"PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1"},
+            childNodeIDs = { "PIECES_PARTS_1", "SCRAPPER_1", "GENERALIST_1" },
             nodeID = 50993,
             threshold = 40,
             inspirationBonusSkillFactor = 0.20,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         PIECES_PARTS_1 = {
             nodeID = 50992,
@@ -145,7 +146,13 @@ function CraftSim.ENGINEERING_DATA:GetData()
             idMapping = {
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PARTS] = {
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PARTS
-                }
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.FINISHING_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
             },
         },
         PIECES_PARTS_2 = {
@@ -155,7 +162,13 @@ function CraftSim.ENGINEERING_DATA:GetData()
             idMapping = {
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PARTS] = {
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PARTS
-                }
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.FINISHING_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
             },
         },
         PIECES_PARTS_3 = {
@@ -165,7 +178,13 @@ function CraftSim.ENGINEERING_DATA:GetData()
             idMapping = {
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PARTS] = {
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PARTS
-                }
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.FINISHING_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
             },
         },
         PIECES_PARTS_4 = {
@@ -175,7 +194,13 @@ function CraftSim.ENGINEERING_DATA:GetData()
             idMapping = {
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PARTS] = {
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PARTS
-                }
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.FINISHING_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
             },
         },
         PIECES_PARTS_5 = {
@@ -185,101 +210,153 @@ function CraftSim.ENGINEERING_DATA:GetData()
             idMapping = {
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PARTS] = {
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PARTS
-                }
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.FINISHING_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ALL
+                },
             },
         },
         SCRAPPER_1 = {
             nodeID = 50991,
             equalsResourcefulnessExtraItemsFactor = true,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         SCRAPPER_2 = {
             nodeID = 50991,
             threshold = 5,
             resourcefulnessExtraItemsFactor = 0.05,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         SCRAPPER_3 = {
             nodeID = 50991,
             threshold = 15,
             inspiration = 5,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         SCRAPPER_4 = {
             nodeID = 50991,
             threshold = 30,
             resourcefulnessExtraItemsFactor = 0.05,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         SCRAPPER_5 = {
             nodeID = 50991,
             threshold = 35,
             resourcefulness = 10,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_1 = {
             nodeID = 50990,
             equalsSkill = true,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_2 = {
             nodeID = 50990,
             threshold = 0,
             craftingspeedBonusFactor = 0.10,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_3 = {
             nodeID = 50990,
             threshold = 5,
             multicraft = 10,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_4 = {
             nodeID = 50990,
             threshold = 10,
             multicraft = 10,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_5 = {
             nodeID = 50990,
             threshold = 15,
             resourcefulness = 15,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_6 = {
             nodeID = 50990,
             threshold = 20,
             resourcefulness = 15,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_7 = {
             nodeID = 50990,
             threshold = 25,
             craftingspeedBonusFactor = 0.10,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_8 = {
             nodeID = 50990,
             threshold = 30,
             multicraft = 10,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         GENERALIST_9 = {
             nodeID = 50990,
             threshold = 40,
             resourcefulness = 15,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
-        EXPLOSIVES_1 = {
-            childNodeIDs = {"CREATION_1", "SHORT_FUSE_1", "EZ_THRO_1"},
+        EXPLOSIVES_1 = { -- creation mapped, short fuse mapped, ez thro mapped
+            childNodeIDs = { "CREATION_1", "SHORT_FUSE_1", "EZ_THRO_1" },
             nodeID = 50894,
             equalsSkill = true,
+            idMapping = {
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.EXPLOSIVES] = {
+                    -- creation
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.EXPLOSIVES_AND_DEVICES,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER_BOMB_CRATES,
+                }
+            },
+            exceptionRecipeIDs = {
+                -- short fuse
+                382343, -- gravitational displacer
+                382323, -- grease grenade
+                382322, -- primal deconstruction charge
+                382330, -- creature combustion canister
+                382354, -- suspiciously ticking crate
+                382333, -- sticky warp grenade
+                382353, -- I.W.I.N button mk10
+                -- ez thro
+                382355, -- ez-thro creature combustion canister
+                382356, -- ez-thro gravitational displacer
+                386670, -- ez-thro grease grenade
+                382357, -- ez-thro primal deconstruction charge
+                382358, -- suspiciously silent crate
+            },
         },
         EXPLOSIVES_2 = {
-            childNodeIDs = {"CREATION_1", "SHORT_FUSE_1", "EZ_THRO_1"},
+            childNodeIDs = { "CREATION_1", "SHORT_FUSE_1", "EZ_THRO_1" },
             nodeID = 50894,
             threshold = 25,
             resourcefulness = 10,
+            idMapping = {
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.EXPLOSIVES] = {
+                    -- creation
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.EXPLOSIVES_AND_DEVICES,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER_BOMB_CRATES,
+                }
+            },
+            exceptionRecipeIDs = {
+                -- short fuse
+                382343, -- gravitational displacer
+                382323, -- grease grenade
+                382322, -- primal deconstruction charge
+                382330, -- creature combustion canister
+                382354, -- suspiciously ticking crate
+                382333, -- sticky warp grenade
+                382353, -- I.W.I.N button mk10
+                -- ez thro
+                382355, -- ez-thro creature combustion canister
+                382356, -- ez-thro gravitational displacer
+                386670, -- ez-thro grease grenade
+                382357, -- ez-thro primal deconstruction charge
+                382358, -- suspiciously silent crate
+            },
         },
         CREATION_1 = {
             nodeID = 50893,
@@ -350,6 +427,7 @@ function CraftSim.ENGINEERING_DATA:GetData()
             nodeID = 50892,
             equalsSkill = true,
             exceptionRecipeIDs = {
+                -- short fuse
                 382343, -- gravitational displacer
                 382323, -- grease grenade
                 382322, -- primal deconstruction charge
@@ -405,6 +483,7 @@ function CraftSim.ENGINEERING_DATA:GetData()
             nodeID = 50891,
             equalsSkill = true,
             exceptionRecipeIDs = {
+                -- ez thro
                 382355, -- ez-thro creature combustion canister
                 382356, -- ez-thro gravitational displacer
                 386670, -- ez-thro grease grenade
@@ -460,58 +539,307 @@ function CraftSim.ENGINEERING_DATA:GetData()
                 382358, -- suspiciously silent crate
             },
         },
-        FUNCTION_OVER_FORM_1 = {
-            childNodeIDs = {"GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1"},
+        FUNCTION_OVER_FORM_1 = { -- gear mapped, g for g mapped, utility mapped
+            childNodeIDs = { "GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1" },
             nodeID = 50929,
             equalsSkill = true,
-        },
-        FUNCTION_OVER_FORM_2 = {
-            childNodeIDs = {"GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1"},
-            nodeID = 50929,
-            threshold = 0,
-            craftingspeedBonusFactor = 0.10,
-        },
-        FUNCTION_OVER_FORM_3 = {
-            childNodeIDs = {"GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1"},
-            nodeID = 50929,
-            threshold = 20,
-            resourcefulness = 10,
-        },
-        FUNCTION_OVER_FORM_4 = {
-            childNodeIDs = {"GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1"},
-            nodeID = 50929,
-            threshold = 25,
-            skill = 5,
-        },
-        FUNCTION_OVER_FORM_5 = {
-            childNodeIDs = {"GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1"},
-            nodeID = 50929,
-            threshold = 35,
-            inspiration = 25,
-        },
-        FUNCTION_OVER_FORM_6 = {
-            childNodeIDs = {"GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1"},
-            nodeID = 50929,
-            threshold = 40,
-            skill = 10,
-        },
-        GEAR_1 = {
-            nodeID = 50928,
-            equalsInspiration = true,
             idMapping = {
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.GOGGLES] = {
+                    -- gear
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
                 },
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.ARMOR] = {
+                    -- gear
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
                 },
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.WEAPONS] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.GUNS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PROFESSION_EQUIPMENT] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.ENGINEERING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MINING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.FISHING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.JEWELCRAFTING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TAILORING
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.COGWHEELS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.SCOPES_AND_AMMO] = {
+                    -- utility
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TWO_HANDED_WEAPON,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER2
+                },
+            },
+        },
+        FUNCTION_OVER_FORM_2 = {
+            childNodeIDs = { "GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1" },
+            nodeID = 50929,
+            threshold = 0,
+            craftingspeedBonusFactor = 0.10,
+            idMapping = {
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.GOGGLES] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.ARMOR] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.WEAPONS] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.GUNS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PROFESSION_EQUIPMENT] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.ENGINEERING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MINING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.FISHING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.JEWELCRAFTING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TAILORING
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.COGWHEELS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.SCOPES_AND_AMMO] = {
+                    -- utility
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TWO_HANDED_WEAPON,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER2
+                },
+            },
+        },
+        FUNCTION_OVER_FORM_3 = {
+            childNodeIDs = { "GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1" },
+            nodeID = 50929,
+            threshold = 20,
+            resourcefulness = 10,
+            idMapping = {
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.GOGGLES] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.ARMOR] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.WEAPONS] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.GUNS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PROFESSION_EQUIPMENT] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.ENGINEERING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MINING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.FISHING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.JEWELCRAFTING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TAILORING
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.COGWHEELS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.SCOPES_AND_AMMO] = {
+                    -- utility
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TWO_HANDED_WEAPON,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER2
+                },
+            },
+        },
+        FUNCTION_OVER_FORM_4 = {
+            childNodeIDs = { "GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1" },
+            nodeID = 50929,
+            threshold = 25,
+            skill = 5,
+            idMapping = {
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.GOGGLES] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.ARMOR] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.WEAPONS] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.GUNS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PROFESSION_EQUIPMENT] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.ENGINEERING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MINING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.FISHING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.JEWELCRAFTING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TAILORING
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.COGWHEELS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.SCOPES_AND_AMMO] = {
+                    -- utility
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TWO_HANDED_WEAPON,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER2
+                },
+            },
+        },
+        FUNCTION_OVER_FORM_5 = {
+            childNodeIDs = { "GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1" },
+            nodeID = 50929,
+            threshold = 35,
+            inspiration = 25,
+            idMapping = {
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.GOGGLES] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.ARMOR] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.WEAPONS] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.GUNS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PROFESSION_EQUIPMENT] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.ENGINEERING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MINING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.FISHING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.JEWELCRAFTING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TAILORING
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.COGWHEELS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.SCOPES_AND_AMMO] = {
+                    -- utility
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TWO_HANDED_WEAPON,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER2
+                },
+            },
+        },
+        FUNCTION_OVER_FORM_6 = {
+            childNodeIDs = { "GEAR_1", "GEARS_FOR_GEAR_1", "UTILITY_1" },
+            nodeID = 50929,
+            threshold = 40,
+            skill = 10,
+            idMapping = {
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.GOGGLES] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.ARMOR] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.WEAPONS] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.GUNS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PROFESSION_EQUIPMENT] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.ENGINEERING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MINING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.FISHING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.JEWELCRAFTING,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TAILORING
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.COGWHEELS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    -- gears for gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.SCOPES_AND_AMMO] = {
+                    -- utility
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TWO_HANDED_WEAPON,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER2
+                },
+            },
+        },
+        GEAR_1 = {
+            nodeID = 50928,
+            equalsInspiration = true,
+            idMapping = {
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.GOGGLES] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.ARMOR] = {
+                    -- gear
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.PLATE,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.CLOTH,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MAIL,
+                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.LEATHER
+                },
+                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.WEAPONS] = {
+                    -- gear
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.GUNS
                 }
             },
@@ -587,6 +915,7 @@ function CraftSim.ENGINEERING_DATA:GetData()
             equalsInspiration = true,
             idMapping = {
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PROFESSION_EQUIPMENT] = {
+                    -- gears for gear
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.ENGINEERING,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MINING,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.FISHING,
@@ -594,11 +923,13 @@ function CraftSim.ENGINEERING_DATA:GetData()
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TAILORING
                 },
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.COGWHEELS] = {
+                    -- gears for gear
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
                 },
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.OPTIONAL_REAGENTS] = {
+                    -- gears for gear
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
-                }
+                },
             },
         },
         GEARS_FOR_GEAR_2 = {
@@ -626,13 +957,6 @@ function CraftSim.ENGINEERING_DATA:GetData()
             threshold = 25,
             multicraft = 10,
             idMapping = {
-                [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.PROFESSION_EQUIPMENT] = {
-                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.ENGINEERING,
-                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.MINING,
-                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.FISHING,
-                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.JEWELCRAFTING,
-                    CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TAILORING
-                },
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.COGWHEELS] = {
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.BLACKSMITHING.OPTIONAL_REAGENTS
                 },
@@ -646,9 +970,10 @@ function CraftSim.ENGINEERING_DATA:GetData()
             equalsMulticraft = true,
             idMapping = {
                 [CraftSim.CONST.RECIPE_CATEGORIES.ENGINEERING.SCOPES_AND_AMMO] = {
+                    -- utility
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.TWO_HANDED_WEAPON,
                     CraftSim.CONST.RECIPE_ITEM_SUBTYPES.ENGINEERING.OTHER2
-                }
+                },
             },
         },
         UTILITY_2 = {
@@ -684,11 +1009,11 @@ function CraftSim.ENGINEERING_DATA:GetData()
                 }
             },
         },
-        MECHANICAL_MIND_1 = {
-            childNodeIDs = {"INVENTIONS_1", "NOVELTIES_1"},
+        MECHANICAL_MIND_1 = { -- all mapped
+            childNodeIDs = { "INVENTIONS_1", "NOVELTIES_1" },
             nodeID = 50956,
             equalsSkill = true,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
         INVENTIONS_1 = {
             nodeID = 50955,
@@ -742,7 +1067,7 @@ function CraftSim.ENGINEERING_DATA:GetData()
         NOVELTIES_1 = {
             nodeID = 50954,
             equalsInspirationBonusSkillFactor = true,
-            idMapping = {[CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {}},
+            idMapping = { [CraftSim.CONST.RECIPE_CATEGORIES.ALL] = {} },
         },
     }
 end

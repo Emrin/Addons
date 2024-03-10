@@ -1,26 +1,34 @@
-VER 3 0100000000000003 "curse" "INV_MISC_QUESTIONMARK"
+VER 3 010000000000000C "cat" "134400"
 #showtooltip
-/cast [nomod,@mouseover,exists,nodead][nomod] Curse of Weakness
-/cast [mod,@mouseover,exists,nodead][mod] Curse of Tongues
+/cast [@cursor] Cataclysm
+END
+VER 3 010000000000000B "coil" "134400"
+#showtooltip
+/cast [mod,@focus,exists,harm][@mouseover,exists,nodead,harm][] Mortal Coil
+END
+VER 3 0100000000000008 "crs" "134400"
+#showtooltip
+/cast [nomod,@mouseover,exists,nodead][nomod] Curse of Tongues
+/cast [mod,@mouseover,exists,nodead][mod] Curse of Weakness
+END
+VER 3 010000000000000D "fear" "134400"
+#showtooltip
+/cast [mod,@focus,exists,harm][@mouseover,exists,nodead,harm][] Fear
 END
 VER 3 0100000000000006 "hs" "INV_MISC_QUESTIONMARK"
 #showtooltip
 /cast [nomod] Create Soulwell
 /cast [mod] Create Healthstone
 END
-VER 3 0100000000000004 "t1" "INV_MISC_QUESTIONMARK"
+VER 3 010000000000000A "rain" "134400"
 #showtooltip
-/cast [talent:1/2] Bilescourge Bombers
-/cast [talent:1/3] Demonic Strength
+/cast [@cursor] Rain of Fire
 END
-VER 3 0100000000000005 "t3" "INV_MISC_QUESTIONMARK"
+VER 3 0100000000000007 "shado" "134400"
 #showtooltip
-/cast [talent:3/2] Burning Rush
-/cast [talent:3/3] Dark Pact
+/cast [@cursor] Shadowfury
 END
-VER 3 0100000000000001 "VuhDoDCShieldData" "Ability_Repair"
-P[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]1LR[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
-END
-VER 3 0100000000000002 "VuhDoDCShieldNames" "Ability_Repair"
-N[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]Ven[x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]
+VER 3 0100000000000009 "slw" "134400"
+#showtooltip
+/cast [mod,@focus,exists,harm][@mouseover,exists,nodead,harm][] Curse of Exhaustion
 END

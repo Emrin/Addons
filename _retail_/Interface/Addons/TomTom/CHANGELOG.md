@@ -1,8 +1,12 @@
 # TomTom
 
-## [v3.5.1-release](https://github.com/jnwhiteh/TomTom/tree/v3.5.1-release) (2023-07-12)
-[Full Changelog](https://github.com/jnwhiteh/TomTom/commits/v3.5.1-release) [Previous Releases](https://github.com/jnwhiteh/TomTom/releases)
+## [v3.5.5-release](https://github.com/jnwhiteh/TomTom/tree/v3.5.5-release) (2024-01-17)
+[Full Changelog](https://github.com/jnwhiteh/TomTom/commits/v3.5.5-release) [Previous Releases](https://github.com/jnwhiteh/TomTom/releases)
 
+- Update toc for 10.2.5 and 1.15.0  
+- Update TOC for 10.2.0  
+- Update TOC for 3.4.3  
+- Update TOC for 10.1.7  
 - Fix issue with SetPassThroughButtons  
 - Update Ace3 and HereBeDragons  
 - Fix luacheckrc  
@@ -693,11 +697,3 @@
     * Waypoints will automatically be set as a crazy taxi arrow with the last one taking the arrow.  
 - * Minimap waypoints now properly handle zoning between continents and using portals.  
     * CrazyArrow will be re-displayed when you cross continents, if the active waypoint is on that continent  
-- * Update world map waypoints to change with the map zoom, etc.  
-- * Moving files around  
-    * Cleaning up directory structure  
-- * Altered logic to use a static minimap arrow image, due to layering issues  
-    * Implemented dragging for coordinate frame  
-    * Implemented map coordinates/mouse coordinates  
-    * Implemented rudimentary (example) control-rightclick on world map to set point  
-- * Initial working implementation of TomTom:SetWaypoint(c,z,x,y,far,near,arrive,callback) and TomTom:SetCrazyArrow(point, distance)  

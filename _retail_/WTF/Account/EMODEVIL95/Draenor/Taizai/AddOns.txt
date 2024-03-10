@@ -162,3 +162,15 @@ MoveAnything: disabled
 GatherMate2: disabled
 GatherMate2_Data: disabled
 ElvUI_Options: enabled
+ElvUI_ExtraDataTexts: disabled
+ElvUI_SecondsToBuff: disabled
+ElvUI_BuffHighlight: disabled
+LittleWigs: enabled
+BigWigs_VaultOfTheIncarnates: enabled
+BigWigs_Amirdrassil: enabled
+LittleWigs_WarlordsOfDraenor: enabled
+LittleWigs_Legion: enabled
+LittleWigs_BattleForAzeroth: enabled
+LittleWigs_Cataclysm: enabled
+BigWigs_DragonIsles: enabled
+LittleWigs_Classic: enabled

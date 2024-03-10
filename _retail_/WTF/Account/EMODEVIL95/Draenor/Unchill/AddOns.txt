@@ -93,7 +93,7 @@ WorldQuestTracker: enabled
 SilverDragon_RangeExtender: enabled
 SilverDragon_Overlay: enabled
 SilverDragon: enabled
-Plater: enabled
+Plater: disabled
 NPCScan: enabled
 MogIt_Leather: disabled
 GatherMate2_Data: enabled
@@ -212,3 +212,7 @@ Cartographer_Notes: enabled
 GatherMate: enabled
 Gatherer: enabled
 RoutesImportExport: disabled
+LittleWigs_BattleForAzeroth: enabled
+LittleWigs_Cataclysm: enabled
+BigWigs_Aberrus: enabled
+BigWigs_Amirdrassil: enabled

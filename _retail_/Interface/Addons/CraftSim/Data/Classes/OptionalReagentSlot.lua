@@ -1,4 +1,5 @@
-_, CraftSim = ...
+---@class CraftSim
+local CraftSim = select(2, ...)
 
 
 ---@class CraftSim.OptionalReagentSlot
@@ -17,7 +18,8 @@ function CraftSim.OptionalReagentSlot:new(recipeData, reagentSlotSchematic)
 
     if reagentSlotSchematic.slotInfo and reagentSlotSchematic.slotInfo.mcrSlotID then
         self.slotText = reagentSlotSchematic.slotInfo.slotText
-        self.locked, self.lockedReason = C_TradeSkillUI.GetReagentSlotStatus(reagentSlotSchematic.slotInfo.mcrSlotID, recipeData.recipeID, recipeData.professionData.skillLineID)
+        self.locked, self.lockedReason = C_TradeSkillUI.GetReagentSlotStatus(reagentSlotSchematic.slotInfo.mcrSlotID,
+            recipeData.recipeID, recipeData.professionData.skillLineID)
     end
 
     for _, reagent in pairs(reagentSlotSchematic.reagents) do
@@ -33,7 +35,8 @@ function CraftSim.OptionalReagentSlot:SetReagent(itemID)
     end
 
     ---@type CraftSim.OptionalReagent?
-    self.activeReagent = CraftSim.GUTIL:Find(self.possibleReagents, function(possibleReagent) return possibleReagent.item:GetItemID() == itemID end)
+    self.activeReagent = CraftSim.GUTIL:Find(self.possibleReagents,
+        function(possibleReagent) return possibleReagent.item:GetItemID() == itemID end)
 end
 
 ---@return CraftingReagentInfo?
@@ -47,29 +50,57 @@ function CraftSim.OptionalReagentSlot:GetCraftingReagentInfo()
     end
 end
 
+--- returns wether the player has enough the selected optional reagent
+---@param multiplier number? default: 1
+---@param crafterUID string
+function CraftSim.OptionalReagentSlot:HasItem(multiplier, crafterUID)
+    multiplier = multiplier or 1
+    if not self.activeReagent then
+        return true
+    end
+
+    local itemCount = CraftSim.CRAFTQ:GetItemCountFromCraftQueueCache(self.activeReagent.item:GetItemID(), true, false,
+        true,
+        crafterUID)
+
+    return itemCount >= multiplier
+end
+
+--- check how many times the player can fulfill the allocated item quantity
+---@param crafterUID string
+function CraftSim.OptionalReagentSlot:HasQuantityXTimes(crafterUID)
+    if not self.activeReagent then
+        return math.huge -- yes I have infinite a number of times yes
+    end
+    local itemCount = CraftSim.CRAFTQ:GetItemCountFromCraftQueueCache(self.activeReagent.item:GetItemID(), true, false,
+        true, crafterUID)
+    return itemCount -- cause the required amount is always 1
+end
+
 function CraftSim.OptionalReagentSlot:Debug()
     local debugLines = {
         "slotText: " .. tostring(self.slotText),
         "dataSlotIndex: " .. tostring(self.dataSlotIndex),
         "locked: " .. tostring(self.locked),
         "lockedReason: " .. tostring(self.lockedReason),
-        "activeReagent: " .. ((self.activeReagent and (self.activeReagent.item:GetItemLink() or self.activeReagent.item:GetItemID()) or "None")),
+        "activeReagent: " ..
+        ((self.activeReagent and (self.activeReagent.item:GetItemLink() or self.activeReagent.item:GetItemID()) or "None")),
         "possibleReagents: ",
     }
 
     for _, reagent in pairs(self.possibleReagents) do
-        debugLines = CraftSim.GUTIL:Concat({debugLines, reagent:Debug()})
+        debugLines = CraftSim.GUTIL:Concat({ debugLines, reagent:Debug() })
     end
 
     return debugLines
 end
 
 function CraftSim.OptionalReagentSlot:Copy(recipeData)
-
     local copy = CraftSim.OptionalReagentSlot(recipeData)
     copy.possibleReagents = CraftSim.GUTIL:Map(self.possibleReagents, function(r) return r:Copy() end)
     if self.activeReagent then
-        copy.activeReagent = CraftSim.GUTIL:Find(copy.possibleReagents, function(r) return r.item:GetItemID() == self.activeReagent.item:GetItemID() end)
+        copy.activeReagent = CraftSim.GUTIL:Find(copy.possibleReagents,
+            function(r) return r.item:GetItemID() == self.activeReagent.item:GetItemID() end)
     end
 
     copy.slotText = self.slotText
@@ -95,7 +126,7 @@ function CraftSim.OptionalReagentSlot:Serialize()
     serialized.dataSlotIndex = self.dataSlotIndex
     serialized.locked = self.locked
     serialized.lockedReason = self.lockedReason
-    serialized.possibleReagents = CraftSim.GUTIL:Map(self.possibleReagents, function (optionalReagent)
+    serialized.possibleReagents = CraftSim.GUTIL:Map(self.possibleReagents, function(optionalReagent)
         return optionalReagent:Serialize()
     end)
     return serialized
@@ -108,11 +139,13 @@ function CraftSim.OptionalReagentSlot:Deserialize(serializedOptionalReagentSlot)
     local deserialized = CraftSim.OptionalReagentSlot()
     deserialized.slotText = serializedOptionalReagentSlot.slotText
     deserialized.dataSlotIndex = tonumber(serializedOptionalReagentSlot.dataSlotIndex)
-    deserialized.locked = not not serializedOptionalReagentSlot.locked -- is this enough to deserialize a boolean? or do I need to parse a string?
+    deserialized.locked = not not serializedOptionalReagentSlot
+        .locked -- is this enough to deserialize a boolean? or do I need to parse a string?
     deserialized.lockedReason = serializedOptionalReagentSlot.lockedReason
-    deserialized.possibleReagents = CraftSim.GUTIL:Map(serializedOptionalReagentSlot.possibleReagents, function (serializedOptionalReagent)
-        return CraftSim.OptionalReagent:Deserialize(serializedOptionalReagent)
-    end)
+    deserialized.possibleReagents = CraftSim.GUTIL:Map(serializedOptionalReagentSlot.possibleReagents,
+        function(serializedOptionalReagent)
+            return CraftSim.OptionalReagent:Deserialize(serializedOptionalReagent)
+        end)
     return deserialized
 end
 

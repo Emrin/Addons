@@ -1,6 +1,6 @@
 
 PawnOptions = {
-	["LastVersion"] = 2.0606,
+	["LastVersion"] = 2.0808,
 	["LastPlayerFullName"] = "Leafgirl-Silvermoon",
 	["AutoSelectScales"] = true,
 	["ItemLevels"] = {

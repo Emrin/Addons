@@ -6,9 +6,13 @@ BigDebuffsDB = {
 	},
 	["profileKeys"] = {
 		["Lifey - Silvermoon"] = "Default",
-		["Crystalol - Draenor"] = "Default",
+		["Nolifey - Silvermoon"] = "Default",
 		["Pixiel - Draenor"] = "Default",
 		["Apoka - Outland"] = "Default",
+		["Holiloli - Silvermoon"] = "Default",
+		["Leafgirl - Silvermoon"] = "Default",
+		["Crystalol - Draenor"] = "Default",
+		["Raingirl - Silvermoon"] = "Default",
 	},
 	["profiles"] = {
 		["Default"] = {
